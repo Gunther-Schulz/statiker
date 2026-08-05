@@ -95,3 +95,11 @@ line here: incident, clause text location, subsequent firings.)
   an explicit mode line, or is the invocation-line route enough?
   Both decided at run grading, one incident each as provenance.
   Consumer: the run-grading pass.
+  SETTLED by operator (2026-08-05, same day): (a)+(b) merge into ONE
+  clause — the operator-present [READY] presentation ends with a
+  standardized light ADVANCE PROMPT ("(y) advances per the
+  recommendation"; anything else is free-form override) — menu-like,
+  not a clippy menu; design decisions stay never-posed (loop control
+  is the operator's slot, the clippy distinction that survives).
+  Decision-complete; APPLY at run grading (trial run completes on
+  0.1.1 for clean measurement), version bump with the S1 mint.
