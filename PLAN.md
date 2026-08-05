@@ -176,6 +176,15 @@ provenance.
   its fix predicate-checkable. Attack report: session record,
   2026-08-05.
 
+- 2026-08-05, operator: the tenet list — the operator's core tenets
+  (investigation-led design; loop = re-investigation until the design
+  stops moving; sufficiency = implementation detail enough that
+  execution succeeds; anti-skim as the founding disease) plus the
+  five forcing points — is the BASE-REFERENCE for any future
+  adjustment of the skill: changes build on it and are checked
+  against it. (Sections above carry the substance; original exchange:
+  session transcript 2026-08-05 15:18–15:19, recovered post-compact.)
+
 ## Horizon consideration — NOT a decision (operator, 2026-08-05)
 
 When statiker is validated, CONSIDER lifting its framework from it
