@@ -153,6 +153,19 @@ line here: incident, clause text location, subsequent firings.)
   design + question, no commentary); this session grades the grader.
   Round-2 attackers and raw records remain clean (dispatched blind,
   pre-relay, scrubbed artifact).
+  EFFORT MEASUREMENT (subagent transcripts, executed): A1/fable 43
+  tool calls (16 Read / 22 Bash), 40k out-tokens, 11 min; A2/opus 73
+  calls (52 Bash / 2 Read), 83k out-tokens, 22 min. Wrong severity
+  calls were written from READING (modelling-the-system class);
+  right ones each sat on an executed measurement — and fable's
+  unique find (quarter-guard intent contradiction) is a
+  reading-class defect no probe surfaces. Each attacker found what
+  its method could see; verdict quality tracked measurement-vs-
+  model, not tier. Mint candidate if round 2 repeats: attack-brief
+  clause "every severity call on a mechanism carries an executed
+  consequence-probe, or the label unmeasured" — would make attack
+  quality tier-robust and reprice the attack class (sonnet
+  prediction: with probes, closer than the ranking predicts).
   Premature-[READY] preliminary classes: S2 = Class A (unexecuted
   generalization as basis), S1 = Class A-leaning (record carried a
   live [PENDING] D10 NULL-disposition sub-question + duplicate D10
