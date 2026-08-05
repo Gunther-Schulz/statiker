@@ -62,6 +62,27 @@ Zero clauses at birth per PLAN.md; first cohort minted 0.2.0.)
   / unprovenanced) misses "many provenance-backed patches from one
   trial day"; compression pass is the fire-rate review's, sentinel
   NOT rewritten to fit. Firings: —
+- 2026-08-05 (0.2.2) **Round-2 re-attack BIT (2 real + 2 minor +
+  1 routed); repaired same day.** Real: (1) the 0.2.1 impl gate was
+  existence-shaped ("before that line exists") — one old zero-delta
+  satisfied it forever across re-locks; now "latest A-line must be
+  [ZERO-DELTA] and postdate the current lock". (2) F2×F4
+  interaction left an all-held-but-unmeasured return with no legal
+  A-tag; now [BIT] covers every non-closing return (unmeasured
+  verdicts are open questions), [ZERO-DELTA] only when all
+  reach-matched and nothing bit. Minor: [DISPATCHED] basis grammar
+  (brief at dispatch / report on return); provenance pointer gains
+  the source-repo qualifier. ROUTED (peer lane, operator GO
+  pending): F5's residual — the probe obligation's scratch-script
+  carve-out lives in skill prose the attacker never receives while
+  the verbatim forms.md READ-ONLY tail says "No file writes"; the
+  attacker itself hit the tension live (payload gate bounced its
+  one-message report twice → split 1/2+2/2). Fix belongs IN
+  forms.md (same class and landing as the §3b fix): tail gains a
+  transient-scratch provision for probe-obligated verifiers.
+  Closure regression otherwise clean: F1-F4, F6, F7 CLOSED with
+  re-verified bases. Convergence shape: 7 findings → 4 (2 real) —
+  round 3 dispatched per the skill's own rule.
 - 2026-08-05 (0.2.0) **Re-attack on re-lock (zero-delta closes)** —
   The attack + Implementation gate re-keyed to the zero-delta entry.
   Incident: two in-task fix-overshoots (D15 repaired S3 wrongly;
@@ -400,6 +421,21 @@ Zero clauses at birth per PLAN.md; first cohort minted 0.2.0.)
   session lacked, and its self-withdrawal→escalate conduct was
   correct. Still not tier measurement: deep-session-vs-fresh-context
   confound stands (no fresh-opus arm ran the brief).
+  Operator's qualitative read (booked with the grader's scoping):
+  fable's "nothing to fix — the mechanism is correctly priced, fix
+  the instrument and the record" verdict vs opus's continued
+  fix-hunting reads as a broader/holistic altitude — the quality
+  motivating the fable-desk hunch. Scoping: opus also reached
+  don't-fix (withdrew its own proposal); the fable delta was LAYER
+  TRIAGE (mechanism/instrument/record) + making non-action
+  load-bearing. Teachable slice identified: "triage the defect's
+  layer before fixing; test the mechanism against its definition
+  before calling it wrong" — corpus wrongness-claim ethic, mintable
+  prose; the unteachable remainder is what the fable-desk comparison
+  trial prices. Selection-effect caveat: fable observed fresh+
+  bounded, opus deep+tired; same-day fable desk errors (redundancy
+  hole, probe-clause reach-shortfall) on the other side of the
+  ledger.
   END-STATE FRAMING (operator, same day): the certification pattern
   applied to the whole system — fable belongs in the META layer
   (skill design, heavy grading, contradiction adjudication, mint

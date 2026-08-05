@@ -13,7 +13,7 @@ points stand guard; everything else is judgment. Thin in ceremony,
 never thin in forcing points: the failure this skill exists to
 prevent is skim-and-build under momentum, and the forcing points ARE
 the anti-skim mechanism — top-tier models exhibit it too (incident
-provenance: dev-notes/OBSERVATIONS.md).
+provenance: the source repo's dev-notes/OBSERVATIONS.md).
 
 ## Composition (declared dependencies)
 
@@ -67,7 +67,7 @@ old line; the stats reader counts only tag-first lines.
 - decisions: `- D<n> [PENDING|COMMITTED|INVALIDATED|AUTO-ACCEPTED]
   <decision> — basis: <…>`
 - attack outcomes: `- A<n> [DISPATCHED|BIT|ZERO-DELTA] <summary> —
-  basis: <report ref>`
+  basis: <brief at dispatch; report ref on return>`
 - a decision still resting on an unverified assumption at [READY]
   gets an appended `[AUTO-ACCEPTED]` line — surfaced to the operator
   by its tag, never silently carried.
@@ -135,17 +135,20 @@ recorded requirement and the factual bases it cites. Iterate only if
 it bites: a finding that changes the record reopens the loop, and a
 re-derived design is a NEW locked design — it gets the attack again,
 by a NEW fresh context (a resumed attacker inherits its own prior
-findings' frame); only a zero-delta attack whose verdicts are all
-reach-matched closes design. Record each round as an A-line (The
-record).
+findings' frame). Each round records an A-line (The record):
+[ZERO-DELTA] only when every verdict is reach-matched and nothing
+bit — that closes design; any other return, findings or unmeasured
+verdicts alike (each unmeasured verdict is an open question),
+records [BIT] and design stays open.
 
 ## Implementation (forcing point 4)
 
 Implementation makes no design decisions. Units come from the locked
 design; each dispatches on a decision-complete brief (dispatch skill
-§1, tail per §2) citing the executor skill AND the tracker's latest
-`A<n> [ZERO-DELTA]` line — no unit brief is constructable before
-that line exists (a biting attack reopens design; The attack). A missing decision,
+§1, tail per §2) citing the executor skill AND the run's latest
+A-line, which must be `[ZERO-DELTA]` and postdate the current lock —
+a re-locked design's unit briefs cite ITS closure, never a
+superseded lock's (The attack). A missing decision,
 file, or value is reported as a gap, never bridged. Model per
 `clippy.config/models` (`impl:` class) when present, else the
 operator corpus routing table. Each unit commits green and its SHA
