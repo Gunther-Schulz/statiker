@@ -80,6 +80,11 @@ Zero clauses at birth per PLAN.md; first cohort minted 0.2.0.)
   one-message report twice → split 1/2+2/2). Fix belongs IN
   forms.md (same class and landing as the §3b fix): tail gains a
   transient-scratch provision for probe-obligated verifiers.
+  RESOLVED same day (operator GO): dispatch-guards 9bcf621 (0.3.7)
+  — tail returns ONE message where it fits / labeled parts past
+  the size gate, never a report file; no-file-writes scoped to repo
+  + report files, transient probe scratch in the agent's OWN
+  scratchpad permitted. Both halves of the live tension closed.
   Closure regression otherwise clean: F1-F4, F6, F7 CLOSED with
   re-verified bases. Convergence shape: 7 findings → 4 (2 real) —
   round 3 dispatched per the skill's own rule.
@@ -421,6 +426,10 @@ Zero clauses at birth per PLAN.md; first cohort minted 0.2.0.)
   session lacked, and its self-withdrawal→escalate conduct was
   correct. Still not tier measurement: deep-session-vs-fresh-context
   confound stands (no fresh-opus arm ran the brief).
+  Operator concurrence (same day): on reflection the issue was "not
+  that complicated" and a FRESH opus quite plausibly matches — the
+  deep session was likely overloaded by prior context; anecdote
+  weight stays weak-positive for the ROLE, nil for tier.
   Operator's qualitative read (booked with the grader's scoping):
   fable's "nothing to fix — the mechanism is correctly priced, fix
   the instrument and the record" verdict vs opus's continued
