@@ -166,6 +166,32 @@ line here: incident, clause text location, subsequent firings.)
   consequence-probe, or the label unmeasured" — would make attack
   quality tier-robust and reprice the attack class (sonnet
   prediction: with probes, closer than the ranking predicts).
+  ROUND-2 INTERIM (B1 fable + B3 sonnet in, B2 opus out; desk-relayed
+  table, formal comparison still routes to the fresh grader): (1)
+  B1/fable returned a FALSE CLEAN on a money-path closure check —
+  "S3 closed by mechanism" — while B3/sonnet found the same guard
+  reads STORED not live data (severe, desk-verified); B1 checked
+  that a skip EXISTS, not what it reads. Second consecutive round
+  where fable's wrong call is a reading-level check and the correct
+  severe call sits on traced data flow — the method-not-tier pattern
+  now has two datapoints, and the sonnet prediction above confirmed
+  early (sonnet out-found fable on the severe defect). (2) A closure
+  claim is a NON-EVENT claim (corpus Fixing class): confirmation-
+  reads cannot verify it; the mint candidate sharpens to "closure
+  and severity calls carry an executed consequence-probe (for
+  closures: drive the guarded input through the new mechanism), or
+  the label unmeasured." (3) D15 — itself the repair for round-1
+  S3 — was wrong: SECOND in-task fix-overshoot/under-land caught
+  only by a later adversarial round; the corpus's stated trigger
+  profile for iterated falsification, now with two in-task
+  datapoints; statiker's "iterate only if it bites" produced the
+  iteration naturally. (4) Counterfactual for the record: a
+  fable-ONLY round 1 (the skill's default attack-of-record) would
+  have returned refinements only and the design would have shipped
+  the boot-breaking PK collision — the paired-attack EXPERIMENT, not
+  the protocol, saved the run. Attack-tier policy is now an open
+  grading question, not a settled clause. Consumer: run-grading
+  pass + succession decision.
   Premature-[READY] preliminary classes: S2 = Class A (unexecuted
   generalization as basis), S1 = Class A-leaning (record carried a
   live [PENDING] D10 NULL-disposition sub-question + duplicate D10
