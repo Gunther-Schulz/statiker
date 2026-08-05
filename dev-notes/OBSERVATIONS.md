@@ -333,6 +333,16 @@ Zero clauses at birth per PLAN.md; first cohort minted 0.2.0.)
   The cycle-4 triple is exactly the measurement that determines
   whether that ideal is reachable for the attack class; the trial's
   opus-desk performance already supports it for the desk.
+  END-STATE FRAMING (operator, same day): the certification pattern
+  applied to the whole system — fable belongs in the META layer
+  (skill design, heavy grading, contradiction adjudication, mint
+  wording: this session's work, where the judgment premium
+  demonstrably paid), whose one-time output is what MAKES production
+  safe to run cheap (a probe-obligated brief needs no fable attacker
+  because fable judgment wrote the obligation). Once statiker
+  satisfies, production = non-fable wherever possible; fable
+  re-enters only when the meta layer reopens (new mint, fire-rate
+  review, a verdict the record shows cheaper tiers getting wrong).
 - 2026-08-05 — **Pre-cycle-4 mint pass PLANNED (statiker 0.2.0;
   operator + grader concur).** Run paused cleanly at a session
   boundary (desk handoff 76df9e0e); purity argument for finishing on
