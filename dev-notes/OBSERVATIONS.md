@@ -222,6 +222,26 @@ line here: incident, clause text location, subsequent firings.)
   through the new mechanism, else "unmeasured"; judgment-class
   findings explicitly not crowded out) stands as the candidate
   landing for the attack class at grading.
+- 2026-08-05 — **Lens-replacement bet VALIDATED (both halves, first
+  live instance).** PLAN.md bet "brief-writing IS where lens-judgment
+  lives now" and zero-lenses-at-birth: (1) no upfront lens was
+  needed — the trial desk found everything lens-free; (2) when a
+  real blind spot finally fired (unexecuted attack verdicts, two
+  rounds), it minted as a BRIEF CLAUSE (probe obligations in the
+  attack-brief spec), with strictly better enforcement properties
+  than a lens: executed once per dispatch at max leverage, binds a
+  FRESH context not the invested one, mechanically checkable at
+  report time (a severity line without cited probe output is
+  rejectable on sight), zero cost on runs that dispatch no attack.
+  The legacy-lens rendering of the same lesson would have been a
+  standing self-applied checklist entry — the exact form the
+  acceptance-run evidence killed. Consumer: run-grading pass +
+  succession decision.
+  Round-2 grading dispatched (2026-08-05): all three raw sets in the
+  tracker (B1:739 fable / B3:804 sonnet / B2:865 opus, verbatim
+  pre-merge); per the contamination ledger the set-comparison +
+  contradiction rulings go to a fresh-context FABLE grader
+  (verifier form, read-only), this session grades the grader.
   Premature-[READY] preliminary classes: S2 = Class A (unexecuted
   generalization as basis), S1 = Class A-leaning (record carried a
   live [PENDING] D10 NULL-disposition sub-question + duplicate D10
