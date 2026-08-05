@@ -26,7 +26,9 @@ overriding context-independence (PLAN.md, Ecosystem composition):
   `references/forms.md`). Load it before the first dispatch (a hook
   enforces the load).
 - **executor skill** (`dispatch-guards:executor`): conduct of briefed
-  work — every brief cites it.
+  work — every EXECUTION brief cites it; verifier and attack briefs
+  never do (a fresh context briefed with conduct-of-building material
+  is being framed as a builder).
 - The operator corpus carries the grounding and evidence ethics
   (bases, refutation probes, altitude); assumed, not restated.
 
@@ -37,20 +39,29 @@ clippy's ledger convention, shared so `/clippy-stats` and cross-skill
 comparison read both. Never overwrite another run's tracker; resume
 an in-progress run from its tracker, not from memory.
 
-Header (first ~20 lines): `# Run: <title>`; `Status:` from
+Header: `# Run: <title>`; `Status:` from
 {in-progress, [READY], PASSED, FAILED, COMPLETE}; `Phase:` from
-{investigate-design, implement, verify}; `Skill: statiker <version>`;
-then the operator's request VERBATIM plus the requirements derived
-from it — verify reads this head, not the conversation.
+{investigate-design, implement, verify}; `Skill: statiker <version>`
+— Status and Phase within the first ~20 lines (the stats reader's
+admission window). After the header, the requirement head: the
+operator's request VERBATIM plus the requirements derived from it,
+as long as it needs to be — verify reads this head, not the
+conversation. The header's Status and Phase fields are the record's
+ONE mutable surface, updated at each transition and at the verify
+verdict; everything below them is append-only.
 
-Entries are one line each, status tag first, appended never rewritten:
+Entries are one line each, status tag first, appended never
+rewritten. A status change is a NEW tag-first line for the same id
+(`- D<n> [INVALIDATED] <why> — basis: <…>`) — never an edit of the
+old line; the stats reader counts only tag-first lines.
 
 - findings: `- F<n> [VERIFIED|PENDING|INVALIDATED] <claim> — basis:
   <file:line / executed command / "unverified">`
-- decisions: `- D<n> [COMMITTED|INVALIDATED] <decision> — basis: <…>`
-- a decision still resting on an unverified assumption at [READY] is
-  retagged `[AUTO-ACCEPTED]` — surfaced to the operator by its tag,
-  never silently carried.
+- decisions: `- D<n> [COMMITTED|INVALIDATED|AUTO-ACCEPTED]
+  <decision> — basis: <…>`
+- a decision still resting on an unverified assumption at [READY]
+  gets an appended `[AUTO-ACCEPTED]` line — surfaced to the operator
+  by its tag, never silently carried.
 
 Each investigation/design round appends under a `## Cycle <n>`
 heading. The heading counts motion for the shared stats reader; it
@@ -69,8 +80,8 @@ Consecutive discovery sweeps in the main session are the tell that a
 leg should have been dispatched.
 
 Design against the recorded requirement. New evidence that kills a
-premise appends [INVALIDATED] to the entry and to every decision
-resting on it — re-derive the dependents; a premise and its
+premise appends an [INVALIDATED] line for the entry and for every
+decision resting on it — re-derive the dependents; a premise and its
 dependent contradicting inside one record is the escape shape.
 
 ## Stop rule: [READY] = dispatchable (forcing point 3)
@@ -88,9 +99,9 @@ the recorded recommendation advances the run.
 
 One fresh-context attack on the locked design by a context that did
 not produce it, before implementation. The attack brief carries the
-tracker and the question ONLY — never the desk's reasoning (an
-attacker briefed with the producer's reasoning inherits its blind
-spots). Attack tier: fable while statiker is in trial (settled,
+tracker, the question, and the read-only tail (dispatch skill
+`references/forms.md`) — never the desk's reasoning (an attacker
+briefed with the producer's reasoning inherits its blind spots). Attack tier: fable while statiker is in trial (settled,
 PLAN.md — ceiling first). The attacker attacks both the design's fit
 to the recorded requirement and the factual bases it cites. Iterate
 only if it bites: a finding that changes the record reopens the
@@ -117,10 +128,13 @@ Executed, isolated, against the recorded requirement. A fresh
 context that did not build the work runs the real checks — tests,
 probes, renders, at the altitude where the work takes effect —
 against the tracker's requirement head, and pastes the checks' own
-output; a launcher's exit status is not a verdict. Model per
+output; a launcher's exit status is not a verdict. The verify brief
+carries the tracker, the code, and the question — read-only tail,
+no executor cite. Model per
 `clippy.config/models` (`verify:` class) when present. Append
-`[PASSED]` or `[ISSUES FOUND]` with the evidence; issues return the
-run to the loop as findings. The run ends at [PASSED].
+`[PASSED]` or `[ISSUES FOUND]` with the evidence and set the header
+Status to match (PASSED, or FAILED on an abandoned run); issues
+return the run to the loop as findings. The run ends at [PASSED].
 
 ## Fire-born clauses (none at birth)
 

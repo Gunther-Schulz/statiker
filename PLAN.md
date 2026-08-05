@@ -159,6 +159,23 @@ provenance.
 - Zero lenses at birth (operator-confirmed); fire-born brief
   clauses only.
 
+## Post-plan decisions (append-only)
+
+- 2026-08-05, operator: the repo is durable and PUBLIC —
+  https://github.com/Gunther-Schulz/statiker ("should be a durable
+  repo, can be public", same session, after this plan was written).
+  Supersedes the Birth process clause "NO GitHub remote until the
+  operator says so": the operator said so. (Recorded on the birth
+  attack's record-gap finding 2-R.)
+- 2026-08-05, birth session: the one fresh-context attack ran
+  (fable, verifier-form brief) against ea0f94f and BIT — 5
+  artifact-changing findings, all confirmed and fixed in the
+  follow-up commit; fixes verified by predicate (grep against the
+  cited contracts), a full second attack round deliberately not
+  spent since every finding was mechanical-compatibility class and
+  its fix predicate-checkable. Attack report: session record,
+  2026-08-05.
+
 ## Horizon consideration — NOT a decision (operator, 2026-08-05)
 
 When statiker is validated, CONSIDER lifting its framework from it
