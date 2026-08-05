@@ -158,3 +158,15 @@ provenance.
   while statiker is trialed (operator decision).
 - Zero lenses at birth (operator-confirmed); fire-born brief
   clauses only.
+
+## Horizon consideration — NOT a decision (operator, 2026-08-05)
+
+When statiker is validated, CONSIDER lifting its framework from it
+into a new anneal-dev — the logical mirror of history: anneal-dev
+was originally lifted from old clippy, so a succeeded clippy
+plausibly seeds a succeeded framework. Explicitly a consideration
+to discuss AT THAT POINT, not a commitment: the parked
+framework-legitimacy question (anneal-framework BACKLOG) may
+equally resolve toward no second layer at all — statiker's own
+single-home trial is named evidence on exactly that. Trigger for
+the discussion: statiker validated (trial + opus ladder done).
