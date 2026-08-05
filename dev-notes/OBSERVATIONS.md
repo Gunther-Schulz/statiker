@@ -360,6 +360,34 @@ Zero clauses at birth per PLAN.md; first cohort minted 0.2.0.)
   The cycle-4 triple is exactly the measurement that determines
   whether that ideal is reachable for the attack class; the trial's
   opus-desk performance already supports it for the desk.
+  WORKING HYPOTHESIS (operator-agreed, 2026-08-05, trialing still
+  required): production = opus desk + sonnet legs/impl + probed
+  attacks at whatever tier cycle 4 certifies; fable = meta layer +
+  sampled post-hoc spot-audits + escalation-on-ceiling over bounded
+  briefed artifacts. Four factors recorded into it: (1)
+  verdict-routing asymmetry — tier≥producer makes a fable desk drag
+  its attack layer up to fable, while an opus desk certifies
+  end-to-end cheaper; (2) the desk is fable's economically worst
+  seat (prefix re-billing, 94.2% audit) while bounded verdicts are
+  its cheapest; (3) the uncovered residual in fable-less production
+  is judgment-class findings above the opus ceiling that no probe
+  reaches — mitigation shape: sampled fable spot-audits, not a
+  standing seat; (4) the booked delegation-split analysis tests
+  whether "fable writes better briefs" has any observed gap at all.
+  Teachability bet restated: every fable capability convertible to a
+  form/clause moves down-tier permanently (dispatch skill's own
+  core finding; probe-obligation mint = existing validation).
+  FIRST NATURAL INSTANCE of the escalation-on-ceiling role
+  (anecdotal, unpaired — no opus arm, operator self-flags possible
+  misread of opus's proposal): claude-code-cache-fix review
+  2026-08-05, opus-briefed fable session over a bounded artifact —
+  judgment-dense output (flagship: a gate exemption whose third
+  condition, written on the OURS side, self-retires when the
+  freeness coupling breaks — the open finding converted into a
+  property of the fix), plus two reach-shortfall catches. Supports
+  the hypothesis; measures nothing. Confound noted: the escalating
+  session wrote its reviewer's brief (open enough that the reviewer
+  roamed beyond it).
   END-STATE FRAMING (operator, same day): the certification pattern
   applied to the whole system — fable belongs in the META layer
   (skill design, heavy grading, contradiction adjudication, mint
