@@ -35,6 +35,33 @@ Zero clauses at birth per PLAN.md; first cohort minted 0.2.0.)
   S3 closure (checked the skip exists, not what it reads); grader
   ruling "probes answered narrower questions than the verdicts they
   closed." Firings: —
+- 2026-08-05 (0.2.1) **Cohort repaired after its own fresh-context
+  attack BIT (7 findings, all confirmed against the artifacts —
+  statiker's discipline applied to itself, second time it caught
+  real defects in its own text).** F1: D-enum lacked PENDING while
+  M1/M2 depended on it (grammar now [PENDING|COMMITTED|INVALIDATED|
+  AUTO-ACCEPTED]; stats-reader-safe, verified against clippy-stats
+  grep patterns). F2: "unmeasured" now leaves its question OPEN —
+  only a zero-delta attack with all verdicts reach-matched closes
+  design (the label alone couldn't bind the gate). F3 [the sharp
+  one]: the probe obligation itself had a reach-shortfall — at
+  design-time the mechanism is prose, and round 2's CORRECT kills
+  were traces, which "executed probe" would have labeled unmeasured;
+  rewritten to reach-matched EVIDENCE (executed probe where the
+  object exists, full source-chain trace where it is design prose;
+  closures name what the guarded input meets on the NEW path). F4:
+  attack outcomes get grammar (`- A<n>
+  [DISPATCHED|BIT|ZERO-DELTA]`); impl gate keys on the latest
+  ZERO-DELTA A-line. F5: probe obligation rides INSIDE the question
+  (brief stays artifact+question+tail); probes read-only, scratch
+  scripts ≠ report files. F6: frontmatter/opener say "each locked
+  design"; re-attacks get a NEW fresh context (a resumed attacker
+  inherits its own findings' frame). F7: duplicate-id sweep honest —
+  body-read, not tag grammar. SENTINEL TENSION booked: 155
+  operational lines vs ~150 — the declaration's dichotomy (restated
+  / unprovenanced) misses "many provenance-backed patches from one
+  trial day"; compression pass is the fire-rate review's, sentinel
+  NOT rewritten to fit. Firings: —
 - 2026-08-05 (0.2.0) **Re-attack on re-lock (zero-delta closes)** —
   The attack + Implementation gate re-keyed to the zero-delta entry.
   Incident: two in-task fix-overshoots (D15 repaired S3 wrongly;

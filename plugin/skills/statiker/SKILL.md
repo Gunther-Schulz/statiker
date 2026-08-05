@@ -1,6 +1,6 @@
 ---
 name: statiker
-description: Conducts a development task from investigation through verified implementation — a free design loop held by five forcing points (recorded decisions with bases, one fresh-context attack, dispatchable-design stop rule, no-design implementation, isolated executed verify). Trial-stage successor to clippy; use only when the operator explicitly invokes statiker or requests a statiker run.
+description: Conducts a development task from investigation through verified implementation — a free design loop held by five forcing points (recorded decisions with bases, a fresh-context attack on each locked design, dispatchable-design stop rule, no-design implementation, isolated executed verify). Trial-stage successor to clippy; use only when the operator explicitly invokes statiker or requests a statiker run.
 ---
 
 # Statiker
@@ -12,9 +12,8 @@ carries the implementation detail execution needs. Five forcing
 points stand guard; everything else is judgment. Thin in ceremony,
 never thin in forcing points: the failure this skill exists to
 prevent is skim-and-build under momentum, and the forcing points ARE
-the anti-skim mechanism — top-tier models exhibit it too (observed
-2026-08-05: a rule duplicated in the very commit minting the
-anti-duplication rule).
+the anti-skim mechanism — top-tier models exhibit it too (incident
+provenance: dev-notes/OBSERVATIONS.md).
 
 ## Composition (declared dependencies)
 
@@ -43,8 +42,9 @@ superseded run's tracker, or the session's own earlier items — is
 PENDING until its basis passes a current-check scoped to the claim
 (re-read the cited lines; staleness-check against commits since the
 basis read — an earlier item's own implementation invalidates reads
-of the files it touched); re-record it as a new line citing source
-AND check. Unrecorded memory of prior work is never a basis.
+of the files it touched); re-record it as a new line under this
+run's own next id, citing source AND check. Unrecorded memory of
+prior work is never a basis.
 
 Header: `# Run: <title>`; `Status:` from
 {in-progress, [READY], PASSED, FAILED, COMPLETE}; `Phase:` from
@@ -64,8 +64,10 @@ old line; the stats reader counts only tag-first lines.
 
 - findings: `- F<n> [VERIFIED|PENDING|INVALIDATED] <claim> — basis:
   <file:line / executed command / "unverified">`
-- decisions: `- D<n> [COMMITTED|INVALIDATED|AUTO-ACCEPTED]
+- decisions: `- D<n> [PENDING|COMMITTED|INVALIDATED|AUTO-ACCEPTED]
   <decision> — basis: <…>`
+- attack outcomes: `- A<n> [DISPATCHED|BIT|ZERO-DELTA] <summary> —
+  basis: <report ref>`
 - a decision still resting on an unverified assumption at [READY]
   gets an appended `[AUTO-ACCEPTED]` line — surfaced to the operator
   by its tag, never silently carried.
@@ -97,9 +99,10 @@ The design is done when a decision-complete brief could be written
 from it — the dispatch skill §1 definition is the test, not a
 feeling. If writing the impl briefs would require deciding anything,
 the design is not done: design until it could be briefed. [READY] is
-recordable only when a tag sweep is clean: no entry's latest line is
-[PENDING], and no id carries contradictory latest lines — an open
-[PENDING] under a claimed [READY] is the premature-call shape.
+recordable only when the record sweeps clean: no entry's latest line
+is [PENDING], and no id appears as two live entries (duplicates are
+found by body-read, not tag grammar) — an open [PENDING] under a
+claimed [READY] is the premature-call shape.
 Record `Status: [READY]` with the impl units enumerated. With an
 operator present, present the record and recommendation at [READY],
 ENDING with one advance prompt — "(y) advances per the
@@ -110,35 +113,39 @@ run.
 
 ## The attack (forcing point 2)
 
-One fresh-context attack on the locked design by a context that did
+A fresh-context attack on each locked design by a context that did
 not produce it, before implementation. The attack brief carries the
-tracker, the question, the read-only tail (dispatch skill
-`references/forms.md`), and the probe obligation: every severity,
-closure, or HOLD verdict in the report rests on an executed probe
-whose question MATCHES the verdict's reach — a closure drives the
-guarded input through the new mechanism; a probe answering a
-narrower question than the verdict it closes is the false-clean
-shape. A verdict without its executed basis is labeled unmeasured.
-Judgment findings (design-intent, record hygiene) need no probe —
-the obligation binds verdicts, not discovery. The brief never
-carries the desk's reasoning (an attacker briefed with the
-producer's reasoning inherits its blind spots). Attack tier: fable
-while statiker is in trial (settled, PLAN.md — ceiling first). The
-attacker attacks both the design's fit to the recorded requirement
-and the factual bases it cites. Iterate only if it bites: a finding
-that changes the record reopens the loop, and a re-derived design
-is a NEW locked design — it gets the attack again; only a
-zero-delta attack closes design (re-derivation repairs have
-themselves been wrong; the round that catches them is what this
-buys). Record each outcome either way.
+tracker, the question, and the read-only tail (dispatch skill
+`references/forms.md`); the probe obligation rides INSIDE the
+question, and probe execution is read-only (transient scripts in the
+attacker's own scratchpad are not report files). The obligation:
+every severity, closure, or HOLD verdict rests on evidence whose
+question MATCHES the verdict's reach — an executed probe where the
+object exists to execute, a full source-chain trace (every hop
+cited) where it is still design prose; a closure names what the
+guarded input meets on the NEW path. Evidence answering a narrower
+question than the verdict it closes is the false-clean shape. A
+verdict without reach-matched evidence is labeled unmeasured and
+leaves its question OPEN. Judgment findings (design-intent, record
+hygiene) bind no probe — the obligation is on verdicts, not
+discovery. The brief never carries the desk's reasoning — it
+transmits the producer's blind spots. Attack tier: fable while statiker is in trial (settled, PLAN.md —
+ceiling first). The attacker attacks both the design's fit to the
+recorded requirement and the factual bases it cites. Iterate only if
+it bites: a finding that changes the record reopens the loop, and a
+re-derived design is a NEW locked design — it gets the attack again,
+by a NEW fresh context (a resumed attacker inherits its own prior
+findings' frame); only a zero-delta attack whose verdicts are all
+reach-matched closes design. Record each round as an A-line (The
+record).
 
 ## Implementation (forcing point 4)
 
 Implementation makes no design decisions. Units come from the locked
 design; each dispatches on a decision-complete brief (dispatch skill
-§1, tail per §2) citing the executor skill AND the tracker's
-zero-delta attack entry — no unit brief is constructable before that
-entry exists (a biting attack reopens design; The attack). A missing decision,
+§1, tail per §2) citing the executor skill AND the tracker's latest
+`A<n> [ZERO-DELTA]` line — no unit brief is constructable before
+that line exists (a biting attack reopens design; The attack). A missing decision,
 file, or value is reported as a gap, never bridged. Model per
 `clippy.config/models` (`impl:` class) when present, else the
 operator corpus routing table. Each unit commits green and its SHA
