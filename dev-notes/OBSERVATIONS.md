@@ -89,6 +89,17 @@ line here: incident, clause text location, subsequent firings.)
   stop-rule sharpening with this run as provenance, never a
   convergence-ritual revival (birth-class guard). Consumer: the
   run-grading pass.
+- 2026-08-05 — **Booked evaluation (operator-raised): tracker
+  verbosity — token-saving only.** Can the tracker thin without
+  breaking intent? Hard floor named up front: bases stay (evidence
+  discipline), requirement head stays verbatim, tag-first line
+  grammar stays (/clippy-stats contract). Candidate fat: narrative
+  connective tissue around entries. Cost model: the tracker is
+  re-read whole by every attacker, verifier, and resume session —
+  verbosity is a multiplier. Method: use the trial tracker as
+  specimen, classify content load-bearing vs narrative, measure the
+  split; a compression clause mints only if the narrative share is
+  material. Consumer: the run-grading pass.
 - 2026-08-05 — **Cross-skill routing item (charges to dispatch-guards,
   NOT statiker): §3b tail contradiction.** Trial-run incident, leg B:
   dispatch forms.md §3b closes "an enumeration dispatch … takes the
