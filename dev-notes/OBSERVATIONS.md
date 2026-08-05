@@ -559,3 +559,20 @@ Zero clauses at birth per PLAN.md; first cohort minted 0.2.0.)
   is the operator's slot, the clippy distinction that survives).
   Decision-complete; APPLY at run grading (trial run completes on
   0.1.1 for clean measurement), version bump with the S1 mint.
+
+## Session handoff — 2026-08-05 grading/mint session closed
+
+State at close, for the next session: statiker 0.2.3 pushed + pinned
+(fresh sessions serve it automatically); dispatch-guards 0.3.7
+pushed + pinned; trial run PAUSED at cycle-3 handoff (beat-the-books
+tracker, desk commit 76df9e0e) awaiting the cycle-4 fresh opus
+session; beat-the-books holds 19 unpushed commits (deploy bundle,
+operator hold — push deploys prod LIVE); dotfiles holds this
+session's hook-rewrite commits unpushed (lane convention). No agents
+in flight; no round-4 attack (refinement policy above). Open
+grading docket, all booked above with consumers: full-run work
+review (after cycle 4 + impl + verify), delegation-split analysis,
+tracker-verbosity measurement, fire-born firing log upkeep, sentinel
+compression at the fire-rate review. The cycle-4 attack step is the
+TRIPLE probed measurement (probe-mint validation booking), an
+operator experiment under the skill's sequential-rounds default.
