@@ -88,6 +88,36 @@ Zero clauses at birth per PLAN.md; first cohort minted 0.2.0.)
   Closure regression otherwise clean: F1-F4, F6, F7 CLOSED with
   re-verified bases. Convergence shape: 7 findings → 4 (2 real) —
   round 3 dispatched per the skill's own rule.
+- 2026-08-05 (0.2.3) **Round-3 attack BIT; repaired; attack grind
+  ENDED by operator policy (grader concurs).** Repairs: closure
+  predicate made computable ("last A-line is [ZERO-DELTA] with no
+  F/D line after it" — the attacker's own suggested form; no header
+  comparand needed); rounds declared sequential (one attacker,
+  A-line recorded before next dispatch; parallel = operator
+  experiment) closing the latest-line conflation; probe obligation
+  became a PASTEABLE block appended to the attack question
+  (forms.md pasted-tail medicine — silent drop was the false-clean
+  path); [BIT]'s findings/open questions append as F-lines (the
+  record change IS the reopen; desk refutes only with reach-matched
+  evidence); AUTO-ACCEPTED vs sweep resolved (carried-unverified is
+  re-tagged, never left [PENDING]; F-enum gains AUTO-ACCEPTED);
+  bare-tag rule (annotations outside brackets — closes the wild
+  annotated-tag hazard); source repo named at first mention; verify
+  gains else-parent fallback + post-[ISSUES FOUND] Status stays
+  in-progress. KNOWN-OPEN residue (accepted, fire-rate review owns):
+  impl-unit enumeration and unit-SHA appends have no line grammar
+  (stats-reader-invisible, graded harmless); Status COMPLETE
+  reserved-unused (clippy compat); operational lines now 174 vs ~150
+  sentinel (pasteable block bought the growth; compression pass
+  owed). POLICY DECISION (operator, 2026-08-05, grader concurs with
+  basis): during the rough-edges phase skill improvements land
+  INLINE and the TRIAL is the falsifier (its Stumbles channel
+  demonstrably catches text defects); a fable attack round is spent
+  only when a change could SILENTLY corrupt a measurement or an
+  interop contract (round 1's F1/F3/F5 were that class — worth it;
+  rounds 2-3 were narrowing mechanics the trial would have caught
+  loudly); full multi-round polish once, at stabilization. No
+  round 4.
 - 2026-08-05 (0.2.0) **Re-attack on re-lock (zero-delta closes)** —
   The attack + Implementation gate re-keyed to the zero-delta entry.
   Incident: two in-task fix-overshoots (D15 repaired S3 wrongly;
