@@ -195,9 +195,19 @@ line here: incident, clause text location, subsequent firings.)
   OPERATOR DISPOSITIONS (2026-08-05): the natural emergence of the
   iterated ladder from "iterate only if it bites" is the intended
   altitude for the skill — keep the clause thin, no ceremony mint.
-  The "multi-attacker for money-path-class designs" idea is VETOED
-  (too domain-specific — the phrasing itself failed the abstraction
-  probe); dropped, not generalized. The method-defined direction
+  The "multi-attacker for money-path-class designs" idea: NOT a
+  full veto (operator softened same day — "tendency no, but
+  depends"). Resolution: the question collapses into method-defined
+  — probe obligations absorb the METHOD-coverage value of a second
+  attacker (the bulk, per round 1); the residual value is
+  independence redundancy, a stakes-scaled judgment call that stays
+  clause-free in BOTH directions (statiker never banned extra
+  attackers; this trial ran 2-3 on free-form operator judgment —
+  the existence proof the judgment route suffices). Contingency: if
+  the method mint underperforms (a probed attacker still missing
+  what a second context catches), the redundancy case reopens with
+  data. The original phrasing stays retired (failed the abstraction
+  probe). The method-defined direction
   (probe obligations in the attack brief: severity calls cite an
   executed consequence-probe, closure calls drive the guarded input
   through the new mechanism, else "unmeasured"; judgment-class
