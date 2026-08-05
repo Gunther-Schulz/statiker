@@ -134,6 +134,25 @@ line here: incident, clause text location, subsequent firings.)
   scope = re-derived D12/D13/D15/D16 + closure regression on all
   confirmed round-1 findings. Tests whether the complementarity
   split repeats under clean protocol.
+  SECOND REVISION (desk overlap table, key fact verified by the
+  grader against the verbatim raw sets): overlap ~half, and the
+  decisive round-1 gap was NOT discovery — it was a SEVERITY-
+  JUDGMENT FLIP on a shared mechanism. A1#6 found S2's exact
+  mechanism ("nothing converges") and graded it harmless; A2 graded
+  it severe by tracing it into D10 and MEASURING the consequence in
+  prod. Same on the NULL-line root (A1 "unproven" vs A2 two measured
+  severe consequences). At n=1 attack-VERDICT quality ran OPPOSITE
+  the tier ranking; plausible mechanism: executed consequence-probes
+  before grading (demandable in future attack briefs if round 2
+  repeats it). Corpus rule "verdicts flip only under a smarter
+  reviewer" gets the asterisk: smarter was not tier-monotonic here.
+  Contamination ledger: round-1 preliminary verdict committed
+  pre-relay (92c0ea2); grader has since read the designer's grading,
+  so the ROUND-2 set-comparison + severity-verdict check routes to a
+  FRESH-CONTEXT grader (verifier form: raw sections + re-derived
+  design + question, no commentary); this session grades the grader.
+  Round-2 attackers and raw records remain clean (dispatched blind,
+  pre-relay, scrubbed artifact).
   Premature-[READY] preliminary classes: S2 = Class A (unexecuted
   generalization as basis), S1 = Class A-leaning (record carried a
   live [PENDING] D10 NULL-disposition sub-question + duplicate D10
