@@ -192,6 +192,17 @@ line here: incident, clause text location, subsequent firings.)
   the protocol, saved the run. Attack-tier policy is now an open
   grading question, not a settled clause. Consumer: run-grading
   pass + succession decision.
+  OPERATOR DISPOSITIONS (2026-08-05): the natural emergence of the
+  iterated ladder from "iterate only if it bites" is the intended
+  altitude for the skill — keep the clause thin, no ceremony mint.
+  The "multi-attacker for money-path-class designs" idea is VETOED
+  (too domain-specific — the phrasing itself failed the abstraction
+  probe); dropped, not generalized. The method-defined direction
+  (probe obligations in the attack brief: severity calls cite an
+  executed consequence-probe, closure calls drive the guarded input
+  through the new mechanism, else "unmeasured"; judgment-class
+  findings explicitly not crowded out) stands as the candidate
+  landing for the attack class at grading.
   Premature-[READY] preliminary classes: S2 = Class A (unexecuted
   generalization as basis), S1 = Class A-leaning (record carried a
   live [PENDING] D10 NULL-disposition sub-question + duplicate D10
