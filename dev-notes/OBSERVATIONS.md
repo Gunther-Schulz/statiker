@@ -80,3 +80,18 @@ line here: incident, clause text location, subsequent firings.)
   untouched. JOURNAL line in dotfiles `68f5762`. Nothing left to
   route at grading; the item stays here as the trial run's incident
   record.
+- 2026-08-05 — **Mint candidates (operator-interface, trial run
+  [READY] moment).** (a) The [READY] presentation diffused its ask
+  across prose; the operator reported "no clear format for what's
+  asked of me" — clippy's menu made the ask mechanical, statiker
+  dropped it as ceremony and lost the one line that wasn't ceremony.
+  Candidate clause (Stop rule section): the operator-present [READY]
+  presentation ENDS with one line naming what advances the run and
+  that anything else is treated as an override. (b) The operator
+  expected clippy-auto-battle plow-through and asked "why did it
+  stop"; statiker's operator-present pause is by design and
+  free-form invocation ("advance at [READY] without waiting")
+  already yields auto-advance — question for grading: does that need
+  an explicit mode line, or is the invocation-line route enough?
+  Both decided at run grading, one incident each as provenance.
+  Consumer: the run-grading pass.
