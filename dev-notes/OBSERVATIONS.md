@@ -242,6 +242,24 @@ line here: incident, clause text location, subsequent firings.)
   pre-merge); per the contamination ledger the set-comparison +
   contradiction rulings go to a fresh-context FABLE grader
   (verifier form, read-only), this session grades the grader.
+- 2026-08-05 — **Pre-cycle-4 mint pass PLANNED (statiker 0.2.0;
+  operator + grader concur).** Run paused cleanly at a session
+  boundary (desk handoff 76df9e0e); purity argument for finishing on
+  0.1.1 is spent (multi-session, operator-steered, paired-attack
+  experiment) and cycle 4's fresh session IS the S1 inherited-record
+  case — build-first: mint and tune in operation. Mints: (1) S1
+  inherited-evidence clause (settled, both directions); (2) [READY]
+  advance prompt (settled); (3) S5 re-attack-on-re-lock as a
+  CLARIFICATION of "iterate only if it bites" (a re-derived design
+  is a new locked design; only zero-delta closes) — two in-task
+  datapoints, both re-attacks were operator-driven not skill-driven;
+  (4) attack-brief probe obligations — wording HELD for the round-2
+  grader's method attribution; (5) [PENDING]-sweep at [READY]
+  (computable). Desk's F60 booked as measurement caveat: round-2
+  attackers were never blind — SendMessage roster + model-in-name
+  convention exposed each attacker's peers and tiers; tension with
+  the veto-gate naming convention parked, not solved. Consumer:
+  the mint session (this one) + run-grading pass.
   Premature-[READY] preliminary classes: S2 = Class A (unexecuted
   generalization as basis), S1 = Class A-leaning (record carried a
   live [PENDING] D10 NULL-disposition sub-question + duplicate D10
