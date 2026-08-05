@@ -57,3 +57,19 @@ line here: incident, clause text location, subsequent firings.)
   different task. Any tier-conditional delegation-pressure clause
   must arrive as a fire-born patch citing this analysis, not the
   curiosity. Consumer: the run-grading pass + fable-trial grading.
+- 2026-08-05 — **Cross-skill routing item (charges to dispatch-guards,
+  NOT statiker): §3b tail contradiction.** Trial-run incident, leg B:
+  dispatch forms.md §3b closes "an enumeration dispatch … takes the
+  READ-ONLY tail verbatim", while §3b's own Coverage + Quotes rules
+  produce artifacts that cannot satisfy that tail's one-message /
+  no-file-writes terms (122 sites with both-side quotes here). Any
+  agent following both must break one; leg B broke the right one
+  (data file + pointer = §2 payload-vs-pointer; harness allows DATA
+  files). Desk followed the skill as written — the desk's
+  self-charge in its Stumbles over-blames; only the second-demand
+  recovery slip is desk-owned. Fix shape: §3b gets its own return
+  provision (brief-assigned DATA file for the coverage artifact,
+  message = pointer + summary counts; keep no-commits /
+  no-interim-messages). Route at run grading to the dispatch-guards
+  corpus lane (peer-owned — not edited from here). Consumer: the
+  run-grading pass.
