@@ -67,7 +67,15 @@ line here: incident, clause text location, subsequent firings.)
   set-compare the raw finding-sets — what did opus miss against the
   fable ceiling, what did it add. Caveat carried: n=1 pair informs,
   never certifies (significance discipline); certification stays a
-  ladder. Consumer: the run-grading pass.
+  ladder. Union-effect scoping (desk-raised at dispatch, confirmed):
+  acting on the union alters the RUN's trajectory, not the
+  measurement — the ladder metric reads the raw tier-labeled sets
+  recorded pre-merge, so it stays clean; only the unsought
+  counterfactual "what would a fable-only run have shipped" is
+  lost. Desk implemented all four constraints correctly, incl.
+  dispatch-both-before-reading-either and an explicit record note
+  that a two-attacker run is measurement, not statiker protocol.
+  Consumer: the run-grading pass.
 - 2026-08-05 — **Cross-skill routing item (charges to dispatch-guards,
   NOT statiker): §3b tail contradiction.** Trial-run incident, leg B:
   dispatch forms.md §3b closes "an enumeration dispatch … takes the
