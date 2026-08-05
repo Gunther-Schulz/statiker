@@ -242,6 +242,26 @@ line here: incident, clause text location, subsequent firings.)
   pre-merge); per the contamination ledger the set-comparison +
   contradiction rulings go to a fresh-context FABLE grader
   (verifier form, read-only), this session grades the grader.
+- 2026-08-05 — **Round-2 grading BOOKED (fresh fable grader, report
+  in dispatcher scratchpad r2-grading-report.md; dispatcher
+  spot-verified C1+C2 at the cited lines before booking).** 18-row
+  matrix: 8 unique B2/opus (incl. both money-path kills — D13 sign
+  inversion, live-path value change; ONLY attacker probing the
+  orientation axis), 3 unique B1/fable (all record repairs, all
+  confirmed), 1 unique B3/sonnet (F56 weak closure, confirmed +
+  B2≡B3 exact on the D15 kill). All six contradiction rulings went
+  AGAINST B1's contested verdicts or wordings; both B1 HOLD verdicts
+  REFUTED. THIRD method datapoint, sharpest form: B1 was
+  probe-backed where it HELD and probe-free exactly where WRONG —
+  "its probes answered narrower questions than the verdicts it
+  closed" (the corpus reach-shortfall shape, executed by the top
+  tier). This SETTLES the probe-clause wording: the executed probe's
+  question must MATCH the verdict's reach, not merely exist.
+  Sonnet: credible (independent D15 kill, accurate greps/SQL, one
+  mislabel) — supports tier-robustness under method discipline.
+  F60 corroborated again (B3's report self-named opus). Grader
+  conduct note: message-payload gate forced its data file — the §2/
+  §3b machinery composing as designed.
 - 2026-08-05 — **Pre-cycle-4 mint pass PLANNED (statiker 0.2.0;
   operator + grader concur).** Run paused cleanly at a session
   boundary (desk handoff 76df9e0e); purity argument for finishing on
