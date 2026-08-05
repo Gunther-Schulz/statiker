@@ -288,6 +288,20 @@ Zero clauses at birth per PLAN.md; first cohort minted 0.2.0.)
   F60 corroborated again (B3's report self-named opus). Grader
   conduct note: message-payload gate forced its data file — the §2/
   §3b machinery composing as designed.
+  CONVERGENCE (same day): the designer desk's own verdict —
+  anchored, self-flagged as such — matches the fresh grader on
+  every substantive call from the opposite vantage point (opus >
+  sonnet > fable; both fable HOLDs wrong; D13 the decisive find;
+  fable's unique value = record-repair class). Preserved verbatim:
+  "a false clean is worse than a miss — a miss leaves the question
+  open, a false clean closes it." Precision correction booked
+  against the desk's wording: the wrong calls were the TOP tier's,
+  made by the cheaper METHOD (reading, not probing) — tier-cheap
+  vs method-cheap is the load-bearing distinction (method-cheap →
+  the probe-obligation mint is the fix; tier-cheap would wrongly
+  imply "pay more"). "Fable as attack-of-record didn't hold up on
+  this task" stands AS SCOPED (n=2, F60 blindness caveat); the
+  skill's tier line stays until the succession decision.
 - 2026-08-05 — **Pre-cycle-4 mint pass PLANNED (statiker 0.2.0;
   operator + grader concur).** Run paused cleanly at a session
   boundary (desk handoff 76df9e0e); purity argument for finishing on
