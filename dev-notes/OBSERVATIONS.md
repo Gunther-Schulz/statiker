@@ -73,3 +73,10 @@ line here: incident, clause text location, subsequent firings.)
   no-interim-messages). Route at run grading to the dispatch-guards
   corpus lane (peer-owned — not edited from here). Consumer: the
   run-grading pass.
+  RESOLVED same day, operator GO ("let's fix the dispatch while we
+  are here"): dispatch-guards `ff6cc4d` (0.3.6) — §3b assigns a data
+  file at brief time, pointer message with per-class counts; tail
+  header gains the §3b scope line; discovery/verifier tails
+  untouched. JOURNAL line in dotfiles `68f5762`. Nothing left to
+  route at grading; the item stays here as the trial run's incident
+  record.
