@@ -1,0 +1,15 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "statiker",
+  "description": "Fable-first design/investigation conduct for development tasks — five forcing points, no ceremony",
+  "owner": {
+    "name": "Gunther Schulz"
+  },
+  "plugins": [
+    {
+      "name": "statiker",
+      "description": "Certify the design bears load before construction: a free investigation/design loop held by five forcing points — recorded decisions, fresh-context attack, dispatchable-design stop rule, no-design implementation, isolated executed verify.",
+      "source": "./plugin"
+    }
+  ]
+}
