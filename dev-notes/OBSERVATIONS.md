@@ -13,8 +13,34 @@ protocol violation, whatever the code looks like.
 
 ## Fire-born clause log
 
-(none — zero clauses at birth, per PLAN.md. Each mint gets a dated
-line here: incident, clause text location, subsequent firings.)
+(Each mint: date, incident, clause location, subsequent firings.
+Zero clauses at birth per PLAN.md; first cohort minted 0.2.0.)
+
+- 2026-08-05 (0.2.0) **Inherited/adopted evidence** — The record.
+  Incident: trial run S1 — inherited F5(a) wrong-table claim, caught
+  only by the dispatching brief's act-3 line; migration would have
+  rewritten the wrong table. Both directions (prior record / own
+  earlier items). Firings: —
+- 2026-08-05 (0.2.0) **[PENDING] sweep at [READY]** — Stop rule.
+  Incident: [READY] declared over a live [PENDING] D10 sub-question
+  + duplicate D10 entries; that open question was S1's exact locus.
+  Firings: —
+- 2026-08-05 (0.2.0) **[READY] advance prompt** — Stop rule.
+  Incident: operator "no clear format for what's asked of me" at the
+  trial's [READY]; operator-settled shape (loop control only, design
+  decisions never posed). Firings: —
+- 2026-08-05 (0.2.0) **Attack probe obligation (reach-matched)** —
+  The attack. Incidents (three datapoints): round-1 A1 harmless-
+  grading of S2's mechanism from reading; round-2 B1 false clean on
+  S3 closure (checked the skip exists, not what it reads); grader
+  ruling "probes answered narrower questions than the verdicts they
+  closed." Firings: —
+- 2026-08-05 (0.2.0) **Re-attack on re-lock (zero-delta closes)** —
+  The attack + Implementation gate re-keyed to the zero-delta entry.
+  Incident: two in-task fix-overshoots (D15 repaired S3 wrongly;
+  round-2 defects introduced by round-1 repairs), both caught only
+  by operator-driven re-attacks the skill never scheduled (desk S5).
+  Firings: —
 
 ## Observations
 
