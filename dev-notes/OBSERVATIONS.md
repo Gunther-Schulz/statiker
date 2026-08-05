@@ -302,6 +302,37 @@ Zero clauses at birth per PLAN.md; first cohort minted 0.2.0.)
   imply "pay more"). "Fable as attack-of-record didn't hold up on
   this task" stands AS SCOPED (n=2, F60 blindness caveat); the
   skill's tier line stays until the succession decision.
+- 2026-08-05 — **Cycle-4 attack plan REVISED (operator-raised, grader
+  concurs — corrects a hole in the redundancy No-verdict): THREE
+  probed attackers again (fable/opus/sonnet), as the probe-mint
+  VALIDATION run.** The reopen-contingency ("a probed attacker still
+  missing what a second context catches") is unfalsifiable without a
+  comparison arm — a solo probed false clean is indistinguishable
+  from a clean design until implementation pays for it. Cycle-4
+  triple answers: (a) does probed-fable stop false-cleaning, (b)
+  does probe discipline equalize tiers, (c) max coverage on the
+  run's highest-stakes artifact. Single-attacker No-verdict stands
+  for the STEADY STATE only, post-validation. Protocol carries
+  round-2 fixes: byte-identical artifact, nothing appended between
+  dispatches, all briefs carry the 0.2.0 probe obligation, raw
+  tier-labeled records pre-merge, F60 blindness limit acknowledged.
+  DESK×ATTACK MATRIX booked open (operator): under a fable desk a
+  fable attack buys only fresh-context (no smarter reviewer exists),
+  so probed-opus attack may suffice there — no cell pre-committed;
+  the matrix fills from the ladder (cycle 4 = opus-desk row; the
+  fable-desk trial picks its attack tier FROM cycle-4 data and
+  becomes the fable-desk row). Consumer: cycle-4 session brief +
+  succession decision.
+  OPERATOR PRODUCTION TARGET (2026-08-05, decision criterion for the
+  succession decision): what counts is token efficiency at similar
+  quality — fable is both the most expensive tier AND capped (50% of
+  weekly), so at close quality ALWAYS prefer the lower tier in
+  production; ideal steady state runs on opus + sonnet only, fable
+  reserved for roles where a measured quality gap demands it
+  (grading verdicts, escalations — not standing pipeline slots).
+  The cycle-4 triple is exactly the measurement that determines
+  whether that ideal is reachable for the attack class; the trial's
+  opus-desk performance already supports it for the desk.
 - 2026-08-05 — **Pre-cycle-4 mint pass PLANNED (statiker 0.2.0;
   operator + grader concur).** Run paused cleanly at a session
   boundary (desk handoff 76df9e0e); purity argument for finishing on
