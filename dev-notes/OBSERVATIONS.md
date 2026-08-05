@@ -388,6 +388,18 @@ Zero clauses at birth per PLAN.md; first cohort minted 0.2.0.)
   the hypothesis; measures nothing. Confound noted: the escalating
   session wrote its reviewer's brief (open enough that the reviewer
   roamed beyond it).
+  RE-GRADED after transcript check (executed, opus session
+  03d45c17…): misread confound CLOSED — opus's actual proposal (pin
+  messages[0]) was withdrawn BY OPUS pre-brief on sound basis
+  ("prefix already broken one layer up"), so nothing was needlessly
+  discounted; and none of fable's deliverables (rotation-stranding
+  mechanism, self-retiring exemption, LRU sibling, single-file
+  tripwire) appear in opus prose pre-brief (term-search over
+  assistant text blocks, zero hits). Upgraded to WEAK POSITIVE: the
+  escalation demonstrably added converged content the escalating
+  session lacked, and its self-withdrawal→escalate conduct was
+  correct. Still not tier measurement: deep-session-vs-fresh-context
+  confound stands (no fresh-opus arm ran the brief).
   END-STATE FRAMING (operator, same day): the certification pattern
   applied to the whole system — fable belongs in the META layer
   (skill design, heavy grading, contradiction adjudication, mint
