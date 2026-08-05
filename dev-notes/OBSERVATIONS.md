@@ -76,6 +76,19 @@ line here: incident, clause text location, subsequent firings.)
   dispatch-both-before-reading-either and an explicit record note
   that a two-attacker run is measurement, not statiker protocol.
   Consumer: the run-grading pass.
+- 2026-08-05 — **Booked question (operator-raised): was [READY]
+  called too soon, and can statiker mitigate a premature call?**
+  Calibration built in: attack findings alone never indict [READY]
+  (forcing point 2 assumes producer self-blindness; zero-delta is
+  the exception). Classify each CONFIRMED attack finding: Class A =
+  desk-catchable (the stop rule already demanded it — unenumerated
+  consumer, unexecuted basis, a decision whose impl brief was not
+  constructable) vs Class B = self-blindness (wrong frame,
+  unexamined premise — the mechanism working). Only Class-A-heavy
+  results argue premature [READY]; the mitigation then is a thin
+  stop-rule sharpening with this run as provenance, never a
+  convergence-ritual revival (birth-class guard). Consumer: the
+  run-grading pass.
 - 2026-08-05 — **Cross-skill routing item (charges to dispatch-guards,
   NOT statiker): §3b tail contradiction.** Trial-run incident, leg B:
   dispatch forms.md §3b closes "an enumeration dispatch … takes the
