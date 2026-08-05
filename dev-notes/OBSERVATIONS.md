@@ -100,6 +100,50 @@ line here: incident, clause text location, subsequent firings.)
   specimen, classify content load-bearing vs narrative, measure the
   split; a compression clause mints only if the narrative share is
   material. Consumer: the run-grading pass.
+- 2026-08-05 — **Paired-attack PRELIMINARY comparison (raw sets read
+  at tracker a1adc177; full grading still at run end).** Verdict:
+  A2/opus substantially outperformed A1/fable on the identical
+  artifact — an INVERSION of the expected ceiling direction. A2: S1
+  critical (U4 PK collision via builder None-segment omission, 363
+  colliding prod rows, boot-fail under fail-closed auto-migrate;
+  executed prod probe), S2 severe (game_markets ON CONFLICT target IS
+  the signature-derived PK — no self-heal; F18 was
+  provider_markets-only), S3 severe money-path (D2 deletes the only
+  fail-closed NULL-line skips; standing guard traded for a one-time
+  gate). A1: six real refinement-class findings, none
+  conclusion-flipping; partial overlap only at A1#2 (named the
+  NULL-typed-line hazard class + CHECK-constraint remedy — the smoke
+  of S1/S3 — but graded it unproven, executed no prod counts, missed
+  both mechanisms). Taint check EXECUTED: scepticism targets incl.
+  the D10-gate pointer were in BOTH byte-identical briefs; the ~25
+  extra lines A2 saw restated its own question + revealed the fable
+  dispatch (explains A2's fable self-label, nothing more). So the
+  inversion is not brief-steering. n=1: informs, certifies nothing;
+  suggests attack quality tracked probe-execution depth, not tier.
+  REVISED after the cycle-3 re-derivation (same day): final frame is
+  COMPLEMENTARY, severity-asymmetric — A1's quarter-guard
+  design-intent contradiction and DB-guard push each changed a
+  decision (D16; the avoided D17), so only-A2 ships a contradiction
+  and only-A1 breaks prod. Fable-desk independent verification of
+  both severe mechanisms EXECUTED: S2 conflict-target-is-PK
+  (base_repository.py:116, pk_cols fallback) and S1 None-segment
+  omission (market_signature.py build_market_only) both confirmed by
+  direct read. Round 2 booked: THREE attackers (fable/opus/sonnet —
+  ladder extended a tier down), byte-identical artifact this time
+  (nothing appended between dispatches, no tier names visible),
+  scope = re-derived D12/D13/D15/D16 + closure regression on all
+  confirmed round-1 findings. Tests whether the complementarity
+  split repeats under clean protocol.
+  Premature-[READY] preliminary classes: S2 = Class A (unexecuted
+  generalization as basis), S1 = Class A-leaning (record carried a
+  live [PENDING] D10 NULL-disposition sub-question + duplicate D10
+  entries at [READY] — the U4 impl brief was not constructable, the
+  stop rule's own test unapplied; also A1#4), S3 = Class B (invested
+  triple-read misclassification — self-blindness class). Mint
+  candidate from S1's shape: [READY] requires a computed sweep —
+  latest-status [PENDING] count = 0, no coexisting contradictory
+  entries for one id — a computable predicate, hookable later.
+  Consumer: the run-grading pass.
 - 2026-08-05 — **Cross-skill routing item (charges to dispatch-guards,
   NOT statiker): §3b tail contradiction.** Trial-run incident, leg B:
   dispatch forms.md §3b closes "an enumeration dispatch … takes the
