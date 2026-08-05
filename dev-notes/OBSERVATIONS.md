@@ -32,3 +32,16 @@ line here: incident, clause text location, subsequent firings.)
   by a blind-briefed leg). Suggested clause shape in the tracker's S1.
   Decision point: mint at run grading, not mid-run (editing the skill
   under the run evaluating it muddies the trial measurement).
+- 2026-08-05 — **Booked analysis (operator-requested): delegation
+  split, opus desk vs fable desk.** At trial-run end, grade the opus
+  session log against statiker's own delegation rule (discovery legs
+  dispatched; "consecutive discovery sweeps in the main session are
+  the tell"): classify desk actions judgment-vs-discovery. Outcome
+  routing: text violated → adherence stumble or weak tell-clause,
+  adjustable from this run; text conformed → "would fable delegate
+  more" is unanswerable from an opus log (counterfactual-modeling
+  trap) and routes to the already-planned fable trial (PLAN.md step
+  4) as a paired split-pattern comparison — patterns, not volumes;
+  different task. Any tier-conditional delegation-pressure clause
+  must arrive as a fire-born patch citing this analysis, not the
+  curiosity. Consumer: the run-grading pass + fable-trial grading.
