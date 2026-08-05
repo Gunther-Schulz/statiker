@@ -57,6 +57,17 @@ line here: incident, clause text location, subsequent firings.)
   different task. Any tier-conditional delegation-pressure clause
   must arrive as a fire-born patch citing this analysis, not the
   curiosity. Consumer: the run-grading pass + fable-trial grading.
+- 2026-08-05 — **Booked measurement (operator-requested): paired
+  attack comparison, first opus-attack-ladder data point.** The trial
+  run dispatches TWO parallel attackers on the identical locked
+  design — fable (attack-of-record per the skill) + opus — identical
+  briefs, blind to each other, outcomes recorded as separate
+  tier-labeled tracker entries before any merge; run proceeds on the
+  union of confirmed findings. Post-run grading (here, not the desk):
+  set-compare the raw finding-sets — what did opus miss against the
+  fable ceiling, what did it add. Caveat carried: n=1 pair informs,
+  never certifies (significance discipline); certification stays a
+  ladder. Consumer: the run-grading pass.
 - 2026-08-05 — **Cross-skill routing item (charges to dispatch-guards,
   NOT statiker): §3b tail contradiction.** Trial-run incident, leg B:
   dispatch forms.md §3b closes "an enumeration dispatch … takes the
