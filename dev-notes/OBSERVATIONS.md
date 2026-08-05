@@ -207,7 +207,16 @@ line here: incident, clause text location, subsequent firings.)
   the method mint underperforms (a probed attacker still missing
   what a second context catches), the redundancy case reopens with
   data. The original phrasing stays retired (failed the abstraction
-  probe). The method-defined direction
+  probe). VERDICT (grader + operator concur, 2026-08-05):
+  independence redundancy = NO as default practice — basis: both
+  observed second-attacker saves this trial were METHOD-shaped
+  (consequence-probe and drive-the-input catches a probed single
+  attacker plausibly makes), so the trial demonstrates no value
+  surviving the method mint; the remainder is unmeasured
+  frame-level residue, not worth a standing second attacker plus a
+  doubled disposition pass while verify + operator stand behind the
+  run. Free-form option + the reopen contingency are the whole
+  accommodation. The method-defined direction
   (probe obligations in the attack brief: severity calls cite an
   executed consequence-probe, closure calls drive the guarded input
   through the new mechanism, else "unmeasured"; judgment-class
