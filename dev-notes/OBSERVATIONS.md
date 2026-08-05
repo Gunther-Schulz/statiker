@@ -32,6 +32,18 @@ line here: incident, clause text location, subsequent firings.)
   by a blind-briefed leg). Suggested clause shape in the tracker's S1.
   Decision point: mint at run grading, not mid-run (editing the skill
   under the run evaluating it muddies the trial measurement).
+  Refinement (operator-raised, 2026-08-05): the eventual clause
+  should cover BOTH inheritance directions — another run's record
+  (S1's case) and the same session's prior items (multi-item
+  sessions; old clippy re-investigated from zero per run, a
+  Sonnet-era calibration). One test for both: adopted evidence is
+  PENDING until its basis passes a CURRENT-check scoped to the claim
+  — recorded basis + staleness check (did the cited file change
+  since the basis read? git-computable via the tracker's unit SHAs;
+  note item N's own implementation invalidates reads of files it
+  touched by construction). Unrecorded in-context memory never
+  qualifies (paraphrase-drift class). Full re-investigation is the
+  fallback where no basis exists, not the default.
 - 2026-08-05 — **Booked analysis (operator-requested): delegation
   split, opus desk vs fable desk.** At trial-run end, grade the opus
   session log against statiker's own delegation rule (discovery legs
