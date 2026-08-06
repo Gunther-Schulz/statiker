@@ -1578,3 +1578,106 @@ trial's impl + verify (forcing points 4-5, still unmeasured).
   decision; cycle-10 start line carries it plus the 0.2.17 gate.
   Consumer: review-2 dispositions + pin move + fresh-desk line;
   experiment grading at release 3.
+
+- 2026-08-06 — **Cycle-economics ANALYZED (operator re-raised at
+  session close: "is there a natural end / fundamental flaw?") →
+  THREE successive cost drivers named, two already mechanized, the
+  third gets a PRE-REGISTERED round-8 read; no rule change now.**
+  The drivers, in the order they were diagnosed: (1) CLASS-BLIND
+  CLOSURE — any finding sustained a round; fixed at 0.2.10
+  (severity-scoped closure; record findings close, only substance
+  reopens). (2) RECORD SELF-MAINTENANCE — 333 entries whose repair
+  touches breed supersession/reach errors; progressively converted
+  to mechanism (dead-basis checker, ready-sweep, filter; 0.2.9,
+  0.2.13, 0.2.17 each turned a judgment step into an enumeration
+  or current-check). (3) SUBSTRATE RECURSION — the round-7 driver,
+  newly named: pins demand executed discriminating evidence; the
+  target repo lacked all substrate (zero DB tests, no CI pytest);
+  the run therefore BUILDS substrate (pg17 harness, instruments);
+  the build is design; design earns attack rounds — verification
+  machinery becomes deliverable. Round-7 split by defect location:
+  ~2 of 6 substance findings on the shipped system proper (M1
+  upsert-clobber, M2 requirement fit), ~4 on the verification
+  layer (F102, F103, M3, M4). Clippy comparison stays two-sided
+  and already recorded: 4-5 cycles typical BUT this task's clippy
+  run FAILED (paused cycle 49) and clippy-"acceptable" = the
+  unmeasured residual this run measures. The natural end EXISTS:
+  [ZERO-DELTA] → impl → verify [PASSED]; what is genuinely open is
+  whether verification-machinery design earns the full attack loop
+  or only execution-grade proof (red-first + sibling divergence +
+  pin discrimination at impl). ROUND-8 READ, pre-registered
+  (discriminating — each outcome flips the verdict): classify
+  round-8 substance findings by defect location — (a) substance on
+  the DELIVERABLE → rounds still earn their keep, no change;
+  (b) substance confined to VERIFICATION MACHINERY → mint the
+  scoping rule (infrastructure design proven by execution, full
+  attack scoped to deliverable design); (c) zero-delta → closure
+  works, impl proceeds. Also noted for fairness at run grading:
+  this run carries trial overhead (mint cycles, reviews, relay) no
+  production run pays. Consumer: the round-8 return grading + the
+  run-grading pass.
+
+- 2026-08-06 — **Corpus-dependence question (operator at close):
+  statiker's reliance on ~/.claude/CLAUDE.md is DECLARED, not
+  accidental — and today's two corpus edits added no dependency
+  edge.** The skill's Composition section states the dependency
+  ("the operator corpus carries the grounding and evidence ethics;
+  assumed, not restated") as a recorded design decision, with the
+  mitigation already booked: the self-containment DEGRADATION
+  FLOOR at stabilization (inline minimum essentials per seam +
+  composition declarations). Today's edits — deferral evidence
+  must discriminate (dotfiles c7550a9), instrument red certifies
+  class not reach (dotfiles b753f0c) — were meta-/desk-layer
+  incidents whose truth-level is every-project; the skill cites
+  neither. Watch item ADDED to the degradation-floor booking: that
+  stabilization pass audits which corpus rules the skill's conduct
+  silently leans on (the risk direction is minting to the corpus
+  what the skill NEEDS, hiding a skill gap in ambient machinery).
+
+## Session handoff — 2026-08-06 meta/grading session #2 closed
+
+State at close, for the successor meta session (role and duties:
+CLAUDE.md Trial working conventions — relay loop: harvest, mint
+decision, stop-call, relay line; lift-sweep before each fresh
+desk). RELEASES TODAY (this session): 0.2.12 (never pinned) →
+0.2.13 (pinned, serving) → 0.2.14/15/16 (sealed prediction + opus
+review-1 repairs) → 0.2.17 (restated-clause-is-an-adoption, commit
+2e98746, pushed). PIN SITS AT 0.2.13; 0.2.17 is the release
+target. RUN STATE: A7 [BIT] at 388f1234 (2 HIGH, 4 MODERATE, 4
+MINOR, six design-substance) — design reopened, cycle-10 work
+enumerated in the desk's C58; the FRESH DESK HOLDS until the pin
+moves. SUCCESSOR'S FIRST DUTIES, in order: (1) opus-skill-review-2
+(background, this session) — its report may not have arrived
+before close: if its findings are in hand, disposition them in
+this ledger; if not, RE-DISPATCH (same form as review 1: diff
+40aa593..2e98746 SKILL.md-only + full skill + question, no author
+reasoning, read-only tail); (2) after dispositions, move the pin
+(`claude plugin update statiker@statiker`, verify 0.2.17 in the
+cache listing); (3) collect the operator's R5 answer — OPEN
+decision, recommendation on record: AMEND R5 to name the two
+knowingly-kept persistence-identity roles (game_markets dedup
+election + PK) with their U5 expiry; descoping D52 was ruled out
+via D45a; (4) issue the cycle-10 fresh-desk start line: fresh
+desk in the target repo, resume from tracker, version gate 0.2.17
+from the injection's base-directory line, carry the R5 answer,
+cycle-10 work from C58 (F102/F103 first). PRE-REGISTERED READS
+OWED: the round-8 defect-location read (cycle-economics entry
+above; grades driver 3) — and the opus-review EXPERIMENT grading
+at release 3 (release 1: 2 blocking + 1 applied notable, met the
+substantive-catch arm; release 2 = 0.2.17 review, pending).
+CORPUS EDITS TODAY (dotfiles): deferral-discrimination c7550a9;
+instrument-reach b753f0c (that commit also swept the operator's
+own concurrent uncommitted edits — disclosed in its message).
+skill-craft journal carries the cross-repo experiment booking
+(261c3ef). beat-the-books: 61 commits unpushed under the
+operator's deploy hold — never push. OPEN BOOKINGS unchanged
+otherwise, all on named triggers (lift-sweep ran this session):
+shadow-log tension (fire), checker+scrub graduation — now
+including citation-liveness + path-resolvability widenings and
+G14-16 wrap fixes (run end), incidental surfacing (fire),
+self-containment degradation floor + sentinel compression at 257
+lines + corpus-lean audit (stabilization, ONE pass), pin-execution
+conduct + intake knob + corpus lessons (run grading / fire-rate).
+NIT6 preemptive-entry case = sealed-prediction clause's watch
+case. EXPECTED NEXT EVENT: operator returns with the R5 answer
+and/or review-2 report; then pin move and the cycle-10 desk.
