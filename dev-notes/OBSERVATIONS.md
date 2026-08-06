@@ -1033,3 +1033,21 @@ cycles 4-5 and attack round 3. Raw attacker reports preserved at
   boundary change: PLAN.md decision + verify line update
   (currently "payload inventory: statiker only"). Trigger: run
   end / stabilization. Consumer: run-grading pass.
+
+- 2026-08-06 — **False-clean repair executed and independently
+  verified (beat-the-books 2d22d054; meta-session re-ran the
+  checker, output reproduces the desk's AFTER exactly).** Red/green
+  shown both ways: F47→F80, F62→F79, D11→D57, D16→D56; C35/F77 no
+  longer count. INSTRUMENT LESSON for the fire-rate review, second
+  from this checker in one day: exemption-chasing on a negative
+  predicate lost three consecutive rounds (each exemption left the
+  next mention standing); the fix was INVERTING to a positive
+  predicate — "is there a live non-C entry whose body states what
+  survives" — the record's own convention made machine-checkable.
+  General shape: where false positives come from an open-ended
+  mention space, enumerate the ACCEPTING class, not the excluded
+  one. Also: the sharpened predicate exposed six more orphans
+  (D13/D17/D29/D31/F50/F56) the weak one masked — recorded C40
+  unexamined, deliberately left red (scope discipline held). The
+  fresh desk dispositions them pre-round-6. Consumer: fire-rate
+  review + run-grading pass.
