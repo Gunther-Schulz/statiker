@@ -1287,3 +1287,59 @@ trial's impl + verify (forcing points 4-5, still unmeasured).
   concur with desk — before impl so D65's NOT VALID premise is
   executed rather than cited; not blocking round 7 (rides as U4a's
   pin). Consumer: A7-seam release + lift-sweep, run-grading pass.
+
+- 2026-08-06 — **Round-7 ABORT relay graded (desk C52-C54) → concur
+  with the desk's self-stop; TWO mints as 0.2.13 (0.2.12 never
+  pinned); pin moves 0.2.11 → 0.2.13 NOW; C54 to the operator with
+  route-1 recommendation.** CORRECTION FIRST, own booking: the
+  previous entry's item (g) — "horizon convention held", "leg
+  retired by design was the better outcome" — rested on the desk's
+  false closing claim that the two legs never returned. C52: both
+  legs returned complete (twelve parts) after being stopped; the
+  desk claimed "never returned" from memory, not the transcript.
+  Item (g) is OVERTURNED both halves: the returns existed unread,
+  and the "retired" leg's return (F93) refuted the very premise
+  D67 cited — a booked verdict overturned by the evidence that was
+  already in flight when it was booked. Harvest: (a) F93 —
+  crosswise population is delete-and-recreate per sync cycle
+  (1 → 17 in a 3-min window), F83's decay story was a sampling
+  artifact; D67's conclusion survives on a corrected basis.
+  (b) F95 — no substrate for any row-level migration pin (zero
+  real-DB tests, no executed migration, CI pg16 structural-only);
+  D67(b)'s escape clause correctly executed against itself: gap
+  reported, never bridged. Round 7 rightly aborted (C53) — a
+  verdict against a design due re-derivation cannot close it, and
+  the artifact carried C51's false entry. (c) F94 — leg's claimed
+  silent NameError refuted by executing the literal slice
+  (IndentationError, ruff-caught); hazard real, mode wrong; desk
+  settled D69 "line numbers may cite, never command" — CONVERGENT
+  with the unreleased 0.2.12 F89 clause, now double-provenanced
+  (F89 + F94) and sharpened with D69's cite/command wording.
+  (d) G13 — writer pin executed red AND green (stored -2.50 at
+  HEAD vs signature 2.5, +2.50 after fix): first firing LOGGED for
+  the 0.2.11 discriminating-pin clause, strongest pin evidence of
+  the run. MINTS (0.2.13): (1) leg lifecycle — a leg is [PENDING]
+  at dispatch, resolved only by a body-read of its return, stopped
+  or late legs included; folds into the existing [READY]
+  no-[PENDING] gate, so unread legs hold the sweep open
+  mechanically (provenance C52 + F93/F95: a round staged over a
+  design whose refutation sat in two unread returns); (2) the
+  cite/command sharpening above. Release basis: seam is C53's
+  recorded abort — no attacker, no unit live; desk abandonable by
+  design (tracker is the handoff); the leg clause fires at the
+  next [READY], which the run crosses before any other forcing
+  point. LIFT-SWEEP (fresh desk imminent): all open bookings
+  re-graded, none ripe beyond the two minted — shadow-log (fire),
+  scrub graduation remainder (run end), incidental surfacing
+  (fire), self-containment+compression at now-240 lines
+  (stabilization, ONE pass), pin-EXECUTION conduct (impl evidence;
+  G13 noted as adjacent design-phase evidence, not impl conduct),
+  intake knob + corpus lessons (run grading). BOOKED, corpus lane
+  (operator decides): the transcript-claim rule's polarity — "it
+  never arrived" is the same class as "I already sent it", checked
+  in the transcript, never memory; the corpus line is phrased for
+  the positive polarity only. C54 relayed to operator with
+  recommendation route 1 (real-pg17 harness in U1; docker now up;
+  also serves U4a/U4b; route 3 is the false-clean shape, route 2
+  not decision-ready — per-row survival unmeasured). Consumer:
+  fresh-desk start line + run-grading pass.

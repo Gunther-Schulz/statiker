@@ -92,6 +92,13 @@ forms and records decisions, writes briefs, grades. Investigation and discovery 
 cheaper-tier subagents on pointed decision-complete briefs —
 brief-writing is where hunt-judgment lives (Fire-born clauses,
 below); what a leg returns is evidence, recorded with its basis.
+A leg is recorded [PENDING] at dispatch and resolved only by a
+body-read of its return — a stopped or past-horizon leg's output
+included: a late report is evidence, not noise, and "it never
+returned" is a transcript claim checked in the transcript (a round
+was staged over a design whose refutation sat in two unread
+returns). The [READY] sweep's no-[PENDING] gate holds unread legs
+open mechanically.
 Consecutive discovery sweeps in the main session are the tell that a
 leg should have been dispatched.
 
@@ -138,7 +145,8 @@ defective state already satisfies verifies nothing, and a
 renumbering that drops a unit's pin clause is a silent unpin (both
 observed as a round's highest finding). A unit's edit commission is
 symbol-anchored — the target named by symbol, with a residue check
-proving it gone or changed — never a bare line range: ranges decay
+proving it gone or changed — never a bare line range (line numbers
+may cite, never command): ranges decay
 as file and record evolve, and one commissioned range landed
 exactly on the guards a prior decision retained, deletable verbatim
 by a literalist implementer. With an
