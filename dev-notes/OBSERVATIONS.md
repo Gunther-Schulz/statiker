@@ -915,3 +915,15 @@ cycles 4-5 and attack round 3. Raw attacker reports preserved at
   didn't ask) are irreducible — target is one clean confirming
   round, never zero rounds. Consumer: round-5 outcome handling +
   0.2.6 decision.
+  TRIAGE ADDENDUM (operator-raised, same day): classified
+  loaded-but-inert, not a gap — the corpus carries the rule twice
+  (probe-before-resting; the reach family), loaded in every desk
+  session; non-firing mechanism = evidence-register ethic with no
+  anchored moment in the loop, and the basis grammar accepts
+  file:line so a read-basis on a measurable premise reads as
+  compliant. Not dispatch-side (all dispatch defects this run were
+  conduct-class, fixed, none caused kills). Fix layer: statiker —
+  anchor at the commit moment via basis grammar, the proven 0.2.0
+  mechanism class (attacker obligation, validated rounds 3-4).
+  Premise-kind test stays judgment/prose; attack round remains the
+  mechanical backstop.
