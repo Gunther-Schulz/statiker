@@ -1211,3 +1211,31 @@ cycles 4-5 and attack round 3. Raw attacker reports preserved at
   work (reach line + alphabet widening) confirmed NOT done — the
   old desk was never continued; moves into the cycle-8 brief.
   Consumer: cycle-8 brief + run-grading pass.
+
+## Session handoff — 2026-08-06 meta/grading session closed
+
+State at close, for the successor meta session (role and duties:
+CLAUDE.md Trial working conventions — the relay loop with harvest /
+mint decision / stop-call / relay line, plus the lift-sweep before
+each fresh desk): statiker 0.2.11 pushed + pinned (releases 0.2.4
+→0.2.11 today, each fire-born, provenance in this file); global
+corpus gained the carrier-on-read-path sharpen (dotfiles e05a7f6).
+RUN STATE: canonical-market-identity reopened at A6 [BIT]; round 6
+graded, stop-call fired once (0.2.9) and the severity-scoped
+closure landed (0.2.10); cycle-8 brief ISSUED to the operator
+(fresh opus desk, version gate 0.2.11, work item 1 = checker
+alphabet widening + reach line, item 2 = re-derivation F83-first,
+then round 7 presented for operator go — bare (y), everything
+rides the skill now); both prior desks closed/abandonable, their
+knowledge in tracker or brief. beat-the-books: 49 commits unpushed
+under the operator's deploy hold — never push. OPEN BOOKINGS all
+carry named triggers/consumers (lift-sweep graded them 2026-08-06:
+two lifted as 0.2.11, rest wait): shadow-log tension (fire),
+checker+scrub payload graduation (run end, 3 conditions),
+incidental surfacing (fire), self-containment degradation floor +
+sentinel compression at 227 lines (stabilization, ONE pass),
+intake-grading knob + per-unit-pin-execution conduct + corpus
+lessons (run grading / fire-rate review). EXPECTED NEXT EVENT: the
+operator relays the cycle-8 desk's version-gate confirmation and
+report; grade per the conventions. Succession decision pending the
+trial's impl + verify (forcing points 4-5, still unmeasured).
