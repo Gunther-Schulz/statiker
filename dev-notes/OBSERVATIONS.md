@@ -1018,3 +1018,18 @@ cycles 4-5 and attack round 3. Raw attacker reports preserved at
   conduct, which is past for this desk; next restart seam (post-
   round-6) picks it up. Operational count 204; compression booking
   stands. Consumer: operator decision + run-grading pass.
+
+- 2026-08-06 — **PARKED (operator-raised): graduate the dead-basis
+  checker into the statiker payload.** The checker parses the
+  skill's own tracker grammar — format-owned, not repo-owned; the
+  0.2.5 sweep clause ("mechanized check runs first") becomes real
+  everywhere only if the skill ships it. Provenance: the class
+  fired in attack rounds 3-5. Named graduation conditions: (1) the
+  checker survives the run's remaining rounds without another
+  reach defect (four in one day so far; the run is its shakedown);
+  (2) the pending self-reference repair lands with red/green
+  re-proof; (3) portability pass + absorb the beat-the-books tag
+  linter, shipping ONE record checker. Graduation is a payload-
+  boundary change: PLAN.md decision + verify line update
+  (currently "payload inventory: statiker only"). Trigger: run
+  end / stabilization. Consumer: run-grading pass.
