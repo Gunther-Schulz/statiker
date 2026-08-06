@@ -796,3 +796,41 @@ cycles 4-5 and attack round 3. Raw attacker reports preserved at
   mint candidate only on a fire: a desk dying mid-round, or the
   shadow log proving load-bearing in practice. Consumer: fire-rate
   review.
+
+- 2026-08-06 — **ROUND-4 COMPARISON GRADED — LOCK CRITERION MET:
+  probed-opus locks as attack tier (this attack class, opus desk).**
+  Basis: body-read of both raw reports
+  (beat-the-books .clippy/runs/evidence/2026-08-06-cmi-r4-attack-A/B)
+  against the pre-registered criterion (this file, 2026-08-06).
+  Fable's two blocking-eligible findings BOTH appear in opus's
+  report: its SEVERE (D29/D37-U2 sign-CASE contradiction, money
+  path) = opus F5 verbatim in substance, same repair; its MODERATE
+  (home-only migration/verify vs both-row negation) = opus F2, which
+  additionally carries the positive control both-positions. Fable's
+  uniques are three minors (N1 rationale imprecision, N2 pin
+  buildability under the U4a CHECK, N3 orphan-residue overclaim) —
+  the non-blocking class by criterion, and consistent with the
+  round-2 grading's "fable unique value = record-repair" finding.
+  Opus uniques: F1 (the round's sharpest — backfill source
+  nonexistent for 61.8%/21,109 rows, prod-measured with in-query
+  positive control, desk-reprobed; fable missed it entirely), F3
+  (identity tuple has no live definition; D12's safety argument
+  cites invalidated ground), F4, F6, F7 + four lesser
+  stale-COMMITTED. Score 3-for-3 across rounds, and the round-3
+  asterisk RESOLVES: this fable arm was uncontaminated (C5 channel
+  closed) and probe-obligated, and still found a strict subset of
+  the substance — the clean replication the pair was designed for.
+  Mild 4th instance of the record-reach residual: fable HELD
+  "D36(a) accurate" where opus F6 shows D24 kills its argument
+  (conclusion possibly surviving). CONSEQUENCES: round 5 = solo
+  probed opus, sequential default back in force (relay to desk at
+  cycle-6 lock); skill tier line still changes only at the
+  succession decision, which now cites this verdict. MINT CANDIDATES
+  booked for run grading, not minted now (trial-measurement policy):
+  the round-4 bites are dominantly the stale-COMMITTED /
+  partial-invalidation class — (a) superseding requires an explicit
+  [INVALIDATED] on the old entry, (b) invalidating requires
+  restating what survives (opus F3's reverse rule), (c) the [READY]
+  sweep is blind to stale-COMMITTED contradictions (C23's limit,
+  beaten by both arms twice). Consumer: succession decision +
+  run-grading pass.
