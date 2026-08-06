@@ -897,3 +897,21 @@ cycles 4-5 and attack round 3. Raw attacker reports preserved at
   A-line is recorded — the desk finishes round 5 on 0.2.4 (its
   conduct is unchanged in 0.2.5), fresh desk serves 0.2.5 at the
   seam. Consumer: fire-born firing log + run-grading pass.
+
+- 2026-08-06 — **Cycle-inflation solution stated; 0.2.6 mint PENDING
+  on round-5 outcome.** Diagnosis: cycle count is driven by kill
+  rate, not decision count — every decision-flipping bite in rounds
+  1-4 rested on a data-shape premise measurable at commit time
+  (D13 0/25, reference-writer grep, 61.8% backfill SQL); front-
+  loading more decisions adds kill targets, not closure. Candidate
+  mint: the attacker probe obligation applied symmetrically at the
+  desk's commit moment — a committed decision citing a data-shape
+  or code-path premise carries its executed measurement as basis.
+  Cycle 6 field-tested it voluntarily (measured-not-reasoned;
+  D40/D41); round 5 IS the falsifier: zero-delta or minor-only →
+  mint as 0.2.6 with cycle-6→round-5 provenance; a bite on a
+  measurable premise → hypothesis takes the hit, re-diagnose.
+  Floor stated: fresh-context reach findings (questions the desk
+  didn't ask) are irreducible — target is one clean confirming
+  round, never zero rounds. Consumer: round-5 outcome handling +
+  0.2.6 decision.
