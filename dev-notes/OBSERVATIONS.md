@@ -1447,3 +1447,27 @@ trial's impl + verify (forcing points 4-5, still unmeasured).
   attacker pre-round); bites outside C57's list = independence
   survived the framing, tension possibly benign. Consumer: the
   round-7 return grading.
+
+- 2026-08-06 — **C57 class MINTED NOW as 0.2.14 (operator nudge
+  correct; own prior deferral revised on the record): sealed
+  prediction for pre-round self-assessment.** Revision basis: the
+  pre-registered experiment is ASYMMETRIC — bites-only-inside-C57
+  confirms anchoring, but bites-outside cannot establish safety
+  (under-exploration is unobservable), so waiting could only ever
+  confirm harm, never clear the channel; and the defect is readable
+  from the rules themselves (the no-reasoning rule has a bypass by
+  construction: entries authored for the attacker ride the
+  never-filtered channel). Provenance: C57 in live operation IS the
+  incident. Clause (The attack, beside the no-reasoning rule): the
+  rule reaches the artifact; pre-round self-assessment is a sealed
+  prediction — outside the pinned artifact (shadow log) until
+  return, then landed beside the A-line compared against actual
+  bites, converting attacker-framing into desk self-model grading.
+  Round 7 unaffected (runs as registered on its pinned artifact;
+  the C57 anchoring read still grades THIS round and feeds the
+  mint's firing log). Pin moves at the round-7-return seam.
+  This is release 1 of 3 under the opus-review experiment: one
+  fresh-context opus review dispatches before the pin moves
+  (read-only, pre-authorized tier), findings dispositioned in this
+  ledger pre-release. Consumer: round-7 return grading (pin move +
+  C57 read + review dispositions), experiment grading at release 3.
