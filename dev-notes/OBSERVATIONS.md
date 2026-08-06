@@ -834,3 +834,20 @@ cycles 4-5 and attack round 3. Raw attacker reports preserved at
   sweep is blind to stale-COMMITTED contradictions (C23's limit,
   beaten by both arms twice). Consumer: succession decision +
   run-grading pass.
+
+- 2026-08-06 — **Cycle-6 field test of the round-grading mint
+  candidates (desk report, tracker 69059a1d).** The two closure
+  rules (candidates (a)+(b), handed to the desk as run directive)
+  applied record-wide as D38: nine stale entries retired with
+  survivors re-homed into live entries — the wholesale close the
+  per-entry approach missed for four rounds. Candidate (c)'s sweep
+  blindness got MECHANIZED in-run: tools/statiker_dead_basis_check.py
+  (beat-the-books), shown red on the pre-cycle-6 tracker against the
+  real arm-A defect, sharpened 25→14 hits for overfire, kept
+  advisory (judgment residue stated). Two harvest datapoints for run
+  grading: C26 — the annotated-tag defect was NAMED at cycle 4 and
+  not repaired for two rounds (worse shape than never-surfaced);
+  D48 — a booking living only in a dead tracker entry re-homed to
+  BACKLOG.md, the carrier-on-read-path class caught in-run by the
+  desk (corpus sharpen firing occasion, second same-day). Consumer:
+  run-grading pass + succession decision.
