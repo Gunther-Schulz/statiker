@@ -1540,3 +1540,41 @@ trial's impl + verify (forcing points 4-5, still unmeasured).
   grading per pre-registration at release 3. Consumer: pin move at
   the round-7-return seam (now to 0.2.16), reviews 2-3 at the next
   two releases, experiment grading at release 3.
+
+- 2026-08-06 — **Round-7 RETURN graded (A7 [BIT] at 388f1234: 2
+  HIGH, 4 MODERATE, 4 MINOR, six design-substance → reopen) →
+  STOP-CALL fired in the 0.2.9 sharpen-before-next-cycle form;
+  0.2.17 minted; fresh desk HOLDS until review 2 clears and the
+  pin moves.** Grading: concur across the board — the 0.2.10
+  severity-scoped rule's FIRST EXERCISE landed on its reopen tail
+  and was applied as minted (classification with basis, [BIT],
+  repairs enumerated at C58); desk conduct through a 7-part return
+  with drifting part count was the run's best (no partial booking,
+  freeze held to the last part, G17 own-verification of five
+  load-bearing claims before classification, and a mid-round
+  misstatement about M4/F99 corrected on the record). C57
+  SEALED-PREDICTION READ (pre-registered): NO anchoring
+  signature — F103, M1, M3, M4 land outside C57's four spots
+  (F102 sits near spots 3-4); independence survived the framing;
+  the 0.2.14-16 mint stands on its structural basis, this read
+  logged as its firing-log context. STOP-CALL basis: F102's
+  copy-forward is the THIRD bite in one family (F92 dead
+  citations, F98 unresolvable paths, F102 killed anchor carried
+  into D72) — and the adoption rule ALREADY covers "the session's
+  own earlier items" with a current-check; it sat in a different
+  paragraph from the restatement procedure and never fired there
+  (loaded-but-inert). 0.2.17 bridges them: a restated clause is an
+  adoption, its basis passes the current-check before its
+  disposition lands. Fires at cycle 10's re-derivation — the very
+  next desk act, which is why the desk holds for it. G14/G15/G16
+  triple (one wrapped-bracket assumption across three same-author
+  instruments, each red-proven on its own class, each exposed only
+  by sibling divergence) minted at CORPUS level — Instruments
+  sharpen, dotfiles b753f0c: red certifies the fired class, not
+  reach; the desk's own line adopted ("a lone instrument's green
+  is indistinguishable from its blind spot"). Release 2 of 3 →
+  opus review 2 dispatched pre-pin per the experiment. R5 SCOPE to
+  the operator (numbered, with recommendation) — the one open
+  decision; cycle-10 start line carries it plus the 0.2.17 gate.
+  Consumer: review-2 dispositions + pin move + fresh-desk line;
+  experiment grading at release 3.

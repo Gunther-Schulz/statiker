@@ -120,7 +120,11 @@ invalidating an entry restates what survives of it in a live entry,
 CLAUSE BY CLAUSE — each clause of the dead entry dispositioned
 restated-at-<id> or dead; an entry-level summary is where the
 load-bearing clause drops silently (a dropped pin clause cost a
-round). A partial invalidation orphans the surviving clauses, and
+round). A restated clause is an ADOPTION: its basis passes the
+current-check (The record) before its disposition lands — a
+disposition label over an unchecked basis has carried dead
+citations, unresolvable paths, and a killed anchoring premise
+forward, one family in three forms. A partial invalidation orphans the surviving clauses, and
 later readers inherit the dead rule or nothing.
 
 ## Stop rule: [READY] = dispatchable (forcing point 3)
