@@ -26,12 +26,20 @@
 
 ## Trial working conventions (operator-settled, 2026-08-06)
 
-- **Two-session layout.** The meta/grading session runs in THIS
-  repo (grades comparisons, mints, releases); the desk runs in the
-  target repo. Decisions travel between them only via operator
-  relay — the meta session ends its turn with the paste-ready relay
-  line (carrier-on-read-path: the desk reads its tracker and the
-  operator's replies, never this repo's ledger).
+- **Two-session layout — the relay loop IS the procedure.** The
+  meta/grading session runs in THIS repo (grades comparisons,
+  mints, releases); the desk runs in the target repo. The operator
+  relays desk output to the meta session verbatim and carries back
+  its paste-ready reply — decisions travel no other way
+  (carrier-on-read-path: the desk reads its tracker and the
+  operator's replies, never this repo's ledger). On each relay the
+  meta session owes four things: the harvest (ledger what the
+  report taught), the mint decision (evidence-complete → release at
+  the seam), the STOP-CALL — pause the run when a minted rule fails
+  its own falsifier (a bite in a class an existing mint governs) or
+  when impl/verify surfaces what the attack rounds should have
+  caught (succession-negative evidence); otherwise let it run — and
+  the next relay line.
 - **Mid-run tuning at seams.** Between cycles is an upgrade point,
   not a wait: grade what is evidence-complete (field-tested in-run
   with provenance = ripe; needs the run's remainder = defer), mint,
