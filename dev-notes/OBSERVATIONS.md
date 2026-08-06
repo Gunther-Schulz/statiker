@@ -938,3 +938,5 @@ cycles 4-5 and attack round 3. Raw attacker reports preserved at
   Round-5 outcome now grades the mint instead of gating it: a bite
   on a measurable premise reopens the wording, not the existence.
   Operational count 198; compression booking stands.
+  (Correction, same turn: operational count is 197 per the executed
+  verify, not 198 as the line above composed pre-run.)
