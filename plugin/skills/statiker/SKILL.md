@@ -39,15 +39,16 @@ Append-only tracker at `.clippy/runs/<yyyy-mm-dd>-<slug>.md` —
 clippy's ledger convention, shared so `/clippy-stats` and cross-skill
 comparison read both. Never overwrite another run's tracker; resume
 an in-progress run from its tracker, not from memory. An entry
-ADOPTED from a record this run did not produce — a prior or
-superseded run's tracker, the session's own earlier items, or a
-clause restated out of an invalidated entry — is
-PENDING until its basis passes a current-check scoped to the claim
-(re-read the cited lines; staleness-check against commits since the
-basis read — an earlier item's own implementation invalidates reads
-of the files it touched); re-record it as a new line under this
-run's own next id, citing source AND check. Unrecorded memory of
-prior work is never a basis.
+ADOPTED — taken over from a source instead of derived live: a
+prior or superseded run's tracker, the session's own earlier
+items, or a clause restated out of an invalidated entry — is
+recorded [PENDING] under this run's own next id at adoption, and
+that SAME id carries the clearing line once its basis passes a
+current-check scoped to the claim (re-read the cited lines;
+staleness-check against commits since the basis read — an earlier
+item's own implementation invalidates reads of the files it
+touched), citing source AND check. Unrecorded memory of prior
+work is never a basis.
 
 Header: `# Run: <title>`; `Status:` from
 {in-progress, [READY], PASSED, FAILED, COMPLETE}; `Phase:` from
@@ -89,8 +90,9 @@ needed.
 
 The desk (this session; intended consumer is a top-tier session
 model — prescription density is calibrated to it) orchestrates,
-forms and records decisions, writes briefs, grades. Investigation and discovery legs go to
-cheaper-tier subagents on pointed decision-complete briefs —
+forms and records decisions, writes briefs, grades.
+Investigation and discovery legs go to cheaper-tier subagents on
+pointed decision-complete briefs —
 brief-writing is where hunt-judgment lives (Fire-born clauses,
 below); what a leg returns is evidence, recorded with its basis.
 A leg is recorded [PENDING] at dispatch and resolved only by a
@@ -110,8 +112,9 @@ that reaches the CONSUMING READ — a surface inventory stopping
 short of where the value is read answers a narrower question, and
 that last unmade hop is where two rounds bit (the attack's probe
 obligation, applied at the commit moment). A deliberate skip is
-tagged [AUTO-ACCEPTED], never a read dressed as ground. New evidence that kills a
-premise appends an [INVALIDATED] line for the entry and for every
+tagged [AUTO-ACCEPTED], never a read dressed as ground. New
+evidence that kills a premise appends an [INVALIDATED] line for
+the entry and for every
 decision resting on it — re-derive the dependents; a premise and its
 dependent contradicting inside one record is the escape shape.
 Superseding cuts both ways: a new entry that contradicts an old one
@@ -121,14 +124,15 @@ invalidating an entry restates what survives of it in a live entry,
 CLAUSE BY CLAUSE — each clause of the dead entry dispositioned
 restated-at-<id> or dead; an entry-level summary is where the
 load-bearing clause drops silently (a dropped pin clause cost a
-round). A restated clause takes The record's full adoption path —
-[PENDING] until its current-check clears, re-recorded citing
-source AND check — so the [READY] sweep holds unchecked
-restatements open mechanically; unchecked ones have carried dead
-citations, unresolvable paths, and a killed anchoring premise
-forward. The dead disposition is not the free path: it names what
-kills the clause. A partial invalidation orphans the surviving clauses, and
-later readers inherit the dead rule or nothing.
+round). A restated clause takes The record's full adoption path
+(The record: [PENDING] under a new id, cleared under that same
+id) — the [READY] sweep holds unchecked restatements open
+mechanically; unchecked ones have carried dead citations,
+unresolvable paths, and a killed anchoring premise forward. A
+dead disposition is written `dead (<what kills it>)`, and the
+sweep's dead-basis body-read holds a killer-less dead clause open
+as [PENDING]. A partial invalidation orphans the surviving
+clauses, and later readers inherit the dead rule or nothing.
 
 ## Stop rule: [READY] = dispatchable (forcing point 3)
 
@@ -171,12 +175,12 @@ not produce it, before implementation. The attack brief carries the
 tracker PINNED at the locked design's commit (a `git show
 <sha>:<path>` copy, never a working-tree path — a live tree serves
 HEAD), the question, and the read-only tail (dispatch skill
-`references/forms.md`). The artifact drops what the record itself
-marks superseded — handoff sections a later one supersedes,
-verbatim attack quotes already regraded into F-lines, landed
-sealed predictions — one literal marker token, declared in the
-tracker header and matched exactly: a computable filter, its form
-stated in the brief; ENTRIES are never
+`references/forms.md`). The artifact drops two computable
+species, the filter's form stated in the brief: handoff sections
+other than the newest (append order makes later mean newer), and
+sections whose heading opens `## Superseded —` (verbatim attack
+quotes regraded into F-lines, landed seals — sections born
+superseded, marked at birth); ENTRIES are never
 filtered (dead bodies are load-bearing for closure questions, and
 a hand-summary is the paraphrase-drift class). Unfiltered, the
 artifact compounds per round; the desk appends nothing to the record
@@ -208,16 +212,14 @@ producer's blind spots — and the rule reaches the ARTIFACT: an
 entry authored for the attacker's eyes (a weak-spot list, steering
 notes) is desk reasoning riding the never-filtered channel, and it
 frames the round it was meant to sharpen. Pre-round self-assessment
-is a sealed prediction: it lives outside the repo, at a path that
-outlives the desk session — an attacker sweeps everything the repo
-holds, and an in-repo seal breaks any brief asserting tree == lock
-commit — and its hash rides the round's [DISPATCHED] A-line body
-inside the lock commit, so a landed seal is checkable against its
-pre-commitment and a missing one is detectable, not fakeable
-post-hoc. At return it lands beside the A-line as a
-superseded-marked section (the filter's species list), never a
-tag-first entry, compared against the actual bites — grading the
-desk's self-model instead of steering the attacker.
+is a sealed prediction, written before the round dispatches to
+`~/.claude/statiker-seals/<tracker-basename>.A<n>.md` — a path
+any successor desk re-derives from the tracker it resumes; out of
+the repo because an attacker sweeps everything the repo holds,
+and an in-repo seal breaks any brief asserting tree == lock
+commit. A seal is calibration, never evidence: it steers no
+verdict, and a missing or late one voids the round's comparison,
+not the round.
 Attack tier: probed
 opus (the PLAN.md
 probe-then-certify step, certified; provenance in dev-notes) —
@@ -228,8 +230,10 @@ one attacker, the round's A-line recorded before any next dispatch
 each re-attack is a NEW fresh context (a resumed attacker inherits
 its own prior findings' frame), and a re-derived design is a NEW
 locked design — it gets the attack again. Each round records an
-A-line (The record). The round's sealed prediction lands beside
-it. [ZERO-DELTA] only when every verdict is
+A-line (The record); at that same return the round's seal lands
+appended as a `## Superseded — seal A<n>` section, compared
+against the actual bites — grading the desk's self-model, never
+the round. [ZERO-DELTA] only when every verdict is
 reach-matched and nothing bit — that closes design. Iterate only if
 design SUBSTANCE bites. At a round's return every finding is
 classified, with basis: DESIGN-SUBSTANCE (wrong mechanism, money
@@ -255,8 +259,9 @@ design; each dispatches on a decision-complete brief (dispatch skill
 §1, tail per §2) citing the executor skill AND the run's live
 closure: the tracker's last A-line is `[ZERO-DELTA]` with no F or D
 line appended after it — append-only makes this computable, and a
-re-lock's new entries void a stale closure (The attack). A missing decision,
-file, or value is reported as a gap, never bridged. Model per
+re-lock's new entries void a stale closure (The attack). A
+missing decision, file, or value is reported as a gap, never
+bridged. Model per
 `clippy.config/models` (`impl:` class) when present, else the
 operator corpus routing table. Each unit commits green and its SHA
 is appended to the tracker — that is what makes resume reliable. A

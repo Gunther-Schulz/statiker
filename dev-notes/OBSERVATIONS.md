@@ -1750,3 +1750,64 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   is a pin that LIES, worse than no pin because it books
   confidence — one datapoint settles nothing. Consumer: the
   round-8 return grading.
+
+- 2026-08-07 — **Opus review 3 RETURNED (6 parts: 4 blocking, 5
+  notable, 2 nit; counts reconciled against the parts) — all
+  dispositioned, repairs landed as 0.2.19; EXPERIMENT GRADED:
+  SUSTAIN.** All four blocking findings verified by direct read
+  before booking (B1: pinned-artifact lines + never-filtered
+  entries do place the round's own A-line before the attacker;
+  B2: no stated write order, naive order lands the hash outside
+  the lock commit; B3: neither the [READY] sweep nor the closure
+  gate carries any seal condition, no hash algorithm named; B4:
+  post-hoc marking of a superseded handoff violates append-only,
+  and "declared in the tracker header" has no home in the closed
+  header spec). Dispositions: SEAL CLUSTER (B1, B2, B3, N1, n1)
+  — FIXED BY DESCOPE, a recorded reversal of review-2 B1's
+  anti-fake mechanism: the repair bar the reviewer himself names
+  (named path + hash function + write order + gate, all four
+  missing) costs ~10 lines on a file 77% over budget, guarding a
+  self-calibration diagnostic whose only consumer is the desk's
+  own C57-class read (ran once, clean). New text: seal written
+  pre-dispatch to `~/.claude/statiker-seals/<tracker-basename>.
+  A<n>.md` (derivable by any successor from the tracker it
+  resumes — N1's fix), declared calibration-never-evidence, a
+  missing or late seal voids the round's comparison, not the
+  round; landing form `## Superseded — seal A<n>` coupled to the
+  A-line sentence (n1's fix). Post-hoc fakeability is ACCEPTED
+  residue, on record: it defrauds only the desk's own
+  calibration, and the C57 anchoring read stays the watch case.
+  Review-4 reviewer re-raising fakeability meets this
+  disposition. B4 — FIXED: filter species are now handoff
+  sections other than the newest (superseded by construction,
+  append order = chronology) and sections whose heading opens
+  `## Superseded —` (born-superseded species, marked at birth);
+  header declaration dropped entirely. N2 — FIXED: adoption
+  predicate widened to "taken over from a source instead of
+  derived live", which contains all three species including
+  in-run restatements. N3 — FIXED: one-id path made explicit in
+  The record ([PENDING] under this run's next id at adoption,
+  clearing line under that SAME id) and the restatement clause
+  now cites it instead of restating it. N4 — FIXED: dead
+  disposition gains the literal form `dead (<what kills it>)`
+  and a gate assignment — the sweep's existing dead-basis
+  body-read holds a killer-less dead clause open as [PENDING].
+  N5 (size, 265→270 with rewraps) — ACCEPTED: budget repair
+  stays booked at the stabilization compression pass; the
+  descope removed the block N5 itself flagged as unread-by-any-
+  gate. n2 — FIXED: edit region rewrapped plus the three
+  pre-existing >72-col lines. EXPERIMENT (pre-registered
+  criterion, body-read grading): SUSTAINS — threshold was one
+  substantive text-changing finding in three reviews; all three
+  delivered blocking structural findings that changed shipped
+  text (review 1: 2 blocking → 0.2.15/16; review 2: 1 blocking +
+  4 notable → 0.2.18; review 3: 4 blocking → 0.2.19). Opus
+  review is now the STANDING pre-release step. Residue, labeled:
+  reviews 1-2 raw bodies were read and dispositioned in prior
+  sessions; this grading rests on those ledgered dispositions
+  plus the shipped diffs, review 3 on its raw parts in hand.
+  HANDOFF DELTA: release target moves 0.2.18 → 0.2.19; review 4
+  (standing step, diff bf9047e..<0.2.19 sha> SKILL.md-only) is
+  OWED pre-pin and currently HELD on an operator question; R5
+  answer still open. Consumer: successor meta session, review-4
+  dispatch, pin move.
