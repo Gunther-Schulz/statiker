@@ -1343,3 +1343,9 @@ trial's impl + verify (forcing points 4-5, still unmeasured).
   also serves U4a/U4b; route 3 is the false-clean shape, route 2
   not decision-ready — per-row survival unmeasured). Consumer:
   fresh-desk start line + run-grading pass.
+
+- 2026-08-06 — **C54 SETTLED (operator GO): route 1 — real-Postgres
+  (pg17) harness built inside U1, in scope for this run; money-path
+  data repair stays; docker daemon running.** Travels to the desk
+  in the fresh-desk start line (carrier-on-read-path). Consumer:
+  the fresh cycle-8 desk via relay; run-grading pass.
