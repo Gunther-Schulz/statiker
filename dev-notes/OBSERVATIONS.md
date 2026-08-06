@@ -1140,3 +1140,33 @@ cycles 4-5 and attack round 3. Raw attacker reports preserved at
   (instrument work under the reopen; fixes the F86/C41
   verdict-without-reach class mechanically). Consumer: cycle-8
   brief + run-grading pass.
+
+- 2026-08-06 — **Cycle-economics RE-DIAGNOSED (operator re-raised;
+  fresh look with rounds 5-6 data) → SEVERITY-SCOPED CLOSURE
+  decided (operator GO), applies from round 7's return; skill mint
+  AFTER that first exercise, with it as provenance.** Revised
+  finding-class trend: rounds 1-4 bit on design substance (money
+  path); round 5 mixed; round 6 = ONE design finding (F84,
+  moderate) + record/instrument findings (dropped pin clause, lost
+  invariant, sweep under-count, non-discriminating verify set).
+  The design has been converging since cycle 6; what sustains the
+  loop is the RECORD maintaining itself — 212 entries/4.6k lines,
+  every repair touch risks a supersession/reach error, each error
+  feeds the next round: positive feedback the stop-call couldn't
+  see because each bite WAS in a governed class (trigger kept
+  saying "sharpen the rule" when the closure rule itself is
+  miscalibrated for a converged design). Prior "fully warranted"
+  verdict WEAKENED for rounds 5+ — evidence moved. Clippy
+  comparison both ways: 3-4 cycles but this task's clippy run
+  FAILED, f2 paused at cycle 49, and clippy-era "acceptable"
+  shipped the defects this run measures = unmeasured residual.
+  THE RULE (round-7 override, then mint): at a round's return the
+  desk classifies each finding — DESIGN-SUBSTANCE (wrong mechanism
+  / money path / silent failure in the shipped system) reopens as
+  before; RECORD/INSTRUMENT-only bites CLOSE design — repairs
+  booked, carried into implementation as record work, no next
+  round. Downstream nets named: per-unit red-first pins, F38
+  validator, U4a gate, isolated verify — cheaper residual catchers
+  than a 240k-token round; forcing points 4-5 are the trial's
+  unmeasured half. Consumer: round-7 go line + the post-round-7
+  mint + run-grading pass.
