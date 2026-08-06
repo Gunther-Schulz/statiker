@@ -576,3 +576,26 @@ tracker-verbosity measurement, fire-born firing log upkeep, sentinel
 compression at the fire-rate review. The cycle-4 attack step is the
 TRIPLE probed measurement (probe-mint validation booking), an
 operator experiment under the skill's sequential-rounds default.
+
+- 2026-08-06 — **Near-miss: the cycle-4 TRIPLE booking almost
+  dropped at the handoff seam (carrier/consumer mismatch; caught by
+  the operator-present pause).** The triple-attack validation
+  booking (this file, 2026-08-05, consumer "cycle-4 session brief")
+  lived only HERE — but cycle 4 is a fresh opus session in
+  beat-the-books whose sole handoff artifact is the tracker's
+  handoff section, which never mentions the triple; the launch
+  instruction relayed via the fable session also omitted it. Cycle 4
+  accordingly announced "send the round-3 attack to fable" at its
+  [READY] presentation — correct conduct per 0.2.3 (sequential
+  default; parallel attackers are operator experiments by design).
+  The operator relayed that message into the session holding this
+  ledger, which caught the mismatch and returned the override with
+  the round-2 protocol lines. Statiker charge: NONE — and the
+  operator-present [READY] pause + stated-next-step is exactly the
+  mechanism that surfaced the wrong plan for veto BEFORE dispatch
+  (a datapoint FOR the pause design, alongside the ADVANCE-PROMPT
+  mint). Global-corpus charge: consumer named without carrier
+  reachability — sharpened same day in CLAUDE.md Per-project
+  accretion (dotfiles; carrier-on-read-path clause, JOURNAL line in
+  the same commit). Consumers: the run-grading pass (pause-design
+  evidence) + the corpus fire-rate review (the sharpen).
