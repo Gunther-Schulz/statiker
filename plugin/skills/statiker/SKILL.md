@@ -131,7 +131,12 @@ grammar), and no live entry rests on an invalidated entry's content
 mechanized check for it, that check runs first and its residue is
 the judgment slice. An open [PENDING] under a claimed [READY] is
 the premature-call shape.
-Record `Status: [READY]` with the impl units enumerated. With an
+Record `Status: [READY]` with the impl units enumerated, each
+naming its red-first pin — and a pin DISCRIMINATES: red on the
+current state, green only through the fix; a criterion the
+defective state already satisfies verifies nothing, and a
+renumbering that drops a unit's pin clause is a silent unpin (both
+observed as a round's highest finding). With an
 operator present, present the record and recommendation at [READY],
 ENDING with one advance prompt — "(y) advances per the
 recommendation"; anything else is free-form override. Design
@@ -146,7 +151,13 @@ not produce it, before implementation. The attack brief carries the
 tracker PINNED at the locked design's commit (a `git show
 <sha>:<path>` copy, never a working-tree path — a live tree serves
 HEAD), the question, and the read-only tail (dispatch skill
-`references/forms.md`); the desk appends nothing to the record
+`references/forms.md`). The artifact drops what the record itself
+marks superseded — handoff sections a later one supersedes,
+verbatim attack quotes already regraded into F-lines — a
+computable filter, its form stated in the brief; ENTRIES are never
+filtered (dead bodies are load-bearing for closure questions, and
+a hand-summary is the paraphrase-drift class). Unfiltered, the
+artifact compounds per round; the desk appends nothing to the record
 while any attacker is live — an append landing mid-round leaks
 sibling findings into an attacker's own record sweep, and the
 round's independence cannot be re-established afterward. The

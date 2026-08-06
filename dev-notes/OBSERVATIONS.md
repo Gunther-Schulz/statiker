@@ -1189,3 +1189,25 @@ cycles 4-5 and attack round 3. Raw attacker reports preserved at
   bare [ZERO-DELTA] lands LAST — closure stays computable, bare-tag
   rule intact. Round-7 go line returns to a bare (y); the clause
   rides the skill into the cycle-8 desk.
+
+- 2026-08-06 — **Pre-cycle-8 lift audit (operator-raised: "anything
+  booked that should lift first?") → TWO lifts, minted as 0.2.11;
+  all other bookings correctly wait.** Lifted: (a) the artifact
+  filter (was: round-7-go-line delivery; skill is the cleaner
+  carrier — computable filter over record-marked-superseded
+  sections, entries never filtered; provenance: the measured
+  38.6k→75.6k growth table); (b) discriminating per-unit pins at
+  [READY] (provenance: F83 HIGH — verify criterion true on the
+  defective writer; F85 — five of eight units silently unpinned by
+  a renumbering; fires at cycle 8's re-lock, which is why it lifts
+  NOW despite the earlier impl-phase deferral — pin NAMING is a
+  [READY]-moment obligation, only pin EXECUTION is impl-phase).
+  Audited and left in place: shadow-log tension (parked, trigger
+  unfired), checker + scrub graduation (parked, run end),
+  incidental surfacing (parked, no fire), self-containment +
+  compression (stabilization pass), self-referential-checker and
+  positive-predicate lessons (corpus lane, fire-rate review),
+  intake-grading cycle (future-run knob, run grading). Instrument
+  work (reach line + alphabet widening) confirmed NOT done — the
+  old desk was never continued; moves into the cycle-8 brief.
+  Consumer: cycle-8 brief + run-grading pass.
