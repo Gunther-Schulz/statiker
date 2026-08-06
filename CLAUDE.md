@@ -46,6 +46,17 @@
   operator's go — never a second dispatch batched behind one
   confirmation. (Operator safety preference for the trial; revisit
   at stabilization.)
+- **Desk interrogation is cheap — ask when it informs the skill.**
+  Diagnostic questions relayed to the running desk (which rule
+  routed a conduct call — quote it or say "improvised"; what a
+  check went red on) are a first-class mint source: one question
+  completing a failure triage beats reconstructing the desk's
+  reasoning from repo state. Contamination is a non-cost: a
+  question that would taint the desk's conduct (reveal meta-layer
+  framing, lead its judgment) costs at most one desk — harvest the
+  answer, abandon the session, restart fresh from the tracker at
+  the seam. Prefer what/which-shaped questions; post-hoc
+  why-shaped answers decay into rationalization.
 
 ## Verify
 
