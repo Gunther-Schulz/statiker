@@ -1078,3 +1078,19 @@ cycles 4-5 and attack round 3. Raw attacker reports preserved at
   hand-consolidation is the paraphrase-drift class this run kept
   catching. Consumer: run-grading pass (+ round-7 go line if it
   happens).
+
+- 2026-08-06 — **PARKED (operator-raised): incidental-findings
+  surfacing clause for the skill.** Question: should statiker
+  itself require surfacing/booking bugs, gaps, low-quality code
+  found naturally during a run's work? Verdict: covered by
+  inheritance — the corpus do-it-now-or-book-it ethic + BACKLOG
+  roles, loaded in every desk session; this run's desks executed
+  it four times (worktree surfaced+recorded, D48 rebooked to
+  BACKLOG, F72 side-effect finding, C40 out-of-scope orphans
+  recorded unexamined). Implicit routing observed: in-scope →
+  F-line; out-of-scope actionable → target repo BACKLOG;
+  needs-operator-decision → report + tracker record (chat-only
+  surfacing dies with the desk). Mint trigger, named: an
+  incidental finding that EVAPORATES in chat or gets misrouted —
+  then the clause lands fire-born with that incident as
+  provenance. Consumer: run-grading pass + any future fire.
