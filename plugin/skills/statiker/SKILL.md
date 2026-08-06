@@ -180,6 +180,9 @@ A-line (The record): [ZERO-DELTA] only when every verdict is
 reach-matched and nothing bit — that closes design. Iterate only if
 it bites: any other return records [BIT], its findings and open
 questions appended as F-lines — that record change IS the reopen.
+A reopen bars the design's UNITS only: investigation, record
+repair, and the run's own instruments stay open desk work — the
+closure gate reads the A-track, never the desk's toolbox.
 The desk refutes a finding only with its own reach-matched evidence
 (the F-line goes [INVALIDATED]); closure still needs the next
 round's [ZERO-DELTA].

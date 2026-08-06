@@ -977,3 +977,44 @@ cycles 4-5 and attack round 3. Raw attacker reports preserved at
   exactly what it must prevent there. PIN MOVED to 0.2.7 at this
   seam (run paused, A5 recorded — the seam rule's conditions).
   Consumer: run-grading pass + cycle-7 conduct.
+
+- 2026-08-06 — **Desk-interrogation round 1 (the convention's first
+  exercise) — both answers harvested.** Q1 verdict: IMPROVISED —
+  the desk classified instrument work as permitted during the A5
+  reopen without consulting a rule ("I never asked 'does [BIT]
+  constrain non-design edits?' as its own question"), inheriting
+  the classification from handoff inbox + operator prompt; its
+  post-hoc reconstruction is explicitly flagged as such. Genuine
+  gap → MINTED as 0.2.8: a reopen bars the design's UNITS only —
+  investigation, record repair, run instruments stay open desk
+  work; the closure gate reads the A-track, never the toolbox.
+  Q2 verdict: red-proof EXISTS (F62 at 48d92ce8, plus D11/D16
+  orphans six hand-passes missed) BUT the desk's post-cycle-7
+  "RULE 2 CLEAN" was a FALSE CLEAN it self-caught under the
+  question: the checker counted the desk's own C35 alarm-entry and
+  an F77 enumeration mention as survivor restatements, while the
+  actual restatements sat in tag-first [INVALIDATED] lines — which
+  the 0.2.5 clause's own wording ("in a live entry") excludes:
+  skill wording correct, desk conduct + checker encoding wrong.
+  Consequence: checker has a self-inflicted blind spot (ids named
+  in C35/F77 can never re-report as orphans); F47 a live orphan it
+  cannot see. Repair authorized as desk work pre-round-6. NEW
+  FALSE-CLEAN SUB-SHAPE for the corpus fire-rate review: a checker
+  whose input contains reports ABOUT the defect reads the report
+  as the all-clear — self-referential input needs the checker's
+  own reporting namespace excluded. Consumer: fire-rate review
+  (corpus candidate) + run-grading pass.
+- 2026-08-06 — **Convention interaction bug (operator-raised via
+  the desk's routing line): per-dispatch confirmation pushed
+  discovery work INTO the ungated inline lane.** Desk named the
+  tell honestly (consecutive discovery reads = leg should have
+  dispatched) then routed inline because each dispatch would block
+  on operator confirmation. The safety convention thereby REDUCED
+  oversight: an inline read has no gate at all, a dispatched leg
+  at least surfaces in the panel. Decision → operator (recommend:
+  confirmation binds attack/impl/fable dispatches; read-only
+  discovery legs ≤ opus pre-authorized, named in the turn report
+  instead). Pin HELD at 0.2.7: 0.2.8's clause governs reopen-time
+  conduct, which is past for this desk; next restart seam (post-
+  round-6) picks it up. Operational count 204; compression booking
+  stands. Consumer: operator decision + run-grading pass.
