@@ -767,3 +767,20 @@ cycles 4-5 and attack round 3. Raw attacker reports preserved at
   in the session's closing message (carrier-on-read-path: the
   consumer is the beat-the-books session, delivery is the
   operator's reply there).
+
+- 2026-08-06 — **FIRED, first live catch: the desk-restart rule +
+  brief version gate.** The fresh cycle-5 desk's session baseline
+  predated the 0.2.4 pin move (10:20:48), so its Skill injection
+  served 0.2.3 — the gate (base-directory line check, from the
+  operator brief) caught it BEFORE round 4, the desk refused the
+  round citing the repo rule, and recommended its own restart.
+  Exactly the failure the rule was minted for, same day, caught at
+  the seam. Also fired: the desk found the tracker header + handoff
+  had recorded "dispatches without re-asking" against the operator's
+  live hold — C4's class one revision later — and repaired the
+  record (C8; header now HELD). Desk conduct throughout: correct.
+  C10 accepted at the meta layer: round-4 artifact pins at f59bee6f
+  (the re-lock), not HEAD — the scrub removes tier tokens but C8's
+  description of the pair setup stays legible; a HEAD-served
+  artifact would brief the arms on their own experiment. Consumer:
+  fire-born firing log + run-grading pass.
