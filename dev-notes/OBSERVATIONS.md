@@ -1094,3 +1094,22 @@ cycles 4-5 and attack round 3. Raw attacker reports preserved at
   incidental finding that EVAPORATES in chat or gets misrouted —
   then the clause lands fire-born with that incident as
   provenance. Consumer: run-grading pass + any future fire.
+
+- 2026-08-06 — **Self-containment DECIDED in principle (operator +
+  meta concur; reopens PLAN.md's deliberate-context-dependence with
+  distribution intent as the new evidence).** Shape settled:
+  DEGRADATION FLOOR, not restatement — statiker inlines minimum
+  essentials per seam (decision-complete test, brief-tail
+  invariants, surfacing-as-record-routing, model-class defaults),
+  each with an explicit composition declaration ("where the
+  dispatch skill is installed, its forms govern — hook-enforced in
+  the home environment"); ambient machinery stays primary where
+  present, the floor makes the skill correct without it. Reframe
+  banked: the parked incidental-surfacing clause is statiker-owned
+  as RECORD ROUTING (F-line / backlog / report+tracker, never
+  chat-only) and joins the layer independent of a fire. TIMING:
+  stabilization, after the trial (the trial measures the current
+  architecture); executed as ONE pass with the booked sentinel
+  compression — compress and self-contain over the same lines.
+  PLAN.md amendment lands when the pass does. Consumer: the
+  stabilization pass + run-grading docket.
