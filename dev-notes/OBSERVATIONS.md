@@ -1408,3 +1408,42 @@ trial's impl + verify (forcing points 4-5, still unmeasured).
   rounds 1-3, byte-identical artifacts (n=4, one domain, arms not
   blind). Consumer: the meta session at each of the next three
   SKILL.md releases + the grading at the third.
+
+- 2026-08-06 — **Cycle-9 CLOSE relay graded → NO STOP, NO MINT this
+  relay; round-7 go = bare (y); one rule-tension PRE-REGISTERED
+  for grading at round 7's return.** Harvest: (a) FIRST FIRING of
+  the 0.2.13 leg-lifecycle clause — the inventory leg's return
+  booked from the file (body-read), leg stayed in its box,
+  self-reported a discarded instrument (hand-rolled regex head
+  count thrown out for real alembic heads), confirmed F95 under
+  explicit invitation to contradict it. (b) F101 is the run's
+  cleanest execute-over-reason datapoint yet: env.py's async
+  engine, faithfully quoted, implies an async harness; EXECUTED,
+  alembic's command API raises inside a running loop and
+  asyncio_mode="auto" makes that every test — reasoning from the
+  source would have shipped a landmine; sync end-to-end is right.
+  (c) F99 — CI runs no pytest (instrument shown live: uv-run
+  control 6 hits, pytest zero); "green in CI" gates nothing, so
+  the harness pin is desk-executed by construction — recorded as a
+  limitation, not hidden. (d) F100 — full 109-revision chain on
+  fresh pg17-alpine in 0.5s incl. downgrade→upgrade round-trip;
+  route (i) cheap. D74 decision-complete, discharging D68(b).
+  (e) G14 — tools/statiker_ready_sweep.py born from the second
+  hand-check of the gate (manual→mechanism rule followed); shipped
+  BLIND to 7 of 265 ids, caught only by a reach cross-check
+  against its sibling, then red-proven on a planted defect —
+  instrument discipline held end to end; joins the run-end
+  graduation set. PRE-REGISTERED TENSION (grade at round 7's
+  return): C57 writes the desk's own weakest-spot list INTO the
+  record explicitly for the attacker's eyes — "brief never
+  carries the desk's reasoning" and "entries are never filtered"
+  collide, since a record entry authored FOR the attacker routes
+  desk reasoning through the protected channel. Cannot be
+  unwound now (append-only, never filtered) and stopping buys
+  nothing; the round is the natural experiment. Read criterion,
+  fixed before return: if round 7's substantive bites fall ONLY
+  inside C57's four named spots, that is the anchoring signature
+  (mint candidate: no self-assessment entries authored for the
+  attacker pre-round); bites outside C57's list = independence
+  survived the framing, tension possibly benign. Consumer: the
+  round-7 return grading.
