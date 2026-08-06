@@ -851,3 +851,24 @@ cycles 4-5 and attack round 3. Raw attacker reports preserved at
   BACKLOG.md, the carrier-on-read-path class caught in-run by the
   desk (corpus sharpen firing occasion, second same-day). Consumer:
   run-grading pass + succession decision.
+
+- 2026-08-06 — **Cycle-economics preliminary read (operator-raised;
+  feeds the booked tracker-verbosity measurement + full-run
+  review).** No attack round wasted by the record: rounds 1-4 each
+  bit with a shippable money-path defect; stop rule (zero-delta)
+  not yet reached. Baseline: the task's clippy predecessor FAILED
+  at investigate-design (17KB tracker, inherited); clippy
+  f2-min-odds paused at cycle 49 — high counts predate statiker.
+  Non-intrinsic inflation, enumerated: (1) experiment width (rounds
+  3/4 ran 3x/2x attackers — measurement cost, concluded); (2)
+  record-hygiene debt — large fraction of round-3..5 findings were
+  record-class; C26 shows the class named at cycle 4 and unrepaired
+  two rounds, so attack rounds doubled as record linters. Knob for
+  the 0.2.5 decision: mechanized record checks (dead-basis check,
+  tag linter) run pre-[READY] each cycle — candidate (c)
+  operationalized; (3) inheritance re-verification paid diffusely
+  over cycles 1-4 (S1-S3) — knob: explicit priced intake-grading
+  cycle on any resumed/superseding run. NOT a knob: sequential
+  re-attack per re-lock — rounds 2 AND 4 bit on repair-introduced
+  defects (S5 + round-4 record), best-evidenced rule in the skill.
+  Consumer: run-grading pass.
