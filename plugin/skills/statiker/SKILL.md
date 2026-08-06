@@ -124,8 +124,14 @@ run.
 
 A fresh-context attack on each locked design by a context that did
 not produce it, before implementation. The attack brief carries the
-tracker, the question, and the read-only tail (dispatch skill
-`references/forms.md`); the question APPENDS this block verbatim
+tracker PINNED at the locked design's commit (a `git show
+<sha>:<path>` copy, never a working-tree path — a live tree serves
+HEAD), the question, and the read-only tail (dispatch skill
+`references/forms.md`); the desk appends nothing to the record
+while any attacker is live — an append landing mid-round leaks
+sibling findings into an attacker's own record sweep, and the
+round's independence cannot be re-established afterward. The
+question APPENDS this block verbatim
 (pasted, never recalled — free-composed briefs drop invariant
 clauses):
 

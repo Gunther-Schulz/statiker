@@ -690,3 +690,57 @@ cycles 4-5 and attack round 3. Raw attacker reports preserved at
   operator folded the fix in. A run without that seam would have
   shipped the behavior change as an unattributable side effect of a
   refactor. Consumer: the run-grading pass.
+
+- 2026-08-06 — **Round-3 (cycle-4) TRIPLE graded: the opus-desk row
+  of the DESK×ATTACK MATRIX is filled.** Source: tracker C0-C5 +
+  G4, verbatim pre-merge records (beat-the-books 83ca2375, 7b83bceb,
+  4c44806f), desk-blind comparison done here per the C-protocol's
+  "comparison happens post-run, outside this session". Row content:
+  probed-OPUS strictly dominated — sole clean decision-flipping find
+  (reference-set writer unassigned; D25/U3 contradiction) PLUS the
+  desk-error mechanism (F57's explicit-set_ verified at the venue
+  path, carried to the metadata-driven reference path — the corpus
+  carried-mechanism shape, 3rd occurrence this run) PLUS the widest
+  closure audit (6 stale-COMMITTED vs fable's 3). Fable replicated
+  the #1 find but C5 contamination (desk appends mid-round; C2
+  committed before C1 returned) leaves its independence
+  uncertifiable — the asterisk weakens fable's arm only, so the
+  opus-on-top signal is the clean one, now 2 for 2 across rounds.
+  Sonnet reversed from round 2 (missed the flipper, one unique
+  minor find) — below-opus ordering is noise. Probe-mint answers:
+  (a) probed-fable false-cleaning on MEASUREMENT claims stopped
+  (all its probes sound); residual class exposed — record-REACH
+  judgment calls (F57 listed "genuinely closed", refuted by G4) —
+  3rd consecutive round with a wrong fable closure/HOLD call;
+  (b) probe discipline did NOT equalize tiers — opus dominated at
+  the middle price; (c) union coverage achieved, every attacker ≥1
+  unique real find. Caveat: n=1 per cell per round, one task.
+  Consumer: the succession decision (skill tier line unchanged
+  until then, per the standing booking).
+- 2026-08-06 — **0.2.4 mint (fire-born, C5 provenance): pinned
+  attack artifact + desk append-freeze while attackers are live.**
+  Incident: C1/fable's record sweep ran over the live working tree,
+  which by then carried C0-C4 including another attacker's [BIT]
+  header (desk kept committing outcome appends after the last
+  dispatch — the operator's between-dispatches condition was
+  honoured; the after-dispatch window was unnamed). Class: silent
+  measurement risk — exactly the class the refinement policy kept
+  attack-grade fixes open for. Both halves encoded because pin
+  alone does not close the channel (attackers hold read-only repo
+  access for code sweeps; a tree read serves HEAD). Sentinel note:
+  operational count now 180 (was 174) — the booked sentinel
+  compression at the fire-rate review absorbs this mint's +6.
+  Consumer: fire-born firing log + fire-rate review.
+- 2026-08-06 — **Round-4 attack tier DECIDED (operator GO): probed
+  opus as attack-of-record, as an operator override for round 4
+  only — the skill's trial tier line stays until the succession
+  decision, which now cites the opus-desk row above.** Rationale:
+  the fable-ceiling question the trial line existed to answer has
+  its data; further fable attack rounds spend the capped pool on an
+  answered question. Fable's booked roles (grading verdicts,
+  escalation-on-ceiling, spot-audits) are untouched. DELIVERY (the
+  carrier-on-read-path rule, minted 2026-08-06): this decision's
+  consumer is the beat-the-books cycle session, which does not read
+  this file — it travels in the operator's next reply to that
+  session, quoted in this session's closing message; this entry is
+  the record, not the delivery.
