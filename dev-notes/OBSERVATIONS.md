@@ -1239,3 +1239,51 @@ lessons (run grading / fire-rate review). EXPECTED NEXT EVENT: the
 operator relays the cycle-8 desk's version-gate confirmation and
 report; grade per the conventions. Succession decision pending the
 trial's impl + verify (forcing points 4-5, still unmeasured).
+
+- 2026-08-06 — **Cycle-8 desk relay graded (successor meta session;
+  version gate 0.2.11 confirmed by the desk from the injection's
+  base-directory line) → NO STOP-CALL; one mint, 0.2.12, pin held
+  to the A7 seam; round-7 go = bare (y).** Harvest, per the report
+  body: (a) F89 — D55/U4's commissioned deletion broker.py:364-418
+  IS D33(a)'s three retained money-path guards; caught by the fresh
+  desk's re-derivation PRE-impl, fixed at D64 (restate by symbol +
+  grep residue check). Stop-call weighed and not fired: the trigger
+  is impl/verify surfacing what attacks missed; this was caught at
+  the seam the re-derivation exists to guard — and six attack
+  rounds missing what the fresh-context re-derivation found is
+  succession-POSITIVE evidence for the fresh-desk/self-blindness
+  route. (b) Minted from F89 as 0.2.12: unit edit commissions are
+  symbol-anchored with a residue check, never bare line ranges
+  (clause at the [READY] seam beside the pin obligation; a
+  literalist impl desk would have executed the range verbatim —
+  the class escapes exactly where executor literalism is the rule).
+  Release timing: COMMIT now, PIN moves at the A7 seam — round 7
+  is staged and verified byte-identical against served 0.2.11;
+  moving the pin pre-dispatch breaks that premise and burns the
+  staging for a clause that fires at impl, not during the attack.
+  Fresh desk at A7 picks up 0.2.12; owe the lift-sweep then.
+  (c) 0.2.9's clause-by-clause sharpen EXERCISED and held: D61's
+  count clause dispositioned dead at D65's nine-unit change,
+  survivors restated clause by clause. (d) Work-item-1 brief defect
+  harvested: literal alphabet [ACDFG] contradicted its own demanded
+  demonstration — cross-clause consistency escaped the
+  decision-complete audit; desk conduct correct (interpretation
+  flagged, single ENTRY_ID constant, red-first known-positives,
+  non-vacuous reach line). One datapoint; booked, not minted.
+  (e) The widened checker went red on a real defect within the hour
+  (F92, cross-run F-number import) — the manual-finding→mechanism
+  rule paying out; instrument mint validated. (f) F90 (second dict
+  floor), F91 (count stamped before its own append) — record class,
+  repairs landed by the desk. (g) C51: two pre-authorized opus
+  discovery legs missed horizon → stopped and reported per the
+  horizon convention (held); one self-graded a routing error
+  (two-read question in sweep's clothing), one retired by design
+  (D67 makes the crosswise population a non-input). (h) Round-7
+  staging graded GO: freeze scope verified, filter graduated to
+  tools/statiker_artifact_filter.py with known-positives both
+  directions BEFORE first use — the checker+scrub graduation
+  booking's filter half landed early, in-run; booking stays for the
+  run-end remainder. Docker daemon start: operator action,
+  concur with desk — before impl so D65's NOT VALID premise is
+  executed rather than cited; not blocking round 7 (rides as U4a's
+  pin). Consumer: A7-seam release + lift-sweep, run-grading pass.

@@ -136,7 +136,12 @@ naming its red-first pin — and a pin DISCRIMINATES: red on the
 current state, green only through the fix; a criterion the
 defective state already satisfies verifies nothing, and a
 renumbering that drops a unit's pin clause is a silent unpin (both
-observed as a round's highest finding). With an
+observed as a round's highest finding). A unit's edit commission is
+symbol-anchored — the target named by symbol, with a residue check
+proving it gone or changed — never a bare line range: ranges decay
+as file and record evolve, and one commissioned range landed
+exactly on the guards a prior decision retained, deletable verbatim
+by a literalist implementer. With an
 operator present, present the record and recommendation at [READY],
 ENDING with one advance prompt — "(y) advances per the
 recommendation"; anything else is free-form override. Design
