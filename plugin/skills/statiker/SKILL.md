@@ -182,8 +182,16 @@ its own prior findings' frame), and a re-derived design is a NEW
 locked design — it gets the attack again. Each round records an
 A-line (The record): [ZERO-DELTA] only when every verdict is
 reach-matched and nothing bit — that closes design. Iterate only if
-it bites: any other return records [BIT], its findings and open
-questions appended as F-lines — that record change IS the reopen.
+design SUBSTANCE bites. At a round's return every finding is
+classified, with basis: DESIGN-SUBSTANCE (wrong mechanism, money
+path, silent failure in the shipped system) or RECORD/INSTRUMENT
+(the run's own bookkeeping). Any substance finding: the round
+records [BIT], findings appended as F-lines — that record change
+IS the reopen. A record-only return: append the findings with
+their class, execute the record repairs now (desk work), then
+record [ZERO-DELTA] as the last A-line — record findings never
+sustain a next round (declining max-severity is convergence;
+observed sustaining rounds past it).
 A reopen bars the design's UNITS only: investigation, record
 repair, and the run's own instruments stay open desk work — the
 closure gate reads the A-track, never the desk's toolbox.

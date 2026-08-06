@@ -1180,3 +1180,12 @@ cycles 4-5 and attack round 3. Raw attacker reports preserved at
   — correct on both tails (substance at round 5 → continue;
   converged at round 2 → stop), where a hardcoded round count
   fails both. Carries into the post-round-7 mint's rationale.
+  MINTED NOW as 0.2.10 (operator: "why not update skill yet?" —
+  correct; the post-round-7 hold was the same conservatism the
+  0.2.6 early-mint already overrode, and build-first governs:
+  provenance is the rounds-5/6 surplus itself, round 7 grades the
+  mint instead of gating it). Mechanical form: classified findings
+  append as F-lines FIRST, record repairs execute at return, the
+  bare [ZERO-DELTA] lands LAST — closure stays computable, bare-tag
+  rule intact. Round-7 go line returns to a bare (y); the clause
+  rides the skill into the cycle-8 desk.
