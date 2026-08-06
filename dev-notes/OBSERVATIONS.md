@@ -1499,3 +1499,44 @@ trial's impl + verify (forcing points 4-5, still unmeasured).
   fresh-context rationale. Parts 2/3 pending; dispositions on
   arrival, all before the pin moves. Consumer: pin-move moment +
   experiment grading at release 3.
+
+- 2026-08-06 — **Opus review COMPLETE (5 parts; labels drifted
+  1/3→5/5 on payload splits, reviewer confirmed nothing missing) —
+  all findings dispositioned; release target is now 0.2.16.**
+  Dispositions beyond the two blockings (fixed as 0.2.15):
+  N3 (landed prediction fits no record form) — RESOLVED BY the B2
+  repair, which names it a superseded-at-landing section, never a
+  tag-first entry; reviewer concurred in the finding itself.
+  N4 (firing moments unanchored at their seams) — FIXED as 0.2.16:
+  the A-line recording sentence now carries "the round's sealed
+  prediction landed beside it" (the canon's trigger-anchor rule;
+  execution momentum carries past an unanchored moment).
+  N5 (parked shadow-log booking made load-bearing via side door) —
+  RESOLVED BY the B1 repair, which removed the term from the
+  payload entirely (seal defined in-file as desk scratchpad,
+  out-of-repo); the parked booking keeps its original fire trigger.
+  PATTERN BOOKED as a watch class: a new clause citing parked
+  machinery by name imports an undefined term — check at mint time.
+  NIT6 (intent-shaped trigger misses the good-faith preemptive
+  entry — a D-line arguing down an alternative the desk expects
+  the attacker to raise) — ACCEPTED RESIDUE, per reviewer and
+  concurred: an intent predicate mechanized would over-fire on
+  legitimate record work; named here as the sealed-prediction
+  clause's firing-log watch case. NIT7 (second name for a
+  pre-register-shaped referent) — ACCEPTED, term kept on the
+  reviewer's own weighing: pre-registration fixes a criterion
+  before measurement; a sealed prediction is withheld FROM A
+  PARTY — distinct constructs, distinction recorded here against
+  future grep-drift readings. Extra nit (tension with "unrecorded
+  memory is never a basis") — ACCEPTED RESIDUE: the rules compose
+  (a prediction is graded, never cited as a basis); no clause
+  spent on it at 250+ lines. Cross-reference enumeration (part 4)
+  booked as delivered — notably (e): the pre-round seal and the
+  mid-round append freeze are complementary windows that together
+  close [pre-dispatch → return]; a future compression pass may
+  join them in one sentence. EXPERIMENT (release 1 of 3, complete):
+  2 blocking + 1 applied notable from one opus review of
+  author-vetted text — the substantive-catch arm met at n=1;
+  grading per pre-registration at release 3. Consumer: pin move at
+  the round-7-return seam (now to 0.2.16), reviews 2-3 at the next
+  two releases, experiment grading at release 3.

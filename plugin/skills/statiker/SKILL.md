@@ -216,7 +216,8 @@ one attacker, the round's A-line recorded before any next dispatch
 each re-attack is a NEW fresh context (a resumed attacker inherits
 its own prior findings' frame), and a re-derived design is a NEW
 locked design — it gets the attack again. Each round records an
-A-line (The record): [ZERO-DELTA] only when every verdict is
+A-line (The record), the round's sealed prediction landed beside
+it: [ZERO-DELTA] only when every verdict is
 reach-matched and nothing bit — that closes design. Iterate only if
 design SUBSTANCE bites. At a round's return every finding is
 classified, with basis: DESIGN-SUBSTANCE (wrong mechanism, money
