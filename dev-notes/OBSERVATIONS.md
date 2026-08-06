@@ -1170,3 +1170,13 @@ cycles 4-5 and attack round 3. Raw attacker reports preserved at
   than a 240k-token round; forcing points 4-5 are the trial's
   unmeasured half. Consumer: round-7 go line + the post-round-7
   mint + run-grading pass.
+  ADDENDUM (operator concurrence): the declining max-severity trend
+  IS the convergence signature, and the operator's ~4-round prior
+  from clippy experience is that signature observed across tasks —
+  this run also converged in ~4 substantive rounds (1-4 substance,
+  5 borderline, 6 record-dominated); the surplus rounds were the
+  class-blind closure rule failing to read it. The severity-scoped
+  rule is the prior in principled form: stops on CLASS, not count
+  — correct on both tails (substance at round 5 → continue;
+  converged at round 2 → stop), where a hardcoded round count
+  fails both. Carries into the post-round-7 mint's rationale.
