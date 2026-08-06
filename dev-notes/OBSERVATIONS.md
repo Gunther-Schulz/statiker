@@ -784,3 +784,15 @@ cycles 4-5 and attack round 3. Raw attacker reports preserved at
   description of the pair setup stays legible; a HEAD-served
   artifact would brief the arms on their own experiment. Consumer:
   fire-born firing log + run-grading pass.
+
+- 2026-08-06 — **PARKED tension in 0.2.4 (desk-surfaced, round-4
+  dispatch presentation): append-freeze vs context-death
+  insurance.** With appends frozen while attackers are live, the
+  round's dispatch C-lines exist only in the desk session until
+  both arms return — a mid-round desk death loses the dispatch
+  record. Working mitigation (issued with the round-4 go): shadow
+  dispatch log in the desk's own scratchpad, outside the repo,
+  transcribed into the tracker after the arms return. Becomes a
+  mint candidate only on a fire: a desk dying mid-round, or the
+  shadow log proving load-bearing in practice. Consumer: fire-rate
+  review.
