@@ -97,20 +97,24 @@ leg should have been dispatched.
 
 Design against the recorded requirement. A decision COMMITS with a
 basis that reaches its premise: where the premise is a data shape
-or code path, the basis is an executed measurement of that premise
-— a true read answering a narrower question is the kill the next
-attack round delivers (the attack's probe obligation, applied at
-the commit moment). A deliberate skip is tagged [AUTO-ACCEPTED],
-never a read dressed as ground. New evidence that kills a
+or code path, the basis is an executed measurement or a hop-trace
+that reaches the CONSUMING READ — a surface inventory stopping
+short of where the value is read answers a narrower question, and
+that last unmade hop is where two rounds bit (the attack's probe
+obligation, applied at the commit moment). A deliberate skip is
+tagged [AUTO-ACCEPTED], never a read dressed as ground. New evidence that kills a
 premise appends an [INVALIDATED] line for the entry and for every
 decision resting on it — re-derive the dependents; a premise and its
 dependent contradicting inside one record is the escape shape.
 Superseding cuts both ways: a new entry that contradicts an old one
 appends the old id's [INVALIDATED] line (two live contradictory
 entries route the implementer to whichever it reads first), and
-invalidating an entry restates what survives of it in a live entry —
-a partial invalidation orphans the surviving clauses, and later
-readers inherit the dead rule or nothing.
+invalidating an entry restates what survives of it in a live entry,
+CLAUSE BY CLAUSE — each clause of the dead entry dispositioned
+restated-at-<id> or dead; an entry-level summary is where the
+load-bearing clause drops silently (a dropped pin clause cost a
+round). A partial invalidation orphans the surviving clauses, and
+later readers inherit the dead rule or nothing.
 
 ## Stop rule: [READY] = dispatchable (forcing point 3)
 

@@ -1113,3 +1113,30 @@ cycles 4-5 and attack round 3. Raw attacker reports preserved at
   compression — compress and self-contain over the same lines.
   PLAN.md amendment lands when the pass does. Consumer: the
   stabilization pass + run-grading docket.
+
+- 2026-08-06 — **STOP-CALL FIRED on round 6 (the relay-loop duty's
+  first exercise) → action: sharpen-before-cycle-8, minted as
+  0.2.9.** Two of A6's six findings are bites in classes existing
+  mints govern — the named pause trigger. (a) F84 vs the 0.2.6
+  commit obligation: D50 committed WITH nine executed surface
+  traces yet missed the dict-key hop where the guards READ the
+  value — trace reach fell short of the consuming read (2nd
+  datapoint: A5's five-of-nine surfaces). Sharpen: the basis is a
+  hop-trace reaching the CONSUMING READ, not a surface inventory.
+  (b) F83's dropped pin + F85's lost D8 invariant vs the 0.2.5
+  restate-survivors rule: D61 (written under the rule, same
+  session) restated D31's decomposition and missed the pin clause;
+  D47→D55 dropped the per-unit pin invariant (2 datapoints).
+  Sharpen: survivor restatement is CLAUSE BY CLAUSE, each
+  dispositioned restated-at-<id> or dead — the entry-level summary
+  is where the load-bearing clause drops. Both rules held in FORM
+  and failed in REACH; both sharpenings convert the judgment into
+  an enumeration demand (un-fakeable artifact). NOT minted:
+  per-unit red-first-pin skill clause — the impl phase hasn't run;
+  its conduct clauses wait for its evidence (booked candidate, run
+  grading). Desk decisions concurred: fresh desk for cycle 8
+  (self-blindness case, its own D58-D61 are now attack surface);
+  checker reach-line + alphabet widening NOW, pre-cycle-8
+  (instrument work under the reopen; fixes the F86/C41
+  verdict-without-reach class mechanically). Consumer: cycle-8
+  brief + run-grading pass.
