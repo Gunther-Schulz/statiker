@@ -146,6 +146,10 @@ HEAD), the question, and the read-only tail (dispatch skill
 while any attacker is live — an append landing mid-round leaks
 sibling findings into an attacker's own record sweep, and the
 round's independence cannot be re-established afterward. The
+freeze's scope is every surface the brief claims immutable: a
+brief asserting the tree matches the lock commit freezes the whole
+repo, not only the record — the claim sets the scope, and keeping
+it true until the last attacker returns is desk work. The
 question APPENDS this block verbatim
 (pasted, never recalled — free-composed briefs drop invariant
 clauses):

@@ -940,3 +940,40 @@ cycles 4-5 and attack round 3. Raw attacker reports preserved at
   Operational count 198; compression booking stands.
   (Correction, same turn: operational count is 197 per the executed
   verify, not 198 as the line above composed pre-run.)
+
+- 2026-08-06 — **Round-5 harvest (desk-named carrier gap,
+  transcribed here — the desk correctly declined to cross repos;
+  source: beat-the-books tracker through C34, desk closing report).**
+  Round 5 [BIT]: 1 severe (G7-confirmed: typed columns need FIVE
+  literal mapping surfaces in repositories/core.py, D47/U3 named
+  two; the named set_ clause is inert alone — set_ reads
+  stmt.excluded.<col>, so naming a column there while omitting it
+  from values upserts NULL; the missing orm_to_domain is silent —
+  every DB-level pin green while membership consumers read None),
+  3 moderate, 3 minor. Rounds 1-5 all bit. Three skill observations
+  transcribed: (a) FREEZE SCOPE follows the brief's claims, not the
+  skill's default surface (round-5 brief claimed tree≡lock →
+  whole-repo freeze; 0.2.4's clause was tracker-only) — MINTED as
+  0.2.7, same day, fire-born; (b) A-track closure gate was
+  unreadable two rounds via namespace drift (outcomes recorded as
+  C-lines) + annotated tags — the every-round-records-an-A-line
+  rule EXISTED (0.2.x): conduct/legacy finding, not a gap; booked
+  for run grading, no mint; (c) tier-scrub absence predicate must
+  be STATED with the instrument shown live ("briefable" contains
+  "fable"; naive grep cannot reach zero) — trial-protocol gotcha,
+  consumer: future comparison rounds run from this session; ledger
+  is the carrier. ALSO A5 on the cycle-6 mechanism: dead-basis
+  checker covers D38 rule 1, blind to rule 2 — instrument reach
+  shortfall, repo-side fix (beat-the-books tools/), booked to the
+  run's cycle-7 inbox by the desk.
+- 2026-08-06 — **0.2.6 mint GRADED against round 5 (its designated
+  falsifier): diagnosis CONFIRMED, clause stands unchanged.** No
+  measured premise died — cycle-6's measured decisions (D40/D41)
+  survived the round; the severe kill was an untraced CODE-PATH
+  completeness premise (five mapping surfaces vs two named), which
+  the clause's own wording ("data shape or code path ... executed
+  measurement") already covers — minted after cycle 6, so cycle 7
+  is its first governed cycle and the five-surfaces class is
+  exactly what it must prevent there. PIN MOVED to 0.2.7 at this
+  seam (run paused, A5 recorded — the seam rule's conditions).
+  Consumer: run-grading pass + cycle-7 conduct.
