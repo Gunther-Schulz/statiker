@@ -95,7 +95,13 @@ below); what a leg returns is evidence, recorded with its basis.
 Consecutive discovery sweeps in the main session are the tell that a
 leg should have been dispatched.
 
-Design against the recorded requirement. New evidence that kills a
+Design against the recorded requirement. A decision COMMITS with a
+basis that reaches its premise: where the premise is a data shape
+or code path, the basis is an executed measurement of that premise
+— a true read answering a narrower question is the kill the next
+attack round delivers (the attack's probe obligation, applied at
+the commit moment). A deliberate skip is tagged [AUTO-ACCEPTED],
+never a read dressed as ground. New evidence that kills a
 premise appends an [INVALIDATED] line for the entry and for every
 decision resting on it — re-derive the dependents; a premise and its
 dependent contradicting inside one record is the escape shape.

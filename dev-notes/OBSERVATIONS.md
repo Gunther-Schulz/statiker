@@ -927,3 +927,14 @@ cycles 4-5 and attack round 3. Raw attacker reports preserved at
   mechanism class (attacker obligation, validated rounds 3-4).
   Premise-kind test stays judgment/prose; attack round remains the
   mechanical backstop.
+  MINTED EARLY as 0.2.6 (operator GO "lets fix it", same day,
+  overriding the pending hold): build-first posture — and the
+  round-5 falsifier survives intact, since round 5 attacks
+  cycle-6's already-produced output, which no skill-text change
+  reaches retroactively. Clause anchored in the design-loop
+  paragraph before the kill-premise rule (placement basis: grep
+  reach|basis|executed over SKILL.md — reach-matching previously
+  lived only in the attack block :148 and desk-refutation :173).
+  Round-5 outcome now grades the mint instead of gating it: a bite
+  on a measurable premise reopens the wording, not the existence.
+  Operational count 198; compression booking stands.
