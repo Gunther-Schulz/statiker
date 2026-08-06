@@ -196,3 +196,12 @@ framework-legitimacy question (anneal-framework BACKLOG) may
 equally resolve toward no second layer at all — statiker's own
 single-home trial is named evidence on exactly that. Trigger for
 the discussion: statiker validated (trial + opus ladder done).
+
+## Succession mechanics addendum (operator decision, 2026-08-06)
+
+Full cut, no parallel maintenance: when statiker graduates trial,
+the coding-clippy REPO inherits statiker's code and "statiker" is
+renamed to clippy — the working title retires with the trial, the
+clippy name and repo continue. Same pattern planned for the anneal
+successor (lifted from graduated statiker; anneal-dev plugin already
+uninstalled locally 2026-08-06, repo fate parked pending successor).
