@@ -1349,3 +1349,40 @@ trial's impl + verify (forcing points 4-5, still unmeasured).
   data repair stays; docker daemon running.** Travels to the desk
   in the fresh-desk start line (carrier-on-read-path). Consumer:
   the fresh cycle-8 desk via relay; run-grading pass.
+
+- 2026-08-06 — **Cycle-9 relay graded (fresh desk, version gate
+  0.2.13 CONFIRMED — release loop closed) → NO STOP-CALL, NO MINT
+  this relay; go = bare (y) for the sonnet inventory leg.**
+  Harvest: (a) Re-lock correctly REFUSED — C54 decided THAT a
+  harness gets built, not WHAT it is (image, lifecycle, schema
+  arrival, driver, fixtures, CI stance pg16 vs pg17 all open);
+  D68(b) holds U1 undispatchable until substrate settles. The stop
+  rule doing its job — positive conduct datapoint against the
+  premature-[READY] class this record already paid for. (b) F96/F97
+  — D65's "docker down, root-gated" premise stale (29.7.1 reachable
+  unprivileged); the whole NOT VALID premise EXECUTED on real
+  pg 17.10, four of seven steps D65 never stated; D65 → D71
+  restated with the premise measured. The execute-not-cite
+  recommendation discharged. (c) INSTRUMENT FIRING logged: the
+  cycle-8 dead-basis checker flagged D66's pin table routing its
+  implementer to two invalidated entries (D66 → D72). (d) THIRD
+  datapoint in the 0.2.9 clause-by-clause class: D66 restated
+  "whole" carried two F92-refuted citations forward; desk's own
+  probing caught them in-cycle pre-presentation, and found F98
+  beyond F92's reach (three of nine pin paths non-resolving);
+  D73 mints resolvable-paths as a standing record rule, discharged
+  by execution (8/8). NO STOP: self-caught by the run's own
+  machinery before anything rested on it; the durable fix is
+  mechanical, not prose — BOOKED into the existing run-end checker
+  graduation: widen the checker to (1) citation liveness against
+  latest tags and F-line refutations, (2) path resolvability from
+  repo root. (e) 0.2.13 leg-lifecycle clause unexercised this
+  cycle (no legs outstanding); first exercise expected with the
+  inventory leg — watch next relay for its [PENDING] line and
+  body-read resolution. (f) Desk asked confirmation for a sonnet
+  read-only leg under its own in-record C8/C4 despite the meta-side
+  pre-authorization — correct per carrier-on-read-path (the desk
+  never reads this repo's conventions); costs one round-trip we
+  were in anyway. Model concurred: sonnet, mechanical inventory,
+  no tier sensitivity. Consumer: next relay grading + run-grading
+  pass.
