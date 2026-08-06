@@ -40,7 +40,8 @@ clippy's ledger convention, shared so `/clippy-stats` and cross-skill
 comparison read both. Never overwrite another run's tracker; resume
 an in-progress run from its tracker, not from memory. An entry
 ADOPTED from a record this run did not produce — a prior or
-superseded run's tracker, or the session's own earlier items — is
+superseded run's tracker, the session's own earlier items, or a
+clause restated out of an invalidated entry — is
 PENDING until its basis passes a current-check scoped to the claim
 (re-read the cited lines; staleness-check against commits since the
 basis read — an earlier item's own implementation invalidates reads
@@ -120,11 +121,13 @@ invalidating an entry restates what survives of it in a live entry,
 CLAUSE BY CLAUSE — each clause of the dead entry dispositioned
 restated-at-<id> or dead; an entry-level summary is where the
 load-bearing clause drops silently (a dropped pin clause cost a
-round). A restated clause is an ADOPTION: its basis passes the
-current-check (The record) before its disposition lands — a
-disposition label over an unchecked basis has carried dead
+round). A restated clause takes The record's full adoption path —
+[PENDING] until its current-check clears, re-recorded citing
+source AND check — so the [READY] sweep holds unchecked
+restatements open mechanically; unchecked ones have carried dead
 citations, unresolvable paths, and a killed anchoring premise
-forward, one family in three forms. A partial invalidation orphans the surviving clauses, and
+forward. The dead disposition is not the free path: it names what
+kills the clause. A partial invalidation orphans the surviving clauses, and
 later readers inherit the dead rule or nothing.
 
 ## Stop rule: [READY] = dispatchable (forcing point 3)
@@ -170,8 +173,10 @@ tracker PINNED at the locked design's commit (a `git show
 HEAD), the question, and the read-only tail (dispatch skill
 `references/forms.md`). The artifact drops what the record itself
 marks superseded — handoff sections a later one supersedes,
-verbatim attack quotes already regraded into F-lines — a
-computable filter, its form stated in the brief; ENTRIES are never
+verbatim attack quotes already regraded into F-lines, landed
+sealed predictions — one literal marker token, declared in the
+tracker header and matched exactly: a computable filter, its form
+stated in the brief; ENTRIES are never
 filtered (dead bodies are load-bearing for closure questions, and
 a hand-summary is the paraphrase-drift class). Unfiltered, the
 artifact compounds per round; the desk appends nothing to the record
@@ -203,13 +208,16 @@ producer's blind spots — and the rule reaches the ARTIFACT: an
 entry authored for the attacker's eyes (a weak-spot list, steering
 notes) is desk reasoning riding the never-filtered channel, and it
 frames the round it was meant to sharpen. Pre-round self-assessment
-is a sealed prediction: it lives in the desk's own scratchpad,
-outside the repo — an attacker sweeps everything the repo holds,
-and an in-repo seal also breaks any brief asserting tree == lock
-commit — until the round returns, then lands beside the A-line as
-a section marked superseded at landing (the filter's own species),
-never a tag-first entry, compared against the actual bites —
-grading the desk's self-model instead of steering the attacker.
+is a sealed prediction: it lives outside the repo, at a path that
+outlives the desk session — an attacker sweeps everything the repo
+holds, and an in-repo seal breaks any brief asserting tree == lock
+commit — and its hash rides the round's [DISPATCHED] A-line body
+inside the lock commit, so a landed seal is checkable against its
+pre-commitment and a missing one is detectable, not fakeable
+post-hoc. At return it lands beside the A-line as a
+superseded-marked section (the filter's species list), never a
+tag-first entry, compared against the actual bites — grading the
+desk's self-model instead of steering the attacker.
 Attack tier: probed
 opus (the PLAN.md
 probe-then-certify step, certified; provenance in dev-notes) —
@@ -220,8 +228,8 @@ one attacker, the round's A-line recorded before any next dispatch
 each re-attack is a NEW fresh context (a resumed attacker inherits
 its own prior findings' frame), and a re-derived design is a NEW
 locked design — it gets the attack again. Each round records an
-A-line (The record), the round's sealed prediction landed beside
-it: [ZERO-DELTA] only when every verdict is
+A-line (The record). The round's sealed prediction lands beside
+it. [ZERO-DELTA] only when every verdict is
 reach-matched and nothing bit — that closes design. Iterate only if
 design SUBSTANCE bites. At a round's return every finding is
 classified, with basis: DESIGN-SUBSTANCE (wrong mechanism, money

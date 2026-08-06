@@ -1681,3 +1681,54 @@ conduct + intake knob + corpus lessons (run grading / fire-rate).
 NIT6 preemptive-entry case = sealed-prediction clause's watch
 case. EXPECTED NEXT EVENT: operator returns with the R5 answer
 and/or review-2 report; then pin move and the cycle-10 desk.
+
+- 2026-08-06 — **Opus review 2 ARRIVED before close (4 parts: 1
+  blocking, 4 notable, 3 nits) — all dispositioned, repairs landed
+  as 0.2.18; release target moves 0.2.17 → 0.2.18; review 3 (the
+  experiment's last) now owed pre-pin.** Dispositions: B1 (seal
+  had no existence guarantee and no immutability anchor — an
+  out-of-repo scratchpad dies with the desk, and a post-hoc
+  "prediction" written after reading the bites is undetectable) —
+  FIXED with the reviewer's own mechanism: the seal lives at a
+  path that outlives the desk session and its HASH rides the
+  round's [DISPATCHED] A-line body inside the lock commit —
+  pre-committed, freeze-safe, reveals nothing to the attacker, and
+  makes a missing or altered seal detectable. N2 (landing
+  obligation interpolated mid-sentence into the [ZERO-DELTA]
+  criterion — the canon's buried-default shape) — FIXED, sentence
+  split three ways. N3 (0.2.17 clause was a second home for The
+  record's adoption rule with a WEAKER mechanism — check-first
+  never passes through [PENDING], so the READY sweep's one
+  mechanical catch never sees it — and dropped the re-record
+  half) — FIXED per amendment discipline: the adoption enumeration
+  now names the restated-clause case explicitly, and the
+  invalidation paragraph routes through the FULL adoption path
+  ([PENDING] → current-check → re-record citing source AND check);
+  the tighter-sounding 0.2.17 wording was the one with less
+  enforcement behind it — a lesson in itself. N4 (asymmetric
+  friction gradient toward the "dead" disposition, the exact
+  failure the passage was minted against) — FIXED: dead names what
+  kills the clause. N5 (superseded-species enumeration fragmented;
+  "computable filter" with no literal token) — FIXED: species list
+  gains landed seals, marker is one literal token declared in the
+  tracker header, matched exactly. N6 (257 lines vs ~150 tripwire,
+  in-file undispositioned) — ACCEPTED with rationale: tripwire
+  disposition lives in this ledger per the repo's file roles
+  (maintenance never in payload); the N3 fix removes restatement,
+  the mechanism the tripwire names. Nit7 (wrap) FIXED in the
+  re-render; nit8 (scratchpad ambient-dependence) SUPERSEDED by
+  the B1 fix's path requirement; nit9 (sealed vs pre-register)
+  ACCEPTED — reviewer's own caveat concedes distinct referents,
+  consistent with review-1 NIT7. EXPERIMENT tally after two
+  releases: review 1 = 2 blocking + 1 applied notable; review 2 =
+  1 blocking + 4 notable, blocking VERIFIED against the skill's
+  own resume rule (:40-41) before fixing. Both reviews caught
+  author-blind render/mechanism failures at opus prices; the
+  sustain arm is doubly met, grading formally at release 3.
+  HANDOFF DELTA over the entry above: successor's first duty is
+  now dispatch REVIEW 3 (diff 2e98746..HEAD SKILL.md-only + full
+  skill + question, no author reasoning, read-only tail),
+  disposition, THEN pin to 0.2.18; the rest of the ordered duties
+  (R5 answer, cycle-10 fresh-desk line at version gate 0.2.18)
+  unchanged. Consumer: successor meta session, experiment grading
+  at release 3.
