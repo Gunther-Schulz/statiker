@@ -1471,3 +1471,31 @@ trial's impl + verify (forcing points 4-5, still unmeasured).
   (read-only, pre-authorized tier), findings dispositioned in this
   ledger pre-release. Consumer: round-7 return grading (pin move +
   C57 read + review dispositions), experiment grading at release 3.
+
+- 2026-08-06 — **Opus review 1/3 (release 1, 0.2.14) — TWO BLOCKING
+  findings, both verified in the artifact and FIXED pre-release as 0.2.15
+  (re-versioned 0.2.15 on the release hook's
+  version-compare guard — a cached 0.2.14 would serve unrepaired
+  text; pin still at 0.2.13).** B1: "the run's shadow log" was undefined
+  in the payload (grep: sole occurrence was the clause itself; the
+  definition lives only in maintenance files the desk never
+  reads) — a desk's natural home for it, .clippy/runs/, sits
+  inside the repo where the attacker's unrestricted READ sweep
+  reaches it and where any tree==lock freeze claim breaks. FIXED:
+  seal located in-file — desk's own scratchpad, outside the repo,
+  with both failure mechanisms named. B2: the seal opened at round
+  N+1 — landed "beside the A-line" without a form, the
+  self-assessment becomes tracker content the next round's pinned
+  artifact carries; the filter drops only record-marked-superseded
+  SECTIONS and entries are unfilterable by design. FIXED: landing
+  form specified — a section marked superseded at landing, never a
+  tag-first entry. EXPERIMENT NOTE: review 1 of 3 produced two
+  substantive (blocking-grade) catches on text the author had
+  vetted — the sustain criterion's substantive-catch arm is
+  already met once; grading still waits for release 3 per
+  pre-registration. Both defects were RENDER failures (a term's
+  load-bearing half lost, a landing form unstated), the class the
+  author is structurally blind to — consistent with the
+  fresh-context rationale. Parts 2/3 pending; dispositions on
+  arrival, all before the pin moves. Consumer: pin-move moment +
+  experiment grading at release 3.

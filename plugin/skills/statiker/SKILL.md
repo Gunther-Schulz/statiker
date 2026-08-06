@@ -199,10 +199,14 @@ producer's blind spots — and the rule reaches the ARTIFACT: an
 entry authored for the attacker's eyes (a weak-spot list, steering
 notes) is desk reasoning riding the never-filtered channel, and it
 frames the round it was meant to sharpen. Pre-round self-assessment
-is a sealed prediction: it lives outside the pinned artifact (the
-run's shadow log) until the round returns, then lands beside the
-A-line compared against the actual bites — grading the desk's
-self-model instead of steering the attacker. Attack tier: probed
+is a sealed prediction: it lives in the desk's own scratchpad,
+outside the repo — an attacker sweeps everything the repo holds,
+and an in-repo seal also breaks any brief asserting tree == lock
+commit — until the round returns, then lands beside the A-line as
+a section marked superseded at landing (the filter's own species),
+never a tag-first entry, compared against the actual bites —
+grading the desk's self-model instead of steering the attacker.
+Attack tier: probed
 opus (the PLAN.md
 probe-then-certify step, certified; provenance in dev-notes) —
 escalate a round to fable only on operator call. Rounds are
