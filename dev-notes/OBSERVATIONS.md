@@ -1051,3 +1051,11 @@ cycles 4-5 and attack round 3. Raw attacker reports preserved at
   unexamined, deliberately left red (scope discipline held). The
   fresh desk dispositions them pre-round-6. Consumer: fire-rate
   review + run-grading pass.
+  ADDENDUM (round-6 staging): a SECOND instrument graduated
+  repo-side — tools/statiker_tier_scrub.py (beat-the-books
+  d03b9312, fail-closed, shown live pre-use; born from the
+  re-paste hazard after the round-3 word-boundary miss). At the
+  parked graduation decision, grade the two separately: the
+  dead-basis checker is format-owned (payload candidate); the tier
+  scrub is trial-phase comparison machinery and likely dies at
+  stabilization with the blindness protocol rather than shipping.
