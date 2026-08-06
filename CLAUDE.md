@@ -44,7 +44,14 @@
   not a wait: grade what is evidence-complete (field-tested in-run
   with provenance = ripe; needs the run's remainder = defer), mint,
   release — the running desk finishes its round on the old version,
-  the fresh desk picks up the new one at the seam.
+  the fresh desk picks up the new one at the seam. Before each
+  fresh-desk start, the meta session SWEEPS the ledger's open
+  bookings and grades each for lifting: ripe (provenance complete,
+  fires at a seam the run crosses next) → mint now; otherwise it
+  stays on its named trigger. A booking whose delivery path is a
+  relay line is a lift candidate by default — the skill is the
+  carrier that cannot be forgotten. (An audit arriving only on
+  operator prompt is the recorded miss shape.)
 - **Comparison experiments pre-register.** The decision criterion
   is recorded in dev-notes BEFORE any arm dispatches; arms are
   graded post-run in the meta session on a body-read of the raw
