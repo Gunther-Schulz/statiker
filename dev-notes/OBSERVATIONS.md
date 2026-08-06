@@ -1059,3 +1059,22 @@ cycles 4-5 and attack round 3. Raw attacker reports preserved at
   dead-basis checker is format-owned (payload candidate); the tier
   scrub is trial-phase comparison machinery and likely dies at
   stabilization with the blindness protocol rather than shipping.
+
+- 2026-08-06 — **Tracker-verbosity docket item: DATA IN (desk
+  measurement, round-6 staging).** Artifact growth 38.6k→46.3k→
+  61.2k→75.6k tokens across rounds 3-6 (~+15k/round, compounding);
+  attacker cost 237.7k (artifact × probe turns, prefix re-billing).
+  Composition: 65% live bodies, 17% dead bodies (LOAD-BEARING for
+  P3 closure — not waste), 19% non-entry prose, of which
+  superseded handoffs + already-regraded verbatim attack quotes
+  are the computable cut (~10-14k/round, kills the compounding
+  term). C-lines 41 entries/11.6k — largely trial instrumentation,
+  retires at stabilization. DECIDED PATH: artifact-build filter
+  drops record-marked-superseded sections — filter the ARTIFACT,
+  never the tracker; filter form stated in the brief. Applies from
+  round 7 if the run continues (desk-authorizable, record-hygiene
+  class); otherwise mints at run grading as a skill clause with
+  this table as provenance. Entry-body compaction REJECTED:
+  hand-consolidation is the paraphrase-drift class this run kept
+  catching. Consumer: run-grading pass (+ round-7 go line if it
+  happens).
