@@ -1386,3 +1386,25 @@ trial's impl + verify (forcing points 4-5, still unmeasured).
   were in anyway. Model concurred: sonnet, mechanical inventory,
   no tier sensitivity. Consumer: next relay grading + run-grading
   pass.
+
+- 2026-08-06 — **Opus skill-edit review EXPERIMENT pre-registered
+  (operator-settled).** Scope: the next THREE SKILL.md releases
+  each get one fresh-context opus review before the pin moves
+  (brief = diff + full skill + question, no author reasoning;
+  findings dispositioned before release). DECISION CRITERION,
+  recorded before any review dispatches: the experiment SUSTAINS
+  (opus review becomes the standing pre-release step) if at least
+  one of the three reviews yields a finding that substantively
+  changes the shipped text — structural, provenance, reach, or
+  register, not wording; it RETIRES to the current
+  stabilization-only review if all three return wording-only or
+  empty. Grading is a body-read of the three raw review reports at
+  the third release. Evidence basis, operator-relayed from another
+  session (unverified here, labeled): (1) an opus-graded subagent
+  report at top-tier conduct (instrument disclosed + proven red,
+  refutation probes on its own verdict); (2) an opus vet catching
+  a blocking factual defect in hours-old top-tier text; (3) the
+  statiker attack-ladder pairing — opus arm out-bit fable arm,
+  rounds 1-3, byte-identical artifacts (n=4, one domain, arms not
+  blind). Consumer: the meta session at each of the next three
+  SKILL.md releases + the grading at the third.

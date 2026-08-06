@@ -66,6 +66,18 @@
   discovery into the ungated inline lane — the blanket rule
   reduced the oversight it existed to buy. Revisit at
   stabilization.)
+- **Skill-edit review at opus (experiment, operator-settled
+  2026-08-06).** For the next three SKILL.md releases, each edit
+  gets ONE fresh-context opus review before the pin moves — brief
+  carries the diff, the full skill text, and the question, never
+  the author's reasoning; every finding gets a recorded
+  disposition before release. Decision criterion pre-registered in
+  dev-notes (same date); graded there after the third review.
+  Background: coarse-stage edits currently skip review until
+  stabilization to avoid fable-priced passes; operator-relayed
+  paired evidence (opus arm out-bit fable arm, rounds 1-3,
+  byte-identical artifacts, n=4, one domain) says opus review is
+  not below the bar for this artifact class.
 - **Desk interrogation is cheap — ask when it informs the skill.**
   Diagnostic questions relayed to the running desk (which rule
   routed a conduct call — quote it or say "improvised"; what a
