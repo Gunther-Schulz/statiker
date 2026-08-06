@@ -41,11 +41,16 @@
   is recorded in dev-notes BEFORE any arm dispatches; arms are
   graded post-run in the meta session on a body-read of the raw
   reports — the desk records verbatim and never grades the arms.
-- **Trial-phase dispatch confirmation.** The desk presents each
-  subagent dispatch individually, model named, and waits for the
-  operator's go — never a second dispatch batched behind one
-  confirmation. (Operator safety preference for the trial; revisit
-  at stabilization.)
+- **Trial-phase dispatch confirmation.** Attack, implementation,
+  and fable dispatches present individually, model named, and wait
+  for the operator's go — never a second dispatch batched behind
+  one confirmation. Read-only discovery legs at opus or below are
+  PRE-AUTHORIZED: dispatched without asking, named in the turn's
+  report. (Narrowed 2026-08-06 from the blanket rule after it
+  priced dispatches at one blocking round-trip each and pushed
+  discovery into the ungated inline lane — the blanket rule
+  reduced the oversight it existed to buy. Revisit at
+  stabilization.)
 - **Desk interrogation is cheap — ask when it informs the skill.**
   Diagnostic questions relayed to the running desk (which rule
   routed a conduct call — quote it or say "improvised"; what a
