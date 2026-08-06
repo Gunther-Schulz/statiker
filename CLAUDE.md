@@ -12,6 +12,14 @@
   provenance, no patch.
 - **PLAN.md is the design record** — settled decisions are not
   re-opened without new evidence.
+- **A release during a live run means the desk session restarts.**
+  A version bump never reaches a running desk: the pin resolves at
+  session start, and a mid-run `/reload-plugins` fixes only future
+  injections — the OLD skill text already sits loaded in the desk's
+  context, owning its conduct. On release with a run in flight,
+  abandon the desk and start it fresh (the tracker is the handoff by
+  design); the fresh desk confirms its served version from the Skill
+  injection's base-directory line before the next forcing point.
 
 ## Verify
 
