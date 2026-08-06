@@ -1732,3 +1732,21 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   (R5 answer, cycle-10 fresh-desk line at version gate 0.2.18)
   unchanged. Consumer: successor meta session, experiment grading
   at release 3.
+
+- 2026-08-06 — **Round-8 read REFINED (operator close question: "is
+  the executed-evidence requirement too strict?").** The
+  requirement splits: pins-demand-executed-discriminating-evidence
+  is load-bearing and stays (G13, F95, F102 all earned by it;
+  route 3 at C54 was its rejected negation); only the TRANSITIVE
+  half — substrate builds receiving the full attack loop — is on
+  trial. Refinement to outcome (b) of the pre-registered read: for
+  each machinery-class substance finding in round 8, additionally
+  grade IMPL-CATCHABILITY — would existing impl-phase machinery
+  (mandatory red-first pin execution, sibling divergence) have
+  caught it as a gap? Evidence note: F103 is red-first-catchable
+  by shape (a constraint pin cannot go red on a violator the
+  backfill already repaired — impl's red-first step fails loudly).
+  Counterweight stays on record: a harness defect's failure mode
+  is a pin that LIES, worse than no pin because it books
+  confidence — one datapoint settles nothing. Consumer: the
+  round-8 return grading.
