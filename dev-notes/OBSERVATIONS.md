@@ -872,3 +872,28 @@ cycles 4-5 and attack round 3. Raw attacker reports preserved at
   re-attack per re-lock — rounds 2 AND 4 bit on repair-introduced
   defects (S5 + round-4 record), best-evidenced rule in the skill.
   Consumer: run-grading pass.
+
+- 2026-08-06 — **0.2.5 mint (mid-run, at-seam release; operator GO
+  "grade what's done, tune, continue"): the evidence-complete slice
+  of the grading docket, minted with in-run field tests as
+  provenance.** (1) Supersede/invalidate closure rules (D38's two,
+  cycle-6 field test: nine entries closed wholesale) — widened into
+  the existing kill-premise rule, not added beside it; (2) [READY]
+  sweep gains the dead-basis leg (arm-A F3 by hand, repo check red
+  on the real defect, mechanize-first + judgment-residue form);
+  (3) attack tier line: probed opus — PLAN.md's probe-then-certify
+  step certified (three-round comparison, criterion met 3-for-3);
+  PLAN.md carries the certification note; fable escalation stays an
+  operator call. DEFERRED as not evidence-complete: delegation
+  split, tracker verbosity, full-run review, sentinel compression
+  (operational count now 191; compression consolidates after an
+  operating interval), clippy-succession itself. Repo CLAUDE.md
+  gains the seam clause (pin moves only at a recorded A-line /
+  forcing-point boundary) + a Trial working conventions section
+  persisting the session's settled styles: two-session layout with
+  operator relay, mid-run tuning at seams, pre-registered
+  comparison criteria, per-dispatch confirmation (trial-phase).
+  RELEASE TIMING: commits+push now; PIN HELD until round 5's
+  A-line is recorded — the desk finishes round 5 on 0.2.4 (its
+  conduct is unchanged in 0.2.5), fresh desk serves 0.2.5 at the
+  seam. Consumer: fire-born firing log + run-grading pass.

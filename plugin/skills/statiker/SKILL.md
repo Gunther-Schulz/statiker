@@ -99,6 +99,12 @@ Design against the recorded requirement. New evidence that kills a
 premise appends an [INVALIDATED] line for the entry and for every
 decision resting on it — re-derive the dependents; a premise and its
 dependent contradicting inside one record is the escape shape.
+Superseding cuts both ways: a new entry that contradicts an old one
+appends the old id's [INVALIDATED] line (two live contradictory
+entries route the implementer to whichever it reads first), and
+invalidating an entry restates what survives of it in a live entry —
+a partial invalidation orphans the surviving clauses, and later
+readers inherit the dead rule or nothing.
 
 ## Stop rule: [READY] = dispatchable (forcing point 3)
 
@@ -108,10 +114,13 @@ feeling. If writing the impl briefs would require deciding anything,
 the design is not done: design until it could be briefed. [READY] is
 recordable only when the record sweeps clean: no entry's latest line
 is [PENDING] (an assumption deliberately carried unverified is
-re-tagged [AUTO-ACCEPTED], never left [PENDING]), and no id appears
+re-tagged [AUTO-ACCEPTED], never left [PENDING]), no id appears
 as two live entries (duplicates are found by body-read, not tag
-grammar) — an open [PENDING] under a claimed [READY] is the
-premature-call shape.
+grammar), and no live entry rests on an invalidated entry's content
+— the dead-basis read is a body-read; where the repo carries a
+mechanized check for it, that check runs first and its residue is
+the judgment slice. An open [PENDING] under a claimed [READY] is
+the premature-call shape.
 Record `Status: [READY]` with the impl units enumerated. With an
 operator present, present the record and recommendation at [READY],
 ENDING with one advance prompt — "(y) advances per the
@@ -148,8 +157,10 @@ clauses):
     requirement and the factual bases it cites.
 
 The brief never carries the desk's reasoning — it transmits the
-producer's blind spots. Attack tier: fable while statiker is in
-trial (settled, PLAN.md — ceiling first). Rounds are sequential —
+producer's blind spots. Attack tier: probed opus (the PLAN.md
+probe-then-certify step, certified; provenance in dev-notes) —
+escalate a round to fable only on operator call. Rounds are
+sequential —
 one attacker, the round's A-line recorded before any next dispatch
 (parallel attackers are operator experiments outside this default);
 each re-attack is a NEW fresh context (a resumed attacker inherits

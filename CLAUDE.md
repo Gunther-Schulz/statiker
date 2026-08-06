@@ -20,6 +20,32 @@
   abandon the desk and start it fresh (the tracker is the handoff by
   design); the fresh desk confirms its served version from the Skill
   injection's base-directory line before the next forcing point.
+  The pin moves only at a seam — a recorded A-line or forcing-point
+  boundary, never while an attacker or unit is live (commits may
+  land anytime; the pin is the release).
+
+## Trial working conventions (operator-settled, 2026-08-06)
+
+- **Two-session layout.** The meta/grading session runs in THIS
+  repo (grades comparisons, mints, releases); the desk runs in the
+  target repo. Decisions travel between them only via operator
+  relay — the meta session ends its turn with the paste-ready relay
+  line (carrier-on-read-path: the desk reads its tracker and the
+  operator's replies, never this repo's ledger).
+- **Mid-run tuning at seams.** Between cycles is an upgrade point,
+  not a wait: grade what is evidence-complete (field-tested in-run
+  with provenance = ripe; needs the run's remainder = defer), mint,
+  release — the running desk finishes its round on the old version,
+  the fresh desk picks up the new one at the seam.
+- **Comparison experiments pre-register.** The decision criterion
+  is recorded in dev-notes BEFORE any arm dispatches; arms are
+  graded post-run in the meta session on a body-read of the raw
+  reports — the desk records verbatim and never grades the arms.
+- **Trial-phase dispatch confirmation.** The desk presents each
+  subagent dispatch individually, model named, and waits for the
+  operator's go — never a second dispatch batched behind one
+  confirmation. (Operator safety preference for the trial; revisit
+  at stabilization.)
 
 ## Verify
 

@@ -96,6 +96,10 @@ standing defense.)
   the best attacker finds), then opus attacks get graded against
   that known ceiling and gaps filled — probe-then-certify, same as
   everything else. Verify tier: per routing/models config.
+  CERTIFIED 2026-08-06: probed opus is the attack tier (three-round
+  paired comparison, pre-registered criterion met 3-for-3; verdict
+  and basis in dev-notes/OBSERVATIONS.md). Fable's attack seat
+  closes; its grading/escalation seats stand.
 
 ## Record compatibility (measurement is non-negotiable)
 
