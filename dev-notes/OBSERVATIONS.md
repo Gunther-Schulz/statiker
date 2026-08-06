@@ -599,3 +599,94 @@ operator experiment under the skill's sequential-rounds default.
   accretion (dotfiles; carrier-on-read-path clause, JOURNAL line in
   the same commit). Consumers: the run-grading pass (pause-design
   evidence) + the corpus fire-rate review (the sharpen).
+
+## Cycle 4-5 of the trial run — 2026-08-06 (fresh opus desk session)
+
+Provenance for every item below: the beat-the-books trial run,
+`.clippy/runs/2026-08-05-canonical-market-identity-statiker.md`,
+cycles 4-5 and attack round 3. Raw attacker reports preserved at
+`.clippy/runs/evidence/2026-08-06-cmi-*` in that repo.
+
+- **S5 is CLOSED by 0.2.3, and the trial now carries strong evidence
+  FOR the re-attack clause.** Round 3 attacked the round-2 repair and
+  ALL THREE attackers bit — including one decision-flipping finding
+  (the reference set's writer left unassigned) that was INTRODUCED by
+  the cycle-4 re-derivation itself. That is the second consecutive
+  round in which a repair shipped new defects. Consumer: the
+  fire-rate review — this is the clause's firing record, not an
+  anecdote.
+- **S7 [SKILL DEFECT, structural] — "The record" is not computable on
+  a SECTIONED tracker.** 0.2.3 says entries are appended never
+  rewritten, a status change is a new tag-first line, and [READY]
+  requires no entry's latest line be [PENDING]. That holds only if the
+  file is strictly append-AT-END. The trial tracker grew in sections
+  (`## F-track`, `## Cycle N`, `## Attack …`), so file POSITION stopped
+  tracking chronology: `D10` and `F46` each ended with a
+  chronologically-OLDEST [PENDING] sitting positionally LAST, and a
+  mechanical latest-line read returned [PENDING] for entries settled
+  two cycles earlier. An earlier attacker had flagged the symptom and
+  the desk answered it in prose ("read latest-line-wins") — the very
+  read that fails. Candidate shapes, not applied: require strict
+  append-at-end, or require an explicit supersedes-pointer. Consumer:
+  the next skill edit.
+- **S8 [SKILL DEFECT, enforcement] — the bare-tag rule fired against a
+  TOP-TIER desk one cycle after that desk RECORDED the rule.** The
+  desk wrote 0.2.3's bare-enum requirement into its own tracker at
+  cycle-4 open, then emitted five annotated tags in the same cycle.
+  Measured consequence, not cosmetic: a latest-tag scan returned 96
+  entries and silently omitted all five, so a [COMMITTED] decision
+  read as its own superseded [PENDING] predecessor. A convention
+  recorded but not mechanically checked does not hold, including
+  against the context that just wrote it. The computable slice (a
+  tracker linter: non-bare tags + latest-line-[PENDING]) is booked as
+  a ready item in beat-the-books BACKLOG with a red-first verifier
+  named against real commits. Consumer: the fire-rate review + that
+  backlog item.
+- **A THIRD hygiene class the sweep cannot see: stale-[COMMITTED].**
+  All three round-3 attackers independently found decisions whose
+  latest tag still read [COMMITTED] though superseded only in prose or
+  inside another entry's body (D1, D2, D3, D11, F47, F56, D17). The
+  desk's closure sweep reproduced correctly and still overclaimed —
+  its predicate proves no latest-[PENDING], never that no superseded
+  decision stays live. "Superseded" is a judgement about bodies, so
+  this half is NOT mechanizable; the discipline is that superseding a
+  decision REQUIRES an [INVALIDATED] line for the old one. Candidate:
+  state that obligation explicitly in "The record". Consumer: the next
+  skill edit.
+- **[ATTACK PROTOCOL] Desk appends during a live round contaminate
+  it.** The attack-of-record reported that its sweep ran over the LIVE
+  working-tree tracker, whose tail by then carried another attacker's
+  `C3 [BIT]` header — because the brief said "read-only at <sha>" but a
+  working-tree read gets HEAD, and the desk kept COMMITTING outcome
+  entries while an attacker was still running. The operator's
+  "nothing appended BETWEEN dispatches" condition was honoured; nothing
+  covered appends AFTER the last dispatch with attackers live. Repair:
+  brief the artifact as `git show <sha>:<path>` output only, or freeze
+  desk appends until every attacker returns. Consumer: the round-4
+  brief (already written into the run's handoff) + the next skill edit.
+- **[DISPATCH SKILL / F60 interaction] S2's collision hazard went from
+  near-miss to REALIZED, and destroyed evidence.** Briefs assigned
+  `r3-attack-<your own agent name>.md` — identical text intended to
+  yield distinct files. One attacker self-identified as ANOTHER live
+  agent (third consecutive occurrence of the F60 roster-leak mislabel)
+  and wrote to that agent's path; the two reports collided and the
+  loser's full detail is gone (survivor confirmed by content markers:
+  7 hits of one attacker's unique findings, 0 of the other's). A
+  per-agent filename derived from the agent's OWN self-identification
+  is not collision-safe when the harness leaks a roster the agent can
+  misread. Note the genuine tension this exposes: byte-identical
+  briefs (needed for a clean paired measurement) and collision-safe
+  outputs pull against each other; the resolution is the DISPATCHER
+  assigning literal paths in a per-agent line appended to an otherwise
+  identical brief. Consumer: dispatch-guards §2 (payload/data-file
+  rule) at its next edit.
+- **[FOR the pause design, second datapoint] The operator-present
+  [READY] pause surfaced a scope decision the desk could not settle.**
+  Cycle 4 found a LIVE money-path defect outside the run's stated
+  scope (stored odds sign-inverted for swapped markets, confirmed by
+  an executed probe with a positive control, reproduced by four
+  independent contexts). The desk formed a recommendation, surfaced it
+  as a decision rather than carrying it silently on a default, and the
+  operator folded the fix in. A run without that seam would have
+  shipped the behavior change as an unattributable side effect of a
+  refactor. Consumer: the run-grading pass.
