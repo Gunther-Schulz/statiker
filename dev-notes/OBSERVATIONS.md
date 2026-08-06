@@ -744,3 +744,26 @@ cycles 4-5 and attack round 3. Raw attacker reports preserved at
   this file — it travels in the operator's next reply to that
   session, quoted in this session's closing message; this entry is
   the record, not the delivery.
+
+- 2026-08-06 — **Round-4 plan AMENDED (operator): PAIR — probed opus
+  (attack-of-record) + probed fable (comparison arm) — as the cheap
+  solidifier for the opus-vs-fable succession call.** The opus
+  attacker runs anyway (round 4 is owed after the round-3 bites), so
+  the paired datapoint costs one fable dispatch; under 0.2.4 (pinned
+  artifact, append freeze) the pair is uncontaminated — a clean
+  replication test of round-3's asterisked fable arm, and fable's
+  one fair falsification shot before lock-in. PRE-REGISTERED lock
+  criterion, recorded before dispatch (briefed-to-refute): the
+  succession decision writes probed-opus as the attack tier UNLESS
+  the fable report carries >=1 decision-flipping or money-path
+  finding absent from opus's report and desk-confirmed by probe;
+  unique record-hygiene/minor finds do NOT block the lock (that
+  class is priced into fable's grading/meta roles). Both arms carry
+  full closure standing — any bite reopens the design. Scope: the
+  lock covers this attack class at the opus desk; the fable-desk
+  row stays open. C4 hold untouched — round 4 fires only on
+  operator confirmation after the re-derivation locks. SUPERSEDES
+  the solo-opus relay line (previous entry); corrected relay quoted
+  in the session's closing message (carrier-on-read-path: the
+  consumer is the beat-the-books session, delivery is the
+  operator's reply there).
