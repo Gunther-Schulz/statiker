@@ -90,17 +90,18 @@ old line; the stats reader counts only tag-first lines.
   <file:line / executed command / "unverified">`
 - decisions: `- D<n> [PENDING|COMMITTED|INVALIDATED|AUTO-ACCEPTED]
   <decision> — basis: <…>`
-- requirement amendments: `- R<n> [AMENDED|INVALIDATED] <new
-  letter> — basis: <…>` (derived requirements only; the head
+- requirement amendments: `- R<n> [AMENDED|PENDING|INVALIDATED]
+  <new letter> — basis: <…>` (derived requirements only; the head
   above)
 - attack outcomes: `- A<n> [DISPATCHED|BIT|ZERO-DELTA] <summary> —
   basis: <brief at dispatch; report ref on return>`
 - verify verdicts: `- V<n> [PASSED|ISSUES FOUND] <summary> —
   basis: <the checks' own output>`
 - entry tags are BARE enum values; annotations
-  live in the line body after the bracket, never inside it (an
-  annotated tag breaks the stats reader's enum admission and the
-  closure gate's literal match)
+  live in the line body after the bracket, never inside it, and a
+  bracketed tag literal never appears inside a body — the stats
+  reader counts some tags unanchored, and an annotated tag breaks
+  its literal greps and the closure gate's match
 - a decision still resting on an unverified assumption at [READY]
   gets an appended `[AUTO-ACCEPTED]` line — surfaced to the operator
   by its tag, never silently carried; a reconciliation advanced on
@@ -196,7 +197,8 @@ ENDING with one advance prompt — "(y) advances per the
 recommendation"; anything else is free-form override. Design
 decisions are never posed as choices; the prompt carries loop
 control only. Unattended, the recorded recommendation advances the
-run. `Mode: auto` in the header (operator-declared at run start)
+run. `Mode: auto` in the header (operator-declared at run start,
+fixed for the run)
 forces the unattended branch throughout: no prompts, every
 recommendation advances on record, reconciliations surface only
 in the close. Advancing locks the design: commit the tracker and
@@ -212,11 +214,12 @@ not produce it, before implementation. The attack brief carries the
 tracker PINNED at the locked design's commit (a `git show
 <sha>:<path>` copy, never a working-tree path — a live tree serves
 HEAD), the question, and the read-only tail (dispatch skill
-`references/forms.md`). The artifact drops ONE computable
+`references/forms.md`). The artifact drops two computable
 species, the filter's form stated in the brief: contiguous
-quoted blocks whose first line is `> Superseded — <label>` —
-verbatim attack quotes, born marked, their regrade into F-lines
-landing in the same return sitting; ENTRIES are never
+quoted blocks whose first line is `> Superseded — <label>` (their
+production: the return processing below), plus sections headed
+`## Superseded —` — legacy landings from earlier skill versions,
+possible in resumed trackers only; ENTRIES are never
 filtered (dead bodies are load-bearing for closure questions, and
 a hand-summary is the paraphrase-drift class). Unfiltered, the
 artifact compounds per round; the desk appends nothing to the record
@@ -224,8 +227,10 @@ while any attacker is live — an append landing mid-round leaks
 sibling findings into an attacker's own record sweep, and the
 round's independence cannot be re-established afterward. The
 freeze defers appends, never work: desk findings and leg
-dispatches during a round queue beside the seal (out of the
-repo) and append at the round's return, before its A-line. The
+dispatches during a round queue at
+`~/.claude/statiker-seals/<tracker-filename>.A<n>.queue` — the
+seal's derivation, existing whether or not a seal was written —
+and append at the round's return, before its A-line. The
 freeze's scope is every surface the brief claims immutable: a
 brief asserting the tree matches the lock commit freezes the whole
 repo, not only the record — the claim sets the scope, and keeping
@@ -278,15 +283,21 @@ classified, with basis: DESIGN-SUBSTANCE (wrong mechanism, money
 path, silent failure in the shipped system) or RECORD/INSTRUMENT
 (the run's own bookkeeping); findings append as F-lines with the
 tag their evidence earns — reach-matched in hand → [VERIFIED],
-else [PENDING], held open by the sweep. An UNMEASURED verdict is
+where a judgment finding's reach is the cited record or design
+text itself, else [PENDING]. An UNMEASURED verdict is
 an open question the desk completes itself — its own executed
 measurement, recorded as the F-line's evidence — before the
-round's A-line lands. Any substance finding: the round records
+round's A-line lands. Verbatim report quotes the desk retains
+append as a quoted block whose first line is
+`> Superseded — A<n> quotes` (the filter's species), regraded
+into F-lines in the same sitting. Any substance finding: the
+round records
 [BIT] — that record change IS the reopen. A substance-free
 return: execute the record repairs now (desk work), then record
 [ZERO-DELTA] as the last A-line — recordable only with every
 verdict reach-matched, measured by the attacker or completed by
-the desk. That closes design; record findings never sustain a
+the desk, and no [PENDING] tag riding the round's own appends.
+That closes design; record findings never sustain a
 next round (declining max-severity is convergence; observed
 sustaining rounds past it).
 A reopen bars the design's UNITS only: investigation, record
@@ -298,25 +309,31 @@ round's [ZERO-DELTA].
 
 ## Implementation (forcing point 4)
 
-Implementation makes no design decisions; Phase flips to
-implement at the closing [ZERO-DELTA]. Units come from the locked
+Implementation makes no design decisions; at the closing
+[ZERO-DELTA], Phase flips to implement and Status returns to
+in-progress. Units come from the locked
 design; each dispatches on a decision-complete brief (dispatch
 skill §1, tail per §2) citing the executor skill AND the run's
 live closure: the tracker's last A-line is `[ZERO-DELTA]` with no
 F, D, or R line appended after it — append-only makes this
 computable, and a re-lock's new entries void a stale closure (The
-attack). Units with disjoint write-sets run parallel. A missing
+attack). One declared exemption, verified by the same read:
+impl-phase bookkeeping whose line body opens `impl-local:` does
+not void closure; a post-closure line without the marker does.
+Units with disjoint write-sets run parallel. A missing
 decision, file, or value is reported as a gap, never bridged —
 and triaged on arrival: a unit-local gap → the record gains the
-decision, that unit re-dispatches, siblings run on; a gap that
+decision (an `impl-local:` D-line), that unit re-dispatches,
+siblings run on; a gap that
 kills a locked premise voids the closure — stop the siblings
 resting on it, let the rest land, re-enter the loop ONCE with
 every return in hand. Model per
 `clippy.config/models` (`impl:` class) when present, else the
 operator corpus routing table; an unreadable models file halts
-the dispatch, the parse error recorded as a finding. Each unit
-commits green and its SHA is appended to the tracker — that is
-what makes resume reliable.
+the dispatch, the parse error recorded as an `impl-local:`
+finding. Each unit
+commits green; the desk appends its SHA as an `impl-local:`
+D-line — that is what makes resume reliable.
 
 ## Verify (forcing point 5)
 
@@ -328,9 +345,11 @@ against the tracker's requirement head as amended by its R-lines,
 and pastes the checks' own
 output; a launcher's exit status is not a verdict. The verify brief
 carries the tracker, the code, and the question — read-only tail,
-no executor cite, one named carve-out: executing the repo's
+no executor cite, one named carve-out stated in the brief AFTER
+the pasted tail and governing on conflict: executing the repo's
 checks writes their normal by-products (caches, build dirs) —
-still no commits, no tracker writes. Model per
+still no commits, no tracker writes. Attack briefs carry the
+same carve-out for their executed probes. Model per
 `clippy.config/models` (`verify:` class) when present, else the
 parent model; an unreadable models file halts the dispatch, the
 parse error recorded as a finding. Append the V-line (The record)
@@ -347,9 +366,11 @@ its evidence pointer; every open reconciliation; every R-line
 amendment (what shipped vs. the letter as asked); every
 [AUTO-ACCEPTED] entry; deviations and gaps; what was NOT
 verified; candidate lessons. Landed seals and their comparisons
-enter here (The attack). Status flips to COMPLETE once the close
-is appended and presented; FAILED (abandoned) takes the same
-close with its state named.
+enter here (The attack). Presented means delivered as the desk's
+final output; open reconciliations survive into COMPLETE,
+enumerated in the close. Status flips to COMPLETE once the close
+is appended and presented; FAILED (an operator-declared
+abandonment) takes the same close with its state named.
 
 ## Fire-born clauses (none at birth)
 

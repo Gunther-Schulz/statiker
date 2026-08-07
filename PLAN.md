@@ -38,16 +38,18 @@ stand guard over the otherwise free loop:
    reads it, not the conversation). What makes runs gradeable,
    resumable, and delegable ("opus works, fable grades from the
    tracker" is impossible without it).
-2. **One fresh-context attack on the locked design** by a context
+2. **[READY] = DISPATCHABLE.** The stop rule is a test, not a
+   feeling: the design is done when a decision-complete brief could
+   be written from it (dispatch skill §1's definition — cite it,
+   never restate). Design until you could brief it.
+3. **One fresh-context attack on the locked design** by a context
    that did not produce it; iterate ONLY if it bites. (Grounding:
    self-blindness did not improve with tier — same-day evidence of
    Fable duplicating a rule in the commit minting the
    anti-duplication rule; every vet today caught real defects.)
    This is what survives of the whole falsification apparatus.
-3. **[READY] = DISPATCHABLE.** The stop rule is a test, not a
-   feeling: the design is done when a decision-complete brief could
-   be written from it (dispatch skill §1's definition — cite it,
-   never restate). Design until you could brief it.
+   (Points 2 and 3 renumbered to the skill's document order,
+   0.2.22 — the attack follows the lock.)
 4. **Implementation makes no design decisions.** A surprise returns
    to the record (gaps surface, never bridge — dispatch/executor
    skills own the wording).
@@ -143,7 +145,7 @@ provenance.
    ready; NO GitHub remote until the operator says so.
 3. The draft gets **one fresh-context attack** before first use —
    the skill's own discipline applied to its own birth (attack per
-   forcing point 2; skill-craft review checklist as the reviewer's
+   forcing point 3; skill-craft review checklist as the reviewer's
    canon).
 4. Then trial on REAL dev work (never synthetic — standing operator
    methodology): natural first vehicles are control-arm arm B

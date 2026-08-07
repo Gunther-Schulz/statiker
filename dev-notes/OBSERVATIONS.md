@@ -2011,3 +2011,50 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   step, diff d6f2e16..HEAD) → dispositions → pin to 0.2.21 →
   cycle-10 desk line. Consumer: review-5 dispositions, pin move,
   fresh-desk start.
+
+- 2026-08-07 — **Opus review 5 RETURNED (5 parts: 3 blocking, 8
+  notable, 5 nits — reconciled exactly) → all dispositioned,
+  repairs landed as 0.2.22.** Blocking: B1 (gap-triage bookkeeping
+  voids the closure it must cite) FIXED with a declared exemption
+  the gate itself verifies — lines whose body opens `impl-local:`
+  (unit-local gap decisions, unit SHAs, the models-file finding)
+  do not void closure, an unmarked post-closure line does; B2
+  (filter species migration) — live-tracker check EXECUTED: zero
+  `## Superseded` sections in the trial tracker (desk ran 0.2.13,
+  pre-seal-landing) — FIXED cheaply anyway: legacy heading species
+  kept in the filter, labeled resumed-trackers-only; B3 (R-line
+  [PENDING] unwritable) FIXED: R template admits
+  [AMENDED|PENDING|INVALIDATED]. Notables: N1 ([PENDING] F-lines
+  at a substance-free return pass unswept into impl) FIXED — the
+  closing [ZERO-DELTA] is recordable only with no [PENDING] tag
+  riding the round's own appends; N2 (judgment findings had no
+  admissible tag) FIXED — a judgment finding's reach is the cited
+  record/design text, resting [VERIFIED]; N3 (freeze queue
+  pathless) FIXED — derivable `.A<n>.queue` path beside the seal
+  derivation, existing seal or no seal; N4 (tracker appender
+  unnamed) FIXED — the desk appends, units never touch the
+  tracker; N5 (verify carve-out vs pasted tail, order of
+  precedence unstated) FIXED — carve-out stated AFTER the tail,
+  governing on conflict, extended to attack briefs' probes
+  (reviewer quoted dispatch 0.3.3; verified materially identical
+  in installed 0.5.4: "No repo writes"); N6 (no Status exit from
+  [READY]) FIXED — Status returns to in-progress at the closing
+  [ZERO-DELTA]; N7 (renumbering broke PLAN.md's citations — MY
+  dependents-search miss, the corpus convention skipped) FIXED —
+  PLAN.md points 2/3 swapped with a dated note, :146 recited;
+  dev-notes hits are historical append-only entries, left; N8
+  (filter species never produced) FIXED — return processing now
+  instructs the quoted-block form. Nits: n2 FIXED (rationale names
+  the literal greps; bracketed tag literals banned from bodies —
+  the unanchored-count double-count); n3 FIXED (Mode fixed for
+  the run; presented = the desk's final output; open
+  reconciliations survive into COMPLETE enumerated); n4 FIXED
+  (unit SHAs are impl-local D-lines — classed, closure-exempt);
+  n5 FIXED (FAILED = operator-declared abandonment); n1 (size,
+  336→357) ACCEPTED again — stabilization compression owns it,
+  now with four accrued acceptances as its trigger weight.
+  Review-5 meta: reviewer verified against the REAL stats reader
+  and dispatch tails again; the finding profile keeps shifting to
+  the seams of the newest edit — standing-step value holding.
+  NEXT: review 6 (0.2.22 diff), dispositions, PIN MOVE, cycle-10
+  desk line. Consumer: review-6 dispositions, pin move.
