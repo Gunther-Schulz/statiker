@@ -3300,3 +3300,60 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   conservation entry first; evidence bundle at
   ~/.local/share/cache-fix/attribution-2026-08-07/". Consumer: the
   operator's ops-session brief + the successor meta session.
+
+- 2026-08-07 — **Attack 9 RETURNED (9 parts; 3B/5N/3NIT + 2
+  judgment-class; probe obligations honored, closing lists named,
+  zero repo writes). NO PIN MOVE. TREND READ, and it INDICTS THE
+  FORM: B-count rose (5→3→2→3) and ALL THREE blockers sit inside
+  the 0.2.38 repairs themselves — B1: the -z repair closed
+  C-quoting and left the DECODING sibling (errors="replace" vs
+  argv's surrogateescape; false extras at both seams PLUS an
+  unbreakable drop-handshake deadlock: acked and live drop
+  spellings can never match); B2: the closure disarm is ORDER-only,
+  so a later same-id line repairing nothing converts CLOSURE_VOID
+  to UNIT_DISPATCHABLE (attack-8 B2 reachable through its own
+  repair); B3: the malformed-shape detector reaches only breaks
+  still matching ENTRY_HEAD_RE — a missing/leading space makes a
+  premise-kill invisible with no violation at all. N1 refutes the
+  reworked contract instrument's stated reach (4 planted escapes
+  green, 3 of them ordinary-refactor shapes: keyword-arg emits,
+  conduit-named locals, hand-rolled emit, non-_verdict factory).
+  N2/N3: the path-grammar repair's class at the sites it did not
+  reach (cwd-anchored repo resolution — sweep passes while filter
+  mislabels the same tracker; --out vs --tracker grammars differ
+  in one invocation; resolve() follows symlinks = silent write-set
+  substitution in verdicts booked verbatim + a tracked outward
+  symlink no unit can start on). N4: legacy Superseded SECTIONS
+  drop ENTRIES from the attack artifact against SKILL.md's own
+  never-filter sentence (live money-path finding invisible to
+  attackers, visible to gates). N5: killerless-dead predicate
+  over-fires on prose "dead" — the guard-fires-on-legitimate-work
+  shape, rewording the only escape. NITs: splitlines() unicode
+  drift; nested-repo artifact leak; INTERNAL_ERROR where
+  USAGE_ERROR routes. Judgment: COMMIT-seam parenthetical reads as
+  closed enumeration; Close-pin HALT_STATE = delivered record
+  permanently unpinned on operator rebase at close. CLEAN list
+  notable: -z holds for all UTF-8 shapes; ARTIFACT_IN_REPO held
+  4 bypass forms; staged-rename drop machinery held. THE FORM
+  CALL (corpus trend rule: corrections concentrating in the
+  newest round's own changes indict the repair shape): point
+  repairs to interlocked boundary semantics mint siblings — the
+  attack-5 precedent (coherent region rewrite on operator GO) is
+  the recorded response. RECOMMENDATION carried to operator:
+  definition-first coherent repairs — (1) ONE shared path-grammar
+  function (fsdecode, normpath containment without symlink
+  following, tracker-anchored repo resolution) consumed by BOTH
+  tools; (2) closure-soundness rework as one region (blocking
+  set, disarm-requires-reassertion, entry-shape reach; the
+  attacker's tag-literal-in-body promotion carries its own
+  defang-ordering caveat, direction not design); (3) contract
+  test moves to the emit contract itself (drive error paths, grep
+  actual verdict lines). Mechanical subset routes through the
+  PRE-REGISTERED dispositions-as-brief experiment (trigger met:
+  ≥3 mechanical dispositions). ALSO BOOKED (queued at the round's
+  return per freeze discipline): mid-round meta-repo commit slip —
+  cd6b9cd landed in dev-notes while the attacker was live; the six
+  attack-surface files were untouched so the round stands, but the
+  meta session now mirrors the desk's queue rule: no statiker
+  commits while an attacker is live. Consumer: the operator's
+  form-GO + the repair lap + the successor meta session.**
