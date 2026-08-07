@@ -87,7 +87,7 @@ old line; the stats reader counts only tag-first lines.
 
 - findings: `- F<n> [VERIFIED|PENDING|INVALIDATED|AUTO-ACCEPTED]
   <claim> — basis:
-  <file:line / executed command / "unverified">`
+  <file:line / executed command / entry id / "unverified">`
 - decisions: `- D<n> [PENDING|COMMITTED|INVALIDATED|AUTO-ACCEPTED]
   <decision> — basis: <…>`
 - requirement amendments: `- R<n>
@@ -129,13 +129,13 @@ included: a late report is evidence, not noise, and "it never
 returned" is a transcript claim checked in the transcript (a round
 was staged over a design whose refutation sat in two unread
 returns). The [READY] sweep's no-[PENDING] gate holds unread legs
-open mechanically. An unreturnable leg — stopped per the
-harness's task state or BY the desk at its horizon (dispatch
-skill §4: inspect or stop, never more waiting), any partial
-output already body-read per the transcript check above,
-never from memory — resolves on that evidence where it
-suffices (the entry takes the evidence's tag); the
-still-unresolved remainder gets a new [AUTO-ACCEPTED]
+open mechanically. An unreturnable leg — stopped per
+the harness's task state or BY the desk at its horizon
+(dispatch skill §4: inspect or stop, never more waiting),
+with NO return to read (the transcript check above, never
+memory) or still [PENDING] after its return's body-read (a
+read that resolves takes the evidence's tag, the ordinary
+rule above) — gets ONE new [AUTO-ACCEPTED]
 tag-first line as a deliberate carry
 with the
 loss stated — the sweep and the closing [ZERO-DELTA]'s
@@ -211,21 +211,42 @@ run. `Mode: auto` in the header (operator-declared at run start,
 fixed for the run) forces the unattended branch throughout: no
 prompts, every
 recommendation advances on record, reconciliations surface only
-in the close. Advancing locks the design: commit the tracker
-plus exactly the files the run's own recorded work has
-MODIFIED — edits the
-record attributes to this run; a commissioned target not yet
-edited is not in the set — by targeted `git add` and a
-pathspec commit (`git commit -- <paths>`, immune to a
-pre-staged index), never `-A`. Tracked modifications the
-record does not attribute to the run and untracked files are
-operator state, left uncommitted; a commissioned target
-carrying such modifications is a collision surfaced to the
-operator, never staged through. Read the commit back
-(`git show --stat`) against the intended set before its sha
-is pinned. A brief that asserts the tree claim (The attack)
-names any tracked surface the claim cannot then cover as an
-exclusion — the attacker reads an excluded path as outside
+in the close. Advancing locks the design: commit the
+TRACKER — targeted `git add` and a pathspec commit
+(`git commit -- <paths>`, immune to a pre-staged index),
+never `-A`. The design phase edits no other repo file, so the
+tracker is normally the whole pathspec; anything else enters
+ONLY named by a lock-set line appended before the lock
+(`- F<n> [VERIFIED] lock-set: <path> — basis: <the entry that
+produced it>`), and the pathspec IS the tracker plus those
+named paths, minus any path `git add` refuses as ignored (it
+stays out, never a `-f`; the refusal appended as a
+contradiction of its lock-set line — the nonzero exit still
+stages the other paths, expected, not a failed lock) — a
+pathspec commit takes
+WORKING-TREE content, so excluding a path means dropping it
+from the pathspec, never merely skipping its add. Desk
+scratch belongs in the desk's own scratchpad, never the repo
+(the attacker rule's counterpart, Verify). Operator state —
+everything else, including anything pre-staged (`git status`
+before the lock) — is untouched: never committed, never
+unstaged; operator modifications INSIDE a lock-set path are a
+COLLISION, recorded as an F-line before the lock commit (the
+pinned tracker carries it), the path dropped from the
+pathspec and its lock-set line contradicted like the ignored
+case, surfaced when the operator is present, riding the
+close's deviations unattended. Read the commit back
+(`git show --stat`) against the tracker plus the lock-set
+lines MINUS the dropped paths (each drop carries its
+contradiction line); a mismatch is fixed by a further
+corrected commit — the readback-clean commit's sha is the
+one pinned. A brief
+that asserts the tree claim (The
+attack's freeze scope, named there) names any tracked surface
+the claim cannot then cover as an
+exclusion (the dropped paths and operator-modified tracked
+paths above are that list's mechanical floor) — the attacker
+reads an excluded path as outside
 the frozen surface, evidence of nothing; a brief that never
 asserts it needs no exclusions. This is the LOCK COMMIT; its
 sha is what the attack brief pins, and the locked design IS
@@ -260,7 +281,8 @@ then the tracker's filename verbatim with `.md`) — existing
 whether or not a seal was
 written — and append at the round's return, before its A-line. The
 freeze's scope is every surface the brief claims immutable: a
-brief asserting the tree matches the lock commit freezes the whole
+brief asserting the tree matches the lock commit (the TREE
+CLAIM) freezes the whole
 repo, not only the record — the claim sets the scope, and keeping
 it true until the last attacker returns is desk work. The claim
 binds TRACKED state; untracked check by-products sit outside it
@@ -326,14 +348,15 @@ of the block begins `>`; a blank line is a BARE `>`, nothing
 after it (trailing whitespace may not survive target-repo
 hooks), and the block ends at the first line not beginning `>`.
 Bracketed tag
-literals in the pasted text are defanged (brackets dropped, the
-BARE names listed comma-separated after a semicolon — composed
-first line `> Superseded — A<n> quotes; <bare names>`, the
+literals in the pasted text are defanged (brackets dropped,
+the names LOWERCASED IN PLACE and listed, comma-separated
+after a
+semicolon — composed first line
+`> Superseded — A<n> quotes; <lowercase names>`, the
 semicolon and list absent when no literal occurs; the filter
-matches the label's opening form) so the stats
-reader's unanchored greps never count attacker prose — its
-literal greps carry the brackets (verified against its
-source), so a bare name matches nothing. Regraded
+matches the label's opening form) so the defanged
+forms differ from every counted tag literal in both brackets
+and case — outside any case-sensitive grep's reach. Regraded
 into F-lines in the same sitting. Any substance finding: the
 round records [BIT] — that record change IS the reopen. A
 substance-free
@@ -378,16 +401,31 @@ voids the whole closure
 (and a re-lock's new entries void a stale closure, The attack);
 a line whose body OPENS `unit U<k>` voids nothing — it RE-OPENS
 that unit's dispatch and travels in the re-dispatch brief as the
-amendment it consumes. A line whose body OPENS `record:` is
+amendment it consumes (live lines only: an id whose latest
+line is [INVALIDATED] travels as nothing). A line whose body
+OPENS `record:` is
 desk bookkeeping — it voids nothing and re-opens nothing, and
 it never invalidates an entry live at the closure (the
 definition: The attack's reopen rule): that takes the
 scopeless [INVALIDATED] route below. A clause restatement it
 obliges (The loop) takes the scope of what the clause IS:
 bookkeeping opens `record:`; a clause a unit consumes opens
-`unit U<k>` and re-opens that unit; one bearing wider on the
-design is SCOPELESS and voids. Units with disjoint
-write-sets run parallel. A missing
+`unit U<k>` and re-opens that unit — its current-check (The
+record's adoption path) runs before the re-dispatch brief
+consumes it, never inside the unit: pass → the passing line
+opens `unit U<k>` (the criterion's scope) and the amendment
+travels; fail → [INVALIDATED] under its own id, opening `unit
+U<k>` like the [PENDING] restatement line it resolves, the
+parent's clause disposition re-written by a new line — dead
+(<the check's failure>) — so no clause list points at a dead
+restatement, the re-dispatch proceeding without it
+and the unit's want surfacing as its gap; one bearing wider
+on the design is SCOPELESS and voids — the premise-killing
+consequence (stop the siblings resting on it, let the rest
+land, re-enter ONCE). Units with disjoint
+write-sets run parallel (one shared index — commits
+serialize, an index.lock contention is a retry, not a
+failure). A missing
 decision, file, or value is reported as a gap, never bridged —
 and triaged on arrival: a unit-local gap decision is a design
 decision made without an attack round, and it is recorded as
@@ -417,13 +455,27 @@ blank line — markdown otherwise folds it into the entry above) —
 not an entry, so
 invisible to the stats reader's tag-first count and the closure
 read by construction — that is what makes resume reliable.
+Unit briefs carry the lock's commit form AND its collision
+rule, detector and exit stated: targeted add + pathspec
+commit (a pre-staged index rides into a plain commit, and a
+pathspec commit takes working-tree content); the unit runs
+`git status` over its write-set at START, before any edit — a
+path already modified is a collision: the unit reports it and
+HALTS UNBUILT (no commit, no landing annotation); a clean
+start makes every later modification the unit's own, the
+pathspec the full write-set. The desk books the collision as
+an F-line opening `record:` (a collision decides nothing —
+voids nothing, re-opens nothing), never through the gap
+triage, and holds the unit: re-dispatched only after the path
+clears, surfaced when the operator is present, riding the
+close's deviations unattended.
 
 ## Verify (forcing point 5)
 
 Executed, isolated, against the recorded requirement; Phase flips
 to verify at dispatch — a dispatch made only with no entry's
-latest line [PENDING] (the [READY] sweep's condition, re-read
-at this seam). A fresh
+latest line [PENDING] (the [READY] sweep's no-[PENDING] condition,
+re-read at this seam). A fresh
 context that did not build the work runs the real checks — tests,
 probes, renders, at the altitude where the work takes effect —
 against the tracker's requirement head as amended by its R-lines,

@@ -2463,3 +2463,69 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   it free. Trigger for this half: first fire of a tag/scope
   spelling defect, or the stabilization pass, whichever first.
   Consumer: the stabilization pass + the next release lap.
+
+- 2026-08-07 — **Draft-attack laps 1-3 (method switch, operator GO)
+  + attack-3 dispositions; DRAFT COMMITTED UNRELEASED — session
+  close, successor finishes the lap.** Method: repairs drafted in
+  the working tree, fresh-opus attack on the UNCOMMITTED diff
+  (vs e4727a8), iterate; release only on a no-blocker round.
+  Yield: attack-1 2B/7N/3NIT, attack-2 1B/5N/2NIT (its verdict
+  line said 4N — body governs), attack-3 2B/5N/6NIT — five
+  blockers caught pre-release that the old release-first flow
+  would have shipped; the method PAYS. Convergence not yet
+  reached; per operator instruction (cache-bust economy) no
+  fourth attack this session. Attack-3 dispositions, all
+  applied in the committed draft: B1 (unit-collision F-line was
+  the one post-closure form left unscoped → voided the closure
+  it declared harmless) — FIXED, opens `record:`. B2 (collision
+  detector ran AFTER the unit's edits, when `git status` cannot
+  separate authorship; empty-pathspec commit exits 1 with no
+  commit; deliverable silently lost) — FIXED: detector at unit
+  START before any edit; a dirty write-set path halts the unit
+  UNBUILT (no commit, no landing), desk books the `record:`
+  F-line and holds the unit until the path clears. N1 (readback
+  mismatch on legitimately dropped paths invited "fix" =
+  committing operator state) — FIXED: collision drop carries a
+  contradiction line like the ignored case; readback compares
+  MINUS dropped paths; mismatch fixed by a further corrected
+  commit, the readback-clean sha pinned (also N5). N2 (dead
+  amendment traveled: criterion's "travels as the amendment"
+  unqualified) — FIXED: live lines only. N3 (failed restatement
+  orphaned the parent's clause list) — FIXED: parent clause
+  re-dispositioned dead (<check failure>) by a new line. N4
+  (drop set never fed the tree claim's exclusion list) — FIXED:
+  named as the list's mechanical floor. NITs: basis grammar
+  admits entry id; ignored-path add's nonzero-exit semantics
+  stated; defang lowercased IN PLACE; [READY] sweep referent
+  restored; parallel units' index.lock contention = retry;
+  frontmatter ordering DECLINED — does not reproduce (line 3
+  orders stop-rule before attack, matching sections).
+  Count: 528 operational lines. PIN AT 0.2.13; the draft
+  carries version 0.2.29 UNPINNED (the release hook's
+  version-compare guard rightly refused an unbumped payload
+  commit; per the project rule the PIN is the release, so the
+  bump commits and the seam stays closed). SUCCESSOR'S ORDERED
+  DUTIES: (1) dispatch
+  draft attack 4 (same brief form, read-only opus, diff
+  e4727a8..HEAD SKILL.md-only in context of full file), repair
+  if bitten and iterate (each repair lap bumps again — the
+  guard enforces it); (2) on a no-blocker round: move the pin
+  to the current version (`claude plugin
+  update statiker@statiker`, verify the cache listing serves
+  it), confirm from a fresh injection if in doubt; (3) issue
+  the cycle-10 fresh-desk line: fresh desk in beat-the-books,
+  resume from tracker, version gate = the PINNED version read
+  from the Skill
+  injection's base-directory line, cycle-10 work from C58
+  (F102/F103 first), R5 amendment recorded as the run's first
+  R-line citing D52/F18/F41/D45a + operator ratification from
+  the earlier relay. OTHER OPEN BOOKINGS (lift-sweep run):
+  skill-lint generic half ready in skill-craft BACKLOG
+  (f25a748), statiker-local half here on its trigger;
+  compression pass at stabilization — case fattened by this
+  run (404→528 lines across the repair laps, blocker sites all
+  in most-patched passages); review cadence record 4→6→3→2→2→
+  4→2→2→1→1 then draft-attacks 2/1/2; proxy cache-fix gate RED
+  (s-ddd9fd7d, conservation 2) remains the operator's dotfiles
+  queue, not statiker's. Consumer: successor meta session,
+  duties above.
