@@ -103,6 +103,10 @@ HEADING_RE = re.compile(r"^#{1,6} ")
 CLAUSE_RE = re.compile(
     r"\bclause (\w+)\s+(dead\s*\([^)]*\)|restated-at-[^\s;,]+|dead\b)")
 CLAUSE_TOKEN_RE = re.compile(r"\bclause (\w+)\b")
+# the repair token, matched by NUMBER: 0.2.43 tested it as a substring
+# (`"corrects line 12" in "…corrects line 123…"` is True), so a token
+# naming one line cleared a violation on another.
+CORRECTS_RE = re.compile(r"corrects line (\d+)")
 
 
 @dataclass
@@ -179,6 +183,7 @@ def parse_tracker(text: str):
     """Return (entries, violations, meta). Violations are lint-grade
     dicts {code, line, text}."""
     entries, violations = [], []
+    line_ids = {}          # lineno -> the id the line NAMES, parsed or not
     lines = split_lines(text)
 
     status_line = phase_line = None
@@ -231,12 +236,18 @@ def parse_tracker(text: str):
             near = NEAR_MISS_RE.match(line)
             if near:
                 viol("entry-near-miss", i, line)
+                # an entry-INTENDED line names an id even when nothing
+                # parses: the repair token is addressed at THIS line,
+                # and its author's id is what the token must match
+                line_ids[i] = f"{near.group(1).upper()}{near.group(2)}"
             continue
         m = ENTRY_RE.match(line)
         if not m:
             viol("entry-form", i, line)
+            line_ids[i] = f"{head.group(1)}{head.group(2)}"
             continue
         cls, num, tag, body = m.groups()
+        line_ids[i] = f"{cls}{num}"
         if tag not in CLASS_TAGS[cls]:
             # the FULL line, never a summary (attack-10 B1): a blocking
             # violation's text is the line the desk repairs, and the
@@ -272,7 +283,56 @@ def parse_tracker(text: str):
         if TAG_LITERAL_RE.search(scan):
             viol("tag-literal-in-body", i, line)
 
+    entries, violations = apply_supersession(entries, violations, line_ids)
     return entries, violations, {"status": status_val, "phase": phase_val}
+
+
+def _corrects_nothing_reason(n, e, violated, line_ids):
+    if n >= e.lineno:
+        return ("its own line" if n == e.lineno else f"line {n}, "
+                "which comes later — a repair names a line already "
+                "written")
+    if n not in line_ids:
+        return f"line {n}, which names no entry"
+    if line_ids[n] != e.id:
+        return f"line {n}, which belongs to {line_ids[n]}, not {e.id}"
+    return f"line {n}, which carries no violation to repair"
+
+
+def apply_supersession(entries, violations, line_ids):
+    """A line named by a LATER same-id entry's `corrects line <n>`
+    token is SUPERSEDED WHOLE (SKILL.md, Implementation): its entry —
+    where it parsed — and its violations both leave the record every
+    gate computes, and the correcting line carries the content. A
+    corrected line that kept parsing voided the closure its own repair
+    had unlocked, and its violations held the sweep forever (GAP-1,
+    settled 0.2.44).
+
+    Supersession reaches only lines that CARRY a violation: naming a
+    clean line, a line under another id, a later line, or its own
+    lints `corrects-nothing` — the token is a repair, never an eraser
+    of live entries, and a premise-kill is a clean line.
+
+    One pass over the ORIGINAL entry set, so a token is read whether
+    or not the line carrying it is itself superseded — the alternative
+    is an exclusion that undoes its own cause, order-dependently."""
+    violated = {v["line"] for v in violations}
+    superseded, complaints = set(), []
+    for e in entries:
+        for m in CORRECTS_RE.finditer(e.body):
+            n = int(m.group(1))
+            if (n < e.lineno and n in violated
+                    and line_ids.get(n) == e.id):
+                superseded.add(n)
+            else:
+                complaints.append(
+                    {"code": "corrects-nothing", "line": e.lineno,
+                     "text": f"{e.id}: `corrects line {n}` names "
+                             + _corrects_nothing_reason(n, e, violated,
+                                                        line_ids)})
+    return ([e for e in entries if e.lineno not in superseded],
+            [v for v in violations if v["line"] not in superseded]
+            + complaints)
 
 
 def git_toplevel(cwd):
@@ -460,36 +520,18 @@ CLOSURE_BLOCKING_CODES = ("entry-form", "tag-enum", "entry-near-miss",
                           "scope-near-miss", "hold-form")
 
 
-def closure_blocking_violations(entries, violations):
+def closure_blocking_violations(violations):
     """The parse violations the closure may not read past: a line that
     LOOKS like an entry but failed the grammar is invisible to every
     predicate below — one dropped bracket turned a reopened design
-    into a green light (attack-8 B2). Append-only means the malformed
-    line never leaves the file, so a violation is DISARMED only by the
-    LINE-ADDRESSED repair SKILL.md prescribes: a later clean entry
-    under the same id whose body carries the literal token
-    `corrects line <n>`, `<n>` the violation's own line number.
+    into a green light (attack-8 B2).
 
-    The tag-match disarm this replaces was both brickable and
-    forgeable (attack-10 B1/B2): a misspelled tag extracted nothing,
-    so no re-assertion could ever disarm it, and any later unrelated
-    same-id/same-tag line converted a premise-kill VOID into a
-    dispatch. The explicit reference is what carries the malformed
-    line's content into the entry set the closure reads."""
-    armed = []
-    for v in violations:
-        if v["code"] not in CLOSURE_BLOCKING_CODES:
-            continue
-        head = (ENTRY_HEAD_RE.match(v["text"])
-                or NEAR_MISS_RE.match(v["text"]))
-        vid = (f"{head.group(1).upper()}{head.group(2)}" if head else next(
-            (e.id for e in entries if e.lineno == v["line"]), None))
-        token = f"corrects line {v['line']}"
-        if vid and any(e.id == vid and e.lineno > v["line"]
-                       and token in e.body for e in entries):
-            continue
-        armed.append(v)
-    return armed
+    The corrects-line disarm no longer lives here. A corrected line is
+    SUPERSEDED at the parse layer (apply_supersession) — entry and
+    violations together — so every gate inherits ONE exclusion and
+    this is a plain filter. The tag-match disarm it replaced was both
+    brickable and forgeable (attack-10 B1/B2)."""
+    return [v for v in violations if v["code"] in CLOSURE_BLOCKING_CODES]
 
 
 def cmd_closure(args):
@@ -499,7 +541,7 @@ def cmd_closure(args):
         finish("USAGE_ERROR", 3,
                error=f"--unit must match U<k>, got {args.unit!r}")
     entries, violations, _ = parse_tracker(load(args.tracker))
-    blocking = closure_blocking_violations(entries, violations)
+    blocking = closure_blocking_violations(violations)
     if blocking:
         for v in blocking:
             say(f"closure blocked: {v['code']} @ line {v['line']}: "

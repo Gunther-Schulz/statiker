@@ -1071,23 +1071,18 @@ class TestAttack10ScopeNearMiss(RecordFixture):
                       "- D9 [AUTO-ACCEPTED] unit U10 held: x.txt — basis: y\n")
         self.assertEqual(v["verdict"], "LINT_CLEAN")
 
-    def test_scope_variant_repair_lifts_the_blocking_gate(self):
-        # the corrects-line disarm reaches this class too: the
-        # blocking verdict lifts (else this would still read
-        # CLOSURE_RECORD_MALFORMED). The line the repair corrects is
-        # still an ENTRY, and still reads as scopeless, so the closure
-        # then voids on it — pinned as observed. Whether a
-        # corrects-line repair should also EXCLUDE the line it
-        # corrects from the entry set is a design question the 0.2.43
-        # dispositions do not settle (surfaced to the dispatcher).
+    def test_scope_variant_repair_supersedes_the_corrected_line(self):
+        # 0.2.44 settles what 0.2.43 left open (GAP-1): the corrected
+        # line is SUPERSEDED WHOLE, so it no longer reads as a
+        # scopeless post-closure line and no longer voids the closure
+        # its own repair had just unlocked.
         bad = "- D5 [COMMITTED] Record: bookkeeping — basis: probe\n"
         n = self.lineno_of(CLOSED + bad, "Record:")
         body = (CLOSED + bad +
                 f"- D5 [COMMITTED] record: bookkeeping (corrects line "
                 f"{n}) — basis: probe\n")
         v = self.closure(body, unit="U1")
-        self.assertEqual(v["verdict"], "CLOSURE_VOID")
-        self.assertIn("Record:", v["scopeless"][0]["line"])
+        self.assertEqual(v["verdict"], "UNIT_DISPATCHABLE")
 
 
 class TestAttack10HoldForm(RecordFixture):
@@ -1385,6 +1380,113 @@ class TestAttack10FilterAndTrackerRouting(RecordFixture):
         self.assertNotIn("old landing prose", text)
         self.assertNotIn("legacy section", text)
         self.assertEqual(v["sections_dropped"], 1)
+
+
+class TestCorrectedLineSupersession(RecordFixture):
+    """0.2.44's settled GAP-1 contract (SKILL.md, Implementation): a
+    line named by a later same-id entry's `corrects line <n>` token is
+    SUPERSEDED WHOLE — "every gate excludes it, its entry, where it
+    parsed, and its violations both, and the correcting line carries
+    the content". Supersession reaches only lines that CARRY a
+    violation: a token naming a clean line lints `corrects-nothing` —
+    "the token is a repair, never an eraser of live entries"."""
+
+    def corrected(self, bad, fixed_body, needle):
+        """bad + a later same-id line correcting it by line number."""
+        n = self.lineno_of(CLOSED + bad, needle)
+        return CLOSED + bad + fixed_body.format(n=n)
+
+    # -- the violations leave with the entry ---------------------------
+
+    def test_corrected_tag_enum_line_stops_holding_the_sweep(self):
+        # the sweep-forever case: the corrected line's OWN violation
+        # held the record out of [READY] for the run's whole life,
+        # with no append able to clear it
+        body = self.corrected(
+            "- D2 [COMMITED] unit U1 the letter lands — basis: probe\n",
+            "- D2 [COMMITTED] unit U1 the letter lands (corrects line "
+            "{n}) — basis: probe\n",
+            "[COMMITED]")
+        self.assertEqual(self.sweep(body)["verdict"], "SWEEP_CLEAN")
+        self.assertEqual(self.lint(body)["verdict"], "LINT_CLEAN")
+
+    def test_corrected_line_leaves_the_entry_set(self):
+        # the entry half: the superseded line is not the latest line
+        # for its id, does not travel as an amendment, and cannot
+        # classify as anything
+        body = self.corrected(
+            "- D5 [COMMITTED] Record: bookkeeping — basis: probe\n",
+            "- D5 [COMMITTED] record: bookkeeping (corrects line {n}) "
+            "— basis: probe\n",
+            "Record:")
+        v = self.closure(body, unit="U1")
+        self.assertEqual(v["verdict"], "UNIT_DISPATCHABLE")
+        self.assertEqual(v["amendments"], [],
+                         "a record-scoped line travelled as an amendment")
+
+    def test_superseded_hold_no_longer_holds_its_unit(self):
+        # holds inherit the exclusion too (the gate list in the brief)
+        body = self.corrected(
+            "- D9 [AUTO-ACCEPTED] unit U2 HELD: x.txt — basis: F9\n",
+            "- D9 [COMMITTED] unit U2 operator cleared x.txt (corrects "
+            "line {n}) — basis: reply\n",
+            "HELD:")
+        self.assertEqual(self.closure(body, unit="U2")["verdict"],
+                         "UNIT_DISPATCHABLE")
+
+    # -- the violation precondition ------------------------------------
+
+    def test_token_naming_a_clean_live_entry_erases_nothing(self):
+        # the abuse the precondition exists for: a premise-kill is a
+        # CLEAN line, and a repair token must not be able to delete it
+        kill = "- D1 [INVALIDATED] the premise died — basis: F9\n"
+        n = self.lineno_of(CLOSED + kill, "the premise died")
+        body = (CLOSED + kill +
+                f"- D1 [COMMITTED] unit U1 never mind (corrects line "
+                f"{n}) — basis: y\n")
+        v = self.closure(body, unit="U1")
+        self.assertEqual(v["verdict"], "CLOSURE_VOID",
+                         "a repair token erased a live premise-kill")
+        self.assertIn("corrects-nothing",
+                      self.violation_codes(self.lint(body)))
+
+    def test_token_naming_its_own_line_lints(self):
+        body = CLOSED + ("- D5 [COMMITTED] record: a note (corrects line "
+                         f"{self.lineno_of(CLOSED + 'x', 'x')}) "
+                         "— basis: y\n")
+        self.assertIn("corrects-nothing", self.violation_codes(self.lint(body)))
+
+    def test_token_naming_a_later_line_lints(self):
+        body = CLOSED + ("- D5 [COMMITTED] record: a note (corrects line "
+                         "999) — basis: y\n")
+        v = self.lint(body)
+        self.assertEqual(v["verdict"], "LINT_VIOLATIONS")
+        self.assertIn("corrects-nothing", self.violation_codes(v))
+
+    def test_token_naming_another_ids_line_lints_and_supersedes_nothing(self):
+        # same-id is the contract's own word; a cross-id token repairs
+        # nothing and must say so rather than sitting silent
+        bad = "- D2 [COMMITED] unit U1 the letter lands — basis: probe\n"
+        n = self.lineno_of(CLOSED + bad, "[COMMITED]")
+        body = (CLOSED + bad +
+                f"- F7 [VERIFIED] record: unrelated (corrects line {n}) "
+                f"— basis: y\n")
+        v = self.closure(body, unit="U1")
+        self.assertEqual(v["verdict"], "CLOSURE_RECORD_MALFORMED")
+        self.assertIn("corrects-nothing", self.violation_codes(self.lint(body)))
+
+    def test_token_is_matched_by_number_not_by_substring(self):
+        # `"corrects line 12" in "…corrects line 123…"` is TRUE — the
+        # 0.2.43 substring disarm cleared a violation at line 12 on a
+        # token that named line 123 and nothing else
+        bad = "- D2 [COMMITED] unit U1 the letter lands — basis: probe\n"
+        self.assertEqual(self.lineno_of(CLOSED + bad, "[COMMITED]"), 12)
+        body = (CLOSED + bad +
+                "- D2 [COMMITTED] unit U1 the letter lands (corrects "
+                "line 123) — basis: probe\n")
+        v = self.closure(body, unit="U1")
+        self.assertEqual(v["verdict"], "CLOSURE_RECORD_MALFORMED",
+                         "a token naming line 123 disarmed line 12")
 
 
 # ---------------------------------------------------- pure-function checks
