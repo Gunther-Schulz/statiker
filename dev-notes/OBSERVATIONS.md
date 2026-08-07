@@ -2104,3 +2104,11 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   diff — if bloc-free, PIN MOVES to 0.2.23, cycle-10 desk line
   goes out (R5 amendment as its first R-line). Consumer: review-7
   dispositions, pin move, fresh-desk start.
+
+- 2026-08-07 — **Operator instruction (session closing tonight):
+  if review 7 returns a repair round, LAND the fixes (0.2.24) but
+  dispatch NO further review tonight — review 8 (pre-pin, standing
+  step) is BOOKED as the successor meta session's first duty. The
+  pin does not move until that review's dispositions clear; the
+  cycle-10 desk line follows the pin. Consumer: successor meta
+  session.
