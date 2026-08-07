@@ -1857,3 +1857,39 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   each operator prompt and at the run's close until answered
   (prevents the recommendation-advance from riding a single
   scrolled-past mid-run message).
+
+- 2026-08-07 — **BOOKED (operator-raised): (y)-cadence decision at
+  stabilization; anti-rush question resolved in design terms.**
+  Operator position on record: frictionless-first for this
+  operator — (y)s get rubber-stamped without close reading
+  ("transient details"), cost gating is not the concern, trust
+  must come from the run's own machinery; prompts earn their cost
+  only where operator-only knowledge is at stake (intent
+  conflicts). Analysis: a gate always passed unread is a check
+  firing on non-defects — it trains the y-reflex that will one
+  day blow through the single gate that matters (corpus:
+  override-reflex class), so cutting unread gates RAISES safety.
+  Decision shape for stabilization: operator prompts reduce to
+  (a) reconciliations and (b) at most ONE loop-control gate,
+  candidate seam zero-delta→implementation rather than every
+  lock; measurable from trial trackers: count of non-bare-y
+  responses across all (y) prompts (round-7's go was a bare y;
+  full count at run grading). CLIPPY ANTI-RUSH OBSERVATION
+  (operator: interactive (y)s seemed to keep opus from rushing;
+  possibly imaginary): assessed REAL-BY-MECHANISM — clippy's (y)
+  bundled two functions: oversight (droppable) and a momentum
+  brake forcing the desk to STOP and serialize a coherent
+  record + recommendation before advancing (load-bearing; the
+  composition is the forcing function, not the keystroke). Clippy
+  had no other brake — same-session cycles, no fresh-context
+  seam — so its (y) was its only momentum breaker; statiker
+  carries structural brakes that are operator-independent (the
+  [READY] sweep, the presentation composed and RECORDED
+  regardless of attendance, and the attack dispatch itself — a
+  hard turn boundary into a fresh context). Dropping
+  keystroke-waits therefore does not drop the anti-rush function.
+  FALSIFIER, pre-registered: if unattended stretches show
+  rush-class defects (skim-and-build shapes) that attended
+  stretches don't, the pause itself carried value beyond the
+  composition — revisit at run grading. Consumer: stabilization
+  pass + run grading.
