@@ -88,6 +88,17 @@
   resolved only when the trace showed R5's strong form was an
   earlier session's preliminary fix-shape sentence, not operator
   intent.
+- **Verification laps run on the final form (operator-settled
+  2026-08-07).** Attack and review rounds price per-round; a change
+  already DECIDED but not yet built makes the round's object
+  stale — the lap grades text slated for replacement. Batch decided
+  changes to the seam and attack once. Bounds: per-change
+  attribution stays with each change's own red-first checks (the
+  corpus anti-bundling rule binds diagnosis, not verification), and
+  an intermediate state with a real consumer (a fresh desk starting
+  mid-sequence) still releases at its own seam. Provenance: the
+  0.2.32→record-tool sequencing correction — the desk recommended
+  attack-first, the operator's economy argument won.
 - **Desk interrogation is cheap — ask when it informs the skill.**
   Diagnostic questions relayed to the running desk (which rule
   routed a conduct call — quote it or say "improvised"; what a
