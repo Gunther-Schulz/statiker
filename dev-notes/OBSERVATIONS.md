@@ -2245,3 +2245,53 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   (standing step, same form); PIN STILL AT 0.2.13 — moves only
   on a cleared review. Consumer: review-9 dispositions + the
   pin move + cycle-10 fresh-desk line.
+
+- 2026-08-07 — **Opus review 9 (0.2.25 diff, standing step) — 2
+  BLOCKING, 3 NOTABLE, 6 NIT; all dispositioned, repairs released
+  as 0.2.26 (pin still held).** Both blockers in 0.2.25's own new
+  text, sustaining the pattern (cadence now 4→6→3→2→2→4→2). B1
+  (mid-impl desk repair had no legal recording route: the ordering
+  argument replaced the old exemption but delegated the mid-impl
+  case to a gap triage keyed to unit reports — a desk-originated
+  repair has no unit; all three literal exits bad) — FIXED with a
+  third scope form: body opening `record:` is desk bookkeeping,
+  voids nothing, re-opens nothing, and never invalidates an entry
+  the closure rests on (that takes the scopeless [INVALIDATED]
+  route). B2 (the pre-existence record — sole guard on the
+  skill's only file-DELETING instruction — lived only in the
+  brief/transcript; a successor desk resuming from the tracker
+  either skips removal or deletes pre-existing operator state;
+  plus declared-but-never-produced paths deleted on prediction) —
+  FIXED: declaration + per-path pre-existence written to the seal
+  namespace (`….<round>.paths`, derivable like seal and queue);
+  removal takes only declared paths recorded ABSENT that now
+  exist; pre-existing/undeclared/uncertain are LEFT (fail-open on
+  the destructive act, leftover = finding). N1 ("task system"
+  undefined; the new conjunction deadlocked [READY] on a hung
+  leg) — FIXED: harness's task state, or stopped BY the desk at
+  horizon (dispatch skill §4) — the escape is now named. N2
+  (premise-killing invalidation DESCRIBED as scopeless, not
+  COMMISSIONED — a natural body opening "unit U2 gap…" voids
+  nothing, silent corruption) — FIXED: SCOPELESS commissioned,
+  body never opens `unit U<k>` or `record:`; discriminator
+  re-anchored to "entry live at the closure" (also closes NIT4's
+  post-lock-entry exclusion). N3 (pre-existing by-products now
+  survive into the lock commit, whose "any changed tree" a
+  literalist reads as `git add -A`) — FIXED: lock commit is
+  targeted `git add`, never `-A`, carve-out by-products and
+  operator state named out. NIT1 composed defang first line named
+  (`> Superseded — A<n> quotes; <bare names>`); NIT2 "round's
+  return" → "the return"; NIT3 pre-A-line order stated (queued
+  appends → record repairs → removal → outcome line); NIT4 folded
+  into N2's fix; NIT6 wraps repaired (only the unbreakable path
+  literal exceeds 72). NIT5 DECLINED: the ## Close marker is
+  defined in the skill text every resuming desk loads, and resume
+  is a tracker body-read by instruction — a second pointer at the
+  resume line is duplication (one meaning, one home); revisit on
+  fire. Reviewer verified two external citations against the real
+  artifacts (read-only tail forms.md:148-149; clippy-stats greps
+  bracketed-literal — bare defang names genuinely safe). Count:
+  441 operational lines (+19, fire-born repair). Review 10
+  dispatched on the 0.2.26 diff (standing step); PIN STILL AT
+  0.2.13. Consumer: review-10 dispositions + the pin move + the
+  cycle-10 fresh-desk line.
