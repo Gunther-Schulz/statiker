@@ -3432,3 +3432,13 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   pending), no-blocker → pin move to 0.2.41 + cycle-10 line.
   Consumer: attack-10 dispatch + the experiment's final grade +
   the successor meta session.
+
+- 2026-08-07 — **STANDING GO granted (operator): attack rounds and
+  their repair laps run without per-dispatch confirmation for this
+  session's loop — attack-10 onward, iterate to no-blocker, then
+  pin move + cycle-10 line, all under the one GO. The trial
+  convention's per-dispatch confirmation (repo CLAUDE.md, narrowed
+  2026-08-06) is operator-overridden for this loop; the convention
+  text itself stands for future sessions until its stabilization
+  revisit. Consumer: this session's loop + the successor meta
+  session.**
