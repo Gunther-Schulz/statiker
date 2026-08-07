@@ -432,6 +432,15 @@ class TestAttack7Findings(RecordFixture):
                              + filler + "Phase: verify\n\n")
         self.assertIn("admission-window", self.violation_codes(v))
 
+    def test_void_a_line_lints_clean_and_gates_closure(self):
+        # 0.2.37 hypothesis mint: [VOID] is a legal A-tag (aborted or
+        # premise-broken round); a voided last round is no closure
+        v = self.lint("- A1 [VOID] premise: wrong sha pinned — basis: brief\n")
+        self.assertEqual(v["verdict"], "LINT_CLEAN")
+        v2 = self.closure("- A1 [DISPATCHED] round 1 — basis: brief\n"
+                          "- A1 [VOID] abort: killed by F9 — basis: F9\n")
+        self.assertEqual(v2["verdict"], "CLOSURE_ABSENT")
+
     def test_landing_annotation_needs_blank_line_before(self):
         # attack-7 NIT2: the blank-line half of the landing rule is as
         # computable as the indent half

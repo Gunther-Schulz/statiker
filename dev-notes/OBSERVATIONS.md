@@ -3073,3 +3073,60 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   this entry + the release diff alone. Consumer: the fold +
   0.2.37 release (this session), then the successor's attack-8
   lap.
+
+- 2026-08-07 — **0.2.37 UNPINNED: eleven hypothesis patches minted
+  (operator GO on the merged set — desk a-f × fresh-eyes leg's
+  ten, graded and deduplicated), Fire-born section renamed
+  "Fire-born and hypothesis clauses" carrying the second
+  provenance class; Cut A executed (the leg-tell sentence was a
+  WEAKER PARAPHRASE of the corpus routing rule — the fresh leg's
+  catch against the desk's own text), Cut B executed (verify
+  3-strike absorbed into the declared budget); [VOID] added to
+  the A-enum (record tool + lint/closure test). Suites 58+44+3
+  green. 836 operational lines (+95; desk estimated +40 — the
+  miss is booked, the compression pass is the backstop and the
+  seal machinery is its named first cut per the leg's Simplify
+  C).** VALIDATION CRITERIA (each patch pruned at fire-rate
+  reviews on its criterion): (1) verify four-route triage —
+  earns: a WORK-classified return landing as one unit
+  re-dispatch, no new lock; fails: everything classified DESIGN,
+  or class recorded with identical routes. (2) irreversibility
+  gate — earns: an auto run closing with an irreversible unit
+  held and named; fails: every unit classified irreversible, or
+  classification from diff size. (3) per-R verdict — earns: a
+  NOT-EXERCISED on a requirement the desk believed shipped;
+  fails: all-met tables with repeating phrasing (form-filling).
+  (4) run budget — earns: an auto run ending at declared
+  exhaustion with a readable close; fails: budgets never hit
+  (decoration) or the cycle bound hit with the design genuinely
+  moving. (5) decision-priced legs — earns: leg count falls, no
+  rise in AUTO-ACCEPTED or attack bites on unverified premises;
+  fails: generic "informs the design" briefs. (6) out-of-scope
+  form — earns: closes enumerating exported findings with
+  carrier refs; fails: exports without references (disposal
+  chute). (7) mid-run INTENT landing — earns: a run verifying
+  against a mid-course instruction that reached the head; fails:
+  the form used for ordinary replies (INTENT-grade lines
+  outnumbering scope changes). (8) takeover asymmetry — earns:
+  an auto run finishing attended; fails: never (one clause,
+  cheap). (9) round abort/void — earns: one abort citing a
+  pre-abort killing entry, one void with a named premise defect
+  and re-dispatch; fails: aborts ending uncomfortable rounds
+  (A-line citation check). (10) INTENT re-read at [READY] —
+  earns: a drift caught at the presentation; fails: ceremonial
+  restatement. (11) one re-lock per round — earns: round
+  repairs landing as one lock commit; fails: never observed
+  splitting anyway. HELD from the merged list: the form-question
+  slot (leg's own kill criterion: the corpus rule fires unaided —
+  its attack-6 observation; minting duplicates downward).
+  REJECTED (leg + PLAN agree): attack-round proportionality —
+  a forcing point with an escape hatch is not a forcing point.
+  NEXT (successor's ordered duties): (1) attack 8 on the 0.2.37
+  triple (e4727a8..HEAD, SKILL.md + both scripts + suites +
+  tools/test_contract.py in context; fresh opus, the standing
+  brief form; expectation: carry-across class gone — the parity
+  test's live check); (2) no-blocker → pin move + cycle-10
+  fresh-desk line (unchanged from the #3 handoff); (3) at
+  stabilization: compression pass (836 → ~150 target; seal
+  machinery first out), hypothesis patches graded on the
+  criteria above. Consumer: the successor meta session.

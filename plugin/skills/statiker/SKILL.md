@@ -112,7 +112,15 @@ Header: `# Run: <title>`; `Status:` from
 {investigate-design, implement, verify}; `Skill: statiker
 <version>` (version read from the Skill injection's
 base-directory line — the plugin cache path carries it); optional
-`Mode: auto` (Stop rule) — Status and Phase within the first ~20
+`Mode: auto` (Stop rule); `Budget: cycles <n> / rounds <n> /
+verify <n>` — the run's declared bound over every repeating seam,
+defaults 7 / 4 / 3, declared at run start where a successor reads
+it (an unattended loop without a declared bound terminates on
+context death, the one ending that produces no readable verdict).
+Exhaustion never continues silently: attended it forces the
+operator prompt, unattended it closes the run FAILED with the
+unexhausted question enumerated in the close. (hypothesis) —
+Status and Phase within the first ~20
 lines (the stats reader's admission window). After the header,
 the requirement head in two
 grades, declared apart: INTENT — the operator's request VERBATIM
@@ -134,7 +142,16 @@ operator: evidence and recommendation surfaced when found, the
 recorded recommendation advancing an unattended run (the [READY]
 prompt's pattern); one advanced unattended stays OPEN —
 re-surfaced at each operator prompt and at the run's close —
-until the operator answers. The record's one mutable surface is
+until the operator answers. A mid-run operator instruction that
+changes what the run is FOR appends as a new INTENT-grade line
+under the head — not an R-line: R-lines are derived text,
+operator words are not — and the desk states which live
+decisions it kills (a killed one takes the scopeless
+[INVALIDATED] route; the closure voids and the design
+re-enters). Without this landing, the run verifies against a
+requirement the operator has already superseded — conversation
+is the one channel verify deliberately never reads.
+(hypothesis) The record's one mutable surface is
 the header's Status and Phase fields, updated at each transition
 and at the verify verdict; everything below them is append-only.
 Status writes its enum member verbatim — [READY] keeps its
@@ -154,8 +171,10 @@ old line; the stats reader counts only tag-first lines.
 - requirement amendments: `- R<n>
   [AMENDED|PENDING|INVALIDATED|AUTO-ACCEPTED] <new letter> —
   basis: <…>` (derived requirements only; the head above)
-- attack outcomes: `- A<n> [DISPATCHED|BIT|ZERO-DELTA] <summary> —
-  basis: <brief at dispatch; report ref on return>`
+- attack outcomes: `- A<n> [DISPATCHED|BIT|ZERO-DELTA|VOID]
+  <summary> —
+  basis: <brief at dispatch; report ref on return>` (VOID: The
+  attack — an aborted or premise-broken round)
 - verify verdicts: `- V<n> [PASSED|ISSUES FOUND] <summary> —
   basis: <the checks' own output>`
 - entry tags are BARE enum values; annotations
@@ -201,8 +220,25 @@ tag-first line as a deliberate carry
 with the
 loss stated — the sweep and the closing [ZERO-DELTA]'s
 no-[PENDING] condition both read that as resolved.
-Consecutive discovery sweeps in the main session are the tell that a
-leg should have been dispatched.
+A leg is dispatched TO A DECISION: its brief names the recorded
+decision it unblocks and what each possible return would decide —
+a leg whose returns cannot change any recorded decision or any
+entry's tag is not dispatched (the corpus's discriminating-
+evidence rule, priced at compose time where it costs a sentence,
+not at review time where it costs a round). The same test closes
+investigation: when no un-dispatched leg would move a decision,
+the design is done investigating — [READY] then decides whether
+it is done designing. (hypothesis)
+An out-of-scope discovery — true, outside the requirement head:
+an unrelated defect, an adjacent improvement, a region the run
+decides not to carry — is recorded with its EXIT named in the
+entry body: CARRIED (an R-amendment brings it into scope; the
+design re-enters for it) or EXPORTED (a named carrier outside
+the run — backlog entry, ledger line, issue — with the
+reference). Fixing it inside a unit without one of those exits
+is barred: the run's three certified surfaces are the attacked
+design, the verified requirement, and the pinned record, and an
+in-flight fix enters none of them. (hypothesis)
 
 Design against the recorded requirement. A decision COMMITS with a
 basis that reaches its premise: where the premise is a data shape
@@ -267,20 +303,37 @@ naming its red-first pin — and a pin DISCRIMINATES: red on the
 current state, green only through the fix; a criterion the
 defective state already satisfies verifies nothing, and a
 renumbering that drops a unit's pin clause is a silent unpin (both
-observed as a round's highest finding). A unit's edit commission is
+observed as a round's highest finding). Each unit is also
+classified by the reversibility of its EFFECT, not its diff: one
+whose green state includes something git cannot undo — a schema
+or data migration, an external write, a publish/push/send, a
+deletion outside the write-set — is tagged irreversible in its
+enumeration. Every other bound in this skill limits waste; this
+one limits damage: in auto mode an irreversible unit never
+dispatches — it takes the hold entry (Implementation) and rides
+the close for the operator; attended it dispatches after the
+effect is named. (hypothesis) A unit's edit commission is
 symbol-anchored — the target named by symbol, with a residue check
 proving it gone or changed — never a bare line range (line numbers
 may cite, never command): ranges decay
 as file and record evolve, and one commissioned range landed
 exactly on the guards a prior decision retained, deletable verbatim
 by a literalist implementer. With an
-operator present, present the record and recommendation at [READY],
+operator present, present the record and recommendation at
+[READY] — OPENING with the INTENT re-read: a design satisfying
+its derived requirements but not the INTENT is the drift the
+head exists to catch, and no other step forces the look
+(hypothesis) —
 ENDING with one advance prompt — "(y) advances per the
 recommendation"; anything else is free-form override. Design
 decisions are never posed as choices; the prompt carries loop
 control only. Unattended, the recorded recommendation advances the
 run. `Mode: auto` in the header (operator-declared at run start,
-fixed for the run) forces the unattended branch throughout: no
+fixed in the auto direction only: an operator appearing mid-run
+may take over on one recorded line and the run continues
+attended — supervision is monotone, adding it never needs
+justification; an attended run never silently becomes auto
+(hypothesis)) forces the unattended branch throughout: no
 prompts, every
 recommendation advances on record, reconciliations surface only
 in the close. Advancing locks the design — the LOCK. Its
@@ -447,7 +500,23 @@ one attacker, the round's A-line recorded before any next dispatch
 (parallel attackers are operator experiments outside this default);
 each re-attack is a NEW fresh context (a resumed attacker inherits
 its own prior findings' frame), and a re-derived design is a NEW
-locked design — it gets the attack again. Each round records an
+locked design — it gets the attack again, its repairs landing as
+ONE re-lock: per-finding re-locks split the priced unit
+(hypothesis). A round dies two ways, one clause (hypothesis):
+ABORTED in flight when a queued desk finding kills the locked
+design — the round is not left running over an object already
+scheduled for replacement; its A-line lands `[VOID]` with body
+`abort:` citing the killing entry (which must predate the
+abort — the check against aborting uncomfortable rounds). And
+VOIDED on return when the round's PREMISE was broken (wrong sha
+pinned, tree claim untrue at dispatch, wrong exclusions): graded
+as a round, never finding-by-finding — a review of the wrong
+object is not evidence about the right one, and salvaging its
+findings is how a broken instrument's output enters the record
+carrying a round's authority; the A-line lands `[VOID]` with
+body `premise:` naming the brief defect, the brief is repaired,
+a NEW round dispatches. A voided round's observations enter only
+as desk findings the desk re-derives itself. Each round records an
 A-line (The record). At a round's return every finding is
 classified, with basis: DESIGN-SUBSTANCE (wrong mechanism, money
 path, silent failure in the shipped system) or RECORD/INSTRUMENT
@@ -682,7 +751,16 @@ context that did not build the work runs the real checks — tests,
 probes, renders, at the altitude where the work takes effect —
 against the tracker's requirement head as amended by its R-lines,
 and pastes the checks' own
-output; a launcher's exit status is not a verdict. The verify brief
+output; a launcher's exit status is not a verdict. The brief
+demands a verdict PER R-LINE — met (the check's own output), not
+met (with it), or NOT EXERCISED — because coverage failure is a
+non-event only the isolated verifier can name: a requirement
+nobody checked returns exactly what one that passed returns, and
+the desk cannot know what a fresh context declined to exercise
+unless the brief demanded the statement. The V-line's evidence
+carries the per-R table; PASSED is recordable only with every
+R-line met or its non-exercise carried as a named
+[AUTO-ACCEPTED]. (hypothesis) The verify brief
 carries the tracker, the code, and the question — read-only tail,
 no executor cite, one named carve-out stated in the brief AFTER
 the pasted tail and governing on conflict: executing the repo's
@@ -714,11 +792,21 @@ parent model; an unreadable models file halts the dispatch, the
 parse error recorded as a finding. Append the V-line (The record)
 with the evidence and set the header
 Status to match (PASSED, or FAILED on an abandoned run; after
-[ISSUES FOUND] it stays in-progress); issues
-return the run to the loop as findings. In auto mode the third
-[ISSUES FOUND] forces the close with Status FAILED
-(the stays-in-progress rule's one exception) — an unattended run
-earns no infinite loop.
+[ISSUES FOUND] it stays in-progress). Each [ISSUES FOUND]
+finding is CLASSIFIED before any repair, with basis, and the
+class sets the route — the four repairs differ by an order of
+magnitude in price, and the dangerous misroute is the cheap one
+(a design defect patched inside a unit is the no-design
+invariant violated with nothing forcing the split): WORK (the
+unit built the design wrongly → re-dispatch that unit; lock and
+closure untouched), DESIGN (the design cannot meet the
+requirement → the premise's scopeless [INVALIDATED], closure
+voids, re-derive), REQUIREMENT (work matches design, design
+matches R-line, the R-line is wrong → amendment or
+reconciliation), INSTRUMENT (the check itself is defective →
+the V-line's evidence [INVALIDATED]; no work changes).
+(hypothesis) Verify returns count against the run budget (The
+record) — an unattended run earns no infinite loop.
 
 ## Close
 
@@ -756,7 +844,7 @@ arriving later appends its resolving line to the closed tracker —
 append-only has no expiry, and the close's enumeration is what
 makes the late landing findable.
 
-## Fire-born clauses (none at birth)
+## Fire-born and hypothesis clauses
 
 No lens list, no lens pass. When a real blind spot fires in
 operation, mint it as a pointed hunt clause inside the section it
@@ -766,6 +854,13 @@ subsequent firing in the source repo's dev-notes/OBSERVATIONS.md —
 a desk in a target repo without a local checkout at hand rides
 the observation on its run report instead. A clause with no
 firing since the last review is a cut candidate.
+A second provenance class (PLAN.md, hypothesis-patch amendment):
+clauses marked `(hypothesis)` were minted PROACTIVELY as
+universally-advisable loop calibrations, each with a validation
+criterion logged in dev-notes at its mint — pruned at fire-rate
+reviews exactly like fire-born clauses, on their criteria. An
+unmarked addition with neither provenance class is still the
+tripwire.
 
 ## Birth-class declaration
 
