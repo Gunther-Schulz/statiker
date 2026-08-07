@@ -49,14 +49,25 @@ file-only pathspec composition, add-untracked-only, `-m` commits,
 two-half readback, capped spaced index.lock retry; the record
 tool the enum-tag grammar, the unanchored stats-reader greps
 behind the defang rule, and scope-opener classification. Path
-contract, both tools: a path is taken AS NAMED, never resolved
-through symlinks (a resolved link substituted the brief's
-write-set inside a booked verdict), and git byte output decodes
-the way the OS decodes argv (two spellings of one byte deadlocked
-the drop handshake); the record tool anchors its repo at the
-TRACKER's own directory, the git tool at its invocation cwd —
-briefs invoke it from the repo root, which the invocation lines
-already do. Every
+contract, both tools: a path is taken AS NAMED in every git
+operation, never substituted (a resolved link substituted the
+brief's write-set inside a booked verdict); CONTAINMENT alone
+carries a fallback — computed as-named first, and where the
+as-named form cannot place the path (a symlinked ancestor below
+the toplevel defeats it even with the toplevel readable),
+re-computed over real paths, the fallback named `resolved_from`
+in the verdict while the operation itself still runs on the
+named path — and lock-check DRY-RUNS its adds, so a path git
+itself refuses (reachable only through a symlink) surfaces at
+the check, never the commit. Byte policy runs BOTH directions:
+git byte output decodes the way the OS decodes argv (two
+spellings of one byte deadlocked the drop handshake), and
+verdict and quote output EMITS at the byte level the same way —
+a tool that re-spells a byte on output mints the second spelling
+the input rule exists to prevent; the record tool anchors its
+repo at the TRACKER's own directory, the git tool at its
+invocation cwd — briefs invoke it from the repo root, which the
+invocation lines already do. Every
 invocation — usage errors included (USAGE_ERROR); `--help` alone
 excepted, argparse answers it verdict-free — ends in
 exactly one final
@@ -87,7 +98,10 @@ and record findings mechanized).
 
 At run start, before any design work: `preflight
 --tracker <path>`. PREFLIGHT_OK proceeds (it also reports any
-in-progress operation, informational at this seam).
+in-progress operation, informational at this seam). Preflight's
+repo reads are STRICT: a repo git itself cannot read (a corrupt
+index) halts here, before any work rests on the tree — never a
+clean preflight over a repo that fails inside a unit.
 PREFLIGHT_UNPINNABLE_TRACKER means the repo
 ignores the tracker path and can never pin this run's record —
 surfaced to a present operator before further work; unattended
@@ -185,11 +199,23 @@ phrasing: the entry head `- <C><n> `, the scope openers
 `unit U<k> ` and `record: `, the hold form `unit U<k> held: `
 (that exact prefix as the body's opening — a hold written any
 other way holds nothing), and the `corrects line <n>` repair
-token. The tools lint spacing/case NEAR-MISSES of the head, the
-openers, and the hold form as their own violation classes — a one-character
-slip otherwise reads as scopeless prose and voids or dispatches
-on a line the desk never meant (both directions observed) — so
-write the literal or expect the lint to say so.
+token. Near-miss lint is SIGNATURE-BASED: a line carrying an
+entry SIGNATURE — an id token with an adjacent tag literal,
+bracketed or bare enum word — that fails the exact head grammar
+lints as its own violation class, whatever bullet or opener
+carries it (no form enumeration admits: an enumerated opener set
+is open and its next unlisted variant slips through, while a
+one-character slip otherwise reads as scopeless prose and voids
+or dispatches on a line the desk never meant — both directions
+observed); a line without the signature — a numbered INTENT
+item, an id in prose — registers nowhere. The hold check is
+POSITIONAL: in a body opening `unit U<k> `, only the token in
+the held position (first after the opener) classifies — the
+literal holds, a hold-like variant of it lints near-miss, and
+the word anywhere else in any body is prose (a word-search
+barred every unit on prose "held" while a slipped `hold:` passed
+and traveled as amendment; position closes both directions).
+Write the literal or expect the lint to say so.
 
 - findings: `- F<n> [VERIFIED|PENDING|INVALIDATED|AUTO-ACCEPTED]
   <claim> — basis:
@@ -475,7 +501,13 @@ production: the return processing below), plus sections headed
 `## Superseded —` — legacy landings from earlier skill versions,
 possible in resumed trackers only; ENTRIES are never
 filtered (dead bodies are load-bearing for closure questions, and
-a hand-summary is the paraphrase-drift class). The brief states
+a hand-summary is the paraphrase-drift class). The artifact OPENS
+with a tool-emitted header declaring its line-number references
+PINNED-SOURCE: a `corrects line <n>` token dereferences against
+the tracker at the pinned sha, never the artifact's own
+numbering — the filter's drops shift every later line, and a
+token read against the artifact lands on the wrong line. The
+brief states
 the filter's form (the two species) beside the artifact; it also
 carries the question and the read-only tail (dispatch skill
 `references/forms.md`). Unfiltered, the
@@ -628,23 +660,31 @@ post-closure [INVALIDATED] line for an entry LIVE at the
 closure whatever its opener (the mis-scoped premise-kill);
 CLOSURE_RECORD_MALFORMED bars every unit the same way — an
 entry-shaped line broke the grammar (dropped tag brackets, an
-out-of-enum tag, a near-miss the head grammar cannot parse), and
-the entry set the closure computes is unsound until repaired:
-append a clean line under the same id whose body carries the
-literal token `corrects line <n>` — `<n>` the violation's line
-number from the verdict — restating the content with its
-intended tag (append-only repair; the tool disarms ONLY on that
-explicit reference: tag-matching proved both brickable — a
-misspelled tag extracts nothing and no re-assertion can ever
-disarm it — and forgeable, a later unrelated same-id/same-tag
-line converting a premise-kill void into a dispatch). The
-corrected line is SUPERSEDED whole: every gate excludes it —
-its entry, where it parsed, and its violations both — and the
-correcting line carries the content (a corrected line that
-kept parsing voided the closure its own repair had unlocked,
-and its violations held the sweep forever). Supersession
-reaches only lines that carry a violation: a `corrects line
-<n>` naming a clean line lints `corrects-nothing` — the token
+out-of-enum tag, a signature-bearing near-miss the head grammar
+cannot parse), and the entry set the closure computes is
+unsound until repaired: append a clean line under the same id
+whose body carries the literal token `corrects line <n>` —
+`<n>` the violation's line number from the verdict
+(append-only repair; the tool disarms ONLY on that explicit
+reference: tag-matching proved both brickable — a misspelled
+tag extracts nothing and no re-assertion can ever disarm it —
+and forgeable, a later unrelated same-id/same-tag line
+converting a premise-kill void into a dispatch). The token's
+reach splits on PARSE SUCCESS, never on a violation-class
+list: a target the grammar could not parse is SUPERSEDED
+whole — entry, partial parse, and violations all excluded —
+and the correcting line RESTATES the content with its
+intended tag and carries it (a corrected line that kept
+parsing voided the closure its own repair had unlocked, and
+its violations held the sweep forever); a target that PARSED
+keeps its live entry — the correcting line sheds the target's
+violations and is itself excluded from entry semantics, no
+restatement (exactly one of the pair is ever an entry) — so
+the target's tag, scope, and voiding effect stand (admission
+by any-violation let a cosmetic body slip erase a live
+premise-kill whole: the token converted an operator-meaningful
+void into a dispatch). A `corrects line <n>` naming a
+violation-free line lints `corrects-nothing` — the token
 is a repair, never an eraser of live entries. Then re-run;
 CLOSURE_ABSENT means the gate is not open (the last A-line is
 not [ZERO-DELTA] — the normal state during a reopened design;
