@@ -129,11 +129,13 @@ included: a late report is evidence, not noise, and "it never
 returned" is a transcript claim checked in the transcript (a round
 was staged over a design whose refutation sat in two unread
 returns). The [READY] sweep's no-[PENDING] gate holds unread legs
-open mechanically. An unreturnable leg (stopped — per the
-harness's task state, or stopped BY the desk at its horizon
-(dispatch skill §4: inspect or stop, never more waiting) — and
-nothing left to read per the transcript check above, never
-from memory) is re-tagged [AUTO-ACCEPTED] as a deliberate carry
+open mechanically. An unreturnable leg — stopped per the
+harness's task state or BY the desk at its horizon (dispatch
+skill §4: inspect or stop, never more waiting), any partial
+output already body-read per the transcript check above (a
+read that may resolve the entry on its own evidence), no
+closing report ever to arrive — gets a new [AUTO-ACCEPTED]
+tag-first line as a deliberate carry
 with the
 loss stated — the sweep and the closing [ZERO-DELTA]'s
 no-[PENDING] condition both read that as resolved.
@@ -208,12 +210,15 @@ run. `Mode: auto` in the header (operator-declared at run start,
 fixed for the run) forces the unattended branch throughout: no
 prompts, every
 recommendation advances on record, reconciliations surface only
-in the close. Advancing locks the design: commit the tracker and
-any changed tree by targeted `git add`, never `-A` — untracked
-by-products under the carve-out's record (Verify) and other
-operator state stay out — the LOCK COMMIT; its sha is what the
-attack brief pins, and the locked design IS the record at that
-commit. A
+in the close. Advancing locks the design: commit, by targeted `git add`
+never `-A`, the tracker plus exactly the files this run's own
+recorded entries touched or commissioned. Unrelated tracked
+modifications and untracked files are operator state — left
+uncommitted; any surface the freeze's immutability claim
+cannot then cover is named as an exclusion in the attack brief
+(the claim sets the scope, The attack). This is the LOCK
+COMMIT; its sha is what the attack brief pins, and the locked
+design IS the record at that commit. A
 re-derived design re-enters here: new [READY], new sweep, new
 lock commit.
 
@@ -311,9 +316,10 @@ after it (trailing whitespace may not survive target-repo
 hooks), and the block ends at the first line not beginning `>`.
 Bracketed tag
 literals in the pasted text are defanged (brackets dropped, the
-BARE names listed in the label line after a semicolon —
-composed first line `> Superseded — A<n> quotes; <bare names>`;
-the filter matches the label's opening form) so the stats
+BARE names listed comma-separated after a semicolon — composed
+first line `> Superseded — A<n> quotes; <bare names>`, the
+semicolon and list absent when no literal occurs; the filter
+matches the label's opening form) so the stats
 reader's unanchored greps never count attacker prose. Regraded
 into F-lines in the same sitting. Any substance finding: the
 round records [BIT] — that record change IS the reopen. A
@@ -331,9 +337,12 @@ lines land before the closing A-line (this return's
 repair-then-close order), so the post-closure predicate
 (Implementation) never reads them; a desk repair arising
 mid-implementation is written with body opening `record:`
-(Implementation's bookkeeping scope) — unless it kills an entry
-the closure rests on, which takes the scopeless [INVALIDATED]
-route and voids.
+(Implementation's bookkeeping scope) — unless it kills an
+entry LIVE at the closure (latest line not [INVALIDATED] when
+the closing A-line landed): that takes the scopeless
+[INVALIDATED] route, voids, and carries the premise-killing
+consequence (Implementation: stop the siblings resting on it,
+let the rest land, re-enter ONCE).
 The desk refutes a finding only with its own reach-matched evidence
 (the F-line goes [INVALIDATED]); closure still needs the next
 round's [ZERO-DELTA].
@@ -357,9 +366,11 @@ voids the whole closure
 a line whose body OPENS `unit U<k>` voids nothing — it RE-OPENS
 that unit's dispatch and travels in the re-dispatch brief as the
 amendment it consumes. A line whose body OPENS `record:` is
-desk bookkeeping — it voids nothing and re-opens nothing, and
-it never invalidates an entry the closure rests on: that takes
-the scopeless [INVALIDATED] route below. Units with disjoint
+desk bookkeeping — it voids nothing and re-opens nothing, the
+clause restatements it obliges (The loop) open `record:` too,
+and it never invalidates an entry live at the closure (the
+definition: The attack's reopen rule): that takes the
+scopeless [INVALIDATED] route below. Units with disjoint
 write-sets run parallel. A missing
 decision, file, or value is reported as a gap, never bridged —
 and triaged on arrival: a unit-local gap decision is a design
@@ -406,15 +417,17 @@ the pasted tail and governing on conflict: executing the repo's
 checks writes their normal by-products (caches, build dirs) —
 still no commits, no tracker writes. The carve-out DECLARES the
 repo checks' by-product paths, and the declaration with each
-path's pre-existence (present or absent, observed at dispatch)
-is written to the seal namespace —
+path's pre-existence (present or absent) is observed AND
+written at dispatch, before the round runs, to the seal
+namespace —
 `~/.claude/statiker-seals/<repo-basename>/<tracker-filename>.<round>.paths`
-(`<round>` = the A<n> or V<n> id), re-derivable by any
-successor desk (The attack's derivation) —
-never carried only in the brief or in memory. At the return,
-after any queued appends and record repairs land and before the
+(`<round>` = the A<n> id, or V<n> pre-allocated by count of
+prior V-lines), re-derivable by any successor desk (The
+attack's derivation) — never carried only in the brief or in
+memory. At the return, after any queued appends (attack
+rounds, The attack) and record repairs land and before the
 outcome line, the desk removes exactly the declared paths the
-record lists ABSENT that now exist; everything else —
+`.paths` record lists ABSENT that now exist; everything else —
 pre-existing (operator state), undeclared, or uncertain — is
 LEFT, the leftover a finding, never a broader clean. Attack briefs
 carry the same carve-out for the repo checks their probes

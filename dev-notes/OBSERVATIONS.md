@@ -2295,3 +2295,61 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   dispatched on the 0.2.26 diff (standing step); PIN STILL AT
   0.2.13. Consumer: review-10 dispositions + the pin move + the
   cycle-10 fresh-desk line.
+
+- 2026-08-07 — **Opus review 10 (0.2.26 diff, standing step) — 2
+  BLOCKING, 6 NOTABLE, 4 NIT, 9 clean; all dispositioned, repairs
+  released as 0.2.27 (pin still held).** Cadence 4→6→3→2→2→4→2→2;
+  every finding again inside the newest edits, and the reviewer
+  confirmed both safety cores clean (fail-open removal "the
+  strongest change in the diff for operator-state safety";
+  record: route sound — findings attack its edges). B1 (lock
+  commit had no discriminator between run-produced and
+  operator-produced TRACKED changes; "any changed tree" commits
+  operator WIP into the pinned sha, worst at first lock where all
+  tree changes are the operator's) — FIXED: add-set named (tracker
+  + exactly the files the run's own entries touched/commissioned);
+  unrelated tracked modifications and untracked files are operator
+  state, left uncommitted, surfaces the claim cannot cover named
+  as brief exclusions (claim-sets-the-scope). B2 (two
+  non-identical undefined terms — "entry the closure rests on" vs
+  "entry live at the closure" — for the void-or-not set; the
+  narrow reading is silent corruption with a grammatical record;
+  reviewer's named highest-value repair) — FIXED: unified to LIVE
+  at the closure, defined once at the reopen rule (latest line not
+  [INVALIDATED] when the closing A-line landed), criterion cites
+  the definition. N1 (the record: route's obliged clause
+  restatements defaulted scopeless, voiding the closure the route
+  preserves) — FIXED: restatements open `record:` too. N2 (the
+  desk-repair voiding route lacked the sibling-stop its parallel
+  gap route states) — FIXED: carries the premise-killing
+  consequence, cited not restated. N3 (hung-leg conjuncts fought:
+  a desk-stopped leg HAS inspectable output, so "nothing left to
+  read" was false for the admitted case) — FIXED: partial output
+  body-read (may resolve the entry on its own evidence), the
+  unreturnable residue is "no closing report ever to arrive";
+  desk-discretion residue accepted ([AUTO-ACCEPTED] surfaces in
+  the close). N4 (.paths write untimed — satisfiable from memory
+  at return, the dependency the clause forbids) — FIXED: observed
+  AND written at dispatch, before the round runs (seal parallel).
+  N5 ("the record" = forcing point 1's defined term, used for the
+  out-of-repo file at the deletion sentence) — FIXED: "the
+  `.paths` record". N6 (ordering cited a queue that exists only
+  for attack rounds) — FIXED: scoped "(attack rounds, The
+  attack)". T1 (V<n> unallocatable at dispatch — no [DISPATCHED]
+  in the V enum) — FIXED: pre-allocated by count of prior
+  V-lines. T2 (defang separator + zero-literal case) — FIXED:
+  comma-separated, semicolon and list absent when no literal.
+  T3 (inert carve-out cross-ref at first lock) — FIXED by
+  removal: the B1 rewrite subsumes it (untracked files are
+  operator state generally). T4 ("is re-tagged" invited an edit
+  against append-only grammar) — FIXED: "gets a new
+  [AUTO-ACCEPTED] tag-first line". Count: 454 operational lines
+  (+13). Review 11 dispatched on the 0.2.27 diff (standing step);
+  PIN STILL AT 0.2.13. Convergence note for the successor: three
+  consecutive 2-blocker rounds, each strictly narrower (edges of
+  the previous repair, cores certified clean) — if review 11
+  returns wording-only or clean, pin moves without another
+  repair round; a fourth 2-blocker round re-opens the
+  edit-method question (each repair minting its own next
+  blockers) rather than another iteration. Consumer: review-11
+  dispositions + the pin move + the cycle-10 fresh-desk line.
