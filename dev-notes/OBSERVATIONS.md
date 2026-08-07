@@ -2529,3 +2529,87 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   (s-ddd9fd7d, conservation 2) remains the operator's dotfiles
   queue, not statiker's. Consumer: successor meta session,
   duties above.
+
+## Session — 2026-08-07 meta/grading session #4 (successor)
+
+- 2026-08-07 — **Draft attack 4 (0.2.29 draft, diff e4727a8..ff8f151)
+  — 3 BLOCKING, 7 NOTABLE, 6 NIT, 12 probes; all dispositioned,
+  repairs drafted as 0.2.30 UNPINNED (attack 5 = next duty).** All
+  three blockers inside the attack-3 repair passages — the
+  every-blocker-in-the-newest-edit pattern's sixth confirmation;
+  draft-attack cadence now 2B/1B/2B/3B. The reviewer probe-executed
+  12 git claims (P1-P12) and certified the diff's git-semantics core
+  clean. Dispositions, all applied: B1 (retry rule was desk prose —
+  a unit losing index.lock returns with edits uncommitted; the
+  re-dispatch's START check reads the leftover as an operator
+  collision, permanent hold, no clearing actor; probe: width 6 → 1
+  landed, 5 lock failures) — FIXED: retry rides IN the unit brief's
+  mandated contents, and clearing a held path is desk work decided
+  by PROVENANCE (dead sibling's write-set covers the path + its
+  clean START check readable → restore exactly those paths to HEAD,
+  index and worktree; no provenance → operator state, held). B2
+  (parent clause re-disposition line had no stated scope → literal
+  composition SCOPELESS → voids the whole closure on a routine
+  failed restatement check) — FIXED: composed form named — new
+  [INVALIDATED] line under the parent's id, body opening `record:`
+  (bookkeeping over an already-dead entry). B3 ("the lock-set
+  lines" two referents: all-live → unbounded readback loop on
+  every re-lock (probe: unchanged path never in --stat; committing
+  it alone exits 1); this-lock-only → re-modified inherited path
+  silently escapes while the brief asserts tree==lock) — FIXED:
+  pathspec = tracker + every LIVE lock-set path (re-lock inherits;
+  unchanged inherited = no-op), readback split into two checkable
+  halves — stat⊆set (extras) + `git status` clean over the set
+  (coverage); residue fixed by residue+tracker pathspec commit;
+  stat extra = mis-composed pathspec, its content already in
+  history, recorded + brief exclusion, NEVER reverted out of the
+  worktree. N1 (lock-side collision duty had no discharging
+  instrument) — FIXED: instrument = lock-time re-read of each
+  lock-set artifact against its producing entry; duty scoped to
+  what it surfaces, residue named (attack probes the backstop).
+  N2 (add-then-drop staged collision paths and re-staged over
+  operator's staged snapshot; probe-verified) — FIXED: ignore
+  detection moved to `git check-ignore` BEFORE any staging; add
+  only for surviving UNTRACKED paths; tracked paths get no add.
+  N3 (ignored tracker → empty pathspec → `git commit -m … --`
+  commits the ENTIRE INDEX; probe-verified) — FIXED: tracker not
+  droppable; untracked+ignored tracker or empty pathspec HALTS the
+  lock uncommitted, FAILED unattended; add's load-bearing role for
+  untracked paths now stated. N4 (pathspec commit fatal mid-merge;
+  probe-verified) — FIXED: every skill commit halts on in-progress
+  merge/cherry-pick/revert/rebase (state refs named); blocked unit
+  rides close, blocked lock closes FAILED; Close's FAILED routes
+  widened to match. N5 (ignored-refusal append timing unstated) —
+  FIXED: drop appended BEFORE the commit, pinned tracker carries
+  it. N6 (directory path sweeps operator state under it;
+  probe-verified) — FIXED: lock-set and unit write-set paths name
+  FILES, never directories. N7 (START detector blind to untracked
+  operator files; probe-verified overwrite+commit of an operator
+  draft) — FIXED: ANY status output is a collision, untracked
+  named. n1/n2 (defang basis drifted to unasserted
+  case-sensitivity; IN PLACE ambiguous) — FIXED: checked
+  brackets-carry basis restored as the load-bearing half, case
+  margin; lowercase where they occur + list records what was
+  defanged. n3 (collision/contradiction tags unstated) — FIXED:
+  collision F-lines [VERIFIED] at both sites; contradictions are
+  [INVALIDATED] by the now-named supersede form. n4 (bare noun
+  "contradiction" undefined) — FIXED: defined at first use. n5
+  (already-present unit had no branch; probe: empty commit exits
+  1) — FIXED: third exit, landing annotation `already-present`.
+  n6 (exclusion-floor referent ambiguous) — FIXED: dropped +
+  collision paths the floor, general rule catches the rest.
+  Clean list booked: nonzero-add-still-stages, pathspec immunity
+  outside the pathspec, worktree-content semantics, --stat as
+  readback instrument (blind only to unchanged = B3), retry
+  recoverability fact, entry-id basis grammar, no-[PENDING]
+  referent, tree-claim back-reference, unreturnable-leg rewrite
+  terminal, live-lines-only qualifier, held-unit dispatchability,
+  lock-set: opener harmless pre-closure, seal namespaces outside
+  repo, defang filter tolerance. Count: 607 operational lines
+  (+79, all fire-born repair). PIN AT 0.2.13; draft carries
+  0.2.30 UNPINNED. NEXT: dispatch draft attack 5 (same brief
+  form, read-only opus, diff e4727a8..<0.2.30 sha> SKILL.md-only
+  in context of full file); on a no-blocker round → pin move +
+  cycle-10 fresh-desk line (unchanged from the #3 handoff).
+  Consumer: attack-5 dispositions + the pin move + the cycle-10
+  line.

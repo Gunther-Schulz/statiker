@@ -212,40 +212,87 @@ fixed for the run) forces the unattended branch throughout: no
 prompts, every
 recommendation advances on record, reconciliations surface only
 in the close. Advancing locks the design: commit the
-TRACKER — targeted `git add` and a pathspec commit
-(`git commit -- <paths>`, immune to a pre-staged index),
-never `-A`. The design phase edits no other repo file, so the
-tracker is normally the whole pathspec; anything else enters
-ONLY named by a lock-set line appended before the lock
-(`- F<n> [VERIFIED] lock-set: <path> — basis: <the entry that
-produced it>`), and the pathspec IS the tracker plus those
-named paths, minus any path `git add` refuses as ignored (it
-stays out, never a `-f`; the refusal appended as a
-contradiction of its lock-set line — the nonzero exit still
-stages the other paths, expected, not a failed lock) — a
-pathspec commit takes
-WORKING-TREE content, so excluding a path means dropping it
-from the pathspec, never merely skipping its add. Desk
+TRACKER by pathspec commit (`git commit -- <paths>` — a
+pre-staged index rides into a plain commit; a pathspec
+commit takes WORKING-TREE content, so excluding a path
+means dropping it from the pathspec, never merely skipping
+its add), never `-A`. Every commit this skill makes — the
+lock, Implementation's units, a readback repair — halts on
+an in-progress merge, cherry-pick, revert, or rebase (their
+state refs: `git rev-parse -q --verify MERGE_HEAD` and
+kin): a pathspec commit is fatal mid-operation, `-A` stays
+forbidden, and the half-finished operation is the
+operator's — hold, surface when present; unattended a
+blocked unit rides the close's deviations, a blocked LOCK
+closes the run FAILED (no lock, nothing to build on). The
+design phase edits no other repo file, so the tracker is
+normally the whole pathspec; anything else enters ONLY
+named by a lock-set line appended before the lock
+(`- F<n> [VERIFIED] lock-set: <path> — basis: <the entry
+that produced it>`), and a lock-set path — a unit write-set
+path too (Implementation) — names a FILE, never a
+directory: a directory pathspec commits whatever else the
+operator touched under it. The pathspec IS the tracker plus
+every LIVE lock-set path (a re-lock inherits prior locks'
+live lock-set lines; an unchanged inherited path is a
+pathspec no-op), composed in this order with the index
+untouched until step two: (1) an UNTRACKED path
+`git check-ignore` names ignored drops (it stays out, never
+a `-f`; a tracked path commits regardless of ignore
+patterns), the drop appended BEFORE the commit — so the
+pinned tracker carries it — as the lock-set line's own
+[INVALIDATED] line, its one clause dead with the refusal
+named killer (the loop's supersede form; "contradicted"
+below means exactly this). The TRACKER is not droppable: an
+untracked tracker check-ignore names ignored, or any
+composition leaving the pathspec empty, HALTS the lock
+uncommitted (an empty-pathspec `git commit -m … --` commits
+the ENTIRE INDEX) — the run cannot pin its record in this
+repo; surfaced when present, FAILED unattended. (2) The
+surviving untracked paths (the fresh tracker, a new
+artifact) are `git add`ed exactly and alone — a pathspec
+commit reaches an untracked path only through its add; a
+TRACKED path gets no add at all — the pathspec already
+takes its working-tree content, and an add would silently
+re-stage over anything the operator had staged there. Desk
 scratch belongs in the desk's own scratchpad, never the repo
 (the attacker rule's counterpart, Verify). Operator state —
 everything else, including anything pre-staged (`git status`
 before the lock) — is untouched: never committed, never
-unstaged; operator modifications INSIDE a lock-set path are a
-COLLISION, recorded as an F-line before the lock commit (the
-pinned tracker carries it), the path dropped from the
-pathspec and its lock-set line contradicted like the ignored
-case, surfaced when the operator is present, riding the
-close's deviations unattended. Read the commit back
-(`git show --stat`) against the tracker plus the lock-set
-lines MINUS the dropped paths (each drop carries its
-contradiction line); a mismatch is fixed by a further
-corrected commit — the readback-clean commit's sha is the
-one pinned. A brief
+unstaged. An operator modification INSIDE a lock-set path
+is a COLLISION; its instrument is a lock-time re-read of
+each lock-set artifact against the entry that produced it —
+`git status` cannot separate the authors here, every
+lock-set path is expectedly modified — so the duty is
+scoped to what that re-read surfaces (a divergence it
+misses rides into the commit; the attack round's probes are
+the backstop — the residue named, not hidden). A discovered
+collision is recorded as a [VERIFIED] F-line before the
+lock commit (basis the read that surfaced it; the pinned
+tracker carries the line), the path dropped from the
+pathspec and its lock-set line contradicted like the
+ignored case, surfaced when the operator is present, riding
+the close's deviations unattended. Read the commit back
+(`git show --stat`): every stat path sits inside the
+expected set — the tracker plus the live lock-set paths
+MINUS the dropped ones — and `git status` over that same
+set reports CLEAN after the commit. An unchanged inherited
+path is legitimately absent from the stat (`--stat` lists
+only what changed); status residue is the coverage failure,
+fixed by a further pathspec commit over exactly the residue
+plus the tracker — the readback-clean commit's sha is the
+one pinned. A stat path OUTSIDE the set is a mis-composed
+pathspec: its content is already in history — recorded as a
+collision-class contradiction and named a brief exclusion,
+never reverted out of the working tree (the revert would
+destroy the very operator state the finding names). A brief
 that asserts the tree claim (The
 attack's freeze scope, named there) names any tracked surface
 the claim cannot then cover as an
-exclusion (the dropped paths and operator-modified tracked
-paths above are that list's mechanical floor) — the attacker
+exclusion (the dropped and collision paths above are that
+list's mechanical floor; an operator-modified tracked path
+outside every lock-set path joins through this same rule) —
+the attacker
 reads an excluded path as outside
 the frozen surface, evidence of nothing; a brief that never
 asserts it needs no exclusions. This is the LOCK COMMIT; its
@@ -349,14 +396,18 @@ after it (trailing whitespace may not survive target-repo
 hooks), and the block ends at the first line not beginning `>`.
 Bracketed tag
 literals in the pasted text are defanged (brackets dropped,
-the names LOWERCASED IN PLACE and listed, comma-separated
-after a
-semicolon — composed first line
+the names lowercased where they occur in the quoted text,
+and listed comma-separated after a semicolon — the list
+records what was defanged, the body no longer showing it —
+composed first line
 `> Superseded — A<n> quotes; <lowercase names>`, the
 semicolon and list absent when no literal occurs; the filter
 matches the label's opening form) so the defanged
 forms differ from every counted tag literal in both brackets
-and case — outside any case-sensitive grep's reach. Regraded
+and case; the stats reader's literal greps carry the
+brackets (verified against its source), so a bare name in
+either case matches nothing — the brackets are the
+load-bearing half, the case change margin. Regraded
 into F-lines in the same sitting. Any substance finding: the
 round records [BIT] — that record change IS the reopen. A
 substance-free
@@ -416,7 +467,10 @@ consumes it, never inside the unit: pass → the passing line
 opens `unit U<k>` (the criterion's scope) and the amendment
 travels; fail → [INVALIDATED] under its own id, opening `unit
 U<k>` like the [PENDING] restatement line it resolves, the
-parent's clause disposition re-written by a new line — dead
+parent's clause disposition re-written by a new
+[INVALIDATED] line under the parent's id, body opening
+`record:` (bookkeeping over an already-dead entry — the
+closure rests on no clause of an invalidated body) — dead
 (<the check's failure>) — so no clause list points at a dead
 restatement, the re-dispatch proceeding without it
 and the unit's want surfacing as its gap; one bearing wider
@@ -424,8 +478,8 @@ on the design is SCOPELESS and voids — the premise-killing
 consequence (stop the siblings resting on it, let the rest
 land, re-enter ONCE). Units with disjoint
 write-sets run parallel (one shared index — commits
-serialize, an index.lock contention is a retry, not a
-failure). A missing
+serialize; the contention-retry rule rides in every unit
+brief, below). A missing
 decision, file, or value is reported as a gap, never bridged —
 and triaged on arrival: a unit-local gap decision is a design
 decision made without an attack round, and it is recorded as
@@ -456,19 +510,41 @@ not an entry, so
 invisible to the stats reader's tag-first count and the closure
 read by construction — that is what makes resume reliable.
 Unit briefs carry the lock's commit form AND its collision
-rule, detector and exit stated: targeted add + pathspec
-commit (a pre-staged index rides into a plain commit, and a
-pathspec commit takes working-tree content); the unit runs
-`git status` over its write-set at START, before any edit — a
-path already modified is a collision: the unit reports it and
+rule — detector, retry, and exits stated: pathspec commit
+over the write-set (the lock's composition — add only paths
+new to git, working-tree content, the merge-state halt);
+an `index.lock` failure on add or commit is CONTENTION with
+a sibling's commit — retried until the commit lands, never
+a collision or a failure, and the brief SAYS so: desk prose
+reaches no unit, and a unit not told to retry returns with
+its edits uncommitted, poisoning its own write-set for the
+re-dispatch. The unit runs
+`git status` over its write-set at START, before any edit —
+ANY output is a collision: a modified tracked path, or an
+untracked file already sitting on a write-set path (the
+unit would otherwise overwrite an operator draft and commit
+the overwrite) — the unit reports it and
 HALTS UNBUILT (no commit, no landing annotation); a clean
 start makes every later modification the unit's own, the
-pathspec the full write-set. The desk books the collision as
-an F-line opening `record:` (a collision decides nothing —
+pathspec the full write-set. A unit whose commissioned
+change turns out already present has a third exit: report
+it, the residue check proving the target state, the empty
+commit's exit 1 expected — the landing annotation then
+carries `already-present` in place of a sha. The desk books
+a collision as a [VERIFIED] F-line opening `record:` (basis
+the unit's reported check; a collision decides nothing —
 voids nothing, re-opens nothing), never through the gap
-triage, and holds the unit: re-dispatched only after the path
-clears, surfaced when the operator is present, riding the
-close's deviations unattended.
+triage, and holds the unit — clearing the path is DESK
+work, decided by provenance: where the record and the task
+system show the dirt is the run's own — a stopped or dead
+sibling whose write-set covers the path, its clean START
+check readable in that sibling's output — the desk restores
+exactly those paths to HEAD, index and working tree both
+(`git restore --source=HEAD --staged --worktree -- <paths>`
+— a dead unit may have staged), and re-dispatches; a path
+without that provenance is operator state — held, surfaced
+when the operator is present, riding the close's deviations
+unattended.
 
 ## Verify (forcing point 5)
 
@@ -520,8 +596,9 @@ earns no infinite loop.
 
 ## Close
 
-At the verdict that ends the run ([PASSED], or FAILED per Verify
-or operator call), append `## Close` and present it to the
+At the verdict that ends the run ([PASSED], or FAILED per
+Verify, per the Stop rule's blocked-lock halt, or operator
+call), append `## Close` and present it to the
 operator —
 in auto mode this is the run's one touchpoint: the verdict with
 its evidence pointer; every open reconciliation; every R-line
