@@ -35,12 +35,18 @@ the computable slice only.
 
 import argparse
 import json
+import os
 import re
 import subprocess
 import sys
 from dataclasses import dataclass
 
 VERDICT_PREFIX = "STATIKER-RECORD VERDICT: "
+
+# Exit codes mirror the git tool: 0 = proceedable, 2 = holds/voids,
+# 3 = usage or internal error — and the verdict-line guarantee covers
+# usage errors (attack-7 B1: the git tool's repair had not been
+# carried across; a bare argparse death on exit 2 read as a hold).
 
 STATUS_ENUM = {"in-progress", "[READY]", "PASSED", "FAILED", "COMPLETE"}
 PHASE_ENUM = {"investigate-design", "implement", "verify"}
@@ -61,6 +67,7 @@ TAG_LITERAL_RE = re.compile(
 ENTRY_HEAD_RE = re.compile(r"^- ([FDRAV])(\d+)\b")
 ENTRY_RE = re.compile(r"^- ([FDRAV])(\d+) \[([^\]]+)\] (.*)$")
 LANDING_RE = re.compile(r"^unit U\d+ landed:")
+LANDING_INDENTED_RE = re.compile(r"^\s+unit U\d+ landed:")
 SUPERSEDED_OPEN_RE = re.compile(r"^> Superseded — ")
 CLAUSE_RE = re.compile(
     r"clause (\w+)\s+(dead\s*\([^)]*\)|restated-at-\S+|dead\b)")
@@ -171,6 +178,9 @@ def parse_tracker(text: str):
     for i, line in enumerate(lines, 1):
         if LANDING_RE.match(line):
             viol("landing-indent", i, line)
+        elif LANDING_INDENTED_RE.match(line) and (
+                i < 2 or lines[i - 2].strip()):
+            viol("landing-blank", i, line)
 
         head = ENTRY_HEAD_RE.match(line)
         if not head:
@@ -206,9 +216,39 @@ def parse_tracker(text: str):
     return entries, violations, {"status": status_val, "phase": phase_val}
 
 
-def load(path):
+def repo_paths(path_arg: str):
+    """(filesystem_path, repo_relative_or_None) for a tracker path.
+    One grammar across every subcommand (attack-7 N3: open() resolved
+    against cwd while `git show` resolved against the repo root — the
+    same value succeeded in one subcommand and failed in another):
+    relative inputs are repo-root-relative; outside a repo they are
+    cwd-relative and the repo-relative half is None (filter, which
+    needs git, halts on that)."""
+    p = subprocess.run(["git", "rev-parse", "--show-toplevel"],
+                       capture_output=True, text=True)
+    top = p.stdout.strip() if p.returncode == 0 else None
+    if os.path.isabs(path_arg):
+        fs = path_arg
+    elif top:
+        fs = os.path.join(top, path_arg)
+    else:
+        fs = path_arg
+    rel = None
+    if top:
+        try:
+            rel = os.path.relpath(os.path.realpath(fs),
+                                  os.path.realpath(top))
+            if rel.startswith(".."):
+                rel = None
+        except ValueError:
+            rel = None
+    return fs, rel
+
+
+def load(path_arg):
+    fs, _ = repo_paths(path_arg)
     try:
-        with open(path, encoding="utf-8") as f:
+        with open(fs, encoding="utf-8") as f:
             return f.read()
     except OSError as e:
         finish("TRACKER_UNREADABLE", 2, error=str(e))
@@ -290,9 +330,26 @@ def cmd_closure(args):
     latest = latest_by_id(entries)
     post = [e for e in entries
             if e.lineno > closing.lineno and e.cls in ("F", "D", "R")]
+    # latest line per id AT the closure — the live set the closure
+    # rests on (attack-7 N1)
+    live_at_close = {}
+    for e in entries:
+        if e.lineno <= closing.lineno:
+            live_at_close[e.id] = e
     scopeless, unit_lines = [], []
     for e in post:
         scope, unit = classify_scope(e.body)
+        if (e.tag == "INVALIDATED"
+                and e.id in live_at_close
+                and live_at_close[e.id].tag != "INVALIDATED"):
+            # a post-closure invalidation of an entry LIVE at the
+            # closure is a premise-kill whatever its opener says —
+            # the mis-scoped form must void, not dispatch (N1)
+            scopeless.append({"line": f"{e.id} [{e.tag}] {e.body}",
+                              "lineno": e.lineno,
+                              "why": "invalidates an entry live at "
+                                     "the closure"})
+            continue
         if scope == "scopeless":
             scopeless.append({"line": f"{e.id} [{e.tag}] {e.body}",
                               "lineno": e.lineno})
@@ -300,7 +357,8 @@ def cmd_closure(args):
             unit_lines.append((unit, e))
     if scopeless:
         for s in scopeless:
-            say(f"closure VOID: scopeless post-closure line: {s['line']}")
+            why = s.get("why", "scopeless post-closure line")
+            say(f"closure VOID: {why}: {s['line']}")
         finish("CLOSURE_VOID", 2, scopeless=scopeless)
 
     if not args.unit:
@@ -317,15 +375,20 @@ def cmd_closure(args):
         {"line": f"{e.id} [{e.tag}] {e.body}", "lineno": e.lineno}
         for (u, e) in unit_lines
         if u == args.unit and e.tag != "INVALIDATED"
-        and latest[e.id].tag != "INVALIDATED"]
+        and latest[e.id] is e]
     finish("UNIT_DISPATCHABLE", 0, unit=args.unit, amendments=amendments)
 
 
 # -------------------------------------------------------------------- filter
 
 def cmd_filter(args):
-    p = subprocess.run(["git", "show", f"{args.sha}:{args.tracker}"],
-                       capture_output=True, text=True)
+    _, rel = repo_paths(args.tracker)
+    if rel is None:
+        finish("PIN_UNREADABLE", 2, sha=args.sha, tracker=args.tracker,
+               error="tracker does not resolve inside a git repo")
+    p = subprocess.run(["git", "show", f"{args.sha}:{rel}"],
+                       capture_output=True, text=True,
+                       encoding="utf-8", errors="replace")
     if p.returncode != 0:
         finish("PIN_UNREADABLE", 2, sha=args.sha, tracker=args.tracker,
                stderr=p.stderr.strip())
@@ -363,7 +426,7 @@ def cmd_filter(args):
 # --------------------------------------------------------------------- quote
 
 def cmd_quote(args):
-    raw = sys.stdin.read()
+    raw = sys.stdin.buffer.read().decode("utf-8", "replace")
     defanged, names = defang_text(raw)
     first = f"> Superseded — {args.label}"
     if names:
@@ -374,9 +437,22 @@ def cmd_quote(args):
     finish("QUOTE_BLOCK", 0, block=block, defanged=names)
 
 
+class Parser(argparse.ArgumentParser):
+    """Usage errors land as a USAGE_ERROR verdict line (exit 3),
+    never a bare argparse death on the holds exit code (attack-7 B1
+    — the git tool's contract, carried across)."""
+
+    def error(self, message):
+        finish("USAGE_ERROR", 3, error=message)
+
+
 def main():
-    ap = argparse.ArgumentParser(prog="statiker-record")
-    sub = ap.add_subparsers(dest="cmd", required=True)
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8", errors="replace")
+    ap = Parser(prog="statiker-record")
+    sub = ap.add_subparsers(dest="cmd", required=True,
+                            parser_class=Parser)
     for name in ("lint", "sweep"):
         p = sub.add_parser(name)
         p.add_argument("--tracker", required=True)

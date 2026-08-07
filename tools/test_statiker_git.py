@@ -656,14 +656,73 @@ class TestReviewFindings(GitFixture):
         blob = self.git("show", ":src.txt").stdout
         self.assertEqual(blob, "operator precious\n", "staged blob lost")
 
-    def test_unit_commit_tolerates_own_prior_add(self):
-        # the tolerance boundary: a staged ADD on the write-set is a
-        # blocked prior attempt's leftover — the retry must land
-        self.write("new.txt", "unit output\n")
-        self.git("add", "new.txt")
-        v = self.verdict(self.tool("unit-commit", "--write-set", "new.txt",
-                                   "-m", "unit U1"))
-        self.assertEqual(v["verdict"], "UNIT_COMMITTED")
+    def test_unit_commit_staged_new_file_halts_blob_preserved(self):
+        # attack-7 B2: the 0.2.35 'A' tolerance destroyed an
+        # operator-staged NEW file under a green UNIT_COMMITTED,
+        # unrecoverably. Column one cannot attribute a staged add, so
+        # the commit seam halts on it; the blocked-prior-attempt
+        # leftover never reaches this seam (START catches it and the
+        # desk's provenance clearing handles it).
+        self.write("src.txt", "OPERATOR PRECIOUS DRAFT\n")
+        self.git("add", "src.txt")
+        self.write("src.txt", "unit output\n")
+        p = self.tool("unit-commit", "--write-set", "src.txt",
+                      "-m", "unit U1")
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "UNIT_COMMIT_COLLISION")
+        blob = self.git("show", ":src.txt").stdout
+        self.assertEqual(blob, "OPERATOR PRECIOUS DRAFT\n",
+                         "operator staged blob destroyed")
+
+    def test_lock_commit_failure_after_landed_commit_carries_shas(self):
+        # attack-7 B3: a residue-lap commit failure reported with no
+        # shas routed as "halts the lock uncommitted" over an orphan
+        # lock commit. Arrangement: noisy clean filter (permanent
+        # residue) + a pre-commit hook red after the first commit.
+        self.git("config", "filter.noisy.clean", "sh -c 'cat; date +%s%N'")
+        self.write(".gitattributes", "*.md filter=noisy\n")
+        self.git("add", ".gitattributes")
+        self.git("commit", "-m", "attr")
+        hook = self.repo / ".git" / "hooks" / "pre-commit"
+        hook.write_text("#!/bin/sh\n"
+                        "[ -f .hook-armed ] && { echo 'pre-commit: test "
+                        "suite failed' >&2; exit 1; }\n"
+                        "touch .hook-armed\nexit 0\n")
+        hook.chmod(0o755)
+        self.write(".clippy/runs/t.md", "# Run: t\n")
+        p = self.tool("lock-commit", "--tracker", ".clippy/runs/t.md",
+                      "-m", "lock")
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "COMMIT_FAILED")
+        self.assertGreaterEqual(len(v["shas"]), 1)
+        head = self.git("rev-parse", "HEAD").stdout.strip()
+        self.assertEqual(v["shas"][0], head)
+
+    def test_lock_commit_rerun_halts_no_changes(self):
+        # attack-7 N6: the Close's re-pin rests on HALT_NO_CHANGES
+        # ("benign, delivered as-is") with no test that could go red
+        self.write(".clippy/runs/t.md", "# Run: t\n")
+        v1 = self.verdict(self.tool("lock-commit",
+                                    "--tracker", ".clippy/runs/t.md",
+                                    "-m", "pin"))
+        self.assertEqual(v1["verdict"], "LOCK_COMMITTED")
+        v2 = self.verdict(self.tool("lock-commit",
+                                    "--tracker", ".clippy/runs/t.md",
+                                    "-m", "pin again"))
+        self.assertEqual(v2["verdict"], "HALT_NO_CHANGES")
+
+    def test_unit_commit_ignored_write_set_halts(self):
+        # attack-7 N6: the commit seam's ignored-write-set branch had
+        # no test that could go red (start's did)
+        self.write(".gitignore", "build/\n")
+        self.git("add", ".gitignore")
+        self.git("commit", "-m", "gi")
+        (self.repo / "build").mkdir()
+        self.write("build/x.txt", "unit output\n")
+        p = self.tool("unit-commit", "--write-set", "build/x.txt",
+                      "-m", "unit U1")
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "HALT_IGNORED_WRITESET")
 
     def test_unit_start_ignored_write_set_halts(self):
         # review N5: fires at both seams, was routed and tested nowhere
@@ -749,6 +808,23 @@ class TestPureFunctions(unittest.TestCase):
             "fatal: Unable to create '/x/.git/index.lock': File exists."))
         self.assertFalse(self.m.is_index_lock_error(
             "error: pathspec 'x' did not match any file(s)"))
+
+    def test_committed_verdict_wiring_red(self):
+        # attack-7 N6: the EXTRAS/RESIDUE verdicts had function-green
+        # readback_extras but untested wiring — the decision seam is
+        # pure and red-provable on constructed data
+        name, d = self.m.lock_committed_verdict(["s1"], {"sneak.txt"}, [])
+        self.assertEqual(name, "LOCK_COMMITTED_EXTRAS")
+        self.assertEqual(d["extras"], ["sneak.txt"])
+        name, d = self.m.lock_committed_verdict(["s1", "s2"], set(), [])
+        self.assertEqual(name, "LOCK_COMMITTED")
+        self.assertEqual(d["sha"], "s2")
+        name, d = self.m.unit_committed_verdict("s1", {"x"}, [])
+        self.assertEqual(name, "UNIT_COMMITTED_EXTRAS")
+        name, d = self.m.unit_committed_verdict("s1", set(), ["MM a.txt"])
+        self.assertEqual(name, "UNIT_COMMITTED_RESIDUE")
+        name, d = self.m.unit_committed_verdict("s1", set(), [])
+        self.assertEqual(name, "UNIT_COMMITTED")
 
 
 if __name__ == "__main__":

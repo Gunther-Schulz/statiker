@@ -2978,3 +2978,63 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   7 is a pure adversarial round on the 0.2.35 final form), then
   no-blocker → pin move + cycle-10 line. Consumer: attack-7
   dispatch + pin move.
+
+- 2026-08-07 — **Attack 7 RETURNED (eight parts, 3B/6N/7NIT + named
+  unmeasured/clean lists; the strongest instrument round yet — all
+  six prior blocker-guards mutation-red-confirmed by the attacker,
+  reverse contract direction hand-checked); all findings
+  dispositioned, repairs landed as 0.2.36 UNPINNED (suites 58 git /
+  43 record / 3 contract; red arrangement PROVEN: new suites vs
+  stashed 0.2.35 scripts = 3+6 failures in exactly the repaired
+  classes, green restored).** TREND READ: all three blockers were
+  CARRY-ACROSS failures — each 0.2.35 repair landed at its finding
+  site and was not propagated to the sibling site the same
+  mechanism governs (B1 usage-error verdict guarantee not carried
+  git→record; B2 my own 'A'-tolerance repair opened silent data
+  loss; B3 the residue-cap shas repair fixed one exit of the loop,
+  its sibling exits kept losing the shas). The corpus names the
+  class (instruments sharing an author repeat one blind spot);
+  MECHANIZED this lap as tools/test_contract.py — verdict-name
+  parity, both directions set-exact, between the scripts and
+  SKILL.md (the check the reviewer and attacker both ran by hand;
+  it went red on 14 unrouted names before the routing edits).
+  Dispositions: B1 → record tool gets Parser→USAGE_ERROR verdict
+  exit 3, streams reconfigured; B2 → 'A' tolerance REMOVED (its
+  deadlock rationale was FALSE — the blocked-prior-attempt
+  leftover meets the re-dispatch's START check and the desk's
+  provenance clearing, never the commit seam; the 0.2.35
+  rationale is booked as a rationalization that a probe would
+  have killed), staged-new clearing shape added (`git rm -f`);
+  B3 → every post-first-commit failure inherits `shas` (try/except
+  threading, lock and unit), skill override rule: a halt verdict
+  carrying shas has landed commits, never routed uncommitted;
+  N1 → closure voids on a post-closure [INVALIDATED] of an entry
+  live at the closure whatever its opener (boundary kept:
+  bookkeeping over already-dead entries still passes — test);
+  N2 → clearing resolving-line form prescribed (`- D<n>
+  [COMMITTED] unit U<k> cleared: <path>`); N3 → one path grammar
+  (repo_paths: repo-root-relative everywhere, filter halts
+  outside a repo); N4 → routes/catch-alls for record tool +
+  preflight + state-gate re-entry instrument (NIT3), enforced
+  forever by the parity test; N5 → INTENT defang sanction (the
+  lint's file-wide scan is correct per the unanchored stats
+  greps; verbatim binds words, not literals); N6 → HALT_NO_CHANGES
+  + unit ignored-writeset + Phase-window discrimination tests,
+  EXTRAS/RESIDUE wiring extracted to pure verdict functions and
+  red-tested (reachability through git's own pathspec commit
+  stays unmeasured — attacker could not construct it either;
+  declared). NITs: R-head form `R<n>.` prescribed; landing-blank
+  lint check; state-gate routed; encoding pinned (stdin bytes,
+  subprocess encoding, stream reconfigure); stale held-line no
+  longer travels (latest-only amendments); drops-gloss names both
+  causes; garbled quote-test expression cut. HELD/unmeasured,
+  named: BLOCKED_CONTENTION out of the residue lap end-to-end
+  (structurally covered by the same except-Halt threading;
+  attacker's arming hook never fired), seal/queue machinery
+  (prose, desk conduct, no tool), remaining record exit codes.
+  Count: 741 operational lines. PIN AT 0.2.31 (accidental);
+  0.2.36 UNPINNED. NEXT: attack 8 on the 0.2.36 pair (operator
+  go; expectation under the mechanized parity class: carry-across
+  blockers gone — the trend rule's falsifier for this form),
+  no-blocker → pin move + cycle-10 line. Consumer: attack-8
+  dispatch + pin move.

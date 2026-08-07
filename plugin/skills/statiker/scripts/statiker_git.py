@@ -128,6 +128,32 @@ def is_index_lock_error(stderr: str) -> bool:
     return "index.lock" in stderr
 
 
+def lock_committed_verdict(shas, extras, drops):
+    """Pure: the landed lock verdict from readback data — red-tested on
+    constructed extras (git's own pathspec commit is not known to
+    produce extras; the wiring is certified at function level)."""
+    if extras:
+        return ("LOCK_COMMITTED_EXTRAS",
+                {"sha": shas[-1], "all_shas": shas,
+                 "extras": sorted(extras), "drops": drops,
+                 "note": "extras are already in history: record as "
+                         "collision-class contradiction and brief "
+                         "exclusion; never revert"})
+    return ("LOCK_COMMITTED",
+            {"sha": shas[-1], "all_shas": shas, "drops": drops})
+
+
+def unit_committed_verdict(sha, extras, residue):
+    """Pure: the landed unit verdict from readback data (same
+    function-level certification as lock_committed_verdict)."""
+    if extras:
+        return ("UNIT_COMMITTED_EXTRAS",
+                {"sha": sha, "extras": sorted(extras)})
+    if residue:
+        return ("UNIT_COMMITTED_RESIDUE", {"sha": sha, "residue": residue})
+    return ("UNIT_COMMITTED", {"sha": sha})
+
+
 # ---------------------------------------------------------------- repo model
 
 class Repo:
@@ -334,33 +360,38 @@ def cmd_lock_commit(repo, args):
     sha = repo.commit_with_retry(args.message, effective)          # step 5
 
     shas = [sha]                                                   # step 6
-    extras = readback_extras(repo.head_shown_paths(), set(effective))
-    residue_laps = 0
-    while True:
-        residue = repo.porcelain(effective)
-        if not residue:
-            break
-        if residue_laps == 3:
-            # commits EXIST — the verdict carries every landed sha;
-            # the last one is not readback-clean
-            raise Halt("HALT_RESIDUE_PERSISTS", shas=shas,
-                       residue=sorted({e.path for e in residue}))
-        residue_laps += 1
-        residue_paths = sorted({e.path for e in residue})
-        say(f"readback residue, lap {residue_laps}: {' '.join(residue_paths)}")
-        tracker_rel = repo.rel(args.tracker)
-        lap_spec = sorted(set(residue_paths) | {tracker_rel})
-        shas.append(repo.commit_with_retry(
-            args.message + f" [residue lap {residue_laps}]", lap_spec))
-        extras |= readback_extras(repo.head_shown_paths(), set(effective))
+    # From here on commits EXIST: every failure verdict out of the
+    # readback — COMMIT_FAILED, BLOCKED_CONTENTION, GIT_ERROR, the
+    # residue cap — carries the landed shas (attack-7 B3: a halt
+    # reported without them was routed as "uncommitted" over an
+    # orphan lock commit).
+    try:
+        extras = readback_extras(repo.head_shown_paths(), set(effective))
+        residue_laps = 0
+        while True:
+            residue = repo.porcelain(effective)
+            if not residue:
+                break
+            if residue_laps == 3:
+                raise Halt("HALT_RESIDUE_PERSISTS", shas=shas,
+                           residue=sorted({e.path for e in residue}))
+            residue_laps += 1
+            residue_paths = sorted({e.path for e in residue})
+            say(f"readback residue, lap {residue_laps}: "
+                f"{' '.join(residue_paths)}")
+            tracker_rel = repo.rel(args.tracker)
+            lap_spec = sorted(set(residue_paths) | {tracker_rel})
+            shas.append(repo.commit_with_retry(
+                args.message + f" [residue lap {residue_laps}]", lap_spec))
+            extras |= readback_extras(repo.head_shown_paths(),
+                                      set(effective))
+    except Halt as h:
+        h.detail.setdefault("shas", shas)
+        raise
 
     say(f"readback: porcelain clean over pathspec; pinned sha {shas[-1]}")
-    if extras:
-        finish("LOCK_COMMITTED_EXTRAS", 0, sha=shas[-1], all_shas=shas,
-               extras=sorted(extras), drops=drops,
-               note="extras are already in history: record as collision-class "
-                    "contradiction and brief exclusion; never revert")
-    finish("LOCK_COMMITTED", 0, sha=shas[-1], all_shas=shas, drops=drops)
+    name, detail = lock_committed_verdict(shas, extras, drops)
+    finish(name, 0, **detail)
 
 
 # ------------------------------------------------------------------ unit
@@ -398,12 +429,13 @@ def cmd_unit_commit(repo, args):
     # column-one re-read BEFORE any add: an operator stage landing
     # mid-unit would be silently destroyed by the pathspec commit
     # (the lock's attack-5 B1 class, at the unit's longer window).
-    # 'A' is tolerated: a staged add on the write-set is a blocked
-    # prior attempt's leftover, and halting on it would deadlock the
-    # retry — the named residue is an operator-staged NEW file
-    # landing mid-unit on a write-set path.
+    # NO tolerance for staged 'A' (attack-7 B2): column one cannot
+    # distinguish an operator's staged draft from a blocked prior
+    # attempt's leftover, and the leftover case never reaches this
+    # seam anyway — a re-dispatched unit meets it at START as
+    # UNIT_COLLISION and the desk's provenance clearing handles it.
     staged = [e for e in repo.porcelain(rels)
-              if e.x not in (" ", "?", "A")]
+              if e.x not in (" ", "?")]
     if staged:
         listing = [{"porcelain": f"{e.x}{e.y}", "path": e.path}
                    for e in staged]
@@ -424,13 +456,14 @@ def cmd_unit_commit(repo, args):
         say("no diff vs HEAD over the write-set; nothing committed")
         finish("UNIT_NO_DIFF_VS_HEAD", 0, write_set=rels)
     sha = repo.commit_with_retry(args.message, rels)
-    extras = readback_extras(repo.head_shown_paths(), set(rels))
-    residue = [f"{e.x}{e.y} {e.path}" for e in repo.porcelain(rels)]
-    if extras:
-        finish("UNIT_COMMITTED_EXTRAS", 0, sha=sha, extras=sorted(extras))
-    if residue:
-        finish("UNIT_COMMITTED_RESIDUE", 0, sha=sha, residue=residue)
-    finish("UNIT_COMMITTED", 0, sha=sha, write_set=rels)
+    try:
+        extras = readback_extras(repo.head_shown_paths(), set(rels))
+        residue = [f"{e.x}{e.y} {e.path}" for e in repo.porcelain(rels)]
+    except Halt as h:
+        h.detail.setdefault("sha", sha)   # the commit landed (B3 kin)
+        raise
+    name, detail = unit_committed_verdict(sha, extras, residue)
+    finish(name, 0, write_set=rels, **detail)
 
 
 # ------------------------------------------------------------------ misc
@@ -469,6 +502,9 @@ def flat(list_of_lists):
 
 
 def main():
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8", errors="replace")
     ap = Parser(prog="statiker-git")
     sub = ap.add_subparsers(dest="cmd", required=True,
                             parser_class=Parser)

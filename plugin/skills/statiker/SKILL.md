@@ -55,7 +55,18 @@ exactly one final
 {json}` line, evidence lines before it — the desk books THAT
 LINE verbatim as the basis of
 whatever entry the verdict obliges; an exit code is routing
-convenience, never the result. Unit briefs carry the git tool's
+convenience, never the result. Happy paths route in their own
+sections; `lint` alone answers ad-hoc grammar questions
+(LINT_CLEAN / LINT_VIOLATIONS; `sweep` includes it), and `quote`
+and `filter` return QUOTE_BLOCK and ARTIFACT_WRITTEN with their
+production counts. ANY verdict no section names is a halt for
+the seam that ran it — booked as a `record:` F-line from the
+verdict line, the seam's halt route applying (TRACKER_UNREADABLE,
+PIN_UNREADABLE, NOT_A_REPO, PATH_OUTSIDE_REPO, USAGE_ERROR,
+GIT_ERROR, INTERNAL_ERROR, and any future member). One override
+on every route: a halt verdict carrying a `shas` or `sha` field
+has LANDED commits — routed like HALT_RESIDUE_PERSISTS, never as
+uncommitted. Unit briefs carry the git tool's
 ABSOLUTE path and its invocation lines — the tool is the shared
 implementation, so no lock-procedure text is ever expanded into a
 brief. The record tool is DESK-only: it reads the record, so no
@@ -66,11 +77,16 @@ tools/test_statiker_record.py (the attack rounds' probe battery
 and record findings mechanized).
 
 At run start, before any design work: `preflight
---tracker <path>`. PREFLIGHT_UNPINNABLE_TRACKER means the repo
+--tracker <path>`. PREFLIGHT_OK proceeds (it also reports any
+in-progress operation, informational at this seam).
+PREFLIGHT_UNPINNABLE_TRACKER means the repo
 ignores the tracker path and can never pin this run's record —
 surfaced to a present operator before further work; unattended
 the run closes FAILED at minimal cost (Close, Status written
-FAILED).
+FAILED); any other preflight verdict surfaces the same way. The
+`state-gate` subcommand (STATE_CLEAN / STATE_IN_PROGRESS) is the
+re-entry instrument: an attended halt's clearing reply is
+verified by it before the halted procedure re-runs.
 
 ## The record (forcing point 1)
 
@@ -99,8 +115,14 @@ base-directory line — the plugin cache path carries it); optional
 `Mode: auto` (Stop rule) — Status and Phase within the first ~20
 lines (the stats reader's admission window). After the header,
 the requirement head in two
-grades, declared apart: INTENT — the operator's request VERBATIM —
-and the derived requirements, as long as it needs to be; verify
+grades, declared apart: INTENT — the operator's request VERBATIM
+(verbatim binds the words, not tag literals: a bracketed tag
+literal inside quoted operator text is defanged exactly as report
+quotes are, the mutation noted beside the line — undefanged it
+holds every later sweep, correctly, for the run's life) —
+and the derived requirements, as long as it needs to be, numbered
+`R<n>.` — never dash-led `- R<n>`, the record grammar's amendment
+form; verify
 reads this head plus its R-lines, not the conversation. A derived
 requirement is inherited text (a backlog item, a prior session's
 plan, intake derivation), not operator ground: when the run's own
@@ -230,7 +252,8 @@ content — the dead-basis read is a body-read covering the
 invalidation lines themselves: a missing clause list, or a dead
 clause without its named killer, holds the record from [READY].
 The record tool's `sweep --tracker <path>` runs FIRST at this
-seam: SWEEP_HOLDS blocks [READY] on the computable slice
+seam: SWEEP_CLEAN clears the mechanical half only;
+SWEEP_HOLDS blocks [READY] on the computable slice
 (latest-line [PENDING]s, killer-less dead dispositions, live
 bases citing invalidated ids, grammar and defang lint), and its
 verdict carries the clause-disposition union the dead-basis read
@@ -304,7 +327,9 @@ close's deviations unattended.
 (d) `lock-commit`, same arguments plus `-m` and one `--drop`
 per recorded drop (LOCK_CHECK_CLEAN skips straight here, no
 drops). HALT_DROPS_STALE or HALT_DROPS_UNACKNOWLEDGED
-means the tree moved between check and commit: re-run
+means the acknowledged and live drop sets differ — the tree
+moved between check and commit, or the `--drop` list was
+mis-composed: re-run
 lock-check, re-record, retry. LOCK_COMMITTED's sha is the LOCK
 COMMIT — the attack brief pins it, and the locked design IS the
 record at that commit. LOCK_COMMITTED_EXTRAS is a mis-composed
@@ -316,7 +341,10 @@ HALT_RESIDUE_PERSISTS is a halt WITH commits in history: its
 `shas` field lists every landed commit, the last one not
 readback-clean — booked, the shas surfaced, and the run halts
 like HALT_STATE (never "no lock, nothing to build on": the
-commits exist). Any other lock verdict (HALT_NO_CHANGES,
+commits exist) — and so does ANY halt verdict carrying `shas`
+(a COMMIT_FAILED or BLOCKED_CONTENTION out of the readback
+laps landed its first commit; The tools' override). Any other
+lock verdict (HALT_NO_CHANGES,
 HALT_NO_PATHSPEC, HALT_DIRECTORY_PATH, HALT_MISSING_PATH,
 BLOCKED_CONTENTION — the last two in their plain senses, never
 the unit rules' meanings — USAGE_ERROR, GIT_ERROR,
@@ -478,9 +506,15 @@ in-progress. Units come from the locked
 design; each dispatches on a decision-complete brief (dispatch
 skill §1, tail per §2) citing the executor skill AND the run's
 live closure. The closure read runs through the record tool at
-each dispatch — `closure --tracker <path> --unit U<k>`:
-CLOSURE_VOID bars every unit, UNIT_HELD bars that unit on its
-unresolved hold entry, UNIT_DISPATCHABLE lists the live
+each dispatch — `closure --tracker <path> --unit U<k>`
+(without `--unit`: CLOSURE_LIVE / CLOSURE_VOID over the whole
+record): CLOSURE_VOID bars every unit — a scopeless line, or a
+post-closure [INVALIDATED] line for an entry LIVE at the
+closure whatever its opener (the mis-scoped premise-kill);
+CLOSURE_ABSENT means the gate is not open (the last A-line is
+not [ZERO-DELTA] — the normal state during a reopened design;
+dispatch waits); UNIT_HELD bars that unit on its
+unresolved hold entry; UNIT_DISPATCHABLE lists the live
 amendment lines that travel. The brief carries the tool's
 verdict line, the closing A-line quoted, the lock sha, and the
 listed amendments — never the raw criterion. The criterion the
@@ -570,9 +604,11 @@ unit UNBUILT — no edit, no commit, no landing annotation.
 COMMIT — `unit-commit --write-set <file> … -m <msg>`.
 Verdicts: UNIT_COMMITTED → landing annotation with its sha.
 UNIT_COMMIT_COLLISION → an operator stage landed on the
-write-set mid-unit (the commit seam re-reads column one; a
-staged ADD is tolerated as a blocked prior attempt's leftover,
-the named residue): report, nothing committed, the unit's own
+write-set mid-unit (the commit seam re-reads column one — ANY
+staged state halts: column one cannot attribute a staged add,
+and a blocked prior attempt's leftover never reaches this seam,
+since the re-dispatch meets it at START and the desk's clearing
+handles it): report, nothing committed, the unit's own
 edits left in the worktree and named as poisoning the
 write-set.
 UNIT_NO_DIFF_VS_HEAD → nothing differs from HEAD: the unit
@@ -615,12 +651,17 @@ BY SHAPE, reading each command's exit: a tracked path
 restores (`git restore --source=HEAD --staged --worktree
 -- <tracked paths>`), an untracked leftover is DELETED
 (restore cannot touch what HEAD lacks, and a mixed call
-fails whole, restoring nothing). ONE clearing attempt: a
+fails whole, restoring nothing), and a staged-NEW leftover
+(in index, not in HEAD) is `git rm -f`-ed — restore reaches
+neither of its halves. ONE clearing attempt: a
 re-dispatched unit colliding again on the same path is held
 as operator state — no clearing loop. A path
 without that provenance is operator state — held; the
 operator's clearing answer appends the hold entry's
-resolving line and the desk re-dispatches on it, unattended
+resolving line — `- D<n> [COMMITTED] unit U<k> cleared:
+<path> — basis: <the reply>`, opening `unit U<k>` (the
+natural scopeless phrasing voids the whole closure) — and
+the desk re-dispatches on it, unattended
 it rides the close's deviations. A BLOCKED_CONTENTION
 return triages on the same provenance: siblings still
 live → re-dispatch after their landings; none live and the

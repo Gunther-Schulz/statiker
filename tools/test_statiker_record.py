@@ -336,9 +336,6 @@ class TestQuote(RecordFixture):
             lines[0], "> Superseded — A7 quotes; verified, auto-accepted")
         for l in lines:
             self.assertTrue(l.startswith(">"), repr(l))
-        self.assertIn("> the design held verified status."
-                      .replace("the", "The"), block.lower() and block
-                      if False else block.replace("The design", "The design"))
         self.assertIn("verified status", block)
         self.assertIn("auto-accepted silently", block)
         self.assertIn(">\n", block + "\n")  # blank became bare '>'
@@ -351,6 +348,97 @@ class TestQuote(RecordFixture):
         p = tool(["quote", "--label", "A7 quotes"], stdin_text="plain text\n")
         v = self.verdict(p)
         self.assertEqual(v["block"].splitlines()[0], "> Superseded — A7 quotes")
+
+
+class TestAttack7Findings(RecordFixture):
+    """Repairs from attack 7 (dev-notes, 2026-08-07), each red against
+    the pre-repair behavior the attacker executed."""
+
+    def test_usage_error_emits_verdict_line(self):
+        # attack-7 B1: bare argparse death on exit 2 with no verdict —
+        # the git tool's 0.2.35 repair, carried across
+        p = tool(["sweep"])
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "USAGE_ERROR")
+        self.assertEqual(p.returncode, 3)
+
+    def test_mis_scoped_premise_kill_voids(self):
+        # attack-7 N1: a record:-opening post-closure line invalidating
+        # an entry LIVE at the closure dispatched U2 on a dead premise
+        body = (CLOSED +
+                "- D1 [INVALIDATED] record: the shared parser never "
+                "existed — basis: F9\n")
+        v = self.closure(body, unit="U2")
+        self.assertEqual(v["verdict"], "CLOSURE_VOID")
+
+    def test_dead_entry_record_bookkeeping_still_allowed(self):
+        # the N1 check's boundary: bookkeeping over an ALREADY-dead
+        # entry (the skill's prescribed re-disposition form) must not
+        # void
+        body = ("- D1 [COMMITTED] the design — basis: probe\n"
+                "- D1 [INVALIDATED] premise died — basis: F9\n"
+                "- A1 [DISPATCHED] round 1 — basis: brief\n"
+                "- A1 [ZERO-DELTA] clean return — basis: report\n"
+                "- D1 [INVALIDATED] record: clause 2 dead (killed) — "
+                "basis: F9\n")
+        v = self.closure(body)
+        self.assertEqual(v["verdict"], "CLOSURE_LIVE")
+
+    def test_filter_accepts_absolute_tracker_path(self):
+        # attack-7 N3: one path grammar across subcommands — an
+        # absolute path worked in lint and failed in filter
+        f = TestFilter("test_filter_drops_both_species_and_reads_the_sha")
+        committed = HEADER + "- F1 [VERIFIED] kept — basis: y\n"
+        f._tmp = self._tmp
+        f.dir = self.dir
+        sha = TestFilter.make_repo_with_tracker(f, committed)
+        out = self.dir / "a.md"
+        p = tool(["filter", "--tracker", str(self.dir / "t.md"),
+                  "--sha", sha, "--out", str(out)], cwd=self.dir)
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "ARTIFACT_WRITTEN")
+
+    def test_lint_resolves_repo_relative_from_subdir(self):
+        # attack-7 N3 mirror: repo-relative path from a subdirectory
+        # worked in filter and failed in lint
+        f = TestFilter("test_filter_drops_both_species_and_reads_the_sha")
+        committed = HEADER + "- F1 [VERIFIED] kept — basis: y\n"
+        f._tmp = self._tmp
+        f.dir = self.dir
+        TestFilter.make_repo_with_tracker(f, committed)
+        sub = self.dir / "sub"
+        sub.mkdir()
+        p = tool(["lint", "--tracker", "t.md"], cwd=sub)
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "LINT_CLEAN")
+
+    def test_amendments_carry_only_latest_line(self):
+        # attack-7 NIT5: the stale held: line traveled beside its
+        # resolving line into the re-dispatch brief
+        body = (CLOSED +
+                "- D9 [AUTO-ACCEPTED] unit U2 held: x.txt — basis: F9\n"
+                "- D9 [COMMITTED] unit U2 cleared: x.txt — basis: reply\n")
+        v = self.closure(body, unit="U2")
+        self.assertEqual(v["verdict"], "UNIT_DISPATCHABLE")
+        self.assertEqual(len(v["amendments"]), 1)
+        self.assertIn("cleared", v["amendments"][0]["line"])
+
+    def test_phase_admission_window_discriminated(self):
+        # attack-7 N6: the Phase branch was only ever co-triggered
+        # with Status past the window
+        filler = "filler line\n" * 25
+        v = self.lint("- F1 [VERIFIED] x — basis: y\n",
+                      header="# Run: t\nStatus: in-progress\n"
+                             + filler + "Phase: verify\n\n")
+        self.assertIn("admission-window", self.violation_codes(v))
+
+    def test_landing_annotation_needs_blank_line_before(self):
+        # attack-7 NIT2: the blank-line half of the landing rule is as
+        # computable as the indent half
+        v = self.lint("- D1 [COMMITTED] x — basis: y\n"
+                      "  unit U1 landed: abc1234\n")
+        self.assertEqual(v["verdict"], "LINT_VIOLATIONS")
+        self.assertIn("landing-blank", self.violation_codes(v))
 
 
 # ---------------------------------------------------- pure-function checks
