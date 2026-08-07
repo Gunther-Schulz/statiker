@@ -3442,3 +3442,54 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   text itself stands for future sessions until its stabilization
   revisit. Consumer: this session's loop + the successor meta
   session.**
+
+- 2026-08-07 — **Attack 10 RETURNED (8 parts; 3B/10N/3NIT/3J, probe
+  obligations honored, zero repo writes). NO PIN MOVE. EXPERIMENT
+  FINAL GRADE: SUCCESS — the concentration clause settled 3–0
+  AGAINST THE DESK: all three blockers sit in the desk half's
+  closure repairs (B1 tag-enum violation stores a SUMMARY not the
+  line, so the tag-match disarm can never extract — permanent brick
+  under append-only, the documented repair probed NOT working, and
+  the wrong-class flavor RECURSES; B2 the disarm is content- and
+  scope-blind — SKILL.md's own mandated record:-rewrite form
+  defeats it, and leftmost tag extraction lets prose outrank the
+  real tag, driving the desk to book a knowingly false [PENDING];
+  B3 near-miss grammar is hyphen-only — en/em dashes, the house
+  style's own characters, escape silently). The DISPATCHED arm's
+  nine units: every one probed CLEAN under attack (non-UTF-8 names
+  both seams, tracker-anchored absolute paths from three cwds,
+  .. escapes, near-miss shapes, entry preservation, contention).
+  Bites touching the arm's files (N4-N6 namespace mix at
+  containment, fsdecode missing at the text=True toplevel reads,
+  tracker-body byte policy; N7 battery drives 20/49 verdicts,
+  planted emit on the undriven 29 passes both layers) trace to the
+  DISPATCHER's brief — edit-shaped site lists where the arm's own
+  DEV-1 lesson had recommended outcome-shaped criteria, and a
+  battery table designed in the brief. ROOT CLASS (J3, and it
+  explains N1/N2): held:/record:/unit U<k> are load-bearing
+  machine grammar presented as descriptive prose, matched by
+  scattered ad-hoc predicates — the coherent region is ONE
+  DECLARED TOKEN GRAMMAR. Remaining N/NIT: hold-bar substring
+  drive-past + gap-line over-fire (N1), scope-opener near-misses
+  (N2), record-side unit-id typos (N3, residual named), symlinked-
+  ancestor false PATH_OUTSIDE_REPO (N4), N8 exists-follows-links
+  false HALT_MISSING_PATH, N9 CLAUSE_RE drops spacing variants
+  silently, N10 filter over a symlinked tracker ships the link
+  string as the artifact under ARTIFACT_WRITTEN, NIT1 preflight
+  blesses a directory, NIT2 nonexistent tracker dir →
+  INTERNAL_ERROR, NIT3 Superseded sections close only on h2. J2
+  re-raises the seal-basename collision (second independent
+  attacker) — parked entry's trigger met, fix ships this lap.
+  TREND: B 5→3→2→3→3; two consecutive rounds indict DESK inline
+  repairs while dispatched implementation of settled designs held
+  clean — the form conclusion the experiment was built to test,
+  now measured: THE DESK KEEPS DESIGN AND PROSE, IMPLEMENTATION
+  DISPATCHES. Graduation clause fires (operator pre-GO'd): corpus
+  amendment + dispatch-guards note mint this session. NEXT (this
+  lap, standing GO): desk settles the token-grammar and
+  corrects-line-<n> disarm designs + SKILL.md 0.2.42
+  (definitions), then ONE implementation dispatch (0.2.43) for
+  all mechanical dispositions incl. battery reach (drive toward
+  full verdict coverage, undriven remainder frozen as a named
+  list so a new verdict must consciously join), then attack-11.
+  Consumer: the lap + the successor meta session.**
