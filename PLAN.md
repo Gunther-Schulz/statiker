@@ -191,6 +191,20 @@ provenance.
   against it. (Sections above carry the substance; original exchange:
   session transcript 2026-08-05 15:18–15:19, recovered post-compact.)
 
+- 2026-08-07, operator: form decision after draft attack 6 — the
+  lock/unit commit machinery PRECIPITATES into a shipped script
+  (`plugin/skills/statiker/scripts/statiker_git.py`), built
+  red-first from the attack rounds' probe battery
+  (`tools/test_statiker_git.py`); SKILL.md keeps the invariants,
+  record forms, judgment work, and verdict routing. This amends
+  "Single-home by design" narrowly: the operational TEXT remains
+  single-home — the judgment-free git state machine is enforcement
+  structure (the declared birth-class), not a second text layer.
+  Basis: prose could not close the machinery — blockers 2→1→2→3→4→5
+  across six attack rounds, the last round's blockers entirely in
+  the machinery's case seams while the record-grammar half held
+  (dev-notes, draft attack 6).
+
 ## Horizon consideration — NOT a decision (operator, 2026-08-05)
 
 When statiker is validated, CONSIDER lifting its framework from it

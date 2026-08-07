@@ -33,6 +33,34 @@ overriding context-independence (PLAN.md, Ecosystem composition):
 - The operator corpus carries the grounding and evidence ethics
   (bases, refutation probes, altitude); assumed, not restated.
 
+## The git tool
+
+Git transactions — the run-start preflight, the LOCK commit, unit
+START and COMMIT — run through the shipped state machine at
+`scripts/statiker_git.py` under this skill's base directory (the
+Skill injection's base-directory line names it; invoke with
+python3). It enforces what prose could not hold across attack
+rounds: the state gate reads git's state DIRECTORIES (a ref read
+false-halts after a continued rebase and passes break/exec/reword
+stops), porcelain column semantics, file-only pathspec
+composition, add-untracked-only, `-m` commits, two-half readback,
+capped spaced index.lock retry. Every invocation prints evidence
+lines and exactly one final `STATIKER-GIT VERDICT: {json}` line —
+the desk books THAT LINE verbatim as the basis of whatever entry
+the verdict obliges; an exit code is routing convenience, never
+the result. Unit briefs carry the script's ABSOLUTE path and its
+invocation lines — the tool is the shared implementation, so no
+lock-procedure text is ever expanded into a brief. Provenance and
+the red-first suite: the source repo, tools/test_statiker_git.py
+(the attack rounds' probe battery mechanized).
+
+At run start, before any design work: `preflight
+--tracker <path>`. PREFLIGHT_UNPINNABLE_TRACKER means the repo
+ignores the tracker path and can never pin this run's record —
+surfaced to a present operator before further work; unattended
+the run closes FAILED at minimal cost (Close, Status written
+FAILED).
+
 ## The record (forcing point 1)
 
 Append-only tracker at `.clippy/runs/<yyyy-mm-dd>-<slug>.md` —
@@ -215,90 +243,52 @@ run. `Mode: auto` in the header (operator-declared at run start,
 fixed for the run) forces the unattended branch throughout: no
 prompts, every
 recommendation advances on record, reconciliations surface only
-in the close. Advancing locks the design — the LOCK, a numbered
-procedure; each git claim in it is probe-derived
-(provenance: dev-notes).
-(0) State gate. `git rev-parse -q --verify` each of
-MERGE_HEAD, CHERRY_PICK_HEAD, REVERT_HEAD, REBASE_HEAD —
-any ref resolving is the operator's half-finished
-operation, and git guards only the first two (a partial
-commit is fatal mid-merge and mid-cherry-pick but SUCCEEDS
-mid-revert and mid-rebase — killing the abort path, or
-landing the commit on a detached HEAD an abort strands
-unreachable): HALT before touching anything. All four refs
-are absent outside their operation, after completion and
-after abort — no false halt. An attended halt re-enters at
-this step on the operator's clearing reply; unattended, a
-halted LOCK closes the run FAILED (no lock, nothing to
-build on) while a halted unit rides the close's deviations
-(Implementation).
-(1) Pathspec. The tracker plus every LIVE lock-set path (a
-re-lock inherits prior locks' live lock-set lines; an
-unchanged inherited path is a pathspec no-op). Anything
-beyond the tracker enters ONLY named by a lock-set line
-appended before the lock (`- F<n> [VERIFIED] lock-set:
-<path> — basis: <the entry that produced it>`), and a
-lock-set path — a unit write-set path too
-(Implementation) — names a FILE, never a directory: a
-directory pathspec commits whatever else the operator
-touched under it. The design phase edits no other repo
-file, so the tracker is normally the whole pathspec.
-(2) Collision check, the index still untouched. Two
-instruments: `git status --porcelain -- <pathspec>` read
-for COLUMN ONE (staged state is the operator's — the run
-has staged nothing yet; unchecked, a staged-only operator
-edit on a pathspec path is DESTROYED by the commit —
-worktree content committed over it, both readback halves
-green, the staged blob surviving nowhere), and a re-read of
-each lock-set artifact against the entry that produced it
-(column two is expectedly set on run-produced content, so
-worktree divergence needs the re-read; what it misses rides
-into the commit — the attack round's probes are the
-backstop, the residue named, not hidden). Either hit is a
-COLLISION: recorded as a [VERIFIED] F-line (basis the check
-that surfaced it; the pinned tracker carries the line), the
-path dropped from the pathspec, its lock-set line
-superseded — `- F<n> [INVALIDATED] <path> dead (collision)
-— basis: <the collision F-line's id>` ("contradicted"
-anywhere in this skill means that supersede form) —
-surfaced when the operator is present, riding the close's
-deviations unattended. A collision on the TRACKER itself
-halts like step 3's — the tracker is never dropped.
-(3) Ignore filter. An UNTRACKED pathspec path
-`git check-ignore` names ignored drops the same way — never
-a `-f`, the refusal the named killer in its [INVALIDATED]
-line (a tracked path commits regardless of ignore
-patterns). The TRACKER is not droppable: an untracked
-tracker named ignored HALTS the lock uncommitted — the run
-cannot pin its record in this repo; re-entry and FAILED as
-in step 0.
-(4) Add — the first index write. The surviving untracked
-paths (the fresh tracker, a new artifact) are `git add`ed
-exactly and alone: a pathspec commit reaches an untracked
-path only through its add, and a TRACKED path gets no add
-at all — the pathspec already takes its working-tree
-content, and an add would re-stage over operator staged
-state.
-(5) Commit. `git commit -- <pathspec>`, never `-A`. A
-pathspec commit takes WORKING-TREE content (excluding a
-path means dropping it from the pathspec, never merely
-skipping its add) and leaves paths outside the pathspec as
-they were; a pre-staged index rides into a PLAIN commit,
-and an empty-pathspec `git commit -m … --` commits the
-ENTIRE INDEX — step 3's tracker halt exists because of
-these two.
-(6) Readback, two halves. Every `git show --stat` path sits
-inside the expected set — the tracker plus the live
-lock-set paths MINUS the dropped ones — and
-`git status --porcelain -- <expected set>` is EMPTY after
-the commit. An unchanged inherited path is legitimately
-absent from the stat (`--stat` lists only what changed);
-porcelain residue is the coverage failure, fixed by a
-further pathspec commit over exactly the residue plus the
-tracker — the readback-clean commit's sha is the one
-pinned. A stat path OUTSIDE the set is a mis-composed
-pathspec: its content is already in history — recorded as a
-collision-class contradiction and named a brief exclusion,
+in the close. Advancing locks the design — the LOCK. Its
+transaction machinery lives in the git tool; the desk's work is
+the composition, the one judgment instrument, and the record
+forms around the verdicts.
+(a) Pathspec composition. The tracker plus every LIVE lock-set
+path (a re-lock inherits prior locks' live lock-set lines; an
+unchanged inherited path is a no-op, legitimately absent from
+the readback). Anything beyond the tracker enters ONLY named
+by a lock-set line appended before the lock (`- F<n> [VERIFIED]
+lock-set: <path> — basis: <the entry that produced it>`), and a
+lock-set path — a unit write-set path too (Implementation) —
+names a FILE, never a directory: a directory pathspec commits
+whatever else the operator touched under it (the tool halts on
+one). The design phase edits no other repo file, so the tracker
+is normally the whole pathspec.
+(b) The judgment instrument the tool cannot run: re-read each
+lock-set artifact against the entry that produced it — the
+tool's collision check reads staged operator state (porcelain
+column one), but column two is expectedly set on run-produced
+content, so worktree divergence from the record needs this
+re-read; what it misses rides into the commit — the attack
+round's probes are the backstop, the residue named, not hidden.
+(c) `lock-check --tracker <path> [--lock-set <path> …]`.
+Verdict routes: HALT_STATE is the operator's half-finished
+operation, the tree untouched — an attended halt re-enters on
+the operator's clearing reply; unattended, a halted LOCK closes
+the run FAILED (no lock, nothing to build on; Close, Status
+written FAILED) while a halted unit rides the close's
+deviations (Implementation). HALT_TRACKER_COLLISION and
+HALT_TRACKER_UNPINNABLE halt the same way — the tracker is
+never dropped, and never force-added. LOCK_CHECK_DROPS records
+each drop BEFORE the commit, in the tracker the commit pins: a
+[VERIFIED] F-line carrying the verdict line as basis, and the
+path's lock-set line superseded — `- F<n> [INVALIDATED] <path>
+dead (collision|ignored) — basis: <the drop F-line's id>`
+("contradicted" anywhere in this skill means that supersede
+form) — surfaced when the operator is present, riding the
+close's deviations unattended.
+(d) `lock-commit`, same arguments plus `-m` and one `--drop`
+per recorded drop. HALT_DROPS_STALE or HALT_DROPS_UNACKNOWLEDGED
+means the tree moved between check and commit: re-run
+lock-check, re-record, retry. LOCK_COMMITTED's sha is the LOCK
+COMMIT — the attack brief pins it, and the locked design IS the
+record at that commit. LOCK_COMMITTED_EXTRAS is a mis-composed
+pathspec: the extras' content is already in history — recorded
+as a collision-class contradiction and named a brief exclusion,
 never reverted out of the working tree (the revert would
 destroy the very operator state the finding names).
 Everything outside the pathspec is operator state — never
@@ -308,15 +298,13 @@ attacker rule's counterpart, Verify). A brief
 that asserts the tree claim (The
 attack's freeze scope, named there) names any tracked surface
 the claim cannot then cover as an
-exclusion (the dropped and collision paths above are that
+exclusion (the drop and extras lists above are that
 list's mechanical floor; an operator-modified tracked path
 outside every lock-set path joins through this same rule) —
 the attacker
 reads an excluded path as outside
 the frozen surface, evidence of nothing; a brief that never
-asserts it needs no exclusions. This is the LOCK COMMIT; its
-sha is what the attack brief pins, and the locked design IS
-the record at that commit. A
+asserts it needs no exclusions. A
 re-derived design re-enters here: new [READY], new sweep, new
 lock commit.
 
@@ -407,7 +395,9 @@ where a judgment finding's reach is the cited record or design
 text itself, else [PENDING]. An UNMEASURED verdict is
 an open question the desk completes itself — its own executed
 measurement, recorded as the F-line's evidence — before the
-round's A-line lands. Verbatim report quotes the desk retains
+round's A-line lands. Report quotes the desk retains (pasted,
+never paraphrased; the defang below is the one sanctioned
+mutation)
 append as a quoted block whose first line is
 `> Superseded — A<n> quotes` (the filter's species) — EVERY line
 of the block begins `>`; a blank line is a BARE `>`, nothing
@@ -490,7 +480,7 @@ its own id — `- <id> [INVALIDATED] unit U<k> <clause> —
 basis: <the check's failure>` — opening `unit U<k>` like
 the [PENDING] line it resolves; and the parent's clause
 disposition is re-written — `- <parent id> [INVALIDATED]
-record: clause <n> dead (<the check's failure>) — basis:
+record: clause <c> dead (<the check's failure>) — basis:
 <the restatement's id>` — bookkeeping over an already-dead
 entry (the closure rests on no clause of an invalidated
 body; dispositions aggregate, The loop) — so no clause list
@@ -501,8 +491,8 @@ on the design is SCOPELESS and voids — the premise-killing
 consequence (stop the siblings resting on it, let the rest
 land, re-enter ONCE). Units with disjoint
 write-sets run parallel (one shared index — commits
-serialize; the contention-retry rule rides in every unit
-brief, below). A missing
+serialize; the tool's capped retry absorbs the
+contention). A missing
 decision, file, or value is reported as a gap, never bridged —
 and triaged on arrival: a unit-local gap decision is a design
 decision made without an attack round, and it is recorded as
@@ -532,55 +522,57 @@ blank line — markdown otherwise folds it into the entry above) —
 not an entry, so
 invisible to the stats reader's tag-first count and the closure
 read by construction — that is what makes resume reliable.
-Unit briefs carry the UNIT PROCEDURE verbatim — desk prose
-reaches no unit, so detector, retry, and every exit ride in
-the brief. Composition-side, the desk checks the write-set:
-paths name FILES (the lock's step 1) and are
-`git check-ignore`-clean — an ignored write-set path is a
-composition error caught before dispatch, never an add
-refusal inside the unit. The procedure — START, before any
-edit: the state gate (the lock's step 0; halting here
-leaves the operator's half-finished tree untouched by the
-unit) and `git status --porcelain -- <write-set>` — the
-PORCELAIN form: plain `git status` prints on a clean tree,
-porcelain is empty exactly when clean. ANY porcelain line
-is a collision — a modified tracked path, an untracked file
-sitting on a write-set path (an operator draft the unit
-would otherwise overwrite and commit) — reported, the unit
-HALTING UNBUILT (no edit, no commit, no landing
-annotation); a clean start makes every later modification
-the unit's own, the pathspec the full write-set. COMMIT:
-the state gate re-read (an operation the operator began
-mid-unit blocks the commit — reported like contention
-exhaustion below), then the lock's steps 4-5 over the
-write-set — add only paths new to git, working-tree
-content, never `-A`. An `index.lock` failure on add or
-commit is CONTENTION with a sibling — retried, spaced, up
-to five attempts; persistent failure is REPORTED as a
-blocked commit with the error text pasted, never a
-collision, never silence (edits left uncommitted poison the
-write-set for the re-dispatch, and an uncapped retry is the
-infinite loop an unattended run never earns). EXITS, four:
-green commit, landing annotation with its sha; collision
-halt; blocked-commit report; already-present — the residue
-check proves the commissioned state already holds,
-reported, the landing annotation carrying `already-present`
-in place of a sha (the residue check is the discriminator,
-never the commit's exit code — a mis-composed pathspec
-exits 1 too). The desk books
-a collision as a [VERIFIED] F-line opening `record:` (basis
-the unit's reported check; a collision decides nothing —
-voids nothing, re-opens nothing), never through the gap
-triage, PLUS a hold entry — `- D<n> [AUTO-ACCEPTED] unit
-U<k> held: <path> — basis: <the collision F-line's id>` —
-the tag surface that carries an unbuilt unit into the
-close's enumeration (the gap path's pattern; without it a
-held unit reaches Verify invisible to every gate). Clearing
-a held path is DESK work, decided by provenance: where the
-record and the task
+Unit briefs carry the git tool's invocation lines with the
+script's absolute path (The git tool) — desk prose reaches no
+unit, and no procedure text is expanded into a brief.
+Composition-side, the desk checks the write-set: paths name
+FILES and are `git check-ignore`-clean — a composition error
+caught before dispatch (the tool re-checks and halts, the
+backstop). The unit runs: START, before any edit —
+`unit-start --write-set <file> …`. UNIT_START_CLEAN makes
+every later modification the unit's own; UNIT_COLLISION (an
+operator edit or draft on a write-set path the unit would
+otherwise overwrite and commit) and HALT_STATE (the
+operator's half-finished operation, tree untouched) halt the
+unit UNBUILT — no edit, no commit, no landing annotation.
+COMMIT — `unit-commit --write-set <file> … -m <msg>`.
+Verdicts: UNIT_COMMITTED → landing annotation with its sha.
+UNIT_NO_DIFF_VS_HEAD → nothing differs from HEAD: the unit
+runs its residue check (the brief's symbol-anchored
+criterion — the discriminator, never an exit code) and
+reports already-present, the landing annotation carrying
+`already-present` in place of a sha. HALT_MISSING_PATH → a
+write-set path the unit never populated: reported as a gap,
+nothing landed. HALT_STATE → an operation the operator began
+mid-unit — distinct by verdict from BLOCKED_CONTENTION →
+index.lock held through five spaced attempts (the verdict
+carries the error text and whether the lock file remains).
+UNIT_COMMITTED_EXTRAS and UNIT_COMMITTED_RESIDUE landed
+their sha — landing annotation — but carry a finding the
+desk books as a `record:` F-line from the pasted verdict:
+extras are the lock's mis-composed-pathspec rule (recorded,
+brief exclusion, never reverted); residue is write-set
+divergence after the commit, triaged like a collision. Any
+other verdict (ADD_FAILED, COMMIT_FAILED, GIT_ERROR) is
+reported as blocked, uncommitted edits named — they poison
+the write-set for the re-dispatch. EVERY non-committed exit
+pastes its verdict line in the unit's report and leaves the
+tree exactly as the tool left it — never silence. The desk
+books each non-landed unit return as a [VERIFIED] F-line
+opening `record:` (basis: the pasted verdict line; a unit
+return decides nothing — voids nothing, re-opens nothing),
+never through the gap triage (HALT_MISSING_PATH's gap report
+excepted), PLUS a hold entry — `- D<n> [AUTO-ACCEPTED] unit
+U<k> held: <reason> — basis: <that F-line's id>` — the tag
+surface that carries an unlanded unit into the close's
+enumeration (the gap path's pattern; without it a held unit
+reaches Verify invisible to every gate). Clearing a held
+path is DESK work, decided by provenance: where the record
+and the task
 system show the dirt is the run's own — a stopped or dead
-sibling whose write-set covers the path, its clean START
-check readable in that sibling's output — the desk clears
+unit dispatch (a sibling OR the same unit's own prior
+attempt) whose write-set covers the path, its clean START
+check readable in that dispatch's output — the desk clears
 BY SHAPE, reading each command's exit: a tracked path
 restores (`git restore --source=HEAD --staged --worktree
 -- <tracked paths>`), an untracked leftover is DELETED
@@ -591,12 +583,15 @@ as operator state — no clearing loop. A path
 without that provenance is operator state — held; the
 operator's clearing answer appends the hold entry's
 resolving line and the desk re-dispatches on it, unattended
-it rides the close's deviations. A blocked-commit report
-triages on the same provenance: siblings still live →
-re-dispatch after their landings; none live → the stale
-`.git/index.lock` a dead sibling left, removed by the desk
+it rides the close's deviations. A BLOCKED_CONTENTION
+return triages on the same provenance: siblings still
+live → re-dispatch after their landings; none live and the
+verdict says the lock file remains → the stale
+`.git/index.lock` a dead dispatch left, removed by the desk
 on that provenance alone (the task system showing no live
-unit), else surfaced.
+unit), else surfaced. A HALT_STATE halt re-dispatches on
+the operator's clearing reply, unattended it rides the
+close's deviations.
 
 ## Verify (forcing point 5)
 
@@ -649,8 +644,9 @@ earns no infinite loop.
 ## Close
 
 At the verdict that ends the run ([PASSED], or FAILED per
-Verify, per a Stop-rule lock halt — state gate or
-unpinnable tracker — or operator
+Verify, per a lock halt — HALT_STATE or an unpinnable
+tracker, the header written FAILED at that halt (the halt
+routes here with no verify verdict to write it) — or operator
 call), append `## Close` and present it to the
 operator —
 in auto mode this is the run's one touchpoint: the verdict with
@@ -664,7 +660,13 @@ enter here (The attack). Status flips to COMPLETE when the close
 is appended — over a PASSED verdict ONLY: a run ending FAILED
 takes the same close and KEEPS FAILED, so a FAILED run's close
 is marked by its `## Close` heading, never the header.
-Delivering the close is then the desk's final act, so the
+After the close is appended and Status written, pin the
+delivered record — `lock-commit --tracker <path> -m <close
+message>` over the tracker alone (post-lock appends otherwise
+never enter git); its verdict line delivers with the close.
+Skipped only where the run never had a pinnable tracker
+(preflight's UNPINNABLE halt). Delivering the close is then
+the desk's final act, so the
 delivered artifact carries its final Status. Open
 reconciliations survive
 into COMPLETE, enumerated in the close; an operator answer

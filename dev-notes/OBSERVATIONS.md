@@ -2755,3 +2755,79 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   the alternatives with the trend evidence against the first.
   PIN AT 0.2.13; 0.2.31 stays UNPINNED, no repair landed this
   entry. Consumer: the operator's form decision + the next lap.
+
+- 2026-08-07 — **Attack-6 dispositions EXECUTED as tool
+  precipitation (operator GO on option 1): statiker 0.2.32
+  UNPINNED — the lock/unit git machinery is now a shipped,
+  red-first-tested script; attack 7 attacks the pair.** Build
+  arrangement (the red side named): the 46-test suite
+  (tools/test_statiker_git.py, mechanizing the rounds-4-6 probe
+  battery plus attack-6's probes) was written FIRST and run
+  against the absent script — 45/45 red — then the script
+  (plugin/skills/statiker/scripts/statiker_git.py, python3
+  stdlib, hermetic real-git fixtures) brought it green; the one
+  mid-build red was real (index.lock on ADD mapped to GIT_ERROR,
+  violating the add-or-commit-is-contention rule) and fixed by
+  routing adds through the shared capped retry. Verdict contract:
+  every invocation ends in one `STATIKER-GIT VERDICT: {json}`
+  line the desk books verbatim; exit codes are routing only.
+  Subcommands: state-gate, preflight, lock-check/lock-commit
+  (two-phase; --drop must match the recorded drop set, else
+  HALT_DROPS_STALE/UNACKNOWLEDGED — the tree moved between
+  phases), unit-start, unit-commit. Finding→disposition map: B1
+  sticky REBASE_HEAD + B2 refless rebase stops → state gate
+  reads STATE DIRECTORIES (rebase-merge/rebase-apply/sequencer)
+  plus MERGE_HEAD/CHERRY_PICK_HEAD/REVERT_HEAD, REBASE_HEAD
+  never consulted (tests: continued-rebase-clean, exec-stop
+  detected); B3 porcelain ?? col-1 → parser enumerates forms,
+  '?'/'!' excluded from staged-collision (pure + integration
+  tests); B4 worktree-read discriminator → UNIT_NO_DIFF_VS_HEAD
+  is a porcelain/HEAD read and HALT_MISSING_PATH catches the
+  poisoned pathspec with nothing landed (both probed); B5
+  verbatim cross-references → unit briefs carry the script's
+  absolute path + invocation lines, no procedure text expands
+  into any brief; N1 → tool always commits -m; N2 exits/tag
+  surface → verdict enum is the exit set, EVERY non-landed
+  return books a record: F-line (basis: the verdict line) PLUS a
+  unit-held hold entry; N3 → HALT_STATE and BLOCKED_CONTENTION
+  are distinct verdicts (test: mid-merge at commit ≠ contention),
+  BLOCKED_CONTENTION carries error text + index_lock_present;
+  N4 → clearing provenance widened to "a sibling OR the same
+  unit's own prior attempt"; N5 → preflight subcommand at run
+  start, PREFLIGHT_UNPINNABLE_TRACKER halts before any design
+  work. NITs: self-citing placeholder → clause <c>; template
+  drift → drop supersede is `dead (collision|ignored)`, an
+  instance of the loop's general killer-named form; defang
+  "verbatim" contradiction → "Report quotes … (pasted, never
+  paraphrased; the defang below is the one sanctioned
+  mutation)"; step-3 "refusal" wording died with the prose;
+  FAILED-via-halt → Close names the header written FAILED at
+  the halt; post-lock record never in git (widened NIT) → Close
+  pins the delivered record via tracker-only lock-commit,
+  verdict line delivered with the close. SKILL.md now: LOCK =
+  composition + judgment re-read + verdict routing (a-d); unit
+  procedure = invocation + verdict routing; git-claims prose
+  retired to the tool + suite. Operational lines 659 (was 660 —
+  the win is class, not count: state-machine prose became code;
+  the count stays for the stabilization compression pass).
+  PLAN.md post-plan append records the single-home amendment
+  (text single-home; the state machine is birth-class
+  enforcement structure). Operator mid-build question (worktree
+  machinery — script too?): answered no-new-scope — the tool is
+  worktree-CORRECT by construction (git rev-parse --git-path
+  resolves per-worktree state; certified by an executed linked-
+  worktree test, merge-in-worktree detected there and not in the
+  main checkout), while worktree provisioning/cleanup is
+  dispatch-guards:worktree's domain and statiker's design shares
+  one checkout (no incident, no provenance, no patch). PIN
+  ACCIDENT booked: an aborted `dot apply` moved the INSTALLED
+  plugin 0.2.13→0.2.31 off-seam (0.2.31 carries attack-6's five
+  blockers unfixed); running desks unaffected (loaded text owns
+  conduct); mitigation = no fresh desk until the next pin move,
+  which supersedes the accident. NEXT: standing opus review of
+  this release's diff (skill + script + suite in the brief),
+  dispositions recorded, then attack 7 on the PAIR
+  (e4727a8..HEAD, SKILL.md + script + suite in context); on a
+  no-blocker round → pin move to current + cycle-10 fresh-desk
+  line (unchanged from the #3 handoff). Consumer: the opus
+  review dispositions + attack-7 lap + the pin move.
