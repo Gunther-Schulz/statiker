@@ -69,14 +69,40 @@ ENTRY_RE = re.compile(r"^- ([FDRAV])(\d+) \[([^\]]+)\] (.*)$")
 # entry-INTENDED lines the head regex cannot see: a missing space
 # after the dash or leading indentation makes an entry invisible to
 # every predicate with no violation at all (attack-9 B3 — a
-# premise-kill one character off dispatched a dead design). The
-# landing annotation never matches: it carries no dash.
-NEAR_MISS_RE = re.compile(r"^(?:\s+-|-)\s*([FDRAV])(\d+)\b")
+# premise-kill one character off dispatched a dead design). Any
+# bullet-like opener, not just the dash, and any case of the class
+# letter (attack-10: seven other openers each dispatched a scopeless
+# design-kill). A class letter with its number is what makes the line
+# entry-INTENDED — ordinary prose bullets and the landing annotation
+# (no bullet at all) stay legal.
+NEAR_MISS_RE = re.compile(r"^\s*(?:[-*+•–—]|\d+\.)\s*([FDRAVfdrav])(\d+)\b")
+# the scope openers are CASE-SENSITIVE LITERALS (SKILL.md, The
+# record): a case or spacing variant is entry-INTENDED scope that no
+# predicate can read, so it lints rather than passing as scopeless
+# prose (attack-10: `Record:` voided a live closure and no verdict
+# named the cause).
+SCOPE_NEAR_RE = re.compile(r"(?i)^(units?\s+U\d|record\s*:)")
+SCOPE_EXACT_RE = re.compile(r"^(unit U\d+ |record: )")
+UNIT_SCOPE_RE = re.compile(r"^unit U\d+ ")
+# the hold form is the literal `unit U<k> held: ` opening under
+# [AUTO-ACCEPTED] — "a hold written any other way holds nothing"
+# (SKILL.md, The record). attack-10: the substring read MISSED every
+# spelling variant and OVER-FIRED on `withheld:` in a gap line.
+HOLD_EXACT_RE = re.compile(r"^unit U\d+ held: ")
+HOLD_WORD_RE = re.compile(r"(?i)\bheld\b")
 LANDING_RE = re.compile(r"^unit U\d+ landed:")
 LANDING_INDENTED_RE = re.compile(r"^\s+unit U\d+ landed:")
 SUPERSEDED_OPEN_RE = re.compile(r"^> Superseded — ")
+HEADING_RE = re.compile(r"^#{1,6} ")
+# `\S+` swallowed the separator that ended the clause, gluing a `;`
+# onto the disposition value; and a spelling the alternation does not
+# carry (`restated at D8`) matched nothing at all, so the clause left
+# no trace in either the aggregation or the violations (attack-10 N9).
+# CLAUSE_TOKEN_RE is the reach check: every `clause <name>` the body
+# names is either parsed here or lints unparsed.
 CLAUSE_RE = re.compile(
-    r"clause (\w+)\s+(dead\s*\([^)]*\)|restated-at-\S+|dead\b)")
+    r"\bclause (\w+)\s+(dead\s*\([^)]*\)|restated-at-[^\s;,]+|dead\b)")
+CLAUSE_TOKEN_RE = re.compile(r"\bclause (\w+)\b")
 
 
 @dataclass
@@ -212,7 +238,10 @@ def parse_tracker(text: str):
             continue
         cls, num, tag, body = m.groups()
         if tag not in CLASS_TAGS[cls]:
-            viol("tag-enum", i, f"[{tag}] on {cls}-line")
+            # the FULL line, never a summary (attack-10 B1): a blocking
+            # violation's text is the line the desk repairs, and the
+            # disarm below is addressed at that line's number
+            viol("tag-enum", i, line)
         basis = None
         if "— basis:" in body:
             body_main, basis = body.split("— basis:", 1)
@@ -220,6 +249,15 @@ def parse_tracker(text: str):
         else:
             body_main = body.strip()
             viol("basis-missing", i, line)
+        if SCOPE_NEAR_RE.match(body_main) and \
+                not SCOPE_EXACT_RE.match(body_main):
+            viol("scope-near-miss", i, line)
+        elif HOLD_EXACT_RE.match(body_main):
+            if tag != "AUTO-ACCEPTED":
+                viol("hold-form", i, line)
+        elif (tag == "AUTO-ACCEPTED" and UNIT_SCOPE_RE.match(body_main)
+                and HOLD_WORD_RE.search(body_main)):
+            viol("hold-form", i, line)
         entries.append(Entry(i, cls, f"{cls}{num}", tag, body_main, basis))
 
     # bracketed tag literal anywhere outside an entry's leading tag
@@ -238,9 +276,39 @@ def parse_tracker(text: str):
 
 
 def git_toplevel(cwd):
-    p = subprocess.run(["git", "rev-parse", "--show-toplevel"], cwd=cwd,
-                       capture_output=True, text=True)
-    return p.stdout.strip() if p.returncode == 0 else None
+    # the toplevel is a PATH read: bytes decoded the way the OS decodes
+    # argv, never text=True's locale decode (attack-10 N5 — a repo
+    # directory carrying a non-UTF-8 byte answered INTERNAL_ERROR from
+    # every gate). A cwd that does not exist is not a tool defect
+    # either: the caller routes it (attack-10 NIT2).
+    try:
+        p = subprocess.run(["git", "rev-parse", "--show-toplevel"], cwd=cwd,
+                           capture_output=True)
+    except OSError:
+        return None
+    return os.fsdecode(p.stdout.strip()) if p.returncode == 0 else None
+
+
+def rebase_at_symlinked_ancestor(p: str, top_real: str):
+    """Re-root a path reached through a symlinked ANCESTOR of the repo
+    top, or None if no ancestor resolves to the top. git reports the
+    toplevel PHYSICALLY, so the link spelling never matches it
+    textually and a perfectly pinnable tracker read as one outside the
+    repo (attack-10 N4). Only the ANCESTOR resolves — the tail below
+    it is re-rooted textually, so the tracker itself is still taken as
+    named and a `..` escape still finds no ancestor and still halts.
+    (The git tool carries the same helper; the two scripts ship
+    standalone.)"""
+    tail = []
+    cur = p
+    while True:
+        if os.path.realpath(cur) == top_real:
+            return os.path.join(top_real, *reversed(tail)) if tail else top_real
+        parent, name = os.path.split(cur)
+        if not name or parent == cur:
+            return None
+        tail.append(name)
+        cur = parent
 
 
 def repo_paths(path_arg: str):
@@ -270,13 +338,28 @@ def repo_paths(path_arg: str):
         # to be a symlink read as a path outside the repo)
         top_real = os.path.realpath(top)
         p = os.path.normpath(os.path.join(top_real, fs))
+        if not p.startswith(top_real + os.sep):
+            p = rebase_at_symlinked_ancestor(p, top_real) or p
         if p.startswith(top_real + os.sep):
             rel = p[len(top_real) + 1:]
     return fs, rel, top
 
 
+def check_tracker_dir(path_arg, fs):
+    """A tracker whose DIRECTORY does not exist is an unreadable
+    tracker, not a tool defect: the toplevel read used that directory
+    as its cwd and died FileNotFoundError through the generic handler
+    (attack-10 NIT2). One grammar, so every subcommand answers it the
+    same way."""
+    parent = os.path.dirname(os.path.abspath(fs)) or "."
+    if not os.path.isdir(parent):
+        finish("TRACKER_UNREADABLE", 2, path=path_arg,
+               error=f"the tracker's directory does not exist: {parent}")
+
+
 def load(path_arg):
     fs, rel, top = repo_paths(path_arg)
+    check_tracker_dir(path_arg, fs)
     # a tracker no repo contains is one the run can never pin, and
     # every record-side gate — sweep, closure, lint — was satisfiable
     # by exactly that (attack-8 N1). Tracker-anchored resolution
@@ -287,7 +370,11 @@ def load(path_arg):
         finish("PATH_OUTSIDE_REPO", 2, path=path_arg,
                error="no git repository at the tracker's location")
     try:
-        with open(fs, encoding="utf-8") as f:
+        # the tracker is BYTES: one non-UTF-8 byte in a body killed
+        # every gate on the strict decode (attack-10 N6). Surrogates
+        # survive the round trip, so a preserved line is written back
+        # byte-identical.
+        with open(fs, encoding="utf-8", errors="surrogateescape") as f:
             return f.read()
     except OSError as e:
         finish("TRACKER_UNREADABLE", 2, error=str(e))
@@ -339,8 +426,16 @@ def sweep_checks(entries):
     for e in entries:
         if e.tag != "INVALIDATED":
             continue
-        for clause, disp in CLAUSE_RE.findall(e.body):
-            clause_dispositions.setdefault(e.id, {})[clause] = disp
+        parsed = set()
+        for m in CLAUSE_RE.finditer(e.body):
+            parsed.add(m.start())
+            clause_dispositions.setdefault(e.id, {})[m.group(1)] = m.group(2)
+        for m in CLAUSE_TOKEN_RE.finditer(e.body):
+            if m.start() not in parsed:
+                violations.append(
+                    {"code": "clause-unparsed", "line": e.lineno,
+                     "text": f"{e.id}: clause {m.group(1)} carries no "
+                             "disposition this grammar reads"})
     return violations, clause_dispositions
 
 
@@ -361,11 +456,8 @@ def cmd_sweep(args):
 
 # ------------------------------------------------------------------- closure
 
-CLOSURE_BLOCKING_CODES = ("entry-form", "tag-enum", "entry-near-miss")
-
-TAG_WORD_RE = re.compile(
-    r"\b(" + "|".join(sorted(map(re.escape, ALL_TAGS), key=len,
-                             reverse=True)) + r")\b")
+CLOSURE_BLOCKING_CODES = ("entry-form", "tag-enum", "entry-near-miss",
+                          "scope-near-miss", "hold-form")
 
 
 def closure_blocking_violations(entries, violations):
@@ -373,26 +465,28 @@ def closure_blocking_violations(entries, violations):
     LOOKS like an entry but failed the grammar is invisible to every
     predicate below — one dropped bracket turned a reopened design
     into a green light (attack-8 B2). Append-only means the malformed
-    line never leaves the file, so a violation is DISARMED only by a
-    RE-ASSERTION: a later clean line for the same id carrying the SAME
-    tag the malformed text names — order alone let a later unrelated
-    line convert a premise-kill VOID into DISPATCHABLE (attack-9 B2),
-    and the re-assertion is what carries the malformed line's content
-    into the entry set the closure reads. No tag extractable, no
-    disarm: the desk re-states the line correctly under its own id."""
+    line never leaves the file, so a violation is DISARMED only by the
+    LINE-ADDRESSED repair SKILL.md prescribes: a later clean entry
+    under the same id whose body carries the literal token
+    `corrects line <n>`, `<n>` the violation's own line number.
+
+    The tag-match disarm this replaces was both brickable and
+    forgeable (attack-10 B1/B2): a misspelled tag extracted nothing,
+    so no re-assertion could ever disarm it, and any later unrelated
+    same-id/same-tag line converted a premise-kill VOID into a
+    dispatch. The explicit reference is what carries the malformed
+    line's content into the entry set the closure reads."""
     armed = []
     for v in violations:
         if v["code"] not in CLOSURE_BLOCKING_CODES:
             continue
         head = (ENTRY_HEAD_RE.match(v["text"])
                 or NEAR_MISS_RE.match(v["text"]))
-        vid = f"{head.group(1)}{head.group(2)}" if head else next(
-            (e.id for e in entries if e.lineno == v["line"]), None)
-        tag_m = TAG_WORD_RE.search(v["text"])
-        tag = tag_m.group(1) if tag_m else None
-        if vid and tag and any(
-                e.id == vid and e.tag == tag and e.lineno > v["line"]
-                for e in entries):
+        vid = (f"{head.group(1).upper()}{head.group(2)}" if head else next(
+            (e.id for e in entries if e.lineno == v["line"]), None))
+        token = f"corrects line {v['line']}"
+        if vid and any(e.id == vid and e.lineno > v["line"]
+                       and token in e.body for e in entries):
             continue
         armed.append(v)
     return armed
@@ -457,9 +551,10 @@ def cmd_closure(args):
         finish("CLOSURE_LIVE", 0,
                closing=f"{closing.id} at line {closing.lineno}")
 
+    hold_prefix = f"unit {args.unit} held: "
     held = [e for (u, e) in unit_lines
             if u == args.unit and e.tag == "AUTO-ACCEPTED"
-            and "held:" in e.body and latest[e.id] is e]
+            and e.body.startswith(hold_prefix) and latest[e.id] is e]
     if held:
         finish("UNIT_HELD", 2, unit=args.unit,
                holds=[f"{e.id} [{e.tag}] {e.body}" for e in held])
@@ -474,7 +569,17 @@ def cmd_closure(args):
 # -------------------------------------------------------------------- filter
 
 def cmd_filter(args):
-    _, rel, top = repo_paths(args.tracker)
+    fs, rel, top = repo_paths(args.tracker)
+    check_tracker_dir(args.tracker, fs)
+    # a tracker that is itself a symlink halts (SKILL.md, The attack):
+    # the link's git history is the LINK STRING, so the artifact came
+    # out a one-line file and a round run over it would close a design
+    # sight-unseen (attack-10 N10). Before anything is written.
+    if os.path.islink(fs):
+        finish("USAGE_ERROR", 3, tracker=args.tracker,
+               error=f"--tracker names a symlink ({args.tracker}): name "
+                     f"the real path — a link's git history is the link "
+                     f"string, not the record")
     # under tracker-anchored resolution rel is None exactly when top
     # is (one cause), and one cause gets ONE verdict across every
     # subcommand — the same halt lint/sweep/closure emit; the former
@@ -508,12 +613,15 @@ def cmd_filter(args):
     # read the history of the TRACKER's repo — `rel` is relative to
     # `top`, so a cwd-resolved `git show` asks the wrong repo (or none)
     p = subprocess.run(["git", "show", f"{args.sha}:{rel}"], cwd=top,
-                       capture_output=True, text=True,
-                       encoding="utf-8", errors="replace")
+                       capture_output=True)
     if p.returncode != 0:
         finish("PIN_UNREADABLE", 2, sha=args.sha, tracker=args.tracker,
-               stderr=p.stderr.strip())
-    lines = split_lines(p.stdout)
+               stderr=p.stderr.decode(errors="replace").strip())
+    # errors='replace' SUBSTITUTED a non-UTF-8 byte in the artifact —
+    # the attacker would grade text the record does not contain
+    # (attack-10 N6). Surrogateescape both ways keeps preserved lines
+    # byte-identical to the pinned tracker.
+    lines = split_lines(p.stdout.decode("utf-8", "surrogateescape"))
     out, blocks, sections = [], 0, 0
     in_block = in_section = False
     for line in lines:
@@ -522,7 +630,11 @@ def cmd_filter(args):
                 continue
             in_block = False
         if in_section:
-            if line.startswith("## ") and not line.startswith("## Superseded —"):
+            # a section ends at the next heading of ANY level: closing
+            # only on `## ` swallowed every line after a SUBHEADING,
+            # prose and R-lines with it (attack-10 NIT3)
+            if HEADING_RE.match(line) and \
+                    not line.startswith("## Superseded —"):
                 in_section = False
             elif ENTRY_HEAD_RE.match(line):
                 # ENTRIES are never filtered (SKILL.md, The attack):
@@ -544,7 +656,8 @@ def cmd_filter(args):
             continue
         out.append(line)
     text = "\n".join(out) + "\n"
-    with open(args.out, "w", encoding="utf-8") as f:
+    with open(args.out, "w", encoding="utf-8",
+              errors="surrogateescape") as f:
         f.write(text)
     say(f"artifact written: {args.out}")
     finish("ARTIFACT_WRITTEN", 0, sha=args.sha, out=args.out,

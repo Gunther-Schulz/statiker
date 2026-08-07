@@ -192,6 +192,26 @@ RECORD_SUBCOMMANDS = {"lint", "sweep", "closure", "filter", "quote"}
 
 VERDICT_LINE_RE = re.compile(r"^STATIKER-(?:GIT|RECORD) VERDICT: (.*)$")
 
+# The battery's frozen remainder: emitted verdicts no row drives, each
+# with the reason it cannot be driven. Asserted set-exact below, so
+# this list is the only silent-under-report exit and editing it is a
+# deliberate act. Every entry here is red-proven at function level or
+# by a planted-defect run instead (the suites' pure-function classes).
+UNDRIVEN_REMAINDER = {
+    "ADD_FAILED": "a `git add` failure that is not index.lock "
+                  "contention has no constructible trigger",
+    "GIT_ERROR": "every checked git call sits behind an earlier halt; "
+                 "no invocation reaches a failing one",
+    "INTERNAL_ERROR": "the never-a-silent-death catch-all; reaching it "
+                      "is itself a tool defect",
+    "HALT_NO_PATHSPEC": "emptying the pathspec means dropping the "
+                        "tracker, which halts on the tracker first",
+    "LOCK_COMMITTED_EXTRAS": "git's own pathspec commit is not known to "
+                             "produce extras (function-level red)",
+    "UNIT_COMMITTED_EXTRAS": "same as the lock seam's extras: no git "
+                             "state is known to produce them",
+}
+
 TRACKER_REL = ".clippy/runs/t.md"
 CLOSED_TRACKER = """# Run: battery
 Status: in-progress
@@ -235,9 +255,23 @@ def run_battery(git_script, record_script, root):
     outside = root / "outside"          # deliberately NOT a repo
     outside.mkdir()
 
-    def git(*a, cwd=repo):
-        subprocess.run(["git", *a], cwd=cwd, env=env,
-                       capture_output=True, check=True)
+    def git(*a, cwd=repo, check=True):
+        return subprocess.run(["git", *a], cwd=cwd, env=env,
+                              capture_output=True, check=check)
+
+    def scratch_repo(name, tracker=True):
+        """A fresh repo with a base commit, for rows whose state would
+        poison a shared one (staged collisions, halted operations,
+        ignore rules, hooks, filters)."""
+        d = root / name
+        (d / ".clippy" / "runs").mkdir(parents=True)
+        git("init", "-q", "-b", "main", cwd=d)
+        (d / "base.txt").write_text("base\n")
+        git("add", "base.txt", cwd=d)
+        git("commit", "-m", "base", cwd=d)
+        if tracker:
+            (d / TRACKER_REL).write_text("# Run: t\n")
+        return d
 
     git("init", "-q", "-b", "main")
     (repo / "base.txt").write_text("base\n")
@@ -268,6 +302,85 @@ def run_battery(git_script, record_script, root):
 
     def make_src():
         (repo / "src.txt").write_text("unit output\n")
+
+    # -- constructed repos for the halt/collision routes ---------------
+    # (recipes lifted from the suites' fixtures: a conflicted merge, an
+    # ignored tracker dir, a staged tracker, the drop handshake's two
+    # halves, an untracked draft on the write-set, a mid-unit stage, a
+    # stale index.lock, a red pre-commit hook, a noisy clean filter)
+
+    r_state = scratch_repo("r_state")
+    (r_state / "c.txt").write_text("main\n")
+    git("add", "c.txt", cwd=r_state)
+    git("commit", "-m", "c-main", cwd=r_state)
+    git("checkout", "-q", "-b", "side", "HEAD~1", cwd=r_state)
+    (r_state / "c.txt").write_text("side\n")
+    git("add", "c.txt", cwd=r_state)
+    git("commit", "-m", "c-side", cwd=r_state)
+    git("checkout", "-q", "main", cwd=r_state)
+    assert git("merge", "side", cwd=r_state, check=False).returncode != 0
+
+    r_ignore = scratch_repo("r_ignore")
+    (r_ignore / ".gitignore").write_text(".clippy/\n")
+    git("add", ".gitignore", cwd=r_ignore)
+    git("commit", "-m", "gi", cwd=r_ignore)
+
+    r_coll = scratch_repo("r_coll")
+    git("add", TRACKER_REL, cwd=r_coll)
+    git("commit", "-m", "tracker", cwd=r_coll)
+    (r_coll / TRACKER_REL).write_text("# Run: t\nedit\n")
+    git("add", TRACKER_REL, cwd=r_coll)
+
+    r_drops = scratch_repo("r_drops")
+    (r_drops / "art.txt").write_text("operator staged\n")
+    git("add", "art.txt", cwd=r_drops)
+
+    r_stale = scratch_repo("r_stale")
+    (r_stale / "art.txt").write_text("run content\n")
+
+    r_repin = scratch_repo("r_repin")
+
+    r_unit = scratch_repo("r_unit", tracker=False)
+    (r_unit / ".gitignore").write_text("build/\n")
+    (r_unit / "settled.txt").write_text("settled\n")
+    git("add", ".gitignore", "settled.txt", cwd=r_unit)
+    git("commit", "-m", "settled", cwd=r_unit)
+    (r_unit / "draft.txt").write_text("operator draft\n")
+    (r_unit / "staged.txt").write_text("OPERATOR PRECIOUS\n")
+    git("add", "staged.txt", cwd=r_unit)
+
+    r_lock = scratch_repo("r_lock", tracker=False)
+    (r_lock / "src.txt").write_text("unit output\n")
+    (r_lock / ".git" / "index.lock").write_text("")
+
+    r_hook = scratch_repo("r_hook")
+    hook = r_hook / ".git" / "hooks" / "pre-commit"
+    hook.write_text("#!/bin/sh\necho 'pre-commit: suite failed' >&2\nexit 1\n")
+    hook.chmod(0o755)
+
+    def noisy(d):
+        git("config", "filter.noisy.clean", "sh -c 'cat; date +%s%N'", cwd=d)
+        (d / ".gitattributes").write_text("*.md filter=noisy\n")
+        git("add", ".gitattributes", cwd=d)
+        git("commit", "-m", "attr", cwd=d)
+
+    r_noisy = scratch_repo("r_noisy")
+    noisy(r_noisy)
+    r_noisy_unit = scratch_repo("r_noisy_unit", tracker=False)
+    noisy(r_noisy_unit)
+    (r_noisy_unit / "note.md").write_text("unit output\n")
+
+    # -- record-side trackers, read-only rows over the main repo -------
+    (repo / "absent.md").write_text(
+        "# Run: a\nStatus: in-progress\nPhase: implement\n\n"
+        "- A1 [DISPATCHED] round 1 — basis: brief\n"
+        "- A1 [BIT] two findings — basis: report\n")
+    (repo / "void.md").write_text(
+        CLOSED_TRACKER +
+        "- F9 [INVALIDATED] the premise died — basis: probe\n")
+    (repo / "held.md").write_text(
+        CLOSED_TRACKER +
+        "- D9 [AUTO-ACCEPTED] unit U2 held: x.txt — basis: F9\n")
 
     # (tool, subcommand, argv, cwd, stdin, prep)
     table = [
@@ -321,6 +434,59 @@ def run_battery(git_script, record_script, root):
          repo, None, None),
         ("record", "quote", ["quote", "--label", "A1 quotes"], repo,
          "a report line holding [VERIFIED]\n", None),
+
+        # -- the halt/collision routes, each in its own repo ----------
+        ("git", "state-gate", ["state-gate"], r_state, None, None),
+        ("git", "lock-check", ["lock-check", "--tracker", TRACKER_REL],
+         r_state, None, None),
+        ("git", "preflight", ["preflight", "--tracker", TRACKER_REL],
+         r_ignore, None, None),
+        ("git", "lock-check", ["lock-check", "--tracker", TRACKER_REL],
+         r_ignore, None, None),
+        ("git", "lock-check", ["lock-check", "--tracker", TRACKER_REL],
+         r_coll, None, None),
+        ("git", "lock-check", ["lock-check", "--tracker", TRACKER_REL,
+                               "--lock-set", "art.txt"], r_drops, None, None),
+        ("git", "lock-commit", ["lock-commit", "--tracker", TRACKER_REL,
+                                "--lock-set", "art.txt", "-m", "lock"],
+         r_drops, None, None),
+        ("git", "lock-commit", ["lock-commit", "--tracker", TRACKER_REL,
+                                "--lock-set", "art.txt", "--drop", "art.txt",
+                                "-m", "lock"], r_stale, None, None),
+        ("git", "lock-commit", ["lock-commit", "--tracker", TRACKER_REL,
+                                "-m", "pin"], r_repin, None, None),
+        ("git", "lock-commit", ["lock-commit", "--tracker", TRACKER_REL,
+                                "-m", "pin again"], r_repin, None, None),
+        ("git", "lock-commit", ["lock-commit", "--tracker", TRACKER_REL,
+                                "-m", "lock"], r_hook, None, None),
+        ("git", "lock-commit", ["lock-commit", "--tracker", TRACKER_REL,
+                                "-m", "lock"], r_noisy, None, None),
+        ("git", "unit-start", ["unit-start", "--write-set", "draft.txt"],
+         r_unit, None, None),
+        ("git", "unit-start", ["unit-start", "--write-set", "build/x.txt"],
+         r_unit, None, None),
+        ("git", "unit-commit", ["unit-commit", "--write-set", "staged.txt",
+                                "-m", "unit U1"], r_unit, None, None),
+        ("git", "unit-commit", ["unit-commit", "--write-set", "settled.txt",
+                                "-m", "unit U2"], r_unit, None, None),
+        ("git", "unit-commit", ["unit-commit", "--write-set", "src.txt",
+                                "-m", "unit U1"], r_lock, None, None),
+        ("git", "unit-commit", ["unit-commit", "--write-set", "note.md",
+                                "-m", "unit U1"], r_noisy_unit, None, None),
+
+        # -- the record-side routes ----------------------------------
+        ("record", "lint", ["lint", "--tracker", str(repo / "malformed.md")],
+         repo, None, None),
+        ("record", "sweep", ["sweep", "--tracker", tracker_abs],
+         repo, None, None),
+        ("record", "closure", ["closure", "--tracker",
+                               str(repo / "absent.md")], repo, None, None),
+        ("record", "closure", ["closure", "--tracker", str(repo / "void.md")],
+         repo, None, None),
+        ("record", "closure", ["closure", "--tracker", str(repo / "held.md"),
+                               "--unit", "U2"], repo, None, None),
+        ("record", "closure", ["closure", "--tracker", tracker_abs,
+                               "--unit", "U2"], repo, None, None),
     ]
 
     rows = []
@@ -392,6 +558,22 @@ class TestRuntimeVerdictBattery(unittest.TestCase):
             seen = {r["sub"] for r in self.rows if r["tool"] == tool}
             self.assertEqual(seen, declared,
                              f"{tool}: battery misses {declared - seen}")
+
+    def test_every_emitted_verdict_is_driven_or_frozen(self):
+        # the battery's own REACH, made enumerable: a verdict the AST
+        # sees is either observed in a real subprocess run above or
+        # named in the frozen remainder with the reason it cannot be.
+        # Set-exact in both directions, so a newly added verdict fails
+        # this test until it is consciously placed — the honest-reach
+        # note's "an emit on a path no battery row drives" stops being
+        # a paragraph and becomes a list someone has to edit.
+        observed = {v for r in self.rows for v in r["verdicts"]}
+        undriven = emitted_verdicts() - observed
+        self.assertEqual(
+            undriven, set(UNDRIVEN_REMAINDER),
+            "undriven verdicts and the frozen remainder disagree — "
+            "drive the new one with a battery row, or add it to "
+            "UNDRIVEN_REMAINDER with the reason no row can")
 
     def test_battery_reaches_error_paths_not_only_happy_ones(self):
         # the instrument is live only if it drives the halt/usage

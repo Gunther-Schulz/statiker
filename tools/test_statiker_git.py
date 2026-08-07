@@ -965,5 +965,172 @@ class TestAttack9SymlinkContainment(GitFixture):
         self.assertNotEqual(p.returncode, 0)
 
 
+class TestAttack10SymlinkedAncestor(GitFixture):
+    """attack-10 N4: containment compares a TEXTUAL path against the
+    repo top's REALPATH, so a path reached through a symlinked
+    ANCESTOR of the top — the spelling git itself resolves away when
+    it reports the toplevel — read as a path outside the repo. Only
+    the ANCESTOR rebases: everything below it is still taken as named
+    (SKILL.md, The tools), and a literal `..` escape still halts."""
+
+    def linked(self):
+        """(real_top, link_top) for a repo under a symlinked ancestor."""
+        base = Path(self._tmp.name) / "anc"
+        (base / "real" / "inner").mkdir(parents=True)
+        os.symlink(str(base / "real"), str(base / "link"))
+        real = base / "real" / "inner"
+        subprocess.run(["git", "init", "-q", "-b", "main"], cwd=real,
+                       env=self.env, capture_output=True, check=True)
+        return real, base / "link" / "inner"
+
+    def run_at(self, cwd, *args):
+        return subprocess.run(
+            [sys.executable, str(SCRIPT), *args], cwd=str(cwd),
+            env=self.env, capture_output=True, text=True, timeout=60)
+
+    def test_preflight_ok_from_both_spellings_and_both_cwds(self):
+        real, link = self.linked()
+        (real / "t.md").write_text("# Run: t\n")
+        for cwd in (real, link):
+            for tracker in (real / "t.md", link / "t.md"):
+                v = self.verdict(self.run_at(cwd, "preflight",
+                                             "--tracker", str(tracker)))
+                self.assertEqual(v["verdict"], "PREFLIGHT_OK",
+                                 f"cwd={cwd} tracker={tracker}")
+                self.assertEqual(v["tracker"], "t.md")
+
+    def test_unit_start_clean_through_the_link_spelling(self):
+        real, link = self.linked()
+        v = self.verdict(self.run_at(link, "unit-start",
+                                     "--write-set", str(link / "src.txt")))
+        self.assertEqual(v["verdict"], "UNIT_START_CLEAN")
+        self.assertEqual(v["write_set"], ["src.txt"])
+
+    def test_dotdot_escape_through_the_link_still_halts(self):
+        # the containment rule the rebase must not eat
+        real, link = self.linked()
+        (Path(self._tmp.name) / "anc" / "real" / "outside.py").write_text("x\n")
+        p = self.run_at(link, "unit-start",
+                        "--write-set", str(link / ".." / "outside.py"))
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "PATH_OUTSIDE_REPO")
+        self.assertNotEqual(p.returncode, 0)
+
+    def test_link_below_the_top_is_still_taken_as_named(self):
+        # the symlink-NON-following contract: a link INSIDE the repo
+        # names itself, never its target (attack-9's repair)
+        real, link = self.linked()
+        (real / "realdir").mkdir()
+        (real / "realdir" / "target.py").write_text("x = 1\n")
+        os.symlink("realdir/target.py", real / "alias.py")
+        for a in (["add", "alias.py", "realdir/target.py"],
+                  ["commit", "-m", "link"]):
+            subprocess.run(["git", *a], cwd=real, env=self.env,
+                           capture_output=True, check=True)
+        v = self.verdict(self.run_at(link, "unit-start",
+                                     "--write-set", str(link / "alias.py")))
+        self.assertEqual(v["verdict"], "UNIT_START_CLEAN")
+        self.assertEqual(v["write_set"], ["alias.py"],
+                         "the booked write-set names the link target")
+
+
+class TestAttack10NonUtf8RepoDir(GitFixture):
+    """attack-10 N5: the toplevel read was `text=True`, so a repo whose
+    DIRECTORY NAME carries a non-UTF-8 byte died of a
+    UnicodeDecodeError inside the never-a-silent-death handler —
+    INTERNAL_ERROR out of every subcommand, in a repo git itself
+    handles fine. Path BYTES decode the way the OS decodes argv
+    (SKILL.md, The tools); the toplevel read is a path read."""
+
+    TRACKER = ".clippy/runs/t.md"
+
+    def bad_repo(self):
+        d = Path(self._tmp.name) / os.fsdecode(b"repo-\xff")
+        d.mkdir()
+        for a in (["init", "-q", "-b", "main"], ["add", "base.txt"],
+                  ["commit", "-m", "base"]):
+            if a[0] == "add":
+                (d / "base.txt").write_text("base\n")
+            subprocess.run(["git", *a], cwd=d, env=self.env,
+                           capture_output=True, check=True)
+        return d
+
+    def test_every_subcommand_works_in_a_non_utf8_repo_dir(self):
+        d = self.bad_repo()
+
+        def run(*args):
+            return subprocess.run(
+                [sys.executable, str(SCRIPT), *args], cwd=str(d),
+                env=self.env, capture_output=True, text=True, timeout=60)
+
+        def check(expected, *args, prep=None):
+            if prep is not None:
+                prep()
+            p = run(*args)
+            v = self.verdict(p)
+            self.assertEqual(v["verdict"], expected,
+                             f"{' '.join(args)} -> {v}")
+
+        (d / ".clippy" / "runs").mkdir(parents=True)
+        check("STATE_CLEAN", "state-gate")
+        check("PREFLIGHT_OK", "preflight", "--tracker", self.TRACKER)
+        check("LOCK_CHECK_CLEAN", "lock-check", "--tracker", self.TRACKER,
+              prep=lambda: (d / self.TRACKER).write_text("# Run: t\n"))
+        check("LOCK_COMMITTED", "lock-commit", "--tracker", self.TRACKER,
+              "-m", "lock")
+        check("UNIT_START_CLEAN", "unit-start", "--write-set", "src.txt")
+        check("UNIT_COMMITTED", "unit-commit", "--write-set", "src.txt",
+              "-m", "unit U1",
+              prep=lambda: (d / "src.txt").write_text("unit output\n"))
+
+
+class TestAttack10PathExistence(GitFixture):
+    """attack-10 N8/NIT1: two existence reads that answered about the
+    wrong thing — `exists()` follows the link, so a write-set path that
+    IS a symlink with a missing target halted HALT_MISSING_PATH though
+    git commits the link file itself; and preflight never asked whether
+    the tracker path is a FILE at all."""
+
+    def test_broken_symlink_write_set_commits_as_a_link(self):
+        os.symlink("no-such-target.py", self.repo / "alias.py")
+        v = self.verdict(self.tool("unit-commit", "--write-set", "alias.py",
+                                   "-m", "unit U1"))
+        self.assertEqual(v["verdict"], "UNIT_COMMITTED")
+        self.assertEqual(self.head_paths(), {"alias.py"})
+        mode = self.git("ls-files", "-s", "--", "alias.py").stdout.split()[0]
+        self.assertEqual(mode, "120000", "git tracked the target, not the link")
+
+    def test_broken_symlink_survives_the_lock_pathspec_too(self):
+        # the parallel seam (one function, two callers)
+        os.symlink("no-such-target.py", self.repo / "alias.py")
+        self.write(".clippy/runs/t.md", "# Run: t\n")
+        v = self.verdict(self.tool(
+            "lock-check", "--tracker", ".clippy/runs/t.md",
+            "--lock-set", "alias.py"))
+        self.assertEqual(v["verdict"], "LOCK_CHECK_CLEAN")
+
+    def test_missing_write_set_path_still_halts(self):
+        # the boundary the lexists repair must not eat
+        p = self.tool("unit-commit", "--write-set", "never-made.txt",
+                      "-m", "unit U1")
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "HALT_MISSING_PATH")
+
+    def test_preflight_on_a_directory_tracker_halts(self):
+        for tracker in (".", "docs"):
+            self.write("docs/a.txt", "a\n")
+            p = self.tool("preflight", "--tracker", tracker)
+            v = self.verdict(p)
+            self.assertEqual(v["verdict"], "HALT_DIRECTORY_PATH",
+                             f"--tracker {tracker!r} -> {v}")
+            self.assertNotEqual(p.returncode, 0)
+
+    def test_preflight_on_a_not_yet_written_tracker_is_ok(self):
+        # the boundary: at run start the tracker does not exist yet
+        v = self.verdict(self.tool("preflight",
+                                   "--tracker", ".clippy/runs/t.md"))
+        self.assertEqual(v["verdict"], "PREFLIGHT_OK")
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

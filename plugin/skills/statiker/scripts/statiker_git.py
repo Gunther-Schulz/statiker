@@ -134,6 +134,28 @@ def is_index_lock_error(stderr: str) -> bool:
     return "index.lock" in stderr
 
 
+def rebase_at_symlinked_ancestor(p: str, top_real: str):
+    """Re-root a path reached through a symlinked ANCESTOR of the repo
+    top, or None if no ancestor resolves to the top.
+
+    git reports the toplevel PHYSICALLY, so a path spelled through a
+    symlinked ancestor never matches it textually and read as a path
+    outside the repo it is plainly inside (attack-10 N4). Only the
+    ANCESTOR resolves: the tail below it is re-rooted textually, so a
+    link BELOW the top is still taken as named, and a literal `..`
+    escape still finds no matching ancestor and still halts."""
+    tail = []
+    cur = p
+    while True:
+        if os.path.realpath(cur) == top_real:
+            return os.path.join(top_real, *reversed(tail)) if tail else top_real
+        parent, name = os.path.split(cur)
+        if not name or parent == cur:
+            return None
+        tail.append(name)
+        cur = parent
+
+
 def lock_committed_verdict(shas, extras, drops):
     """Pure: the landed lock verdict from readback data — red-tested on
     constructed extras (git's own pathspec commit is not known to
@@ -164,17 +186,24 @@ def unit_committed_verdict(sha, extras, residue):
 
 class Repo:
     def __init__(self):
+        # the toplevel is a PATH read: bytes decoded the way the OS
+        # decodes argv, never text=True's locale decode — a repo whose
+        # directory name carries a non-UTF-8 byte died of a
+        # UnicodeDecodeError before any subcommand ran (attack-10 N5)
         p = subprocess.run(["git", "rev-parse", "--show-toplevel"],
-                           capture_output=True, text=True)
+                           capture_output=True)
         if p.returncode != 0:
-            raise Halt("NOT_A_REPO", stderr=p.stderr.strip())
-        self.top = Path(p.stdout.strip())
+            raise Halt("NOT_A_REPO",
+                       stderr=p.stderr.decode(errors="replace").strip())
+        self.top = Path(os.fsdecode(p.stdout.strip()))
 
     def git(self, *args, check=True):
         return run_git(list(args), cwd=self.top, check=check)
 
     def git_path(self, name) -> Path:
-        out = self.git("rev-parse", "--git-path", name).stdout.decode().strip()
+        # a path read too: os.fsdecode, never a strict utf-8 decode
+        out = os.fsdecode(self.git("rev-parse", "--git-path", name)
+                          .stdout.strip())
         p = Path(out)
         return p if p.is_absolute() else self.top / p
 
@@ -195,10 +224,12 @@ class Repo:
         collapses it before the containment read."""
         top = os.path.realpath(str(self.top))
         p = os.path.normpath(os.path.join(top, path_arg))
+        if not p.startswith(top + os.sep):
+            p = rebase_at_symlinked_ancestor(p, top)
+            if p is None:
+                raise Halt("PATH_OUTSIDE_REPO", path=path_arg)
         if p == top:
             return "."      # the repo root: a directory, routed as one
-        if not p.startswith(top + os.sep):
-            raise Halt("PATH_OUTSIDE_REPO", path=path_arg)
         return Path(p[len(top) + 1:]).as_posix()
 
     # -- state gate ---------------------------------------------------------
@@ -259,8 +290,12 @@ class Repo:
         dirs = [r for r in rels if (self.top / r).is_dir()]
         if dirs:
             raise Halt("HALT_DIRECTORY_PATH", paths=dirs)
+        # lexists, not exists: a path that IS a symlink with a missing
+        # target is a file git commits (as the link itself), and
+        # exists() follows the link and called it missing (attack-10 N8)
         missing = [r for r in rels
-                   if not (self.top / r).exists() and not self.in_head(r)]
+                   if not os.path.lexists(self.top / r)
+                   and not self.in_head(r)]
         if missing:
             raise Halt("HALT_MISSING_PATH", paths=missing)
 
@@ -466,7 +501,7 @@ def cmd_unit_commit(repo, args):
                 f"{e['porcelain']} {e['path']}")
         raise Halt("UNIT_COMMIT_COLLISION", entries=listing)
     for r in rels:
-        if not repo.is_tracked(r) and (repo.top / r).exists():
+        if not repo.is_tracked(r) and os.path.lexists(repo.top / r):
             if repo.is_ignored(r):
                 raise Halt("HALT_IGNORED_WRITESET", paths=[r])
             say(f"add (new to git): {r}")
@@ -499,6 +534,12 @@ def cmd_state_gate(repo, args):
 
 def cmd_preflight(repo, args):
     tracker_rel = repo.rel(args.tracker)
+    # the tracker names a FILE: a directory path answered PREFLIGHT_OK
+    # over `tracker: "."` and the run started with no record at all
+    # (attack-10 NIT1). The path need not EXIST yet — at run start it
+    # normally does not.
+    if (repo.top / tracker_rel).is_dir():
+        raise Halt("HALT_DIRECTORY_PATH", paths=[tracker_rel])
     ops = repo.ops_in_progress()
     if not repo.is_tracked(tracker_rel) and repo.is_ignored(tracker_rel):
         finish("PREFLIGHT_UNPINNABLE_TRACKER", 2, tracker=tracker_rel,
