@@ -66,6 +66,12 @@ TAG_LITERAL_RE = re.compile(
 
 ENTRY_HEAD_RE = re.compile(r"^- ([FDRAV])(\d+)\b")
 ENTRY_RE = re.compile(r"^- ([FDRAV])(\d+) \[([^\]]+)\] (.*)$")
+# entry-INTENDED lines the head regex cannot see: a missing space
+# after the dash or leading indentation makes an entry invisible to
+# every predicate with no violation at all (attack-9 B3 — a
+# premise-kill one character off dispatched a dead design). The
+# landing annotation never matches: it carries no dash.
+NEAR_MISS_RE = re.compile(r"^(?:\s+-|-)\s*([FDRAV])(\d+)\b")
 LANDING_RE = re.compile(r"^unit U\d+ landed:")
 LANDING_INDENTED_RE = re.compile(r"^\s+unit U\d+ landed:")
 SUPERSEDED_OPEN_RE = re.compile(r"^> Superseded — ")
@@ -184,6 +190,9 @@ def parse_tracker(text: str):
 
         head = ENTRY_HEAD_RE.match(line)
         if not head:
+            near = NEAR_MISS_RE.match(line)
+            if near:
+                viol("entry-near-miss", i, line)
             continue
         m = ENTRY_RE.match(line)
         if not m:
@@ -323,7 +332,11 @@ def cmd_sweep(args):
 
 # ------------------------------------------------------------------- closure
 
-CLOSURE_BLOCKING_CODES = ("entry-form", "tag-enum")
+CLOSURE_BLOCKING_CODES = ("entry-form", "tag-enum", "entry-near-miss")
+
+TAG_WORD_RE = re.compile(
+    r"\b(" + "|".join(sorted(map(re.escape, ALL_TAGS), key=len,
+                             reverse=True)) + r")\b")
 
 
 def closure_blocking_violations(entries, violations):
@@ -331,19 +344,26 @@ def closure_blocking_violations(entries, violations):
     LOOKS like an entry but failed the grammar is invisible to every
     predicate below — one dropped bracket turned a reopened design
     into a green light (attack-8 B2). Append-only means the malformed
-    line never leaves the file, so a violation is DISARMED by a later
-    clean line for the same id — the repair form; without the disarm
-    one typo bricks the run's closure permanently. Both blocking codes
-    parse an id (entry-form fires only where ENTRY_HEAD_RE matched)."""
+    line never leaves the file, so a violation is DISARMED only by a
+    RE-ASSERTION: a later clean line for the same id carrying the SAME
+    tag the malformed text names — order alone let a later unrelated
+    line convert a premise-kill VOID into DISPATCHABLE (attack-9 B2),
+    and the re-assertion is what carries the malformed line's content
+    into the entry set the closure reads. No tag extractable, no
+    disarm: the desk re-states the line correctly under its own id."""
     armed = []
     for v in violations:
         if v["code"] not in CLOSURE_BLOCKING_CODES:
             continue
-        head = ENTRY_HEAD_RE.match(v["text"])
+        head = (ENTRY_HEAD_RE.match(v["text"])
+                or NEAR_MISS_RE.match(v["text"]))
         vid = f"{head.group(1)}{head.group(2)}" if head else next(
             (e.id for e in entries if e.lineno == v["line"]), None)
-        if vid and any(e.id == vid and e.lineno > v["line"]
-                       for e in entries):
+        tag_m = TAG_WORD_RE.search(v["text"])
+        tag = tag_m.group(1) if tag_m else None
+        if vid and tag and any(
+                e.id == vid and e.tag == tag and e.lineno > v["line"]
+                for e in entries):
             continue
         armed.append(v)
     return armed

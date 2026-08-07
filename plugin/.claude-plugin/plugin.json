@@ -1,7 +1,7 @@
 {
   "name": "statiker",
-  "version": "0.2.38",
-  "description": "Certify the design bears load before construction: a free investigation/design loop held by five forcing points — recorded decisions, fresh-context attack, dispatchable-design stop rule, no-design implementation, isolated executed verify.",
+  "version": "0.2.39",
+  "description": "Certify the design bears load before construction: a free investigation/design loop held by five forcing points \u2014 recorded decisions, fresh-context attack, dispatchable-design stop rule, no-design implementation, isolated executed verify.",
   "author": {
     "name": "Gunther Schulz"
   },

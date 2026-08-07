@@ -15,13 +15,23 @@ Two directions, both set-exact:
 - every verdict-shaped token SKILL.md names is one a script emits.
 
 Emitted verdicts are extracted from the AST at their EMIT POSITIONS
-(finish()/Halt() first args, the retry helper's verdict arg, and
-*_verdict factory returns), not grepped from the whole file — the
-attack-8 probes showed the grep form blind to a no-underscore name
-(V3), an f-string-assembled name (V4b), and silenceable via its own
-NON_VERDICTS list (V6). Emit-position extraction needs no such list,
-and a non-literal or morphology-breaking name at an emit position is
-itself a failure.
+(finish()/Halt() args — positional OR keyword — the retry helper's
+verdict arg, tuple-returning factory functions, and conduit-variable
+assignments), not grepped from the whole file. Provenance: attack-8
+showed the grep form blind to no-underscore names (V3), assembled
+names (V4b), and its own NON_VERDICTS silencing lane (V6); attack-9
+drove the first AST form past with keyword-arg emits (V7),
+conduit-named locals (V8), and non-`_verdict` factories (V10b) — all
+three closed here by construction (keyword args are read, conduit
+assignments feed the emitted set or flag as offenders, ALL
+tuple-returning functions are scanned).
+
+Honest reach (attack-9 N1): a hand-rolled emit that rebuilds the
+verdict line without finish/Halt (V9) is invisible to any call-site
+analysis; the durable layer for that class is the runtime battery
+(drive each subcommand's error paths, grep the ACTUAL emitted verdict
+lines) — commissioned as a dispatch unit, and until it lands this
+file must not be cited as covering the V9 shape.
 
 Run: python3 tools/test_contract.py
 """
@@ -58,10 +68,30 @@ def _call_name(node):
     return None
 
 
+# keyword names under which the verdict may travel at each emit call
+EMIT_KWARGS = {"finish": "verdict", "Halt": "verdict",
+               "_index_write_with_retry": "failure_verdict"}
+
+
+def _classify_emit_arg(a, literals, offenders, lineno):
+    if isinstance(a, ast.Constant) and isinstance(a.value, str):
+        if MORPHOLOGY.match(a.value):
+            literals.add(a.value)
+        else:
+            offenders.append((lineno, repr(a.value)))
+    elif isinstance(a, ast.Name) and a.id in EMIT_CONDUITS:
+        pass
+    elif isinstance(a, ast.Attribute) and a.attr in EMIT_CONDUITS:
+        pass
+    else:
+        offenders.append((lineno, ast.dump(a)[:80]))
+
+
 def emit_position_verdicts(source_text):
     """(literals, offenders) for one script's source. An offender is
-    any emit-position argument that is neither a morphology-passing
-    string literal nor a declared conduit."""
+    any emit-position argument — positional or keyword — that is
+    neither a morphology-passing string literal nor a declared
+    conduit, and any conduit assignment from a non-literal."""
     literals, offenders = set(), []
     tree = ast.parse(source_text)
     for node in ast.walk(tree):
@@ -70,22 +100,46 @@ def emit_position_verdicts(source_text):
             if name not in EMIT_ARG_INDEX:
                 continue
             idx = EMIT_ARG_INDEX[name]
-            if len(node.args) <= idx:
+            if len(node.args) > idx:
+                _classify_emit_arg(node.args[idx], literals, offenders,
+                                   node.lineno)
                 continue
-            a = node.args[idx]
-            if isinstance(a, ast.Constant) and isinstance(a.value, str):
-                if MORPHOLOGY.match(a.value):
-                    literals.add(a.value)
-                else:
-                    offenders.append((node.lineno, repr(a.value)))
-            elif isinstance(a, ast.Name) and a.id in EMIT_CONDUITS:
-                pass
-            elif isinstance(a, ast.Attribute) and a.attr in EMIT_CONDUITS:
-                pass
+            # keyword form (attack-9 V7: `continue` here was a silent
+            # skip — a keyword emit went unchecked entirely)
+            kw = next((k for k in node.keywords
+                       if k.arg == EMIT_KWARGS[name]), None)
+            if kw is not None:
+                _classify_emit_arg(kw.value, literals, offenders,
+                                   node.lineno)
             else:
-                offenders.append((node.lineno, ast.dump(a)[:80]))
-        elif isinstance(node, ast.FunctionDef) and \
-                node.name.endswith("_verdict"):
+                offenders.append(
+                    (node.lineno,
+                     f"{name}() carries its verdict neither "
+                     f"positionally nor as {EMIT_KWARGS[name]}="))
+        elif isinstance(node, ast.Assign):
+            # a conduit assigned anywhere feeds the emitted set — or
+            # flags (attack-9 V8: a local named `verdict` was waved
+            # through with no check on what it carried)
+            for tgt in node.targets:
+                if isinstance(tgt, ast.Name) and tgt.id in EMIT_CONDUITS:
+                    v = node.value
+                    if isinstance(v, ast.Constant) and \
+                            isinstance(v.value, str) and \
+                            MORPHOLOGY.match(v.value):
+                        literals.add(v.value)
+                    else:
+                        # the factory idiom is a TUPLE unpack (`name,
+                        # detail = ..._verdict(...)`), which never has
+                        # a bare-Name target — so a single conduit
+                        # Name assigned from anything non-literal is
+                        # an offender, calls included
+                        offenders.append(
+                            (node.lineno,
+                             f"conduit {tgt.id} assigned from "
+                             f"{ast.dump(v)[:60]}"))
+        elif isinstance(node, ast.FunctionDef):
+            # EVERY tuple-returning function is scanned (attack-9
+            # V10b: a factory not named *_verdict was invisible)
             for ret in ast.walk(node):
                 if isinstance(ret, ast.Return) and \
                         isinstance(ret.value, ast.Tuple) and ret.value.elts:
@@ -94,7 +148,7 @@ def emit_position_verdicts(source_text):
                             isinstance(e0.value, str) and \
                             MORPHOLOGY.match(e0.value):
                         literals.add(e0.value)
-                    else:
+                    elif node.name.endswith("_verdict"):
                         offenders.append((ret.lineno,
                                           "verdict factory returns "
                                           "non-literal name"))

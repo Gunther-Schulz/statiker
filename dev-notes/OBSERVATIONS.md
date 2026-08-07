@@ -3357,3 +3357,45 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   meta session now mirrors the desk's queue rule: no statiker
   commits while an attacker is live. Consumer: the operator's
   form-GO + the repair lap + the successor meta session.**
+
+- 2026-08-07 — **0.2.39 UNPINNED — attack-9 lap opened on the
+  definition-first form (operator GO), DESK HALF landed: Region 2
+  (closure soundness) whole — disarm now requires RE-ASSERTION
+  (same id + same tag, tag extracted from the malformed text;
+  no-tag = no-disarm; kills B2 — a later unrelated line no longer
+  converts VOID to DISPATCHABLE — and the re-assertion carries the
+  content into the entry set, closing B2's second half),
+  entry-near-miss minted as a lint class (NEAR_MISS_RE: leading
+  space / missing space after the dash; blocking in closure; kills
+  B3; named residual: an indented prose bullet opening `- F3 …`
+  now lints near-miss — loud, acceptable, records do not carry
+  those) — and the contract instrument tightened (V7 keyword
+  emits read not skipped, V8 conduit assignments feed the emitted
+  set or flag — non-literal conduit assign = offender, V10b ALL
+  tuple-returning functions scanned; each re-proven red on
+  replanted escapes; V9 hand-rolled emit stays out of reach BY
+  STATEMENT — the docstring now says so and names the runtime
+  battery as its layer). SKILL.md contract edits (desk,
+  skill-craft loaded): re-assertion repair form at the
+  CLOSURE_RECORD_MALFORMED route; Close-pin HALT never blocks
+  delivery (close delivers UNPINNED, halt in deviations, one pin
+  retry on clearing — the judgment find's permanent-unpin hole);
+  COMMIT parenthetical rephrased open; artifact outside EVERY
+  repo + --out cwd-relative stated; entries-preserved-in-sections
+  contract stated (tool change commissioned); path contract
+  minted in The tools (as-named/no-symlink-resolution,
+  argv-matched byte decoding, tracker-anchored record tool,
+  cwd-anchored git tool invoked from repo root). Suites 128 green
+  (62+62+4); red arrangements: 4 new closure tests red vs 0.2.38
+  (4 boundary pins green by design), 3 replanted contract escapes
+  red vs the 0.2.38 instrument. 881 operational lines. DISPATCH
+  HALF commissioned next (the pre-registered dispositions-as-brief
+  experiment, trigger met): B1 fsdecode at porcelain+readback,
+  N2 tracker-anchored repo_paths + PIN_UNREADABLE message fix,
+  N3 containment-without-resolve in both tools, N4 filter
+  preserves entry lines, N5 killerless-dead needs a clause
+  token, NIT1 explicit-newline splitting, NIT2 any-repo
+  artifact halt, NIT3 USAGE_ERROR on missing --out parent,
+  runtime verdict battery in test_contract.py — each red-first
+  per the attacker's own probe recipes. Consumer: the experiment
+  dispatch + its grading + the successor meta session.

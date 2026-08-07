@@ -582,6 +582,81 @@ class TestAttack8Findings(RecordFixture):
                          "halt must precede the write")
 
 
+class TestAttack9ClosureSoundness(RecordFixture):
+    """Region-2 repairs from attack 9 (dev-notes, 2026-08-07): the
+    disarm requires RE-ASSERTION (same id, same tag), and entry-shape
+    near-misses outside ENTRY_HEAD_RE's reach are minted as their own
+    violation class. Each red against 0.2.38."""
+
+    KILL_CONTROL = (CLOSED +
+                    "- D1 [INVALIDATED] premise killed by new evidence "
+                    "— basis: F9\n")
+
+    def test_control_wellformed_kill_voids(self):
+        v = self.closure(self.KILL_CONTROL, unit="U1")
+        self.assertEqual(v["verdict"], "CLOSURE_VOID")
+
+    def test_disarm_requires_same_tag_reassertion(self):
+        # attack-9 B2: a later same-id line that corrects nothing
+        # converted CLOSURE_VOID into UNIT_DISPATCHABLE
+        body = (CLOSED +
+                "- D1 [INVALIDATED premise killed by new evidence "
+                "— basis: F9\n"
+                "- D1 [COMMITTED] unit U1 unrelated note, corrects "
+                "nothing — basis: F8\n")
+        v = self.closure(body, unit="U1")
+        self.assertEqual(v["verdict"], "CLOSURE_RECORD_MALFORMED")
+
+    def test_reassertion_disarms_and_content_is_read(self):
+        # the repair form: re-state the malformed line under its own
+        # id and tag — the closure then reads the premise-kill
+        body = (CLOSED +
+                "- D1 [INVALIDATED premise killed by new evidence "
+                "— basis: F9\n"
+                "- D1 [INVALIDATED] premise killed by new evidence "
+                "(corrects the unclosed bracket above) — basis: F9\n")
+        v = self.closure(body, unit="U1")
+        self.assertEqual(v["verdict"], "CLOSURE_VOID")
+
+    def test_near_miss_missing_space_blocks(self):
+        # attack-9 B3: `-D1 ...` matches neither regex — no entry, no
+        # violation, premise-kill invisible
+        body = (CLOSED +
+                "-D1 [INVALIDATED] premise killed by new evidence "
+                "— basis: F9\n")
+        v = self.closure(body, unit="U1")
+        self.assertEqual(v["verdict"], "CLOSURE_RECORD_MALFORMED")
+
+    def test_near_miss_leading_space_blocks(self):
+        body = (CLOSED +
+                " - D1 [INVALIDATED] premise killed by new evidence "
+                "— basis: F9\n")
+        v = self.closure(body, unit="U1")
+        self.assertEqual(v["verdict"], "CLOSURE_RECORD_MALFORMED")
+
+    def test_near_miss_disarmed_by_reassertion(self):
+        body = (CLOSED +
+                "-D1 [INVALIDATED] premise killed by new evidence "
+                "— basis: F9\n"
+                "- D1 [INVALIDATED] premise killed by new evidence "
+                "(corrects the missing space above) — basis: F9\n")
+        v = self.closure(body, unit="U1")
+        self.assertEqual(v["verdict"], "CLOSURE_VOID")
+
+    def test_near_miss_lints(self):
+        v = self.lint("-D1 [COMMITTED] a decision — basis: y\n")
+        self.assertEqual(v["verdict"], "LINT_VIOLATIONS")
+        self.assertIn("entry-near-miss", self.violation_codes(v))
+
+    def test_landing_annotation_not_a_near_miss(self):
+        # boundary: the indented landing annotation and ordinary prose
+        # stay legal
+        v = self.lint("- D1 [COMMITTED] x — basis: y\n"
+                      "\n"
+                      "  unit U1 landed: abc1234\n")
+        self.assertEqual(v["verdict"], "LINT_CLEAN")
+
+
 # ---------------------------------------------------- pure-function checks
 
 class TestPureFunctions(unittest.TestCase):

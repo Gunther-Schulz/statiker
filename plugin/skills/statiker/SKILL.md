@@ -48,7 +48,15 @@ and passes break/exec/reword stops), porcelain column semantics,
 file-only pathspec composition, add-untracked-only, `-m` commits,
 two-half readback, capped spaced index.lock retry; the record
 tool the enum-tag grammar, the unanchored stats-reader greps
-behind the defang rule, and scope-opener classification. Every
+behind the defang rule, and scope-opener classification. Path
+contract, both tools: a path is taken AS NAMED, never resolved
+through symlinks (a resolved link substituted the brief's
+write-set inside a booked verdict), and git byte output decodes
+the way the OS decodes argv (two spellings of one byte deadlocked
+the drop handshake); the record tool anchors its repo at the
+TRACKER's own directory, the git tool at its invocation cwd —
+briefs invoke it from the repo root, which the invocation lines
+already do. Every
 invocation — usage errors included (USAGE_ERROR); `--help` alone
 excepted, argparse answers it verdict-free — ends in
 exactly one final
@@ -437,12 +445,18 @@ not produce it, before implementation. The attack brief carries the
 tracker PINNED at the locked design's commit — produced by the
 record tool: `filter --tracker <path> --sha <lock sha> --out
 <artifact path>` serves the sha, never the working tree (a live
-tree serves HEAD) — the artifact path sits OUTSIDE the repo,
+tree serves HEAD) — the artifact path sits OUTSIDE every repo,
 like the seals and for the seal rule's reason (an in-repo
 artifact is an untracked file under a brief asserting tree ==
-lock commit; the tool halts ARTIFACT_IN_REPO on one) — and
+lock commit, and a NESTED outer checkout has the same exposure;
+the tool halts ARTIFACT_IN_REPO on any; `--out` alone is
+cwd-relative — an artifact lives outside the repo, so
+repo-root-relative grammar cannot name it) — and
 drops the two Superseded species, counts
-in its verdict: contiguous
+in its verdict — entry-shaped lines inside a Superseded
+SECTION are PRESERVED (the never-filter sentence below is the
+contract; a section drop that swallowed entries put a live
+money-path finding out of every attacker's sight): contiguous
 quoted blocks whose first line is `> Superseded — <label>` (their
 production: the return processing below), plus sections headed
 `## Superseded —` — legacy landings from earlier skill versions,
@@ -596,10 +610,12 @@ post-closure [INVALIDATED] line for an entry LIVE at the
 closure whatever its opener (the mis-scoped premise-kill);
 CLOSURE_RECORD_MALFORMED bars every unit the same way — an
 entry-shaped line broke the grammar (dropped tag brackets, an
-out-of-enum tag), and the entry set the closure computes is
-unsound until repaired: append the same id's clean corrective
-line (append-only repair — the tool disarms a violation whose
-id carries a later clean line), then re-run;
+out-of-enum tag, a near-miss the head grammar cannot parse), and
+the entry set the closure computes is unsound until repaired:
+RE-STATE the line — same id, same tag, content restated — as a
+new appended line (append-only repair; the tool disarms only on
+that re-assertion, since a later unrelated line proved able to
+convert a premise-kill void into a dispatch), then re-run;
 CLOSURE_ABSENT means the gate is not open (the last A-line is
 not [ZERO-DELTA] — the normal state during a reopened design;
 dispatch waits); UNIT_HELD bars that unit on its
@@ -719,7 +735,8 @@ desk books as a `record:` F-line from the pasted verdict:
 extras are the lock's mis-composed-pathspec rule (recorded,
 brief exclusion, never reverted); residue is write-set
 divergence after the commit, triaged like a collision. Any
-other verdict (ADD_FAILED, COMMIT_FAILED, GIT_ERROR) is
+other verdict — ADD_FAILED, COMMIT_FAILED, GIT_ERROR are the
+common members, the global catch-all rule covers the rest — is
 reported as blocked, uncommitted edits named — they poison
 the write-set for the re-dispatch. EVERY non-committed exit
 pastes its verdict line in the unit's report and leaves the
@@ -856,7 +873,12 @@ message>` over the tracker alone (post-lock appends otherwise
 never enter git); its verdict line delivers with the close.
 HALT_NO_CHANGES here means the record is already pinned (a
 re-run after an ambiguous first attempt) — benign, delivered
-as-is.
+as-is. A HALT here (HALT_STATE on an operator operation in
+flight, or any other) never blocks delivery: the close
+delivers UNPINNED with the halt's verdict line named in its
+deviations — attended, the operator's clearing reply gets one
+pin retry; there is no later seam to catch an unpinned
+delivery, so the deviation line is the record of it.
 Skipped only where the run never had a pinnable tracker
 (preflight's UNPINNABLE halt). Delivering the close is then
 the desk's final act, so the
