@@ -104,7 +104,12 @@
 
 ```bash
 awk '/^---$/{c++} c>=2' plugin/skills/statiker/SKILL.md | grep -vc '^$'
-                                # operational (non-blank body) lines;
-                                # must be ≤ ~150 (PLAN.md size target)
+                                # operational (non-blank body) lines —
+                                # trial metric, printed for the record;
+                                # ≤ ~150 (PLAN.md size target) is the
+                                # STABILIZATION EXIT criterion, not a
+                                # live gate: the count accretes
+                                # fire-born until the booked
+                                # compression pass (dev-notes)
 ls plugin/skills/                # payload inventory: statiker only
 ```

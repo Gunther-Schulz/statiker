@@ -130,7 +130,9 @@ returned" is a transcript claim checked in the transcript (a round
 was staged over a design whose refutation sat in two unread
 returns). The [READY] sweep's no-[PENDING] gate holds unread legs
 open mechanically. An unreturnable leg (stopped, nothing left to
-read) is re-tagged [AUTO-ACCEPTED] as a deliberate carry with the
+read — a determination made by the transcript check above, never
+from memory) is re-tagged [AUTO-ACCEPTED] as a deliberate carry
+with the
 loss stated — the sweep and the closing [ZERO-DELTA]'s
 no-[PENDING] condition both read that as resolved.
 Consecutive discovery sweeps in the main session are the tell that a
@@ -232,16 +234,19 @@ round's independence cannot be re-established afterward. The
 freeze defers appends, never work: desk findings and leg
 dispatches during a round queue at
 `~/.claude/statiker-seals/<repo-basename>/<tracker-filename>.A<n>.queue`
-(repo basename, then the tracker's filename verbatim with `.md` —
-the seal's derivation) — existing whether or not a seal was
+(repo basename = `basename` of `git rev-parse --show-toplevel`,
+then the tracker's filename verbatim with `.md`) — existing
+whether or not a seal was
 written — and append at the round's return, before its A-line. The
 freeze's scope is every surface the brief claims immutable: a
 brief asserting the tree matches the lock commit freezes the whole
 repo, not only the record — the claim sets the scope, and keeping
 it true until the last attacker returns is desk work. The claim
 binds TRACKED state; untracked check by-products (the carve-out,
-Verify) sit outside it and are cleaned before the next lock
-commit. The
+Verify) sit outside it. The carve-out DECLARES its by-product
+paths in the brief; before the next lock commit the desk removes
+exactly the declared paths, nothing else — an undeclared
+leftover is a finding, never a broader clean. The
 question APPENDS this block verbatim
 (pasted, never recalled — free-composed briefs drop invariant
 clauses):
@@ -266,8 +271,8 @@ frames the round it was meant to sharpen. Pre-round self-assessment
 is a sealed prediction, written before the round dispatches to
 `~/.claude/statiker-seals/<repo-basename>/<tracker-filename>.A<n>.seal`
 (repo basename, then the tracker's filename verbatim, `.md`
-included) — a path any
-successor desk re-derives from the tracker it resumes; out of
+included) — a path any successor desk re-derives from the repo
+it resumes in plus the tracker's filename; out of
 the repo because attackers read the repo, and an in-repo seal
 breaks any brief asserting tree == lock commit. At the round's
 return the desk compares seal against bites and writes the
@@ -298,11 +303,14 @@ measurement, recorded as the F-line's evidence — before the
 round's A-line lands. Verbatim report quotes the desk retains
 append as a quoted block whose first line is
 `> Superseded — A<n> quotes` (the filter's species) — EVERY line
-of the block carries the `> ` prefix, blank lines included
-(contiguity is what the filter reads), and bracketed tag
+of the block begins `>`; a blank line is a BARE `>`, nothing
+after it (trailing whitespace does not survive target-repo
+hooks), and the block ends at the first line not beginning `>`.
+Bracketed tag
 literals in the pasted text are defanged (brackets dropped,
-noted in the label) so the stats reader's unanchored greps never
-count attacker prose. Regraded
+listed in the label line after a semicolon — the filter matches
+the label's opening form) so the stats reader's unanchored greps
+never count attacker prose. Regraded
 into F-lines in the same sitting. Any substance finding: the
 round records [BIT] — that record change IS the reopen. A
 substance-free
@@ -329,21 +337,25 @@ design; each dispatches on a decision-complete brief (dispatch
 skill §1, tail per §2) citing the executor skill AND the run's
 live closure. The closure read is DESK work, performed at each
 dispatch — the brief carries its verdict (the closing A-line
-quoted, the lock sha), never the raw criterion. The criterion:
-the tracker's last A-line is `[ZERO-DELTA]` with no F, D, or R
-line appended after it that lacks a `unit U<k>` scope in its
-body — append-only makes this computable, and a re-lock's new
-entries void a stale closure (The attack). A unit-scoped
-post-closure line voids closure for THAT unit alone; a scopeless
-one voids the whole closure. Units with disjoint write-sets run
+quoted, the lock sha, plus any lines scoped to the unit being
+dispatched), never the raw criterion. The criterion, one
+predicate per unit: unit U<k> may dispatch when the tracker's
+last A-line is `[ZERO-DELTA]` and no post-closure F, D, or R
+line is SCOPELESS — a scopeless line voids the whole closure
+(and a re-lock's new entries void a stale closure, The attack);
+a line whose body OPENS `unit U<k>` voids nothing — it RE-OPENS
+that unit's dispatch and travels in the re-dispatch brief as the
+amendment it consumes. Units with disjoint write-sets run
 parallel. A missing
 decision, file, or value is reported as a gap, never bridged —
 and triaged on arrival: a unit-local gap decision is a design
 decision made without an attack round, and it is recorded as
 exactly that — `- D<n> [AUTO-ACCEPTED] unit U<k> gap: <decision>
 — basis: <gap report>` — surfaced by its tag, enumerated in the
-close, graded by any later round; that unit re-dispatches on the
-amended record, siblings run on. A gap that
+close, graded by verify against the requirement head; NO attack
+round grades it on the normal run shape — the tag surface and
+the close enumeration are the backstops, stated as such. That
+unit re-dispatches on the amended record, siblings run on. A gap that
 kills a locked premise voids the closure — stop the siblings
 resting on it, let the rest land, re-enter the loop ONCE with
 every return in hand. Model per
@@ -351,7 +363,9 @@ every return in hand. Model per
 operator corpus routing table; an unreadable models file halts
 the dispatch, the parse error a unit-scoped F-line. Each unit
 commits green; the desk appends its landing as an INDENTED
-annotation line (`  unit U<k> landed: <sha>`) — not an entry, so
+annotation line (`  unit U<k> landed: <sha>`, preceded by a
+blank line — markdown otherwise folds it into the entry above) —
+not an entry, so
 invisible to the stats reader's tag-first count and the closure
 read by construction — that is what makes resume reliable.
 
@@ -377,8 +391,9 @@ with the evidence and set the header
 Status to match (PASSED, or FAILED on an abandoned run; after
 [ISSUES FOUND] it stays in-progress); issues
 return the run to the loop as findings. In auto mode the third
-[ISSUES FOUND] forces the close with Status FAILED — an
-unattended run earns no infinite loop.
+CONSECUTIVE [ISSUES FOUND] forces the close with Status FAILED
+(the stays-in-progress rule's one exception) — an unattended run
+earns no infinite loop.
 
 ## Close
 
@@ -391,8 +406,11 @@ amendment (what shipped vs. the letter as asked); every
 [AUTO-ACCEPTED] entry; deviations and gaps; what was NOT
 verified; candidate lessons. Landed seals and their comparisons
 enter here (The attack). Status flips to COMPLETE when the close
-is appended; delivering it is then the desk's final act, so the
-delivered artifact carries COMPLETE. Open reconciliations survive
+is appended — over a PASSED verdict ONLY: a run ending FAILED
+takes the same close and KEEPS FAILED. Delivering the close is
+then the desk's final act, so the
+delivered artifact carries the terminal Status. Open
+reconciliations survive
 into COMPLETE, enumerated in the close; an operator answer
 arriving later appends its resolving line to the closed tracker —
 append-only has no expiry, and the close's enumeration is what

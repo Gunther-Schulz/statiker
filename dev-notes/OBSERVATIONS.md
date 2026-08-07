@@ -2112,3 +2112,67 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   pin does not move until that review's dispositions clear; the
   cycle-10 desk line follows the pin. Consumer: successor meta
   session.
+
+- 2026-08-07 — **Opus review 7 RETURNED (7 parts: 2 blocking, 6
+  notable, 4 nits — reconciled to the verdict) → all
+  dispositioned, repairs landed as 0.2.24 per the operator's
+  close-out instruction; NO review dispatched tonight.** B1
+  (unit-scoped voiding had no computable expression and barred
+  the re-dispatch it ordered) — FIXED with the reviewer's
+  one-predicate form: unit U<k> dispatches when the last A-line
+  is [ZERO-DELTA] and no post-closure F/D/R line is SCOPELESS; a
+  line whose body OPENS `unit U<k>` (N1's anchor folded in)
+  voids nothing — it re-opens that unit's dispatch and travels
+  in the re-dispatch brief as the amendment it consumes; the
+  brief verdict now carries the unit's scoped lines, so the
+  per-unit distinction has a field to travel in. B2 (the close
+  overwrote FAILED with COMPLETE, making FAILED unreachable and
+  header-invisible to the stats reader) — FIXED: COMPLETE over a
+  PASSED verdict only, FAILED keeps FAILED through the same
+  close. N2 (destructive-clean hazard: "cleaned" named no actor/
+  scope/test; a literal `git clean -fdx` destroys operator state
+  in the target repo) — FIXED: the carve-out DECLARES by-product
+  paths in the brief, the desk removes exactly those, an
+  undeclared leftover is a finding never a broader clean. N3 —
+  blank block lines are bare `>` (whitespace-stripping hooks),
+  block-end rule stated. N4 — repo basename = `basename` of
+  `git rev-parse --show-toplevel`; seal derivation sentence
+  corrected (repo + tracker filename); reviewer verified no
+  stranded seals on disk. N5 — the "graded by any later round"
+  hope replaced by the honest statement: no attack round grades
+  a unit-local gap decision on the normal shape; tag surface +
+  close enumeration + verify are the backstops. Gap-count
+  re-lock trigger DECLINED: a judgment-shaped threshold
+  mechanized is the over/under-firing class. N6 — repo CLAUDE.md
+  verify block reframed: count = trial metric, ≤~150 = the
+  stabilization EXIT criterion, not a live gate (was failing by
+  design on every run — the discount-training shape). n1 — third
+  CONSECUTIVE [ISSUES FOUND], named as the in-progress rule's
+  exception. n2 — landing annotation preceded by a blank line
+  (markdown lazy continuation). n3 — unreturnable-leg
+  determination bound to the transcript check. n4 — defang note's
+  home fixed (label after semicolon; filter matches the opening
+  form). Count: 404 operational lines (the reframed metric's
+  first record). SESSION CLOSE STATE / HANDOFF: releases this
+  session 0.2.19→0.2.24 (six), all pushed through 0.2.24; PIN
+  STILL AT 0.2.13 — successor's ordered duties: (1) dispatch
+  REVIEW 8 (standing step, diff 42ac770..<0.2.24 sha> SKILL.md
+  only + full file + question, no author reasoning, read-only
+  tail, opus, named opus-skill-review-8), disposition, repair if
+  bitten; (2) pin to the cleared version (`claude plugin update
+  statiker@statiker`, verify in cache listing); (3) issue the
+  cycle-10 fresh-desk line: fresh desk in beat-the-books, resume
+  from tracker, version gate from the Skill injection's
+  base-directory line, cycle-10 work from C58 (F102/F103 first),
+  R5 amendment recorded as the run's first R-line citing
+  D52/F18/F41/D45a + operator ratification from this relay.
+  Review cadence for the successor's judgment: blockers 4→6
+  (full-file catch-up)→3→2→2, every blocker inside the newest
+  edit's own passages, clears lists growing — converging but not
+  wording-only yet. Other open bookings unchanged (lift-sweep
+  ran across this session's entries): stabilization pass now
+  carries compression + (y)-cadence + trial-confirmation
+  revisit; auto-mode + close-report LANDED (0.2.21-24);
+  dotfiles: flush-race fix + retry bump landed and pushed;
+  pinned-type interim convention landed in corpus backlog.
+  Consumer: successor meta session, first duties above.
