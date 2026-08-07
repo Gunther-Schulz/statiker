@@ -3130,3 +3130,25 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   stabilization: compression pass (836 → ~150 target; seal
   machinery first out), hypothesis patches graded on the
   criteria above. Consumer: the successor meta session.
+
+- 2026-08-07 — **Attack-8 DISPATCHED (fresh opus, read-only, background;
+  operator GO) on the 0.2.37 triple per the #4 handoff — diff
+  e4727a8..HEAD, SKILL.md + both scripts + three suites, probe
+  obligations, named expectation: carry-across class gone
+  (test_contract.py attacked live via planted miss). Horizon ~60 min
+  from dispatch; silence past it is a finding. IN PARALLEL (operator
+  GO, disjoint repos): cache-fix conservation-gate exemption dispatched
+  (opus, writes in ~/dev/vendor/claude-code-cache-fix; BACKLOG Tier B
+  item 17 widened to audit-then-exempt — every violation row in the 4
+  red captures attributed by the normalizeSessionStartText byte-compare
+  method, could-not-attribute rows surfaced never exempted, red-first
+  mutation proof required; horizon ~90 min). Session-start misfire pair
+  FIXED in dotfiles (d8f32c7, pushed, both red-proven): gate RED line
+  now names its owner from the verdict file's gateSource; plugin-drift
+  scan honors declared pin holds (~/.claude/plugin-pin-holds.json —
+  statiker@statiker held: "pin is the release, moves only at run
+  seams"). NOTE for pin-move duty: after moving the pin at the seam the
+  hold entry stays (it declares the standing policy, not one version).
+  Sweep re-ran mid-session: RED now 3/90 (one red capture rotated out);
+  class unchanged, dispatch unaffected. Consumer: this session's
+  booking of both reports, else the successor meta session.**
