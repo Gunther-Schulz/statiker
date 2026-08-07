@@ -78,6 +78,16 @@
   paired evidence (opus arm out-bit fable arm, rounds 1-3,
   byte-identical artifacts, n=4, one domain) says opus review is
   not below the bar for this artifact class.
+- **Provenance trace before any operator-routed decision.** When a
+  run surfaces a decision or tension to the operator, the meta
+  session traces the contested claim to its origin through the
+  record chain — backlog item → tracker requirement head → cited
+  entries; the run logs carry the trace — before presenting, and
+  the presentation names the origin (whose text, which session,
+  what evidence it had). Settled 2026-08-07: the R5 round-trip
+  resolved only when the trace showed R5's strong form was an
+  earlier session's preliminary fix-shape sentence, not operator
+  intent.
 - **Desk interrogation is cheap — ask when it informs the skill.**
   Diagnostic questions relayed to the running desk (which rule
   routed a conduct call — quote it or say "improvised"; what a

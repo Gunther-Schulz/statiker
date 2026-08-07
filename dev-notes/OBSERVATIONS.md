@@ -1811,3 +1811,49 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   OWED pre-pin and currently HELD on an operator question; R5
   answer still open. Consumer: successor meta session, review-4
   dispatch, pin move.
+
+- 2026-08-07 — **MINT (0.2.20): requirement head split into INTENT
+  vs derived requirements; derived amendable by desk R-line with
+  basis, intent conflicts reconcile to the operator with a
+  recommendation that advances unattended.** Provenance,
+  fire-born: F105/the R5 round-trip — the trace (this session)
+  showed R5's strong form was DERIVED at intake from the backlog
+  item's preliminary fix-shape sentence (an earlier session's
+  plan, written from the operator prompt "is our core architecture
+  a bit convoluted?", 2026-07-31), then treated as operator-owned
+  yardstick, forcing an operator scope call for what the run's own
+  deeper investigation had already settled (D52's mechanism).
+  Operator articulated the class (backlog items are AI-written,
+  pre-statiker, under-investigated and over-specific by
+  construction; the item carries issue + goal, only the run locks
+  things down) and the sharpening (intent itself may be wrong:
+  conflicts adjust transparently AND surface with a reconciliation
+  recommendation — synthesis over either/or; recommendation
+  advances unattended per the [READY]-prompt pattern, override
+  always open). Mechanism reuses existing machinery: R-lines are
+  ordinary tag-first entries ([AMENDED]), graded by attack rounds;
+  verify reads head + R-lines. Known residue for review 4: the
+  [AMENDED] tag is a new enum value the clippy-stats reader has
+  never seen; line count 279 (budget pressure, stabilization pass
+  owns it). ALSO persisted (CLAUDE.md trial conventions):
+  provenance-trace-before-any-operator-routed-decision — the meta
+  session traces a contested claim through backlog → requirement
+  head → cited entries before presenting, naming the origin.
+  R5 ANSWER for the current run stands as the recorded
+  recommendation (amend, naming the two kept roles with U5
+  expiry) — under 0.2.20 the cycle-10 desk records it as an
+  R-line amendment citing D52/F18/F41/D45a plus the operator's
+  ratification from this relay. REVIEW 4 widens to FULL-FILE
+  (operator-settled this session): pays down the unreviewed
+  fable-era base; subsumes the 0.2.19 and 0.2.20 diffs; expected
+  largest finding set yet, pin waits through the repair release;
+  reviewers re-raising recorded ACCEPTED dispositions (seal
+  fakeability, size budget) are met by those dispositions.
+  Consumer: review-4 dispositions, cycle-10 desk start line, pin
+  move.
+  ADDENDUM (same session, pre-push, folded into the 0.2.20
+  commit): operator sharpening ratified + one addition — a
+  reconciliation advanced unattended stays OPEN, re-surfaced at
+  each operator prompt and at the run's close until answered
+  (prevents the recommendation-advance from riding a single
+  scrolled-past mid-run message).

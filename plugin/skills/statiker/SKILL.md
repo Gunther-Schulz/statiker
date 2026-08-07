@@ -54,12 +54,23 @@ Header: `# Run: <title>`; `Status:` from
 {in-progress, [READY], PASSED, FAILED, COMPLETE}; `Phase:` from
 {investigate-design, implement, verify}; `Skill: statiker <version>`
 — Status and Phase within the first ~20 lines (the stats reader's
-admission window). After the header, the requirement head: the
-operator's request VERBATIM plus the requirements derived from it,
-as long as it needs to be — verify reads this head, not the
-conversation. The header's Status and Phase fields are the record's
-ONE mutable surface, updated at each transition and at the verify
-verdict; everything below them is append-only.
+admission window). After the header, the requirement head in two
+grades, declared apart: INTENT — the operator's request VERBATIM —
+and the derived requirements, as long as it needs to be; verify
+reads this head plus its R-lines, not the conversation. A derived
+requirement is inherited text (a backlog item, a prior session's
+plan, intake derivation), not operator ground: when the run's own
+investigation contradicts its letter, the desk amends it by
+R-line — `- R<n> [AMENDED] <new letter> — basis: <…>`, an
+ordinary entry the attack grades like any decision. A
+contradiction reaching the INTENT is a reconciliation for the
+operator: evidence and recommendation surfaced when found, the
+recorded recommendation advancing an unattended run (the [READY]
+prompt's pattern); one advanced unattended stays OPEN —
+re-surfaced at each operator prompt and at the run's close —
+until the operator answers. The header's Status and Phase fields are the
+record's ONE mutable surface, updated at each transition and at
+the verify verdict; everything below them is append-only.
 
 Entries are one line each, status tag first, appended never
 rewritten. A status change is a NEW tag-first line for the same id
