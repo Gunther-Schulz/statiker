@@ -3237,3 +3237,36 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   ~/.local/state/dotfiles/plugin-pin-holds.json STAYS — standing
   policy) + cycle-10 fresh-desk line. Consumer: attack-9 dispatch +
   the successor meta session.**
+
+- 2026-08-07 — **PRE-REGISTERED (operator GO): repair-lap routing
+  experiment — "dispositions are the brief".** Hypothesis: once a
+  lap's dispositions are recorded before implementation (the 0.2.38
+  practice), the MECHANICAL subset is brief-shaped and routes to an
+  opus dispatch; the judgment subset (design decisions that surface
+  mid-build) stays at the desk. TRIGGER: the next repair lap with ≥3
+  mechanical-subset dispositions (fewer = too little signal; that lap
+  runs inline as usual). ARM: mechanical subset → one opus execution
+  dispatch (brief = the recorded dispositions verbatim + red-first
+  obligation + suites named); judgment subset inline. BASELINE: the
+  attack-7/8 inline laps (zero same-lap corrections; carry-across
+  blockers surfaced one round later). DECISION CRITERION (recorded
+  before any arm dispatches): SUCCESS = dispatched subset lands with
+  ≤1 desk correction pass, no silently-bridged design decision found
+  at desk verification, and the FOLLOWING attack round's B-findings
+  do not concentrate in the dispatched units relative to the inline
+  ones. FAILURE = any silent bridge, or a correction pass count
+  exceeding the inline baseline's zero by more than one, or
+  next-round blockers concentrating in the dispatched subset.
+  MISCLASSIFICATION DRY-RUN (criterion red, per the corpus
+  instrument rule): a lap where the dispatch returns all-green but
+  the next attack bites only dispatched units must grade FAILURE
+  (the concentration clause carries it); a lap where the desk's one
+  correction pass is a brief defect, not an executor error, still
+  grades SUCCESS on the routing question (brief quality is the
+  dispatcher's variable). GRADUATION (operator, same GO): SUCCESS
+  mints (1) a global-corpus routing amendment — recorded
+  dispositions join the already-written-brief family, defaulting
+  their mechanical subset to dispatch — and (2) a dispatch-guards
+  dev-notes observation proposing the §1 note; FAILURE books the
+  negative result here and the inline default stands measured.
+  Consumer: the next repair-lap seam + the fire-rate review.
