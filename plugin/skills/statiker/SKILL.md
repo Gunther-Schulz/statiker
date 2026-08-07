@@ -49,9 +49,11 @@ file-only pathspec composition, add-untracked-only, `-m` commits,
 two-half readback, capped spaced index.lock retry; the record
 tool the enum-tag grammar, the unanchored stats-reader greps
 behind the defang rule, and scope-opener classification. Every
-invocation prints evidence lines and exactly one final
+invocation — usage errors included (USAGE_ERROR) — ends in
+exactly one final
 `STATIKER-GIT VERDICT: {json}` or `STATIKER-RECORD VERDICT:
-{json}` line — the desk books THAT LINE verbatim as the basis of
+{json}` line, evidence lines before it — the desk books THAT
+LINE verbatim as the basis of
 whatever entry the verdict obliges; an exit code is routing
 convenience, never the result. Unit briefs carry the git tool's
 ABSOLUTE path and its invocation lines — the tool is the shared
@@ -276,9 +278,12 @@ is normally the whole pathspec.
 (b) The judgment instrument the tool cannot run: re-read each
 lock-set artifact against the entry that produced it — the
 tool's collision check reads staged operator state (porcelain
-column one), but column two is expectedly set on run-produced
-content, so worktree divergence from the record needs this
-re-read; what it misses rides into the commit — the attack
+column one), but two states it cannot attribute need this
+re-read: column-two divergence on run-produced content, and
+every UNTRACKED add (the tool adds any surviving untracked
+pathspec path — an operator draft sitting where a lock-set line
+points is caught only by this re-read); what it misses rides
+into the commit — the attack
 round's probes are the backstop, the residue named, not hidden.
 (c) `lock-check --tracker <path> [--lock-set <path> …]`.
 Verdict routes: HALT_STATE is the operator's half-finished
@@ -297,7 +302,8 @@ dead (collision|ignored) — basis: <the drop F-line's id>`
 form) — surfaced when the operator is present, riding the
 close's deviations unattended.
 (d) `lock-commit`, same arguments plus `-m` and one `--drop`
-per recorded drop. HALT_DROPS_STALE or HALT_DROPS_UNACKNOWLEDGED
+per recorded drop (LOCK_CHECK_CLEAN skips straight here, no
+drops). HALT_DROPS_STALE or HALT_DROPS_UNACKNOWLEDGED
 means the tree moved between check and commit: re-run
 lock-check, re-record, retry. LOCK_COMMITTED's sha is the LOCK
 COMMIT — the attack brief pins it, and the locked design IS the
@@ -306,6 +312,16 @@ pathspec: the extras' content is already in history — recorded
 as a collision-class contradiction and named a brief exclusion,
 never reverted out of the working tree (the revert would
 destroy the very operator state the finding names).
+HALT_RESIDUE_PERSISTS is a halt WITH commits in history: its
+`shas` field lists every landed commit, the last one not
+readback-clean — booked, the shas surfaced, and the run halts
+like HALT_STATE (never "no lock, nothing to build on": the
+commits exist). Any other lock verdict (HALT_NO_CHANGES,
+HALT_NO_PATHSPEC, HALT_DIRECTORY_PATH, HALT_MISSING_PATH,
+BLOCKED_CONTENTION — the last two in their plain senses, never
+the unit rules' meanings — USAGE_ERROR, GIT_ERROR,
+INTERNAL_ERROR) halts the lock uncommitted, verdict line booked
+as a `record:` F-line, routed like HALT_STATE.
 Everything outside the pathspec is operator state — never
 committed, never unstaged, never restaged. Desk scratch
 belongs in the desk's own scratchpad, never the repo (the
@@ -546,11 +562,19 @@ backstop). The unit runs: START, before any edit —
 `unit-start --write-set <file> …`. UNIT_START_CLEAN makes
 every later modification the unit's own; UNIT_COLLISION (an
 operator edit or draft on a write-set path the unit would
-otherwise overwrite and commit) and HALT_STATE (the
-operator's half-finished operation, tree untouched) halt the
+otherwise overwrite and commit), HALT_STATE (the
+operator's half-finished operation, tree untouched), and any
+other START verdict (HALT_IGNORED_WRITESET,
+HALT_DIRECTORY_PATH, USAGE_ERROR, GIT_ERROR …) halt the
 unit UNBUILT — no edit, no commit, no landing annotation.
 COMMIT — `unit-commit --write-set <file> … -m <msg>`.
 Verdicts: UNIT_COMMITTED → landing annotation with its sha.
+UNIT_COMMIT_COLLISION → an operator stage landed on the
+write-set mid-unit (the commit seam re-reads column one; a
+staged ADD is tolerated as a blocked prior attempt's leftover,
+the named residue): report, nothing committed, the unit's own
+edits left in the worktree and named as poisoning the
+write-set.
 UNIT_NO_DIFF_VS_HEAD → nothing differs from HEAD: the unit
 runs its residue check (the brief's symbol-anchored
 criterion — the discriminator, never an exit code) and
@@ -678,6 +702,9 @@ After the close is appended and Status written, pin the
 delivered record — `lock-commit --tracker <path> -m <close
 message>` over the tracker alone (post-lock appends otherwise
 never enter git); its verdict line delivers with the close.
+HALT_NO_CHANGES here means the record is already pinned (a
+re-run after an ambiguous first attempt) — benign, delivered
+as-is.
 Skipped only where the run never had a pinnable tracker
 (preflight's UNPINNABLE halt). Delivering the close is then
 the desk's final act, so the

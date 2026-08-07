@@ -20,8 +20,11 @@ Subcommands (each prints evidence lines, then exactly one final line
                                     retry and HEAD-read discriminator
 
 Exit codes: 0 = proceedable verdict, 2 = halt/collision/blocked,
-3 = usage or internal error. The exit code is routing convenience;
-the verdict line is the result.
+3 = usage or internal error (argparse failures included: they emit
+a USAGE_ERROR verdict line, never a bare stderr death). The exit
+code is routing convenience; the verdict line is the result.
+Multi-path flags accept both forms: `--write-set A B` and
+`--write-set A --write-set B`.
 
 Design constraints carried from the attack rounds:
 - The state gate reads git's STATE DIRECTORIES (rebase-merge,
@@ -144,10 +147,14 @@ class Repo:
         return p if p.is_absolute() else self.top / p
 
     def rel(self, path_arg: str) -> str:
-        """Normalize an input path to repo-root-relative POSIX form."""
+        """Normalize an input path to repo-root-relative POSIX form.
+        Relative inputs are taken as repo-root-relative, never
+        cwd-relative: callers (briefs, records) write repo-relative
+        paths and a subagent's cwd resets between calls — resolving
+        against cwd answered about phantom paths from a subdir."""
         p = Path(path_arg)
         if not p.is_absolute():
-            p = Path.cwd() / p
+            p = self.top / p
         try:
             return p.resolve().relative_to(self.top.resolve()).as_posix()
         except ValueError:
@@ -271,8 +278,11 @@ def lock_survey(repo, tracker, lock_set):
             if e.path == tracker_rel:
                 raise Halt("HALT_TRACKER_COLLISION", porcelain=f"{e.x}{e.y} {e.path}")
             say(f"collision (staged operator state): {e.x}{e.y} {e.path}")
-            drops.append({"path": e.path, "reason": "collision",
-                          "porcelain": f"{e.x}{e.y}"})
+            drop = {"path": e.path, "reason": "collision",
+                    "porcelain": f"{e.x}{e.y}"}
+            if e.orig_path:
+                drop["orig_path"] = e.orig_path
+            drops.append(drop)
 
     dropped_paths = {d["path"] for d in drops}                     # step 3
     adds = []
@@ -326,10 +336,15 @@ def cmd_lock_commit(repo, args):
     shas = [sha]                                                   # step 6
     extras = readback_extras(repo.head_shown_paths(), set(effective))
     residue_laps = 0
-    while residue_laps < 3:
+    while True:
         residue = repo.porcelain(effective)
         if not residue:
             break
+        if residue_laps == 3:
+            # commits EXIST — the verdict carries every landed sha;
+            # the last one is not readback-clean
+            raise Halt("HALT_RESIDUE_PERSISTS", shas=shas,
+                       residue=sorted({e.path for e in residue}))
         residue_laps += 1
         residue_paths = sorted({e.path for e in residue})
         say(f"readback residue, lap {residue_laps}: {' '.join(residue_paths)}")
@@ -338,8 +353,6 @@ def cmd_lock_commit(repo, args):
         shas.append(repo.commit_with_retry(
             args.message + f" [residue lap {residue_laps}]", lap_spec))
         extras |= readback_extras(repo.head_shown_paths(), set(effective))
-    else:
-        raise Halt("HALT_RESIDUE_PERSISTS", shas=shas)
 
     say(f"readback: porcelain clean over pathspec; pinned sha {shas[-1]}")
     if extras:
@@ -382,6 +395,22 @@ def cmd_unit_commit(repo, args):
     repo.state_gate()                       # re-read at the commit seam
     rels = unit_paths(repo, args)
     repo.validate_file_paths(rels)
+    # column-one re-read BEFORE any add: an operator stage landing
+    # mid-unit would be silently destroyed by the pathspec commit
+    # (the lock's attack-5 B1 class, at the unit's longer window).
+    # 'A' is tolerated: a staged add on the write-set is a blocked
+    # prior attempt's leftover, and halting on it would deadlock the
+    # retry — the named residue is an operator-staged NEW file
+    # landing mid-unit on a write-set path.
+    staged = [e for e in repo.porcelain(rels)
+              if e.x not in (" ", "?", "A")]
+    if staged:
+        listing = [{"porcelain": f"{e.x}{e.y}", "path": e.path}
+                   for e in staged]
+        for e in listing:
+            say(f"commit-seam collision (staged mid-unit): "
+                f"{e['porcelain']} {e['path']}")
+        raise Halt("UNIT_COMMIT_COLLISION", entries=listing)
     for r in rels:
         if not repo.is_tracked(r) and (repo.top / r).exists():
             if repo.is_ignored(r):
@@ -427,9 +456,22 @@ def cmd_preflight(repo, args):
 HALT_EXIT = 2
 
 
+class Parser(argparse.ArgumentParser):
+    """Usage errors land as a USAGE_ERROR verdict line (exit 3),
+    never as a bare argparse death on the halt exit code."""
+
+    def error(self, message):
+        raise Halt("USAGE_ERROR", error=message)
+
+
+def flat(list_of_lists):
+    return [x for sub in list_of_lists for x in sub]
+
+
 def main():
-    ap = argparse.ArgumentParser(prog="statiker-git")
-    sub = ap.add_subparsers(dest="cmd", required=True)
+    ap = Parser(prog="statiker-git")
+    sub = ap.add_subparsers(dest="cmd", required=True,
+                            parser_class=Parser)
 
     sub.add_parser("state-gate")
 
@@ -438,22 +480,21 @@ def main():
 
     p = sub.add_parser("lock-check")
     p.add_argument("--tracker", required=True)
-    p.add_argument("--lock-set", action="append", default=[])
+    p.add_argument("--lock-set", action="append", nargs="+", default=[])
 
     p = sub.add_parser("lock-commit")
     p.add_argument("--tracker", required=True)
-    p.add_argument("--lock-set", action="append", default=[])
-    p.add_argument("--drop", action="append", default=[])
+    p.add_argument("--lock-set", action="append", nargs="+", default=[])
+    p.add_argument("--drop", action="append", nargs="+", default=[])
     p.add_argument("-m", "--message", required=True)
 
     p = sub.add_parser("unit-start")
-    p.add_argument("--write-set", action="append", required=True)
+    p.add_argument("--write-set", action="append", nargs="+", required=True)
 
     p = sub.add_parser("unit-commit")
-    p.add_argument("--write-set", action="append", required=True)
+    p.add_argument("--write-set", action="append", nargs="+", required=True)
     p.add_argument("-m", "--message", required=True)
 
-    args = ap.parse_args()
     handlers = {
         "state-gate": cmd_state_gate,
         "preflight": cmd_preflight,
@@ -463,10 +504,15 @@ def main():
         "unit-commit": cmd_unit_commit,
     }
     try:
+        args = ap.parse_args()
+        for attr in ("lock_set", "drop", "write_set"):
+            if hasattr(args, attr):
+                setattr(args, attr, flat(getattr(args, attr)))
         repo = Repo()
         handlers[args.cmd](repo, args)
     except Halt as h:
-        finish(h.verdict, HALT_EXIT, **h.detail)
+        code = 3 if h.verdict == "USAGE_ERROR" else HALT_EXIT
+        finish(h.verdict, code, **h.detail)
     except Exception as e:  # never a silent death: verdict line always lands
         finish("INTERNAL_ERROR", 3, error=f"{type(e).__name__}: {e}")
 

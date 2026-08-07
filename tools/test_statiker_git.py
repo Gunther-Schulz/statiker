@@ -588,6 +588,117 @@ class TestUnitCommit(GitFixture):
 
 # ---------------------------------------------------- pure-function checks
 
+class TestReviewFindings(GitFixture):
+    """Repairs from the 0.2.32 fresh-context review (dev-notes,
+    2026-08-07): each test written red against the pre-repair
+    behavior the reviewer executed."""
+
+    def test_multi_path_single_flag_parses(self):
+        # review B1: the documented form `--write-set <file> ...`
+        # errored with no verdict line at all
+        p = self.tool("unit-start", "--write-set", "a.txt", "b.txt")
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "UNIT_START_CLEAN")
+        self.assertEqual(set(v["write_set"]), {"a.txt", "b.txt"})
+
+    def test_usage_error_emits_verdict_line(self):
+        # review B1: argparse exited 2 (the halt code) on stderr with
+        # no verdict — the verdict-always-lands guarantee must cover
+        # usage errors, on the usage exit code
+        p = self.tool("unit-start")
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "USAGE_ERROR")
+        self.assertEqual(p.returncode, 3)
+
+    def test_lock_residue_persists_carries_shas(self):
+        # review B2 + N1: a clean filter keeping the tracker
+        # permanently residual lands commits and must report them —
+        # the verdict carries every landed sha, never "no lock"
+        self.git("config", "filter.noisy.clean", "sh -c 'cat; date +%s%N'")
+        self.write(".gitattributes", "*.md filter=noisy\n")
+        self.git("add", ".gitattributes")
+        self.git("commit", "-m", "attr")
+        self.write(".clippy/runs/t.md", "# Run: t\n")
+        p = self.tool("lock-commit", "--tracker", ".clippy/runs/t.md",
+                      "-m", "lock")
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "HALT_RESIDUE_PERSISTS")
+        self.assertGreaterEqual(len(v["shas"]), 1)
+        self.assertNotEqual(p.returncode, 0)
+
+    def test_subdir_invocation_resolves_against_repo_root(self):
+        # review N2: relative paths resolved against process cwd —
+        # from a subdir, preflight false-cleaned on a phantom path
+        (self.repo / "sub").mkdir()
+        self.write(".clippy/runs/t.md", "# Run: t\n")
+        p = subprocess.run(
+            [sys.executable, str(SCRIPT), "preflight",
+             "--tracker", ".clippy/runs/t.md"],
+            cwd=self.repo / "sub", env=self.env,
+            capture_output=True, text=True, timeout=60)
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "PREFLIGHT_OK")
+        self.assertEqual(v["tracker"], ".clippy/runs/t.md")
+
+    def test_unit_commit_staged_operator_edit_halts(self):
+        # review N3: operator stages an edit on a write-set path
+        # mid-unit; the commit seam must halt, never destroy the blob
+        self.write("src.txt", "v1\n")
+        self.git("add", "src.txt")
+        self.git("commit", "-m", "v1")
+        self.write("src.txt", "operator precious\n")
+        self.git("add", "src.txt")
+        self.write("src.txt", "unit output\n")
+        p = self.tool("unit-commit", "--write-set", "src.txt",
+                      "-m", "unit U1")
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "UNIT_COMMIT_COLLISION")
+        blob = self.git("show", ":src.txt").stdout
+        self.assertEqual(blob, "operator precious\n", "staged blob lost")
+
+    def test_unit_commit_tolerates_own_prior_add(self):
+        # the tolerance boundary: a staged ADD on the write-set is a
+        # blocked prior attempt's leftover — the retry must land
+        self.write("new.txt", "unit output\n")
+        self.git("add", "new.txt")
+        v = self.verdict(self.tool("unit-commit", "--write-set", "new.txt",
+                                   "-m", "unit U1"))
+        self.assertEqual(v["verdict"], "UNIT_COMMITTED")
+
+    def test_unit_start_ignored_write_set_halts(self):
+        # review N5: fires at both seams, was routed and tested nowhere
+        self.write(".gitignore", "build/\n")
+        self.git("add", ".gitignore")
+        self.git("commit", "-m", "gi")
+        p = self.tool("unit-start", "--write-set", "build/x.txt")
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "HALT_IGNORED_WRITESET")
+
+    def test_staged_rename_drop_carries_orig_path(self):
+        # review NIT 4: a staged rename dropped only the new path.
+        # Probed contract: git pairs the rename (R, orig_path) only
+        # when BOTH sides sit in the pathspec; a single-side pathspec
+        # reports `A ` and the original is unknowable to the tool —
+        # both forms must drop, and the paired form carries orig_path.
+        self.write("old.txt", "content\n")
+        self.git("add", "old.txt")
+        self.git("commit", "-m", "old")
+        self.git("mv", "old.txt", "new.txt")
+        self.write(".clippy/runs/t.md", "# Run: t\n")
+        v1 = self.verdict(self.tool("lock-check",
+                                    "--tracker", ".clippy/runs/t.md",
+                                    "--lock-set", "new.txt"))
+        self.assertEqual(v1["verdict"], "LOCK_CHECK_DROPS")
+        self.assertTrue(any(d["path"] == "new.txt" for d in v1["drops"]))
+        v2 = self.verdict(self.tool("lock-check",
+                                    "--tracker", ".clippy/runs/t.md",
+                                    "--lock-set", "new.txt",
+                                    "--lock-set", "old.txt"))
+        self.assertEqual(v2["verdict"], "LOCK_CHECK_DROPS")
+        drop = next(d for d in v2["drops"] if d["path"] == "new.txt")
+        self.assertEqual(drop.get("orig_path"), "old.txt")
+
+
 class TestPureFunctions(unittest.TestCase):
     """The comparison/parsing logic red-proven on constructed defects —
     branches whose triggering git states are races or git-won't-do-it

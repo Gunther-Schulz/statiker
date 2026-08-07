@@ -2921,3 +2921,60 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   split unit. Touches the operator-settled review-experiment
   convention, so it waits for the go. Consumer: the operator's
   answer + the attack-7 dispatch.**
+
+- 2026-08-07 — **0.2.32 review RETURNED after all (six parts; the
+  demand raced a delivery already in flight — the prior
+  "unreturnable" booking is corrected by this entry). 2B/5N/4NIT,
+  every finding dispositioned; repairs landed as 0.2.35 UNPINNED
+  (suites 54 git / 35 record, all review repairs red-first where
+  constructible).** Review quality: probes executed for all but two
+  READ-labeled claims; all six blocker-class guards mutation-tested
+  red; reverse contract direction checked mechanically (empty set
+  difference — every skill-routed verdict is emitted). Dispositions:
+  B1 (documented multi-path form did not parse; argparse death with
+  NO verdict line on the halt exit code) — FIXED: nargs="+" +
+  append (both forms parse), Parser.error → USAGE_ERROR verdict at
+  exit 3, parse inside the try; tests multi_path_single_flag +
+  usage_error_emits_verdict. B2 (lock routing = closed enumeration
+  over open verdict set; HALT_RESIDUE_PERSISTS landed 4 commits
+  while the skill said "no lock, nothing to build on") — FIXED:
+  lock-side catch-all minted, HALT_RESIDUE_PERSISTS routed as
+  halt-WITH-commits reading `shas`, BLOCKED_CONTENTION/
+  HALT_MISSING_PATH given their plain lock senses, LOCK_CHECK_CLEAN
+  named (also NIT 1). N1 (while/else off-by-one: lap-3-clean lock
+  reported as halt) — FIXED: loop re-checks before raising; probed
+  via non-deterministic clean filter (test
+  lock_residue_persists_carries_shas — also B2's shas field). N2
+  (paths resolved against process cwd; preflight false-cleaned on a
+  phantom from a subdir) — FIXED: relative paths resolve against
+  repo root; test subdir_invocation. N3 (no column-one guard at
+  unit COMMIT; operator staged blob destroyed over the long
+  START-COMMIT window while the lock guards a shorter one) —
+  FIXED: commit-seam col-1 re-read before adds →
+  UNIT_COMMIT_COLLISION; staged 'A' tolerated (blocked prior
+  attempt's leftover — halting would deadlock the retry), the
+  operator-staged-new-file-mid-unit residue NAMED in skill + code;
+  tests staged_operator_edit_halts + tolerates_own_prior_add. N4
+  (untracked operator content on a lock-set path commits silently;
+  '?' exemption over-reached its B3 provenance; desk re-read
+  stated for col-2 only) — FIXED as division-of-labor repair: the
+  (b) judgment re-read widened to cover every untracked add (tool
+  cannot attribute; verdict lists adds); tracker-narrowing rejected
+  because it kills the legitimate new-artifact entry the lock-set
+  line exists for. N5 (HALT_IGNORED_WRITESET routed nowhere,
+  tested nowhere) — FIXED: START catch-all + test. NIT 2 (docstring
+  said 3=usage, argparse exited 2) — FIXED, true by construction
+  now. NIT 3 (EXTRAS/RESIDUE integration-untested; reachability of
+  EXTRAS unmeasured) — HELD as declared policy (pure-function red
+  + defense-in-depth; reviewer could not construct extras through
+  the tool's own pathspec commit either — reachability stays
+  unmeasured, named). NIT 4 (staged rename dropped only the new
+  path) — FIXED where knowable: orig_path travels in the drop when
+  git pairs the rename; PROBED contract: pathspec limited to one
+  side reports `A ` and the original is unknowable — both forms
+  drop, test pins both. Count: 700 operational lines. PIN AT
+  0.2.31 (accidental); 0.2.35 UNPINNED. NEXT: the attack-7 go
+  (operator; fold question mooted by the review's return — attack
+  7 is a pure adversarial round on the 0.2.35 final form), then
+  no-blocker → pin move + cycle-10 line. Consumer: attack-7
+  dispatch + pin move.
