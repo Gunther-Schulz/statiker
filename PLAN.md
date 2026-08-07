@@ -205,6 +205,23 @@ provenance.
   the machinery's case seams while the record-grammar half held
   (dev-notes, draft attack 6).
 
+- 2026-08-07, operator: the birth-class discipline ADMITS A SECOND
+  patch class — **pre-registered hypothesis patches**: loop-conduct
+  calibrations universally advisable for dev work, minted
+  proactively rather than waiting for the incident, each MARKED as
+  a hypothesis at its mint (skill-craft's Path-2 form), logged in
+  dev-notes with a validation criterion (the run behavior that
+  earns or loses the slot), pruned at fire-rate reviews exactly
+  like fire-born patches. The tripwire narrows but survives: an
+  UNMARKED addition with neither provenance class is still the
+  violation. Rationale (operator): discovering universal
+  calibrations one incident at a time is the expensive path;
+  trialing them is cheaper — and the corpus's distillation
+  boundary makes this skill the designated home for loop-shaped
+  calibration knowledge (a loop that must hold never distills into
+  corpus prose). Lineage note: this re-admits what clippy carried
+  brute-force, in evidence register without the ceremony.
+
 ## Horizon consideration — NOT a decision (operator, 2026-08-05)
 
 When statiker is validated, CONSIDER lifting its framework from it

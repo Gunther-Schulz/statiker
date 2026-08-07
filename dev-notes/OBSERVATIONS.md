@@ -3038,3 +3038,38 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   blockers gone — the trend rule's falsifier for this form),
   no-blocker → pin move + cycle-10 line. Consumer: attack-8
   dispatch + pin move.
+
+- 2026-08-07 — **Hypothesis-patch class SETTLED (operator: "agree
+  on all counts"): birth-class amended in PLAN.md (pre-registered
+  hypothesis patches — marked, validation-criterion-carrying,
+  fire-rate-pruned; unmarked additions still the violation).
+  Candidate set AGREED (desk's a-f), fresh-eyes opus leg
+  dispatched for the complementary list; SKILL.md edits BATCH into
+  one 0.2.37 release after the fold + operator's final pick, then
+  attack 8 grades the final form.** The agreed candidates, each to
+  be minted hypothesis-marked with its validation criterion: (a)
+  investigation zero-delta (a cycle appending no new decision,
+  invalidation, or amendment is the loop's convergence signal —
+  lock or surface the blocking reconciliation) + auto-mode
+  investigation bound (verify's 3-strike cap has no
+  investigate-design sibling; an unattended run can cycle forever
+  pre-lock); (b) INTENT re-read opens the [READY] presentation
+  (derived-requirements drift); (c) trend read at re-attack seams
+  (the A-line series, not the last round — run-level rendering of
+  the corpus third-firing-moment rule); (d) verify-return triage
+  into the three existing routes (unit defect → re-dispatch;
+  killed premise → scopeless invalidation, re-enter once;
+  requirement mismatch → reconciliation); (e) one re-lock per
+  round (per-finding re-locks split the priced unit); (f)
+  out-of-scope discoveries booked, never built. VALUE-HYPOTHESIS
+  SHARPENING (operator, same exchange): statiker's worth over a
+  bare falsify-iterate loop = the record (resumable, delegable,
+  gradeable) + the BAKED-IN loop calibrations a session cannot be
+  expected to re-derive ad hoc — the trial's graduation
+  assessment grades both. SESSION LIFECYCLE: this desk is at
+  ~504k; the fresh-eyes leg's return channel binds it here, so
+  the fold + 0.2.37 release land in this session and the RESTART
+  SEAM is attack 8 — a successor dispatches and grades it from
+  this entry + the release diff alone. Consumer: the fold +
+  0.2.37 release (this session), then the successor's attack-8
+  lap.
