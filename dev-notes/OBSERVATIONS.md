@@ -2450,3 +2450,16 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   context, iterated to no-blocker, THEN released byte-identical
   and pinned without a further post-release lap). Consumer: the
   operator's method decision + the next repair lap.
+
+- 2026-08-07 — **Booked (operator GO on the script proposal):
+  statiker-local half of the skill-lint pair — a `tools/` check
+  that the SKILL.md's templates use only the record grammar's
+  enum tags and that the scope forms (`unit U<k>`, `record:`)
+  are spelled identically at every site; candidate later
+  widening: the cross-artifact contract with clippy-stats'
+  greps. Generic half (wrap, whitespace, cite-liveness,
+  singleton-term WARN) booked ready in skill-craft's BACKLOG
+  (f25a748) — wired at /release-plugin, so statiker releases get
+  it free. Trigger for this half: first fire of a tag/scope
+  spelling defect, or the stabilization pass, whichever first.
+  Consumer: the stabilization pass + the next release lap.
