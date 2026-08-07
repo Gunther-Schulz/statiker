@@ -2058,3 +2058,49 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   the seams of the newest edit — standing-step value holding.
   NEXT: review 6 (0.2.22 diff), dispositions, PIN MOVE, cycle-10
   desk line. Consumer: review-6 dispositions, pin move.
+
+- 2026-08-07 — **Opus review 6 RETURNED (6 parts: 2 blocking, 9
+  notable, 3 nits — reconciled to the verdict) → all
+  dispositioned, repairs landed as 0.2.23. The B2 design call:
+  the closure gate stays MECHANICAL; the marker becomes a SCOPE,
+  never an exemption.** B2 (impl-local: laundered design
+  decisions past the only computable design-integrity gate,
+  self-annotated by the party whose error it catches) — FIXED by
+  redesign: impl-local: is DEAD; a unit-local gap decision is
+  recorded as what it is (`- D<n> [AUTO-ACCEPTED] unit U<k> gap:
+  …` — tag-loud, close-enumerated, graded by any later round) and
+  voids closure for its unit alone; scopeless post-closure lines
+  void everything (fail-loud default restored); unit landings are
+  INDENTED annotation lines — non-entries, invisible to the stats
+  reader's tag-first count and the closure read by construction
+  (also closes N5's falls-per-entry dilution and n3's tagless-D
+  problem). B1 (quoted attack prose feeds the stats reader's
+  unanchored greps) — FIXED: every block line carries `> ` (blank
+  lines included, N9's contiguity fix) and bracketed tag literals
+  are defanged on paste, noted in the label. N1 — R enum gains
+  AUTO-ACCEPTED (the [PENDING] exit). N2 — freeze binds TRACKED
+  state; untracked check by-products outside the claim, cleaned
+  before the next lock commit. N3 — the closure read is desk
+  work; briefs carry the verdict (closing A-line + lock sha),
+  never the raw criterion. N4 — unreturnable legs re-tag
+  [AUTO-ACCEPTED] as deliberate carries; the sweep and the
+  no-[PENDING] zero-delta condition read that as resolved (the
+  gate keeps teeth against forgotten PENDINGs). N6 — auto mode's
+  third [ISSUES FOUND] forces the close with FAILED; the Close
+  triggers on the run-ending verdict, both paths. N7 — COMPLETE
+  flips at append, delivery is the final act (artifact carries
+  COMPLETE); late operator answers append to the closed tracker,
+  append-only has no expiry. N8 — the in-file tripwire stops
+  pretending: ~150 declared as the stabilization TARGET with the
+  compression booking cited; runts reflowed. n1 — queue line
+  carries the derivation inline. n2 — seal/queue namespace now
+  repo-keyed (`<repo-basename>/`), collision protection extended
+  to the evidence-bearing queue. Count: 386 operational lines —
+  the honest-tripwire wording is the acknowledgment. Review-6
+  meta: the finding profile was pure dependents-class (stats
+  reader, impl executor, next attacker, freeze assertion, PLAN.md
+  — consumers my repairs didn't walk); the clears list again
+  verified against the real readers. NEXT: review 7 on the 0.2.23
+  diff — if bloc-free, PIN MOVES to 0.2.23, cycle-10 desk line
+  goes out (R5 amendment as its first R-line). Consumer: review-7
+  dispositions, pin move, fresh-desk start.
