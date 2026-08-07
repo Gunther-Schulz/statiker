@@ -2906,3 +2906,18 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   global-corpus economy amendment awaits operator GO (proposed
   wording in session, 2026-08-07). Consumer: review dispositions
   + attack-7 lap + pin move.
+
+- 2026-08-07 — **0.2.32 review leg UNRETURNABLE: no task record in
+  the harness, no report after the past-horizon resume demand
+  (SendMessage delivered, silence). Booked dead per dispatch skill
+  §2/§4 — a missing report is a finding, never more waiting; its
+  object (the 0.2.32 diff) is superseded by 0.2.34 anyway.
+  RECOMMENDATION to operator (numbered round in session): fold the
+  standing pre-pin review INTO attack 7 — one fresh-opus round over
+  the final form (0.2.34 pair: SKILL.md + both scripts + suites)
+  carrying both the adversarial probe question and the review's
+  contract-coherence/canon question; the final-form convention
+  (CLAUDE.md, minted today) prices a separate review round as a
+  split unit. Touches the operator-settled review-experiment
+  convention, so it waits for the go. Consumer: the operator's
+  answer + the attack-7 dispatch.**
