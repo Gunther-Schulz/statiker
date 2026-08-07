@@ -3583,3 +3583,73 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   reason-only entries unproven. NEXT: attack-11 on e4727a8..HEAD
   (standing GO), no-blocker → pin move 0.2.45 + cycle-10 line.
   Consumer: attack-11 dispatch + the successor meta session.
+
+- 2026-08-07 — **Attack 11 RETURNED (9 parts; 2B/8N/4NIT, probe
+  obligations honored, ranked disposition list supplied, zero repo
+  writes). NO PIN MOVE. TREND, third consecutive round: both
+  blockers trace to DESK DESIGN — B1's false clause ("a premise-kill
+  is a clean line") was written into the 0.2.44 definition and the
+  arm implemented it faithfully, its guard-test inheriting the
+  premise; B2's opener enumeration was authored in the desk's own
+  brief. The measured split is now: dispatched EXECUTION clean three
+  laps running; desk DESIGNS the defect source. FORM LESSON for the
+  successor: statiker's own core rule applies to the meta loop —
+  interlocked-semantics designs earn a cheap design-attack BEFORE
+  implementation (one fresh-opus pass over the definition diff),
+  and enumerations of open sets are the recurring design defect
+  (openers, violation classes, frozen reasons — three instances
+  this round). FINDINGS: B1 corrects-token erases premise-kills
+  carrying ANY cosmetic violation (admission = full lint set, not
+  the blocking classes) — amplification: numbered INTENT items
+  register as near-miss ids, making operator words erasable. B2
+  near-miss opener set closed over an open set ("1)" and
+  BULLET-LESS id-openers escape; the exemption wider than its
+  rationale). N1 near-miss over-fires on legal numbered INTENT
+  (unrepairable block without mutating operator words); N2/N3 the
+  hold guard's under/over-fire pair (hold:/held: slip passes AND
+  travels as amendment; prose "held" bars every unit); N4 ancestor
+  rebase covers top-links only, subdir links still false-halt, the
+  0.2.44 one-cause comment DISPROVEN (rel None with top present),
+  as-named vs rebase tension named; N5 three of four frozen
+  reasons MEASURED FALSE (ADD_FAILED via in-repo symlinked dir +
+  staged rename; GIT_ERROR via corrupt index — and preflight
+  passes clean over that index, check=False throughout;
+  INTERNAL_ERROR via --out naming an existing dir, inconsistent
+  with its USAGE_ERROR sibling); N6 byte-policy carry-across:
+  quote + the record verdict emitter mangle non-UTF-8 (second
+  unsanctioned mutation; ensure_ascii=False over replace-stdout
+  needs byte-level emit); N7 filter line-shifts make corrects
+  tokens dereference wrongly in the artifact; N8 staged-rename
+  deletion half classified as ADD → lock unreachable through a
+  satisfied handshake. NITs: two-corrections silent, leading-zero
+  numbers, basis-half token no-op, self-hosting prose fires
+  corrects-nothing. CLEAN: chains, clean-line guard, byte
+  round-trip, .. escapes, operator state across every halt.
+  DISPOSITION DESIGNS (desk-settled here, successor implements
+  via the graduated form): (1) supersession splits by violation
+  CLASS — blocking-violated lines superseded whole, cosmetic-only
+  lines keep their live entry and shed only their violations (the
+  false clause replaced in SKILL.md); (2) near-miss detection goes
+  SIGNATURE-BASED — id token + adjacent tag literal (bracketed or
+  bare enum word), no opener enumeration — which also stops INTENT
+  prose registering in line_ids (kills B2 + N1 + the B1
+  amplification at one definition); (3) hold near-miss goes
+  POSITIONAL — the first token after `unit U<k> ` in a scoped
+  body, hold-like variants of it, never a word-search (kills
+  N2+N3 both directions); (4) containment: as-named first,
+  realpath-containment fallback with resolved_from noted in the
+  verdict (subdir links land; as-named preserved where possible);
+  dry-run adds at lock-check (the beyond-a-symlink class surfaces
+  at the check); true message for rel-None-top-present; (5)
+  unfreeze ADD_FAILED + GIT_ERROR with the attacker's recipes as
+  battery rows, IsADirectoryError → USAGE_ERROR, preflight gains
+  a check=True repo-health read (corrupt index surfaces at run
+  start); (6) byte-level verdict/quote emit (stdout.buffer,
+  surrogateescape); (7) filter emits a header naming token line
+  numbers as PINNED-SOURCE references; (8) rename drops exclude
+  BOTH halves from effective+adds; NIT2 int-compare token
+  numbers; NIT1/3/4 residuals named. SUCCESSOR: desk definitions
+  (0.2.46) WITH a design-attack pass on the definition diff
+  before implementation dispatch (0.2.47), then attack-12;
+  standing GO covers the loop. Consumer: the successor meta
+  session, first read after the handoff entry.**
