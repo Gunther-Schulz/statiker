@@ -3653,3 +3653,38 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   before implementation dispatch (0.2.47), then attack-12;
   standing GO covers the loop. Consumer: the successor meta
   session, first read after the handoff entry.**
+
+- 2026-08-07 — **0.2.46 (70a8de2) — attack-11 lap DESK HALF
+  (definitions only, per the measured form): corrects-token reach
+  re-defined to split on PARSE SUCCESS, never a violation-class
+  list — unparsed target superseded whole + restated; parsed
+  target keeps its live entry, the correcting line sheds the
+  target's violations and carries no entry semantics (exactly one
+  of the pair is ever an entry) — kills B1. Near-miss lint
+  re-defined SIGNATURE-BASED (id token + adjacent tag literal,
+  bracketed or bare enum word; no opener enumeration; INTENT
+  prose registers nowhere — kills B2, N1, and B1's amplification
+  at one definition). Hold check POSITIONAL (first token after
+  the unit opener; kills N2+N3 both directions). Containment
+  as-named-first with realpath fallback noted resolved_from +
+  lock-check dry-run adds (N4). Byte policy extended to the EMIT
+  direction (N6). Filter artifact opens with a pinned-source
+  line-number header (N7). Preflight repo reads STRICT (N5's
+  corrupt-index half). Code untouched; suites 200 green, contract
+  9 OK, 955 operational lines. Code-only dispositions riding to
+  0.2.47's brief: parse-split supersession mechanics,
+  signature/positional lint mechanics, containment fallback +
+  dry-run adds + rel-None-top-present true message, unfreeze
+  ADD_FAILED/GIT_ERROR with the attacker's recipes as battery
+  rows, IsADirectoryError→USAGE_ERROR, byte-level emit, filter
+  header emission, rename drops exclude BOTH halves, NIT2
+  int-compare token numbers; NIT1/3/4 residuals stay named. NEXT
+  (attack-11's form lesson, first firing): ONE fresh-opus
+  DESIGN-ATTACK on the definition diff 4cffb8d..70a8de2 BEFORE
+  implementation — brief = diff + full SKILL.md + question, never
+  the author's reasoning (also fills the skill-edit-review
+  experiment slot for this release); every finding gets a
+  recorded disposition, then the implementation dispatch
+  (0.2.47), then attack-12. Standing GO covers the loop.
+  Consumer: the design-attack dispatch + this session's booking
+  of its return.**
