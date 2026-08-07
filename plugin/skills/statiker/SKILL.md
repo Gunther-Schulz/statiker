@@ -129,9 +129,9 @@ included: a late report is evidence, not noise, and "it never
 returned" is a transcript claim checked in the transcript (a round
 was staged over a design whose refutation sat in two unread
 returns). The [READY] sweep's no-[PENDING] gate holds unread legs
-open mechanically. An unreturnable leg (stopped, nothing left to
-read — a determination made by the transcript check above, never
-from memory) is re-tagged [AUTO-ACCEPTED] as a deliberate carry
+open mechanically. An unreturnable leg (stopped per the task
+system's own state, nothing left to read per the transcript
+check above — never from memory) is re-tagged [AUTO-ACCEPTED] as a deliberate carry
 with the
 loss stated — the sweep and the closing [ZERO-DELTA]'s
 no-[PENDING] condition both read that as resolved.
@@ -242,11 +242,9 @@ freeze's scope is every surface the brief claims immutable: a
 brief asserting the tree matches the lock commit freezes the whole
 repo, not only the record — the claim sets the scope, and keeping
 it true until the last attacker returns is desk work. The claim
-binds TRACKED state; untracked check by-products (the carve-out,
-Verify) sit outside it. The carve-out DECLARES its by-product
-paths in the brief; before the next lock commit the desk removes
-exactly the declared paths, nothing else — an undeclared
-leftover is a finding, never a broader clean. The
+binds TRACKED state; untracked check by-products sit outside it
+under the declared carve-out (Verify — declaration, pre-existence
+record, removal at the return). The
 question APPENDS this block verbatim
 (pasted, never recalled — free-composed briefs drop invariant
 clauses):
@@ -304,12 +302,12 @@ round's A-line lands. Verbatim report quotes the desk retains
 append as a quoted block whose first line is
 `> Superseded — A<n> quotes` (the filter's species) — EVERY line
 of the block begins `>`; a blank line is a BARE `>`, nothing
-after it (trailing whitespace does not survive target-repo
+after it (trailing whitespace may not survive target-repo
 hooks), and the block ends at the first line not beginning `>`.
 Bracketed tag
-literals in the pasted text are defanged (brackets dropped,
-listed in the label line after a semicolon — the filter matches
-the label's opening form) so the stats reader's unanchored greps
+literals in the pasted text are defanged (brackets dropped, the
+BARE names listed in the label line after a semicolon — the
+filter matches the label's opening form) so the stats reader's unanchored greps
 never count attacker prose. Regraded
 into F-lines in the same sitting. Any substance finding: the
 round records [BIT] — that record change IS the reopen. A
@@ -322,8 +320,11 @@ That closes design; record findings never sustain a
 next round (declining max-severity is convergence; observed
 sustaining rounds past it).
 A reopen bars the design's UNITS only: investigation, record
-repair, and the run's own instruments stay open desk work — the
-closure gate reads the A-track, never the desk's toolbox.
+repair, and the run's own instruments stay open desk work — their
+lines land before the closing A-line (this return's
+repair-then-close order), so the post-closure predicate
+(Implementation) never reads them; a repair arising
+mid-implementation routes through the gap triage there.
 The desk refutes a finding only with its own reach-matched evidence
 (the F-line goes [INVALIDATED]); closure still needs the next
 round's [ZERO-DELTA].
@@ -337,11 +338,12 @@ design; each dispatches on a decision-complete brief (dispatch
 skill §1, tail per §2) citing the executor skill AND the run's
 live closure. The closure read is DESK work, performed at each
 dispatch — the brief carries its verdict (the closing A-line
-quoted, the lock sha, plus any lines scoped to the unit being
-dispatched), never the raw criterion. The criterion, one
-predicate per unit: unit U<k> may dispatch when the tracker's
-last A-line is `[ZERO-DELTA]` and no post-closure F, D, or R
-line is SCOPELESS — a scopeless line voids the whole closure
+quoted, the lock sha, plus any post-closure lines scoped to the
+unit being dispatched), never the raw criterion. The criterion,
+one predicate: unit U<k> may dispatch when the tracker's last
+A-line is `[ZERO-DELTA]` and no F, D, or R line appended after
+that A-line (post-closure) is SCOPELESS — a scopeless line
+voids the whole closure
 (and a re-lock's new entries void a stale closure, The attack);
 a line whose body OPENS `unit U<k>` voids nothing — it RE-OPENS
 that unit's dispatch and travels in the re-dispatch brief as the
@@ -352,16 +354,23 @@ and triaged on arrival: a unit-local gap decision is a design
 decision made without an attack round, and it is recorded as
 exactly that — `- D<n> [AUTO-ACCEPTED] unit U<k> gap: <decision>
 — basis: <gap report>` — surfaced by its tag, enumerated in the
-close, graded by verify against the requirement head; NO attack
-round grades it on the normal run shape — the tag surface and
-the close enumeration are the backstops, stated as such. That
-unit re-dispatches on the amended record, siblings run on. A gap that
-kills a locked premise voids the closure — stop the siblings
-resting on it, let the rest land, re-enter the loop ONCE with
-every return in hand. Model per
+close, graded only through the WORK verify checks against the
+requirement head (no entry-level grading exists); no attack
+round reads it on the normal run shape — a coverage fact, not a
+bar: a re-entry round reads the full record — so the tag
+surface and the close enumeration are the backstops. That
+unit re-dispatches on the amended record, siblings run on. A
+gap that kills a locked premise is recorded as the killed
+entry's [INVALIDATED] line (The loop) — scopeless, voiding the
+closure through the predicate above; that invalidation IS the
+triage discriminator: no locked entry dies → unit-local, a
+locked entry dies → premise-killing. Stop the siblings resting
+on it, let the rest land, re-enter the loop ONCE with every
+return in hand. Model per
 `clippy.config/models` (`impl:` class) when present, else the
 operator corpus routing table; an unreadable models file halts
-the dispatch, the parse error a unit-scoped F-line. Each unit
+the dispatch, the parse error a unit-scoped F-line (body OPENS
+`unit U<k>` — the criterion's scope form). Each unit
 commits green; the desk appends its landing as an INDENTED
 annotation line (`  unit U<k> landed: <sha>`, preceded by a
 blank line — markdown otherwise folds it into the entry above) —
@@ -382,8 +391,16 @@ carries the tracker, the code, and the question — read-only tail,
 no executor cite, one named carve-out stated in the brief AFTER
 the pasted tail and governing on conflict: executing the repo's
 checks writes their normal by-products (caches, build dirs) —
-still no commits, no tracker writes. Attack briefs carry the
-same carve-out for their executed probes. Model per
+still no commits, no tracker writes. The carve-out DECLARES the
+repo checks' by-product paths, and beside the declaration the
+desk records which of them already exist — those are operator
+state, never removed. At the round's return, before its outcome
+line lands, the desk removes exactly the declared paths that
+appeared with the round, nothing else — an undeclared in-repo
+leftover is a finding, never a broader clean. Attack briefs
+carry the same carve-out for the repo checks their probes
+execute; an attacker's own probe scratch belongs in its
+scratchpad (the read-only tail's provision), never the repo. Model per
 `clippy.config/models` (`verify:` class) when present, else the
 parent model; an unreadable models file halts the dispatch, the
 parse error recorded as a finding. Append the V-line (The record)
@@ -391,7 +408,7 @@ with the evidence and set the header
 Status to match (PASSED, or FAILED on an abandoned run; after
 [ISSUES FOUND] it stays in-progress); issues
 return the run to the loop as findings. In auto mode the third
-CONSECUTIVE [ISSUES FOUND] forces the close with Status FAILED
+[ISSUES FOUND] forces the close with Status FAILED
 (the stays-in-progress rule's one exception) — an unattended run
 earns no infinite loop.
 
@@ -407,9 +424,10 @@ amendment (what shipped vs. the letter as asked); every
 verified; candidate lessons. Landed seals and their comparisons
 enter here (The attack). Status flips to COMPLETE when the close
 is appended — over a PASSED verdict ONLY: a run ending FAILED
-takes the same close and KEEPS FAILED. Delivering the close is
-then the desk's final act, so the
-delivered artifact carries the terminal Status. Open
+takes the same close and KEEPS FAILED, so a FAILED run's close
+is marked by its `## Close` heading, never the header.
+Delivering the close is then the desk's final act, so the
+delivered artifact carries its final Status. Open
 reconciliations survive
 into COMPLETE, enumerated in the close; an operator answer
 arriving later appends its resolving line to the closed tracker —

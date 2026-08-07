@@ -2176,3 +2176,72 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   dotfiles: flush-race fix + retry bump landed and pushed;
   pinned-type interim convention landed in corpus backlog.
   Consumer: successor meta session, first duties above.
+
+## Session — 2026-08-07 meta/grading session #3 (successor)
+
+- 2026-08-07 — **Opus review 8 (0.2.24 diff, standing step) — 4
+  BLOCKING, 6 NOTABLE, 6 NIT; all 16 dispositioned, repairs
+  released as 0.2.25 (pin held for review 9).** All four blockers
+  sit inside review-7's own repair passages, sustaining the
+  every-blocker-in-the-newest-edit pattern (cadence 4→6→3→2→2→4).
+  B1 (declared-path removal deletes pre-existing untracked
+  operator state — .venv/node_modules-class paths, unrecoverable
+  by git) — FIXED: the carve-out records at declaration which
+  declared paths already exist (operator state, never removed);
+  removal takes only declared paths that APPEARED with the round.
+  B2 (attack briefs cannot enumerate attacker-chosen probe
+  by-products; both literal readings fail) — FIXED: attack briefs
+  declare the REPO CHECKS' by-product paths (knowable from the
+  repo); the attacker's own probe scratch belongs in its
+  scratchpad per the read-only tail; undeclared in-repo leftovers
+  stay findings. N1 (removal anchored to "next lock commit",
+  an event a ZERO-DELTA-first or verify-phase run never
+  produces) — FIXED: removal at the round's return, before its
+  outcome line lands. N2 (declaration duty lived only in The
+  attack; a verify-brief writer never met it) — FIXED: the full
+  rule consolidated into Verify (the carve-out's definition
+  home), The attack now cites it (one meaning, one home). B3
+  (OPENS-position scope requirement broke the models-file
+  parse-error F-line, the one scoped line class without a
+  template — a natural writing reads SCOPELESS and voids closure
+  over a config typo) — FIXED: the commissioning sentence names
+  the opening form (`body OPENS unit U<k>`). B4 (one-predicate
+  criterion vs "closure gate reads the A-track, never the desk's
+  toolbox" — record-repair lines scopeless by nature, two readers
+  diverge at the mid-impl repair moment) — FIXED by ordering, not
+  exemption: toolbox lines land BEFORE the closing A-line (the
+  ZERO-DELTA return's repair-then-close order), so the
+  post-closure predicate never reads them; mid-impl arrivals
+  route through gap triage. N3 (gap-decision grading named two
+  backstops and commissioned neither; verify never told to grade
+  entries) — FIXED: graded only through the WORK verify checks
+  (no entry-level grading exists); "no attack round reads it"
+  restated as a coverage fact, not a bar. N4 (premise-killing gap
+  had two applicable recording rules with opposite closure
+  consequences; safe route unnamed, "unit-local" undefined) —
+  FIXED: premise-killing gap records as the killed entry's
+  [INVALIDATED] line (scopeless → voids via the predicate), and
+  that invalidation IS the triage discriminator. N5 (FAILED no
+  longer distinguishes closed from abandoned; "terminal Status"
+  undefined) — FIXED: a FAILED run's close is marked by its
+  `## Close` heading, never the header; "final Status". N6
+  (unreturnable-leg determination cited the transcript check for
+  a fact it cannot establish — "stopped" is task-system state;
+  a still-running leg reads identically) — FIXED: stopped per
+  the task system's own state, nothing-left-to-read per the
+  transcript check. T1 post-closure defined inline ("appended
+  after that A-line"); T2 "per unit" dropped from the criterion
+  label; T3 CONSECUTIVE dropped (no non-consecutive sequence is
+  reachable); T4 brief carries POST-CLOSURE scoped lines; T5
+  defang lists BARE names; T6 whitespace claim softened to "may
+  not survive". T6's basename-keying half DECLINED: a seal
+  namespace miss voids its comparison, not the round (calibration
+  by design), and worktree desks are not a trial run shape —
+  revisit on fire. Reviewer's 8-item clean list booked (seal/
+  queue path derivations, block-end rule, blank-line annotation,
+  FAILED-close agreement, gap template, exception pointer,
+  re-tag admission). Count: 422 operational lines (+18, all
+  fire-born repair). Review 9 dispatched on the 0.2.25 diff
+  (standing step, same form); PIN STILL AT 0.2.13 — moves only
+  on a cleared review. Consumer: review-9 dispositions + the
+  pin move + cycle-10 fresh-desk line.
