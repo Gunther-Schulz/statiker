@@ -2687,3 +2687,71 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   attack 6 on e4727a8..<0.2.31 sha>; no-blocker → pin move +
   cycle-10 fresh-desk line. Consumer: attack-6 dispositions +
   the pin move + the cycle-10 line.
+
+- 2026-08-07 — **Draft attack 6 (0.2.31 rewrite) — 5 BLOCKING, 5
+  NOTABLE, 6 NIT; dispositions HELD — form question to the
+  operator (trend rule's first live firing).** Blockers: B1
+  REBASE_HEAD sticky after stopped-then-continued rebase
+  (probe) — permanent false halt, OVERTURNS attack-5's
+  absent-after-completion claim this session booked as
+  probe-verified (the probe battery tested abort + conflict-free
+  completion, not continue-after-conflict — instrument-reach
+  lesson: a probe certifies the cases it ran, and adopting
+  another attacker's set inherits its coverage); B2 break/exec/
+  reword rebase stops set NONE of the four refs (probe) — gate
+  passes exactly at the stranded-commit hazard, fix shape =
+  state DIRECTORIES (.git/rebase-merge, .git/rebase-apply) or
+  porcelain v2, not refs; B3 porcelain `??` puts `?` in column
+  one — strict read halts every first lock on the untracked
+  tracker, lenient read guards nothing against untracked
+  operator drafts (the unit text enumerates forms, the lock
+  does not); B4 already-present discriminator reads the
+  WORKTREE not HEAD (probe) — a failed commit (unpopulated
+  write-set path poisons the pathspec, exit 1, NOTHING lands)
+  books as landed: already-present, run closes green over
+  uncommitted work — the file's own unprovable-check shape;
+  B5 the "verbatim-portable" unit procedure is built from
+  cross-references (the lock's steps 0/1/4-5) the unit never
+  receives — verbatim ships no detector, expansion contradicts
+  verbatim. Notables: N1 canonical commit lacks `-m` (probe:
+  aborts/hangs); N2 "EXITS, four" misses the state-gate halt —
+  which gets NO tag surface (the hold-entry fix re-introduced
+  its own target one exit over) and the gap exit; N3
+  blocked-commit triage conflates state-gate block with stale
+  index.lock (last-unit case deletes a lock that is not the
+  cause); N4 "sibling" excludes a unit's own prior attempt —
+  the run's own leftovers hold the unit forever; N5
+  unpinnable-tracker discovered at step 3 (post-design) though
+  check-ignore answers at run start — a repo ignoring .clippy/
+  fails every run at maximum cost. NITs: self-citing <n>
+  placeholder; dead-clause template drift between step 2 and
+  Implementation; defang now mutates case in "verbatim" quotes;
+  step 3 "refusal" misnames an ignore match; FAILED-via-halt
+  has no Status-write instruction; post-lock record never
+  enters git (pre-existing, widened). CLEAN (attacked and
+  held): the whole record-grammar half — aggregation rule,
+  live-lines qualifier composing with the failure branch
+  (attacked specifically), defang two-dimension guarantee,
+  Verify narrowing, Close FAILED sources, inherited-path no-op;
+  git core claims all re-confirmed (staged-blob destruction
+  mechanics, partial-commit isolation, empty-pathspec, revert/
+  rebase consequences, restore split, check-ignore
+  pre-dispatch). TREND READ (corpus third-firing-moment rule,
+  minted this session, first exercise): blockers 2→1→2→3→4→5
+  across TWO forms (patch ×4, coherent rewrite ×1) — but
+  attack-6's blockers concentrate ENTIRELY in the
+  git-transaction machinery's case seams while the rewrite's
+  record-grammar half held under targeted attack. The form
+  verdict: prose cannot close a judgment-free state machine —
+  the corpus distillation boundary names this exactly ("a loop
+  that must hold is machinery"), and the 23-probe battery
+  accumulated over rounds 4-6 is the test suite of a tool that
+  does not exist yet (manual-investigation-unfinished rule).
+  RECOMMENDATION to operator (numbered round in session):
+  precipitate the lock/unit commit machinery into a shipped,
+  bite-tested script (plugin scripts/, invoked by desk and
+  unit briefs; SKILL.md keeps invariants, record forms, and
+  the run-the-tool line); prose lap 7 and descoping named as
+  the alternatives with the trend evidence against the first.
+  PIN AT 0.2.13; 0.2.31 stays UNPINNED, no repair landed this
+  entry. Consumer: the operator's form decision + the next lap.
