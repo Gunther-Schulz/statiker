@@ -3688,3 +3688,35 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   (0.2.47), then attack-12. Standing GO covers the loop.
   Consumer: the design-attack dispatch + this session's booking
   of its return.**
+
+- 2026-08-07 — **Design-attack rounds 1-2 on the definitions
+  (form-lesson firing #1): R1 (fresh opus, sync, on 4cffb8d..70a8de2)
+  returned 5B/8N/2NIT — B1 opener lint silently dropped, B2
+  signature over-reach into quotes/INTENT, B3 containment trigger
+  topology backwards, B4 parsed-branch defang permanence, B5 JSON
+  re-spelling; dispositions landed as 0.2.47 (eb177f3). R2 (fresh
+  opus, sync, on 4cffb8d..eb177f3) returned 7B/9N/4NIT with the
+  new corrections CONCENTRATED IN R1's own repairs (stem-match
+  false-fires, token composition deleting entries cross-id, sweep
+  pointer detonating closures, retry bound vacuous) — the corpus
+  re-entry-seam trend rule fired: series 5B→7B indicts the repair
+  FORM. Form changed for the 0.2.48 lap (f737b24): consolidated
+  redesign by SIMPLIFICATION — detection-wider-than-validity with
+  three positional surfaces; repair reach splits on violation SITE
+  (machine token vs body content), same-tag restatement enforced
+  mechanically, one token per line; filter blanks in place so
+  numbering aligns by construction; containment
+  direction-of-safety; verdict names each violation's repair form
+  (mechanism over desk memory). R2 grading notes: R2-B6 (byte emit
+  "unsatisfiable") REFUTED on its own probe — it never tried
+  surrogateescape on the ENCODE side, which round-trips the byte;
+  R1's N13 composition disposition was a desk invention R2 killed
+  (reversed). PRE-REGISTERED CRITERION for R3 (fresh opus, same
+  form, on 4cffb8d..f737b24), recorded before dispatch: zero
+  blockers in the changed text → implementation dispatches
+  (release renumbers 0.2.49, versions burned by per-commit bump
+  hook); any blocker concentrated in R2's own new text → STOP,
+  form question to the operator (three same-form rounds would be
+  the flat-series shape). Non-blockers/nits disposition at the
+  desk either way. Consumer: R3's booking + the successor meta
+  session.**
