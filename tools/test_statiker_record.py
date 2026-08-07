@@ -874,11 +874,12 @@ class TestAttack9TrackerAnchoredRepo(RecordFixture):
         self.assertEqual(p.returncode, 3)
         self.assertIn(out, v["error"])
 
-    def test_pin_unreadable_names_what_was_checked(self):
-        # the old message claimed the tracker "does not resolve inside
-        # a git repo" whenever the CALLER stood outside one; the branch
-        # now fires only when the tracker's own location has no repo,
-        # and says so
+    def test_filter_no_repo_tracker_unified_verdict(self):
+        # one cause, one verdict (dispatch gaps 2+3, desk-dispositioned):
+        # a tracker no repo contains halts PATH_OUTSIDE_REPO from EVERY
+        # subcommand — filter's former PIN_UNREADABLE split answered a
+        # second name for the identical condition. PIN_UNREADABLE keeps
+        # its plain sense: an unreadable SHA in an existing repo.
         outside = self.no_repo_dir()
         t = Path(outside) / "t.md"
         t.write_text(HEADER + "- F1 [VERIFIED] kept — basis: y\n")
@@ -886,7 +887,7 @@ class TestAttack9TrackerAnchoredRepo(RecordFixture):
                   "--out", os.path.join(self.no_repo_dir(), "a.md")],
                  cwd=self.dir)
         v = self.verdict(p)
-        self.assertEqual(v["verdict"], "PIN_UNREADABLE")
+        self.assertEqual(v["verdict"], "PATH_OUTSIDE_REPO")
         self.assertIn("tracker's location", v["error"])
 
 

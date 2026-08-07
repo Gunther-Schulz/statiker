@@ -475,12 +475,16 @@ def cmd_closure(args):
 
 def cmd_filter(args):
     _, rel, top = repo_paths(args.tracker)
-    if top and rel is None:
-        finish("PATH_OUTSIDE_REPO", 2, path=args.tracker)
+    # under tracker-anchored resolution rel is None exactly when top
+    # is (one cause), and one cause gets ONE verdict across every
+    # subcommand — the same halt lint/sweep/closure emit; the former
+    # two-branch split here answered PIN_UNREADABLE for the identical
+    # condition (dispatch gaps 2+3, dispositioned at the desk).
+    # PIN_UNREADABLE keeps its plain sense below: the sha itself
+    # cannot be read from an existing repo's history.
     if rel is None:
-        finish("PIN_UNREADABLE", 2, sha=args.sha, tracker=args.tracker,
-               error="no git repository at the tracker's location: "
-                     "there is no history to read the pinned sha from")
+        finish("PATH_OUTSIDE_REPO", 2, path=args.tracker,
+               error="no git repository at the tracker's location")
     # the artifact lands OUTSIDE the repo (attack-8 NIT3): an in-repo
     # artifact is an untracked file under a brief asserting tree ==
     # lock commit — the seal rule's reasoning, applied to the write

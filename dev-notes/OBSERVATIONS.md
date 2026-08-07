@@ -3399,3 +3399,36 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   runtime verdict battery in test_contract.py — each red-first
   per the attacker's own probe recipes. Consumer: the experiment
   dispatch + its grading + the successor meta session.
+
+- 2026-08-07 — **0.2.40 (dispatch, 824e968) + 0.2.41 (desk gap
+  dispositions) UNPINNED — the mechanical half landed through the
+  dispositions-as-brief experiment arm; INTERIM GRADE: SUCCESS ON
+  BOTH IN-LAP CLAUSES, final clause awaits attack-10.** The arm:
+  all nine dispositions red-first per the attacker's recipes
+  (suites 128→151, battery red arrangement shown against a planted
+  V9 copy with the AST layer certifying it clean — the two-layer
+  contrast IS the reach statement), six briefed paths exactly, one
+  commit, zero silent bridges, ZERO desk correction passes on the
+  dispatched work. The brief's one real design hole (no-repo
+  tracker verdict under tracker-anchoring made two tests conflict
+  pairwise) was handled at ceiling: re-derived from the
+  requirement (unpinnable = ungateable, attack-8 N1's rationale
+  survives anchoring; the CWD-grammar rationale does not), the
+  halt taken, re-derivation written into the test body, escalated
+  with the one-branch reversal named — ACCEPTED as made. DEV 1
+  validated outcome-shaped criteria (the "identical verdicts from
+  three cwds" criterion found a second call site the brief never
+  named); DEV 2 pinned its own behavior change red-first. Desk
+  follow-up 0.2.41: gap 2 dead branch deleted + gap 3 unified
+  (one cause one verdict: no-repo tracker = PATH_OUTSIDE_REPO
+  from every subcommand; PIN_UNREADABLE keeps its unreadable-sha
+  sense) — gap 3 was the DISPATCHER's brief prescription, so it
+  counts against the brief, not the arm. Suites 151 green at
+  0.2.41. EXPERIMENT CRITERION READ: ≤1 correction pass — met at
+  zero; no silent bridge — met (the one gap surfaced with
+  evidence and alternatives); blocker concentration — OPEN,
+  graded at attack-10 per the pre-registration. NEXT: attack-10
+  on e4727a8..HEAD (fresh opus, the standing form; operator GO
+  pending), no-blocker → pin move to 0.2.41 + cycle-10 line.
+  Consumer: attack-10 dispatch + the experiment's final grade +
+  the successor meta session.
