@@ -1939,3 +1939,22 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   missing / anything learned). In auto mode this report is the
   operator's ONLY touchpoint, which raises its bar. Consumer:
   0.2.21 consolidation design.
+
+- 2026-08-07 — **BOOKED (operator-raised): mid-impl loop-back
+  handling is underspecified.** Current text: "A gap report
+  returns the run to the loop; the record gains the missing
+  decision before the unit re-dispatches" — silent on
+  parallelism, batching, and sibling handling. Design shape for
+  0.2.21, operator-discussed (efficiency): impl units with
+  disjoint write-sets run parallel (corpus default; clippy
+  precedent). Gap handling splits by blast radius, triaged ON
+  ARRIVAL, never deferred until all siblings return: (a)
+  unit-local gap (missing value/decision, no sibling premise
+  touched) → record gains the decision, that unit re-dispatches,
+  siblings untouched; (b) design-level contradiction (new
+  evidence killing a locked premise) → the closure is void by the
+  existing re-lock rule — siblings resting on the killed premise
+  are stopped, unaffected ones finish, and the re-entry into the
+  design loop happens ONCE, with every return in hand (the
+  package), not per-arrival. Verify stays a single pass after all
+  units land. Consumer: 0.2.21 consolidation design.
