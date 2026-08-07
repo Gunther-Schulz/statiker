@@ -185,8 +185,8 @@ phrasing: the entry head `- <C><n> `, the scope openers
 `unit U<k> ` and `record: `, the hold form `unit U<k> held: `
 (that exact prefix as the body's opening — a hold written any
 other way holds nothing), and the `corrects line <n>` repair
-token. The tools lint spacing/case NEAR-MISSES of the head and
-the openers as their own violation classes — a one-character
+token. The tools lint spacing/case NEAR-MISSES of the head, the
+openers, and the hold form as their own violation classes — a one-character
 slip otherwise reads as scopeless prose and voids or dispatches
 on a line the desk never meant (both directions observed) — so
 write the literal or expect the lint to say so.
@@ -637,8 +637,15 @@ intended tag (append-only repair; the tool disarms ONLY on that
 explicit reference: tag-matching proved both brickable — a
 misspelled tag extracts nothing and no re-assertion can ever
 disarm it — and forgeable, a later unrelated same-id/same-tag
-line converting a premise-kill void into a dispatch), then
-re-run;
+line converting a premise-kill void into a dispatch). The
+corrected line is SUPERSEDED whole: every gate excludes it —
+its entry, where it parsed, and its violations both — and the
+correcting line carries the content (a corrected line that
+kept parsing voided the closure its own repair had unlocked,
+and its violations held the sweep forever). Supersession
+reaches only lines that carry a violation: a `corrects line
+<n>` naming a clean line lints `corrects-nothing` — the token
+is a repair, never an eraser of live entries. Then re-run;
 CLOSURE_ABSENT means the gate is not open (the last A-line is
 not [ZERO-DELTA] — the normal state during a reopened design;
 dispatch waits); UNIT_HELD bars that unit on its
