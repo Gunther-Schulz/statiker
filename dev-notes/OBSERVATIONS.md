@@ -3561,3 +3561,25 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   corpus sharpen 415e3bb; pushurl incident resolved (shared-config
   worktree hazard, rule candidates in dispatch-guards dev-notes).
   Consumer: the successor meta session, first read.**
+
+- 2026-08-07 — **0.2.45 (12929fd) BOOKED and pushed with 0.2.43/44:
+  GAP-1 supersession mechanized at the parse layer (every gate
+  inherits; closure_blocking_violations SHRANK — the disarm loop
+  deleted), corrects-nothing guard incl. cross-id (lane's call,
+  accepted), suites 200 green. LANE-FOUND DEFECT beyond the brief:
+  0.2.43's corrects-token was matched as a SUBSTRING — "corrects
+  line 12" satisfied by "corrects line 123" — live in code the desk
+  had verified; killed by number-match, red-pinned. Lesson (lane's
+  L-2, corpus-grade): the defect was invisible to its own suite
+  because code and tests shared one idiom and no chosen value was a
+  prefix of another — a test set's reach is the VALUES chosen, not
+  branches covered; a second implementation is a cheap independent
+  instrument (the corpus divergence point, met by accident).
+  NAMED RESIDUE riding to attack-11's brief: correction CHAINS
+  (one-pass semantics asserted by construction, untested), multiple
+  tokens/one line untested, no battery corrects-token row (runtime
+  never exercises supersession), violation-code-vs-prose agreement
+  unmechanized (GAP-2's surface), frozen remainder's four
+  reason-only entries unproven. NEXT: attack-11 on e4727a8..HEAD
+  (standing GO), no-blocker → pin move 0.2.45 + cycle-10 line.
+  Consumer: attack-11 dispatch + the successor meta session.
