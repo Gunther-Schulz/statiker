@@ -2404,3 +2404,49 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   = one more narrow lap, not the method question; a clean or
   wording-only review 12 moves the pin. Consumer: review-12
   dispositions + the pin move + the cycle-10 fresh-desk line.
+
+- 2026-08-07 — **Opus review 12 (0.2.28 diff) — 1 BLOCKING, 5
+  NOTABLE, 3 NIT, 8 clean; STOP-CALL FIRED per the pre-registered
+  criterion (booked in the review-11 entry): the blocker and
+  N3/N4 were CREATED by the review-11 repairs, the fourth
+  consecutive round of repair-minted defects. NO repair released;
+  dispositions held for the operator's method decision.**
+  Findings, verified in the artifact: B1 (the unreturnable-leg
+  split resolution is unrepresentable in the record grammar — two
+  dispositions for one id; carry vanishes or metric corrupts by
+  ordering, and the literal "evidence's tag" reading resolves
+  [PENDING]→[PENDING], deadlocking the sweep). N1 (commissioned-
+  target collision has no auto-mode path — halt vs
+  exclude-and-continue, neither citable). N2 (pathspec immunity
+  reasoned at ONE seam while the pre-staged index stays armed for
+  every downstream commit — unit commits sweep it; probe-verified
+  in a scratch repo). N3 (a scopeless clause restatement voids
+  with no stated recovery — sibling-stop attached only to the
+  gap/[INVALIDATED] routes). N4 (a unit-scoped restatement is
+  [PENDING] at adoption and Implementation's criterion has no
+  no-[PENDING] condition — a unit brief can consume an unchecked
+  amendment; path did not exist at f19a880). N5 ("MODIFIED"
+  excludes run-CREATED files, which the next sentence assigns to
+  the operator; tracker survives only via its explicit "plus" —
+  probe-verified that the pathspec commit fails on untracked
+  paths, so the git-add half is load-bearing). T1 "the tree
+  claim" not the file's vocabulary; T2 sweep parenthetical names
+  one of three conditions; T3 in-text external fact unversioned.
+  Clean list includes the whole review-11 core set (exclusion
+  rewrite, read-back, .verify.paths, consumption, [PENDING]
+  close enumeration, verify gate). Reviewer probe-executed two
+  claims rather than reasoning them. FIVE-ROUND PATTERN at the
+  stop: blockers 4→2→2→1→1, findings 16→12→12→12→9, every
+  round's cores certified clean, every round's new defects inside
+  the newest repair — single-pass inline repairs to a
+  dense interlocked text reliably mint interaction defects a
+  fresh literal reader catches. The meta-layer irony recorded:
+  the repair flow was NO-ATTACK IMPLEMENTATION — design decisions
+  (repairs) shipped release-first, reviewed after; statiker's own
+  core mechanism (attack the draft before it ships) was never
+  applied to statiker's own edits. METHOD QUESTION taken to the
+  operator with recommendation (draft-attack-before-release: the
+  repair diff is attacked in the working tree by a fresh opus
+  context, iterated to no-blocker, THEN released byte-identical
+  and pinned without a further post-release lap). Consumer: the
+  operator's method decision + the next repair lap.
