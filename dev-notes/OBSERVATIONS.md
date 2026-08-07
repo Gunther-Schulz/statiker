@@ -2613,3 +2613,77 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   cycle-10 fresh-desk line (unchanged from the #3 handoff).
   Consumer: attack-5 dispositions + the pin move + the cycle-10
   line.
+
+- 2026-08-07 — **Draft attack 5 (0.2.30 draft) — 4 BLOCKING, 7
+  NOTABLE, 6 NIT, all in the 0.2.30 repair layer; REPAIR-FORM
+  SWITCH (operator: "agreed"): coherent probe-backed region
+  rewrite replaces patch-on-patch, released as 0.2.31 UNPINNED
+  (attack 6 next).** Cadence 2→1→2→3→4 = DIVERGING under patch
+  layers; the meta irony recorded — the desk failed to raise the
+  form question itself, the operator did (corpus-sharpening
+  question open, see session round). Findings → dispositions,
+  all applied via the rewrite: B1 (staged-only operator edit on
+  a lock-set path destroyed by pathspec commit, both readback
+  halves green; porcelain col-1 IS the discriminator the text
+  denied) → lock step 2 reads porcelain COLUMN ONE before any
+  index touch. B2 ("fatal mid-operation" FALSE for revert/
+  rebase — the two ops git does not guard were the unenumerated
+  "kin"; rebase probe: lock commit stranded unreachable on
+  abort) → state gate step 0 enumerates MERGE_HEAD/
+  CHERRY_PICK_HEAD/REVERT_HEAD/REBASE_HEAD, all probe-verified
+  present-in-op/absent-after. B3 ("ANY output" halts every unit
+  — plain `git status` prints on clean trees) → porcelain form
+  named, empty-iff-clean stated (attacker: 200 contention runs,
+  zero spurious). B4 (prescribed restore cannot clear untracked
+  leftovers, mixed call fails whole, silent re-dispatch loop) →
+  clear BY SHAPE (restore tracked / delete untracked), exits
+  read, ONE clearing attempt then held-as-operator-state. N1
+  (commit-time halt let a unit edit a mid-merge tree first) →
+  state gate at unit START before any edit + re-read at commit.
+  N2 (held unit invisible to every gate in auto mode) → hold
+  entry `- D<n> [AUTO-ACCEPTED] unit U<k> held: <path>` — tag
+  surface into the close; re-dispatch trigger = the hold
+  entry's resolving line. N3 (uncapped un-failable retry; stale
+  index.lock spins forever) → five spaced attempts, then
+  blocked-commit REPORT; stale-lock removal desk-only on
+  no-live-unit provenance. N4 (defang sentence
+  self-contradictory) → body keeps lowercase forms in place,
+  list names which tags. N5 (restatement lines dropped the
+  grammar's basis slot) → both lines composed verbatim with
+  basis. N6 (second parent [INVALIDATED] line reads as missing
+  clause list under latest-line-wins → sweep deadlocks the one
+  re-entry) → aggregation rule minted in The loop: union,
+  latest line per CLAUSE. N7 (collision re-read had no ordinal;
+  post-add placement strands desk-staged state) → collision
+  check is step 2, index untouched until step 4. n1 (empty-
+  pathspec halt branch unreachable) → cut. n2 (attended halts
+  had no re-entry) → re-enter at step 0 on the operator's
+  clearing reply. n3 (exit 1 non-discriminating) → residue
+  check named the discriminator. n4 (units never got
+  check-ignore) → write-set check-ignore-clean at composition.
+  n5 (ignored operator draft invisible to porcelain) → closed
+  by n4's composition check (ignored paths never enter a
+  write-set). n6 (singular "blocked-lock halt") → Close names
+  both lock halts. Probe log for the 0.2.31 text: attacker's
+  P-set (partial commit fatal merge/cherry-pick exit 128,
+  succeeds revert/rebase incl. stranded-sha rebase case; four
+  state refs absent after completion AND abort; empty pathspec
+  commits entire index; pathspec commit takes worktree content,
+  leaves outside-pathspec staged state; directory pathspec
+  sweeps; check-ignore tracked exit 1 unnamed + tracked-ignored
+  commits normally; add of ignored untracked errors; porcelain
+  silent 200/200 clean-under-contention; restore fails
+  untracked + mixed-call-whole; stats-reader greps bracketed
+  case-sensitive read from source) + desk P-A/B/C (staged-only
+  → porcelain `MM` col-1 set; porcelain empty iff clean, ` M`/
+  `??` forms; restore tracked exit 0 + rm untracked exit 0 →
+  clean). Clean list booked: empty-pathspec parenthetical,
+  worktree-over-staged, disjoint-write-set serialization
+  premise, file-never-directory grounding, no-false-halt refs,
+  basis-grammar entry-id fit, live-lines-only load-bearing,
+  unreturnable-leg exhaustive, verify-seam condition match,
+  tree-claim/exclusion chain consistent. Count: 660 operational
+  lines. PIN AT 0.2.13; draft carries 0.2.31 UNPINNED. NEXT:
+  attack 6 on e4727a8..<0.2.31 sha>; no-blocker → pin move +
+  cycle-10 fresh-desk line. Consumer: attack-6 dispositions +
+  the pin move + the cycle-10 line.
