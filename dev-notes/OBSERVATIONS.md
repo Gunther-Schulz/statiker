@@ -3720,3 +3720,78 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   the flat-series shape). Non-blockers/nits disposition at the
   desk either way. Consumer: R3's booking + the successor meta
   session.**
+
+- 2026-08-07 — **Design-attack R3 RETURNED (fresh opus, sync, on
+  4cffb8d..f737b24): 7B/10N/3NIT, two probe-backed, one prior
+  claim self-refuted by its own probe (realpath-fallback
+  contradiction withdrawn). PRE-REGISTERED CRITERION FIRES: the
+  blockers again concentrate in the newest round's own text
+  (series 5B→7B→7B) → STOP, form question to the operator; NO
+  implementation dispatch, NO round 4. R3 blockers, undispositioned
+  (successor works from this list + the R3 report if relayed):
+  B1 the filter header itself shifts the alignment it declares
+  (fix candidate: header data moves into the ARTIFACT_WRITTEN
+  verdict fields, artifact stays pure); B2 mid-run INTENT-at-END
+  lands where verify never reads — worse than the form it
+  replaced; B3 the exact-head scan reaches INTENT (operator
+  bullet `- V2 ...` bricks the closure gate) — exclusion must
+  bind ALL of surface 1; B4 machine-token supersession erases a
+  deliberate scopeless void (opener near-miss on a meant-void
+  line; scope unpinned across repair while tag is pinned); B5
+  one-token-per-line vs chain re-carry contradict; B6 own-id
+  targeting re-bricks id-misspellings (the class the token was
+  built for); B7 ancestor-probe predicate unnamed + EITHER-
+  containment is permissive in the must-be-inside direction
+  (in-repo symlinked dir lets a unit write outside the repo
+  before any check). FORM QUESTION (open, operator's):
+  three rounds of desk prose-repair each minted the next round's
+  blockers while dispatched execution stayed clean —
+  recommendation: stop designing the interlocked record-grammar
+  /lint/repair semantics in SKILL.md prose; design them as an
+  executable spec (reference parser + red-first case battery in
+  the tools, where boundary cases are constructed mechanically),
+  attack THAT, then render the compact principle-level prose from
+  the settled mechanism. Single-home is untouched (SKILL.md stays
+  the only operational text; the change is design ORDER, not
+  homes). Alternative if declined: round 4 on a repaired 0.2.49
+  under the same form, expected to repeat the trend. Consumer:
+  the operator + the successor meta session.**
+
+- 2026-08-07 — **SESSION HANDOFF (operator quit before next
+  dispatch; this entry is the successor's brief). STATE: 0.2.48
+  UNPINNED at f737b24 (definitions only, code untouched, suites
+  200 green, contract 9 OK, 1032 operational lines); pin still
+  0.2.31 per standing hold; version numbers 0.2.46-48 were burned
+  by the per-commit bump hook — the implementation release
+  renumbers to 0.2.49+. NO dispatch in flight (all three attack
+  rounds ran sync, reports in-transcript only — lost to the
+  successor except as booked above; that is a known handoff cost,
+  demand nothing from dead lanes). SUCCESSOR DUTIES IN ORDER:
+  (1) get the operator's answer to the FORM QUESTION above —
+  it gates everything; (2a) if executable-spec form: desk settles
+  the semantics as tool code + battery (R1-R3 blocker lists are
+  the case seeds), one design-attack on the spec diff, then
+  SKILL.md prose reduces to principles, then release + attack-12
+  equivalent; (2b) if prose form retained: disposition the seven
+  R3 blockers as 0.2.49 definitions, round 4, criterion as
+  pre-registered (another concentrated-blocker round = escalate
+  the form question again, with this second data point); (3)
+  then the deferred chain: implementation dispatch (graduated
+  form, outcome-shaped criteria; code-only dispositions listed in
+  the 0.2.46 entry), attack-12 on e4727a8..HEAD, no-blocker →
+  pin move + cycle-10 fresh-desk line (beat-the-books, resume
+  from tracker, C58 work per the #3 handoff); (4) stabilization
+  backlog unchanged (compression pass — now 1032 lines vs ~150
+  target, the accretion this session added is itself compression
+  fodder; hypothesis-patch grading; dispatch-guards graduation
+  follow-through). LEARNED, this session (bases in the entries
+  above): the design-attack-before-implementation seam EARNS its
+  keep (R1 caught 5 blockers pre-implementation at ~2min/round);
+  desk repair laps under momentum mint blockers at a constant
+  rate (5→7→7) — the re-entry trend check must read the SERIES,
+  and pre-registering the stop criterion before R3 is what made
+  stopping mechanical instead of a judgment call under sunk-cost;
+  two independent reviewer probes disagreed on surrogateescape
+  (R2-B6 refuted by encode-side probe) — reviewer probes are
+  evidence about the probe run, not the class. Consumer: the
+  successor meta session, first read after this entry.**
