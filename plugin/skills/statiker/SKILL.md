@@ -180,6 +180,16 @@ rewritten (the templates below wrap only on this page). A status
 change is a NEW tag-first line for the same id
 (`- D<n> [INVALIDATED] <why> — basis: <…>`) — never an edit of the
 old line; the stats reader counts only tag-first lines.
+The record's machine tokens are CASE-SENSITIVE LITERALS, not
+phrasing: the entry head `- <C><n> `, the scope openers
+`unit U<k> ` and `record: `, the hold form `unit U<k> held: `
+(that exact prefix as the body's opening — a hold written any
+other way holds nothing), and the `corrects line <n>` repair
+token. The tools lint spacing/case NEAR-MISSES of the head and
+the openers as their own violation classes — a one-character
+slip otherwise reads as scopeless prose and voids or dispatches
+on a line the desk never meant (both directions observed) — so
+write the literal or expect the lint to say so.
 
 - findings: `- F<n> [VERIFIED|PENDING|INVALIDATED|AUTO-ACCEPTED]
   <claim> — basis:
@@ -451,7 +461,10 @@ artifact is an untracked file under a brief asserting tree ==
 lock commit, and a NESTED outer checkout has the same exposure;
 the tool halts ARTIFACT_IN_REPO on any; `--out` alone is
 cwd-relative — an artifact lives outside the repo, so
-repo-root-relative grammar cannot name it) — and
+repo-root-relative grammar cannot name it; a tracker path that
+is itself a symlink halts USAGE_ERROR — name the real path:
+the link's git history is the link string, and a round run
+over a one-line artifact would close a design sight-unseen) — and
 drops the two Superseded species, counts
 in its verdict — entry-shaped lines inside a Superseded
 SECTION are PRESERVED (the never-filter sentence below is the
@@ -472,10 +485,14 @@ sibling findings into an attacker's own record sweep, and the
 round's independence cannot be re-established afterward. The
 freeze defers appends, never work: desk findings and leg
 dispatches during a round queue at
-`~/.claude/statiker-seals/<repo-basename>/<tracker-filename>.A<n>.queue`
-(repo basename = `basename` of `git rev-parse --show-toplevel`,
-then the tracker's filename verbatim with `.md`) — existing
-whether or not a seal was
+`~/.local/state/statiker/seals/<repo-key>/<tracker-filename>.A<n>.queue`
+(repo-key = `basename` of `git rev-parse --show-toplevel`, a
+hyphen, then the first 8 hex of `sha256` of that toplevel's
+REAL path — the basename alone collided for two checkouts
+sharing a name, a fork beside its origin; the tracker's
+filename verbatim with `.md`. XDG state, never `~/.claude/`:
+that path shape draws permission dialogs on every access) —
+existing whether or not a seal was
 written — and append at the round's return, before its A-line. The
 freeze's scope is every surface the brief claims immutable: a
 brief asserting the tree matches the lock commit (the TREE
@@ -507,8 +524,9 @@ entry authored for the attacker's eyes (a weak-spot list, steering
 notes) is desk reasoning riding the never-filtered channel, and it
 frames the round it was meant to sharpen. Pre-round self-assessment
 is a sealed prediction, written before the round dispatches to
-`~/.claude/statiker-seals/<repo-basename>/<tracker-filename>.A<n>.seal`
-(repo basename, then the tracker's filename verbatim, `.md`
+`~/.local/state/statiker/seals/<repo-key>/<tracker-filename>.A<n>.seal`
+(repo-key as the queue path derives it, then the tracker's
+filename verbatim, `.md`
 included) — a path any successor desk re-derives from the repo
 it resumes in plus the tracker's filename; out of
 the repo because attackers read the repo, and an in-repo seal
@@ -612,10 +630,15 @@ CLOSURE_RECORD_MALFORMED bars every unit the same way — an
 entry-shaped line broke the grammar (dropped tag brackets, an
 out-of-enum tag, a near-miss the head grammar cannot parse), and
 the entry set the closure computes is unsound until repaired:
-RE-STATE the line — same id, same tag, content restated — as a
-new appended line (append-only repair; the tool disarms only on
-that re-assertion, since a later unrelated line proved able to
-convert a premise-kill void into a dispatch), then re-run;
+append a clean line under the same id whose body carries the
+literal token `corrects line <n>` — `<n>` the violation's line
+number from the verdict — restating the content with its
+intended tag (append-only repair; the tool disarms ONLY on that
+explicit reference: tag-matching proved both brickable — a
+misspelled tag extracts nothing and no re-assertion can ever
+disarm it — and forgeable, a later unrelated same-id/same-tag
+line converting a premise-kill void into a dispatch), then
+re-run;
 CLOSURE_ABSENT means the gate is not open (the last A-line is
 not [ZERO-DELTA] — the normal state during a reopened design;
 dispatch waits); UNIT_HELD bars that unit on its
@@ -697,7 +720,11 @@ unit, and no procedure text is expanded into a brief.
 Composition-side, the desk checks the write-set: paths name
 FILES and are `git check-ignore`-clean — a composition error
 caught before dispatch (the tool re-checks and halts, the
-backstop). The unit runs: START, before any edit —
+backstop) — and every `unit U<k>` id it appends against the
+[READY] enumeration: a mistyped id in a RECORD line voids
+nothing and reaches no brief, and no tool can know which unit
+was meant (the argument-side validation catches only the
+`--unit` flag). The unit runs: START, before any edit —
 `unit-start --write-set <file> …`. UNIT_START_CLEAN makes
 every later modification the unit's own; UNIT_COLLISION (an
 operator edit or draft on a write-set path the unit would
@@ -810,7 +837,7 @@ repo checks' by-product paths, and the declaration with each
 path's pre-existence (present or absent) is observed AND
 written at dispatch, before the round runs, to the seal
 namespace —
-`~/.claude/statiker-seals/<repo-basename>/<tracker-filename>.<round>.paths`
+`~/.local/state/statiker/seals/<repo-key>/<tracker-filename>.<round>.paths`
 (`<round>` = the A<n> id for attack rounds; a verify leg
 writes `.verify.paths`, REWRITTEN at each verify dispatch —
 at most one is in flight, so no count is derived),

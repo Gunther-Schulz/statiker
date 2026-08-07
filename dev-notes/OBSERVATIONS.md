@@ -3493,3 +3493,28 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   full verdict coverage, undriven remainder frozen as a named
   list so a new verdict must consciously join), then attack-11.
   Consumer: the lap + the successor meta session.**
+
+- 2026-08-07 — **0.2.42 UNPINNED — attack-10 lap DESK HALF (design
+  + prose only, per the measured form): the disarm redesigned to
+  the CORRECTS-LINE form (`corrects line <n>` literal token, no
+  tag extraction — kills B1's brick and recursion, B2's forgery
+  and leftmost-tag misfire at the definition; J1 resolved: prose
+  and mechanism will state the same rule), the record's machine
+  tokens DECLARED as case-sensitive literals with near-miss lint
+  classes named (J3 root class; covers N1 hold form anchored
+  `unit U<k> held: `, N2 scope-opener near-misses), seal
+  namespace re-keyed `<basename>-<realpath-hash8>` AND relocated
+  to ~/.local/state/statiker/seals/ (J2, second independent
+  attacker + the corpus path-shape rule, one change), unit-id
+  composition duty minted (N3 residual), filter symlink-tracker
+  halt named (N10). Contract OK, suites 151 green (code untouched
+  — implementation is the dispatch's). 908 operational lines.
+  NEXT: ONE implementation dispatch (0.2.43) — disarm rework +
+  near-miss/hold/scope grammar + CLAUSE_RE widening +
+  clause-unparsed + path/decoding region (ancestor-rebase
+  containment, fsdecode toplevel reads, surrogateescape tracker
+  I/O, lexists, symlink-tracker halt, preflight file-ness,
+  TRACKER_UNREADABLE on missing dir, any-heading section close) +
+  battery reach (frozen-list mechanism); brief per the graduated
+  form, outcome-shaped criteria. Then attack-11. Consumer: the
+  dispatch + the successor meta session.
