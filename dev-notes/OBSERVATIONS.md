@@ -2831,3 +2831,32 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   no-blocker round → pin move to current + cycle-10 fresh-desk
   line (unchanged from the #3 handoff). Consumer: the opus
   review dispositions + attack-7 lap + the pin move.
+
+- 2026-08-07 — **Tooling round OPEN (operator asked: what else
+  should precipitate — tracker linter? other ideas?). Candidates
+  with provenance graded; decision with operator.** (1) RECORD
+  TOOL (recommended next): mechanize the record-grammar checks
+  the skill already anticipates ("where the repo carries a
+  mechanized check for it, that check runs first and its residue
+  is the judgment slice" — named in SKILL.md, exists nowhere:
+  the manual-investigation-unfinished shape). Computable slices,
+  each with round provenance: tag/enum grammar + tag-first
+  lines, duplicate live ids, latest-line-[PENDING] sweep for
+  [READY], dead dispositions without named killers, clause-
+  disposition aggregation reads, the closure predicate (last
+  A-line [ZERO-DELTA] + post-closure scopeless/scope-opener
+  classification), Status/Phase admission window, defang/
+  bracketed-literal collisions in Superseded blocks, hold-entry
+  presence for unlanded units. Judgment residue stays desk work
+  (body-reads, basis reach). Red-first from rounds 1-6's
+  record/instrument findings. (2) TRACKER-FILTER/attack-brief
+  producer (fold into the record tool): the pinned-artifact
+  filter + defang production/validation — repeated NIT site
+  (attack-5 N4, attack-6 defang NIT). (3) Seal/queue/.paths
+  namespace helper: PARKED, no bite yet — trigger: first
+  path-derivation or litter defect in a live run. Distinct from
+  the already-booked statiker-local skill-lint half (SKILL.md
+  TEXT checks; separate trigger, unchanged). Sequencing
+  recommendation: let attack 7 grade the 0.2.32 pair first —
+  one moving part per lap; the record tool is its own release
+  and attack. Consumer: operator's pick + the post-attack-7 lap.
