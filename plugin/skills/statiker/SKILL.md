@@ -33,26 +33,35 @@ overriding context-independence (PLAN.md, Ecosystem composition):
 - The operator corpus carries the grounding and evidence ethics
   (bases, refutation probes, altitude); assumed, not restated.
 
-## The git tool
+## The tools
 
-Git transactions — the run-start preflight, the LOCK commit, unit
-START and COMMIT — run through the shipped state machine at
-`scripts/statiker_git.py` under this skill's base directory (the
-Skill injection's base-directory line names it; invoke with
-python3). It enforces what prose could not hold across attack
-rounds: the state gate reads git's state DIRECTORIES (a ref read
-false-halts after a continued rebase and passes break/exec/reword
-stops), porcelain column semantics, file-only pathspec
-composition, add-untracked-only, `-m` commits, two-half readback,
-capped spaced index.lock retry. Every invocation prints evidence
-lines and exactly one final `STATIKER-GIT VERDICT: {json}` line —
-the desk books THAT LINE verbatim as the basis of whatever entry
-the verdict obliges; an exit code is routing convenience, never
-the result. Unit briefs carry the script's ABSOLUTE path and its
-invocation lines — the tool is the shared implementation, so no
-lock-procedure text is ever expanded into a brief. Provenance and
-the red-first suite: the source repo, tools/test_statiker_git.py
-(the attack rounds' probe battery mechanized).
+Two shipped state machines live under this skill's base directory
+(the Skill injection's base-directory line names it; invoke with
+python3): `scripts/statiker_git.py` — git transactions: the
+run-start preflight, the LOCK commit, unit START and COMMIT — and
+`scripts/statiker_record.py` — record grammar: tracker lint, the
+[READY] sweep's computable slice, the closure predicate, the
+pinned attack artifact, defanged quote blocks. They enforce what
+prose could not hold across attack rounds: the git tool the state
+DIRECTORIES gate (a ref read false-halts after a continued rebase
+and passes break/exec/reword stops), porcelain column semantics,
+file-only pathspec composition, add-untracked-only, `-m` commits,
+two-half readback, capped spaced index.lock retry; the record
+tool the enum-tag grammar, the unanchored stats-reader greps
+behind the defang rule, and scope-opener classification. Every
+invocation prints evidence lines and exactly one final
+`STATIKER-GIT VERDICT: {json}` or `STATIKER-RECORD VERDICT:
+{json}` line — the desk books THAT LINE verbatim as the basis of
+whatever entry the verdict obliges; an exit code is routing
+convenience, never the result. Unit briefs carry the git tool's
+ABSOLUTE path and its invocation lines — the tool is the shared
+implementation, so no lock-procedure text is ever expanded into a
+brief. The record tool is DESK-only: it reads the record, so no
+attack or verify brief ever cites it — those contexts'
+independence is the point. Provenance and the red-first suites:
+the source repo, tools/test_statiker_git.py and
+tools/test_statiker_record.py (the attack rounds' probe battery
+and record findings mechanized).
 
 At run start, before any design work: `preflight
 --tracker <path>`. PREFLIGHT_UNPINNABLE_TRACKER means the repo
@@ -217,9 +226,15 @@ as two live entries (duplicates are found by body-read, not tag
 grammar), and no live entry rests on an invalidated entry's
 content — the dead-basis read is a body-read covering the
 invalidation lines themselves: a missing clause list, or a dead
-clause without its named killer, holds the record from [READY];
-where the repo carries a mechanized check for it, that check runs
-first and its residue is the judgment slice. An open [PENDING]
+clause without its named killer, holds the record from [READY].
+The record tool's `sweep --tracker <path>` runs FIRST at this
+seam: SWEEP_HOLDS blocks [READY] on the computable slice
+(latest-line [PENDING]s, killer-less dead dispositions, live
+bases citing invalidated ids, grammar and defang lint), and its
+verdict carries the clause-disposition union the dead-basis read
+consumes; the residue the tool NAMES — dead-basis body-reads, the
+duplicate-id body-read, restatement adoption checks — is the
+judgment slice, still desk work. An open [PENDING]
 under a claimed [READY] is
 the premature-call shape.
 Record `Status: [READY]` with the impl units enumerated, each
@@ -312,17 +327,20 @@ lock commit.
 
 A fresh-context attack on each locked design by a context that did
 not produce it, before implementation. The attack brief carries the
-tracker PINNED at the locked design's commit (a `git show
-<sha>:<path>` copy, never a working-tree path — a live tree serves
-HEAD), the question, and the read-only tail (dispatch skill
-`references/forms.md`). The artifact drops two computable
-species, the filter's form stated in the brief: contiguous
+tracker PINNED at the locked design's commit — produced by the
+record tool: `filter --tracker <path> --sha <lock sha> --out
+<artifact path>` serves the sha, never the working tree (a live
+tree serves HEAD), and drops the two Superseded species, counts
+in its verdict: contiguous
 quoted blocks whose first line is `> Superseded — <label>` (their
 production: the return processing below), plus sections headed
 `## Superseded —` — legacy landings from earlier skill versions,
 possible in resumed trackers only; ENTRIES are never
 filtered (dead bodies are load-bearing for closure questions, and
-a hand-summary is the paraphrase-drift class). Unfiltered, the
+a hand-summary is the paraphrase-drift class). The brief states
+the filter's form (the two species) beside the artifact; it also
+carries the question and the read-only tail (dispatch skill
+`references/forms.md`). Unfiltered, the
 artifact compounds per round; the desk appends nothing to the record
 while any attacker is live — an append landing mid-round leaks
 sibling findings into an attacker's own record sweep, and the
@@ -397,26 +415,18 @@ an open question the desk completes itself — its own executed
 measurement, recorded as the F-line's evidence — before the
 round's A-line lands. Report quotes the desk retains (pasted,
 never paraphrased; the defang below is the one sanctioned
-mutation)
-append as a quoted block whose first line is
-`> Superseded — A<n> quotes` (the filter's species) — EVERY line
-of the block begins `>`; a blank line is a BARE `>`, nothing
-after it (trailing whitespace may not survive target-repo
-hooks), and the block ends at the first line not beginning `>`.
-Bracketed tag
-literals in the pasted text are defanged (brackets dropped,
-the names lowercased where they occur in the quoted text,
-and listed comma-separated after a semicolon — the list
-names WHICH tags were defanged, the body keeping the
-lowercase forms in place —
-composed first line
-`> Superseded — A<n> quotes; <lowercase names>`, the
-semicolon and list absent when no literal occurs; the filter
-matches the label's opening form) so the defanged
-forms differ from every counted tag literal in both brackets
-and case; the stats reader's literal greps carry the
-brackets (verified against its source), so a bare name in
-either case matches nothing — the brackets are the
+mutation) append as the quoted block the record tool produces —
+`quote --label "A<n> quotes"`, raw text on stdin: every line
+begins `>`, a blank line a BARE `>` (trailing whitespace may not
+survive target-repo hooks), the block ending at the first line
+not beginning `>`; bracketed tag literals defanged — brackets
+dropped, lowercased in place, the defanged names listed after a
+semicolon in the composed first line `> Superseded — A<n>
+quotes; <names>` (semicolon and list absent when no literal
+occurs; the filter matches the label's opening form) — so the
+defanged forms differ from every counted tag literal in both
+brackets and case: the stats reader's literal greps carry the
+brackets (verified against its source), the brackets the
 load-bearing half, the case change margin. Regraded
 into F-lines in the same sitting. Any substance finding: the
 round records [BIT] — that record change IS the reopen. A
@@ -451,13 +461,17 @@ Implementation makes no design decisions; at the closing
 in-progress. Units come from the locked
 design; each dispatches on a decision-complete brief (dispatch
 skill §1, tail per §2) citing the executor skill AND the run's
-live closure. The closure read is DESK work, performed at each
-dispatch — the brief carries its verdict (the closing A-line
-quoted, the lock sha, plus any post-closure lines scoped to the
-unit being dispatched), never the raw criterion. The criterion,
-one predicate: unit U<k> may dispatch when the tracker's last
-A-line is `[ZERO-DELTA]` and no F, D, or R line appended after
-that A-line (post-closure) is SCOPELESS — a scopeless line
+live closure. The closure read runs through the record tool at
+each dispatch — `closure --tracker <path> --unit U<k>`:
+CLOSURE_VOID bars every unit, UNIT_HELD bars that unit on its
+unresolved hold entry, UNIT_DISPATCHABLE lists the live
+amendment lines that travel. The brief carries the tool's
+verdict line, the closing A-line quoted, the lock sha, and the
+listed amendments — never the raw criterion. The criterion the
+tool computes — its semantics are what the desk WRITES so the
+read comes out true: unit U<k> may dispatch when the tracker's
+last A-line is `[ZERO-DELTA]` and no F, D, or R line appended
+after that A-line (post-closure) is SCOPELESS — a scopeless line
 voids the whole closure
 (and a re-lock's new entries void a stale closure, The attack);
 a line whose body OPENS `unit U<k>` voids nothing — it RE-OPENS
@@ -523,7 +537,7 @@ not an entry, so
 invisible to the stats reader's tag-first count and the closure
 read by construction — that is what makes resume reliable.
 Unit briefs carry the git tool's invocation lines with the
-script's absolute path (The git tool) — desk prose reaches no
+script's absolute path (The tools) — desk prose reaches no
 unit, and no procedure text is expanded into a brief.
 Composition-side, the desk checks the write-set: paths name
 FILES and are `git check-ignore`-clean — a composition error
@@ -597,8 +611,8 @@ close's deviations.
 
 Executed, isolated, against the recorded requirement; Phase flips
 to verify at dispatch — a dispatch made only with no entry's
-latest line [PENDING] (the [READY] sweep's no-[PENDING] condition,
-re-read at this seam). A fresh
+latest line [PENDING] (the [READY] sweep's no-[PENDING] condition;
+the record tool's `sweep` re-runs at this seam). A fresh
 context that did not build the work runs the real checks — tests,
 probes, renders, at the altitude where the work takes effect —
 against the tracker's requirement head as amended by its R-lines,

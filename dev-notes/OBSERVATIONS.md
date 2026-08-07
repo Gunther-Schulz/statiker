@@ -2873,3 +2873,36 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   record-tool lap (red-first from rounds 1-6 record/instrument
   findings; its own release + attack). Consumer: this session's
   remainder + any successor picking up mid-sequence.
+
+- 2026-08-07 — **Record tool ROUTED into SKILL.md: statiker 0.2.34
+  UNPINNED — both tools now shipped and skill-cited; attack 7
+  attacks the triple (skill + two tools + suites) per the
+  final-form convention minted this session.** Rewrite surfaces:
+  "The git tool" section widened to "The tools" (record tool
+  declared DESK-only — no attack or verify brief cites it, their
+  independence the point); [READY] sweep routes through `sweep`
+  (SWEEP_HOLDS blocks on the computable slice, verdict carries the
+  clause-disposition union, judgment residue NAMED: dead-basis
+  body-reads, duplicate-id body-read, restatement adoption
+  checks); closure read routes through `closure --unit`
+  (CLOSURE_VOID / UNIT_HELD / UNIT_DISPATCHABLE with live
+  amendments listed; the predicate's semantics kept as the
+  authoring rules the desk writes to); attack artifact produced by
+  `filter --sha` (serves the sha never the tree, drop counts in
+  verdict); quote blocks produced by `quote --label` (defang
+  passage compressed to the tool contract + the brackets/case
+  guarantee); verify-seam sweep re-run cited. Record-grammar
+  authoring rules and the judgment instruments stay prose —
+  evaluation went to code, authoring semantics did not. 673
+  operational lines. Both suites green (46 git / 35 record).
+  PIN AT 0.2.31 (accidental, see pin-accident entry); 0.2.34
+  UNPINNED. Opus review of 0.2.32 diff still outstanding past
+  horizon — report demanded via resume ping; its findings
+  disposition against the CURRENT text (0.2.34) since the git
+  tool and its suite are byte-identical through 0.2.32..0.2.34.
+  NEXT: review dispositions → attack 7 on e4727a8..HEAD (SKILL.md
+  + both scripts + both suites in context), presented for
+  operator go → no-blocker → pin move + cycle-10 line → the
+  global-corpus economy amendment awaits operator GO (proposed
+  wording in session, 2026-08-07). Consumer: review dispositions
+  + attack-7 lap + pin move.
