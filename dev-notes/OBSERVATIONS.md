@@ -3518,3 +3518,46 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   battery reach (frozen-list mechanism); brief per the graduated
   form, outcome-shaped criteria. Then attack-11. Consumer: the
   dispatch + the successor meta session.
+
+- 2026-08-07 — **SESSION HANDOFF (operator took the clean seam; this
+  entry is the successor's brief). STATE: 0.2.42 UNPINNED at 4df34bb
+  (desk definitions: corrects-line disarm, literal machine tokens +
+  near-miss classes, seal namespace <basename>-<realpath-hash8> at
+  ~/.local/state/statiker/seals/, unit-id duty, filter symlink
+  halt). IN FLIGHT: one implementation dispatch
+  (opus, named opus-statiker-mech-0243, dispatched ~13:55Z,
+  horizon ~2h) — fourteen dispositions from attack-10, brief =
+  outcome-first criteria, base 4df34bb, ONE commit expected
+  bumping to 0.2.43, six files (both scripts, three suites,
+  plugin.json), UNPUSHED. Its closing report travels by
+  SendMessage to THIS session and may be unrecoverable after the
+  handoff: the successor books FROM THE ARTIFACT — verify per
+  dispatch §4 (pytest tools/ green incl. new tests, contract
+  green, diff read over both scripts, exactly six paths, the four
+  old tag-match disarm tests rewritten to corrects-line, battery
+  frozen-remainder present with ≤10 entries each carrying a
+  reason) — and if the report text is lost, notes that as a
+  handoff cost, demands nothing from a dead lane, and treats any
+  gap the commit message names as surfaced. Silence past the
+  horizon with no commit on 4df34bb = a dead lane: re-dispatch
+  the same brief (it is in this ledger's 0.2.42 entry + the
+  dispositions in the attack-10 entry). SUCCESSOR DUTIES IN
+  ORDER: (1) book 0.2.43 as above, gap dispositions at the desk;
+  (2) attack-11 on e4727a8..HEAD (fresh opus, standing form; the
+  STANDING GO recorded this session covers the loop — confirm
+  with the operator in one line if in doubt); (3) no-blocker →
+  PIN MOVE (claude plugin update statiker@statiker, verify served
+  version from a fresh Skill injection's base-directory line;
+  the pin-hold entry in
+  ~/.local/state/dotfiles/plugin-pin-holds.json STAYS — standing
+  policy) + cycle-10 fresh-desk line (beat-the-books, resume from
+  tracker, C58 work per the #3 handoff); (4) stabilization
+  backlog: compression pass (908 lines vs ~150 target; seal
+  machinery first cut), hypothesis-patch grading on the 0.2.37
+  criteria, experiment-graduation follow-through in
+  dispatch-guards (§1 note candidates booked in its dev-notes
+  2d85cee). Cross-repo state, all pushed: cache-fix handed to an
+  operator ops session (HOT + three OPEN entries are its brief);
+  corpus sharpen 415e3bb; pushurl incident resolved (shared-config
+  worktree hazard, rule candidates in dispatch-guards dev-notes).
+  Consumer: the successor meta session, first read.**
