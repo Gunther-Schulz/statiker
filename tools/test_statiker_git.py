@@ -879,5 +879,91 @@ class TestAttack8NonAsciiReadback(GitFixture):
         self.assertEqual(shown, {"früh.txt", "mine.txt"})
 
 
+class TestAttack9PathDecoding(GitFixture):
+    """attack-9: git's byte output was decoded with errors='replace'
+    while argv decodes surrogateescape — one non-UTF-8 byte in a path
+    yields TWO spellings of the same name, so the readback reports a
+    false extra and the drop handshake can never match (the
+    acknowledged spelling comes from argv, the live one from
+    porcelain: HALT_DROPS_STALE forever). Each test red against the
+    errors='replace' decode."""
+
+    NAME = os.fsdecode(b"caf\xe9.txt")
+    TRACKER = ".clippy/runs/t.md"
+
+    def test_unit_commit_non_utf8_byte_path_clean(self):
+        (self.repo / self.NAME).write_bytes(b"unit output\n")
+        v = self.verdict(self.tool(
+            "unit-commit", "--write-set", self.NAME, "-m", "unit U1"))
+        self.assertEqual(v["verdict"], "UNIT_COMMITTED",
+                         f"false extras: {v.get('extras')}")
+        self.assertEqual(v["write_set"], [self.NAME])
+
+    def test_lock_drop_handshake_completes_non_utf8_byte_path(self):
+        (self.repo / self.NAME).write_bytes(b"operator staged\n")
+        self.git("add", self.NAME)
+        self.write(self.TRACKER, "# Run: t\n")
+        v1 = self.verdict(self.tool(
+            "lock-check", "--tracker", self.TRACKER,
+            "--lock-set", self.NAME))
+        self.assertEqual(v1["verdict"], "LOCK_CHECK_DROPS")
+        self.assertEqual([d["path"] for d in v1["drops"]], [self.NAME],
+                         "porcelain spelling differs from the argv one")
+        v2 = self.verdict(self.tool(
+            "lock-commit", "--tracker", self.TRACKER,
+            "--lock-set", self.NAME, "--drop", self.NAME, "-m", "lock"))
+        self.assertEqual(v2["verdict"], "LOCK_COMMITTED",
+                         "the drop handshake never matches")
+        # the staged operator content survives untouched
+        status = self.git("status", "--porcelain", "--", self.NAME).stdout
+        self.assertTrue(status.startswith("A "), status)
+
+
+class TestAttack9SymlinkContainment(GitFixture):
+    """attack-9: rel() resolved paths through symlinks, so a booked
+    verdict named a path the brief never wrote (the link's TARGET),
+    and a tracked in-repo link pointing outward halted the unit
+    outright. SKILL.md ('The tools'): a path is taken AS NAMED, never
+    resolved through symlinks. Each test red against resolve()."""
+
+    def test_unit_commit_books_the_named_path_not_the_link_target(self):
+        self.write("realdir/target.py", "x = 1\n")
+        os.symlink("realdir/target.py", self.repo / "alias.py")
+        v = self.verdict(self.tool(
+            "unit-commit", "--write-set", "alias.py", "-m", "unit U1"))
+        self.assertEqual(v["verdict"], "UNIT_COMMITTED")
+        self.assertEqual(v["write_set"], ["alias.py"],
+                         "the booked write-set names the link target")
+        # git commits the LINK, not the file it points at
+        self.assertEqual(self.head_paths(), {"alias.py"})
+
+    def test_unit_start_accepts_tracked_link_pointing_outward(self):
+        ext = Path(self._tmp.name) / "ext"
+        ext.mkdir()
+        (ext / "real.py").write_text("x = 1\n")
+        os.symlink("../ext/real.py", self.repo / "link.py")
+        self.git("add", "link.py")
+        self.git("commit", "-m", "link")
+        v = self.verdict(self.tool("unit-start", "--write-set", "link.py"))
+        self.assertEqual(v["verdict"], "UNIT_START_CLEAN")
+        self.assertEqual(v["write_set"], ["link.py"])
+
+    def test_repo_root_still_routes_as_a_directory_path(self):
+        # the containment repair must not re-route the repo root out
+        # of the directory check: '.' is a directory pathspec, which
+        # sweeps whatever the operator touched under it
+        v = self.verdict(self.tool("unit-start", "--write-set", "."))
+        self.assertEqual(v["verdict"], "HALT_DIRECTORY_PATH")
+
+    def test_literal_dotdot_escape_still_halts(self):
+        # the containment rule the repair must not eat: a path naming
+        # its way out of the repo is still outside it
+        (Path(self._tmp.name) / "outside.py").write_text("x = 1\n")
+        p = self.tool("unit-start", "--write-set", "../outside.py")
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "PATH_OUTSIDE_REPO")
+        self.assertNotEqual(p.returncode, 0)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

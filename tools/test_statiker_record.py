@@ -14,6 +14,7 @@ Run: python3 tools/test_statiker_record.py
 
 import json
 import os
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -190,6 +191,28 @@ class TestSweep(RecordFixture):
         v = self.sweep("- F2 [INVALIDATED] clause 2 dead — basis: F9\n")
         self.assertIn("killerless-dead", self.violation_codes(v))
 
+    def test_prose_dead_without_clause_context_not_flagged(self):
+        # attack-9: `\bdead\b` fired on ordinary prose, so an
+        # invalidation whose body merely MENTIONS dead code held the
+        # record from [READY]. The rule is clause-scoped (SKILL.md,
+        # Stop rule: "a dead clause without its named killer").
+        v = self.sweep("- F2 [INVALIDATED] the dead-letter queue design "
+                       "never shipped — basis: F9\n"
+                       "- F3 [INVALIDATED] the helper is dead code — "
+                       "basis: F9\n")
+        self.assertEqual(v["verdict"], "SWEEP_CLEAN")
+
+    def test_clause_scoped_dead_without_killer_still_holds(self):
+        # the control the repair must not eat
+        v = self.sweep("- F2 [INVALIDATED] clause a dead — basis: F2\n")
+        self.assertEqual(v["verdict"], "SWEEP_HOLDS")
+        self.assertIn("killerless-dead", self.violation_codes(v))
+
+    def test_clause_scoped_dead_with_killer_stays_clean(self):
+        v = self.sweep("- F2 [INVALIDATED] clause a dead (superseded by "
+                       "D4) — basis: F2\n")
+        self.assertEqual(v["verdict"], "SWEEP_CLEAN")
+
     def test_dead_with_killer_clean(self):
         v = self.sweep("- F2 [INVALIDATED] clause 2 dead (path removed) — basis: F9\n")
         self.assertEqual(v["verdict"], "SWEEP_CLEAN")
@@ -331,6 +354,40 @@ class TestFilter(RecordFixture):
         self.assertNotIn("old landing text", text)
         self.assertNotIn("LIVE TREE ONLY", text)  # served the sha, not the tree
         self.assertEqual(v["blocks_dropped"], 1)
+        self.assertEqual(v["sections_dropped"], 1)
+
+    def test_entries_inside_a_superseded_section_are_preserved(self):
+        # attack-9: the section drop swallowed EVERY line under the
+        # heading, entries included — SKILL.md (The attack) makes the
+        # opposite the contract: "entry-shaped lines inside a
+        # Superseded SECTION are PRESERVED ... ENTRIES are never
+        # filtered", a section drop that swallowed entries having put
+        # a live money-path finding out of every attacker's sight.
+        committed = (HEADER +
+                     "- F1 [VERIFIED] before the section — basis: y\n"
+                     "## Superseded — legacy section\n"
+                     "old landing prose\n"
+                     "- F2 [VERIFIED] entry inside the section — basis: y\n"
+                     "- D3 [COMMITTED] second entry inside — basis: F2\n"
+                     "more legacy prose\n"
+                     "## Cycle 2\n"
+                     "- F4 [VERIFIED] after the section — basis: y\n")
+        sha = self.make_repo_with_tracker(committed)
+        self._out_tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self._out_tmp.cleanup)
+        out = Path(self._out_tmp.name) / "artifact.md"
+        v = self.verdict(tool(["filter", "--tracker", "t.md", "--sha", sha,
+                               "--out", str(out)], cwd=self.dir))
+        self.assertEqual(v["verdict"], "ARTIFACT_WRITTEN")
+        text = out.read_text()
+        self.assertIn("entry inside the section", text)
+        self.assertIn("second entry inside", text)
+        self.assertIn("before the section", text)
+        self.assertIn("after the section", text)
+        # the section's non-entry lines and its heading still drop
+        self.assertNotIn("old landing prose", text)
+        self.assertNotIn("more legacy prose", text)
+        self.assertNotIn("legacy section", text)
         self.assertEqual(v["sections_dropped"], 1)
 
 
@@ -528,14 +585,23 @@ class TestAttack8Findings(RecordFixture):
                                  f"{sub[0]} accepted an out-of-repo tracker")
                 self.assertEqual(p.returncode, 2)
 
-    def test_record_gates_work_outside_any_repo(self):
-        # the no-repo case keeps its documented cwd-relative sense:
-        # only a SURROUNDING repo makes an outside path a defect
+    def test_record_gates_halt_on_tracker_no_repo_contains(self):
+        # re-derived at attack-9's tracker-anchored resolution: this
+        # case formerly read LINT_CLEAN on the rationale that "only a
+        # SURROUNDING repo makes an outside path a defect" — a
+        # statement of the CWD-anchored grammar that resolution
+        # replaces. Anchored at the tracker, there is no surrounding
+        # repo to appeal to and the pinnability question has one
+        # answer: a tracker no repo contains can never be pinned, so
+        # N1's gate holds here too, from every cwd.
         with tempfile.TemporaryDirectory() as norepo:
             t = Path(norepo) / "t.md"
             t.write_text(HEADER + "- F1 [VERIFIED] x — basis: y\n")
-            p = tool(["lint", "--tracker", str(t)], cwd=norepo)
-            self.assertEqual(self.verdict(p)["verdict"], "LINT_CLEAN")
+            for cwd in (norepo, str(self.dir)):
+                p = tool(["lint", "--tracker", str(t)], cwd=cwd)
+                v = self.verdict(p)
+                self.assertEqual(v["verdict"], "PATH_OUTSIDE_REPO", cwd)
+                self.assertEqual(p.returncode, 2)
 
     # -- N3: --unit validates its form ---------------------------------
 
@@ -657,6 +723,173 @@ class TestAttack9ClosureSoundness(RecordFixture):
         self.assertEqual(v["verdict"], "LINT_CLEAN")
 
 
+class TestAttack9TrackerAnchoredRepo(RecordFixture):
+    """attack-9: repo_paths ran `git rev-parse --show-toplevel` with no
+    cwd, so the repo was the CALLER's, not the tracker's — the same
+    absolute tracker answered differently from three cwds (clean here,
+    PIN_UNREADABLE 'does not resolve inside a git repo' from outside
+    any repo, PATH_OUTSIDE_REPO from a sibling repo). SKILL.md ('The
+    tools'): the record tool anchors its repo at the TRACKER's own
+    directory. Each test red against the cwd-anchored resolution."""
+
+    def other_repo(self):
+        d = tempfile.mkdtemp()
+        self.addCleanup(shutil.rmtree, d, True)
+        subprocess.run(["git", "init", "-q", "-b", "main"], cwd=d,
+                       env={**os.environ, "GIT_CONFIG_GLOBAL": "/dev/null"},
+                       capture_output=True, check=True)
+        return d
+
+    def no_repo_dir(self):
+        d = tempfile.mkdtemp()
+        self.addCleanup(shutil.rmtree, d, True)
+        return d
+
+    def three_cwds(self):
+        # the tracker's own repo, a DIFFERENT repo, and no repo at all
+        return [str(self.dir), self.other_repo(), self.no_repo_dir()]
+
+    def test_gates_answer_identically_from_every_cwd(self):
+        t = str(self.write_tracker(CLOSED))
+        for sub, expected in (("lint", "LINT_CLEAN"),
+                              ("sweep", "SWEEP_CLEAN"),
+                              ("closure", "CLOSURE_LIVE")):
+            for cwd in self.three_cwds():
+                v = self.verdict(tool([sub, "--tracker", t], cwd=cwd))
+                self.assertEqual(v["verdict"], expected,
+                                 f"{sub} from cwd {cwd}")
+
+    def test_filter_answers_identically_from_every_cwd(self):
+        f = TestFilter("test_filter_drops_both_species_and_reads_the_sha")
+        f._tmp, f.dir = self._tmp, self.dir
+        sha = TestFilter.make_repo_with_tracker(
+            f, HEADER + "- F1 [VERIFIED] kept — basis: y\n")
+        t = str(self.dir / "t.md")
+        for cwd in self.three_cwds():
+            outdir = self.no_repo_dir()
+            p = tool(["filter", "--tracker", t, "--sha", sha,
+                      "--out", os.path.join(outdir, "a.md")], cwd=cwd)
+            v = self.verdict(p)
+            self.assertEqual(v["verdict"], "ARTIFACT_WRITTEN",
+                             f"filter from cwd {cwd}")
+
+    def test_tracker_symlinked_outward_is_taken_as_named(self):
+        # attack-9: repo_paths realpath'd the tracker, so an in-repo
+        # tracker that happens to be a symlink read as a path outside
+        # the repo. Containment is textual; only the repo TOP resolves.
+        outside = self.no_repo_dir()
+        real = Path(outside) / "real.md"
+        real.write_text(HEADER + "- F1 [VERIFIED] kept — basis: y\n")
+        link = self.dir / "linked.md"
+        os.symlink(str(real), link)
+        v = self.verdict(tool(["lint", "--tracker", str(link)],
+                              cwd=str(self.dir)))
+        self.assertEqual(v["verdict"], "LINT_CLEAN")
+
+    def test_form_feed_does_not_shift_reported_line_numbers(self):
+        # attack-9: str.splitlines() also breaks on U+000C, U+2028 and
+        # U+0085, so one form feed in a body shifted every later
+        # violation's line number off the file's own numbering — the
+        # desk repairs the line the tool names.
+        body = ("- F1 [VERIFIED] a fact with a \x0c form feed — basis: y\n"
+                "- F2 [VERIFIED] plain — basis: y\n"
+                "- F3 (VERIFIED) malformed — basis: y\n")
+        path = self.write_tracker(body)
+        v = self.verdict(tool(["lint", "--tracker", str(path)],
+                              cwd=str(self.dir)))
+        self.assertEqual(v["verdict"], "LINT_VIOLATIONS")
+        viol = next(x for x in v["violations"] if x["code"] == "entry-form")
+        file_lines = path.read_text().split("\n")
+        expected = next(i for i, l in enumerate(file_lines, 1)
+                        if l.startswith("- F3"))
+        self.assertEqual(viol["line"], expected,
+                         "reported line number is not the file's")
+
+    def test_filter_counts_newline_lines(self):
+        f = TestFilter("test_filter_drops_both_species_and_reads_the_sha")
+        f._tmp, f.dir = self._tmp, self.dir
+        committed = (HEADER +
+                     "- F1 [VERIFIED] a fact with a \x0c form feed — "
+                     "basis: y\n"
+                     "- F2 [VERIFIED] plain — basis: y\n")
+        sha = TestFilter.make_repo_with_tracker(f, committed)
+        out = os.path.join(self.no_repo_dir(), "a.md")
+        v = self.verdict(tool(["filter", "--tracker", "t.md", "--sha", sha,
+                               "--out", out], cwd=str(self.dir)))
+        self.assertEqual(v["verdict"], "ARTIFACT_WRITTEN")
+        self.assertEqual(v["lines_in"],
+                         len(committed.rstrip("\n").split("\n")))
+
+    def inner_repo_with_committed_tracker(self):
+        """An inner checkout nested inside self.dir's repo, tracker
+        committed. Returns (inner_dir, sha)."""
+        env = {**os.environ, "GIT_CONFIG_GLOBAL": "/dev/null",
+               "GIT_AUTHOR_NAME": "t", "GIT_AUTHOR_EMAIL": "t@t",
+               "GIT_COMMITTER_NAME": "t", "GIT_COMMITTER_EMAIL": "t@t"}
+        inner = self.dir / "inner"
+        inner.mkdir()
+
+        def git(*a):
+            subprocess.run(["git", *a], cwd=inner, env=env,
+                           capture_output=True, check=True)
+        git("init", "-q", "-b", "main")
+        (inner / "t.md").write_text(
+            HEADER + "- F1 [VERIFIED] kept — basis: y\n")
+        git("add", "t.md")
+        git("commit", "-m", "lock")
+        sha = subprocess.run(["git", "rev-parse", "HEAD"], cwd=inner,
+                             env=env, capture_output=True, text=True,
+                             check=True).stdout.strip()
+        return inner, sha
+
+    def test_artifact_halts_inside_a_nested_outer_checkout(self):
+        # attack-9: ARTIFACT_IN_REPO checked only the TRACKER's repo,
+        # so an --out into the surrounding checkout wrote an untracked
+        # file into someone else's tree — the exposure SKILL.md names
+        # ("a NESTED outer checkout has the same exposure; the tool
+        # halts ARTIFACT_IN_REPO on any").
+        inner, sha = self.inner_repo_with_committed_tracker()
+        out = self.dir / "outer-art.md"
+        p = tool(["filter", "--tracker", str(inner / "t.md"),
+                  "--sha", sha, "--out", str(out)], cwd=str(inner))
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "ARTIFACT_IN_REPO")
+        self.assertEqual(p.returncode, 2)
+        self.assertFalse(out.exists(), "halt must precede the write")
+        self.assertIn(str(self.dir), v["repo"])
+
+    def test_missing_out_parent_is_a_usage_error(self):
+        # attack-9: the open() died through the generic handler as
+        # INTERNAL_ERROR — a tool defect verdict for an invocation
+        # mistake, routed as one
+        f = TestFilter("test_filter_drops_both_species_and_reads_the_sha")
+        f._tmp, f.dir = self._tmp, self.dir
+        sha = TestFilter.make_repo_with_tracker(
+            f, HEADER + "- F1 [VERIFIED] kept — basis: y\n")
+        out = os.path.join(self.no_repo_dir(), "no-such-dir", "a.md")
+        p = tool(["filter", "--tracker", "t.md", "--sha", sha,
+                  "--out", out], cwd=str(self.dir))
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "USAGE_ERROR")
+        self.assertEqual(p.returncode, 3)
+        self.assertIn(out, v["error"])
+
+    def test_pin_unreadable_names_what_was_checked(self):
+        # the old message claimed the tracker "does not resolve inside
+        # a git repo" whenever the CALLER stood outside one; the branch
+        # now fires only when the tracker's own location has no repo,
+        # and says so
+        outside = self.no_repo_dir()
+        t = Path(outside) / "t.md"
+        t.write_text(HEADER + "- F1 [VERIFIED] kept — basis: y\n")
+        p = tool(["filter", "--tracker", str(t), "--sha", "HEAD",
+                  "--out", os.path.join(self.no_repo_dir(), "a.md")],
+                 cwd=self.dir)
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "PIN_UNREADABLE")
+        self.assertIn("tracker's location", v["error"])
+
+
 # ---------------------------------------------------- pure-function checks
 
 class TestPureFunctions(unittest.TestCase):
@@ -677,6 +910,18 @@ class TestPureFunctions(unittest.TestCase):
         text, names = self.m.defang_text("x [VERIFIED] y [ISSUES FOUND] z")
         self.assertEqual(text, "x verified y issues found z")
         self.assertEqual(names, ["verified", "issues found"])
+
+    def test_parse_counts_entries_like_a_newline_grep(self):
+        # the parity the desk reads with `grep -c '^- '`
+        # the form feed makes splitlines() see a SECOND entry on one
+        # physical line — an entry the file does not contain
+        text = (HEADER +
+                "- F1 [VERIFIED] a fact — basis: y"
+                "\x0c- F3 [VERIFIED] phantom entry — basis: y\n"
+                "- F2 [VERIFIED] plain — basis: y\n")
+        entries, _, _ = self.m.parse_tracker(text)
+        grep = sum(1 for l in text.split("\n") if l.startswith("- "))
+        self.assertEqual(len(entries), grep)
 
     def test_latest_map(self):
         entries = [

@@ -137,11 +137,23 @@ def cited_ids(basis: str):
 
 # ------------------------------------------------------------------- parsing
 
+def split_lines(text: str):
+    """Split on newlines ONLY. str.splitlines() also breaks on U+000C,
+    U+2028 and U+0085, so a form feed in a body invented a line the
+    file does not have: entry counts diverged from `grep -c '^- '` and
+    every later violation's line number pointed one line off the file
+    the desk repairs (attack-9)."""
+    lines = text.split("\n")
+    if lines and lines[-1] == "":
+        lines.pop()
+    return [l[:-1] if l.endswith("\r") else l for l in lines]
+
+
 def parse_tracker(text: str):
     """Return (entries, violations, meta). Violations are lint-grade
     dicts {code, line, text}."""
     entries, violations = [], []
-    lines = text.splitlines()
+    lines = split_lines(text)
 
     status_line = phase_line = None
     status_val = phase_val = None
@@ -225,43 +237,55 @@ def parse_tracker(text: str):
     return entries, violations, {"status": status_val, "phase": phase_val}
 
 
+def git_toplevel(cwd):
+    p = subprocess.run(["git", "rev-parse", "--show-toplevel"], cwd=cwd,
+                       capture_output=True, text=True)
+    return p.stdout.strip() if p.returncode == 0 else None
+
+
 def repo_paths(path_arg: str):
     """(filesystem_path, repo_relative_or_None, repo_top_or_None) for a
     tracker path. One grammar across every subcommand (attack-7 N3:
     open() resolved against cwd while `git show` resolved against the
     repo root — the same value succeeded in one subcommand and failed
-    in another): relative inputs are repo-root-relative; outside a
-    repo they are cwd-relative and the repo-relative half is None."""
-    p = subprocess.run(["git", "rev-parse", "--show-toplevel"],
-                       capture_output=True, text=True)
-    top = p.stdout.strip() if p.returncode == 0 else None
+    in another): relative inputs are repo-root-relative.
+
+    The repo is the TRACKER's, resolved at the tracker's own directory
+    (SKILL.md, The tools; attack-9: a no-cwd rev-parse answered about
+    the CALLER's repo, so one absolute tracker got three verdicts from
+    three cwds — clean, PIN_UNREADABLE, PATH_OUTSIDE_REPO). Only a
+    RELATIVE input still consults the caller's repo, to give the
+    documented repo-root-relative sense a root."""
     if os.path.isabs(path_arg):
         fs = path_arg
-    elif top:
-        fs = os.path.join(top, path_arg)
     else:
-        fs = path_arg
+        cwd_top = git_toplevel(None)
+        fs = os.path.join(cwd_top, path_arg) if cwd_top else path_arg
+    top = git_toplevel(os.path.dirname(os.path.abspath(fs)) or None)
     rel = None
     if top:
-        try:
-            rel = os.path.relpath(os.path.realpath(fs),
-                                  os.path.realpath(top))
-            if rel.startswith(".."):
-                rel = None
-        except ValueError:
-            rel = None
+        # containment is TEXTUAL: the tracker is taken as named and
+        # only the repo top resolves (SKILL.md, The tools; attack-9:
+        # realpath'ing the tracker made an in-repo path that happens
+        # to be a symlink read as a path outside the repo)
+        top_real = os.path.realpath(top)
+        p = os.path.normpath(os.path.join(top_real, fs))
+        if p.startswith(top_real + os.sep):
+            rel = p[len(top_real) + 1:]
     return fs, rel, top
 
 
 def load(path_arg):
     fs, rel, top = repo_paths(path_arg)
-    # the git tool halts on a path outside the surrounding repo; the
-    # record tool must too (attack-8 N1: every record-side gate —
-    # sweep, closure, lint — was satisfiable by a tracker the run can
-    # never pin). No surrounding repo keeps the documented
-    # cwd-relative sense.
-    if top and rel is None:
-        finish("PATH_OUTSIDE_REPO", 2, path=path_arg)
+    # a tracker no repo contains is one the run can never pin, and
+    # every record-side gate — sweep, closure, lint — was satisfiable
+    # by exactly that (attack-8 N1). Tracker-anchored resolution
+    # (attack-9) makes "no repo at the tracker's own location" the
+    # whole of that class: a tracker inside SOME repo is pinnable
+    # there whatever the caller's cwd.
+    if top is None or rel is None:
+        finish("PATH_OUTSIDE_REPO", 2, path=path_arg,
+               error="no git repository at the tracker's location")
     try:
         with open(fs, encoding="utf-8") as f:
             return f.read()
@@ -290,7 +314,12 @@ def sweep_checks(entries):
                                "text": f"{id_} latest line is [PENDING]"})
 
     for e in entries:
-        if e.tag == "INVALIDATED" and re.search(r"\bdead\b(?!\s*\()", e.body):
+        # clause-scoped: the rule is "a dead CLAUSE without its named
+        # killer" (SKILL.md, Stop rule). attack-9: the bare `\bdead\b`
+        # fired on prose ("the dead-letter queue design", "is dead
+        # code") and held the record from [READY] on no defect at all.
+        if (e.tag == "INVALIDATED" and re.search(r"\bclause\b", e.body)
+                and re.search(r"\bdead\b(?!\s*\()", e.body)):
             violations.append({"code": "killerless-dead", "line": e.lineno,
                                "text": f"{e.id}: dead disposition without "
                                        "its named killer"})
@@ -450,24 +479,37 @@ def cmd_filter(args):
         finish("PATH_OUTSIDE_REPO", 2, path=args.tracker)
     if rel is None:
         finish("PIN_UNREADABLE", 2, sha=args.sha, tracker=args.tracker,
-               error="tracker does not resolve inside a git repo")
+               error="no git repository at the tracker's location: "
+                     "there is no history to read the pinned sha from")
     # the artifact lands OUTSIDE the repo (attack-8 NIT3): an in-repo
     # artifact is an untracked file under a brief asserting tree ==
     # lock commit — the seal rule's reasoning, applied to the write
     # this tool itself performs. Checked before anything is written.
+    # EVERY repo, not just the tracker's (attack-9): an --out into a
+    # nested OUTER checkout wrote an untracked file into someone
+    # else's tree under the same tree-claim exposure.
     out_real = os.path.realpath(args.out)
-    if top and os.path.commonpath(
-            [out_real, os.path.realpath(top)]) == os.path.realpath(top):
-        finish("ARTIFACT_IN_REPO", 2, out=args.out,
-               error="attack artifact must land outside the repo "
+    out_parent = os.path.dirname(out_real) or "."
+    if not os.path.isdir(out_parent):
+        # an invocation mistake, not a tool defect: the generic
+        # handler used to report it as INTERNAL_ERROR (attack-9)
+        finish("USAGE_ERROR", 3,
+               error=f"--out parent directory does not exist: "
+                     f"{args.out} (parent {out_parent})")
+    out_repo = git_toplevel(out_parent)
+    if out_repo:
+        finish("ARTIFACT_IN_REPO", 2, out=args.out, repo=out_repo,
+               error="attack artifact must land outside every repo "
                      "(tree-claim briefs assert tree == lock commit)")
-    p = subprocess.run(["git", "show", f"{args.sha}:{rel}"],
+    # read the history of the TRACKER's repo — `rel` is relative to
+    # `top`, so a cwd-resolved `git show` asks the wrong repo (or none)
+    p = subprocess.run(["git", "show", f"{args.sha}:{rel}"], cwd=top,
                        capture_output=True, text=True,
                        encoding="utf-8", errors="replace")
     if p.returncode != 0:
         finish("PIN_UNREADABLE", 2, sha=args.sha, tracker=args.tracker,
                stderr=p.stderr.strip())
-    lines = p.stdout.splitlines()
+    lines = split_lines(p.stdout)
     out, blocks, sections = [], 0, 0
     in_block = in_section = False
     for line in lines:
@@ -478,6 +520,14 @@ def cmd_filter(args):
         if in_section:
             if line.startswith("## ") and not line.startswith("## Superseded —"):
                 in_section = False
+            elif ENTRY_HEAD_RE.match(line):
+                # ENTRIES are never filtered (SKILL.md, The attack):
+                # dead bodies are load-bearing for closure questions.
+                # attack-9: the section drop swallowed them with the
+                # legacy prose, putting live findings out of every
+                # attacker's sight.
+                out.append(line)
+                continue
             else:
                 continue
         if SUPERSEDED_OPEN_RE.match(line):

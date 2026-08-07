@@ -28,16 +28,26 @@ tuple-returning functions are scanned).
 
 Honest reach (attack-9 N1): a hand-rolled emit that rebuilds the
 verdict line without finish/Halt (V9) is invisible to any call-site
-analysis; the durable layer for that class is the runtime battery
-(drive each subcommand's error paths, grep the ACTUAL emitted verdict
-lines) — commissioned as a dispatch unit, and until it lands this
-file must not be cited as covering the V9 shape.
+analysis. The durable layer for that class now sits in this file as
+the RUNTIME BATTERY below — it drives every subcommand of both tools
+over real invocations (happy paths, usage errors, unreadable and
+out-of-repo trackers, a malformed record, an in-repo artifact, stdin)
+and checks the verdict names the processes ACTUALLY print. Its own
+red arrangement: the committed battery run against a copy of
+statiker_record.py carrying a planted hand-rolled emit — the AST
+layer reports that copy clean (no offenders, the name unseen), the
+battery names it. Reach still not covered by either layer: an emit on
+a path no battery row drives.
 
 Run: python3 tools/test_contract.py
 """
 
 import ast
+import os
 import re
+import subprocess
+import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -166,6 +176,231 @@ def emitted_verdicts():
 
 def skill_named_verdicts():
     return set(VERDICT_TOKEN_RE.findall(SKILL.read_text(encoding="utf-8")))
+
+
+# ------------------------------------------------------- runtime battery
+
+# the layer the AST cannot reach (this file's own honest-reach note,
+# attack-9 N1: "a hand-rolled emit that rebuilds the verdict line
+# without finish/Halt (V9) is invisible to any call-site analysis; the
+# durable layer for that class is the runtime battery — drive each
+# subcommand's error paths, grep the ACTUAL emitted verdict lines").
+
+GIT_SUBCOMMANDS = {"state-gate", "preflight", "lock-check", "lock-commit",
+                   "unit-start", "unit-commit"}
+RECORD_SUBCOMMANDS = {"lint", "sweep", "closure", "filter", "quote"}
+
+VERDICT_LINE_RE = re.compile(r"^STATIKER-(?:GIT|RECORD) VERDICT: (.*)$")
+
+TRACKER_REL = ".clippy/runs/t.md"
+CLOSED_TRACKER = """# Run: battery
+Status: in-progress
+Phase: implement
+
+- D1 [COMMITTED] the design — basis: probe
+- A1 [DISPATCHED] round 1 — basis: brief
+- A1 [ZERO-DELTA] clean return — basis: report
+"""
+
+
+def battery_env():
+    return {
+        "PATH": os.environ["PATH"],
+        "HOME": "/nonexistent",
+        "GIT_CONFIG_GLOBAL": "/dev/null",
+        "GIT_CONFIG_SYSTEM": "/dev/null",
+        "GIT_AUTHOR_NAME": "t",
+        "GIT_AUTHOR_EMAIL": "t@t",
+        "GIT_COMMITTER_NAME": "t",
+        "GIT_COMMITTER_EMAIL": "t@t",
+        "STATIKER_GIT_RETRY_BASE": "0.01",
+        "LC_ALL": "C",
+    }
+
+
+def run_battery(git_script, record_script, root):
+    """Drive every subcommand of both tools over a table of real
+    invocations — happy paths, usage errors, unreadable and
+    out-of-repo trackers, a malformed record, an in-repo artifact,
+    stdin — and return one row per invocation:
+    {tool, sub, argv, verdicts, returncode}. `verdicts` is every
+    literal verdict NAME the process actually printed.
+
+    Parameterized on the script paths so the instrument itself can be
+    driven against a planted copy (its red arrangement)."""
+    env = battery_env()
+    root = Path(root)
+    repo = root / "repo"
+    (repo / ".clippy" / "runs").mkdir(parents=True)
+    outside = root / "outside"          # deliberately NOT a repo
+    outside.mkdir()
+
+    def git(*a, cwd=repo):
+        subprocess.run(["git", *a], cwd=cwd, env=env,
+                       capture_output=True, check=True)
+
+    git("init", "-q", "-b", "main")
+    (repo / "base.txt").write_text("base\n")
+    git("add", "base.txt")
+    git("commit", "-m", "base")
+    (repo / TRACKER_REL).write_text(CLOSED_TRACKER)
+    git("add", TRACKER_REL)
+    git("commit", "-m", "lock")
+    sha = subprocess.run(["git", "rev-parse", "HEAD"], cwd=repo, env=env,
+                         capture_output=True, text=True,
+                         check=True).stdout.strip()
+    (repo / "docs").mkdir()
+    (repo / "docs" / "a.txt").write_text("a\n")
+    (repo / "holds.md").write_text(
+        "# Run: h\nStatus: in-progress\nPhase: implement\n\n"
+        "- F1 [PENDING] awaiting a leg — basis: dispatched\n")
+    (repo / "malformed.md").write_text(
+        CLOSED_TRACKER +
+        "- A2 BIT round 2 found the wrong mechanism — basis: report\n")
+    (outside / "stray.md").write_text(
+        "# Run: s\nStatus: in-progress\nPhase: implement\n\n"
+        "- F1 [VERIFIED] x — basis: y\n")
+    tracker_abs = str(repo / TRACKER_REL)
+
+    def append_tracker():
+        with (repo / TRACKER_REL).open("a") as f:
+            f.write("- D2 [COMMITTED] record: bookkeeping — basis: probe\n")
+
+    def make_src():
+        (repo / "src.txt").write_text("unit output\n")
+
+    # (tool, subcommand, argv, cwd, stdin, prep)
+    table = [
+        ("git", "state-gate", ["state-gate"], repo, None, None),
+        # outside every repo: the NOT_A_REPO path
+        ("git", "state-gate", ["state-gate"], outside, None, None),
+        ("git", "preflight", ["preflight", "--tracker", TRACKER_REL],
+         repo, None, None),
+        ("git", "preflight", ["preflight"], repo, None, None),
+        ("git", "lock-check", ["lock-check", "--tracker", TRACKER_REL],
+         repo, None, None),
+        ("git", "lock-check", ["lock-check", "--tracker", TRACKER_REL,
+                               "--lock-set", "docs"], repo, None, None),
+        ("git", "lock-commit", ["lock-commit", "--tracker", TRACKER_REL,
+                                "-m", "lock"], repo, None, append_tracker),
+        ("git", "unit-start", ["unit-start", "--write-set", "src.txt"],
+         repo, None, None),
+        ("git", "unit-start", ["unit-start", "--write-set",
+                               "../outside.py"], repo, None, None),
+        ("git", "unit-commit", ["unit-commit", "--write-set", "src.txt",
+                                "-m", "unit U1"], repo, None, make_src),
+        ("git", "unit-commit", ["unit-commit", "--write-set",
+                                "never-made.txt", "-m", "unit U2"],
+         repo, None, None),
+        ("record", "lint", ["lint", "--tracker", tracker_abs],
+         repo, None, None),
+        ("record", "lint", ["lint", "--tracker", str(repo / "nope.md")],
+         repo, None, None),
+        ("record", "lint", ["lint", "--tracker", str(outside / "stray.md")],
+         repo, None, None),
+        ("record", "sweep", ["sweep", "--tracker", str(repo / "holds.md")],
+         repo, None, None),
+        ("record", "sweep", ["sweep"], repo, None, None),
+        ("record", "closure", ["closure", "--tracker",
+                               str(repo / "malformed.md")],
+         repo, None, None),
+        ("record", "closure", ["closure", "--tracker", tracker_abs],
+         repo, None, None),
+        ("record", "closure", ["closure", "--tracker", tracker_abs,
+                               "--unit", "3"], repo, None, None),
+        ("record", "filter", ["filter", "--tracker", tracker_abs,
+                              "--sha", sha, "--out", str(repo / "art.md")],
+         repo, None, None),
+        ("record", "filter", ["filter", "--tracker", tracker_abs,
+                              "--sha", sha,
+                              "--out", str(outside / "art.md")],
+         repo, None, None),
+        ("record", "filter", ["filter", "--tracker", tracker_abs,
+                              "--sha", "deadbeef",
+                              "--out", str(outside / "art2.md")],
+         repo, None, None),
+        ("record", "quote", ["quote", "--label", "A1 quotes"], repo,
+         "a report line holding [VERIFIED]\n", None),
+    ]
+
+    rows = []
+    for tool, sub, argv, cwd, stdin, prep in table:
+        if prep is not None:
+            prep()
+        script = git_script if tool == "git" else record_script
+        p = subprocess.run([sys.executable, str(script), *argv],
+                           cwd=str(cwd), env=env, input=stdin,
+                           capture_output=True, text=True, timeout=60)
+        verdicts = []
+        for line in p.stdout.splitlines():
+            m = VERDICT_LINE_RE.match(line)
+            if m:
+                verdicts.append(re.search(r'"verdict":\s*"([^"]+)"',
+                                          m.group(1)).group(1))
+        rows.append({"tool": tool, "sub": sub, "argv": argv,
+                     "verdicts": verdicts, "returncode": p.returncode,
+                     "stdout": p.stdout, "stderr": p.stderr})
+    return rows
+
+
+class TestRuntimeVerdictBattery(unittest.TestCase):
+    """The emit contract checked at RUNTIME: whatever a process
+    actually prints on a verdict line is a verdict SKILL.md routes.
+    Call-site analysis cannot see a hand-rolled emit (this file's
+    honest-reach note); driving the scripts can.
+
+    Red arrangement (run once, not committed): a scratch copy of
+    statiker_record.py with a hand-rolled
+    `say(VERDICT_PREFIX + json.dumps({"verdict": "SECRET_UNROUTED"}))`
+    planted on the TRACKER_UNREADABLE path, run_battery pointed at the
+    copy — the battery reports SECRET_UNROUTED as unrouted. The
+    committed battery drives the real scripts."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls._tmp = tempfile.TemporaryDirectory()
+        cls.rows = run_battery(SCRIPTS[0], SCRIPTS[1], cls._tmp.name)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls._tmp.cleanup()
+
+    def test_every_observed_verdict_is_routed_in_skill(self):
+        named = skill_named_verdicts()
+        unrouted = {}
+        for row in self.rows:
+            for v in row["verdicts"]:
+                if v not in named:
+                    unrouted.setdefault(v, " ".join(row["argv"]))
+        self.assertEqual(
+            unrouted, {},
+            f"emitted at runtime, named nowhere in SKILL.md: {unrouted}")
+
+    def test_every_invocation_emits_exactly_one_verdict_line(self):
+        # not one row may go silent — a battery whose rows print
+        # nothing would satisfy the routing assertion vacuously
+        for row in self.rows:
+            self.assertEqual(
+                len(row["verdicts"]), 1,
+                f"{row['tool']} {' '.join(row['argv'])} printed "
+                f"{row['verdicts']}\nstdout:\n{row['stdout']}\n"
+                f"stderr:\n{row['stderr']}")
+
+    def test_battery_covers_every_subcommand_of_both_tools(self):
+        for tool, declared in (("git", GIT_SUBCOMMANDS),
+                               ("record", RECORD_SUBCOMMANDS)):
+            seen = {r["sub"] for r in self.rows if r["tool"] == tool}
+            self.assertEqual(seen, declared,
+                             f"{tool}: battery misses {declared - seen}")
+
+    def test_battery_reaches_error_paths_not_only_happy_ones(self):
+        # the instrument is live only if it drives the halt/usage
+        # routes the AST-blind class hides on
+        observed = {v for r in self.rows for v in r["verdicts"]}
+        for expected in ("USAGE_ERROR", "NOT_A_REPO", "PATH_OUTSIDE_REPO",
+                         "TRACKER_UNREADABLE", "PIN_UNREADABLE",
+                         "ARTIFACT_IN_REPO", "CLOSURE_RECORD_MALFORMED"):
+            self.assertIn(expected, observed)
 
 
 class TestVerdictParity(unittest.TestCase):

@@ -94,7 +94,13 @@ class PorcelainEntry:
 
 def parse_porcelain_z(raw: bytes):
     """Parse `git status --porcelain=v1 -z` output. Rename/copy entries
-    carry a second NUL-separated token (the original path)."""
+    carry a second NUL-separated token (the original path).
+
+    Paths decode with os.fsdecode — the way the OS decodes argv
+    (attack-9: errors='replace' gave a non-UTF-8 byte a SECOND
+    spelling, so a path named on the command line could never match
+    its own porcelain readback: false extras at both commit seams and
+    a drop handshake stuck on HALT_DROPS_STALE forever)."""
     tokens = raw.split(b"\x00")
     entries = []
     i = 0
@@ -103,12 +109,12 @@ def parse_porcelain_z(raw: bytes):
         if not tok:
             i += 1
             continue
-        head = tok.decode(errors="replace")
+        head = os.fsdecode(tok)
         x, y, path = head[0], head[1], head[3:]
         orig = None
         if x in ("R", "C"):
             i += 1
-            orig = tokens[i].decode(errors="replace")
+            orig = os.fsdecode(tokens[i])
         entries.append(PorcelainEntry(x, y, path, orig))
         i += 1
     return entries
@@ -177,14 +183,23 @@ class Repo:
         Relative inputs are taken as repo-root-relative, never
         cwd-relative: callers (briefs, records) write repo-relative
         paths and a subagent's cwd resets between calls — resolving
-        against cwd answered about phantom paths from a subdir."""
-        p = Path(path_arg)
-        if not p.is_absolute():
-            p = self.top / p
-        try:
-            return p.resolve().relative_to(self.top.resolve()).as_posix()
-        except ValueError:
+        against cwd answered about phantom paths from a subdir.
+
+        The path is taken AS NAMED (SKILL.md, The tools): normalized
+        textually, never resolved through symlinks. Only the repo TOP
+        resolves. attack-9: resolve() substituted a link's TARGET for
+        the brief's own path inside a booked verdict, and halted
+        PATH_OUTSIDE_REPO on a tracked in-repo link pointing outward —
+        a path git commits as the link file itself. A literal `..`
+        escape still leaves the repo and still halts: normpath
+        collapses it before the containment read."""
+        top = os.path.realpath(str(self.top))
+        p = os.path.normpath(os.path.join(top, path_arg))
+        if p == top:
+            return "."      # the repo root: a directory, routed as one
+        if not p.startswith(top + os.sep):
             raise Halt("PATH_OUTSIDE_REPO", path=path_arg)
+        return Path(p[len(top) + 1:]).as_posix()
 
     # -- state gate ---------------------------------------------------------
     def ops_in_progress(self):
@@ -259,8 +274,7 @@ class Repo:
         # surface). The porcelain reads were always -z and unaffected.
         out = self.git("show", "--name-only", "--format=", "-z",
                        "HEAD").stdout
-        return set(p.decode(errors="replace")
-                   for p in out.split(b"\x00") if p)
+        return set(os.fsdecode(p) for p in out.split(b"\x00") if p)
 
     def _index_write_with_retry(self, git_args, failure_verdict):
         """Run an index-writing git command; index.lock failures are
