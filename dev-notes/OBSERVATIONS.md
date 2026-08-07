@@ -1916,3 +1916,26 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   (reconciliations + one gate at the zero-delta→implementation
   seam), auto (none; close-report review). Consumer: 0.2.21
   consolidation design + stabilization pass.
+
+- 2026-08-07 — **BOOKED (operator-raised): the run CLOSE REPORT —
+  currently a gap in the skill.** As written, the run just "ends at
+  [PASSED]": verify appends its verdict line, the header Status
+  flips, nothing else is owed. No operator-facing close report is
+  defined anywhere — yet 0.2.20's reconciliation clause already
+  re-surfaces open reconciliations "at the run's close", a moment
+  the text never defines (review-4 B5 adjacencies; nit 1 COMPLETE
+  unreachable and nit 2 verify-verdict line form touch the same
+  seam). Operator position: the close is the single most likely
+  reaction moment — everything notable must be surfaced there AND
+  recorded. Design shape for 0.2.21 (which consolidates the close
+  machinery anyway): a close-report form appended to the tracker
+  and presented to the operator, carrying at minimum: verdict +
+  evidence pointer; every OPEN reconciliation; every R-line
+  amendment (requirement deltas vs. what was asked); every
+  [AUTO-ACCEPTED] entry (assumptions knowingly carried); deviations
+  and gaps from impl/verify; candidate lessons; residue (what was
+  NOT verified). Precedents to draw on: the dispatch skill's §2
+  report slots (a-h) and the corpus close questions (anything
+  missing / anything learned). In auto mode this report is the
+  operator's ONLY touchpoint, which raises its bar. Consumer:
+  0.2.21 consolidation design.
