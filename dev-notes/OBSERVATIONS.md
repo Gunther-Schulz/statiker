@@ -1958,3 +1958,56 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   design loop happens ONCE, with every return in hand (the
   package), not per-arrival. Verify stays a single pass after all
   units land. Consumer: 0.2.21 consolidation design.
+
+- 2026-08-07 — **0.2.21 CONSOLIDATION released (operator go):
+  review-4's 26 findings dispositioned + the four booked designs
+  landed (auto mode, close report, mid-impl triage, grammar
+  consolidation). Blocking, all FIXED:** B1 filter reduced to ONE
+  line-granular species (contiguous quoted blocks opening
+  `> Superseded — <label>`, born marked at the return sitting) —
+  no section boundaries, nothing swallowed; B2 unmeasured-verdict
+  branch defined (the desk completes the measurement itself, its
+  executed evidence on the F-line, before the A-line lands;
+  [ZERO-DELTA]'s two contradictory statements unified into one
+  conditioned path); B3 closure formula now "no F, D, or R line";
+  B4 lock commit COMMISSIONED at the advance step ("Advancing
+  locks the design"), locked design defined as the record at that
+  commit, re-lock = new [READY] + sweep + lock commit; B5
+  reconciliations record as [AUTO-ACCEPTED] D-lines (conflict +
+  recommendation in body, answer appends the resolving line —
+  existing enum reused, sweep- and close-visible, restart-safe);
+  B6 seals AND comparisons stay out-of-repo for the whole run,
+  entering the tracker only in Close, where no further round
+  follows. Notables: N1 handoff species CUT (dangling term); N2
+  R-line in the entries enum [AMENDED|INVALIDATED]; N3 BARE
+  scoped to entry tags, Status verbatim with [READY] bracketed
+  (reader admission, review-4-verified); N4 adoption predicate =
+  content re-entering from outside the record's live entries,
+  citing a live entry excluded; N5 resolution branches named
+  (pass → class live tag / fail → [INVALIDATED]); N6 sweep's
+  dead-basis body-read covers invalidation lines (missing clause
+  list or killer-less dead clause holds from [READY]); N7 freeze
+  defers appends never work (queue beside the seal, append at
+  return before the A-line); N8 attack F-lines tagged by their
+  evidence ([VERIFIED]/[PENDING]); N9 verify carve-out
+  (check by-products yes, commits/tracker writes no); N10 version
+  source = Skill injection base-directory line; N11 fire-born
+  target = source-repo checkout, else the observation rides the
+  run report; N12 ACCEPTED — 334 lines vs ~150, stabilization
+  compression owns it, correctness outranked size here. Nits: 1
+  COMPLETE gains its writer (Close); 2 V-line form; 3 forcing
+  points renumbered to document order 1-5 (+ description order);
+  4 one-surface wording; 5 templates-wrap note; 6 seal path exact
+  (tracker filename verbatim + `.A<n>.seal`); 7 Phase transitions
+  assigned (implement at closing [ZERO-DELTA], verify at
+  dispatch); 8 unreadable models file halts the dispatch with the
+  parse error as finding — the two fallbacks stay distinct,
+  reason recorded HERE not in payload: verify's parent-model
+  fallback keeps the verdict at tier ≥ producer by construction.
+  Prompt-cadence reduction deliberately NOT landed (stabilization
+  booking, trial data decides). R5 carry: cycle-10 desk records
+  the amendment as an R-line citing D52/F18/F41/D45a + operator
+  ratification from this relay. NEXT: opus review 5 (standing
+  step, diff d6f2e16..HEAD) → dispositions → pin to 0.2.21 →
+  cycle-10 desk line. Consumer: review-5 dispositions, pin move,
+  fresh-desk start.
