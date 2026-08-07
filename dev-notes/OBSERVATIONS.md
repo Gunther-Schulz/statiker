@@ -3173,3 +3173,67 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   (DONE-anchor = loud error in backlog-order.mjs), red-on-4-today
   arrangement available. Consumer: operator round + any follow-up
   cache-fix dispatch.**
+
+- 2026-08-07 — **Attack 8 RETURNED (5 parts + closing lists;
+  2B/4N/4NIT, probe obligations honored throughout — every severity
+  cited an executed probe, unmeasured/clean/could-not-verify lists
+  named); all findings dispositioned, repairs landed as 0.2.38
+  UNPINNED (suites 62 git / 54 record / 4 contract = 120 green; red
+  arrangement: the 11 new tests ran against the unrepaired scripts
+  first — 10 red in exactly the repaired classes, 4 boundary pins
+  green by design — and the reworked contract instrument went red on
+  planted V3/V4b escapes before the fix landed).** TREND: B-count
+  falling (5→3→2), neither blocker minted by 0.2.37's patches — both
+  latent since 0.2.32-0.2.34 era; form not indicted. DISPOSITIONS:
+  B1 (quotePath C-quoting broke head_shown_paths readback; false
+  EXTRAS naming the tracker a brief exclusion) — FIXED: `-z` NUL
+  readback; both seams pinned (lock + unit tests), boundary pins for
+  space-paths and REAL non-ASCII extras. B2 (closure discarded parse
+  violations; a bracketless tag turned a reopened design green) —
+  FIXED: CLOSURE_RECORD_MALFORMED on entry-form/tag-enum violations,
+  WITH same-id later-clean-line DISARM (append-only means the
+  malformed line never leaves the file; without the disarm one typo
+  bricks the closure permanently — design decision made at the desk,
+  routed in SKILL.md's closure routes). N1 (record tool accepted
+  out-of-repo trackers; every record gate satisfiable by an
+  unpinnable file) — FIXED: PATH_OUTSIDE_REPO halt when a
+  surrounding repo exists; no-repo keeps documented cwd-relative
+  sense; SUITE FIXTURE was itself in the defect's shape (trackers in
+  /tmp under the runner's repo cwd) — fixtures now git-init. N2
+  (INTENT-verbatim vs blockquote grammar collision; the one
+  lint-legal quote form is filter-dropped) — FIXED as prescription:
+  INTENT lands PLAIN text (SKILL.md head form), defang wording
+  de-implies blockquote, early-lint clause minted (run lint once
+  header+head land; a head defect found at [READY] holds a record
+  append-only cannot repair — restart is cheap only at one screen).
+  N3 (--unit unvalidated; "3"/"u3"/"" cleared holds silently) —
+  FIXED: U<k> form validation → USAGE_ERROR; U03-vs-U3 near-miss
+  residual NAMED (well-formed wrong id is not mechanically knowable).
+  N4 (contract test covers name-parity slice, not behavioral
+  carry-across; 0.2.36 commit message OVERCLAIMED) — booking
+  CORRECTED here + instrument docstring states reach honestly;
+  REWORKED: emit-position AST extraction (finish/Halt/retry-arg/
+  factory returns) kills V3 (morphology at emit position), V4b
+  (assembled names), V6 (NON_VERDICTS list deleted — no silencing
+  lane); V5 (wrong-section routing) PARKED: named trigger = first
+  live wrong-section defect (attack-8 found none live); behavioral
+  carry-across's standing mechanism = per-repair parallel-site test
+  pairs + the attack rounds, stated in the instrument's docstring.
+  NIT1 (--help verdict-free) — prose exemption in the invocation
+  contract. NIT2 (quote lacked count) — `lines` field added. NIT3
+  (filter wrote artifacts into the repo under tree-claim briefs) —
+  ARTIFACT_IN_REPO halt before write; existing filter tests moved
+  their artifacts out (deliberate consequence). NIT4
+  (HALT_IGNORED_WRITESET diagnosis lost at commit seam) — routed by
+  name at the COMMIT parenthetical. PARKED (attacker's unmeasured
+  judgment find): seal-namespace collision for two repos sharing a
+  basename + same-named trackers — trigger: trial reaches a second
+  repo with a colliding basename. 859 operational lines (+23).
+  NOTE: the opus skill-edit review experiment's slot for this
+  release is SERVED BY attack-9 (a fresh-opus adversarial round over
+  the final form — the attack-7 precedent for folding the pre-pin
+  review). NEXT: attack-9 on e4727a8..HEAD (operator GO pending),
+  no-blocker → pin move (hold entry in
+  ~/.local/state/dotfiles/plugin-pin-holds.json STAYS — standing
+  policy) + cycle-10 fresh-desk line. Consumer: attack-9 dispatch +
+  the successor meta session.**

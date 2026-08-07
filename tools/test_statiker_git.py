@@ -827,5 +827,57 @@ class TestPureFunctions(unittest.TestCase):
         self.assertEqual(name, "UNIT_COMMITTED")
 
 
+class TestAttack8NonAsciiReadback(GitFixture):
+    """attack-8 B1: `git show --name-only` C-quotes non-ASCII paths
+    under default core.quotePath, so the newline readback never matched
+    the pathspec and a CLEAN commit reported a false extra — at both
+    seams, and in the lock case the false extra is the tracker itself,
+    which the desk then names a brief exclusion. The porcelain calls
+    were always `-z` and unaffected; the repair makes the show readback
+    `-z` too. Each test red against the pre-repair readback."""
+
+    def test_lock_commit_non_ascii_tracker_clean(self):
+        tracker = ".clippy/runs/2026-08-07-flächennutzung.md"
+        self.write(tracker, "# Run: t\nStatus: [READY]\n")
+        v = self.verdict(self.tool(
+            "lock-commit", "--tracker", tracker, "-m", "lock"))
+        self.assertEqual(v["verdict"], "LOCK_COMMITTED",
+                         f"false extras: {v.get('extras')}")
+
+    def test_unit_commit_non_ascii_write_set_clean(self):
+        # the parallel seam — the carry-across pin (one function, two
+        # callers; both proven, not one)
+        self.write("grünflächen.py", "x = 1\n")
+        v = self.verdict(self.tool(
+            "unit-commit", "--write-set", "grünflächen.py", "-m", "unit"))
+        self.assertEqual(v["verdict"], "UNIT_COMMITTED",
+                         f"false extras: {v.get('extras')}")
+
+    def test_quote_worthy_ascii_specials_clean(self):
+        # quotePath also fires on '"' and '\'; spaces never quote —
+        # the attacker's trigger-set probes (P5), pinned as boundary
+        self.write("my report.py", "x\n")
+        v = self.verdict(self.tool(
+            "unit-commit", "--write-set", "my report.py", "-m", "unit"))
+        self.assertEqual(v["verdict"], "UNIT_COMMITTED")
+
+    def test_real_extras_still_detected_non_ascii(self):
+        # the repair must not eat the defect class: a genuinely
+        # foreign non-ASCII path in HEAD still reports as an extra,
+        # DECODED — matchable against porcelain and pathspec forms
+        self.write("früh.txt", "op\n")
+        self.git("add", "früh.txt")
+        self.write("mine.txt", "unit\n")
+        self.git("add", "mine.txt")
+        self.git("commit", "-m", "mixed", "--", "früh.txt", "mine.txt")
+        sys.path.insert(0, str(SCRIPT.parent))
+        self.addCleanup(sys.path.remove, str(SCRIPT.parent))
+        self.addCleanup(os.chdir, os.getcwd())
+        import statiker_git
+        os.chdir(self.repo)
+        shown = statiker_git.Repo().head_shown_paths()
+        self.assertEqual(shown, {"früh.txt", "mine.txt"})
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

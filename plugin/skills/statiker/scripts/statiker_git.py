@@ -250,9 +250,17 @@ class Repo:
             raise Halt("HALT_MISSING_PATH", paths=missing)
 
     def head_shown_paths(self):
-        out = self.git("show", "--name-only", "--format=",
-                       "HEAD").stdout.decode()
-        return set(l for l in out.splitlines() if l)
+        # -z: NUL separators, unquoted paths. Newline output C-quotes
+        # any non-ASCII byte under default core.quotePath, and a quoted
+        # readback can never match its own pathspec (attack-8 B1: a
+        # clean commit over a path with an umlaut reported the path as
+        # a false extra at both seams — in the lock case the "extra"
+        # was the tracker, which the desk then excludes from the attack
+        # surface). The porcelain reads were always -z and unaffected.
+        out = self.git("show", "--name-only", "--format=", "-z",
+                       "HEAD").stdout
+        return set(p.decode(errors="replace")
+                   for p in out.split(b"\x00") if p)
 
     def _index_write_with_retry(self, git_args, failure_verdict):
         """Run an index-writing git command; index.lock failures are

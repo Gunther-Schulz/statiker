@@ -49,7 +49,8 @@ file-only pathspec composition, add-untracked-only, `-m` commits,
 two-half readback, capped spaced index.lock retry; the record
 tool the enum-tag grammar, the unanchored stats-reader greps
 behind the defang rule, and scope-opener classification. Every
-invocation — usage errors included (USAGE_ERROR) — ends in
+invocation — usage errors included (USAGE_ERROR); `--help` alone
+excepted, argparse answers it verdict-free — ends in
 exactly one final
 `STATIKER-GIT VERDICT: {json}` or `STATIKER-RECORD VERDICT:
 {json}` line, evidence lines before it — the desk books THAT
@@ -123,10 +124,15 @@ unexhausted question enumerated in the close. (hypothesis) —
 Status and Phase within the first ~20
 lines (the stats reader's admission window). After the header,
 the requirement head in two
-grades, declared apart: INTENT — the operator's request VERBATIM
-(verbatim binds the words, not tag literals: a bracketed tag
-literal inside quoted operator text is defanged exactly as report
-quotes are, the mutation noted beside the line — undefanged it
+grades, declared apart: INTENT — the operator's request VERBATIM,
+as PLAIN text: the record grammar reserves `>` lines for
+Superseded blocks, so a blockquoted INTENT lints illegal, and the
+one lint-legal quote form is exactly what the attack filter
+drops — the operator's words would vanish from every attack
+artifact (verbatim binds the words, not tag literals or layout: a
+bracketed tag literal inside the operator's text is defanged
+exactly as report quotes are, the mutation noted beside the
+line — undefanged it
 holds every later sweep, correctly, for the run's life) —
 and the derived requirements, as long as it needs to be, numbered
 `R<n>.` — never dash-led `- R<n>`, the record grammar's amendment
@@ -156,6 +162,10 @@ the header's Status and Phase fields, updated at each transition
 and at the verify verdict; everything below them is append-only.
 Status writes its enum member verbatim — [READY] keeps its
 brackets (the stats reader admits only the bracketed form).
+Run `lint` once the header and head are written: a form defect
+found here costs re-creating a one-screen file before anything
+rests on it; found at the [READY] sweep it holds a full record
+whose head the append-only rule cannot rewrite.
 
 Entries are one line each, status tag first, appended never
 rewritten (the templates below wrap only on this page). A status
@@ -427,7 +437,11 @@ not produce it, before implementation. The attack brief carries the
 tracker PINNED at the locked design's commit — produced by the
 record tool: `filter --tracker <path> --sha <lock sha> --out
 <artifact path>` serves the sha, never the working tree (a live
-tree serves HEAD), and drops the two Superseded species, counts
+tree serves HEAD) — the artifact path sits OUTSIDE the repo,
+like the seals and for the seal rule's reason (an in-repo
+artifact is an untracked file under a brief asserting tree ==
+lock commit; the tool halts ARTIFACT_IN_REPO on one) — and
+drops the two Superseded species, counts
 in its verdict: contiguous
 quoted blocks whose first line is `> Superseded — <label>` (their
 production: the return processing below), plus sections headed
@@ -580,6 +594,12 @@ each dispatch — `closure --tracker <path> --unit U<k>`
 record): CLOSURE_VOID bars every unit — a scopeless line, or a
 post-closure [INVALIDATED] line for an entry LIVE at the
 closure whatever its opener (the mis-scoped premise-kill);
+CLOSURE_RECORD_MALFORMED bars every unit the same way — an
+entry-shaped line broke the grammar (dropped tag brackets, an
+out-of-enum tag), and the entry set the closure computes is
+unsound until repaired: append the same id's clean corrective
+line (append-only repair — the tool disarms a violation whose
+id carries a later clean line), then re-run;
 CLOSURE_ABSENT means the gate is not open (the last A-line is
 not [ZERO-DELTA] — the normal state during a reopened design;
 dispatch waits); UNIT_HELD bars that unit on its
@@ -684,7 +704,10 @@ UNIT_NO_DIFF_VS_HEAD → nothing differs from HEAD: the unit
 runs its residue check (the brief's symbol-anchored
 criterion — the discriminator, never an exit code) and
 reports already-present, the landing annotation carrying
-`already-present` in place of a sha. HALT_MISSING_PATH → a
+`already-present` in place of a sha (HALT_IGNORED_WRITESET
+re-firing at this seam routes as blocked below, its
+ignored-path diagnosis kept from the verdict line, not as a
+generic failure). HALT_MISSING_PATH → a
 write-set path the unit never populated: reported as a gap,
 nothing landed. HALT_STATE → an operation the operator began
 mid-unit — distinct by verdict from BLOCKED_CONTENTION →

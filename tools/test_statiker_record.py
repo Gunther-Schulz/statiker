@@ -46,6 +46,12 @@ class RecordFixture(unittest.TestCase):
     def setUp(self):
         self._tmp = tempfile.TemporaryDirectory()
         self.dir = Path(self._tmp.name)
+        # the fixture dir is a git repo: the record tool halts on a
+        # tracker outside the surrounding repo (attack-8 N1), and a
+        # bare temp dir under the test-runner's repo cwd IS that shape
+        subprocess.run(["git", "init", "-q", "-b", "main"], cwd=self.dir,
+                       env={**os.environ, "GIT_CONFIG_GLOBAL": "/dev/null"},
+                       capture_output=True, check=True)
 
     def tearDown(self):
         self._tmp.cleanup()
@@ -63,16 +69,20 @@ class RecordFixture(unittest.TestCase):
         return json.loads(lines[0][len(VERDICT_PREFIX):])
 
     def lint(self, body, header=HEADER):
-        return self.verdict(tool(["lint", "--tracker", str(self.write_tracker(body, header))]))
+        return self.verdict(tool(
+            ["lint", "--tracker", str(self.write_tracker(body, header))],
+            cwd=self.dir))
 
     def sweep(self, body, header=HEADER):
-        return self.verdict(tool(["sweep", "--tracker", str(self.write_tracker(body, header))]))
+        return self.verdict(tool(
+            ["sweep", "--tracker", str(self.write_tracker(body, header))],
+            cwd=self.dir))
 
     def closure(self, body, unit=None, header=HEADER):
         args = ["closure", "--tracker", str(self.write_tracker(body, header))]
         if unit:
             args += ["--unit", unit]
-        return self.verdict(tool(args))
+        return self.verdict(tool(args, cwd=self.dir))
 
     def violation_codes(self, v):
         return {viol["code"] for viol in v.get("violations", [])}
@@ -304,7 +314,10 @@ class TestFilter(RecordFixture):
                      "- F3 [VERIFIED] kept too — basis: y\n")
         sha = self.make_repo_with_tracker(
             committed, worktree_text=HEADER + "LIVE TREE ONLY\n")
-        out = self.dir / "artifact.md"
+        # the artifact lands OUTSIDE the repo (attack-8 NIT3)
+        self._out_tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self._out_tmp.cleanup)
+        out = Path(self._out_tmp.name) / "artifact.md"
         p = tool(["filter", "--tracker", "t.md", "--sha", sha,
                   "--out", str(out)], cwd=self.dir)
         v = self.verdict(p)
@@ -392,11 +405,12 @@ class TestAttack7Findings(RecordFixture):
         f._tmp = self._tmp
         f.dir = self.dir
         sha = TestFilter.make_repo_with_tracker(f, committed)
-        out = self.dir / "a.md"
-        p = tool(["filter", "--tracker", str(self.dir / "t.md"),
-                  "--sha", sha, "--out", str(out)], cwd=self.dir)
-        v = self.verdict(p)
-        self.assertEqual(v["verdict"], "ARTIFACT_WRITTEN")
+        with tempfile.TemporaryDirectory() as outdir:
+            out = Path(outdir) / "a.md"
+            p = tool(["filter", "--tracker", str(self.dir / "t.md"),
+                      "--sha", sha, "--out", str(out)], cwd=self.dir)
+            v = self.verdict(p)
+            self.assertEqual(v["verdict"], "ARTIFACT_WRITTEN")
 
     def test_lint_resolves_repo_relative_from_subdir(self):
         # attack-7 N3 mirror: repo-relative path from a subdirectory
@@ -448,6 +462,124 @@ class TestAttack7Findings(RecordFixture):
                       "  unit U1 landed: abc1234\n")
         self.assertEqual(v["verdict"], "LINT_VIOLATIONS")
         self.assertIn("landing-blank", self.violation_codes(v))
+
+
+class TestAttack8Findings(RecordFixture):
+    """Repairs from attack 8 (dev-notes, 2026-08-07), each red against
+    the pre-repair behavior the attacker executed."""
+
+    # -- B2: the closure gate reads parse violations -------------------
+
+    def test_closure_holds_on_bracketless_a_line(self):
+        # attack-8 B2 (P10c): "- A2 BIT ..." failed ENTRY_RE, vanished
+        # from entries, and the closure answered CLOSURE_LIVE off A1
+        body = (CLOSED +
+                "- A2 BIT round 2 found the wrong mechanism — basis: report\n")
+        v = self.closure(body)
+        self.assertEqual(v["verdict"], "CLOSURE_RECORD_MALFORMED")
+        self.assertTrue(any(x["code"] == "entry-form"
+                            for x in v["violations"]))
+
+    def test_closure_holds_on_bracketless_invalidation(self):
+        # attack-8 B2 (P8b): a premise-kill missing its brackets read
+        # as UNIT_DISPATCHABLE instead of anything at all
+        body = (CLOSED +
+                "- D1 INVALIDATED approach rests on a dead premise "
+                "— basis: F9\n")
+        v = self.closure(body, unit="U1")
+        self.assertEqual(v["verdict"], "CLOSURE_RECORD_MALFORMED")
+
+    def test_closure_holds_on_tag_enum_violation(self):
+        body = (CLOSED +
+                "- D2 [BOGUS] some line — basis: y\n")
+        v = self.closure(body)
+        self.assertEqual(v["verdict"], "CLOSURE_RECORD_MALFORMED")
+
+    def test_closure_malformed_disarmed_by_later_clean_line(self):
+        # append-only means the malformed line never leaves the file:
+        # a LATER clean line for the same id is the repair form, and
+        # the gate must accept it or one typo bricks the run's closure
+        body = (CLOSED +
+                "- A2 BIT round 2 found the wrong mechanism — basis: report\n"
+                "- A2 [BIT] round 2 found the wrong mechanism (corrects "
+                "the bracketless line above) — basis: report\n")
+        v = self.closure(body)
+        self.assertEqual(v["verdict"], "CLOSURE_ABSENT")  # A2 [BIT] governs
+
+    def test_closure_ignores_nonentry_violation_classes(self):
+        # boundary: a stray quoted line is lint's business at its own
+        # seams; it cannot corrupt the entry set the closure computes
+        body = ("> stray quoted line\n" + CLOSED)
+        v = self.closure(body)
+        self.assertEqual(v["verdict"], "CLOSURE_LIVE")
+
+    # -- N1: one path grammar reaches the record tool ------------------
+
+    def test_record_gates_halt_on_out_of_repo_tracker(self):
+        # attack-8 N1 (P2/P12): every record-side gate was satisfiable
+        # by a file the run can never pin
+        with tempfile.TemporaryDirectory() as outside:
+            t = Path(outside) / "t.md"
+            t.write_text(HEADER + CLOSED)
+            for sub in (["lint"], ["sweep"], ["closure"]):
+                p = tool([*sub, "--tracker", str(t)], cwd=self.dir)
+                v = self.verdict(p)
+                self.assertEqual(v["verdict"], "PATH_OUTSIDE_REPO",
+                                 f"{sub[0]} accepted an out-of-repo tracker")
+                self.assertEqual(p.returncode, 2)
+
+    def test_record_gates_work_outside_any_repo(self):
+        # the no-repo case keeps its documented cwd-relative sense:
+        # only a SURROUNDING repo makes an outside path a defect
+        with tempfile.TemporaryDirectory() as norepo:
+            t = Path(norepo) / "t.md"
+            t.write_text(HEADER + "- F1 [VERIFIED] x — basis: y\n")
+            p = tool(["lint", "--tracker", str(t)], cwd=norepo)
+            self.assertEqual(self.verdict(p)["verdict"], "LINT_CLEAN")
+
+    # -- N3: --unit validates its form ---------------------------------
+
+    def test_closure_unit_id_form_validated(self):
+        # attack-8 N3 (P13): "3", "u3", "" cleared a U3 hold silently
+        body = (CLOSED +
+                "- D9 [AUTO-ACCEPTED] unit U3 held: x.txt — basis: F9\n")
+        path = str(self.write_tracker(body))
+        for bad in ("3", "u3", "unit U3", ""):
+            p = tool(["closure", "--tracker", path, "--unit", bad],
+                     cwd=self.dir)
+            v = self.verdict(p)
+            self.assertEqual(v["verdict"], "USAGE_ERROR",
+                             f"--unit {bad!r} was not rejected")
+            self.assertEqual(p.returncode, 3)
+        # the well-formed id still routes to the hold
+        p = tool(["closure", "--tracker", path, "--unit", "U3"],
+                 cwd=self.dir)
+        self.assertEqual(self.verdict(p)["verdict"], "UNIT_HELD")
+
+    # -- NIT2: quote returns its production count ----------------------
+
+    def test_quote_carries_line_count(self):
+        p = tool(["quote", "--label", "A7 quotes"],
+                 stdin_text="one\ntwo\n")
+        v = self.verdict(p)
+        self.assertEqual(v["lines"], len(v["block"].splitlines()))
+
+    # -- NIT3: the attack artifact never lands inside the repo ---------
+
+    def test_filter_halts_on_in_repo_out_path(self):
+        # attack-8 NIT3 (P14): an in-repo artifact is an untracked
+        # file under a brief asserting tree == lock commit
+        f = TestFilter("test_filter_drops_both_species_and_reads_the_sha")
+        f._tmp, f.dir = self._tmp, self.dir
+        sha = TestFilter.make_repo_with_tracker(
+            f, HEADER + "- F1 [VERIFIED] kept — basis: y\n")
+        p = tool(["filter", "--tracker", "t.md", "--sha", sha,
+                  "--out", "attack-artifact.md"], cwd=self.dir)
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "ARTIFACT_IN_REPO")
+        self.assertEqual(p.returncode, 2)
+        self.assertFalse((self.dir / "attack-artifact.md").exists(),
+                         "halt must precede the write")
 
 
 # ---------------------------------------------------- pure-function checks

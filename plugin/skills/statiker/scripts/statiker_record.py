@@ -217,13 +217,12 @@ def parse_tracker(text: str):
 
 
 def repo_paths(path_arg: str):
-    """(filesystem_path, repo_relative_or_None) for a tracker path.
-    One grammar across every subcommand (attack-7 N3: open() resolved
-    against cwd while `git show` resolved against the repo root — the
-    same value succeeded in one subcommand and failed in another):
-    relative inputs are repo-root-relative; outside a repo they are
-    cwd-relative and the repo-relative half is None (filter, which
-    needs git, halts on that)."""
+    """(filesystem_path, repo_relative_or_None, repo_top_or_None) for a
+    tracker path. One grammar across every subcommand (attack-7 N3:
+    open() resolved against cwd while `git show` resolved against the
+    repo root — the same value succeeded in one subcommand and failed
+    in another): relative inputs are repo-root-relative; outside a
+    repo they are cwd-relative and the repo-relative half is None."""
     p = subprocess.run(["git", "rev-parse", "--show-toplevel"],
                        capture_output=True, text=True)
     top = p.stdout.strip() if p.returncode == 0 else None
@@ -242,11 +241,18 @@ def repo_paths(path_arg: str):
                 rel = None
         except ValueError:
             rel = None
-    return fs, rel
+    return fs, rel, top
 
 
 def load(path_arg):
-    fs, _ = repo_paths(path_arg)
+    fs, rel, top = repo_paths(path_arg)
+    # the git tool halts on a path outside the surrounding repo; the
+    # record tool must too (attack-8 N1: every record-side gate —
+    # sweep, closure, lint — was satisfiable by a tracker the run can
+    # never pin). No surrounding repo keeps the documented
+    # cwd-relative sense.
+    if top and rel is None:
+        finish("PATH_OUTSIDE_REPO", 2, path=path_arg)
     try:
         with open(fs, encoding="utf-8") as f:
             return f.read()
@@ -317,8 +323,45 @@ def cmd_sweep(args):
 
 # ------------------------------------------------------------------- closure
 
+CLOSURE_BLOCKING_CODES = ("entry-form", "tag-enum")
+
+
+def closure_blocking_violations(entries, violations):
+    """The parse violations the closure may not read past: a line that
+    LOOKS like an entry but failed the grammar is invisible to every
+    predicate below — one dropped bracket turned a reopened design
+    into a green light (attack-8 B2). Append-only means the malformed
+    line never leaves the file, so a violation is DISARMED by a later
+    clean line for the same id — the repair form; without the disarm
+    one typo bricks the run's closure permanently. Both blocking codes
+    parse an id (entry-form fires only where ENTRY_HEAD_RE matched)."""
+    armed = []
+    for v in violations:
+        if v["code"] not in CLOSURE_BLOCKING_CODES:
+            continue
+        head = ENTRY_HEAD_RE.match(v["text"])
+        vid = f"{head.group(1)}{head.group(2)}" if head else next(
+            (e.id for e in entries if e.lineno == v["line"]), None)
+        if vid and any(e.id == vid and e.lineno > v["line"]
+                       for e in entries):
+            continue
+        armed.append(v)
+    return armed
+
+
 def cmd_closure(args):
-    entries, _, _ = parse_tracker(load(args.tracker))
+    if args.unit is not None and not re.fullmatch(r"U\d+", args.unit):
+        # attack-8 N3: a mistyped id ("3", "u3") matched no scope line
+        # and fell through to UNIT_DISPATCHABLE — a silent hold-clear
+        finish("USAGE_ERROR", 3,
+               error=f"--unit must match U<k>, got {args.unit!r}")
+    entries, violations, _ = parse_tracker(load(args.tracker))
+    blocking = closure_blocking_violations(entries, violations)
+    if blocking:
+        for v in blocking:
+            say(f"closure blocked: {v['code']} @ line {v['line']}: "
+                f"{v['text']}")
+        finish("CLOSURE_RECORD_MALFORMED", 2, violations=blocking)
     a_lines = [e for e in entries if e.cls == "A"]
     if not a_lines or a_lines[-1].tag != "ZERO-DELTA":
         finish("CLOSURE_ABSENT", 2,
@@ -382,10 +425,22 @@ def cmd_closure(args):
 # -------------------------------------------------------------------- filter
 
 def cmd_filter(args):
-    _, rel = repo_paths(args.tracker)
+    _, rel, top = repo_paths(args.tracker)
+    if top and rel is None:
+        finish("PATH_OUTSIDE_REPO", 2, path=args.tracker)
     if rel is None:
         finish("PIN_UNREADABLE", 2, sha=args.sha, tracker=args.tracker,
                error="tracker does not resolve inside a git repo")
+    # the artifact lands OUTSIDE the repo (attack-8 NIT3): an in-repo
+    # artifact is an untracked file under a brief asserting tree ==
+    # lock commit — the seal rule's reasoning, applied to the write
+    # this tool itself performs. Checked before anything is written.
+    out_real = os.path.realpath(args.out)
+    if top and os.path.commonpath(
+            [out_real, os.path.realpath(top)]) == os.path.realpath(top):
+        finish("ARTIFACT_IN_REPO", 2, out=args.out,
+               error="attack artifact must land outside the repo "
+                     "(tree-claim briefs assert tree == lock commit)")
     p = subprocess.run(["git", "show", f"{args.sha}:{rel}"],
                        capture_output=True, text=True,
                        encoding="utf-8", errors="replace")
@@ -434,7 +489,8 @@ def cmd_quote(args):
     body = [("> " + l) if l else ">" for l in defanged.splitlines()]
     block = "\n".join([first] + body)
     print(block)
-    finish("QUOTE_BLOCK", 0, block=block, defanged=names)
+    finish("QUOTE_BLOCK", 0, block=block, defanged=names,
+           lines=len(block.splitlines()))
 
 
 class Parser(argparse.ArgumentParser):
