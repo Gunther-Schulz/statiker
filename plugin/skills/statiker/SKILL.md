@@ -52,21 +52,30 @@ behind the defang rule, and scope-opener classification. Path
 contract, both tools: a path is taken AS NAMED in every git
 operation, never substituted (a resolved link substituted the
 brief's write-set inside a booked verdict); CONTAINMENT alone
-carries a fallback — computed as-named first, and where the
-as-named computation cannot place the path, whatever the cause,
-re-computed over real paths, each fallback noted PER PATH in the
-verdict as `resolved_from` (named and real form both) while the
-operation itself still runs on the named path. Containment and
-git-acceptability are separate questions: a contained path git
-refuses (reachable only through a symlink) surfaces at the
-earliest seam that knows the path — lock-check DRY-RUNS its
+carries a fallback, resolving in the direction of SAFETY:
+computed as-named first, then over real paths where the two can
+differ — a MUST-BE-INSIDE path (lock-set, write-set) is inside
+when EITHER computation places it inside, a realpath acceptance
+noted PER PATH in the verdict as `resolved_from` (named and
+real form both) while the operation itself still runs on the
+named path; a MUST-BE-OUTSIDE path (artifact, seals) is outside
+only when BOTH agree — a link pointing into the repo is caught
+by the real form. Containment and git-acceptability are
+separate questions: a contained path git refuses surfaces at
+the earliest seam that knows the path — lock-check DRY-RUNS its
 adds; preflight and unit-start probe the path's ANCESTORS
-instead, the file itself possibly not existing yet — so the
-halt lands at a check, never a commit. Byte policy runs BOTH directions:
+instead, the file itself possibly not existing yet; and every
+path-accepting seam checks an EXISTING leaf for symlink-ness
+(git accepts a link leaf and commits the link string — no
+dry-run catches it) — so the halt lands at a check, never a
+commit. Byte policy runs BOTH directions:
 git byte output decodes the way the OS decodes argv (two
 spellings of one byte deadlocked the drop handshake), and
 verdict and quote output EMITS at the byte level the same way —
-a tool that re-spells a byte on output mints the second spelling
+the verdict line is a BYTE line, JSON over the input's own
+bytes, strict text only when the input was, decoded by
+consumers exactly as argv decodes — a tool that re-spells a
+byte on output mints the second spelling
 the input rule exists to prevent; the record tool anchors its
 repo at the TRACKER's own directory, the git tool at its
 invocation cwd — briefs invoke it from the repo root, which the
@@ -102,11 +111,13 @@ and record findings mechanized).
 At run start, before any design work: `preflight
 --tracker <path>`. PREFLIGHT_OK proceeds (it also reports any
 in-progress operation, informational at this seam). Preflight
-runs a DEDICATED repo-health read — one whose failure means git
-cannot report state: a corrupt index halts here, before any
-work rests on the tree, never inside a unit. Strictness is the
-health read's alone — reads with legitimate nonzero exits (the
-ignore check's not-ignored) keep their own semantics.
+runs a DEDICATED repo-health read — index-reading by design, so
+a corrupt index halts here, before any work rests on it (a
+mid-run corruption still surfaces at whatever seam meets it).
+Strictness is the health read's alone; every other read keeps
+its own DOCUMENTED exit semantics — a non-error exit (the
+ignore check's not-ignored) is an answer, an error exit of any
+read still halts.
 PREFLIGHT_UNPINNABLE_TRACKER means the repo
 ignores the tracker path and can never pin this run's record —
 surfaced to a present operator before further work; unattended
@@ -176,9 +187,12 @@ recorded recommendation advancing an unattended run (the [READY]
 prompt's pattern); one advanced unattended stays OPEN —
 re-surfaced at each operator prompt and at the run's close —
 until the operator answers. A mid-run operator instruction that
-changes what the run is FOR appends as a new INTENT-grade line
-under the head — not an R-line: R-lines are derived text,
-operator words are not — and the desk states which live
+changes what the run is FOR appends at the record's END as a
+new INTENT-grade line, labeled INTENT, its authority the
+operator's words — never inserted under the head: append-only
+is positional, and an insertion would shift every line number
+under a live `corrects` reference — and not an R-line: R-lines
+are derived text, operator words are not — and the desk states which live
 decisions it kills (a killed one takes the scopeless
 [INVALIDATED] route; the closure voids and the design
 re-enters). Without this landing, the run verifies against a
@@ -204,36 +218,44 @@ phrasing: the entry head `- <C><n> `, the scope openers
 `unit U<k> ` and `record: `, the hold form `unit U<k> held: `
 (that exact prefix as the body's opening — a hold written any
 other way holds nothing), and the `corrects line <n>` repair
-token. Near-miss lint is SIGNATURE-BASED and SCOPED: a line
-carrying an entry SIGNATURE — a LINE-LEADING id token (`<C><n>`,
-C from the entry-class enum, first token after at most one
-bullet) with the tag literal ADJACENT as its next token
-(bracketed, or the bare enum word matched case-INsensitively —
-validity stays case-sensitive, detection does not) — that fails
-the exact head grammar lints as its own violation class,
-whatever bullet carries it (no opener enumeration admits: an
-enumerated set is open and its next unlisted variant slips
-through). The scan EXCLUDES quoted lines (leading `>`) and the
-requirement head above the first cycle heading — the defang
-rule governs both — so report quotes, operator words, and ids
-in prose register nowhere. Scope-opener lint is POSITIONAL, on
-parsed entries: only the body's OPENING tokens classify — a
-leading token stem-matching `unit` or `record` that fails the
-exact literal `unit U<k> ` / `record: ` lints as opener
-near-miss (the one-character slip that otherwise reads as
-scopeless prose and voids, or as scoped and dispatches, on a
-line the desk never meant — both directions observed); opener
-words later in a body are prose. The hold check is positional
-the same way: in a body opening `unit U<k> `, the token in the
-held position (first after the opener) classifies —
-case-insensitive `held`/`hold`, colon or not, TOKEN-EXACT (a
-`held-out` compound is prose): the literal holds, any other
-match lints near-miss. A DISPLACED colon form — `held:` or
-`hold:` as a later token of a unit-scoped body — lints too; the
-bare colon-less word anywhere stays prose (a word-search barred
-every unit on prose "held" while a slipped `hold:` passed and
-traveled as amendment; position plus the colon token closes
-both directions and the displacement one).
+token. DETECTION is wider than validity by design: the lint
+DETECTS would-be machine tokens pattern-based — case-insensitive
+and punctuation-tolerant — and anything detected that fails the
+exact literal lints as a near-miss violation; validity itself
+never relaxes. Three detection surfaces, each POSITIONAL, none a
+word-search: (1) ENTRIES — a line bearing the exact head is an
+entry, and a valid head with a missing or malformed tag is a
+MALFORMED ENTRY, never prose; a line whose leading tokens
+near-match the head (a case, spacing, or bracket slip in id or
+tag), or that leads with an id token and an ADJACENT tag literal
+under any bullet, lints as entry near-miss (no opener or bullet
+enumeration admits: an enumerated set is open and its next
+unlisted variant slips through). (2) OPENERS classify only at a
+parsed body's OPENING tokens: a first token `record:`-like, or
+`unit`-like with a U-token beside it, that fails the exact
+literal lints as opener near-miss (the one-character slip that
+otherwise reads as scopeless prose and voids, or as scoped and
+dispatches, on a line the desk never meant — both directions
+observed); the bare words later in a body, or leading prose
+without the paired shape (`record the verdict`, `unit tests
+pass`), are prose. (3) HOLD classifies the token after
+`unit U<k> `: case, colon, and plural variants of `held`/`hold`
+short of the literal lint as hold near-miss; the colon forms
+`held:`/`hold:` opening any body or displaced later into a
+unit-scoped body lint as displacement; the bare colon-less word
+anywhere is prose, and backtick-quoted text is exempt (quoting
+a literal is legal). The lint is a TRIPWIRE over the observed
+slip space, not the guarantee — the contract is the literal,
+and a slip beyond the patterns is desk error (a word-search
+barred every unit on prose "held" while a slipped `hold:`
+passed and traveled as amendment; positional detection with
+wide patterns closes the observed directions). The signature
+scan (surface 1's id+tag form) EXCLUDES quoted lines (leading
+`>`) and the requirement head above the first cycle heading —
+operator words and report quotes never register as entries.
+DEFANG lint is separate and scans the WHOLE file: an undefanged
+bracketed tag literal holds the sweep wherever it sits — in
+INTENT it is the enforcement of the hand-defang duty.
 Write the literal or expect the lint to say so.
 
 - findings: `- F<n> [VERIFIED|PENDING|INVALIDATED|AUTO-ACCEPTED]
@@ -366,8 +388,8 @@ SWEEP_HOLDS blocks [READY] on the computable slice
 (latest-line [PENDING]s, killer-less dead dispositions, live
 bases citing invalidated ids, grammar and defang lint — a lint
 hold on an appended line repairs by the `corrects line <n>`
-token, Implementation's form, the parse-split deciding its
-effect), and its
+token, Implementation's form, the verdict naming each
+violation's class and repair form), and its
 verdict carries the clause-disposition union the dead-basis read
 consumes; the residue the tool NAMES — dead-basis body-reads, the
 duplicate-id body-read, restatement adoption checks — is the
@@ -461,8 +483,9 @@ moved between check and commit, or the `--drop` list was
 mis-composed: re-run lock-check, re-record, retry ONCE — the
 `--drop` argument is PASTED from the verdict line, never
 re-typed (two spellings of one byte deadlocked this handshake,
-and the re-typing hop is the desk); a second identical mismatch
-halts the lock, both spellings surfaced in the booking. LOCK_COMMITTED's sha is the LOCK
+and the re-typing hop is the desk); a second mismatch OF ANY
+KIND halts the lock uncommitted, routed like HALT_STATE, the
+two sets surfaced verbatim in the booking. LOCK_COMMITTED's sha is the LOCK
 COMMIT — the attack brief pins it, and the locked design IS the
 record at that commit. LOCK_COMMITTED_EXTRAS is a mis-composed
 pathspec: the extras' content is already in history — recorded
@@ -516,7 +539,9 @@ repo-root-relative grammar cannot name it; a tracker path that
 is itself a symlink halts USAGE_ERROR — name the real path:
 the link's git history is the link string, and a round run
 over a one-line artifact would close a design sight-unseen) — and
-drops the two Superseded species, counts
+BLANKS the two Superseded species IN PLACE — each dropped line
+an empty line, the artifact's numbering aligned with the
+source's — counting them
 in its verdict — entry-shaped lines inside a Superseded
 SECTION are PRESERVED (the never-filter sentence below is the
 contract; a section drop that swallowed entries put a live
@@ -528,16 +553,14 @@ possible in resumed trackers only; ENTRIES are never
 filtered (dead bodies are load-bearing for closure questions, and
 a hand-summary is the paraphrase-drift class). The artifact OPENS
 with a tool-emitted header naming the source tracker path and
-the pinned sha and declaring its line-number references
-SOURCE-SIDE: a `corrects line <n>` token dereferences against
-the source tracker — append-only keeps those numbers stable —
-never the artifact's own numbering: the filter's drops shift
-every later line, and a token read against the artifact lands
-on the wrong line. The header is no production species and
-joins no count. The
+the pinned sha and declaring the blanking: line numbers ALIGN
+with the source tracker, so a `corrects line <n>` token
+dereferences identically in either (a compacting filter shifted
+every later line and sent every token to the wrong one). The
+header is no production species and joins no count. The
 brief states
-the filter's form (the two species plus the header) beside the
-artifact; it also
+the filter's form (the two species blanked, the header) beside
+the artifact; it also
 carries the question and the read-only tail (dispatch skill
 `references/forms.md`). Unfiltered, the
 artifact compounds per round; the desk appends nothing to the record
@@ -693,40 +716,49 @@ out-of-enum tag, a signature-bearing near-miss the head grammar
 cannot parse), and the entry set the closure computes is
 unsound until repaired: append a clean line under the same id
 whose body carries the literal token `corrects line <n>` —
-`<n>` the violation's line number from the verdict
-(append-only repair; the tool disarms ONLY on that explicit
-reference: tag-matching proved both brickable — a misspelled
-tag extracts nothing and no re-assertion can ever disarm it —
-and forgeable, a later unrelated same-id/same-tag line
-converting a premise-kill void into a dispatch). The token's
-reach splits on PARSE SUCCESS, never on a violation-class
-list: a target the grammar could not parse is SUPERSEDED
-whole — entry, partial parse, and violations all excluded,
-which erases nothing live by construction (an unparsed line
-never functioned as an entry) — and the correcting line
-RESTATES the content with its intended tag and carries it (a
-corrected line that kept parsing voided the closure its own
-repair had unlocked, and its violations held the sweep
-forever); a target that PARSED keeps its live entry — the
-correcting line is written as bookkeeping (body opens
-`record: `, then the token) and the parse layer excludes it
-from entry-status semantics either way (exactly one of the
-pair is ever an entry): it sheds the target's VIOLATIONS,
-nothing more — status is untouched, a [PENDING] target stays
-[PENDING] until its own ordinary status line, and shedding
-acknowledges, never cleanses: flagged text still sits in the
-file for foreign readers (the stats reader's unanchored
-greps), which is why defang is a compose-time rule — so the
-target's tag, scope, and voiding effect stand (admission
-by any-violation let a cosmetic body slip erase a live
-premise-kill whole: the token converted an operator-meaningful
-void into a dispatch). Tokens COMPOSE: a line may carry
-several `corrects line <n>` tokens, each honored
-independently; a superseded correcting line's own token dies
-with it, and its restatement re-carries that token. A
-`corrects line <n>` naming a
-violation-free line lints `corrects-nothing` — the token
-is a repair, never an eraser of live entries. Then re-run;
+`<n>` the violation's line number from the verdict; ONE token
+per line, targeting a line of the correcting line's OWN id (a
+multi-token line or a cross-id target lints as its own
+violation) (append-only repair; the tool disarms ONLY on that
+explicit reference: tag-matching proved both brickable — a
+misspelled tag extracts nothing and no re-assertion can ever
+disarm it — and forgeable, a later unrelated same-id/same-tag
+line converting a premise-kill void into a dispatch). The
+token's reach splits on WHERE the violation sits — never on
+parse success alone, never on an enumerated class list: a
+violation ON A MACHINE TOKEN (the head, the tag, an opener,
+the hold position, a corrects token) indicts the semantics
+every gate reads, so the target is SUPERSEDED whole — entry,
+partial parse, and violations all excluded; where it never
+parsed this erases nothing live by construction, and either
+way flagged text still sits in the file for foreign readers
+(the stats reader's unanchored greps) — the compose-time
+rules are the only cleanse — and the correcting line RESTATES
+the content; where the target's TAG parsed, the restatement
+carries that SAME tag — a tag change through repair lints as
+its own violation: status changes are ordinary new lines,
+never smuggled through repair (a corrected line that kept
+parsing voided the closure its own repair had unlocked, and
+its violations held the sweep forever). A violation in free
+BODY CONTENT (an undefanged literal, a multi-token slip)
+leaves gate-read semantics sound, so the target keeps its
+live entry: the correcting line is bookkeeping (body opens
+`record: `, then the token), excluded by the parse layer from
+entry-status semantics (exactly one of the pair is ever an
+entry) — it sheds the target's VIOLATIONS, nothing more;
+status is untouched, a [PENDING] target stays [PENDING] until
+its own ordinary status line, and shedding acknowledges,
+never cleanses — so the target's tag, scope, and voiding
+effect stand (admission by any-violation let a cosmetic body
+slip erase a live premise-kill whole: the token converted an
+operator-meaningful void into a dispatch). The verdict NAMES
+each violation's class and the repair form it takes — the
+desk composes from the verdict, never from memory. A
+superseded correcting line's own token dies with it; its
+restatement re-carries that token. A `corrects line <n>`
+naming a violation-free line lints `corrects-nothing` — the
+token is a repair, never an eraser of live entries. Then
+re-run;
 CLOSURE_ABSENT means the gate is not open (the last A-line is
 not [ZERO-DELTA] — the normal state during a reopened design;
 dispatch waits); UNIT_HELD bars that unit on its
@@ -977,7 +1009,11 @@ amendment (what shipped vs. the letter as asked); every
 [AUTO-ACCEPTED] entry; every entry whose latest line is
 [PENDING] (a FAILED or abandoned run can carry them);
 deviations and gaps; what was NOT verified; candidate
-lessons. Landed seals and their comparisons
+lessons. The close ENUMERATES BY REFERENCE — id plus a prose
+summary, never a copied tag-first line: a copied line is a new
+entry, and a copied scopeless body voids; report material
+enters as quote blocks, the tool's production. Landed seals
+and their comparisons
 enter here (The attack). Status flips to COMPLETE when the close
 is appended — over a PASSED verdict ONLY: a run ending FAILED
 takes the same close and KEEPS FAILED, so a FAILED run's close
