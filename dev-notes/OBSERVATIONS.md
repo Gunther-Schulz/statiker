@@ -3152,3 +3152,24 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   Sweep re-ran mid-session: RED now 3/90 (one red capture rotated out);
   class unchanged, dispatch unaffected. Consumer: this session's
   booking of both reports, else the successor meta session.**
+
+- 2026-08-07 — **Cache-fix item-17 dispatch returned HALTED-CLEAN
+  (correct conduct): the work was already landed by another session at
+  f2ab6d0 (10:45Z, ~70 min before dispatch) — exemption clause +
+  red-first bites + BACKLOG entry DONE-marked; agent verified the
+  landed state (npm 2314/2317 green, clause firing in production
+  traffic, zero `lost` rows corpus-wide), wrote nothing. Dispatcher
+  spot-verified: ancestor yes, BACKLOG:925 DONE, bite at
+  selfcheck:1974. MY MISS booked in dispatch-guards
+  dev-notes (406eb57): brief cut from the ranked HEAD, read windows
+  straddled the body's grade line — the partial-view class; probe =
+  one grade-line read at cut time. RESIDUE, operator round pending:
+  (1) gate still RED 3/90 in OTHER classes (invented 35 +
+  suppressed-without-copy 32; NOT identity-normalization, checked at
+  row-kind level only — per-row attribution unmade); (2) agent
+  finding: 4 of 33 cache-fix rank anchors resolve to DONE bullets,
+  both checkers structurally blind (order-check never reads grades,
+  lint skips non-OPEN/READY/HOT headers) — repair shape named
+  (DONE-anchor = loud error in backlog-order.mjs), red-on-4-today
+  arrangement available. Consumer: operator round + any follow-up
+  cache-fix dispatch.**
