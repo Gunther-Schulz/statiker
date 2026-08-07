@@ -2860,3 +2860,16 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   recommendation: let attack 7 grade the 0.2.32 pair first —
   one moving part per lap; the record tool is its own release
   and attack. Consumer: operator's pick + the post-attack-7 lap.
+
+- 2026-08-07 — **Tooling round SETTLED (operator: "agree with
+  all"): record tool is the next precipitation, built AFTER
+  attack 7 grades the 0.2.32 pair (one moving part per lap);
+  attack-brief producer folds into it; seal/.paths helper stays
+  PARKED on its named trigger; no worktree-provisioning scope.**
+  Order of duties: (1) opus-review-0232 return → dispositions
+  recorded (repairs bump to 0.2.33 if bitten); (2) attack 7 on
+  the pair, presented individually for operator go; (3)
+  no-blocker round → pin move + cycle-10 fresh-desk line; (4)
+  record-tool lap (red-first from rounds 1-6 record/instrument
+  findings; its own release + attack). Consumer: this session's
+  remainder + any successor picking up mid-sequence.
