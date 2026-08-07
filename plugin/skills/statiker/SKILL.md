@@ -132,9 +132,10 @@ returns). The [READY] sweep's no-[PENDING] gate holds unread legs
 open mechanically. An unreturnable leg — stopped per the
 harness's task state or BY the desk at its horizon (dispatch
 skill §4: inspect or stop, never more waiting), any partial
-output already body-read per the transcript check above (a
-read that may resolve the entry on its own evidence), no
-closing report ever to arrive — gets a new [AUTO-ACCEPTED]
+output already body-read per the transcript check above,
+never from memory — resolves on that evidence where it
+suffices (the entry takes the evidence's tag); the
+still-unresolved remainder gets a new [AUTO-ACCEPTED]
 tag-first line as a deliberate carry
 with the
 loss stated — the sweep and the closing [ZERO-DELTA]'s
@@ -178,8 +179,8 @@ from it — the dispatch skill §1 definition is the test, not a
 feeling. If writing the impl briefs would require deciding anything,
 the design is not done: design until it could be briefed. [READY] is
 recordable only when the record sweeps clean: no entry's latest line
-is [PENDING] (an assumption deliberately carried unverified is
-re-tagged [AUTO-ACCEPTED], never left [PENDING]), no id appears
+is [PENDING] (an assumption deliberately carried unverified
+gets its [AUTO-ACCEPTED] line, never left [PENDING]), no id appears
 as two live entries (duplicates are found by body-read, not tag
 grammar), and no live entry rests on an invalidated entry's
 content — the dead-basis read is a body-read covering the
@@ -210,15 +211,25 @@ run. `Mode: auto` in the header (operator-declared at run start,
 fixed for the run) forces the unattended branch throughout: no
 prompts, every
 recommendation advances on record, reconciliations surface only
-in the close. Advancing locks the design: commit, by targeted `git add`
-never `-A`, the tracker plus exactly the files this run's own
-recorded entries touched or commissioned. Unrelated tracked
-modifications and untracked files are operator state — left
-uncommitted; any surface the freeze's immutability claim
-cannot then cover is named as an exclusion in the attack brief
-(the claim sets the scope, The attack). This is the LOCK
-COMMIT; its sha is what the attack brief pins, and the locked
-design IS the record at that commit. A
+in the close. Advancing locks the design: commit the tracker
+plus exactly the files the run's own recorded work has
+MODIFIED — edits the
+record attributes to this run; a commissioned target not yet
+edited is not in the set — by targeted `git add` and a
+pathspec commit (`git commit -- <paths>`, immune to a
+pre-staged index), never `-A`. Tracked modifications the
+record does not attribute to the run and untracked files are
+operator state, left uncommitted; a commissioned target
+carrying such modifications is a collision surfaced to the
+operator, never staged through. Read the commit back
+(`git show --stat`) against the intended set before its sha
+is pinned. A brief that asserts the tree claim (The attack)
+names any tracked surface the claim cannot then cover as an
+exclusion — the attacker reads an excluded path as outside
+the frozen surface, evidence of nothing; a brief that never
+asserts it needs no exclusions. This is the LOCK COMMIT; its
+sha is what the attack brief pins, and the locked design IS
+the record at that commit. A
 re-derived design re-enters here: new [READY], new sweep, new
 lock commit.
 
@@ -320,7 +331,9 @@ BARE names listed comma-separated after a semicolon — composed
 first line `> Superseded — A<n> quotes; <bare names>`, the
 semicolon and list absent when no literal occurs; the filter
 matches the label's opening form) so the stats
-reader's unanchored greps never count attacker prose. Regraded
+reader's unanchored greps never count attacker prose — its
+literal greps carry the brackets (verified against its
+source), so a bare name matches nothing. Regraded
 into F-lines in the same sitting. Any substance finding: the
 round records [BIT] — that record change IS the reopen. A
 substance-free
@@ -366,11 +379,14 @@ voids the whole closure
 a line whose body OPENS `unit U<k>` voids nothing — it RE-OPENS
 that unit's dispatch and travels in the re-dispatch brief as the
 amendment it consumes. A line whose body OPENS `record:` is
-desk bookkeeping — it voids nothing and re-opens nothing, the
-clause restatements it obliges (The loop) open `record:` too,
-and it never invalidates an entry live at the closure (the
+desk bookkeeping — it voids nothing and re-opens nothing, and
+it never invalidates an entry live at the closure (the
 definition: The attack's reopen rule): that takes the
-scopeless [INVALIDATED] route below. Units with disjoint
+scopeless [INVALIDATED] route below. A clause restatement it
+obliges (The loop) takes the scope of what the clause IS:
+bookkeeping opens `record:`; a clause a unit consumes opens
+`unit U<k>` and re-opens that unit; one bearing wider on the
+design is SCOPELESS and voids. Units with disjoint
 write-sets run parallel. A missing
 decision, file, or value is reported as a gap, never bridged —
 and triaged on arrival: a unit-local gap decision is a design
@@ -405,7 +421,9 @@ read by construction — that is what makes resume reliable.
 ## Verify (forcing point 5)
 
 Executed, isolated, against the recorded requirement; Phase flips
-to verify at dispatch. A fresh
+to verify at dispatch — a dispatch made only with no entry's
+latest line [PENDING] (the [READY] sweep's condition, re-read
+at this seam). A fresh
 context that did not build the work runs the real checks — tests,
 probes, renders, at the altitude where the work takes effect —
 against the tracker's requirement head as amended by its R-lines,
@@ -421,15 +439,19 @@ path's pre-existence (present or absent) is observed AND
 written at dispatch, before the round runs, to the seal
 namespace —
 `~/.claude/statiker-seals/<repo-basename>/<tracker-filename>.<round>.paths`
-(`<round>` = the A<n> id, or V<n> pre-allocated by count of
-prior V-lines), re-derivable by any successor desk (The
-attack's derivation) — never carried only in the brief or in
-memory. At the return, after any queued appends (attack
+(`<round>` = the A<n> id for attack rounds; a verify leg
+writes `.verify.paths`, REWRITTEN at each verify dispatch —
+at most one is in flight, so no count is derived),
+re-derivable by any successor desk (The attack's derivation)
+— never carried only in the brief or in memory. At the
+return, after any queued appends (attack
 rounds, The attack) and record repairs land and before the
 outcome line, the desk removes exactly the declared paths the
 `.paths` record lists ABSENT that now exist; everything else —
 pre-existing (operator state), undeclared, or uncertain — is
-LEFT, the leftover a finding, never a broader clean. Attack briefs
+LEFT, the leftover a finding, never a broader clean. Removal
+consumes the file — delete it once removal has run; a `.paths`
+file with no live round is litter. Attack briefs
 carry the same carve-out for the repo checks their probes
 execute; an attacker's own probe scratch belongs in its
 scratchpad (the read-only tail's provision), never the repo. Model per
@@ -452,8 +474,10 @@ operator —
 in auto mode this is the run's one touchpoint: the verdict with
 its evidence pointer; every open reconciliation; every R-line
 amendment (what shipped vs. the letter as asked); every
-[AUTO-ACCEPTED] entry; deviations and gaps; what was NOT
-verified; candidate lessons. Landed seals and their comparisons
+[AUTO-ACCEPTED] entry; every entry whose latest line is
+[PENDING] (a FAILED or abandoned run can carry them);
+deviations and gaps; what was NOT verified; candidate
+lessons. Landed seals and their comparisons
 enter here (The attack). Status flips to COMPLETE when the close
 is appended — over a PASSED verdict ONLY: a run ending FAILED
 takes the same close and KEEPS FAILED, so a FAILED run's close

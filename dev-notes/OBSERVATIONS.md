@@ -2353,3 +2353,54 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   edit-method question (each repair minting its own next
   blockers) rather than another iteration. Consumer: review-11
   dispositions + the pin move + the cycle-10 fresh-desk line.
+
+- 2026-08-07 — **Opus review 11 (0.2.27 diff, standing step) — 1
+  BLOCKING, 7 NOTABLE, 4 NIT, hunks 1/3/4/5 largely clean; all
+  dispositioned, repairs released as 0.2.28 (pin still held).**
+  Cadence 4→6→3→2→2→4→2→2→1 — narrowing holds; the lock-commit
+  rewrite (hunk 2) took the round's whole blocking weight. B1
+  ("commissioned" is a defined term recorded at [READY] BEFORE
+  any edit exists, so the add-set included files the run only
+  intends to change — head-on collision with "unrelated tracked
+  modifications left uncommitted" for the common case, operator
+  WIP in a commissioned target; a regression this diff
+  introduced) — FIXED: add-set = files the run's recorded work
+  has MODIFIED (record-attributed edits; unedited commissioned
+  targets excluded); the WIP-in-target collision is surfaced,
+  never staged through. N1 ("exactly" undeliverable — `git
+  commit` takes the whole index, pre-staged operator content
+  rides in) — FIXED: pathspec commit (`git commit -- <paths>`)
+  plus read-back (`git show --stat`) before the sha is pinned.
+  N2 (exclusion clause unconditional though the tree claim is
+  optional, and no attacker semantics for exclusions) — FIXED:
+  conditioned on the brief asserting the claim; attacker reads
+  an excluded path as outside the frozen surface, evidence of
+  nothing. N3 ("no closing report ever to arrive" is a
+  prediction, not a check; strict reader stalls [READY] with no
+  exit) — FIXED: prediction conjunct dropped — stopped + body-
+  read is checkable now; entry resolves on sufficing evidence
+  (its tag), remainder carried [AUTO-ACCEPTED] (also closes T1's
+  fork and restores T2's "never from memory"). N4 (V<n>
+  count-derivation off-by-one and wrong exactly in the resume
+  case) — FIXED: verify writes `.verify.paths`, rewritten per
+  verify dispatch, no count derived. N5 (a record:-scoped
+  restatement could carry a design clause out of every unit
+  brief's reach — the dropped-pin-clause failure by a new
+  door) — FIXED: restatement takes the scope of what the clause
+  IS (bookkeeping → record:, unit-consumed → unit U<k> +
+  re-open, wider design → scopeless, voids). N6 (post-closure
+  [PENDING] restatements had no gate to COMPLETE) — FIXED
+  twice: verify dispatches only with no [PENDING] latest-line
+  (sweep condition re-read at the seam), and the Close
+  enumerates [PENDING] entries for FAILED/abandoned paths. N7
+  (defang safety rested on an unstated fact) — FIXED: basis
+  stated in-text (stats reader's literal greps carry brackets,
+  verified against its source — review 10 executed that check).
+  T3 (surviving "re-tagged" at the sweep line) — FIXED to the
+  new-line form. T4 (.paths litter) — FIXED: removal consumes
+  the file. Count: 476 operational lines (+22). Review 12
+  dispatched on the 0.2.28 diff; PIN STILL AT 0.2.13.
+  Convergence per the pre-registered criterion: 1-blocker round
+  = one more narrow lap, not the method question; a clean or
+  wording-only review 12 moves the pin. Consumer: review-12
+  dispositions + the pin move + the cycle-10 fresh-desk line.
