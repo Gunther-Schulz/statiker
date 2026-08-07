@@ -1893,3 +1893,26 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   stretches don't, the pause itself carried value beyond the
   composition — revisit at run grading. Consumer: stabilization
   pass + run grading.
+
+- 2026-08-07 — **BOOKED (operator-proposed, agreed in principle):
+  auto mode — zero prompts, every recommendation auto-advances.**
+  Clippy precedent: "auto-battle". Design shape, decision-complete
+  for the 0.2.21 consolidation (it rewrites the same prompt-cadence
+  text anyway, so it lands there, not as its own release): the
+  skill's attended/unattended split already defines the behavior —
+  auto mode is a DECLARATION at run start (operator invocation or
+  stated in the go line) that forces the unattended branch even
+  with the operator present: no advance prompts at all, every
+  recommendation advances on record, reconciliations still
+  recorded and re-surfaced ONLY at the run's close, which becomes
+  the single review moment. A conscious operator choice accepting
+  the side-effect (intent conflicts ride desk recommendations
+  until close). Declaration recorded in the tracker header as an
+  additive `Mode:` line (additive header fields pass the stats
+  reader's admission window, which greps only Status/Phase —
+  review-4 N3 taught checking the reader before touching header
+  grammar). Prompt-cadence settings then form a ladder: trial
+  (current, per-dispatch confirms + per-lock y), production
+  (reconciliations + one gate at the zero-delta→implementation
+  seam), auto (none; close-report review). Consumer: 0.2.21
+  consolidation design + stabilization pass.
