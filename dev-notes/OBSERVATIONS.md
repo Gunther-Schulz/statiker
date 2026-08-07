@@ -3270,3 +3270,33 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   dev-notes observation proposing the §1 note; FAILURE books the
   negative result here and the inline default stands measured.
   Consumer: the next repair-lap seam + the fire-rate review.
+
+- 2026-08-07 — **Attribution leg RETURNED (5 parts) and BOOKED;
+  cache-fix work STOPPED in this session (operator call — a
+  dedicated ops session gets the brief).** All 67 residual
+  conservation rows attributed by mechanism-disabling differentials
+  with a faithful-copy control: ONE real on-wire loss
+  (insertion-normalization suppressed a 1473-byte system message
+  with no copy — live in current traffic; booked HOT in the
+  cache-fix BACKLOG with named next step), 66 checker-reach rows
+  (three OPEN entries: clauses e/f gated behind the lost branch;
+  three-way-split beyond the join forms; missing peel-re-serve
+  exemption). Evidence + all three captures preserved at
+  ~/.local/share/cache-fix/attribution-2026-08-07/ (rotation-proof);
+  captures aliased (s-captureAE/AH/AO) in all tracked prose. Booked
+  and pushed as 65ca146; heading updated. Agent conduct note: its
+  first cross-conversation probe read the wrong field, and it
+  rebuilt the instrument, proved it on a known positive, and
+  WITHDREW the leak claim in its report — the instrument-parentage
+  discipline running unprompted. INCIDENT, open: pushurl
+  DENY-worktree-push appeared on BOTH remotes of the MAIN cache-fix
+  clone at 14:47:59 (inside the attribution window; a read-only
+  lane reported zero writes) — removed by the dispatcher after
+  evidence read (main clone, not a worktree; blocked the sanctioned
+  integration push); attribution question sent to the agent;
+  observation to dispatch-guards dev-notes. HANDOFF for the ops
+  session: the four BACKLOG entries ARE the brief material;
+  suggested opening instruction: "continue from BACKLOG — the HOT
+  conservation entry first; evidence bundle at
+  ~/.local/share/cache-fix/attribution-2026-08-07/". Consumer: the
+  operator's ops-session brief + the successor meta session.
