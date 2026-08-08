@@ -61,16 +61,18 @@
   is recorded in dev-notes BEFORE any arm dispatches; arms are
   graded post-run in the meta session on a body-read of the raw
   reports — the desk records verbatim and never grades the arms.
-- **Trial-phase dispatch confirmation.** Attack, implementation,
-  and fable dispatches present individually, model named, and wait
-  for the operator's go — never a second dispatch batched behind
-  one confirmation. Read-only discovery legs at opus or below are
-  PRE-AUTHORIZED: dispatched without asking, named in the turn's
-  report. (Narrowed 2026-08-06 from the blanket rule after it
-  priced dispatches at one blocking round-trip each and pushed
-  discovery into the ungated inline lane — the blanket rule
-  reduced the oversight it existed to buy. Revisit at
-  stabilization.)
+- **Dispatch confirmation: RETIRED 2026-08-08 (operator:
+  production posture — run the skill as it runs in production).**
+  Desk sessions dispatch per the routing table and the run
+  record's own constraints; fable dispatches keep the mechanical
+  veto-gate, and an operator-imposed run hold (a C-line) is
+  always the operator's. History: the trial-phase form
+  (attack/impl/fable present individually and wait, discovery
+  pre-authorized; itself narrowed 2026-08-06 from a blanket rule
+  that priced every dispatch at one blocking round-trip) served
+  while conduct was unmeasured; retired once 0.2.49/50
+  mechanized the grammar and desk conduct graded clean across
+  the trial's first relays.
 - **Skill-edit review at opus (experiment, operator-settled
   2026-08-06).** For the next three SKILL.md releases, each edit
   gets ONE fresh-context opus review before the pin moves — brief

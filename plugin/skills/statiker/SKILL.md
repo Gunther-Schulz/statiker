@@ -133,7 +133,8 @@ Header: `# Run: <title>`; `Status:` from
 {investigate-design, implement, verify}; `Skill: statiker
 <version>` (version read from the Skill injection's
 base-directory line — the plugin cache path carries it); optional
-`Mode: auto` (Stop rule); `Budget: cycles <n> / rounds <n> /
+`Mode: attended` (Stop rule; absent = unattended, the default);
+`Budget: cycles <n> / rounds <n> /
 verify <n>` — the run's declared bound over every repeating seam,
 defaults 7 / 4 / 3, declared at run start where a successor reads
 it (an unattended loop without a declared bound terminates on
@@ -417,7 +418,7 @@ whose green state includes something git cannot undo — a schema
 or data migration, an external write, a publish/push/send, a
 deletion outside the write-set — is tagged irreversible in its
 enumeration. Every other bound in this skill limits waste; this
-one limits damage: in auto mode an irreversible unit never
+one limits damage: unattended an irreversible unit never
 dispatches — it takes the hold entry (Implementation) and rides
 the close for the operator; attended it dispatches after the
 effect is named. (hypothesis) Unit ORDERING is
@@ -432,25 +433,23 @@ proving it gone or changed — never a bare line range (line numbers
 may cite, never command): ranges decay
 as file and record evolve, and one commissioned range landed
 exactly on the guards a prior decision retained, deletable verbatim
-by a literalist implementer. With an
-operator present, present the record and recommendation at
-[READY] — OPENING with the INTENT re-read: a design satisfying
-its derived requirements but not the INTENT is the drift the
-head exists to catch, and no other step forces the look
-(hypothesis) —
-ENDING with one advance prompt — "(y) advances per the
-recommendation"; anything else is free-form override. Design
-decisions are never posed as choices; the prompt carries loop
-control only. Unattended, the recorded recommendation advances the
-run. `Mode: auto` in the header (operator-declared at run start,
-fixed in the auto direction only: an operator appearing mid-run
-may take over on one recorded line and the run continues
-attended — supervision is monotone, adding it never needs
-justification; an attended run never silently becomes auto
-(hypothesis)) forces the unattended branch throughout: no
-prompts, every
-recommendation advances on record, reconciliations surface only
-in the close. Advancing locks the design — the LOCK. Its
+by a literalist implementer. UNATTENDED is
+the default: the recorded recommendation advances the run — no
+prompts, reconciliations surface in the close, the run's one
+touchpoint — but [READY] still opens with the desk's own INTENT
+re-read: a design satisfying its derived requirements but not
+the INTENT is the drift the head exists to catch, and no other
+step forces the look (hypothesis). `Mode: attended` in the
+header (operator-declared at run start) presents the record and
+recommendation at [READY] instead, ENDING with one advance
+prompt — "(y) advances per the recommendation"; anything else
+is free-form override. Design decisions are never posed as
+choices; the prompt carries loop control only. Supervision is
+monotone: an operator appearing mid-run takes over on one
+recorded line and the run continues attended — adding
+supervision never needs justification, and an attended run
+never silently becomes unattended
+(hypothesis). Advancing locks the design — the LOCK. Its
 transaction machinery lives in the git tool; the desk's work is
 the composition, the one judgment instrument, and the record
 forms around the verdicts.
@@ -992,7 +991,7 @@ tracker, the header written FAILED at that halt (the halt
 routes here with no verify verdict to write it) — or operator
 call), append `## Close` and present it to the
 operator —
-in auto mode this is the run's one touchpoint: the verdict with
+unattended this is the run's one touchpoint: the verdict with
 its evidence pointer; every open reconciliation; every R-line
 amendment (what shipped vs. the letter as asked); every
 [AUTO-ACCEPTED] entry; every entry whose latest line is

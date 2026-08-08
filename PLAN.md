@@ -339,6 +339,21 @@ provenance.
   degradation would land. SKILL.md wording changes ride post-trial
   (batch frozen).
 
+- 2026-08-08, operator: **the polarity rider EXECUTED — unattended
+  is now the text's default** ("run the skill as it should run in
+  production; I want to see how it really acts"). `Mode: attended`
+  becomes the operator-declared option; supervision stays monotone
+  (mid-run takeover on one recorded line). The trial-phase
+  dispatch-confirmation convention retired the same day (CLAUDE.md
+  carries the retirement note); operator-imposed run holds and the
+  fable veto-gate stand. Reasons the scaffolding existed, named at
+  retirement: oversight while conduct was unmeasured, cost control
+  before budgets were validated, cheap mint-harvesting at attended
+  seams — all three spent by the 0.2.49/50 releases and the
+  trial's first clean relays; the residual failure the scaffolding
+  itself produced (over-escalation, two incidents) is what forced
+  the question. Released as 0.2.51.
+
 ## Horizon consideration — NOT a decision (operator, 2026-08-05)
 
 When statiker is validated, CONSIDER lifting its framework from it

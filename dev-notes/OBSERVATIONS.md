@@ -4127,3 +4127,25 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   LIVE C58 desk finishes its round on 0.2.49 and a fresh desk
   picks up 0.2.50 at its seam (standing convention). Consumer:
   the trial's next relays; post-trial patch grading.**
+
+- 2026-08-08 — **0.2.51: PRODUCTION POSTURE (operator decision —
+  "the skill doesn't need to be trial-flavored anymore; run it as
+  it should run in production"). Polarity flipped: UNATTENDED is
+  the default, `Mode: attended` the operator-declared option;
+  [READY] keeps the desk's own INTENT re-read in both modes;
+  supervision monotone unchanged. The trial dispatch-confirmation
+  convention retired in CLAUDE.md (fable veto-gate and
+  operator-imposed run holds stand); the relay loop and
+  pre-registration conventions stay — observation, not blocking.
+  What still bounds an unattended run, named at the flip: the
+  declared budget (7/4/3 defaults), the irreversible-unit rule
+  (never dispatches unattended — hold + close), operator holds
+  (0.2.50), and the close as the one touchpoint. Validation axis
+  for the flip, pre-registered: the close must carry enough for
+  post-hoc grading — an unattended run whose close leaves the
+  operator unable to grade what shipped without re-reading the
+  whole record is the failure shape; grade at the first
+  unattended run's close. The LIVE C58 run continues attended by
+  fact (operator present, monotone). Suites 254 green, contract
+  9 green, lint blocking=0 at the flip. Consumer: the first
+  unattended trial run; post-trial grading.**
