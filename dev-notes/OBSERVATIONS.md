@@ -4172,3 +4172,21 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   (2) its lock-set line (a non-tracker file enters the run's
   commits only named by one). Consumer: the next relay's meta
   grading — this entry is the carrier so the check cannot drop.**
+
+- 2026-08-08 — **0.2.50 fire log, first post-pin relay (C58): PASS
+  on the pre-registered criterion.** Both questions relayed were
+  operator-owned — R5 escalated WITH the provenance trace in the
+  desk's own words ("the contested text is yours, not derived"),
+  C8 an operator-imposed hold — zero desk-decidable questions
+  asked. Operator ratified the monotone mode rule on plain-language
+  walk-through ("no silent flip, it tracks its own mode — working
+  as designed") and switched the C58 run to unattended by explicit
+  INTENT line, lifting C8's model-confirmation half, keeping C2,
+  and authorizing D84's four irreversible units on C2's
+  local-only-effect basis. Root-cause note for the grader: the
+  repeat asks were NOT the over-escalation class — they were
+  frozen run-local operator state (trial-era C8) plus
+  attended-by-fact mode, both only operator-liftable by design;
+  the 0.2.52 resume-enumeration mint (mode + standing holds SHOWN
+  at resume, never asked) is the open fix, awaiting operator GO.
+  Consumer: post-trial patch grading; the 0.2.52 decision.**
