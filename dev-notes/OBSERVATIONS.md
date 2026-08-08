@@ -3836,3 +3836,21 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   pin moves at the seam, then the trial run (vehicle: operator's
   call at run start). Consumer: the successor meta session, first
   read after the 2026-08-07 handoff entry.**
+
+- 2026-08-08 — **PARKED (post-trial, batch frozen): two software-factory
+  standing-rule harvests.** (1) Hypothesis-patch candidate: seam
+  restart announcement — at [READY] presentation and close, one
+  clause naming the seam as a safe restart point with current depth;
+  the tracker already makes the restart cheap, nothing makes it
+  VISIBLE, and the corpus's self-directed restart rule loses to
+  momentum (evidence: the 2026-08-08 meta session itself, deep past
+  200k). (2) Open question for the trial, not a patch: the
+  operator-loses-code-touch warning (software-factory "keep diffs
+  reviewable") — deliberately rejected as a rule (dev-shop premise:
+  the record is the operator window, not the diff), but whether the
+  tracker alone keeps the operator effective when a run fails beyond
+  the machinery's self-diagnosis is trial-observable; if not, the
+  close enumerates "surfaces worth the operator's eyes". Third rule
+  ("real tests only") fully covered by discriminating pins + the
+  corpus guard-exemption rule — nothing taken. Consumer: post-trial
+  patch grading.**
