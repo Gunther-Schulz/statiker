@@ -23,6 +23,17 @@ the part that dies with a session). Snapshot as of the 0.2.48 era;
 a later reader re-grades against later evidence rather than
 trusting this label.
 
+Model provenance behind the trajectory (operator, 2026-08-08): the
+model column is HETEROGENEOUS — gemini-2.5-pro at the 2025-05
+monolith, a mix of other models through 2025; opus only entered the
+game in spring 2026, fable mid-2026. So the ledger tracks
+frontier-best-available at each date, never a Claude-tier lineage:
+a class marked "disappeared" died somewhere in the mixed-model
+2025 era, and locates no Claude tier's threshold. Corollary: every
+opus observation in the addendum below rests on a ~5-month window
+(spring 2026 → now) — real but thin next to the 15-month clippy
+record; weigh accordingly.
+
 ## The sampled states
 
 | Ref | Date | Payload | Character |
