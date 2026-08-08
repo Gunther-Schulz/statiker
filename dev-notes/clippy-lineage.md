@@ -23,6 +23,21 @@ the part that dies with a session). Snapshot as of the 0.2.48 era;
 a later reader re-grades against later evidence rather than
 trusting this label.
 
+Evidence grading (operator correction, 2026-08-08 — apply to every
+claim in this file): **Grade A**, the ONE clean observation, made
+multiple times over time: clippy-ON produced much better results
+than clippy-OFF — a with/without contrast at a single point in
+time, which survives the co-evolution confound that invalidates
+trajectory readings; it establishes that the intervention works and
+attributes NOTHING about which machinery or weakness class.
+**Grade B**: dated incidents with refs (attack-round records, the
+skim-and-build commit). **Grade C**: operator recollection and
+everything derived from it — the era attributions, the adherence
+split, build-X-chaos, the greenfield boundary, and the addendum's
+delta-reading — all could be off track. The ledger below is
+Grade C with Grade B anchors; the trial's own record is what
+upgrades or overwrites it.
+
 Model provenance behind the trajectory (operator, 2026-08-08): the
 model column is HETEROGENEOUS — gemini-2.5-pro at the 2025-05
 monolith, a mix of other models through 2025; opus only entered the
