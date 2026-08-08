@@ -3916,3 +3916,20 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   iterative convergence + machine grading — a statiker win
   attributes to the loop as well as the checks. Consumer: the
   comparison-arm design.**
+
+- 2026-08-08 — **EXECUTABLE-SPEC SETTLE landed (successor meta
+  session, executing the form-question booking):
+  docs/directives/executable-spec-settle.md is the build brief's
+  core — ES-1..ES-11 dispositions covering R3 B1–B7 and the
+  0.2.46–48 code-only definitions, red-first arrangement named in
+  the directive (new battery expectations vs unmodified scripts at
+  the build's base). Notable dispositions: R3-B1 → artifact stays
+  pure, filter metadata moves to ARTIFACT_WRITTEN verdict fields;
+  R3-B5 → the re-carry clause is dead (one-pass supersession is the
+  mechanism); R3-B6 → own-id targeting admits id-unreadable
+  targets; R3-B7 → must-be-inside containment decided on the REAL
+  path, ancestor probe named. Build dispatches to opus (write-set:
+  both scripts, three suites, plugin.json bump 0.2.49); SKILL.md
+  reduction + frozen batch run at the desk in parallel, disjoint
+  write-sets. Review rounds stay held per the booking. Consumer:
+  the build dispatch + the release booking to follow.**
