@@ -4281,3 +4281,19 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   first work, one release, before the next trial contact.
   Consumer: the successor meta session, immediately after the
   handoff read.**
+
+- 2026-08-08 — **C58 version-window note for the close's grader
+  (operator relayed at meta-session close): the desk received the
+  decisions reply (unattended switch, C8 lift, C2 stands, D84
+  authorized, red-proof owed) and the operator ran
+  /reload-plugins MID-WORK afterward. Benign in this window,
+  verified: the 0.2.49→0.2.51 delta is prose-only — both tool
+  scripts byte-identical across it — and the prose changes all
+  point where the run's own INTENT line moved it. Grading
+  consequence: the desk's conduct text is 0.2.49-loaded (possibly
+  0.2.51 on any later re-injection), the tools are 0.2.49=0.2.51,
+  and the tracker's Skill: field stays frozen at 0.2.13 (the
+  declared D75 deviation) — grade the close against this window,
+  not the header field. The restart-at-seam convention stands for
+  any release whose delta touches the scripts. Consumer: the C58
+  close's grading.**
