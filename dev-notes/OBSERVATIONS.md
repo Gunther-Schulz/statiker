@@ -3886,3 +3886,17 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   question and only the operator's: whether the unattended/noob
   goal stands — nothing in the lean skill serves it. Consumer: the
   operator now; the successor meta session at trial design.**
+
+- 2026-08-08 — **PARKED (post-trial patch candidate, operator-noted):
+  supervision-cadence dial — per-cycle findings presentation +
+  confirmation, an operator-declared run-start setting (the attended
+  mirror of Mode: auto).** Distinction it rests on (operator, same
+  exchange): presentation cadence vs convergence authority — the
+  operator's confirmation is oversight input, never the certifying
+  instrument; attack and verify still run at every setting. This
+  makes the software-factory subsumption asymmetric and complete:
+  statiker with the dial covers its whole attended spectrum as a
+  setting, the reverse is impossible — narrowing the kill-question
+  (5eb8215) to machinery-cost-at-the-attended-point, which the
+  comparison arm measures. One clause, no architecture change.
+  Consumer: post-trial patch grading; the comparison-arm design.**
