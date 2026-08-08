@@ -66,7 +66,15 @@ carries what current evidence exists).
   skepticism, imports-exist fact-checks (`fa1fe1e` "Absolute
   Critical Checks"). Models stopped mangling edits and hallucinating
   dependencies. Re-adding any of this for a lower-tier desk would be
-  ceremony against a dead class.
+  ceremony against a dead class. CAVEAT (desk self-correction,
+  2026-08-08): "deleted = class died" is confounded — statiker shed
+  clippy's machinery IN BULK at greenfield-rewrite time (the
+  cruft-discrimination pass below), not by per-class evidence of
+  each target's death; a deletion attributes to class-death only
+  where the intermediate states show it retired separately. This
+  column is the weakest in the ledger; weigh it below the
+  "lessened" rows, whose lighter-but-retained machinery is the
+  stronger signal.
 - **Lessened but alive — the grounding constant**: P2+P5
   (premature confident judgment; fact assumed from cursory
   inference). Never left; machinery got ~10× lighter, not absent:
