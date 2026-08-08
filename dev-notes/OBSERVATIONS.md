@@ -4149,3 +4149,14 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   fact (operator present, monotone). Suites 254 green, contract
   9 green, lint blocking=0 at the flip. Consumer: the first
   unattended trial run; post-trial grading.**
+
+- 2026-08-08 — **Addendum to the supervision-cadence dial (parked
+  above): operator ratified the direction at the 0.2.51 polarity
+  flip — "unattended is the goal now, the toughest version, judge
+  performance on that; interactive checkpoints can be added later
+  when the time comes." Grading consequence recorded: unattended
+  performance is judged at the CLOSE (defect escape, AUTO-ACCEPTED
+  enumeration, advanced reconciliations, close-alone gradeability
+  — the 0.2.51 pre-registered axis). The dial stays parked until
+  a trial-observed need; its cadence-vs-authority distinction is
+  unchanged. Consumer: post-trial patch grading.**
