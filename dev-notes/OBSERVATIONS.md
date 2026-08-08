@@ -3933,3 +3933,54 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   reduction + frozen batch run at the desk in parallel, disjoint
   write-sets. Review rounds stay held per the booking. Consumer:
   the build dispatch + the release booking to follow.**
+
+- 2026-08-08 — **FROZEN BATCH minted into SKILL.md (successor meta
+  session; all six as marked (hypothesis) clauses; batch frozen —
+  late arrivals go to the backlog for post-trial). Validation
+  criteria, pre-registered at mint per the hypothesis-patch
+  convention: (A1) head derivation from INTENT + professional
+  standard, carrying the announcement-test/customer-legible
+  mirror, success-metric, and problem-altitude clauses — two-end
+  criterion: a run from a one-liner INTENT ships quality R-lines
+  the operator never asked for AND the attack bites on at least
+  one; a run from a full spec derives a near-empty complement,
+  any deviation escalating as reconciliation — violated on either
+  end's failure. (A2) stop-rule decomposition-completeness —
+  validated when the [READY] self-check amends or adds an R-line
+  BEFORE an attack round at least once in the trial; cut
+  candidate if the attack mandate catches every derivation miss
+  while this never fires (the designing session's weight note:
+  nothing depends on it). (A3) attack-mandate extension to
+  decomposition + simplicity — validated when a round returns at
+  least one decomposition- or simplicity-class finding that
+  survives grading; cut candidate at zero firings across the
+  trial. (A4) tracer-bullet unit ordering at [READY] — validated
+  when it changes a run's unit ordering or its exception clause
+  is exercised with reason (positive form: an integration failure
+  surfacing in the first landing rather than at verify); cut
+  candidate if ordering never changes. Basis for the batch
+  content: the designing session's record (cache-fix meta session
+  db964371, 2026-08-08 06:05–07:09Z, retrieved via session
+  archive) + the FORM QUESTION ANSWERED entry above. Consumer:
+  post-trial patch grading; the trial's fire log.**
+
+- 2026-08-08 — **PARKED (operator thought, post-trial grading
+  axis): attack-round economics — rounds should not open earlier
+  in the loop than the design's maturity warrants; a possibility
+  per seam, not a per-cycle default; quality never traded, only
+  ordering optimized.** Desk read: the machinery already encodes
+  most of this structurally — attacks fire per LOCKED design, not
+  per cycle; the verification-laps convention (CLAUDE.md) batches
+  decided changes to the seam; re-lock granularity is one priced
+  unit (SKILL.md, The attack: per-finding re-locks split the
+  priced unit); the review hold on this release is the same
+  economics applied at the meta layer. The exposed seam is
+  PREMATURE [READY] — a lock called while the design still moves
+  buys a round over an object about to change — and the trial
+  metric that grades it: rounds-per-run and blockers-per-round
+  by lock, read at close. If the trial shows early-lock waste, the
+  candidate patch is a stop-rule clause (design stopped moving =
+  no un-dispatched leg would change a decision AND no decision
+  changed in the last cycle), post-trial, batch discipline
+  applying. Consumer: post-trial grading; the close's
+  anything-learned pass.**

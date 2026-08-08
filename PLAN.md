@@ -264,6 +264,25 @@ provenance.
   cadence dial included) the declared addition. Consumer: every
   future skill adjustment; the stabilization pass.
 
+- 2026-08-08, operator: **economics as a core tenet, adopted into
+  the tenet list** — the loop's own machinery is PRICED, and its
+  spend is ordered by design maturity: verification rounds
+  (attack, review) are possibilities at seams, never per-cycle
+  defaults — a round opens when the object it grades has stopped
+  moving, not because a cycle ended. Quality is never traded for
+  economy: coverage holds, TIMING optimizes — the unit of economy
+  is when a priced round opens and how full it runs (batched
+  changes to the seam, the full battery per trip), never whether
+  the check runs. Existing embodiments, named at adoption: attack
+  per LOCKED design, never per cycle; the
+  verification-laps-on-final-form convention (CLAUDE.md,
+  2026-08-07); re-lock as one priced unit (SKILL.md, The attack);
+  the review hold on the 0.2.49 release. Exposed seam, carried as
+  a post-trial grading axis rather than a text change: premature
+  [READY] (dev-notes 2026-08-08, attack-economics entry — metric:
+  rounds-per-run, blockers-per-round by lock). Corpus alignment:
+  the priced-units rule (operator corpus, Calibration).
+
 ## Horizon consideration — NOT a decision (operator, 2026-08-05)
 
 When statiker is validated, CONSIDER lifting its framework from it
