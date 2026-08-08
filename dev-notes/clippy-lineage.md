@@ -160,8 +160,29 @@ conclusions.
 created and its longitudinal companion — output quality evolving as
 models and clippy evolved, at the altitude where work takes effect
 (shipped code), which the clippy repo's own history cannot show.
-When a quality-trajectory question needs artifact-level evidence,
-that history is the place to sample (unsampled as of this writing).
+PARKED unsampled (operator + desk, 2026-08-08), with the caution
+that decides its use: model tier, clippy version, and operator
+skill co-evolved in lockstep there, so its trajectory cannot
+ATTRIBUTE quality changes to any one of them (the
+changing-two-things rule) — its unique value is SPECIMENS, actual
+per-era output, not attribution. Named triggers, each a pointed
+dispatched sample (one file, two eras), never a broad pass: (a) a
+hypothesis-patch validation criterion needs "horrendous vs.
+professional" defined on real code; (b) the opus ladder wants a
+calibration specimen of unstructured-opus output; (c) the
+succession decision.
+
+**Ground-up re-derivation with cruft-discrimination — a current
+fable/opus capability boundary (operator-observed, 2026-08-08)**:
+statiker itself was born as a greenfield rewrite of clippy from its
+essence, shedding accreted machinery that no longer serves — a task
+requiring the judgment of which cruft is vestigial and which is
+load-bearing. Fable did it; opus cannot (operator observation).
+Consequence, booked: the compression pass owed at stabilization is
+exactly this task-shape and is therefore fable-desk work by
+construction — never delegable to opus regardless of how well opus
+validates on RUNNING statiker. Running the loop and re-deriving the
+loop are different capability classes.
 
 ## Lineage context (operator, 2026-08-08)
 
