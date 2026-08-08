@@ -197,11 +197,10 @@ VERDICT_LINE_RE = re.compile(r"^STATIKER-(?:GIT|RECORD) VERDICT: (.*)$")
 # this list is the only silent-under-report exit and editing it is a
 # deliberate act. Every entry here is red-proven at function level or
 # by a planted-defect run instead (the suites' pure-function classes).
+# (0.2.49/ES-11: ADD_FAILED and GIT_ERROR left this list — the
+# attack-11 attacker MEASURED both reasons false and supplied the
+# recipes, which are battery rows below.)
 UNDRIVEN_REMAINDER = {
-    "ADD_FAILED": "a `git add` failure that is not index.lock "
-                  "contention has no constructible trigger",
-    "GIT_ERROR": "every checked git call sits behind an earlier halt; "
-                 "no invocation reaches a failing one",
     "INTERNAL_ERROR": "the never-a-silent-death catch-all; reaching it "
                       "is itself a tool defect",
     "HALT_NO_PATHSPEC": "emptying the pathspec means dropping the "
@@ -213,10 +212,16 @@ UNDRIVEN_REMAINDER = {
 }
 
 TRACKER_REL = ".clippy/runs/t.md"
+# the `## ` heading is load-bearing from 0.2.49 (ES-1): the
+# requirement-head region runs from file start to the first one and
+# parses no entries at all, so a heading-less fixture has no body.
 CLOSED_TRACKER = """# Run: battery
 Status: in-progress
 Phase: implement
 
+INTENT — battery fixture.
+
+## Cycle 1
 - D1 [COMMITTED] the design — basis: probe
 - A1 [DISPATCHED] round 1 — basis: brief
 - A1 [ZERO-DELTA] clean return — basis: report
@@ -286,13 +291,13 @@ def run_battery(git_script, record_script, root):
     (repo / "docs").mkdir()
     (repo / "docs" / "a.txt").write_text("a\n")
     (repo / "holds.md").write_text(
-        "# Run: h\nStatus: in-progress\nPhase: implement\n\n"
+        "# Run: h\nStatus: in-progress\nPhase: implement\n\n## Cycle 1\n"
         "- F1 [PENDING] awaiting a leg — basis: dispatched\n")
     (repo / "malformed.md").write_text(
         CLOSED_TRACKER +
         "- A2 BIT round 2 found the wrong mechanism — basis: report\n")
     (outside / "stray.md").write_text(
-        "# Run: s\nStatus: in-progress\nPhase: implement\n\n"
+        "# Run: s\nStatus: in-progress\nPhase: implement\n\n## Cycle 1\n"
         "- F1 [VERIFIED] x — basis: y\n")
     tracker_abs = str(repo / TRACKER_REL)
 
@@ -370,9 +375,21 @@ def run_battery(git_script, record_script, root):
     noisy(r_noisy_unit)
     (r_noisy_unit / "note.md").write_text("unit output\n")
 
+    # ES-11's unfrozen pair, on the attack-11 attacker's own recipes:
+    # a path git refuses though containment accepts it (ADD_FAILED at
+    # lock-check's dry-run adds), and a corrupt index (GIT_ERROR out
+    # of preflight's dedicated, STRICT repo-health read)
+    r_addfail = scratch_repo("r_addfail")
+    (r_addfail / "realdir").mkdir()
+    (r_addfail / "realdir" / "x.txt").write_text("run content\n")
+    os.symlink("realdir", r_addfail / "linkdir")
+
+    r_corrupt = scratch_repo("r_corrupt")
+    (r_corrupt / ".git" / "index").write_bytes(b"GARBAGE-NOT-AN-INDEX")
+
     # -- record-side trackers, read-only rows over the main repo -------
     (repo / "absent.md").write_text(
-        "# Run: a\nStatus: in-progress\nPhase: implement\n\n"
+        "# Run: a\nStatus: in-progress\nPhase: implement\n\n## Cycle 1\n"
         "- A1 [DISPATCHED] round 1 — basis: brief\n"
         "- A1 [BIT] two findings — basis: report\n")
     (repo / "void.md").write_text(
@@ -473,6 +490,11 @@ def run_battery(git_script, record_script, root):
                                 "-m", "unit U1"], r_lock, None, None),
         ("git", "unit-commit", ["unit-commit", "--write-set", "note.md",
                                 "-m", "unit U1"], r_noisy_unit, None, None),
+        ("git", "lock-check", ["lock-check", "--tracker", TRACKER_REL,
+                               "--lock-set", "linkdir/x.txt"],
+         r_addfail, None, None),
+        ("git", "preflight", ["preflight", "--tracker", TRACKER_REL],
+         r_corrupt, None, None),
 
         # -- the record-side routes ----------------------------------
         ("record", "lint", ["lint", "--tracker", str(repo / "malformed.md")],

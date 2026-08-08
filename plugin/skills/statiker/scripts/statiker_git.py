@@ -63,11 +63,20 @@ class Halt(Exception):
         self.detail = detail
 
 
+# ES-7: a path whose named and real spellings differ is ACCEPTED on
+# the real-path probe and OPERATED ON as named — the divergence is
+# noted per path in the verdict rather than silently swallowed, so a
+# booked verdict never hides which bytes the operation reached.
+RESOLVED = []
+
+
 def say(msg):
     print(msg)
 
 
 def finish(verdict, exit_code, **detail):
+    if RESOLVED and "resolved_from" not in detail:
+        detail["resolved_from"] = RESOLVED
     say(VERDICT_PREFIX + json.dumps({"verdict": verdict, **detail}))
     sys.exit(exit_code)
 
@@ -132,6 +141,20 @@ def readback_extras(shown_paths: set, expected: set) -> set:
 
 def is_index_lock_error(stderr: str) -> bool:
     return "index.lock" in stderr
+
+
+def nearest_existing_ancestor(p: str):
+    """The path itself if it exists (a broken symlink counts — git
+    commits one as the link file), else the first ancestor that does,
+    else None. The NAMED probe of ES-7's containment rule."""
+    cur = p
+    while True:
+        if os.path.lexists(cur):
+            return cur
+        parent = os.path.dirname(cur)
+        if parent == cur:
+            return None
+        cur = parent
 
 
 def rebase_at_symlinked_ancestor(p: str, top_real: str):
@@ -214,23 +237,43 @@ class Repo:
         paths and a subagent's cwd resets between calls — resolving
         against cwd answered about phantom paths from a subdir.
 
-        The path is taken AS NAMED (SKILL.md, The tools): normalized
-        textually, never resolved through symlinks. Only the repo TOP
-        resolves. attack-9: resolve() substituted a link's TARGET for
-        the brief's own path inside a booked verdict, and halted
-        PATH_OUTSIDE_REPO on a tracked in-repo link pointing outward —
-        a path git commits as the link file itself. A literal `..`
-        escape still leaves the repo and still halts: normpath
-        collapses it before the containment read."""
+        The path is OPERATED ON as named: normalized textually, never
+        substituted by its link target (attack-9: resolve() put a
+        link's TARGET into a booked verdict where the brief had named
+        the link). CONTAINMENT, though, is decided on the REAL path
+        (ES-7, design-attack R3-B7): walk to the nearest EXISTING
+        ancestor and require its realpath to sit inside — or equal —
+        the top's. An in-repo symlinked directory pointing OUT let a
+        unit write outside the repo before any check knew; a literal
+        `..` escape still leaves and still halts. A path reached
+        through a symlinked ancestor OF THE TOP is re-rooted textually
+        (attack-10 N4: git reports the toplevel physically, so the link
+        spelling never matches it)."""
         top = os.path.realpath(str(self.top))
         p = os.path.normpath(os.path.join(top, path_arg))
-        if not p.startswith(top + os.sep):
-            p = rebase_at_symlinked_ancestor(p, top)
-            if p is None:
-                raise Halt("PATH_OUTSIDE_REPO", path=path_arg)
+        if not p.startswith(top + os.sep) and p != top:
+            rebased = rebase_at_symlinked_ancestor(p, top)
+            if rebased is not None:
+                p = rebased
+        anc = nearest_existing_ancestor(p)
+        anc_real = os.path.realpath(anc) if anc else None
+        inside = bool(anc_real and (anc_real == top
+                                    or anc_real.startswith(top + os.sep)))
+        if not inside or not (p == top or p.startswith(top + os.sep)):
+            detail = {"path": path_arg}
+            if anc is not None:
+                detail["resolved_from"] = {"named": p,
+                                           "real": os.path.realpath(p)}
+            raise Halt("PATH_OUTSIDE_REPO", **detail)
         if p == top:
             return "."      # the repo root: a directory, routed as one
-        return Path(p[len(top) + 1:]).as_posix()
+        rel = Path(p[len(top) + 1:]).as_posix()
+        real_p = os.path.realpath(p)
+        if real_p != p:
+            note = {"named": rel, "real": real_p}
+            if note not in RESOLVED:
+                RESOLVED.append(note)
+        return rel
 
     # -- state gate ---------------------------------------------------------
     def ops_in_progress(self):
@@ -283,6 +326,21 @@ class Repo:
                        "--untracked-files=all", "--", *paths).stdout
         return parse_porcelain_z(raw)
 
+    def check_symlink_leaf(self, rels):
+        """An EXISTING leaf that is a symlink halts at every
+        path-accepting seam (ES-7). git ACCEPTS a link leaf and commits
+        the link STRING — no dry-run catches it, and the unit's real
+        output never reaches history — so the halt has to land at a
+        check. Routed USAGE_ERROR by parallel with the filter's
+        tracker-islink halt, which the settle keeps: the composition
+        names the wrong path, and the answer is to name the real one."""
+        links = [r for r in rels if os.path.islink(self.top / r)]
+        if links:
+            raise Halt("USAGE_ERROR",
+                       error="path names a symlink (" + ", ".join(links)
+                             + "): name the real path — git commits a link "
+                               "leaf as the link string, not as the file")
+
     def validate_file_paths(self, rels):
         """Lock-set and write-set paths name FILES, never directories
         (a directory pathspec commits whatever the operator touched
@@ -290,6 +348,7 @@ class Repo:
         dirs = [r for r in rels if (self.top / r).is_dir()]
         if dirs:
             raise Halt("HALT_DIRECTORY_PATH", paths=dirs)
+        self.check_symlink_leaf(rels)
         # lexists, not exists: a path that IS a symlink with a missing
         # target is a file git commits (as the link itself), and
         # exists() follows the link and called it missing (attack-10 N8)
@@ -333,6 +392,18 @@ class Repo:
     def add_with_retry(self, rel):
         self._index_write_with_retry(["add", "--", rel], "ADD_FAILED")
 
+    def dry_run_add(self, rel):
+        """Containment and git-ACCEPTABILITY are separate questions
+        (ES-7): a path this repo contains can still be one git refuses
+        — a path beyond a symbolic link is the attack-11 recipe. The
+        refusal surfaces at the earliest seam that knows the path, so
+        the lock check answers it instead of the commit."""
+        p = self.git("add", "--dry-run", "--", rel, check=False)
+        if p.returncode != 0:
+            err = (p.stderr.decode(errors="replace")
+                   + p.stdout.decode(errors="replace")).strip()
+            raise Halt("ADD_FAILED", path=rel, error=err)
+
     def commit_with_retry(self, message, pathspec):
         self._index_write_with_retry(
             ["commit", "-m", message, "--", *pathspec], "COMMIT_FAILED")
@@ -342,6 +413,13 @@ class Repo:
 
 
 # ------------------------------------------------------------------ lock
+
+def drop_excluded(drops):
+    """Every path a drop takes out of the pathspec — a staged rename's
+    two halves are one drop and two paths."""
+    return ({d["path"] for d in drops}
+            | {d["orig_path"] for d in drops if "orig_path" in d})
+
 
 def lock_survey(repo, tracker, lock_set):
     """LOCK steps 0-3. Returns (pathspec, drops, adds); raises Halt on
@@ -364,10 +442,19 @@ def lock_survey(repo, tracker, lock_set):
             drop = {"path": e.path, "reason": "collision",
                     "porcelain": f"{e.x}{e.y}"}
             if e.orig_path:
+                if e.orig_path == tracker_rel:
+                    # the tracker as a rename's other half is staged
+                    # operator state ON the tracker, and the tracker is
+                    # never dropped
+                    raise Halt("HALT_TRACKER_COLLISION",
+                               porcelain=f"{e.x}{e.y} {e.path} <- {e.orig_path}")
                 drop["orig_path"] = e.orig_path
             drops.append(drop)
 
-    dropped_paths = {d["path"] for d in drops}                     # step 3
+    # BOTH halves of a staged rename leave the pathspec (ES-11 /
+    # attack-11 N8): the deletion half stayed behind and rode into the
+    # lock commit through a handshake the desk had already satisfied
+    dropped_paths = drop_excluded(drops)                           # step 3
     adds = []
     for r in pathspec:
         if r in dropped_paths or repo.is_tracked(r):
@@ -384,6 +471,8 @@ def lock_survey(repo, tracker, lock_set):
 
 def cmd_lock_check(repo, args):
     pathspec, drops, adds = lock_survey(repo, args.tracker, args.lock_set)
+    for r in adds:
+        repo.dry_run_add(r)
     if drops:
         finish("LOCK_CHECK_DROPS", 0, drops=drops, adds=adds,
                pathspec=pathspec)
@@ -403,7 +492,7 @@ def cmd_lock_commit(repo, args):
         # a live drop the desk has not recorded F-lines for yet
         raise Halt("HALT_DROPS_UNACKNOWLEDGED", acknowledged=acked, live=live)
 
-    effective = [p for p in pathspec if p not in set(live)]
+    effective = [p for p in pathspec if p not in drop_excluded(drops)]
     if not effective:
         raise Halt("HALT_NO_PATHSPEC")
     dirty = [e for e in repo.porcelain(effective)]
@@ -464,6 +553,7 @@ def cmd_unit_start(repo, args):
     dirs = [r for r in rels if (repo.top / r).is_dir()]
     if dirs:
         raise Halt("HALT_DIRECTORY_PATH", paths=dirs)
+    repo.check_symlink_leaf(rels)
     ignored = [r for r in rels
                if not repo.is_tracked(r) and repo.is_ignored(r)]
     if ignored:
@@ -540,6 +630,14 @@ def cmd_preflight(repo, args):
     # normally does not.
     if (repo.top / tracker_rel).is_dir():
         raise Halt("HALT_DIRECTORY_PATH", paths=[tracker_rel])
+    repo.check_symlink_leaf([tracker_rel])
+    # a DEDICATED repo-health read, index-reading BY DESIGN and the
+    # only strict one (ES-11 / attack-11 N5): every other read here is
+    # check=False, so a corrupt index answered PREFLIGHT_OK and the run
+    # started on a repo no later seam could commit to. Strictness is
+    # this read's alone — the ignore and tracked reads keep their
+    # documented exit semantics, where a non-error exit is an answer.
+    repo.git("ls-files", "-z", "--", tracker_rel)
     ops = repo.ops_in_progress()
     if not repo.is_tracked(tracker_rel) and repo.is_ignored(tracker_rel):
         finish("PREFLIGHT_UNPINNABLE_TRACKER", 2, tracker=tracker_rel,

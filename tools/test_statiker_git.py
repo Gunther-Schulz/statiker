@@ -923,21 +923,25 @@ class TestAttack9SymlinkContainment(GitFixture):
     """attack-9: rel() resolved paths through symlinks, so a booked
     verdict named a path the brief never wrote (the link's TARGET),
     and a tracked in-repo link pointing outward halted the unit
-    outright. SKILL.md ('The tools'): a path is taken AS NAMED, never
-    resolved through symlinks. Each test red against resolve()."""
+    outright. The as-named booking survives; the ACCEPTANCE of a
+    symlink LEAF does not — 0.2.49's ES-7 halts it at every
+    path-accepting seam (git accepts a link leaf and commits the link
+    string; no dry-run catches it, so the halt lands at a check)."""
 
-    def test_unit_commit_books_the_named_path_not_the_link_target(self):
+    def test_unit_commit_halts_on_a_symlink_leaf(self):
+        # REVERSED by ES-7: at base this committed the link string
         self.write("realdir/target.py", "x = 1\n")
         os.symlink("realdir/target.py", self.repo / "alias.py")
-        v = self.verdict(self.tool(
-            "unit-commit", "--write-set", "alias.py", "-m", "unit U1"))
-        self.assertEqual(v["verdict"], "UNIT_COMMITTED")
-        self.assertEqual(v["write_set"], ["alias.py"],
-                         "the booked write-set names the link target")
-        # git commits the LINK, not the file it points at
-        self.assertEqual(self.head_paths(), {"alias.py"})
+        p = self.tool("unit-commit", "--write-set", "alias.py",
+                      "-m", "unit U1")
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "USAGE_ERROR")
+        self.assertIn("alias.py", v["error"])
+        self.assertEqual(self.head_paths(), {"base.txt"},
+                         "the link was committed anyway")
 
-    def test_unit_start_accepts_tracked_link_pointing_outward(self):
+    def test_unit_start_halts_on_a_link_resolving_out_of_the_repo(self):
+        # REVERSED by ES-7: containment is decided on the REAL path
         ext = Path(self._tmp.name) / "ext"
         ext.mkdir()
         (ext / "real.py").write_text("x = 1\n")
@@ -945,8 +949,8 @@ class TestAttack9SymlinkContainment(GitFixture):
         self.git("add", "link.py")
         self.git("commit", "-m", "link")
         v = self.verdict(self.tool("unit-start", "--write-set", "link.py"))
-        self.assertEqual(v["verdict"], "UNIT_START_CLEAN")
-        self.assertEqual(v["write_set"], ["link.py"])
+        self.assertEqual(v["verdict"], "PATH_OUTSIDE_REPO")
+        self.assertIn("resolved_from", v)
 
     def test_repo_root_still_routes_as_a_directory_path(self):
         # the containment repair must not re-route the repo root out
@@ -1016,9 +1020,10 @@ class TestAttack10SymlinkedAncestor(GitFixture):
         self.assertEqual(v["verdict"], "PATH_OUTSIDE_REPO")
         self.assertNotEqual(p.returncode, 0)
 
-    def test_link_below_the_top_is_still_taken_as_named(self):
-        # the symlink-NON-following contract: a link INSIDE the repo
-        # names itself, never its target (attack-9's repair)
+    def test_link_below_the_top_halts_as_a_symlink_leaf(self):
+        # REVERSED by ES-7: the link is still never RESOLVED (the
+        # booking would name its target), but a link LEAF no longer
+        # reaches a commit — it halts at the check
         real, link = self.linked()
         (real / "realdir").mkdir()
         (real / "realdir" / "target.py").write_text("x = 1\n")
@@ -1029,9 +1034,8 @@ class TestAttack10SymlinkedAncestor(GitFixture):
                            capture_output=True, check=True)
         v = self.verdict(self.run_at(link, "unit-start",
                                      "--write-set", str(link / "alias.py")))
-        self.assertEqual(v["verdict"], "UNIT_START_CLEAN")
-        self.assertEqual(v["write_set"], ["alias.py"],
-                         "the booked write-set names the link target")
+        self.assertEqual(v["verdict"], "USAGE_ERROR")
+        self.assertIn("alias.py", v["error"])
 
 
 class TestAttack10NonUtf8RepoDir(GitFixture):
@@ -1091,23 +1095,25 @@ class TestAttack10PathExistence(GitFixture):
     git commits the link file itself; and preflight never asked whether
     the tracker path is a FILE at all."""
 
-    def test_broken_symlink_write_set_commits_as_a_link(self):
+    def test_broken_symlink_write_set_halts_as_a_symlink_leaf(self):
+        # REVERSED by ES-7: lexists still tells a broken link from a
+        # missing path (it is not HALT_MISSING_PATH), but a link leaf
+        # halts rather than committing the link string
         os.symlink("no-such-target.py", self.repo / "alias.py")
         v = self.verdict(self.tool("unit-commit", "--write-set", "alias.py",
                                    "-m", "unit U1"))
-        self.assertEqual(v["verdict"], "UNIT_COMMITTED")
-        self.assertEqual(self.head_paths(), {"alias.py"})
-        mode = self.git("ls-files", "-s", "--", "alias.py").stdout.split()[0]
-        self.assertEqual(mode, "120000", "git tracked the target, not the link")
+        self.assertEqual(v["verdict"], "USAGE_ERROR")
+        self.assertEqual(self.head_paths(), {"base.txt"})
 
-    def test_broken_symlink_survives_the_lock_pathspec_too(self):
+    def test_broken_symlink_halts_at_the_lock_pathspec_too(self):
         # the parallel seam (one function, two callers)
         os.symlink("no-such-target.py", self.repo / "alias.py")
         self.write(".clippy/runs/t.md", "# Run: t\n")
         v = self.verdict(self.tool(
             "lock-check", "--tracker", ".clippy/runs/t.md",
             "--lock-set", "alias.py"))
-        self.assertEqual(v["verdict"], "LOCK_CHECK_CLEAN")
+        self.assertEqual(v["verdict"], "USAGE_ERROR")
+        self.assertIn("alias.py", v["error"])
 
     def test_missing_write_set_path_still_halts(self):
         # the boundary the lexists repair must not eat
@@ -1130,6 +1136,150 @@ class TestAttack10PathExistence(GitFixture):
         v = self.verdict(self.tool("preflight",
                                    "--tracker", ".clippy/runs/t.md"))
         self.assertEqual(v["verdict"], "PREFLIGHT_OK")
+
+
+# ================================================================= 0.2.49
+# The git tool's half of the executable spec (docs/directives/
+# executable-spec-settle.md): ES-7's containment seams and ES-11's
+# residue from the 0.2.46 code-only list. Cases marked GREEN-AT-BASE
+# are regression pins, not part of the red-first list.
+
+
+class TestES7Containment(GitFixture):
+    """ES-7 (R3-B7): must-be-inside containment is decided on the REAL
+    path. The ancestor probe is NAMED — walk to the path's nearest
+    EXISTING ancestor; the path is inside only when that ancestor's
+    realpath sits inside (or equals) the repo top's realpath. The
+    operation still runs on the as-named spelling, with
+    `resolved_from` noted per path whenever the two differ."""
+
+    def link_dir(self, target):
+        os.symlink(str(target), self.repo / "linkdir")
+
+    def test_write_set_beyond_an_in_repo_link_pointing_out_halts(self):
+        # the settle's own red case: at base the path is taken as
+        # named, accepted, and a unit writes OUTSIDE the repo before
+        # any check knows it
+        out = Path(self._tmp.name) / "elsewhere"
+        out.mkdir()
+        (out / "x.txt").write_text("operator file\n")
+        self.link_dir(out)
+        p = self.tool("unit-start", "--write-set", "linkdir/x.txt")
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "PATH_OUTSIDE_REPO")
+        self.assertEqual(v["path"], "linkdir/x.txt",
+                         "the halt renamed the path it was given")
+        self.assertIn(str(out / "x.txt"), v["resolved_from"]["real"])
+        self.assertNotEqual(p.returncode, 0)
+
+    def test_resolved_from_is_noted_when_the_two_spellings_differ(self):
+        # accepted, because the link points INSIDE — and the verdict
+        # says so per path, the operation still on the named spelling
+        (self.repo / "realdir").mkdir()
+        (self.repo / "realdir" / "x.txt").write_text("run content\n")
+        self.link_dir(self.repo / "realdir")
+        v = self.verdict(self.tool("unit-start",
+                                   "--write-set", "linkdir/x.txt"))
+        self.assertEqual(v["verdict"], "UNIT_START_CLEAN")
+        self.assertEqual(v["write_set"], ["linkdir/x.txt"])
+        named = [r["named"] for r in v["resolved_from"]]
+        self.assertEqual(named, ["linkdir/x.txt"])
+
+    def test_clean_paths_carry_no_resolved_from_noise(self):
+        # GREEN-AT-BASE boundary: the note appears only where the two
+        # computations differ
+        v = self.verdict(self.tool("unit-start", "--write-set", "src.txt"))
+        self.assertEqual(v["verdict"], "UNIT_START_CLEAN")
+        self.assertNotIn("resolved_from", v)
+
+    def test_symlink_leaf_halts_at_every_path_accepting_seam(self):
+        (self.repo / "realdir").mkdir()
+        (self.repo / "realdir" / "x.txt").write_text("content\n")
+        os.symlink("realdir/x.txt", self.repo / "alias.py")
+        self.write(".clippy/runs/t.md", "# Run: t\n")
+        seams = (
+            ("unit-start", "--write-set", "alias.py"),
+            ("unit-commit", "--write-set", "alias.py", "-m", "unit U1"),
+            ("lock-check", "--tracker", ".clippy/runs/t.md",
+             "--lock-set", "alias.py"),
+            ("lock-commit", "--tracker", ".clippy/runs/t.md",
+             "--lock-set", "alias.py", "-m", "lock"),
+            ("preflight", "--tracker", "alias.py"),
+        )
+        for seam in seams:
+            p = self.tool(*seam)
+            v = self.verdict(p)
+            self.assertEqual(v["verdict"], "USAGE_ERROR",
+                             f"{seam[0]} accepted a symlink leaf -> {v}")
+            self.assertEqual(p.returncode, 3, seam[0])
+        self.assertEqual(self.head_paths(), {"base.txt"},
+                         "a seam committed the link string anyway")
+
+
+class TestES11GitResidue(GitFixture):
+    """ES-11: the attack-11 N5/N8 residue from the 0.2.46 code-only
+    list — ADD_FAILED and GIT_ERROR unfrozen with the attacker's own
+    recipes, preflight's dedicated repo-health read strict, and a
+    staged rename's drop excluding BOTH halves."""
+
+    TRACKER = ".clippy/runs/t.md"
+
+    def test_lock_check_dry_runs_its_adds(self):
+        # the attacker's ADD_FAILED recipe: a path git REFUSES though
+        # containment accepts it ("pathspec is beyond a symbolic
+        # link"). Containment and git-acceptability are separate
+        # questions; the halt must land at the CHECK, not the commit.
+        (self.repo / "realdir").mkdir()
+        (self.repo / "realdir" / "x.txt").write_text("run content\n")
+        os.symlink("realdir", self.repo / "linkdir")
+        self.write(self.TRACKER, "# Run: t\n")
+        p = self.tool("lock-check", "--tracker", self.TRACKER,
+                      "--lock-set", "linkdir/x.txt")
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "ADD_FAILED")
+        self.assertIn("symbolic link", v["error"])
+        self.assertNotEqual(p.returncode, 0)
+
+    def test_preflight_health_read_halts_on_a_corrupt_index(self):
+        # the attacker's GIT_ERROR recipe: at base preflight passed
+        # CLEAN over a corrupt index (every read check=False) and the
+        # run started on a repo no later seam could commit to
+        (self.repo / ".git" / "index").write_bytes(b"GARBAGE-NOT-AN-INDEX")
+        p = self.tool("preflight", "--tracker", self.TRACKER)
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "GIT_ERROR")
+        self.assertIn("index", v["stderr"])
+
+    def test_other_reads_keep_their_documented_exit_semantics(self):
+        # GREEN-AT-BASE boundary: strictness is the health read's
+        # alone — a not-ignored answer (exit 1) is an answer
+        self.write(self.TRACKER, "# Run: t\n")
+        v = self.verdict(self.tool("preflight", "--tracker", self.TRACKER))
+        self.assertEqual(v["verdict"], "PREFLIGHT_OK")
+
+    def test_staged_rename_drop_excludes_both_halves(self):
+        # attack-11 N8: the deletion half stayed in the effective
+        # pathspec, so the lock commit landed the operator's staged
+        # rename half through a satisfied drop handshake
+        self.write("old.txt", "content\n")
+        self.git("add", "old.txt")
+        self.git("commit", "-m", "old")
+        self.git("mv", "old.txt", "new.txt")
+        self.write(self.TRACKER, "# Run: t\n")
+        v1 = self.verdict(self.tool(
+            "lock-check", "--tracker", self.TRACKER,
+            "--lock-set", "new.txt", "--lock-set", "old.txt"))
+        self.assertEqual(v1["verdict"], "LOCK_CHECK_DROPS")
+        v2 = self.verdict(self.tool(
+            "lock-commit", "--tracker", self.TRACKER,
+            "--lock-set", "new.txt", "--lock-set", "old.txt",
+            "--drop", "new.txt", "-m", "lock"))
+        self.assertEqual(v2["verdict"], "LOCK_COMMITTED")
+        self.assertEqual(self.head_paths(), {self.TRACKER},
+                         "the rename's deletion half rode into the lock")
+        # the operator's staged rename survives untouched
+        status = self.git("status", "--porcelain").stdout
+        self.assertIn("R  old.txt -> new.txt", status)
 
 
 if __name__ == "__main__":

@@ -43,6 +43,16 @@ def tool(args, cwd=None, stdin_text=None):
         input=stdin_text, capture_output=True, text=True, timeout=60)
 
 
+def tool_bytes(args, cwd=None, stdin_bytes=None):
+    """The same invocation with NO text decoding — the only way to read
+    what the process actually put on the wire (ES-9: verdict and quote
+    output emit at the byte level; a text-mode reader re-spells the
+    byte before the assertion can see it)."""
+    return subprocess.run(
+        [sys.executable, str(SCRIPT), *args], cwd=cwd,
+        input=stdin_bytes, capture_output=True, timeout=60)
+
+
 class RecordFixture(unittest.TestCase):
     def setUp(self):
         self._tmp = tempfile.TemporaryDirectory()
@@ -360,8 +370,11 @@ class TestFilter(RecordFixture):
         self.assertNotIn("legacy section", text)
         self.assertNotIn("old landing text", text)
         self.assertNotIn("LIVE TREE ONLY", text)  # served the sha, not the tree
-        self.assertEqual(v["blocks_dropped"], 1)
-        self.assertEqual(v["sections_dropped"], 1)
+        # ES-3: the species are BLANKED in place, not dropped — the
+        # counts are renamed with the mechanism they now count
+        self.assertEqual(v["blocks_blanked"], 1)
+        self.assertEqual(v["sections_blanked"], 1)
+        self.assertEqual(v["lines_out"], v["lines_in"])
 
     def test_entries_inside_a_superseded_section_are_preserved(self):
         # attack-9: the section drop swallowed EVERY line under the
@@ -395,7 +408,7 @@ class TestFilter(RecordFixture):
         self.assertNotIn("old landing prose", text)
         self.assertNotIn("more legacy prose", text)
         self.assertNotIn("legacy section", text)
-        self.assertEqual(v["sections_dropped"], 1)
+        self.assertEqual(v["sections_blanked"], 1)
 
 
 # --------------------------------------------------------------------- quote
@@ -812,10 +825,14 @@ class TestAttack9TrackerAnchoredRepo(RecordFixture):
             self.assertEqual(v["verdict"], "ARTIFACT_WRITTEN",
                              f"filter from cwd {cwd}")
 
-    def test_tracker_symlinked_outward_is_taken_as_named(self):
-        # attack-9: repo_paths realpath'd the tracker, so an in-repo
-        # tracker that happens to be a symlink read as a path outside
-        # the repo. Containment is textual; only the repo TOP resolves.
+    def test_tracker_symlinked_outward_halts(self):
+        # REVERSED by 0.2.49's ES-7 (design-attack R3-B7). attack-9
+        # made containment TEXTUAL to stop realpath substituting a
+        # link's target for the brief's own path; the SUBSTITUTION ban
+        # stands, but the containment DECISION now runs on the real
+        # path — a tracker named inside the repo whose bytes live
+        # outside it can never be pinned there, and every gate was
+        # satisfiable by exactly that.
         outside = self.no_repo_dir()
         real = Path(outside) / "real.md"
         real.write_text(HEADER + "- F1 [VERIFIED] kept — basis: y\n")
@@ -823,7 +840,7 @@ class TestAttack9TrackerAnchoredRepo(RecordFixture):
         os.symlink(str(real), link)
         v = self.verdict(tool(["lint", "--tracker", str(link)],
                               cwd=str(self.dir)))
-        self.assertEqual(v["verdict"], "LINT_CLEAN")
+        self.assertEqual(v["verdict"], "PATH_OUTSIDE_REPO")
 
     def test_form_feed_does_not_shift_reported_line_numbers(self):
         # attack-9: str.splitlines() also breaks on U+000C, U+2028 and
@@ -1379,7 +1396,7 @@ class TestAttack10FilterAndTrackerRouting(RecordFixture):
         # the section's own lines still drop
         self.assertNotIn("old landing prose", text)
         self.assertNotIn("legacy section", text)
-        self.assertEqual(v["sections_dropped"], 1)
+        self.assertEqual(v["sections_blanked"], 1)
 
 
 class TestCorrectedLineSupersession(RecordFixture):
@@ -1487,6 +1504,658 @@ class TestCorrectedLineSupersession(RecordFixture):
         v = self.closure(body, unit="U1")
         self.assertEqual(v["verdict"], "CLOSURE_RECORD_MALFORMED",
                          "a token naming line 123 disarmed line 12")
+
+
+# ================================================================= 0.2.49
+# The executable spec's own battery (docs/directives/
+# executable-spec-settle.md). Each case names its seed: R3-B1…B7 are
+# design-attack round 3's blockers, R1-B<n> round 1's, ES-<n> the
+# settle item itself. Cases marked GREEN-AT-BASE are regression pins,
+# not part of the red-first list — the settled semantics already held
+# there and the pin keeps them from being repaired away.
+
+
+class PinnedFixture(RecordFixture):
+    """A fixture whose tracker is COMMITTED, for the filter's pinned
+    reads, plus an out-directory outside every repo."""
+
+    def committed_repo(self, text, also=()):
+        env = {**os.environ, "GIT_CONFIG_GLOBAL": "/dev/null",
+               "GIT_AUTHOR_NAME": "t", "GIT_AUTHOR_EMAIL": "t@t",
+               "GIT_COMMITTER_NAME": "t", "GIT_COMMITTER_EMAIL": "t@t"}
+        (self.dir / "t.md").write_text(text)
+        for a in (["add", "t.md", *also], ["commit", "-m", "lock"]):
+            subprocess.run(["git", *a], cwd=self.dir, env=env,
+                           capture_output=True, check=True)
+        return subprocess.run(["git", "rev-parse", "HEAD"], cwd=self.dir,
+                              env=env, capture_output=True, text=True,
+                              check=True).stdout.strip()
+
+    def outdir(self):
+        d = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, d, True)
+        return d
+
+
+# ------------------------------------------------------------------- ES-1
+
+HEAD_WITH_OPERATOR_BULLET = """# Run: test
+Status: in-progress
+Phase: investigate-design
+Skill: statiker 0.2.49
+
+INTENT — do the thing.
+- V2 an operator bullet inside the head
+1. F9 INVALIDATED a numbered head item
+R1. a derived requirement
+
+## Cycle 1
+"""
+
+# the defang boundary needs a BRACKETED literal, which ES-1 leaves
+# firing everywhere — so it gets its own header
+HEAD_WITH_UNDEFANGED_LITERAL = HEAD_WITH_OPERATOR_BULLET.replace(
+    "- V2 an operator bullet inside the head",
+    "- V2 the report came back [COMMITTED]")
+
+
+class TestES1HeadRegionExclusion(RecordFixture):
+    """ES-1 (R3-B3): the requirement-head region — file start to the
+    first `## ` heading — parses NO entries: not the exact head, not
+    the near-miss scan, not the signature scan. An operator bullet
+    cannot brick the closure gate or mint a phantom entry."""
+
+    def test_head_region_bullet_parses_no_entry_and_lints_nothing(self):
+        # the settle's own red case: `- V2 …` in the head region — old
+        # code parses a V-entry and lints tag-enum (plus basis-missing)
+        v = self.lint("- F1 [VERIFIED] a fact — basis: y\n",
+                      header=HEAD_WITH_OPERATOR_BULLET)
+        self.assertEqual(v["verdict"], "LINT_CLEAN", v.get("violations"))
+
+    def test_head_region_bullet_cannot_brick_the_closure(self):
+        v = self.closure(CLOSED, unit="U1",
+                         header=HEAD_WITH_OPERATOR_BULLET)
+        self.assertEqual(v["verdict"], "UNIT_DISPATCHABLE")
+
+    def test_head_region_entry_is_not_in_the_entry_set(self):
+        # the phantom-entry half: the head bullet must not become the
+        # latest line for V2, nor travel anywhere
+        v = self.sweep("- F1 [VERIFIED] a fact — basis: y\n",
+                       header=HEAD_WITH_OPERATOR_BULLET)
+        self.assertEqual(v["verdict"], "SWEEP_CLEAN", v.get("violations"))
+
+    def test_quoted_lines_never_register_as_entries(self):
+        # GREEN-AT-BASE (R1-B2 guard): the widened signature scan must
+        # not reach into report quotes — a defanged block quoting an
+        # entry line is not an entry
+        v = self.lint("> Superseded — A3 quotes\n"
+                      "> - D1 [COMMITTED] the report restated it\n"
+                      "> F9 [INVALIDATED] and an unbulleted one\n")
+        self.assertNotIn("entry-near-miss", self.violation_codes(v))
+
+    def test_header_and_defang_lint_still_read_the_head_region(self):
+        # the boundary ES-1 names untouched: Status/Phase parsing and
+        # the whole-file defang lint are not excluded — an undefanged
+        # literal in INTENT is the enforcement of the hand-defang duty
+        bad = HEAD_WITH_UNDEFANGED_LITERAL.replace("Status: in-progress",
+                                                   "Status: ready")
+        v = self.lint("- F1 [VERIFIED] a fact — basis: y\n", header=bad)
+        codes = self.violation_codes(v)
+        self.assertIn("status-enum", codes)
+        self.assertIn("tag-literal-in-body", codes,
+                      "the head bullet's [COMMITTED] escaped defang lint")
+
+
+# ------------------------------------------------------------------- ES-2
+
+class TestES2LateIntent(RecordFixture):
+    """ES-2 (R3-B2): a mid-run operator instruction lands at the
+    record's END labeled `INTENT: `. The verdict LISTS those lines —
+    the tool, not memory, is what verify's composition grades against."""
+
+    def test_sweep_verdict_lists_the_late_intent_line(self):
+        body = ("- F1 [VERIFIED] a fact — basis: y\n"
+                "INTENT: also make it fast\n")
+        v = self.sweep(body)
+        self.assertEqual(v["late_intent"],
+                         [self.lineno_of(body, "INTENT: also")])
+
+    def test_closure_verdict_lists_the_late_intent_line(self):
+        body = CLOSED + "INTENT: also make it fast\n"
+        v = self.closure(body)
+        self.assertEqual(v["verdict"], "CLOSURE_LIVE")
+        self.assertEqual(v["late_intent"],
+                         [self.lineno_of(body, "INTENT: also")])
+
+    def test_head_intent_is_not_a_late_intent(self):
+        v = self.sweep("- F1 [VERIFIED] a fact — basis: y\n")
+        self.assertEqual(v["late_intent"], [])
+
+    def test_case_and_colon_slips_lint_as_near_miss(self):
+        for slip in ("intent: also make it fast",
+                     "Intent — also make it fast",
+                     "INTENT also make it fast"):
+            v = self.lint("- F1 [VERIFIED] a fact — basis: y\n"
+                          + slip + "\n")
+            self.assertIn("intent-near-miss", self.violation_codes(v),
+                          f"{slip!r} registered as prose")
+
+    def test_intent_prose_words_are_not_intent_lines(self):
+        # GREEN-AT-BASE guard: the detection is a LEADING-token read
+        v = self.lint("- F1 [VERIFIED] a fact — basis: y\n"
+                      "intentional drift is the thing the head catches\n"
+                      "the operator's intent: unchanged\n")
+        self.assertNotIn("intent-near-miss", self.violation_codes(v))
+
+
+# ------------------------------------------------------------------- ES-3
+
+SUPERSEDED_SOURCE = (HEADER +
+                     "- F1 [VERIFIED] kept entry — basis: y\n"
+                     "> Superseded — A2 quotes\n"
+                     "> quoted finding text\n"
+                     ">\n"
+                     "> more quote\n"
+                     "## Superseded — legacy section\n"
+                     "old landing prose\n"
+                     "- F2 [VERIFIED] entry inside the section — basis: y\n"
+                     "more legacy prose\n"
+                     "## Cycle 2\n"
+                     "- F3 [VERIFIED] the corrects target — basis: y\n"
+                     "- F3 [VERIFIED] restated — basis: y\n")
+
+
+class TestES3FilterBlanksInPlace(PinnedFixture):
+    """ES-3 (R3-B1, supersedes the 0.2.46 header definition): the
+    filter BLANKS the two Superseded species in place and emits NO
+    header, so artifact line numbers EQUAL source line numbers by
+    construction — a `corrects line <n>` token dereferences to the
+    same text in either. The blanking metadata travels in the
+    ARTIFACT_WRITTEN verdict fields instead."""
+
+    def filtered(self):
+        sha = self.committed_repo(SUPERSEDED_SOURCE)
+        out = self.outdir() / "a.md"
+        v = self.verdict(tool(["filter", "--tracker", "t.md", "--sha", sha,
+                               "--out", str(out)], cwd=str(self.dir)))
+        self.assertEqual(v["verdict"], "ARTIFACT_WRITTEN")
+        return v, out.read_text()
+
+    def test_every_surviving_line_keeps_its_source_line_number(self):
+        # the red case the settle names: a token below a blanked block
+        # must dereference to the same text in artifact and source
+        v, text = self.filtered()
+        src = SUPERSEDED_SOURCE.split("\n")
+        art = text.split("\n")
+        self.assertEqual(len(art), len(src), "the artifact changed length")
+        for i, (s, a) in enumerate(zip(src, art), 1):
+            self.assertIn(a, (s, ""),
+                          f"line {i}: artifact {a!r} is neither the "
+                          f"source line {s!r} nor a blank")
+        n = next(i for i, l in enumerate(src, 1) if "corrects target" in l)
+        self.assertEqual(art[n - 1], src[n - 1])
+
+    def test_the_two_species_become_empty_lines(self):
+        v, text = self.filtered()
+        art = text.split("\n")
+        src = SUPERSEDED_SOURCE.split("\n")
+        for needle in ("> Superseded — A2 quotes", "quoted finding text",
+                       "more quote", "## Superseded — legacy section",
+                       "old landing prose", "more legacy prose"):
+            i = next(i for i, l in enumerate(src, 1) if needle in l)
+            self.assertEqual(art[i - 1], "",
+                             f"{needle!r} was not blanked in place")
+
+    def test_entries_inside_a_section_keep_their_own_line_numbers(self):
+        v, text = self.filtered()
+        art = text.split("\n")
+        src = SUPERSEDED_SOURCE.split("\n")
+        i = next(i for i, l in enumerate(src, 1)
+                 if "entry inside the section" in l)
+        self.assertEqual(art[i - 1], src[i - 1])
+
+    def test_the_artifact_opens_with_the_source_own_first_line(self):
+        # ES-3 kills the 0.2.46 header: no tool-emitted line at all
+        v, text = self.filtered()
+        self.assertEqual(text.split("\n")[0],
+                         SUPERSEDED_SOURCE.split("\n")[0])
+
+    def test_the_verdict_carries_the_blanking_metadata(self):
+        v, text = self.filtered()
+        self.assertEqual(v["source_tracker"], "t.md")
+        self.assertEqual(v["blocks_blanked"], 1)
+        self.assertEqual(v["sections_blanked"], 1)
+        self.assertEqual(v["lines_blanked"], 7)
+        self.assertEqual(v["lines_out"], v["lines_in"])
+        self.assertIn("blank", v["form"].lower())
+
+
+# ------------------------------------------------------------------- ES-4
+
+class TestES4RepairPinsTagAndScope(RecordFixture):
+    """ES-4 (R3-B4): a supersede-whole restatement carries the
+    target's tag where the tag parsed AND the target's scope class
+    where the scope opener parsed. A scope change through repair lints
+    `repair-scope-change`, exactly as a tag change lints
+    `repair-tag-change`: status and scope changes are ordinary new
+    lines, never smuggled through a repair."""
+
+    def test_scope_change_through_repair_lints(self):
+        # the violated token is the TAG, so the scope opener parsed —
+        # and the restatement moves `record:` bookkeeping to a unit
+        bad = "- D5 [COMMITED] record: bookkeeping — basis: probe\n"
+        n = self.lineno_of(CLOSED + bad, "[COMMITED]")
+        body = (CLOSED + bad +
+                f"- D5 [COMMITTED] unit U1 bookkeeping (corrects line "
+                f"{n}) — basis: probe\n")
+        self.assertIn("repair-scope-change",
+                      self.violation_codes(self.lint(body)))
+
+    def test_tag_change_through_repair_lints(self):
+        # the violated token is the OPENER, so the tag parsed
+        bad = "- D5 [COMMITTED] Record: bookkeeping — basis: probe\n"
+        n = self.lineno_of(CLOSED + bad, "Record:")
+        body = (CLOSED + bad +
+                f"- D5 [INVALIDATED] record: bookkeeping (corrects line "
+                f"{n}) — basis: probe\n")
+        self.assertIn("repair-tag-change",
+                      self.violation_codes(self.lint(body)))
+
+    def test_faithful_restatement_lints_neither(self):
+        bad = "- D5 [COMMITTED] Record: bookkeeping — basis: probe\n"
+        n = self.lineno_of(CLOSED + bad, "Record:")
+        body = (CLOSED + bad +
+                f"- D5 [COMMITTED] record: bookkeeping (corrects line "
+                f"{n}) — basis: probe\n")
+        v = self.lint(body)
+        self.assertEqual(v["verdict"], "LINT_CLEAN", v.get("violations"))
+
+    def test_tag_is_free_where_the_violated_token_is_the_tag(self):
+        # GREEN-AT-BASE boundary: the misspelled-tag repair is the
+        # token's own reason for existing — pinning there would brick it
+        bad = "- D2 [COMMITED] unit U1 the letter lands — basis: probe\n"
+        n = self.lineno_of(CLOSED + bad, "[COMMITED]")
+        body = (CLOSED + bad +
+                f"- D2 [COMMITTED] unit U1 the letter lands (corrects "
+                f"line {n}) — basis: probe\n")
+        self.assertNotIn("repair-tag-change",
+                         self.violation_codes(self.lint(body)))
+
+    def test_scope_is_free_where_the_violated_token_is_the_opener(self):
+        # GREEN-AT-BASE boundary: scope unparseable → the restatement's
+        # scope is free by construction (ES-4's own sentence)
+        bad = "- D5 [COMMITTED] Record: bookkeeping — basis: probe\n"
+        n = self.lineno_of(CLOSED + bad, "Record:")
+        body = (CLOSED + bad +
+                f"- D5 [COMMITTED] unit U1 bookkeeping (corrects line "
+                f"{n}) — basis: probe\n")
+        self.assertNotIn("repair-scope-change",
+                         self.violation_codes(self.lint(body)))
+
+    def test_a_meant_void_restated_scoped_still_voids_and_lints(self):
+        # ES-4's named danger direction, pinned explicitly: converting
+        # a void into a dispatch is held by the closure rule (a
+        # post-closure [INVALIDATED] line for an entry live at the
+        # closure voids WHATEVER its opener), and the scope change
+        # still lints
+        bad = "- D1 [INVALIDATE] the premise died — basis: F9\n"
+        n = self.lineno_of(CLOSED + bad, "[INVALIDATE]")
+        body = (CLOSED + bad +
+                f"- D1 [INVALIDATED] unit U1 the premise died (corrects "
+                f"line {n}) — basis: F9\n")
+        self.assertEqual(self.closure(body, unit="U1")["verdict"],
+                         "CLOSURE_VOID")
+        self.assertIn("repair-scope-change",
+                      self.violation_codes(self.lint(body)))
+
+
+# ------------------------------------------------------------------- ES-5
+
+class TestES5ChainSemantics(RecordFixture):
+    """ES-5 (R3-B5): supersession is one pass over the ORIGINAL entry
+    set, so a token acts whether or not its carrying line is later
+    superseded. The restatement of a superseded correcting line
+    therefore carries exactly ONE token — the 0.2.48 re-carry clause
+    is dead — and a multi-token line lints as its own violation."""
+
+    def chain(self):
+        """10 ← 20 ← 30: a violated line, its correcting line (itself
+        violated), and the restatement of THAT."""
+        bad1 = "- D2 [COMMITED] unit U1 the letter lands — basis: probe\n"
+        n1 = self.lineno_of(CLOSED + bad1, "[COMMITED]")
+        bad2 = (f"- D2 [COMMITTED] Unit U1 the letter lands (corrects "
+                f"line {n1}) — basis: probe\n")
+        n2 = self.lineno_of(CLOSED + bad1 + bad2, "Unit U1")
+        return CLOSED + bad1 + bad2, n1, n2
+
+    def test_one_pass_chain_needs_no_re_carry(self):
+        # GREEN-AT-BASE (ES-5's own red case, already held by the
+        # one-pass mechanism): line 10 stays superseded although the
+        # line that superseded it is itself superseded, and the last
+        # line carries ONE token
+        head, n1, n2 = self.chain()
+        body = (head +
+                f"- D2 [COMMITTED] unit U1 the letter lands (corrects "
+                f"line {n2}) — basis: probe\n")
+        v = self.lint(body)
+        self.assertEqual(v["verdict"], "LINT_CLEAN", v.get("violations"))
+        self.assertEqual(self.closure(body, unit="U1")["verdict"],
+                         "UNIT_DISPATCHABLE")
+
+    def test_a_re_carried_second_token_lints(self):
+        # the 0.2.48 re-carry clause, now a violation: one token per line
+        head, n1, n2 = self.chain()
+        body = (head +
+                f"- D2 [COMMITTED] unit U1 the letter lands (corrects "
+                f"line {n2}) (corrects line {n1}) — basis: probe\n")
+        self.assertIn("multi-corrects-token",
+                      self.violation_codes(self.lint(body)))
+
+    def test_leading_zero_token_numbers_compare_as_integers(self):
+        # GREEN-AT-BASE regression pin (ES-6's NIT2 half; probe at
+        # base: `corrects line 011` already reached line 11)
+        bad = "- D2 [COMMITED] unit U1 the letter lands — basis: probe\n"
+        n = self.lineno_of(CLOSED + bad, "[COMMITED]")
+        body = (CLOSED + bad +
+                f"- D2 [COMMITTED] unit U1 the letter lands (corrects "
+                f"line {n:03d}) — basis: probe\n")
+        self.assertEqual(self.closure(body, unit="U1")["verdict"],
+                         "UNIT_DISPATCHABLE")
+
+
+# ------------------------------------------------------------------- ES-6
+
+class TestES6OwnIdTargeting(RecordFixture):
+    """ES-6 (R3-B6): the token reaches an earlier violated line naming
+    the correcting line's OWN id, and an earlier violated line naming
+    NO readable id — the id-misspelling class the token was built for;
+    the correcting line's id claims it. A violated line readably
+    naming a DIFFERENT id stays barred (the forgery direction)."""
+
+    def test_token_reaches_a_line_naming_no_readable_id(self):
+        # an undefanged literal in a quote block carries a violation
+        # and no id at all — at base the token lints corrects-nothing
+        # ("names no entry") and the violation holds the sweep forever
+        quoted = ("> Superseded — A3 quotes\n"
+                  "> the report said [AUTO-ACCEPTED] verbatim\n")
+        n = self.lineno_of(quoted, "[AUTO-ACCEPTED]")
+        body = (quoted +
+                f"- F7 [VERIFIED] record: corrects line {n} — basis: y\n")
+        v = self.lint(body)
+        self.assertEqual(v["verdict"], "LINT_CLEAN", v.get("violations"))
+
+    def test_cross_id_target_stays_barred(self):
+        # GREEN-AT-BASE boundary (the forgery direction ES-6 keeps):
+        # a violated line READABLY naming another id is not claimable
+        bad = "- D2 [COMMITED] unit U1 the letter lands — basis: probe\n"
+        n = self.lineno_of(CLOSED + bad, "[COMMITED]")
+        body = (CLOSED + bad +
+                f"- F7 [VERIFIED] record: unrelated (corrects line {n}) "
+                f"— basis: y\n")
+        v = self.lint(body)
+        self.assertIn("corrects-nothing", self.violation_codes(v))
+        reason = next(x["text"] for x in v["violations"]
+                      if x["code"] == "corrects-nothing")
+        self.assertIn("D2", reason)
+
+    def test_body_content_violation_sheds_and_the_target_keeps_its_entry(self):
+        # the SITE split (ES-10's two forms): a body-content violation
+        # leaves gate-read semantics sound, so the target keeps its
+        # live entry and the correcting line is bookkeeping — it sheds
+        # violations only, status untouched. At base the whole entry
+        # was superseded, and the [PENDING] status vanished with it.
+        bad = ("- F1 [PENDING] awaiting the leg, the report said "
+               "[AUTO-ACCEPTED] — basis: dispatched\n")
+        n = self.lineno_of(bad, "[PENDING] awaiting")
+        body = (bad +
+                f"- F1 [VERIFIED] record: corrects line {n} — basis: y\n")
+        v = self.sweep(body)
+        self.assertEqual(v["verdict"], "SWEEP_HOLDS")
+        codes = self.violation_codes(v)
+        self.assertNotIn("tag-literal-in-body", codes,
+                         "the bookkeeping line shed nothing")
+        self.assertIn("pending-latest", codes,
+                      "the bookkeeping line changed the entry's status")
+
+
+# ------------------------------------------------------------------- ES-7
+
+class TestES7Containment(PinnedFixture):
+    """ES-7 (R3-B7): must-be-inside containment is decided on the REAL
+    path — walk to the path's nearest EXISTING ancestor; the path is
+    inside only when that ancestor's realpath sits inside (or equals)
+    the repo top's realpath. As-named stays the operating spelling,
+    `resolved_from` noted whenever the two differ. Must-be-outside
+    paths are outside only when BOTH computations agree."""
+
+    def test_tracker_resolving_outside_its_repo_halts(self):
+        # REVERSES the attack-9 as-named containment this settle
+        # replaces: a tracker named inside the repo whose real path
+        # sits outside can never be pinned there
+        outside = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, outside, True)
+        (outside / "real.md").write_text(
+            HEADER + "- F1 [VERIFIED] kept — basis: y\n")
+        os.symlink(str(outside / "real.md"), self.dir / "linked.md")
+        v = self.verdict(tool(["lint", "--tracker",
+                               str(self.dir / "linked.md")],
+                              cwd=str(self.dir)))
+        self.assertEqual(v["verdict"], "PATH_OUTSIDE_REPO")
+        self.assertIn("resolved_from", v)
+        self.assertIn(str(outside / "real.md"), v["resolved_from"]["real"])
+
+    def test_rel_none_with_a_top_present_states_the_true_cause(self):
+        # the 0.2.44 one-cause comment ("rel is None exactly when top
+        # is") is DISPROVEN: this tracker sits in a repo and still
+        # resolves out, and the message must not blame a missing repo
+        outside = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, outside, True)
+        (outside / "real.md").write_text(HEADER)
+        os.symlink(str(outside / "real.md"), self.dir / "linked.md")
+        v = self.verdict(tool(["lint", "--tracker",
+                               str(self.dir / "linked.md")],
+                              cwd=str(self.dir)))
+        self.assertNotIn("no git repository", v["error"])
+        self.assertIn("resolves outside", v["error"])
+
+    def test_symlinked_ancestor_of_the_top_still_resolves_inside(self):
+        # GREEN-AT-BASE boundary (attack-10 N4, preserved): the
+        # ancestor probe must not re-break the link-spelled repo top
+        base = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, base, True)
+        (base / "real" / "inner").mkdir(parents=True)
+        os.symlink(str(base / "real"), str(base / "link"))
+        real = base / "real" / "inner"
+        subprocess.run(["git", "init", "-q", "-b", "main"], cwd=real,
+                       env={**os.environ, "GIT_CONFIG_GLOBAL": "/dev/null"},
+                       capture_output=True, check=True)
+        (real / "t.md").write_text(HEADER + "- F1 [VERIFIED] x — basis: y\n")
+        v = self.verdict(tool(["lint", "--tracker",
+                               str(base / "link" / "inner" / "t.md")],
+                              cwd=str(real)))
+        self.assertEqual(v["verdict"], "LINT_CLEAN")
+
+    def test_out_named_inside_a_repo_halts_even_when_it_resolves_out(self):
+        # the must-be-outside direction: outside only when BOTH
+        # computations agree. At base only the REAL side is checked,
+        # so an --out spelled through an in-repo link landed under a
+        # brief asserting tree == lock commit.
+        sha = self.committed_repo(HEADER + "- F1 [VERIFIED] kept — basis: y\n")
+        target = self.outdir()
+        os.symlink(str(target), self.dir / "linkout")
+        p = tool(["filter", "--tracker", "t.md", "--sha", sha,
+                  "--out", str(self.dir / "linkout" / "a.md")],
+                 cwd=str(self.dir))
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "ARTIFACT_IN_REPO")
+        self.assertFalse((target / "a.md").exists(),
+                         "halt must precede the write")
+
+    def test_out_naming_an_existing_directory_is_a_usage_error(self):
+        # ES-11: IsADirectoryError routes USAGE_ERROR, consistent with
+        # its missing-parent sibling — at base it died INTERNAL_ERROR
+        sha = self.committed_repo(HEADER + "- F1 [VERIFIED] kept — basis: y\n")
+        p = tool(["filter", "--tracker", "t.md", "--sha", sha,
+                  "--out", str(self.outdir())], cwd=str(self.dir))
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "USAGE_ERROR")
+        self.assertEqual(p.returncode, 3)
+
+
+# ------------------------------------------------------------------- ES-8
+
+class TestES8PositionalLintSurfaces(RecordFixture):
+    """ES-8 (0.2.48 definitions; R1-B1/R1-B2 and R2's stem-match seeds
+    as negative cases): the signature scan replaces the opener
+    enumeration (an enumerated set is open — `1)` and bullet-less
+    id-openers escaped it), and hold classification is POSITIONAL —
+    the word-search died in both its directions."""
+
+    def kill(self, prefix):
+        return f"{prefix} [INVALIDATED] the premise died — basis: probe\n"
+
+    def test_bulletless_id_opener_lints_and_blocks(self):
+        # R1-B2 / R3's open-set finding: no bullet at all
+        body = CLOSED + self.kill("F9")
+        v = self.closure(body, unit="U1")
+        self.assertEqual(v["verdict"], "CLOSURE_RECORD_MALFORMED")
+        self.assertIn("entry-near-miss", self.violation_codes(v))
+
+    def test_paren_enumerator_opener_lints_and_blocks(self):
+        body = CLOSED + self.kill("1) F9")
+        v = self.closure(body, unit="U1")
+        self.assertEqual(v["verdict"], "CLOSURE_RECORD_MALFORMED")
+        self.assertIn("entry-near-miss", self.violation_codes(v))
+
+    def test_bare_enum_word_is_an_adjacent_tag_literal(self):
+        body = CLOSED + "F9 INVALIDATED the premise died — basis: probe\n"
+        v = self.closure(body, unit="U1")
+        self.assertEqual(v["verdict"], "CLOSURE_RECORD_MALFORMED")
+        self.assertIn("entry-near-miss", self.violation_codes(v))
+
+    def test_prose_bullets_without_an_adjacent_tag_stay_legal(self):
+        # GREEN-AT-BASE boundary the signature scan must not eat
+        v = self.lint("- D1 [COMMITTED] x — basis: y\n"
+                      "\n"
+                      "  unit U1 landed: abc1234\n"
+                      "\n"
+                      "* an ordinary prose bullet\n"
+                      "1. a numbered prose item\n"
+                      "R5. a derived requirement line\n"
+                      "- see the F-lines above for the basis\n")
+        self.assertEqual(v["verdict"], "LINT_CLEAN", v.get("violations"))
+
+    def test_displaced_hold_colon_form_lints(self):
+        # R2-N2's under-fire half: a `hold:` slip passed the word
+        # search entirely and travelled as an ordinary amendment
+        body = (CLOSED + "- D9 [AUTO-ACCEPTED] unit U2 gap: the operator "
+                         "hold: approval — basis: F9\n")
+        v = self.closure(body, unit="U2")
+        self.assertEqual(v["verdict"], "CLOSURE_RECORD_MALFORMED")
+        self.assertIn("hold-form", self.violation_codes(v))
+
+    def test_hold_colon_form_opening_any_body_lints(self):
+        body = (CLOSED +
+                "- D9 [AUTO-ACCEPTED] held: x.txt — basis: F9\n")
+        v = self.closure(body, unit="U2")
+        self.assertEqual(v["verdict"], "CLOSURE_RECORD_MALFORMED")
+        self.assertIn("hold-form", self.violation_codes(v))
+
+    def test_backtick_quoted_hold_literal_is_exempt(self):
+        # R2-N3's over-fire half, in its sharpest form: quoting the
+        # literal is legal, and the word search barred the unit for it
+        body = (CLOSED + "- D9 [AUTO-ACCEPTED] unit U2 the form is "
+                         "`unit U2 held: ` — basis: F9\n")
+        v = self.closure(body, unit="U2")
+        self.assertEqual(v["verdict"], "UNIT_DISPATCHABLE")
+
+    def test_positional_hold_variants_still_lint(self):
+        # GREEN-AT-BASE control the positional read must not lose
+        for tail in ("HELD: x.txt", "held — x.txt", "holds: x.txt",
+                     "Hold: x.txt"):
+            body = (CLOSED +
+                    f"- D9 [AUTO-ACCEPTED] unit U2 {tail} — basis: F9\n")
+            v = self.closure(body, unit="U2")
+            self.assertEqual(v["verdict"], "CLOSURE_RECORD_MALFORMED", tail)
+            self.assertIn("hold-form", self.violation_codes(v))
+
+    def test_stem_match_negatives_stay_prose(self):
+        # GREEN-AT-BASE (R2's booked stem-match seeds): the bare
+        # colon-less word away from the hold position, `withheld:`,
+        # and the opener stems in ordinary prose
+        v = self.lint("- D9 [AUTO-ACCEPTED] unit U2 gap: the operator "
+                      "withheld: approval — basis: F9\n"
+                      "- D8 [COMMITTED] the answer was held back — "
+                      "basis: y\n"
+                      "- D7 [COMMITTED] record the verdict verbatim — "
+                      "basis: y\n"
+                      "- D6 [COMMITTED] unit tests pass — basis: y\n")
+        self.assertEqual(v["verdict"], "LINT_CLEAN", v.get("violations"))
+
+
+# ------------------------------------------------------------------- ES-9
+
+class TestES9ByteLevelEmit(RecordFixture):
+    """ES-9 (0.2.46 N6; R1-B5; R2-B6's refuted probe settled the
+    mechanism): verdict lines and quote output emit at the BYTE level,
+    surrogateescape over the input's own bytes — a tool that re-spells
+    a byte on output mints the second spelling the input rule exists
+    to prevent."""
+
+    BAD = b"\xff"
+
+    def test_a_violation_text_carries_the_tracker_byte_verbatim(self):
+        p = self.dir / "t.md"
+        p.write_bytes(HEADER.encode() +
+                      b"- F1 (VERIFIED) malformed caf" + self.BAD +
+                      " — basis: y\n".encode())
+        r = tool_bytes(["lint", "--tracker", str(p)], cwd=str(self.dir))
+        self.assertIn(b"STATIKER-RECORD VERDICT:", r.stdout)
+        self.assertIn(self.BAD, r.stdout,
+                      "the verdict line re-spelled the tracker's own byte")
+
+    def test_a_quote_block_round_trips_the_byte(self):
+        r = tool_bytes(["quote", "--label", "A7 quotes"],
+                       stdin_bytes=b"the report said caf" + self.BAD + b"\n")
+        self.assertIn(self.BAD, r.stdout,
+                      "quote mangled the byte before it reached the block")
+
+
+# ------------------------------------------------------------------ ES-10
+
+class TestES10RepairFieldPerViolation(RecordFixture):
+    """ES-10 (0.2.48): every violation names the repair form its SITE
+    takes — the desk composes from the verdict, never from memory."""
+
+    def test_a_machine_token_violation_names_supersede_whole(self):
+        v = self.lint("- D2 [COMMITED] unit U1 the letter lands — "
+                      "basis: probe\n")
+        viol = next(x for x in v["violations"] if x["code"] == "tag-enum")
+        self.assertTrue(viol["repair"].startswith("supersede-whole:"),
+                        viol["repair"])
+        self.assertIn(f"corrects line {viol['line']}", viol["repair"])
+
+    def test_a_body_content_violation_names_bookkeeping(self):
+        v = self.lint("- F1 [VERIFIED] the [PENDING] tag rides here — "
+                      "basis: y\n")
+        viol = next(x for x in v["violations"]
+                    if x["code"] == "tag-literal-in-body")
+        self.assertTrue(viol["repair"].startswith("bookkeeping:"),
+                        viol["repair"])
+        self.assertIn(f"corrects line {viol['line']}", viol["repair"])
+
+    def test_every_violation_carries_a_repair_field(self):
+        body = ("- D2 [COMMITED] unit U1 the letter lands — basis: probe\n"
+                "- F1 [VERIFIED] the [PENDING] tag rides here — basis: y\n"
+                "- F2 [PENDING] awaiting a leg — basis: dispatched\n"
+                "- F3 [INVALIDATED] clause a dead — basis: F9\n"
+                "- F4 [VERIFIED] no basis slot at all\n"
+                "* D4 [COMMITTED] bullet near-miss — basis: probe\n")
+        v = self.sweep(body, header="# Run: t\nStatus: ready\n\n## Cycle 1\n")
+        self.assertEqual(v["verdict"], "SWEEP_HOLDS")
+        for viol in v["violations"]:
+            self.assertIn("repair", viol, viol)
+            self.assertTrue(viol["repair"], viol)
 
 
 # ---------------------------------------------------- pure-function checks
