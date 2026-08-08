@@ -283,6 +283,41 @@ provenance.
   rounds-per-run, blockers-per-round by lock). Corpus alignment:
   the priced-units rule (operator corpus, Calibration).
 
+- 2026-08-08, operator: **the convergence circuit, adopted into
+  the tenet list** — quality and correctness axes converge only
+  when they sit in the RECORD → ATTACK → VERIFY circuit:
+  obligations recorded where every re-read re-encounters them, a
+  fresh context mandated to grade them each round, and the
+  zero-delta criterion holding the loop open until the axis stops
+  moving. Desk-side prose is the weak lever — it rides exactly
+  the judgment-under-momentum that degrades with tier, and even
+  fable exhibits the momentum half (the founding observation).
+  This is the mechanism that made old clippy converge on weak
+  models — judgment externalized out of the desk, re-read instead
+  of remembered, escalated to a stronger grader — with the human
+  seats now replaced by structure (record: memory/oversight;
+  attack: design review; verify: acceptance). Placement rule that
+  follows: a new quality axis lands as record obligations the
+  sweep and attack read, never as paragraphs the desk must
+  remember to honor. (First articulated in the 2026-08-08
+  designing session; adopted on operator GO, same date.)
+
+- 2026-08-08, operator: **the medium tenet, adopted into the
+  tenet list — generalizing the 2026-08-07 precipitation entry
+  beyond the git machinery**: whatever must hold EXACTLY —
+  machine-read semantics, grammars, token contracts, validation
+  predicates — is DESIGNED as mechanism (reference implementation
+  + red-first battery, the executable spec), attacked at that
+  altitude, and only then rendered into prose as principles;
+  prose holds judgment, never exact semantics. Evidence: prose
+  could not close the git machinery (draft attacks 1–6, blockers
+  2→1→2→3→4→5) and could not close the record grammar either
+  (design-attack rounds R1–R3, blockers 5→7→7 concentrated in
+  each round's newest repairs) — the two halves of one measured
+  fact. The 0.2.49 executable-spec release is the embodiment.
+  Single-home stands: SKILL.md remains the only operational TEXT;
+  the change is design ORDER, not homes.
+
 ## Horizon consideration — NOT a decision (operator, 2026-08-05)
 
 When statiker is validated, CONSIDER lifting its framework from it
