@@ -4073,3 +4073,28 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   operational lines. Review rounds held throughout per the
   booking; the battery is the instrument. Consumer: the trial
   (vehicle: operator's call at run start); post-trial grading.**
+
+- 2026-08-08 — **Trial relay, C58 desk cycle 10 (first relay after
+  the 0.2.49 pin move; desk resumed the in-progress run). HARVEST:
+  (1) F117, the run's own re-sweep refuting its desk's D75 in
+  minutes, is the executable spec WORKING as designed — but it
+  surfaces a real class: GRAMMAR-VERSION RESUME. A record written
+  under earlier grammar (wrapped entries, blockquoted INTENT, 714
+  legacy violations) can never sweep clean under 0.2.49 — clean is
+  unreachable at any future cycle by append-only. Desk's handling
+  (sweep informational for the run's life, ready gate on the run's
+  own instruments, deviation declared) is the right shape; PARKED
+  patch candidate for post-trial: resumed-run instrument policy in
+  SKILL.md (a run keeps the instruments of the grammar it was
+  opened under, or the sweep gains a from-line boundary) —
+  evidence: this relay. (2) One-physical-line entries confirmed
+  as the load-bearing form the parser reads — wrapped 17
+  violations, unwrapped 0, measured both ways: the desk-facing
+  consequence (compose entries unwrapped) is grammar-borne, no
+  text change owed. (3) Attended-mode decision presentations
+  observed working as designed; the C8/C4 dispatch hold is
+  run-local, not skill default. (4) Desk conduct clean: route
+  line, gauge, executed bases, self-correction booked with its
+  refutation. NO STOP-CALL: no minted rule failed its falsifier;
+  the batch patches do not bind a resumed pre-0.2.49 record
+  retroactively. Consumer: post-trial grading; the next relay.**
