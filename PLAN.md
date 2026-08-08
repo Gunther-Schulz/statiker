@@ -245,6 +245,25 @@ provenance.
   eight months earlier; software-factory's Gate 3 is independent
   convergence.
 
+- 2026-08-08, operator: **the autonomy north star, adopted into the
+  tenet list** — the skill produces the best possible output ON ITS
+  OWN; the human is out of the loop by default, completely; check
+  and approval points exist only for users who WANT more control
+  and are never required. (Stated against software-factory's
+  approval protocol as the counter-example: revise-per-user-answer
+  is not our goal.) The architecture already embodies it — each
+  forcing point replaces a human seat (record: memory/oversight;
+  attack: design review; verify: acceptance testing; professional-
+  standard head derivation: the customer's taste), and even intent
+  reconciliations are non-blocking in auto (advance on recorded
+  recommendation, stay OPEN to the close). Polarity rider: the
+  current text defaults ATTENDED with Mode: auto as the marked
+  exception — that is trial SCAFFOLDING while the machinery earns
+  trust, not the goal; at stabilization/graduation the polarity
+  inverts — autonomous conduct unmarked, supervision (the parked
+  cadence dial included) the declared addition. Consumer: every
+  future skill adjustment; the stabilization pass.
+
 ## Horizon consideration — NOT a decision (operator, 2026-08-05)
 
 When statiker is validated, CONSIDER lifting its framework from it
