@@ -4209,3 +4209,43 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   commands with pasted output, never effort exhortation.
   Consumer: the opus-ladder design; post-trial grading; any
   future era re-grade.**
+
+- 2026-08-08 — **SESSION HANDOFF (operator closed the meta session
+  at the clean seam; this entry is the successor's brief). STATE:
+  0.2.51 PINNED (pin sha = 8cf41ee-era HEAD; verify with a fresh
+  Skill injection's base-directory line), repo pushed through this
+  entry, suites 254 green, contract 9 green, lint blocking=0. The
+  executable-spec form change is DONE (0.2.49: ES-1..11, all R3
+  blockers red-first; docs/directives/executable-spec-settle.md is
+  the settle), the frozen batch is IN (A1–A4 + A5 spike form, all
+  hypothesis-marked, criteria in the entries above), 0.2.50
+  provenance-gated escalation (first firing PASS), 0.2.51
+  production posture (unattended default; trial dispatch
+  confirmation retired in CLAUDE.md). PLAN carries five new tenet
+  entries: economics, convergence circuit (+ gradeable-form
+  widening), medium tenet, polarity execution. NO dispatch in
+  flight; all four of this session's lanes closed with booked
+  reports. LIVE RUN: C58 desk, switched UNATTENDED by operator
+  INTENT line (C8 model-confirmation lifted, C2 no-push stands,
+  D84's four irreversible units authorized on C2's local-only
+  basis) — next contact is its CLOSE, or a mid-run halt. OPEN, in
+  order: (1) the 0.2.52 resume-enumeration mint (mode + standing
+  holds SHOWN at resume) — recommended, awaiting operator GO;
+  (2) at the next C58 relay: the dead-basis check's RED PROOF
+  (the open-check entry above; lock-set half already answered at
+  F125) and close-alone gradeability (the 0.2.51 axis); (3)
+  greenfield vehicle before parity grading; (4) stabilization
+  backlog unchanged (compression pass — now ~1013 lines, the
+  medium tenet's SITE-split lesson L3 is fodder; hypothesis-patch
+  grading; dispatch-guards graduation); (5) the kill-question
+  comparison arm (design at trial close). Sibling repos: skill-
+  craft 2.0.2 pinned (medium question + skill-lint shipped; N4
+  enforcement.md instrument form deferred there). LEARNED, this
+  session, bases above: fresh review beat excellent
+  self-verification four times (era note); booked-by-recollection
+  vs measured-at-source is the recurring miss class (skill-lint
+  red target; the R5 provenance chain); the 0.2.50 gate turned
+  the over-escalation class off in one release — the remaining
+  asks were frozen operator state, which is the 0.2.52 question.
+  Consumer: the successor meta session, first read after this
+  entry.**
