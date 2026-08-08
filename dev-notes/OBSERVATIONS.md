@@ -4273,3 +4273,11 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   booked here. Distinct from the framework-lifting horizon item —
   this is the shipped skill's own portability. Consumer: the
   successor meta session.**
+
+- 2026-08-08 — **OPERATOR GO, recorded at session close: the
+  successor implements ALL booked skill updates right away —
+  the 0.2.52 resume-enumeration mint (GO now given; no longer
+  awaiting) and the stack-portability READY item above — as its
+  first work, one release, before the next trial contact.
+  Consumer: the successor meta session, immediately after the
+  handoff read.**
