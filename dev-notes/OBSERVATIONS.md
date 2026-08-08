@@ -4160,3 +4160,15 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   — the 0.2.51 pre-registered axis). The dial stays parked until
   a trial-observed need; its cadence-vs-authority distinction is
   unchanged. Consumer: post-trial patch grading.**
+
+- 2026-08-08 — **OPEN CHECK for the next C58 relay (meta-session
+  work, operator-deferred to the right seam): the desk built
+  tools/statiker_dead_basis_check.py (sanctioned: instruments are
+  desk work; the D75 gate leans on exactly this body-read
+  mechanized). At the next relay, verify from the desk's report or
+  by one desk question: (1) the check's RED PROOF — which real
+  defect it fired on (an instrument is unproven until red; a
+  same-parentage check that only passes pins its own blind spot);
+  (2) its lock-set line (a non-tracker file enters the run's
+  commits only named by one). Consumer: the next relay's meta
+  grading — this entry is the carrier so the check cannot drop.**
