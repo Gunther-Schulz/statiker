@@ -4098,3 +4098,32 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   refutation. NO STOP-CALL: no minted rule failed its falsifier;
   the batch patches do not bind a resumed pre-0.2.49 record
   retroactively. Consumer: post-trial grading; the next relay.**
+
+- 2026-08-08 — **0.2.50 MINT (fire-born, operator-raised: "by
+  default the operator should not have to make those decisions"):
+  ESCALATION IS PROVENANCE-GATED — one clause in The record beside
+  the reconciliation definition: trace the contested text to its
+  origin before any question routes to the operator; operator
+  words escalate as reconciliation, derived text (R-lines,
+  inherited constraints, run-instrument policy) is desk work
+  amended or carried [AUTO-ACCEPTED] with basis and presented as
+  information at the next seam; an operator-imposed hold is always
+  theirs; attended mode moves WHERE decisions are presented, never
+  WHO makes them. Provenance, two incidents: (1) the C58 R5
+  round-trip (2026-08-07) that resolved only when the meta-side
+  provenance trace showed R5's strong form was a prior session's
+  sentence — minted meta-side only, desk half missing; (2) this
+  relay (C58 cycle 10): three decisions surfaced, two
+  desk-decidable under existing rules (R5-vs-D52 derived-text
+  amendment; D75 instrument deviation), only the C8/C4-hold one
+  operator-owned. Fire log opens with both. Validation criterion:
+  relays after the pin move carry only operator-owned questions
+  (intent, scope the INTENT pins, imposed holds); a desk-decidable
+  question surfacing as a question again is a firing; zero
+  operator-question relays where the record could answer =
+  validated. Released as 0.2.50 (soft-freeze fold, operator
+  policy); review rounds still held; contract 9 green, lint
+  blocking=0, 1013 operational lines. Pin moves on disk now — the
+  LIVE C58 desk finishes its round on 0.2.49 and a fresh desk
+  picks up 0.2.50 at its seam (standing convention). Consumer:
+  the trial's next relays; post-trial patch grading.**

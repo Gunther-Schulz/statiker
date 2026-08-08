@@ -189,7 +189,17 @@ operator: evidence and recommendation surfaced when found, the
 recorded recommendation advancing an unattended run (the [READY]
 prompt's pattern); one advanced unattended stays OPEN —
 re-surfaced at each operator prompt and at the run's close —
-until the operator answers. A mid-run operator instruction that
+until the operator answers. Escalation is PROVENANCE-GATED:
+before a question routes to the operator, trace the contested
+text to its origin. Operator words escalate as reconciliation;
+derived text — R-lines, inherited constraints, a run
+instrument's policy — is desk work: amend or carry
+[AUTO-ACCEPTED] with basis, presented as INFORMATION at the next
+seam, never as a question. An operator-imposed hold is always
+theirs. Attended mode moves WHERE decisions are presented — the
+seams — never WHO makes them; a question the record can answer,
+asked anyway, spends the operator's one seat. A mid-run
+operator instruction that
 changes what the run is FOR appends at the record's END opening
 with the literal label `INTENT: `, its authority the operator's
 words — never inserted under the head: append-only is
