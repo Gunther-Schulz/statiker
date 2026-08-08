@@ -318,6 +318,27 @@ provenance.
   Single-home stands: SKILL.md remains the only operational TEXT;
   the change is design ORDER, not homes.
 
+- 2026-08-08, operator GO: **the convergence-circuit tenet WIDENED
+  — gradeable form is the admission condition.** The circuit
+  converges only what it can grade, so an obligation enters the
+  circuit in GRADEABLE form: stated so a grader can return met /
+  not-met from evidence. An adjectival obligation ("maintainable",
+  "clean", "professional") is desk prose wearing record costume —
+  it rides every re-read and collects judgment verdicts nothing
+  can refute, the vague-instruction failure relocated one level
+  down. Origin: the operator's professionalism challenge (same
+  day) — "work like a professional dev" moves style, not
+  substance; A1 answers it by materializing the standard as
+  concrete R-lines, and this widening names the general rule that
+  makes that answer non-optional for every future axis. Guard in
+  flight: the A1 watch clause (dev-notes, A1 addendum) grades
+  adjective-degradation during the trial; residual surfaces
+  inventoried there and in the 2026-08-08 exchange: basis-reach is
+  judgment-attended by design (the attack mandate + corpus reach
+  tests), verify's "met" on an adjectival R-line is where
+  degradation would land. SKILL.md wording changes ride post-trial
+  (batch frozen).
+
 ## Horizon consideration — NOT a decision (operator, 2026-08-05)
 
 When statiker is validated, CONSIDER lifting its framework from it
