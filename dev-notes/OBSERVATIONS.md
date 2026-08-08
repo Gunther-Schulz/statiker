@@ -3854,3 +3854,35 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   ("real tests only") fully covered by discriminating pins + the
   corpus guard-exemption rule — nothing taken. Consumer: post-trial
   patch grading.**
+
+- 2026-08-08 — **OPEN STRATEGIC QUESTION (operator, sunk costs
+  explicitly set aside): is statiker worth building, given
+  software-factory (the 168-line 4-gate skill, first external skill
+  sharing the decisions-before-code premise) might do a similarly
+  good job?** Desk assessment: the question is real, narrower than
+  it looks, and measurable. The Grade-A observation (structure-on
+  beats structure-off) does not attribute the gain between
+  decisions-first, evidence discipline, and fresh attack —
+  software-factory is the unrun ablation arm: decisions-first with
+  the machinery removed and a human at four mandatory approval
+  gates. Structural non-compete: it cannot run unattended (gates
+  are mandatory), so it serves the engaged-developer user, not the
+  dev-shop/noob/auto goal; and attended it prices every feature in
+  operator grading attention while P2 rides through (statiker's
+  birth attack: 5-for-5 blockers in clean-reading fable design
+  text — a human approving gate docs is a weaker instrument than a
+  fresh attack, measured on our own artifacts). Sunk-cost honesty:
+  a kill would discard mostly the already-condemned prose grammar;
+  forcing points, tools, and record convention are portable. Post
+  executable-spec + compression, the comparison reduces to lean
+  text + evidence machinery vs lean text + human gates.
+  RECOMMENDATION: proceed with the decided release (shrinks the
+  object either way, required for a fair trial), then add a
+  pre-registered paired comparison arm — same mid-size real task
+  class, statiker vs software-factory-attended; criterion recorded
+  here BEFORE any arm dispatches; grade on defect escape, operator
+  interaction cost (count approvals + minutes), fresh-graded output
+  quality, record gradeability. The decision hiding inside the
+  question and only the operator's: whether the unattended/noob
+  goal stands — nothing in the lean skill serves it. Consumer: the
+  operator now; the successor meta session at trial design.**
