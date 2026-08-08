@@ -4190,3 +4190,22 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   the 0.2.52 resume-enumeration mint (mode + standing holds SHOWN
   at resume, never asked) is the open fix, awaiting operator GO.
   Consumer: post-trial patch grading; the 0.2.52 decision.**
+
+- 2026-08-08 — **ERA NOTE (operator-relayed from a sibling session;
+  no-mint, reasoning on record): Opus 5 migration guidance
+  ("delete verification instructions/subagents — the model
+  self-verifies") does not touch statiker's three verification
+  surfaces, because they buy INDEPENDENCE, not effort: executed
+  mechanical instruments, the fresh-context attack, isolated
+  verify. Same-day evidence, both halves: the 0.2.49 builder's
+  self-verification was excellent and structurally could not
+  catch findings outside its briefed context, while the desk's
+  own edits took two fresh-review blockers the desk could not see
+  because it wrote them. Standing caution for the opus ladder and
+  post-trial grading: a self-verifying desk does NOT make the
+  attack redundant — verdicts flip under fresh or smarter review,
+  never under more self-effort (the R1–R3 series). The advice's
+  live half is honored already: briefs carry verifiers as
+  commands with pasted output, never effort exhortation.
+  Consumer: the opus-ladder design; post-trial grading; any
+  future era re-grade.**
