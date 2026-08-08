@@ -3900,3 +3900,19 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   (5eb8215) to machinery-cost-at-the-attended-point, which the
   comparison arm measures. One clause, no architecture change.
   Consumer: post-trial patch grading; the comparison-arm design.**
+
+- 2026-08-08 — **Addendum to the kill-question (5eb8215), from a
+  full-text read of software-factory: the discovery-refinement loop
+  is ABSENT there, not just the machinery.** Its only iteration is
+  external-pressure revision (per-gate: write once, present, revise
+  per user answer, re-ask; reactive backtracking on cross-gate
+  collision; mockup iteration with the user); its sole
+  investigation mandate is one sentence (read relevant code before
+  the architecture doc), single-pass; "done" is user approval,
+  never design-stopped-moving. Compact form: software-factory
+  SEQUENCES decisions, statiker CONVERGES them. Consequence for
+  the comparison arm: the ablation is decisions-first via
+  single-pass authoring + human grading vs decisions-first via
+  iterative convergence + machine grading — a statiker win
+  attributes to the loop as well as the checks. Consumer: the
+  comparison-arm design.**
