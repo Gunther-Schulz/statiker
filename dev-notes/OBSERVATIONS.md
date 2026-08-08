@@ -3795,3 +3795,44 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   (R2-B6 refuted by encode-side probe) — reviewer probes are
   evidence about the probe run, not the class. Consumer: the
   successor meta session, first read after this entry.**
+
+- 2026-08-08 — **FORM QUESTION ANSWERED (operator): executable-spec
+  form accepted, and it lands BEFORE the next trial run.** The
+  grammar/lint/repair semantics leave SKILL.md prose and become a
+  reference implementation + red-first battery in the tools
+  (R1–R3 blocker lists are the case seeds; R3's seven
+  undispositioned blockers are the first red cases); SKILL.md
+  prose reduces to principles. Basis stack: the 5→7→7
+  concentrated-blocker series (the pre-registered criterion that
+  fired), plus two independent corroborations from the 2026-08-08
+  meta session — the section-size measurement (~600 of 1032
+  operational lines are machine semantics in prose: Implementation
+  228, Attack 170, Record 155, Stop rule 151, Tools 90) and the
+  operator's overbuild challenge (record:
+  dev-notes/clippy-lineage.md session; PLAN.md tenet sharpening
+  9d4e98e). SEQUENCING DECISIONS riding with it (operator, same
+  session): review rounds are HELD — no design-attack on the spec
+  diff, no round 4, the three-release opus-review experiment
+  paused; resume trigger: after trial observation, rounds run on
+  the final form (the repo's verification-laps convention). The
+  battery itself stays — it is the instrument's parentage proof
+  (red-first), not a review round. The dev-shop batch rides the
+  same release: three amendments (head derivation from INTENT +
+  professional standard; stop-rule decomposition-completeness;
+  attack-mandate extension to decomposition + simplicity), three
+  software-factory adoptions (announcement-test/customer-legible
+  mirror; success-metric + problem-altitude rule; tracer-bullet
+  unit ordering as A4) — each a marked hypothesis patch with
+  pre-registered two-end validation criteria (one-liner INTENT:
+  unasked quality R-lines, attack bites on one; full spec:
+  near-empty complement, one deviation escalates as
+  reconciliation). Desk recommendation, not yet operator-settled:
+  the batch is FROZEN at this content — late arrivals go to the
+  backlog for post-trial. Execution: fresh fable meta session
+  (this one is past 200k — restart economics); it reads this
+  entry, the R1–R3 blocker bookings above, and SKILL.md; the
+  semantics settle is desk judgment, the parser+battery build is
+  then brief-covered and dispatchable; release renumbers 0.2.49+,
+  pin moves at the seam, then the trial run (vehicle: operator's
+  call at run start). Consumer: the successor meta session, first
+  read after the 2026-08-07 handoff entry.**
