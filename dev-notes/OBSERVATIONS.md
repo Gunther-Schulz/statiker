@@ -4249,3 +4249,27 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   asks were frozen operator state, which is the 0.2.52 question.
   Consumer: the successor meta session, first read after this
   entry.**
+
+- 2026-08-08 — **READY (operator-decided, post-handoff addendum:
+  successor executes): STACK PORTABILITY — statiker itself must
+  work for users on non-Anthropic model stacks; roles, not
+  models.** Design decided: (1) the attack tier becomes a ROLE
+  with resolution order — `clippy.config/models` `attack:` class
+  where present, else the strongest model available to the
+  harness as a fresh context; the "probed opus" binding moves to
+  this stack's config/ledger as its certified instance, and the
+  probe-then-certify METHOD stays in the text: an uncertified
+  attack tier runs as a declared deviation, never silently
+  (flexibility carries the certification duty — the false-clean
+  knob is the rejected alternative); (2) the impl/verify fallback
+  chain gains a terminal default for users with no operator
+  corpus: cheaper tier for impl and discovery, parent model for
+  verify; (3) dispatch-guards citations stand (public plugin
+  dependency); only the private-corpus reference needs the
+  fallback. Verifier: contract 9 green + lint blocking=0 + a
+  read-through as a no-corpus user (every routing sentence
+  resolves without the operator's private stack). Done-criterion:
+  three passages amended, released with the next version bump,
+  booked here. Distinct from the framework-lifting horizon item —
+  this is the shipped skill's own portability. Consumer: the
+  successor meta session.**
