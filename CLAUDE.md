@@ -12,6 +12,11 @@
   provenance, no patch.
 - **PLAN.md is the design record** — settled decisions are not
   re-opened without new evidence.
+- **`dev-notes/clippy-lineage.md` is the lineage evidence register**
+  — clippy-history Stichproben and the weakness ledger, loosely
+  informing (never a design-against list); load it at opus-ladder
+  grading, hypothesis-patch minting, fire-rate reviews, and the
+  compression pass.
 - **A release during a live run means the desk session restarts.**
   A version bump never reaches a running desk: the pin resolves at
   session start, and a mid-run `/reload-plugins` fixes only future
