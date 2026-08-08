@@ -45,7 +45,10 @@ what it fought — same single-observer caveat as above.
 
 Machinery deleted and never re-added is a measurement that its
 target class lessened below the pain threshold; machinery that only
-got LIGHTER marks a class still alive.
+got LIGHTER marks a class still alive AT LAST OBSERVATION — the
+ledger records trajectory, not today's liveness, which is mostly
+unmeasured (operator correction, 2026-08-08; the addendum below
+carries what current evidence exists).
 
 - **Disappeared** (machinery deleted, never returned): mechanical
   execution fidelity — verify-every-diff-line, tool-output
@@ -113,6 +116,52 @@ got LIGHTER marks a class still alive.
    disappeared, the addition is suspect. But per the epistemic
    status above, the ledger's absence of a class is weak evidence —
    the question informs, it never vetoes on its own.
+
+## Addendum 2026-08-08 — liveness TODAY (mostly unmeasured; guesses with bases)
+
+The ledger above is trajectory. What is actually alive now is a
+separate question, and the honest state is: largely unmeasured.
+Current evidence in hand, per class:
+
+- **Premature confident judgment — measured alive at fable**:
+  statiker's founding skim-and-build incident; the birth attack
+  biting 5-for-5 on a fable-authored draft (OBSERVATIONS.md).
+- **Self-blindness — measured alive at fable, repeatedly**: eleven
+  draft attack rounds with blockers 2→1→2→3→4→5, and R1–R3 still
+  biting. Best-measured class of all.
+- **Opus unstructured — operator observation, 2026-08-08**: "build
+  X" ends in chaos — surface-level output exists, quality
+  horrendous on anything non-trivial. Set against the paired
+  measurement that BRIEFED opus holds (disposition-briefed impl
+  survived attack while desk-implemented repairs took blockers;
+  opus attack certified), the DELTA is the alive-list at opus, read
+  directly: what structure supplies externally is what the model
+  lacks internally — bases before building, self-questioning, a
+  professional notion of done-well, honest verification,
+  sufficiency judgment. The chaos observation is also the dev-shop
+  gap concrete: functional requirements met, professional standard
+  absent.
+- **Mechanical execution fidelity — presumed dead at opus+**:
+  absence-of-pain evidence only (nothing re-added, briefed units
+  land green); no probe has been run.
+- **Adherence — split by tier (operator)**: skills stick at fable;
+  very hard to make effective at opus. First watch-axis for the
+  opus ladder.
+
+Statiker itself is the liveness instrument going forward: every
+forcing point and patch holds its slot only against a class that
+still fires, so the trial's bite and fire-rate record IS the
+per-tier liveness measurement this addendum can only guess at. The
+guesses above are pre-registration for that correction, not
+conclusions.
+
+**Artifact-level ground truth**: the beat-the-books repo
+(2024-12-29 → present, 21 active months) is the reason clippy was
+created and its longitudinal companion — output quality evolving as
+models and clippy evolved, at the altitude where work takes effect
+(shipped code), which the clippy repo's own history cannot show.
+When a quality-trajectory question needs artifact-level evidence,
+that history is the place to sample (unsampled as of this writing).
 
 ## Lineage context (operator, 2026-08-08)
 
