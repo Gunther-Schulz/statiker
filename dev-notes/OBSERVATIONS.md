@@ -4003,3 +4003,73 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   post-trial patch is one clause in A1 demanding each quality
   R-line name its satisfying evidence. Consumer: post-trial patch
   grading.**
+
+- 2026-08-08 — **A5 MINTED (operator policy call, superseding the
+  desk's hold recommendation: the batch freeze is soft for
+  pre-trial folds, and proactive minting with in-action grading is
+  preferred over waiting for the incident — the PLAN 2026-08-07
+  hypothesis-patch rationale restated): the SPIKE FORM lands in
+  SKILL.md, The loop — a spike is a discovery leg that builds in
+  its own scratchpad and returns measurements; findings land as
+  F-lines with executed bases; its code is evidence, never
+  implementation. Pre-registered criterion: validated when a run
+  grounds at least one COMMITTED decision on a spike leg's
+  executed measurement; the designed-against downside is
+  design-in-scratch leakage — a unit whose implementation matches
+  spike code without the locked design carrying it is the failure
+  signature, and one such incident re-opens the clause's wording;
+  cut candidate if spikes never fire across the trial. The second
+  weak spot (fast investigation-close) is deliberately NOT minted:
+  A2 + A3 already carry that answer, and a third clause is the
+  additive-reflex shape — decision recorded here so the question
+  does not re-open without new evidence. ALSO: GAP-4 sentence
+  landed (the first `## ` heading is load-bearing; a heading-less
+  tracker parses no entries silently) and a LINT CANDIDATE is
+  parked: a tracker whose body carries entry-shaped lines but no
+  `## ` heading could lint loudly — post-trial, evidence-gated on
+  anyone actually hitting it. Consumer: post-trial patch grading;
+  the release booking.**
+
+- 2026-08-08 — **0.2.49 BUILT AND INTEGRATED (opus build 2dd1b40 +
+  desk half): the executable-spec release. Red-first proven at the
+  full-battery grain — 48 new expectations red against the
+  unmodified scripts at aaf2327 (arrangement named; red-list with
+  per-case reasons retained through integration), 254 green after
+  implementation (200 at base), contract 9 green re-run by the
+  desk against the FINAL SKILL.md (the build flagged the coupling:
+  its parity ran against the desk's in-flight blob). Coverage:
+  every ES item and every R3 blocker carries a named test class;
+  the one seed residue is R2's "sweep pointer detonating closures"
+  — it targeted a 0.2.47-era construct the 0.2.48 redesign
+  deleted; no surface exists, booked residue-with-reason. GAP
+  RULINGS (desk): GAP-1 symlink-leaf verdict = USAGE_ERROR
+  RATIFIED (parallel with the tracker-islink halt); GAP-2's two
+  extra repair strings RATIFIED as requirement-derived (they
+  restate SKILL.md's own remedies for header and sweep-semantic
+  violations); GAP-3 (id slip with no adjacent tag is silent)
+  ACCEPTED as a named narrowing — the tag-required signature
+  trades the double-slip miss for killing R2's measured over-fire
+  class; probe pasted in the report, tripwire-not-guarantee
+  covers it, post-trial re-visit rides the fire-rate review;
+  GAP-4 landed as prose (first-heading load-bearing sentence) +
+  parked lint candidate. Six legacy symlink/containment cases
+  REVERSED per ES-7, each renamed with its reason. Build
+  lessons booked: (L1) two green-at-base predictions were wrong
+  in opposite directions — the red run separates expectations
+  about the code from expectations about one's own fixture;
+  (L2, settle-form) an item that adds a halt NAMES its verdict,
+  or names the file that gets the route — GAP-1 was this miss;
+  (L3) the machine-token vs body-content SITE split is the
+  load-bearing mechanic ES-4/6/10 rest on and deserves its own
+  statement in any re-derivation — noted for the compression
+  pass. Unverified residue carried honestly (build report (g)):
+  resolved_from asserted only at unit-start; exotic git layouts
+  (bare, GIT_DIR, worktree .git files) unexercised on the new
+  as-named walk; second-token effect of a multi-token corrects
+  line unpinned; preflight health-read cost unmeasured. Desk half
+  in the same release: SKILL.md machine semantics reduced to
+  principles (the medium tenet executed), frozen batch A1–A4 +
+  A5 spike form, ES-2/ES-3 prose updates, GAP-4 sentence; 1002
+  operational lines. Review rounds held throughout per the
+  booking; the battery is the instrument. Consumer: the trial
+  (vehicle: operator's call at run start); post-trial grading.**
