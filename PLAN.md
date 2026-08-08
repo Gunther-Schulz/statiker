@@ -222,6 +222,29 @@ provenance.
   corpus prose). Lineage note: this re-admits what clippy carried
   brute-force, in evidence register without the ceremony.
 
+- 2026-08-08, operator: the founding failure mode, named directly —
+  **ad-hoc decisions during implementation** — what clippy mitigated
+  from the start, and what forcing points 2+4 jointly hold: design
+  and implementation detail lock before the implementation phase.
+  Named on encountering software-factory's premise ("make every
+  important decision before implementation code exists, where
+  changing it costs a sentence instead of a rewrite" — the first
+  external articulation of this striving the operator has seen); the
+  COST ASYMMETRY in that sentence is the rationale under both
+  forcing points and is adopted into the tenet list. Qualifier
+  (operator, same statement): at the right LEVEL ad-hoc decisions
+  always exist — the disease is SILENT design-level decisions
+  mid-implementation, not micro-decisions per se; statiker's gap
+  triage (unit-local [AUTO-ACCEPTED] vs premise-killing void) is
+  the drawn line. Unification (same session): LLM quality decay is
+  this disease on the quality axis — ad-hoc quality micro-decisions
+  accumulating with no design-level budget — which is what the
+  dev-shop quality-R-line amendments move to before implementation.
+  Corroboration: clippy-mkii's IMPLEMENTATION READINESS gate
+  (2025-12, coding-clippy `03a0c8a`) was this premise mechanized
+  eight months earlier; software-factory's Gate 3 is independent
+  convergence.
+
 ## Horizon consideration — NOT a decision (operator, 2026-08-05)
 
 When statiker is validated, CONSIDER lifting its framework from it
