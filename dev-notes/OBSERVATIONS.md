@@ -3984,3 +3984,22 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   changed in the last cycle), post-trial, batch discipline
   applying. Consumer: post-trial grading; the close's
   anything-learned pass.**
+
+- 2026-08-08 — **ADDENDUM to A1's pre-registered criterion
+  (operator challenge, same day: instructing an LLM to "work like
+  a professional dev" is vague and buys little — are we doing
+  that?). Desk position, recorded: A1 is designed NOT to be that —
+  "professional standard" is a DERIVATION SOURCE, not a conduct
+  adverb; its output must MATERIALIZE as concrete R-lines (a
+  size/complexity budget, a named-consumer test for abstractions,
+  a threat model at trust boundaries, a success metric) that the
+  circuit then grades — obligations-as-artifacts graded by a fresh
+  attacker holding a concrete design, never an exhortation the
+  desk holds in mind. Residual risk the challenge names, now a
+  WATCH CLAUSE on A1's criterion: the derivation can degrade to
+  adjectives ("maintainable", "clean") — trial grading checks that
+  derived quality R-lines are OPERATIONALIZED, each stating what
+  evidence would satisfy it; if adjectival R-lines appear, the
+  post-trial patch is one clause in A1 demanding each quality
+  R-line name its satisfying evidence. Consumer: post-trial patch
+  grading.**
