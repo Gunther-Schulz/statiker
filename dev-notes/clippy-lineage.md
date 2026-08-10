@@ -227,3 +227,15 @@ adherence. That history is why this register exists as
 OBSERVATIONS with named refs rather than as rules: the slow loop is
 the method; this file just spares a successor the re-derivation of
 one pass through it.
+
+- 2026-08-10 — **Lens-set succession framing (operator-observed at
+  the 0.2.55 release).** references/evidence.md does the lens
+  set's JOB one altitude up: lenses enumerated where to look
+  (per-pass checklists, dispatched at protocol moments);
+  evidence.md states how to weigh (ambient claim-grading ethics,
+  no dispatch moment, no enumeration). Same durability class and
+  fire-born lineage, different depreciation slope: enumerated
+  checklists age fastest (the unlisted variant slips through),
+  epistemics slowest — which is statiker's no-lens design bet
+  restated. Consumer: the compression pass (predicts which
+  content class survives grading); post-trial patch grading.
