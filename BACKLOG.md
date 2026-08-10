@@ -7,46 +7,6 @@ build tooling, but a clause mint still needs its incident.
 
 ## Open
 
-- **READY — the unit write-set record-line form: the grammar names
-  none, nothing emits one, and `waves` reads a composed
-  convention.** Booked 2026-08-10; fire-born incident provenance:
-  the wave-derivation entry's cited premise (":471-478 covers unit
-  write-sets") failed its body-read in the realizing dispatch —
-  SKILL.md's per-path line form governs the LOCK's own pathspec,
-  and a unit's write-set exists only as `--write-set` CLI args in
-  briefs; the shipped parser documents its line form as inference
-  (statiker_record.py, UNIT_WRITE_SET_RE block). Design, decided —
-  derived from the requirement (unit write-sets must be
-  desk-appendable record lines under the EXISTING entry grammar),
-  with the parser following the settled form, never ratifying it:
-  the form is `- F<n> [VERIFIED] unit U<k> write-set: <path> —
-  basis: <the unit's brief>`, one path per line,
-  latest-line-per-id supersede; `statiker_git.py unit-start`
-  PRINTS the record lines for the desk to append (the tracker
-  stays desk-append-only — one writer), and SKILL.md's
-  Implementation section names the form beside the `--write-set`
-  args (SKILL.md edit: skill-craft + the trial's opus skill-edit
-  review). Realizing write-boundary: SKILL.md, `statiker_git.py`,
-  `tools/test_statiker_git.py`. Verifier, red-first: unit-start's
-  printed lines round-trip through `waves_over_units` into the
-  partition; battery green; contract parity holds. Done-criterion:
-  a real run's tracker carries machine-printed write-set lines and
-  `waves` partitions them with no UNPLANNABLE flag.
-  PARTIALLY REALIZED 2026-08-10 (the 0.2.57 series): the SKILL.md
-  half is DONE — the line form is named in Implementation, and the
-  waves/trend seam cites landed with it (review-F2's clauses).
-  Remainder of this entry: `statiker_git.py unit-start` PRINTS the
-  record lines + red-first battery. Realizing write-boundary
-  shrinks to `statiker_git.py` + `tools/test_statiker_git.py`.
-  Absorbed from the 0.2.56 skill-edit review (dispositions in
-  OBSERVATIONS.md, same date): the mint also closes review-F1's
-  silent-absence case (a unit named only in [READY] prose appears
-  in neither `waves` nor `unplannable` — the machine-printed lines
-  are what make every unit visible) and carries review-F2's two
-  seam clauses — the Implementation parallel rule cites `waves`,
-  the re-attack clause cites `trend` — which had no home until
-  this entry's SKILL.md edit.
-
 - **READY — worktree provisioning joins the git tool: the batched
   trip's only hand-run git operation gets verdicts.** Booked
   2026-08-10 (0.2.57 review N1: hand-run `worktree add/remove`
@@ -203,6 +163,18 @@ build tooling, but a clause mint still needs its incident.
   dispositions.
 
 ## Done
+
+- 2026-08-10 — **unit write-set record-line form**: fully realized —
+  the form is normative in SKILL.md's Implementation section with
+  the `waves`/`trend` seam cites (eb6ab88, 0.2.57 series) and
+  `unit-start` prints paste-ready record lines, red-first with a
+  round-trip through the real `waves_over_units` (7ba8c66, sonnet
+  dispatch). Path spellings normalize in `waves` (b26fb93).
+  Done-criterion residue, carried to the first real run: a live
+  tracker carrying machine-printed lines partitioned with no
+  UNPLANNABLE flag. Brief-defect note: the dispatch brief omitted
+  the file-copy red-first rule; the executor's scoped stash was
+  harmless here, recorded as the dispatcher's miss.
 
 - 2026-08-10 — **hedge-language sweep over SKILL.md**: full-file
   desk read, 0.2.57 series. Cured: the description's trial-stage
