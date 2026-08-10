@@ -32,6 +32,12 @@ build tooling, but a clause mint still needs its incident.
   partition; battery green; contract parity holds. Done-criterion:
   a real run's tracker carries machine-printed write-set lines and
   `waves` partitions them with no UNPLANNABLE flag.
+  PARTIALLY REALIZED 2026-08-10 (the 0.2.57 series): the SKILL.md
+  half is DONE — the line form is named in Implementation, and the
+  waves/trend seam cites landed with it (review-F2's clauses).
+  Remainder of this entry: `statiker_git.py unit-start` PRINTS the
+  record lines + red-first battery. Realizing write-boundary
+  shrinks to `statiker_git.py` + `tools/test_statiker_git.py`.
   Absorbed from the 0.2.56 skill-edit review (dispositions in
   OBSERVATIONS.md, same date): the mint also closes review-F1's
   silent-absence case (a unit named only in [READY] prose appears
@@ -166,22 +172,17 @@ build tooling, but a clause mint still needs its incident.
   one real batched round recorded with complete per-design
   dispositions.
 
-- **READY — hedge-language sweep over SKILL.md: every settled
-  decision stated as its plain default.** Booked 2026-08-10,
-  operator-settled convention (CLAUDE.md, "Skill text states
-  current decisions cleanly"): enumerate every inline
-  experimental/historical hedge ("experiments", "trial",
-  "outside this default", history-flavored parentheticals) and
-  rewrite each as the clean current decision or cut it; markers
-  carrying epistemic load (explicitly flagged unproven rules) are
-  judged per instance with the operator, not swept. First
-  instance already cured (the parallel-attacker parenthetical,
-  this release). Realizing write-boundary: SKILL.md (skill-craft
-  + opus skill-edit review + version bump). Verifier: the review
-  round over the sweep diff; contract battery green. Done:
-  a grep for the enumerated hedge classes returns only
-  per-instance-kept markers.
-
 ## Done
+
+- 2026-08-10 — **hedge-language sweep over SKILL.md**: full-file
+  desk read, 0.2.57 series. Cured: the description's trial-stage
+  label, the tools paragraph's "booked mint" parenthetical (the
+  line form now stated in Implementation), and the attack
+  section's parallel-attacker/batching region (rewritten under
+  the 14-finding review). Kept per instance: the 16 `(hypothesis)`
+  markers (declared provenance class with logged validation
+  criteria) and the Birth-class declaration's lifecycle wording
+  (subject matter, not costume). Done-criterion grep: only those
+  kept classes remain.
 
 - 2026-08-10 — **wave derivation (`waves`) + round-trend instrument (`trend`)**: shipped `1eb4380` (subcommands + red-first batteries, sonnet dispatch) and `4b56648` (contract battery rows + SKILL.md verdict routing), version bump `8a8ce22` (0.2.56). Deviation from the booking: the waves entry's "premise verified against the grammar" note was FALSE — no unit write-set record-line form exists in the grammar (the realizing dispatch's gap 1); `waves` ships reading a composed convention, failing loud (UNPLANNABLE) on every real tracker until the line-form mint above lands. Entry bodies retained above under superseded markers until the mint closes; drop them with it.

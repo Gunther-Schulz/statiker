@@ -1,6 +1,6 @@
 ---
 name: statiker
-description: Conducts a development task from investigation through verified implementation — a free design loop held by five forcing points (recorded decisions with bases, dispatchable-design stop rule, a fresh-context attack on each locked design, no-design implementation, isolated executed verify). Trial-stage successor to clippy; use only when the operator explicitly invokes statiker or requests a statiker run.
+description: Conducts a development task from investigation through verified implementation — a free design loop held by five forcing points (recorded decisions with bases, dispatchable-design stop rule, a fresh-context attack on each locked design, no-design implementation, isolated executed verify). Successor to clippy; use only when the operator explicitly invokes statiker or requests a statiker run.
 ---
 
 # Statiker
@@ -82,11 +82,9 @@ production counts. `waves` returns WAVES_COMPUTED — units sharing
 a declared write-set path grouped, members of a group SERIALIZE,
 groups are mutually parallel-eligible; a unit whose record lines
 declare no live write-set comes back UNPLANNABLE, never placed
-(the write-set record-line form is a booked mint — until the
-record carries such lines every unit reads UNPLANNABLE, and a
-unit with no `unit U<k>`-bodied entry at all appears in neither
-list), and the partition is no dispatchability read: the per-unit
-gate stays `closure --unit`. `trend` returns TREND_COMPUTED /
+(the line form: Implementation; a unit with no `unit U<k>`-bodied
+entry at all appears in neither list), and the partition is no
+dispatchability read: the per-unit gate stays `closure --unit`. `trend` returns TREND_COMPUTED /
 TREND_NO_ROUNDS — per-round F-LINE counts (every F-line in a
 round's span, not attacker findings alone) with an arithmetic
 trajectory verdict. Both halt WAVES_RECORD_MALFORMED /
@@ -666,24 +664,38 @@ terminal fallback by construction — attacks as a DECLARED
 deviation in the tracker, never silently: the resolution
 order's flexibility carries the certification duty. Escalate a
 round above the resolved tier only on operator call. Rounds are
-sequential —
-one attacker, the round's A-line recorded before any next dispatch;
-a second simultaneous attacker on one design only on operator
-order.
-Sequential is per ATTACKER, not per design: one trip MAY carry
-every locked design ready at that moment — across runs — the
-brief stating the design order and demanding a complete
-per-design verdict block (findings, or that design's explicit
-zero-delta; a design without its own block is an incomplete
-return), each design's tracker recording its own A-line, and
-every surface a brief claims immutable frozen for the round as
-usual. A single ready design keeps the single-design shape.
-And
-each re-attack is a NEW fresh context (a resumed attacker inherits
+sequential PER DESIGN — one attacker per design-round, that
+design's A-line recorded before its next round dispatches. One
+TRIP may carry every locked design awaiting attack in the stack
+(one stack per trip: tier resolution, the evidence-source cite,
+and deviation lines are per-stack). Each design keeps its whole
+round machinery — its own pinned artifact, its own A-lines in its
+own tracker, its own seal and queue (both key per tracker) — and
+the return carries a complete per-design verdict block: findings,
+or that design's explicit zero-delta. The desk provisions one
+worktree per design, detached at that design's lock sha, and
+removes each at the return: the tree claim binds the design's
+worktree, so every claim holds at once whatever repo the designs
+share, attackers execute in their worktrees only, and the working
+repo needs no by-product carve-out for the trip. The append
+freeze covers every participating tracker until the trip returns.
+The brief states the design order — the desk's call, keying the
+verdict blocks; frame carryover from earlier designs to later
+ones inside one trip is accepted, priced by the per-design
+blocks, and is not the resumed-attacker case, which re-reads its
+OWN prior round. Death is per design: a queued finding killing
+one design aborts that design's member alone ([VOID] abort:), a
+premise broken for one design ([VOID] premise:) voids that design
+alone, and a design whose verdict block is missing stays
+[DISPATCHED] and re-enters as its own round — sibling designs
+grade normally in every case. A single locked design keeps the
+single-design shape. Each
+re-attack is a NEW fresh context (a resumed attacker inherits
 its own prior findings' frame), and a re-derived design is a NEW
 locked design — it gets the attack again, its repairs landing as
 ONE re-lock: per-finding re-locks split the priced unit
-(hypothesis). A round dies two ways, one clause (hypothesis):
+(hypothesis). The reply opening a repeat round cites the record
+tool's `trend` output as its series read. A round dies two ways, one clause (hypothesis):
 ABORTED in flight when a queued desk finding kills the locked
 design — the round is not left running over an object already
 scheduled for replacement; its A-line lands `[VOID]` with body
@@ -697,8 +709,8 @@ findings is how a broken instrument's output enters the record
 carrying a round's authority; the A-line lands `[VOID]` with
 body `premise:` naming the brief defect, the brief is repaired,
 a NEW round dispatches. A voided round's observations enter only
-as desk findings the desk re-derives itself. Each round records an
-A-line (The record). At a round's return every finding is
+as desk findings the desk re-derives itself. Each design's round
+records its A-line (The record). At a round's return every finding is
 classified, with basis: DESIGN-SUBSTANCE (wrong mechanism, money
 path, silent failure in the shipped system) or RECORD/INSTRUMENT
 (the run's own bookkeeping); findings append as F-lines with the
@@ -837,10 +849,15 @@ without it
 and the unit's want surfacing as its gap; one bearing wider
 on the design is SCOPELESS and voids — the premise-killing
 consequence (stop the siblings resting on it, let the rest
-land, re-enter ONCE). Units with disjoint
+land, re-enter ONCE). A unit's write-set is
+declared in the record — `- F<n> [VERIFIED] unit U<k>
+write-set: <path> — basis: <the unit enumeration>`, one path
+per line, latest-line-per-id — appended at the [READY]
+enumeration. Units with disjoint
 write-sets run parallel (one shared index — commits
 serialize; the tool's capped retry absorbs the
-contention). A missing
+contention); disjointness is computed, never eyeballed — the
+parallel decision cites the record tool's `waves` partition. A missing
 decision, file, or value is reported as a gap, never bridged —
 and triaged on arrival: a unit-local gap decision is a design
 decision made without an attack round, and it is recorded as
