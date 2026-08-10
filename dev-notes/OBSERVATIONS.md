@@ -4446,3 +4446,21 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   from what remains — the number is an outcome, not a gate;
   PLAN.md's tenet amends then, with the pass's evidence as basis.
   Consumer: the compression pass (stabilization backlog).**
+
+- 2026-08-10 — **Greenfield corpus-ablation framing (operator-
+  raised: how much of statiker's performance is the global
+  corpus?). The composition is declared (SKILL.md Composition;
+  PLAN.md Ecosystem composition) and the corpus loads into every
+  arm on this stack — desk AND subagent tiers — so C58's conduct
+  quality cannot be attributed between skill and corpus from its
+  record. The greenfield vehicle's corpus-free arm (entry above)
+  DOUBLES as the ablation probe. Pre-register at run design,
+  before the arm dispatches: the corpus-shaped behavior list to
+  grade the record against (bases on entries, disproof probes on
+  load-bearing claims, instrument reach stated as the tool's own
+  line, non-event suspicion on zero-hit searches). Grading is
+  qualitative at n=1 (which behaviors survive on the skill's
+  four-line fallback alone), never a performance number. Bears
+  on: the 0.2.52 no-corpus fallback's adequacy; any public
+  portability claim. Consumer: the greenfield vehicle's run
+  design.**
