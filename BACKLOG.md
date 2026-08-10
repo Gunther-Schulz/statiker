@@ -39,3 +39,62 @@ build tooling, but a clause mint still needs its incident.
   Done-criterion: the next multi-unit run's parallel decision in the
   tracker cites the subcommand's wave output instead of a desk read
   of the write-sets.
+
+- **READY — the round-trend read has data and no instrument: A-lines
+  carry every round's outcome and the re-entry trend is still a hand
+  read.** Booked 2026-08-10, cross-repo provenance (cache-fix drain
+  day; operator direction "improve the efficiency and speed of cycle
+  and attack rounds"). The operator corpus's re-entry-seam
+  convention binds the desk already: the reply opening a same-form
+  repeat round names the series trend — counts and locations across
+  rounds, read from the record — and a flat or worsening series
+  indicts the FORM, not the latest findings. Statiker's tracker
+  records exactly the needed series (`A<n>
+  [DISPATCHED|BIT|ZERO-DELTA|VOID]` lines with finding bodies), so
+  the convention's computable slice is a report: rounds per design,
+  findings per round, BIT-vs-ZERO-DELTA trajectory, and whether the
+  newest round's findings concentrate in the prior round's repairs
+  (the form-indicting signature). A desk on any tier reads the
+  command instead of re-deriving the series — the cheaper the desk,
+  the more this matters.
+  Design, decided: a `trend --tracker P` read-only subcommand in
+  `statiker_record.py`; output one line per design (round count,
+  per-round finding counts, trajectory verdict FLAT / IMPROVING /
+  WORSENING as arithmetic over the counts, never judgment) plus the
+  concentration flag where a finding's cited site lies in the prior
+  re-lock's repair set. REPORT, never a gate — the form question
+  stays desk judgment; this delivers its inputs (the closing-gate
+  rule: below the judgment, evidence delivery is always
+  mechanizable).
+  Realizing write-boundary: `plugin/skills/statiker/scripts/
+  statiker_record.py` + battery.
+  Verifier, red-first: a constructed tracker with a worsening
+  three-round series whose round-3 findings cite round-2 repair
+  sites must render WORSENING with the concentration flag; an
+  improving series must not; battery green.
+  Done-criterion: a real run's repeat-round reply cites the
+  subcommand's output as its trend line.
+
+- **PARKED — attack-round batching: one fresh-context trip carrying
+  every locked design ready at that moment, instead of one design
+  per trip.** Raised 2026-08-10 from the corpus's priced-unit rule
+  (a round trip through another party carries a BATTERY, not one
+  candidate — the recorded waste shape is splitting across trips
+  what one trip carries) applied to statiker's rounds, where each
+  locked design takes its own sequential round and each round costs
+  a full freeze window (desk appends queue for the round's
+  duration). Fewer, fuller rounds would cut both the trip count and
+  the total freeze time.
+  Parked, not ready, because the design tension is real and
+  unmeasured: the single-design round buys attention depth and
+  independence (an attacker reading design A's flaws inherits a
+  frame for design B — the same reason a resumed attacker is
+  forbidden), and the per-design verdict discipline would need the
+  per-member disposition form so a batched round cannot silently
+  under-attack its tail. Named missing evidence, which is the
+  un-park trigger: a paired probe — same locked designs, batched
+  attacker vs single-design attackers, pre-registered per-design
+  blocker-yield criterion, arms graded before outcomes are compared
+  — showing the batched arm's per-design yield holds. Until
+  measured, the sequential default stands on its own recorded
+  basis.
