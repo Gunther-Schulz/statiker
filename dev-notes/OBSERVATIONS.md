@@ -4480,3 +4480,38 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   Ecosystem-composition decision ("a public extraction would
   inline what it cites") amends at that same moment, ablation as
   basis. Consumer: the session grading the greenfield run.**
+
+- 2026-08-10 — **0.2.55: NO-CORPUS EVIDENCE REFERENCE — the parked
+  extraction UNPARKS same day (operator decision: a corpus-free
+  run on this harness is impractical and undesired — "it's this
+  harness's corpus, I'd rather not run without it"; lift by
+  discernment). The gate SUBSTITUTES, not drops: the ablation's
+  died-behaviors list is replaced by the corpus's own fire
+  history — every extracted rule is a class with recorded
+  top-tier firings in the corpus's provenance, which is direct
+  evidence the behavior is not model-default; "no provenance, no
+  patch" holds line-by-line. Shipped
+  `references/evidence.md` (register pattern): twelve distilled
+  domain-general rules — basis/discriminating deferral, reach,
+  refutation probe, non-events, altitude, check's-own-output,
+  definitions, instrument parentage, symptom-vs-cause, paraphrase
+  drift, stale premises, one-variable — statiker-narrowed (what
+  SKILL.md already carries stays out; no operator preferences or
+  bindings travel). Composition bullet re-points: corpus wins
+  where present; without one the reference is the binding source,
+  read before the run's first entry, cited by attack/verify
+  briefs in place of the corpus — the 0.2.52 four-line inline
+  fallback RETIRES into it (one meaning, one home). CONSEQUENTS:
+  the greenfield vehicle's corpus-free-harness requirement DROPS
+  (its two prior entries amend to: greenfield tests default
+  routing resolution only, corpus loaded as normal); the
+  corpus-ablation framing entry is SUPERSEDED by this lift;
+  PLAN.md's "a public extraction would inline what it cites"
+  stands narrowed — the extraction shipped as a cited reference,
+  not an inlining. Field validation replaces the ablation:
+  no-corpus adequacy grades on community/field reports against
+  the reference, an open question by design. Verifiers, own
+  output: suites 254 passed in 12.67s; skill-lint 2 files
+  singleton=62 blocking=0; 1046 operational lines; payload ls
+  defaults/ + references/ + scripts/ + SKILL.md. Consumer: any
+  no-corpus consumer; post-trial patch grading.**

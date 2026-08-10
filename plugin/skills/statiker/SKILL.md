@@ -32,10 +32,11 @@ overriding context-independence (PLAN.md, Ecosystem composition):
   is being framed as a builder).
 - The operator corpus, where the stack has one, carries the
   grounding and evidence ethics (bases, refutation probes,
-  altitude); assumed, not restated. Without one the parenthetical
-  binds directly: claims and verdicts carry their basis, a
-  load-bearing claim earns one probe designed to disprove it, and
-  correctness is checked where the work takes effect.
+  altitude); assumed, not restated. Without one,
+  `references/evidence.md` (under this skill's base directory) is
+  the binding source — read it before the run's first entry, and
+  on such a stack attack and verify briefs cite it in place of
+  the corpus.
 
 ## The tools
 
