@@ -1,0 +1,22 @@
+# Statiker shipped model defaults — the certified-attack register.
+#
+# Resolution order (SKILL.md, The attack): a repo's
+# clippy.config/models wins; else the first entry here the harness
+# can dispatch; else strongest-available, attacking as a declared
+# deviation.
+#
+# An entry lands ONLY with probe-then-certify evidence attached —
+# the probe record (rounds, ceiling comparison, dates) linked in
+# the submitting PR. No provenance, no entry. Entries are
+# ecosystem-scoped; bare classes bind the Claude ecosystem, other
+# ecosystems extend as <class>@<ecosystem> once a certified probe
+# exists there (none yet).
+#
+# Format: <class>: <model> per line, preference order; # comments.
+
+# attack: opus — CERTIFIED 2026-08-06: three-round probe against a
+# known ceiling (probe-then-certify, statiker PLAN.md); paired
+# evidence: opus arm out-bit the fable arm on byte-identical
+# artifacts (n=4, one domain). Provenance: the source repo's
+# dev-notes/OBSERVATIONS.md.
+attack: opus

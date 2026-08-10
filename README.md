@@ -28,6 +28,19 @@ stack (the dispatch-guards plugin, an operator instruction corpus)
 and cites those rather than restating them — a public extraction
 would inline what it cites. See `PLAN.md`, Ecosystem composition.
 
+## Model defaults — the certified-attack register
+
+The fresh-context attack round resolves its model as a role: your
+repo's `clippy.config/models` (`attack:` class) wins; else the
+first dispatchable entry of the shipped register
+(`plugin/skills/statiker/defaults/models`); else
+strongest-available, running as a declared deviation. Register
+entries carry certification evidence (a probe against a known
+ceiling — "probe-then-certify", `PLAN.md`). Contributions welcome
+by PR: an entry lands only with its probe record attached — no
+provenance, no entry. Other ecosystems (Codex etc.) extend the
+same file once a certified probe exists there.
+
 ## Install
 
 ```

@@ -638,12 +638,16 @@ tracker only in the close, where no further round follows. A
 seal is calibration, never evidence: it steers no verdict, and a
 missing or late one voids its comparison, not the round.
 Attack tier: a ROLE, resolved in order — `clippy.config/models`
-(`attack:` class) when present, else the strongest model
-available to the harness as a fresh context. The resolved tier
-is certified by the PLAN.md probe-then-certify step, the
-certified instance recorded in the consuming stack's config or
-ledger; an uncertified attack tier attacks as a DECLARED
-deviation in the tracker, never silently — the resolution
+(`attack:` class) when present, else the first entry of the
+skill's shipped `defaults/models` (under this skill's base
+directory: the certified-attack register, every entry carrying
+its probe-then-certify provenance inline) the harness can
+dispatch, else the strongest model available to the harness as
+a fresh context. Certification comes from the PLAN.md
+probe-then-certify step, recorded in the register or the
+stack's own config/ledger; a tier resolved without one — the
+terminal fallback by construction — attacks as a DECLARED
+deviation in the tracker, never silently: the resolution
 order's flexibility carries the certification duty. Escalate a
 round above the resolved tier only on operator call. Rounds are
 sequential —

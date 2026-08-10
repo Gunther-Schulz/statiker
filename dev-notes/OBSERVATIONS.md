@@ -4363,3 +4363,37 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   (uncertified tier), and the deviation line appearing in the
   tracker is the pass signal; a silent resolution is the fail.
   Consumer: the greenfield vehicle's run design.**
+
+- 2026-08-10 — **0.2.53: CERTIFIED-ATTACK REGISTER (operator GO,
+  same sitting: "encode a list of known best attack models...
+  sensible defaults... something other users could commit via
+  github").** Shipped `defaults/models` in the payload (beside
+  scripts/): entries in preference order, each carrying its
+  probe-then-certify provenance inline; first and only entry
+  `attack: opus` (the 2026-08-06 certification). Resolution order
+  amended in SKILL.md: repo config → first dispatchable register
+  entry → strongest-available as DECLARED deviation (now
+  uncertified by construction — the deviation label marks only
+  the uncharted case). Contribution bar, stated in the file and
+  README: an entry lands only with its probe record attached —
+  no provenance, no entry; other ecosystems extend as
+  <class>@<ecosystem> once a certified probe exists there.
+  Design rationale: 0.2.52's strongest-available default failed
+  first contact with a mixed stack (resolved priciest, not
+  best-proven); certification is a fact about the MODEL, not the
+  machine, so it ships as data — the no-model-names rule bound
+  steering prose, and a versioned bindings file is the staleness-
+  checked durability class model names belong to. GOAL, operator-
+  stated: with the register shipped, the beat-the-books
+  clippy.config/models DELETES — every test run exercises the
+  default path and still resolves opus; consequence named at the
+  decision: verify then rides the parent model (identical on
+  opus desks), impl falls to the corpus table (sonnet,
+  unchanged). Verifiers, own output: suites 254 passed in 12.26s;
+  skill-lint singleton=61 blocking=0; 1041 operational lines;
+  payload ls shows defaults/ + scripts/ + SKILL.md. Consumer:
+  the C58 cycle-12 desk (first run resolving through the
+  register); the greenfield vehicle (default-path execution,
+  entry above — its expected observation UPDATES: attack now
+  resolves opus via the register, deviation line only if opus
+  undispatchable).**
