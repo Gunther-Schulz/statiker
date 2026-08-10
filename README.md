@@ -23,10 +23,11 @@ Status: **trial**. Statiker is the designated successor to
 being validated on real development work; clippy remains the stable
 tool meanwhile. Design rationale and succession plan: `PLAN.md`.
 
-Note: statiker deliberately composes with its author's installed
-stack (the dispatch-guards plugin, an operator instruction corpus)
-and cites those rather than restating them — a public extraction
-would inline what it cites. See `PLAN.md`, Ecosystem composition.
+Note: statiker composes with the dispatch-guards plugin and, where
+present, an operator instruction corpus — citing rather than
+restating them. The corpus's performance-bearing evidence ethics
+ship distilled as the skill's `references/evidence.md` for stacks
+without one. See `PLAN.md`, Ecosystem composition.
 
 ## Model defaults — the certified-attack register
 
@@ -47,3 +48,17 @@ same file once a certified probe exists there.
 claude plugin marketplace add Gunther-Schulz/statiker
 claude plugin install statiker@statiker
 ```
+
+Statiker composes with the public
+[dispatch-guards](https://github.com/Gunther-Schulz/dispatch-guards)
+plugin (brief and report forms; a hook enforces its load before any
+dispatch) — install it alongside:
+
+```
+claude plugin marketplace add Gunther-Schulz/dispatch-guards
+claude plugin install dispatch-guards@dispatch-guards-marketplace
+```
+
+No operator instruction corpus is required: where none exists, the
+skill reads its shipped `references/evidence.md` (the distilled
+evidence ethics) in its place.
