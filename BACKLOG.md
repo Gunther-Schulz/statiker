@@ -23,7 +23,10 @@ build tooling, but a clause mint still needs its incident.
   short (nobody joins them).
   Design, decided: a `waves --tracker P` read-only subcommand in
   `statiker_record.py` (extend the existing tool, no new file):
-  collect each unit's declared write-set from the tracker, compute
+  collect each unit's declared write-set from the tracker — the
+  parse source is the record's own lock-set/write-set line form
+  (`SKILL.md:471-478`: file-granular paths, appended as record
+  lines; premise verified against the grammar 2026-08-10), compute
   connected components over shared paths, emit the wave partition
   (disjoint components = one wave, overlapping units serialized
   within their component) and flag any unit with no declared
@@ -62,7 +65,11 @@ build tooling, but a clause mint still needs its incident.
   per-round finding counts, trajectory verdict FLAT / IMPROVING /
   WORSENING as arithmetic over the counts, never judgment) plus the
   concentration flag where a finding's cited site lies in the prior
-  re-lock's repair set. REPORT, never a gate — the form question
+  re-lock's repair set — in record terms: the finding's body cites a
+  D-id whose LATEST revision (the grammar is latest-line-per-id)
+  landed at the previous re-lock; attack repairs revise D-lines, so
+  the repair set is those revised ids, no code diff involved.
+  REPORT, never a gate — the form question
   stays desk judgment; this delivers its inputs (the closing-gate
   rule: below the judgment, evidence delivery is always
   mechanizable).
