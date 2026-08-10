@@ -61,6 +61,14 @@
   is recorded in dev-notes BEFORE any arm dispatches; arms are
   graded post-run in the meta session on a body-read of the raw
   reports — the desk records verbatim and never grades the arms.
+- **n=1 suffices during the experimental phase (operator-settled
+  2026-08-10).** A single pre-registered probe whose criterion
+  resolves is decision-grade for trial-phase calls — un-parks,
+  mints, convention changes. Variance caveats are still RECORDED
+  (they price the finding for later re-checks) but they do not
+  hold a resolved criterion open, and no repeat probe is owed
+  before acting on one. Re-visit the bar when the trial phase
+  closes.
 - **Dispatch confirmation: RETIRED 2026-08-08 (operator:
   production posture — run the skill as it runs in production).**
   Desk sessions dispatch per the routing table and the run
