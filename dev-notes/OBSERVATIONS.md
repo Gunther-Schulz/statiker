@@ -4346,3 +4346,20 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   skill-routed); configured-model-unavailable stays a surfaced
   halt, never silent substitution. Consumer: the C58 cycle-12
   desk's first lock; post-trial patch grading.**
+
+- 2026-08-10 — **Booked onto the greenfield-vehicle open item
+  (operator-raised: test the default setup): the 0.2.52
+  resolution chains are read-verified only, never EXECUTED — the
+  greenfield run exercises them. Arrangement, decided now: the
+  greenfield repo ships NO clippy.config/ (config is repo-local,
+  so absence IS the default setup — nothing to clear on existing
+  repos, and beat-the-books' pin stays for C58 comparability);
+  the no-corpus condition additionally needs a corpus-free
+  harness (clean HOME/config session), since the impl chain's
+  middle link reads the globally-loaded corpus on this machine.
+  Expected observations, named before the run: attack resolves
+  strongest-available (fable on this stack — accept the priced
+  rounds or declare a budget), runs as a DECLARED deviation
+  (uncertified tier), and the deviation line appearing in the
+  tracker is the pass signal; a silent resolution is the fail.
+  Consumer: the greenfield vehicle's run design.**
