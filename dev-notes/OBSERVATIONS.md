@@ -4434,3 +4434,15 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   cycles 10-11 — the re-entry form question reads the series, not
   the last round) and the pre-0.2.49 record's budget exemption.
   Consumer: the C58 cycle-12 desk; the close's grading.**
+
+- 2026-08-10 — **Size-target re-derivation booked (operator
+  challenge: "150 vs 1045 seems not practical" — concurred).
+  PLAN.md's 80-150 is a birth-era hypothesis whose own diagnosis
+  clause (growth = restatement or provenance-less patch) does not
+  cover the observed growth (provenanced fire-born patches +
+  ~600 lines of machine semantics awaiting precipitation into
+  the executable spec). At the compression pass: precipitate the
+  semantics, retire no-fire patches, then RE-DERIVE the target
+  from what remains — the number is an outcome, not a gate;
+  PLAN.md's tenet amends then, with the pass's evidence as basis.
+  Consumer: the compression pass (stabilization backlog).**
