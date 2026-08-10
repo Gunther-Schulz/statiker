@@ -4407,3 +4407,30 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   attack dispatches WITHOUT a deviation line is the pass signal.
   Consumer: the C58 cycle-12 desk's first attack dispatch;
   the greenfield vehicle.**
+
+- 2026-08-10 — **0.2.54: INSTRUMENT RED-PROOF MINT (fire-born,
+  minted at the pre-desk sweep the trial conventions owe; operator
+  invited candidates this sitting).** One clause at the attack
+  section's close: a desk-built run instrument is unproven until
+  it has gone RED on a real defect — until then its clean verdict
+  closes no gate; an instrument's REACH enters the record as its
+  own printed reach line, never the desk's paraphrase. Provenance,
+  three firings in C58 alone: F135 (ready gate closed on "full
+  reach" while the checker's stdout said REACH SHORT — third
+  reach-short inside the entry meant to widen it, per its own
+  body), D87's booked never-fired-red debt, G14. This GENERALIZES
+  the 2026-08-08 open-check booking (dead-basis red proof at next
+  relay): the specific verification still runs at that relay; the
+  class rule now rides the skill. Scripts untouched (prose-only
+  delta — no version-window hazard). Verifiers, own output: suites
+  254 passed; skill-lint singleton=61 blocking=0; 1045 operational
+  lines. SWEEP RESULT, the rest graded: cycle-12's owed repairs
+  (F129-F138, dead-basis alphabet) stay DESK work — the relay
+  design forbids the meta desk pre-empting them; compression pass,
+  hypothesis grading, dispatch-guards graduation, kill-question
+  arm stay on their post-trial triggers; WATCH items for the
+  close's grading, no change now: the A-round trend (rounds 7 and
+  8 both bit, six of round 8's nine findings on the desk's own
+  cycles 10-11 — the re-entry form question reads the series, not
+  the last round) and the pre-0.2.49 record's budget exemption.
+  Consumer: the C58 cycle-12 desk; the close's grading.**

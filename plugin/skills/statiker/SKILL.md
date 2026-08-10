@@ -721,6 +721,10 @@ let the rest land, re-enter ONCE).
 The desk refutes a finding only with its own reach-matched evidence
 (the F-line goes [INVALIDATED]); closure still needs the next
 round's [ZERO-DELTA].
+A run instrument the desk builds is unproven until it has gone
+RED on a real defect; until then its clean verdict closes no
+gate. An instrument's REACH enters the record as its own
+printed reach line, never the desk's paraphrase of it.
 
 ## Implementation (forcing point 4)
 
