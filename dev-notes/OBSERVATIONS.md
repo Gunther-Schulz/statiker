@@ -4530,3 +4530,5 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   booked in BACKLOG.md (wave derivation). Not a clause firing — an
   external validation, logged for the fire-rate review's
   keep-or-prune reading.
+
+- 2026-08-10 — **SKILL.md gains the waves/trend verdict routing (tools paragraph). Provenance: backlog entries eefd540/e6eeaea (operator GO) realized; the contract suite (verdict parity + battery set-exactness) is what forced the SKILL.md half — the entries named only statiker_record.py + battery as the realizing surface, and the verdict names realize partly in SKILL.md by the repo's own contract check (dispatch report gap 3, sonnet-statiker-cycle-tools). The waves parse-source premise failure (gap 1: no unit write-set record-line form exists in the grammar; the entry's "premise verified" note was a label its body does not support) is booked as its own backlog entry — the line-form mint is fire-born off that incident.**

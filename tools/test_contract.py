@@ -188,7 +188,8 @@ def skill_named_verdicts():
 
 GIT_SUBCOMMANDS = {"state-gate", "preflight", "lock-check", "lock-commit",
                    "unit-start", "unit-commit"}
-RECORD_SUBCOMMANDS = {"lint", "sweep", "closure", "filter", "quote"}
+RECORD_SUBCOMMANDS = {"lint", "sweep", "closure", "filter", "quote",
+                      "waves", "trend"}
 
 VERDICT_LINE_RE = re.compile(r"^STATIKER-(?:GIT|RECORD) VERDICT: (.*)$")
 
@@ -299,6 +300,13 @@ def run_battery(git_script, record_script, root):
     (outside / "stray.md").write_text(
         "# Run: s\nStatus: in-progress\nPhase: implement\n\n## Cycle 1\n"
         "- F1 [VERIFIED] x — basis: y\n")
+    (repo / "waves.md").write_text(
+        CLOSED_TRACKER +
+        "- F2 [VERIFIED] unit U1 write-set: src/a.txt — basis: design\n"
+        "- F3 [VERIFIED] unit U2 write-set: src/b.txt — basis: design\n"
+        "- F4 [VERIFIED] unit U3 write-set: src/a.txt — basis: design\n"
+        "- D3 [AUTO-ACCEPTED] unit U4 gap: no write-set decided — "
+        "basis: report\n")
     tracker_abs = str(repo / TRACKER_REL)
 
     def append_tracker():
@@ -509,6 +517,16 @@ def run_battery(git_script, record_script, root):
                                "--unit", "U2"], repo, None, None),
         ("record", "closure", ["closure", "--tracker", tracker_abs,
                                "--unit", "U2"], repo, None, None),
+        ("record", "waves", ["waves", "--tracker", str(repo / "waves.md")],
+         repo, None, None),
+        ("record", "waves", ["waves", "--tracker",
+                             str(repo / "malformed.md")], repo, None, None),
+        ("record", "trend", ["trend", "--tracker", tracker_abs],
+         repo, None, None),
+        ("record", "trend", ["trend", "--tracker", str(repo / "holds.md")],
+         repo, None, None),
+        ("record", "trend", ["trend", "--tracker",
+                             str(repo / "malformed.md")], repo, None, None),
     ]
 
     rows = []
