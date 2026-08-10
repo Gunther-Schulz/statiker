@@ -15,6 +15,36 @@ Subcommands (each prints evidence lines, then exactly one final line
                                       residue is NAMED, never absorbed
   closure --tracker P [--unit U<k>]   closure predicate + per-unit
                                       dispatchability
+  waves   --tracker P                 read-only: connected-component
+                                      wave partition over units' live
+                                      write-set lines (unit U<k>
+                                      write-set: <path>); a unit
+                                      carrying no live write-set line
+                                      comes back UNPLANNABLE, never
+                                      guessed at. NOTE: no literal
+                                      write-set record-line form is
+                                      spelled out in SKILL.md (only
+                                      the LOCK's own `lock-set:`
+                                      F-line is, :471-472) — this
+                                      parses the composition of two
+                                      ESTABLISHED conventions (the
+                                      per-path F/D-line form and the
+                                      `unit U<k> ` scope-opener); flag
+                                      this convention for desk/
+                                      operator confirmation before
+                                      relying on it against a live
+                                      tracker.
+  trend   --tracker P                 read-only: per-round finding
+                                      counts over resolved
+                                      (BIT/ZERO-DELTA) A-lines, a pure-
+                                      arithmetic FLAT/IMPROVING/
+                                      WORSENING trajectory, and a
+                                      concentration flag when the
+                                      newest round's findings cite a
+                                      D-id whose latest revision
+                                      landed in the immediately prior
+                                      round (that prior round's own
+                                      repair set)
   filter  --tracker P --sha S --out F pinned attack artifact (reads
                                       the sha, drops the two
                                       Superseded species)
@@ -872,6 +902,189 @@ def cmd_closure(args):
            **late)
 
 
+# --------------------------------------------------------------------- waves
+
+# SKILL.md spells out exactly ONE literal per-path record-line form: the
+# LOCK's own pathspec F-line (`- F<n> [VERIFIED] lock-set: <path> — basis:
+# <the entry that produced it>`, SKILL.md:471-472). A unit's IMPLEMENTATION
+# write-set has no literal record-line form anywhere in that file — it
+# surfaces only as `--write-set <file>` CLI arguments the desk composes
+# into a unit's dispatch brief (SKILL.md:850-861), never as a grammar this
+# tool can read back out of tracker text. UNIT_WRITE_SET_RE therefore
+# composes two conventions that ARE established (the per-path F/D-line
+# form above, and the `unit U<k> ` scope-opener used throughout for
+# unit-scoped bodies, e.g. SKILL.md:822/930) rather than inventing new
+# syntax from nothing — but the composed form itself is NOT cited grammar.
+# Backlog design premise ("the parse source is the record's own
+# lock-set/write-set line form") does not hold as literally cited;
+# flagged in the closing report as a decision made without an established
+# source, for desk/operator confirmation before this parses a live
+# tracker.
+UNIT_WRITE_SET_RE = re.compile(r"^unit (U\d+) write-set: (\S.*)$")
+
+
+def waves_over_units(entries):
+    """(write_sets: unit -> live path set, unplannable units sorted
+    ascending, waves: list of unit-id lists, each sorted ascending,
+    ordered by each wave's lowest unit id). A unit is KNOWN if any live
+    or dead entry opens `unit U<k> ` anywhere (classify_scope, the
+    established scope-opener grammar) — write-set lines and any other
+    unit-scoped line both count. A unit is PLANNABLE only if at least
+    one of its write-set lines is LIVE (latest-line-per-id, tag !=
+    INVALIDATED) — the same supersede convention the lock-set F-line
+    uses (SKILL.md:499)."""
+    latest = latest_by_id(entries)
+    known_units = set()
+    write_sets = {}
+    for e in sorted(latest.values(), key=lambda e: e.lineno):
+        scope, unit = classify_scope(e.body)
+        if scope != "unit":
+            continue
+        known_units.add(unit)
+        if e.tag == "INVALIDATED":
+            continue
+        m = UNIT_WRITE_SET_RE.match(e.body)
+        if m:
+            write_sets.setdefault(m.group(1), set()).add(m.group(2).strip())
+    unplannable = sorted(known_units - write_sets.keys(),
+                        key=lambda u: int(u[1:]))
+    units = sorted(write_sets, key=lambda u: int(u[1:]))
+    parent = {u: u for u in units}
+
+    def find(u):
+        while parent[u] != u:
+            parent[u] = parent[parent[u]]
+            u = parent[u]
+        return u
+
+    def union(a, b):
+        ra, rb = find(a), find(b)
+        if ra != rb:
+            parent[ra] = rb
+
+    for i, a in enumerate(units):
+        for b in units[i + 1:]:
+            if write_sets[a] & write_sets[b]:
+                union(a, b)
+    components = {}
+    for u in units:
+        components.setdefault(find(u), []).append(u)
+    waves = sorted(
+        (sorted(members, key=lambda u: int(u[1:]))
+         for members in components.values()),
+        key=lambda members: int(members[0][1:]))
+    return write_sets, unplannable, waves
+
+
+def cmd_waves(args):
+    entries, violations, meta = parse_tracker(load(args.tracker))
+    blocking = closure_blocking_violations(violations)
+    if blocking:
+        for v in blocking:
+            say(f"waves blocked: {v['code']} @ line {v['line']}: {v['text']}")
+        finish("WAVES_RECORD_MALFORMED", 2, violations=blocking, **meta)
+    write_sets, unplannable, waves = waves_over_units(entries)
+    for i, members in enumerate(waves, 1):
+        overlap = len(members) > 1
+        say(f"wave {i}: {{{', '.join(members)}}}"
+            + (" (overlap — serialize within wave)" if overlap
+               else " (disjoint — parallel-eligible)"))
+    for u in unplannable:
+        say(f"UNPLANNABLE: {u} — no live write-set declared")
+    finish("WAVES_COMPUTED", 0,
+          waves=[{"units": m, "serialize": len(m) > 1} for m in waves],
+          unplannable=unplannable,
+          write_sets={u: sorted(p) for u, p in write_sets.items()},
+          **meta)
+
+
+# --------------------------------------------------------------------- trend
+
+def trend_verdict(counts):
+    """Arithmetic only, never judgment (backlog design: "as arithmetic
+    over the counts, never judgment"): FLAT unless every consecutive
+    step in the series moves the same direction, with at least one
+    strict move that way. A single round, or a mixed series, is FLAT —
+    the ambiguous middle stays unclassified rather than guessed."""
+    if len(counts) < 2:
+        return "FLAT"
+    diffs = [b - a for a, b in zip(counts, counts[1:])]
+    if all(d <= 0 for d in diffs) and any(d < 0 for d in diffs):
+        return "IMPROVING"
+    if all(d >= 0 for d in diffs) and any(d > 0 for d in diffs):
+        return "WORSENING"
+    return "FLAT"
+
+
+def trend_over_rounds(entries):
+    """(bounds, counts, trajectory, concentration, concentration_detail).
+
+    A ROUND is a resolved attack outcome — an A-id's LATEST occurrence
+    tagged BIT or ZERO-DELTA (SKILL.md: "VOID: The attack — an aborted
+    or premise-broken round", explicitly not a real round; DISPATCHED
+    is still open, no outcome to count yet), ordered by line. Findings
+    belonging to round i are F-line ENTRIES landing after round i-1's
+    A-line and up to (inclusive) round i's — the record's own
+    append-only order (SKILL.md, The loop: investigation appends
+    before a round's closing A-line).
+
+    Concentration (backlog design, trend entry): does the NEWEST
+    round's findings cite a D-id whose LATEST revision (latest-line-
+    per-id) landed in the round immediately before it — "attack
+    repairs revise D-lines, so the repair set is those revised ids".
+    Only defined with >=2 rounds; the D-ids counted are exactly those
+    whose latest-overall occurrence falls inside the prior round's own
+    span (a later revision, elsewhere, means that D-id was not what
+    the prior round repaired as it now stands)."""
+    latest = latest_by_id(entries)
+    a_latest = sorted([e for e in latest.values() if e.cls == "A"],
+                      key=lambda e: e.lineno)
+    rounds_a = [e for e in a_latest if e.tag in ("BIT", "ZERO-DELTA")]
+    bounds = []
+    prev = 0
+    for e in rounds_a:
+        bounds.append((prev, e.lineno, e))
+        prev = e.lineno
+    f_entries = [e for e in entries if e.cls == "F"]
+    counts = [sum(1 for f in f_entries if start < f.lineno <= end)
+             for start, end, _ in bounds]
+    trajectory = trend_verdict(counts)
+    concentration, hits = False, []
+    if len(bounds) >= 2:
+        prev_start, prev_end, _ = bounds[-2]
+        cur_start, cur_end, _ = bounds[-1]
+        d_entries = [e for e in entries if e.cls == "D"
+                    and prev_start < e.lineno <= prev_end]
+        repair_ids = {e.id for e in d_entries if latest.get(e.id) is e}
+        cur_findings = [f for f in f_entries if cur_start < f.lineno <= cur_end]
+        for f in cur_findings:
+            hit = set(cited_ids(f.basis or "")) & repair_ids
+            if hit:
+                concentration = True
+                hits.append({"finding": f.id, "repair_ids": sorted(hit)})
+    return bounds, counts, trajectory, concentration, hits
+
+
+def cmd_trend(args):
+    entries, violations, meta = parse_tracker(load(args.tracker))
+    blocking = closure_blocking_violations(violations)
+    if blocking:
+        for v in blocking:
+            say(f"trend blocked: {v['code']} @ line {v['line']}: {v['text']}")
+        finish("TREND_RECORD_MALFORMED", 2, violations=blocking, **meta)
+    bounds, counts, trajectory, concentration, hits = trend_over_rounds(entries)
+    if not bounds:
+        say("trend: no resolved (BIT/ZERO-DELTA) attack round in this tracker")
+        finish("TREND_NO_ROUNDS", 0, rounds=0, **meta)
+    say(f"trend: {len(bounds)} round(s), findings {counts}, "
+        f"trajectory {trajectory}"
+        + (", CONCENTRATION in the prior round's repairs" if concentration
+           else ""))
+    finish("TREND_COMPUTED", 0, rounds=len(bounds), counts=counts,
+          trajectory=trajectory, concentration=concentration,
+          concentration_detail=hits, **meta)
+
+
 # -------------------------------------------------------------------- filter
 
 def cmd_filter(args):
@@ -1038,7 +1251,7 @@ def main():
     ap = Parser(prog="statiker-record")
     sub = ap.add_subparsers(dest="cmd", required=True,
                             parser_class=Parser)
-    for name in ("lint", "sweep"):
+    for name in ("lint", "sweep", "waves", "trend"):
         p = sub.add_parser(name)
         p.add_argument("--tracker", required=True)
     p = sub.add_parser("closure")
@@ -1053,6 +1266,7 @@ def main():
 
     args = ap.parse_args()
     handlers = {"lint": cmd_lint, "sweep": cmd_sweep, "closure": cmd_closure,
+                "waves": cmd_waves, "trend": cmd_trend,
                 "filter": cmd_filter, "quote": cmd_quote}
     try:
         handlers[args.cmd](args)

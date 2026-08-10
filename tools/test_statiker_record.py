@@ -95,6 +95,16 @@ class RecordFixture(unittest.TestCase):
             args += ["--unit", unit]
         return self.verdict(tool(args, cwd=self.dir))
 
+    def waves(self, body, header=HEADER):
+        return self.verdict(tool(
+            ["waves", "--tracker", str(self.write_tracker(body, header))],
+            cwd=self.dir))
+
+    def trend(self, body, header=HEADER):
+        return self.verdict(tool(
+            ["trend", "--tracker", str(self.write_tracker(body, header))],
+            cwd=self.dir))
+
     def violation_codes(self, v):
         return {viol["code"] for viol in v.get("violations", [])}
 
@@ -316,6 +326,138 @@ class TestClosure(RecordFixture):
                 "- D9 [COMMITTED] unit U2 operator cleared x.txt — basis: reply\n")
         v = self.closure(body, unit="U2")
         self.assertEqual(v["verdict"], "UNIT_DISPATCHABLE")
+
+
+# --------------------------------------------------------------------- waves
+
+class TestWaves(RecordFixture):
+    def test_three_units_two_disjoint_one_overlapping(self):
+        # U1 and U3 share src/a.py (overlap, serialize); U2 is disjoint
+        body = (
+            "- F1 [VERIFIED] unit U1 write-set: src/a.py — basis: design\n"
+            "- F2 [VERIFIED] unit U1 write-set: src/b.py — basis: design\n"
+            "- F3 [VERIFIED] unit U2 write-set: src/c.py — basis: design\n"
+            "- F4 [VERIFIED] unit U3 write-set: src/a.py — basis: design\n")
+        v = self.waves(body)
+        self.assertEqual(v["verdict"], "WAVES_COMPUTED")
+        by_units = [w["units"] for w in v["waves"]]
+        self.assertEqual(by_units, [["U1", "U3"], ["U2"]])
+        overlap = next(w for w in v["waves"] if w["units"] == ["U1", "U3"])
+        self.assertTrue(overlap["serialize"])
+        parallel = next(w for w in v["waves"] if w["units"] == ["U2"])
+        self.assertFalse(parallel["serialize"])
+        self.assertEqual(v["unplannable"], [])
+
+    def test_unit_missing_write_set_is_unplannable(self):
+        body = (
+            "- F1 [VERIFIED] unit U1 write-set: src/a.py — basis: design\n"
+            "- D2 [AUTO-ACCEPTED] unit U2 gap: no write-set decided — basis: report\n")
+        v = self.waves(body)
+        self.assertEqual(v["verdict"], "WAVES_COMPUTED")
+        self.assertEqual(v["unplannable"], ["U2"])
+        self.assertEqual(v["waves"], [{"units": ["U1"], "serialize": False}])
+
+    def test_invalidated_write_set_path_dropped_leaves_unit_unplannable(self):
+        body = (
+            "- F1 [VERIFIED] unit U1 write-set: src/a.py — basis: design\n"
+            "- F2 [VERIFIED] unit U2 write-set: src/a.py — basis: design\n"
+            "- F2 [INVALIDATED] unit U2 write-set: src/a.py dead (mis-scoped) "
+            "— basis: F9\n")
+        v = self.waves(body)
+        self.assertEqual(v["verdict"], "WAVES_COMPUTED")
+        # F2's LATEST line is INVALIDATED: U2 contributes no live path
+        self.assertEqual(v["unplannable"], ["U2"])
+        self.assertEqual(v["waves"], [{"units": ["U1"], "serialize": False}])
+
+    def test_record_malformed_blocks(self):
+        v = self.waves("* F1 [VERIFIED] bullet near-miss — basis: probe\n")
+        self.assertEqual(v["verdict"], "WAVES_RECORD_MALFORMED")
+
+
+# --------------------------------------------------------------------- trend
+
+class TestTrend(RecordFixture):
+    def test_worsening_series_with_concentration(self):
+        body = (
+            "- D1 [COMMITTED] first design — basis: probe\n"
+            "- A1 [DISPATCHED] round 1 — basis: brief\n"
+            "- F1 [VERIFIED] one finding — basis: probe\n"
+            "- A1 [BIT] one finding — basis: report\n"
+            "- D2 [COMMITTED] repair for round 1's finding — basis: F1\n"
+            "- A2 [DISPATCHED] round 2 — basis: brief\n"
+            "- F2 [VERIFIED] finding one — basis: probe\n"
+            "- F3 [VERIFIED] finding two — basis: probe\n"
+            "- A2 [BIT] two findings — basis: report\n"
+            "- A3 [DISPATCHED] round 3 — basis: brief\n"
+            "- F4 [VERIFIED] hits the round-2 repair site again — basis: D2\n"
+            "- F5 [VERIFIED] a second one at the same site — basis: D2\n"
+            "- F6 [VERIFIED] and a third — basis: D2\n"
+            "- A3 [BIT] three findings — basis: report\n")
+        v = self.trend(body)
+        self.assertEqual(v["verdict"], "TREND_COMPUTED")
+        self.assertEqual(v["rounds"], 3)
+        self.assertEqual(v["counts"], [1, 2, 3])
+        self.assertEqual(v["trajectory"], "WORSENING")
+        self.assertTrue(v["concentration"])
+        self.assertTrue(any("D2" in h["repair_ids"] for h in
+                            v["concentration_detail"]))
+
+    def test_improving_series_no_concentration(self):
+        body = (
+            "- D1 [COMMITTED] first design — basis: probe\n"
+            "- A1 [DISPATCHED] round 1 — basis: brief\n"
+            "- F1 [VERIFIED] finding a — basis: probe\n"
+            "- F2 [VERIFIED] finding b — basis: probe\n"
+            "- F3 [VERIFIED] finding c — basis: probe\n"
+            "- A1 [BIT] three findings — basis: report\n"
+            "- D2 [COMMITTED] repair for round 1's findings — basis: F1\n"
+            "- A2 [DISPATCHED] round 2 — basis: brief\n"
+            "- F4 [VERIFIED] finding d — basis: probe\n"
+            "- F5 [VERIFIED] finding e — basis: probe\n"
+            "- A2 [BIT] two findings — basis: report\n"
+            "- D3 [COMMITTED] repair for round 2's findings — basis: F4\n"
+            "- A3 [DISPATCHED] round 3 — basis: brief\n"
+            "- F6 [VERIFIED] an unrelated finding, cites nothing from the "
+            "round-2 repair — basis: probe\n"
+            "- A3 [BIT] one finding — basis: report\n")
+        v = self.trend(body)
+        self.assertEqual(v["verdict"], "TREND_COMPUTED")
+        self.assertEqual(v["rounds"], 3)
+        self.assertEqual(v["counts"], [3, 2, 1])
+        self.assertEqual(v["trajectory"], "IMPROVING")
+        self.assertFalse(v["concentration"])
+
+    def test_flat_series(self):
+        body = (
+            "- A1 [DISPATCHED] round 1 — basis: brief\n"
+            "- F1 [VERIFIED] finding a — basis: probe\n"
+            "- A1 [BIT] one finding — basis: report\n"
+            "- A2 [DISPATCHED] round 2 — basis: brief\n"
+            "- F2 [VERIFIED] finding b — basis: probe\n"
+            "- F3 [VERIFIED] finding c — basis: probe\n"
+            "- A2 [BIT] two findings — basis: report\n"
+            "- A3 [DISPATCHED] round 3 — basis: brief\n"
+            "- F4 [VERIFIED] finding d — basis: probe\n"
+            "- A3 [BIT] one finding — basis: report\n")
+        v = self.trend(body)
+        self.assertEqual(v["counts"], [1, 2, 1])
+        self.assertEqual(v["trajectory"], "FLAT")
+
+    def test_void_and_dispatched_rounds_excluded(self):
+        body = (
+            "- A1 [DISPATCHED] round 1 — basis: brief\n"
+            "- A1 [VOID] premise broke — basis: report\n"
+            "- A2 [DISPATCHED] round 2 — basis: brief\n"
+            "- F1 [VERIFIED] a finding — basis: probe\n"
+            "- A2 [ZERO-DELTA] clean return — basis: report\n"
+            "- A3 [DISPATCHED] round 3, still out — basis: brief\n")
+        v = self.trend(body)
+        self.assertEqual(v["rounds"], 1)
+        self.assertEqual(v["counts"], [1])
+
+    def test_no_resolved_rounds(self):
+        v = self.trend("- A1 [DISPATCHED] round 1 — basis: brief\n")
+        self.assertEqual(v["verdict"], "TREND_NO_ROUNDS")
 
 
 # -------------------------------------------------------------------- filter
