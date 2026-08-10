@@ -4297,3 +4297,42 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   not the header field. The restart-at-seam convention stands for
   any release whose delta touches the scripts. Consumer: the C58
   close's grading.**
+
+- 2026-08-10 — **0.2.52 BUILT: STACK PORTABILITY + RESUME
+  ENUMERATION (executing the recorded operator GO above; one
+  release, before the next trial contact).** SKILL.md, four
+  edits: (1) attack tier is a ROLE — resolution order
+  `clippy.config/models` (`attack:` class) else the strongest
+  model available to the harness as a fresh context; the
+  probe-then-certify METHOD stays in the text, an uncertified
+  tier attacks as a DECLARED deviation (the certification duty
+  rides the flexibility); no model name remains in the payload.
+  (2) impl chain terminal default for no-corpus stacks: cheaper
+  tier than the desk (the tier discovery legs already take);
+  verify already terminal-defaults to the parent model —
+  untouched. (3) The Composition corpus bullet binds its
+  parenthetical directly without a corpus. (4) RESUME-ENUMERATION
+  MINT (fire-born; provenance: the 0.2.50 fire log — C8 and
+  attended-by-fact mode re-asked at resume, frozen run-local
+  operator state): a resuming desk's first reply enumerates the
+  Mode line, live operator-imposed holds, and mid-run INTENT
+  lines as INFORMATION, never re-asked. Validation criterion,
+  pre-registered: the next resumed-run relay shows the
+  enumeration in the first reply and zero re-asks of frozen
+  operator state. CERTIFIED-INSTANCE MOVE: `attack: opus` written
+  to beat-the-books clippy.config/models (comment cites the
+  2026-08-06 certification); the commit there is HELD — operator
+  question open at write time (pin vs exercise-the-default;
+  desk recommendation: keep the pin — defaultless resolution on
+  this stack is fable, uncertified-on-this-stack and capped-pool
+  priced, and the default belongs to the no-corpus greenfield
+  vehicle, not the live comparison run). Verifiers, own output:
+  suites 254 passed in 12.19s; skill-lint `singleton=60;
+  blocking=0`; operational lines 1037; no-corpus read-through —
+  zero model-name greps in SKILL.md, corpus mentions :33
+  (carries its fallback) and :336 (attribution beside an inline
+  rule) resolve without one. Review rounds remain HELD (operator
+  sequencing decision above; resume trigger post-trial). Pin
+  moves at the seam — no desk in flight; the fresh cycle-12 desk
+  starts on 0.2.52. Consumer: the C58 cycle-12 desk; post-trial
+  patch grading.**

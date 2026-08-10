@@ -30,8 +30,12 @@ overriding context-independence (PLAN.md, Ecosystem composition):
   work — every EXECUTION brief cites it; verifier and attack briefs
   never do (a fresh context briefed with conduct-of-building material
   is being framed as a builder).
-- The operator corpus carries the grounding and evidence ethics
-  (bases, refutation probes, altitude); assumed, not restated.
+- The operator corpus, where the stack has one, carries the
+  grounding and evidence ethics (bases, refutation probes,
+  altitude); assumed, not restated. Without one the parenthetical
+  binds directly: claims and verdicts carry their basis, a
+  load-bearing claim earns one probe designed to disprove it, and
+  correctness is checked where the work takes effect.
 
 ## The tools
 
@@ -114,7 +118,13 @@ verified by it before the halted procedure re-runs.
 Append-only tracker at `.clippy/runs/<yyyy-mm-dd>-<slug>.md` —
 clippy's ledger convention, shared so `/clippy-stats` and cross-skill
 comparison read both. Never overwrite another run's tracker; resume
-an in-progress run from its tracker, not from memory. An entry
+an in-progress run from its tracker, not from memory. A resuming
+desk's first reply enumerates the run's standing operator state
+read from the record — the Mode line, every live operator-imposed
+hold, any mid-run INTENT line — shown as INFORMATION, never
+re-asked: frozen operator ground only its owner lifts, and a lift
+arrives as an operator line, not as an answer to a desk question.
+An entry
 ADOPTED — content re-entering from outside the record's live
 entries: a prior or superseded run's tracker, session memory of
 work no live entry records, or a clause restated out of an
@@ -627,10 +637,15 @@ attackers read the repo, so seals and comparisons enter the
 tracker only in the close, where no further round follows. A
 seal is calibration, never evidence: it steers no verdict, and a
 missing or late one voids its comparison, not the round.
-Attack tier: probed
-opus (the PLAN.md
-probe-then-certify step, certified; provenance in dev-notes) —
-escalate a round to fable only on operator call. Rounds are
+Attack tier: a ROLE, resolved in order — `clippy.config/models`
+(`attack:` class) when present, else the strongest model
+available to the harness as a fresh context. The resolved tier
+is certified by the PLAN.md probe-then-certify step, the
+certified instance recorded in the consuming stack's config or
+ledger; an uncertified attack tier attacks as a DECLARED
+deviation in the tracker, never silently — the resolution
+order's flexibility carries the certification duty. Escalate a
+round above the resolved tier only on operator call. Rounds are
 sequential —
 one attacker, the round's A-line recorded before any next dispatch
 (parallel attackers are operator experiments outside this default);
@@ -812,7 +827,9 @@ one dies → premise-killing. Stop the siblings resting
 on it, let the rest land, re-enter the loop ONCE with every
 return in hand. Model per
 `clippy.config/models` (`impl:` class) when present, else the
-operator corpus routing table; an unreadable models file halts
+operator corpus routing table, else — no corpus on the stack — a
+cheaper tier than the desk, the same terminal default discovery
+legs take; an unreadable models file halts
 the dispatch, the parse error a unit-scoped F-line (body OPENS
 `unit U<k>` — the criterion's scope form). Each unit
 commits green; the desk appends its landing as an INDENTED
