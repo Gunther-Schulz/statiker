@@ -4515,3 +4515,18 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   singleton=62 blocking=0; 1046 operational lines; payload ls
   defaults/ + references/ + scripts/ + SKILL.md. Consumer: any
   no-corpus consumer; post-trial patch grading.**
+
+## Cross-system datapoints
+
+- 2026-08-10 **Disjoint-write-set parallelism, validated in a sibling
+  system** (cache-fix backlog drain, wave 1; operator-relayed
+  magnitude "days -> under an hour", not instrumented). 9 parallel
+  lanes: every lane whose boundaries the dispatcher INFERRED from
+  entry prose returned members (8 returns across the wave); the one
+  lane with genuinely disjoint, data-derived boundaries returned
+  zero. Supports statiker's birth clause (SKILL.md:816, units with
+  disjoint write-sets run parallel) and its declared-write-set
+  design; the gap it exposes (nobody computes the disjointness) is
+  booked in BACKLOG.md (wave derivation). Not a clause firing — an
+  external validation, logged for the fire-rate review's
+  keep-or-prune reading.
