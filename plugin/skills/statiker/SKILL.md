@@ -667,8 +667,9 @@ deviation in the tracker, never silently: the resolution
 order's flexibility carries the certification duty. Escalate a
 round above the resolved tier only on operator call. Rounds are
 sequential —
-one attacker, the round's A-line recorded before any next dispatch
-(parallel attackers are operator experiments outside this default).
+one attacker, the round's A-line recorded before any next dispatch;
+a second simultaneous attacker on one design only on operator
+order.
 Sequential is per ATTACKER, not per design: one trip MAY carry
 every locked design ready at that moment — across runs — the
 brief stating the design order and demanding a complete

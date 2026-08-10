@@ -61,6 +61,15 @@
   is recorded in dev-notes BEFORE any arm dispatches; arms are
   graded post-run in the meta session on a body-read of the raw
   reports — the desk records verbatim and never grades the arms.
+- **Skill text states current decisions cleanly, as if final
+  (operator-settled 2026-08-10).** A settled decision enters
+  SKILL.md as the plain default — no experimental hedges, no
+  history, no "outside this default" framing inline: history and
+  provenance live in dev-notes and git, and rollback is cheap
+  because both record everything. Anything less clean is not a
+  fair test of the design. (Markers that carry epistemic load for
+  the reader — an explicitly flagged unproven rule — are judged
+  per instance, not swept as history.)
 - **n=1 suffices during the experimental phase (operator-settled
   2026-08-10).** A single pre-registered probe whose criterion
   resolves is decision-grade for trial-phase calls — un-parks,

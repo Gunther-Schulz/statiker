@@ -166,6 +166,22 @@ build tooling, but a clause mint still needs its incident.
   one real batched round recorded with complete per-design
   dispositions.
 
+- **READY — hedge-language sweep over SKILL.md: every settled
+  decision stated as its plain default.** Booked 2026-08-10,
+  operator-settled convention (CLAUDE.md, "Skill text states
+  current decisions cleanly"): enumerate every inline
+  experimental/historical hedge ("experiments", "trial",
+  "outside this default", history-flavored parentheticals) and
+  rewrite each as the clean current decision or cut it; markers
+  carrying epistemic load (explicitly flagged unproven rules) are
+  judged per instance with the operator, not swept. First
+  instance already cured (the parallel-attacker parenthetical,
+  this release). Realizing write-boundary: SKILL.md (skill-craft
+  + opus skill-edit review + version bump). Verifier: the review
+  round over the sweep diff; contract battery green. Done:
+  a grep for the enumerated hedge classes returns only
+  per-instance-kept markers.
+
 ## Done
 
 - 2026-08-10 — **wave derivation (`waves`) + round-trend instrument (`trend`)**: shipped `1eb4380` (subcommands + red-first batteries, sonnet dispatch) and `4b56648` (contract battery rows + SKILL.md verdict routing), version bump `8a8ce22` (0.2.56). Deviation from the booking: the waves entry's "premise verified against the grammar" note was FALSE — no unit write-set record-line form exists in the grammar (the realizing dispatch's gap 1); `waves` ships reading a composed convention, failing loud (UNPLANNABLE) on every real tracker until the line-form mint above lands. Entry bodies retained above under superseded markers until the mint closes; drop them with it.
