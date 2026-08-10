@@ -378,6 +378,41 @@ class TestWaves(RecordFixture):
 
 class TestTrend(RecordFixture):
     def test_worsening_series_with_concentration(self):
+        # The design sentence (backlog trend entry): the newest round's
+        # findings cite a D-id whose LATEST revision landed at the
+        # PREVIOUS RE-LOCK — repairs answering round n-1 land after its
+        # A-line and before round n dispatches.
+        body = (
+            "- D1 [COMMITTED] first design — basis: probe\n"
+            "- A1 [DISPATCHED] round 1 — basis: brief\n"
+            "- F1 [VERIFIED] one finding — basis: probe\n"
+            "- A1 [BIT] one finding — basis: report\n"
+            "- D2 [COMMITTED] repair for round 1's finding — basis: F1\n"
+            "- A2 [DISPATCHED] round 2 — basis: brief\n"
+            "- F2 [VERIFIED] finding one — basis: probe\n"
+            "- F3 [VERIFIED] finding two — basis: probe\n"
+            "- A2 [BIT] two findings — basis: report\n"
+            "- D3 [COMMITTED] re-lock repair for round 2's findings — "
+            "basis: F2\n"
+            "- A3 [DISPATCHED] round 3 — basis: brief\n"
+            "- F4 [VERIFIED] hits the re-lock repair again — basis: D3\n"
+            "- F5 [VERIFIED] a second one at the same site — basis: D3\n"
+            "- F6 [VERIFIED] and a third — basis: D3\n"
+            "- A3 [BIT] three findings — basis: report\n")
+        v = self.trend(body)
+        self.assertEqual(v["verdict"], "TREND_COMPUTED")
+        self.assertEqual(v["rounds"], 3)
+        self.assertEqual(v["counts"], [1, 2, 3])
+        self.assertEqual(v["trajectory"], "WORSENING")
+        self.assertTrue(v["concentration"])
+        self.assertTrue(any("D3" in h["repair_ids"] for h in
+                            v["concentration_detail"]))
+
+    def test_concentration_window_is_the_relock_not_the_prior_span(self):
+        # Discriminating negative pinning the window: D2 is round 1's
+        # repair — its latest revision sits inside round 2's SPAN but
+        # not at round 2's re-lock, so round-3 findings citing D2 are
+        # NOT concentration (the prior-span reading would flag them).
         body = (
             "- D1 [COMMITTED] first design — basis: probe\n"
             "- A1 [DISPATCHED] round 1 — basis: brief\n"
@@ -389,18 +424,14 @@ class TestTrend(RecordFixture):
             "- F3 [VERIFIED] finding two — basis: probe\n"
             "- A2 [BIT] two findings — basis: report\n"
             "- A3 [DISPATCHED] round 3 — basis: brief\n"
-            "- F4 [VERIFIED] hits the round-2 repair site again — basis: D2\n"
-            "- F5 [VERIFIED] a second one at the same site — basis: D2\n"
-            "- F6 [VERIFIED] and a third — basis: D2\n"
+            "- F4 [VERIFIED] cites the old repair, not a re-lock one — "
+            "basis: D2\n"
+            "- F5 [VERIFIED] same — basis: D2\n"
+            "- F6 [VERIFIED] same — basis: D2\n"
             "- A3 [BIT] three findings — basis: report\n")
         v = self.trend(body)
-        self.assertEqual(v["verdict"], "TREND_COMPUTED")
-        self.assertEqual(v["rounds"], 3)
-        self.assertEqual(v["counts"], [1, 2, 3])
         self.assertEqual(v["trajectory"], "WORSENING")
-        self.assertTrue(v["concentration"])
-        self.assertTrue(any("D2" in h["repair_ids"] for h in
-                            v["concentration_detail"]))
+        self.assertFalse(v["concentration"])
 
     def test_improving_series_no_concentration(self):
         body = (

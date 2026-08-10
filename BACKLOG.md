@@ -32,6 +32,14 @@ build tooling, but a clause mint still needs its incident.
   partition; battery green; contract parity holds. Done-criterion:
   a real run's tracker carries machine-printed write-set lines and
   `waves` partitions them with no UNPLANNABLE flag.
+  Absorbed from the 0.2.56 skill-edit review (dispositions in
+  OBSERVATIONS.md, same date): the mint also closes review-F1's
+  silent-absence case (a unit named only in [READY] prose appears
+  in neither `waves` nor `unplannable` — the machine-printed lines
+  are what make every unit visible) and carries review-F2's two
+  seam clauses — the Implementation parallel rule cites `waves`,
+  the re-attack clause cites `trend` — which had no home until
+  this entry's SKILL.md edit.
 
 - _(superseded booking, closed 2026-08-10 — see Done)_
   **READY — mechanical wave derivation over unit write-sets: the

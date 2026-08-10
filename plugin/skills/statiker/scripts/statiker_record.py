@@ -1030,12 +1030,15 @@ def trend_over_rounds(entries):
 
     Concentration (backlog design, trend entry): does the NEWEST
     round's findings cite a D-id whose LATEST revision (latest-line-
-    per-id) landed in the round immediately before it — "attack
-    repairs revise D-lines, so the repair set is those revised ids".
-    Only defined with >=2 rounds; the D-ids counted are exactly those
-    whose latest-overall occurrence falls inside the prior round's own
-    span (a later revision, elsewhere, means that D-id was not what
-    the prior round repaired as it now stands)."""
+    per-id) landed at the PREVIOUS RE-LOCK — "attack repairs revise
+    D-lines, so the repair set is those revised ids". Re-lock repairs
+    answering round n-1 land AFTER its A-line and BEFORE round n's
+    [DISPATCHED] line (the freeze defers mid-round desk appends to
+    the round's return), so the repair window is that gap, never the
+    prior round's own span. Only defined with >=2 rounds; the D-ids
+    counted are exactly those whose latest-overall occurrence falls
+    inside the window (a later revision, elsewhere, means that D-id
+    was not what the re-lock repaired as it now stands)."""
     latest = latest_by_id(entries)
     a_latest = sorted([e for e in latest.values() if e.cls == "A"],
                       key=lambda e: e.lineno)
@@ -1051,10 +1054,14 @@ def trend_over_rounds(entries):
     trajectory = trend_verdict(counts)
     concentration, hits = False, []
     if len(bounds) >= 2:
-        prev_start, prev_end, _ = bounds[-2]
-        cur_start, cur_end, _ = bounds[-1]
+        _, prev_end, _ = bounds[-2]
+        cur_start, cur_end, cur_a = bounds[-1]
+        dispatch_lines = [e.lineno for e in entries
+                          if e.cls == "A" and e.id == cur_a.id
+                          and e.tag == "DISPATCHED" and e.lineno <= cur_end]
+        window_end = max(dispatch_lines) if dispatch_lines else cur_end
         d_entries = [e for e in entries if e.cls == "D"
-                    and prev_start < e.lineno <= prev_end]
+                    and prev_end < e.lineno <= window_end]
         repair_ids = {e.id for e in d_entries if latest.get(e.id) is e}
         cur_findings = [f for f in f_entries if cur_start < f.lineno <= cur_end]
         for f in cur_findings:

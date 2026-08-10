@@ -78,14 +78,22 @@ convenience, never the result. Happy paths route in their own
 sections; `lint` alone answers ad-hoc grammar questions
 (LINT_CLEAN / LINT_VIOLATIONS; `sweep` includes it), and `quote`
 and `filter` return QUOTE_BLOCK and ARTIFACT_WRITTEN with their
-production counts. `waves` returns WAVES_COMPUTED — the write-set
-wave partition a multi-unit parallel decision cites, units with
-no live declared write-set flagged UNPLANNABLE, never placed —
-and `trend` returns TREND_COMPUTED / TREND_NO_ROUNDS, the
-per-round finding series and trajectory a repeat-round reply
-cites; both halt WAVES_RECORD_MALFORMED /
-TREND_RECORD_MALFORMED on a record whose blocking lint
-violations bar the read. ANY verdict no section names is a halt for
+production counts. `waves` returns WAVES_COMPUTED — units sharing
+a declared write-set path grouped, members of a group SERIALIZE,
+groups are mutually parallel-eligible; a unit whose record lines
+declare no live write-set comes back UNPLANNABLE, never placed
+(the write-set record-line form is a booked mint — until the
+record carries such lines every unit reads UNPLANNABLE, and a
+unit with no `unit U<k>`-bodied entry at all appears in neither
+list), and the partition is no dispatchability read: the per-unit
+gate stays `closure --unit`. `trend` returns TREND_COMPUTED /
+TREND_NO_ROUNDS — per-round F-LINE counts (every F-line in a
+round's span, not attacker findings alone) with an arithmetic
+trajectory verdict. Both halt WAVES_RECORD_MALFORMED /
+TREND_RECORD_MALFORMED where an entry-shaped line broke the
+grammar, repaired like any lint hold (`corrects line <n>`
+composed from the verdict's violation lines). ANY verdict no
+section names is a halt for
 the seam that ran it — booked as a `record:` F-line from the
 verdict line, the seam's halt route applying (TRACKER_UNREADABLE,
 PIN_UNREADABLE, NOT_A_REPO, PATH_OUTSIDE_REPO, USAGE_ERROR,
