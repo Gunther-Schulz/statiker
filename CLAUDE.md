@@ -76,8 +76,12 @@
   mints, convention changes. Variance caveats are still RECORDED
   (they price the finding for later re-checks) but they do not
   hold a resolved criterion open, and no repeat probe is owed
-  before acting on one. Re-visit the bar when the trial phase
-  closes.
+  before acting on one. Boundary (operator-agreed, same date):
+  the rule never applies to weakening its own safety floor — the
+  irreversible-unit hold, red-first instruments, and
+  pre-registration are what make n=1 decision-grade, so an n=1
+  result arguing to loosen any of them is out of the rule's
+  reach. Re-visit the bar when the trial phase closes.
 - **Dispatch confirmation: RETIRED 2026-08-08 (operator:
   production posture — run the skill as it runs in production).**
   Desk sessions dispatch per the routing table and the run
