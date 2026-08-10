@@ -1085,7 +1085,7 @@ def cmd_trend(args):
         finish("TREND_NO_ROUNDS", 0, rounds=0, **meta)
     say(f"trend: {len(bounds)} round(s), findings {counts}, "
         f"trajectory {trajectory}"
-        + (", CONCENTRATION in the prior round's repairs" if concentration
+        + (", CONCENTRATION in the previous re-lock's repairs" if concentration
            else ""))
     finish("TREND_COMPUTED", 0, rounds=len(bounds), counts=counts,
           trajectory=trajectory, concentration=concentration,
