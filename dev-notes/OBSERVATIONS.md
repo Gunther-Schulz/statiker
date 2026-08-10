@@ -4336,3 +4336,13 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   moves at the seam — no desk in flight; the fresh cycle-12 desk
   starts on 0.2.52. Consumer: the C58 cycle-12 desk; post-trial
   patch grading.**
+
+- 2026-08-10 — **Held config commit RESOLVED (operator confirmed
+  "attack should be opus unless not available"): `attack: opus`
+  committed in beat-the-books, 63ea19c5, local-only (C2 no-push
+  stands), landed at the seam before the cycle-12 desk so lock
+  briefs' tree==lock claims hold. Operator also confirmed the
+  role semantics as intended: desk = session model (never
+  skill-routed); configured-model-unavailable stays a surfaced
+  halt, never silent substitution. Consumer: the C58 cycle-12
+  desk's first lock; post-trial patch grading.**
