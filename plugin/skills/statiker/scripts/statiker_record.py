@@ -904,23 +904,19 @@ def cmd_closure(args):
 
 # --------------------------------------------------------------------- waves
 
-# SKILL.md spells out exactly ONE literal per-path record-line form: the
-# LOCK's own pathspec F-line (`- F<n> [VERIFIED] lock-set: <path> — basis:
-# <the entry that produced it>`, SKILL.md:471-472). A unit's IMPLEMENTATION
-# write-set has no literal record-line form anywhere in that file — it
-# surfaces only as `--write-set <file>` CLI arguments the desk composes
-# into a unit's dispatch brief (SKILL.md:850-861), never as a grammar this
-# tool can read back out of tracker text. UNIT_WRITE_SET_RE therefore
-# composes two conventions that ARE established (the per-path F/D-line
-# form above, and the `unit U<k> ` scope-opener used throughout for
-# unit-scoped bodies, e.g. SKILL.md:822/930) rather than inventing new
-# syntax from nothing — but the composed form itself is NOT cited grammar.
-# Backlog design premise ("the parse source is the record's own
-# lock-set/write-set line form") does not hold as literally cited;
-# flagged in the closing report as a decision made without an established
-# source, for desk/operator confirmation before this parses a live
-# tracker.
+# The write-set record-line form is normative in SKILL.md (Implementation:
+# `- F<n> [VERIFIED] unit U<k> write-set: <path> — basis: <the unit
+# enumeration>`, one path per line, latest-line-per-id, appended at the
+# [READY] enumeration); this regex reads that form's body after the
+# parser splits off tag and basis. Paths are compared NORMALIZED
+# (lexical normpath, leading `./` collapsed): two spellings of one path
+# reading as disjoint would dispatch colliding units in parallel — the
+# silent direction.
 UNIT_WRITE_SET_RE = re.compile(r"^unit (U\d+) write-set: (\S.*)$")
+
+
+def _normalize_write_set_path(p):
+    return os.path.normpath(p.strip())
 
 
 def waves_over_units(entries):
@@ -945,7 +941,8 @@ def waves_over_units(entries):
             continue
         m = UNIT_WRITE_SET_RE.match(e.body)
         if m:
-            write_sets.setdefault(m.group(1), set()).add(m.group(2).strip())
+            write_sets.setdefault(m.group(1), set()).add(
+                _normalize_write_set_path(m.group(2)))
     unplannable = sorted(known_units - write_sets.keys(),
                         key=lambda u: int(u[1:]))
     units = sorted(write_sets, key=lambda u: int(u[1:]))

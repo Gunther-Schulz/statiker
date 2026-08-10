@@ -599,7 +599,10 @@ dispatches during a round queue at
 (repo-key = `basename` of `git rev-parse --show-toplevel`, a
 hyphen, then the first 8 hex of `sha256` of that toplevel's
 REAL path — the basename alone collided for two checkouts
-sharing a name, a fork beside its origin; the tracker's
+sharing a name, a fork beside its origin; derive it in the MAIN
+checkout, never a linked worktree, where `--show-toplevel`
+answers with the worktree and `--git-common-dir` names the
+shared store; the tracker's
 filename verbatim with `.md`. XDG state, never `~/.claude/`:
 that path shape draws permission dialogs on every access) —
 existing whether or not a seal was
@@ -608,10 +611,15 @@ freeze's scope is every surface the brief claims immutable: a
 brief asserting the tree matches the lock commit (the TREE
 CLAIM) freezes the whole
 repo, not only the record — the claim sets the scope, and keeping
-it true until the last attacker returns is desk work. The claim
+it true until the attacker returns is desk work. The claim
 binds TRACKED state; untracked check by-products sit outside it
 under the declared carve-out (Verify — declaration, pre-existence
-record, removal at the return). The
+record, removal at the return). In a batched trip the claim
+binds each design's worktree instead: a freshly detached
+worktree has every by-product path absent by construction, so
+the pre-existence record is trivial and removal IS the worktree
+removal — no `.paths` file and no working-repo carve-out for
+the trip. The
 question APPENDS this block verbatim
 (pasted, never recalled — free-composed briefs drop invariant
 clauses):
@@ -664,17 +672,23 @@ terminal fallback by construction — attacks as a DECLARED
 deviation in the tracker, never silently: the resolution
 order's flexibility carries the certification duty. Escalate a
 round above the resolved tier only on operator call. Rounds are
-sequential PER DESIGN — one attacker per design-round, that
+sequential PER DESIGN, one attacker per TRIP — that
 design's A-line recorded before its next round dispatches. One
-TRIP may carry every locked design awaiting attack in the stack
+trip may carry every locked design awaiting attack in the stack
 (one stack per trip: tier resolution, the evidence-source cite,
 and deviation lines are per-stack). Each design keeps its whole
 round machinery — its own pinned artifact, its own A-lines in its
 own tracker, its own seal and queue (both key per tracker) — and
 the return carries a complete per-design verdict block: findings,
 or that design's explicit zero-delta. The desk provisions one
-worktree per design, detached at that design's lock sha, and
-removes each at the return: the tree claim binds the design's
+worktree per design — `git worktree add --detach <path> <lock
+sha>`, the path OUTSIDE every repo like the seals and for the
+seal rule's reason — and removes each at the return with
+`git worktree remove --force <path>` (probe by-products make
+plain removal fail by design); a failed add halts that design's
+dispatch, a failed remove is booked as a `record:` F-line from
+the command's own output, and either way sibling designs run on.
+The tree claim binds the design's
 worktree, so every claim holds at once whatever repo the designs
 share, attackers execute in their worktrees only, and the working
 repo needs no by-product carve-out for the trip. The append
@@ -1026,9 +1040,11 @@ outcome line, the desk removes exactly the declared paths the
 pre-existing (operator state), undeclared, or uncertain — is
 LEFT, the leftover a finding, never a broader clean. Removal
 consumes the file — delete it once removal has run; a `.paths`
-file with no live round is litter. Attack briefs
+file with no live round is litter. Single-design attack rounds
 carry the same carve-out for the repo checks their probes
-execute; an attacker's own probe scratch belongs in its
+execute; a batched trip's attackers execute in their worktrees,
+which need none (The attack); an attacker's own probe scratch
+belongs in its
 scratchpad (the read-only tail's provision), never the repo. Model per
 `clippy.config/models` (`verify:` class) when present, else the
 parent model; an unreadable models file halts the dispatch, the
@@ -1118,7 +1134,7 @@ tripwire.
 
 At birth this file was enforcement structure + bindings only —
 zero capability patches. ~150 operational lines is the
-stabilization TARGET, not the live count: the trial accretes
+stabilization TARGET, not the live count: this phase accretes
 fire-born structure above it deliberately, and the compression
 pass owed at stabilization (booked in dev-notes) brings it back
 down. A patch landed without provenance is still the tripwire.

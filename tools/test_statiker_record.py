@@ -373,6 +373,16 @@ class TestWaves(RecordFixture):
         v = self.waves("* F1 [VERIFIED] bullet near-miss — basis: probe\n")
         self.assertEqual(v["verdict"], "WAVES_RECORD_MALFORMED")
 
+    def test_path_spellings_normalize_into_one_group(self):
+        # Silent-direction guard: `src/a.py` and `./src/a.py` are ONE
+        # path — read as disjoint they would dispatch colliding units
+        # in parallel.
+        v = self.waves(
+            "- F1 [VERIFIED] unit U1 write-set: src/a.py — basis: d\n"
+            "- F2 [VERIFIED] unit U2 write-set: ./src/a.py — basis: d\n")
+        self.assertEqual(v["waves"],
+                         [{"units": ["U1", "U2"], "serialize": True}])
+
 
 # --------------------------------------------------------------------- trend
 

@@ -47,6 +47,36 @@ build tooling, but a clause mint still needs its incident.
   the re-attack clause cites `trend` — which had no home until
   this entry's SKILL.md edit.
 
+- **READY — worktree provisioning joins the git tool: the batched
+  trip's only hand-run git operation gets verdicts.** Booked
+  2026-08-10 (0.2.57 review N1: hand-run `worktree add/remove`
+  has no verdict to book and no halt route; dirty removal needs
+  `--force` on its normal path — executed evidence in the review).
+  Design, decided: `statiker_git.py` gains `worktree-add --sha
+  <lock sha> --path <outside-repo path>` and `worktree-remove
+  --path <path>` (forced removal, the by-product case is normal),
+  each ending in one verdict line (WORKTREE_ADDED /
+  WORKTREE_REMOVED / halt members per the tool's catch-all rule);
+  SKILL.md's provisioning sentence then cites the subcommands in
+  place of raw git. Realizing write-boundary: `statiker_git.py`,
+  `tools/test_statiker_git.py`, SKILL.md (one sentence swap;
+  skill-craft + review). Verifier, red-first: dirty-worktree
+  removal green through the subcommand, red through plain
+  `git worktree remove`; battery green. Done: a batched round's
+  tracker books worktree verdict lines.
+
+- **READY — `write-set:` joins the machine-token discipline.**
+  Booked 2026-08-10 (0.2.57 review N5 second half; the
+  normalization half landed same day). Design, decided: SKILL.md's
+  machine-token literal list gains `write-set: ` beside the
+  scope-openers, and the lint's positional near-miss detection
+  covers it (a would-be write-set line failing the exact literal
+  lints as a near-miss, same as every other token); battery gains
+  the near-miss case red-first. Realizing write-boundary:
+  `statiker_record.py`, `tools/test_statiker_record.py`, SKILL.md
+  (token list line; skill-craft + review). Done: a misspelled
+  write-set line lints instead of silently not parsing.
+
 - _(superseded booking, closed 2026-08-10 — see Done)_
   **READY — mechanical wave derivation over unit write-sets: the
   parallel clause exists, its input is data, and the grouping is
