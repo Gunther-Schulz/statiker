@@ -118,7 +118,7 @@ build tooling, but a clause mint still needs its incident.
   Done-criterion: a real run's repeat-round reply cites the
   subcommand's output as its trend line.
 
-- **PARKED — attack-round batching: one fresh-context trip carrying
+- **READY — attack-round batching: one fresh-context trip carrying
   every locked design ready at that moment, instead of one design
   per trip.** Raised 2026-08-10 from the corpus's priced-unit rule
   (a round trip through another party carries a BATTERY, not one
@@ -141,6 +141,30 @@ build tooling, but a clause mint still needs its incident.
   — showing the batched arm's per-design yield holds. Until
   measured, the sequential default stands on its own recorded
   basis.
+  UN-PARKED 2026-08-10: the paired probe ran and the criterion
+  HELD on both designs (pre-registration + grading record:
+  `dev-notes/probe-attack-batching-2026-08-10.md`; per-design
+  confirmed-blocker counts batched ≥ single, no tail yield
+  collapse, plus an emergent cross-design coupling finding only a
+  batched round can produce). Standing caveat carried into the
+  design: n=1 and largely disjoint finding sets, so the HOLDS is
+  evidence, not equivalence proof — the per-design disposition
+  form is mandatory, and the batched arm's one tail-accuracy slip
+  is its motivating incident. Design, decided: SKILL.md's attack
+  section gains — a round MAY carry every locked design ready at
+  that moment; the brief states the order and requires a complete
+  per-design verdict block (findings, or that design's explicit
+  zero-delta — a design without its own block is an incomplete
+  return); the A-line records per-design outcomes; the sequential
+  single-design round stays the default where only one design is
+  ready. Realizing write-boundary: SKILL.md (skill-craft + the
+  trial's opus skill-edit review; the clause mint cites the probe
+  record as its provenance — whether that satisfies the fire-born
+  bar is the meta-session's call at minting, recorded either way).
+  Verifier: the next multi-design moment runs batched with the
+  per-design blocks present in the round's A-line. Done-criterion:
+  one real batched round recorded with complete per-design
+  dispositions.
 
 ## Done
 

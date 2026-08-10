@@ -93,3 +93,59 @@ SINGLE-2's.
 n=1, one repo, one design pair, arms not blind to content, single
 grader. A HOLDS result is evidence for un-parking, not a general
 certification of batching; a FAILS result binds only this shape.
+
+---
+
+## GRADING (2026-08-10, dispatching desk, after all arms returned)
+
+Arms returned complete: SINGLE-1 (6 parts), SINGLE-2 (7 parts),
+BATCHED (9 parts). All pins verified by the arms (md5 identity
+artifact↔tracker on both designs, porcelain clean). Validity
+grading ran before any cross-arm comparison; per-finding grades and
+compact bodies are in the two evidence files delivered to the
+findings' consumers:
+`beat-the-books/.clippy/runs/evidence/2026-08-10-probe-batching-attack-findings-{cmi,line-matching}.md`.
+Raw arm reports: this probe session's transcript.
+
+**Deciding re-executions by the desk** (the rest body-read against
+pasted executed output): (1) the cross-arm factual conflict on the
+sport enum — desk read of `domain/types.py:17-35` at 289c7d8b shows
+BOXING and MIXED_MARTIAL_ARTS present; SINGLE-2's A stands, the
+batched arm's D2-6 grade rested on a wrong enum read. (2) BATCHED
+D2-1's alembic basis — single-transaction migration confirmed, zero
+escape-hatch hits, NOT-CLEAN round-8 artifact at the pin. (3)
+BATCHED D1-1's chain — D55 body zero-hits for the carried clauses,
+D47 [INVALIDATED], U7 body a pointer.
+
+**Confirmed blockers (HIGH-or-above by demonstrated mechanism):**
+- DESIGN-1: SINGLE-1 = 0 (its M1-M4 are MODERATE, all confirmed);
+  BATCHED = 1 (D1-1). 1 ≥ 0 ✓
+- DESIGN-2: SINGLE-2 = 1 (A — confirmed as a reach/closure defect,
+  exposure latent); BATCHED = 1 (D2-1). 1 ≥ 1 ✓
+- Non-vacuous (blockers exist on both designs).
+
+**CRITERION RESOLVES: HOLDS → the parked entry un-parks** (moved to
+READY in BACKLOG.md, same date).
+
+**Secondary observables (recorded, non-deciding):**
+- Totals per design/arm — D1: single 4M+3m, batched 1H+1MH+2M+1m;
+  D2: single 1H+1MH+2M, batched 1H+2M+4m. No tail yield collapse:
+  the batched tail block contains the probe's deepest finding
+  (D2-1).
+- The finding SETS are largely disjoint across arms (overlap:
+  U5-reversibility, R5-reach, round-8-staleness). At n=1,
+  attacker-to-attacker variance is comparable to any arm effect —
+  the criterion is met, but "batched ≥ single" here partly reflects
+  different attackers finding different true defects, not
+  demonstrated equivalence of attention. Recorded as the standing
+  caveat on the HOLDS.
+- Tail-accuracy slip: the batched arm's one demonstrable factual
+  error (the enum read behind D2-6) occurred on the TAIL design —
+  a depletion signature in accuracy, not yield. The per-design
+  disposition form the un-parked entry mandates is the designed
+  counter.
+- EMERGENT: the batched arm produced a cross-design coupling
+  finding (P-X1: opposite-direction edits to shared call sites, a
+  premise expiry, an ordering contradiction) that single-design
+  rounds cannot produce by construction. Not in the pre-registered
+  criterion; recorded as an independent benefit of batching.
