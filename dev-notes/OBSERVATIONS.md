@@ -4397,3 +4397,13 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   entry above — its expected observation UPDATES: attack now
   resolves opus via the register, deviation line only if opus
   undispatchable).**
+
+- 2026-08-10 — **Goal state EXECUTED: beat-the-books
+  clippy.config/models deleted, 020b6a93 (local-only, C2 no-push
+  stands). Every run there now resolves through the shipped
+  register — attack: opus via its first entry, impl via the
+  corpus table, verify via parent model. The cycle-12 desk is the
+  register's first live resolution; its tracker showing opus
+  attack dispatches WITHOUT a deviation line is the pass signal.
+  Consumer: the C58 cycle-12 desk's first attack dispatch;
+  the greenfield vehicle.**
