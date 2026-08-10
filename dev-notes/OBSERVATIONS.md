@@ -4464,3 +4464,19 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   on: the 0.2.52 no-corpus fallback's adequacy; any public
   portability claim. Consumer: the greenfield vehicle's run
   design.**
+
+- 2026-08-10 — **PARKED (operator-raised, direction agreed): ship
+  the performance-bearing evidence ethics for no-corpus users —
+  the ethics, never the operator's preferences. Shape decided in
+  principle: the REGISTER PATTERN again — a shipped payload
+  reference the Composition bullet cites where no corpus exists
+  (cite form unchanged, target public); never inlined into
+  SKILL.md prose (double-loads on corpus stacks, second home for
+  corpus-owned meanings, collides with the booked compression).
+  Named missing evidence, the gate: the greenfield
+  corpus-ablation's died-behaviors list (entry above) IS the
+  extraction spec — behaviors surviving on the four-line fallback
+  ship nothing; behaviors that die name the lines. PLAN.md's
+  Ecosystem-composition decision ("a public extraction would
+  inline what it cites") amends at that same moment, ablation as
+  basis. Consumer: the session grading the greenfield run.**
