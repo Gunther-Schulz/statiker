@@ -602,10 +602,12 @@ class TestUnitStartWriteSetRecordLines(GitFixture):
 
         entry = sr.Entry(lineno=1, cls=cls, id=f"{cls}{num}", tag=tag,
                          body=body_main, basis=basis)
-        write_sets, unplannable, waves = sr.waves_over_units([entry])
+        write_sets, unplannable, waves, spellings = sr.waves_over_units(
+            [entry])
         self.assertEqual(write_sets.get("U2"), {"src.txt"})
         self.assertEqual(unplannable, [])
         self.assertEqual(waves, [["U2"]])
+        self.assertEqual(spellings, {})
 
 
 # -------------------------------------------------------------- unit commit

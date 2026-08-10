@@ -382,6 +382,10 @@ class TestWaves(RecordFixture):
             "- F2 [VERIFIED] unit U2 write-set: ./src/a.py — basis: d\n")
         self.assertEqual(v["waves"],
                          [{"units": ["U1", "U2"], "serialize": True}])
+        # The as-named principle: the verdict reports the record's own
+        # strings beside the normalized comparison keys.
+        self.assertEqual(v["spellings"],
+                         {"src/a.py": ["./src/a.py", "src/a.py"]})
 
 
 # --------------------------------------------------------------------- trend

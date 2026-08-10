@@ -920,9 +920,13 @@ def _normalize_write_set_path(p):
 
 
 def waves_over_units(entries):
-    """(write_sets: unit -> live path set, unplannable units sorted
-    ascending, waves: list of unit-id lists, each sorted ascending,
-    ordered by each wave's lowest unit id). A unit is KNOWN if any live
+    """(write_sets: unit -> live path set (normalized), unplannable
+    units sorted ascending, waves: list of unit-id lists, each sorted
+    ascending, ordered by each wave's lowest unit id, spellings:
+    normalized path -> sorted raw spellings wherever any raw form
+    differs — the as-named principle: the verdict reports the
+    record's own strings beside the normalized comparison keys). A
+    unit is KNOWN if any live
     or dead entry opens `unit U<k> ` anywhere (classify_scope, the
     established scope-opener grammar) — write-set lines and any other
     unit-scoped line both count. A unit is PLANNABLE only if at least
@@ -932,6 +936,7 @@ def waves_over_units(entries):
     latest = latest_by_id(entries)
     known_units = set()
     write_sets = {}
+    aliases = {}
     for e in sorted(latest.values(), key=lambda e: e.lineno):
         scope, unit = classify_scope(e.body)
         if scope != "unit":
@@ -941,8 +946,10 @@ def waves_over_units(entries):
             continue
         m = UNIT_WRITE_SET_RE.match(e.body)
         if m:
-            write_sets.setdefault(m.group(1), set()).add(
-                _normalize_write_set_path(m.group(2)))
+            raw = m.group(2).strip()
+            norm = _normalize_write_set_path(raw)
+            write_sets.setdefault(m.group(1), set()).add(norm)
+            aliases.setdefault(norm, set()).add(raw)
     unplannable = sorted(known_units - write_sets.keys(),
                         key=lambda u: int(u[1:]))
     units = sorted(write_sets, key=lambda u: int(u[1:]))
@@ -970,7 +977,9 @@ def waves_over_units(entries):
         (sorted(members, key=lambda u: int(u[1:]))
          for members in components.values()),
         key=lambda members: int(members[0][1:]))
-    return write_sets, unplannable, waves
+    spellings = {n: sorted(rs) for n, rs in aliases.items()
+                 if rs != {n}}
+    return write_sets, unplannable, waves, spellings
 
 
 def cmd_waves(args):
@@ -980,7 +989,7 @@ def cmd_waves(args):
         for v in blocking:
             say(f"waves blocked: {v['code']} @ line {v['line']}: {v['text']}")
         finish("WAVES_RECORD_MALFORMED", 2, violations=blocking, **meta)
-    write_sets, unplannable, waves = waves_over_units(entries)
+    write_sets, unplannable, waves, spellings = waves_over_units(entries)
     for i, members in enumerate(waves, 1):
         overlap = len(members) > 1
         say(f"wave {i}: {{{', '.join(members)}}}"
@@ -992,6 +1001,7 @@ def cmd_waves(args):
           waves=[{"units": m, "serialize": len(m) > 1} for m in waves],
           unplannable=unplannable,
           write_sets={u: sorted(p) for u, p in write_sets.items()},
+          spellings=spellings,
           **meta)
 
 

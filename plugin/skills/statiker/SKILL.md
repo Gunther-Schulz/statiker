@@ -259,7 +259,9 @@ The record's machine tokens are CASE-SENSITIVE LITERALS, not
 phrasing: the entry head `- <C><n> `, the scope openers
 `unit U<k> ` and `record: `, the hold form `unit U<k> held: `
 (that exact prefix as the body's opening — a hold written any
-other way holds nothing), the `corrects line <n>` repair token,
+other way holds nothing), the write-set declarator
+`write-set: ` after its unit scope opener (Implementation), the
+`corrects line <n>` repair token,
 and the late-instruction label `INTENT: `. DETECTION is wider
 than validity by design: the lint detects would-be machine
 tokens positionally — never by word-search — and anything
@@ -865,13 +867,18 @@ on the design is SCOPELESS and voids — the premise-killing
 consequence (stop the siblings resting on it, let the rest
 land, re-enter ONCE). A unit's write-set is
 declared in the record — `- F<n> [VERIFIED] unit U<k>
-write-set: <path> — basis: <the unit enumeration>`, one path
-per line, latest-line-per-id — appended at the [READY]
+write-set: <path> — basis: <the unit enumeration>`, one
+REPO-ROOT-RELATIVE path per line, latest-line-per-id — appended
+at the [READY]
 enumeration. Units with disjoint
 write-sets run parallel (one shared index — commits
 serialize; the tool's capped retry absorbs the
 contention); disjointness is computed, never eyeballed — the
-parallel decision cites the record tool's `waves` partition. A missing
+parallel decision cites the record tool's `waves` partition,
+whose comparison is lexical over that grammar (the verdict
+reports raw spellings beside the normalized paths; an alias
+outside the grammar — an absolute or symlinked spelling — is a
+declaration defect, the desk's to catch at composition). A missing
 decision, file, or value is reported as a gap, never bridged —
 and triaged on arrival: a unit-local gap decision is a design
 decision made without an attack round, and it is recorded as
