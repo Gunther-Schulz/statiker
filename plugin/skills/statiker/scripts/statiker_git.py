@@ -14,7 +14,12 @@ Subcommands (each prints evidence lines, then exactly one final line
   lock-commit --tracker P [--lock-set P ...] [--drop P ...] -m MSG
                                     LOCK steps 0-6 (drops must match
                                     a prior lock-check's drop list)
-  unit-start  --write-set P ...     unit START detector, before any edit
+  unit-start  --write-set P ... [--unit U<k>]
+                                    unit START detector, before any edit;
+                                    on UNIT_START_CLEAN, prints one
+                                    paste-ready record line per write-set
+                                    path (unit U<k>, or the literal
+                                    placeholder U<k> when --unit is omitted)
   unit-commit --write-set P ... -m MSG
                                     unit COMMIT with capped contention
                                     retry and HEAD-read discriminator
@@ -566,6 +571,10 @@ def cmd_unit_start(repo, args):
             say(f"collision: {e['porcelain']} {e['path']}")
         raise Halt("UNIT_COLLISION", entries=listing)
     say("write-set clean: every later modification is the unit's own")
+    unit_label = args.unit if args.unit else "U<k>"
+    for rel in rels:
+        say(f"- F<n> [VERIFIED] unit {unit_label} write-set: {rel} "
+            f"— basis: <the unit enumeration>")
     finish("UNIT_START_CLEAN", 0, write_set=rels)
 
 
@@ -687,6 +696,7 @@ def main():
 
     p = sub.add_parser("unit-start")
     p.add_argument("--write-set", action="append", nargs="+", required=True)
+    p.add_argument("--unit", default=None)
 
     p = sub.add_parser("unit-commit")
     p.add_argument("--write-set", action="append", nargs="+", required=True)

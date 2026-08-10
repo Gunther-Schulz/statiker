@@ -495,6 +495,119 @@ class TestUnitStart(GitFixture):
         self.assertEqual(v["verdict"], "HALT_DIRECTORY_PATH")
 
 
+# ---------------------------------------- unit-start write-set record lines
+#
+# Backlog: "the unit write-set record-line form" (BACKLOG.md, remainder of
+# the entry after the 0.2.57 SKILL.md half landed). SKILL.md's settled form:
+# `- F<n> [VERIFIED] unit U<k> write-set: <path> — basis: <the unit
+# enumeration>`, one path per line. On UNIT_START_CLEAN the tool prints one
+# such line per --write-set path as a paste-ready record line (the tracker
+# itself stays desk-append-only); `F<n>` and the basis clause stay literal
+# placeholders (the tool never reads the tracker and cannot allocate an id),
+# `U<k>` is filled from the new `--unit` argument, or stays the literal
+# placeholder `U<k>` when that argument is omitted.
+
+class TestUnitStartWriteSetRecordLines(GitFixture):
+    RECORD_LINE_PREFIX = "- F<n> [VERIFIED] unit "
+
+    def test_clean_verdict_prints_one_line_per_write_set_path(self):
+        p = self.tool("unit-start", "--write-set", "a.txt", "b.txt",
+                      "--unit", "U2")
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "UNIT_START_CLEAN", p.stdout + p.stderr)
+        expected = [
+            "- F<n> [VERIFIED] unit U2 write-set: a.txt "
+            "— basis: <the unit enumeration>",
+            "- F<n> [VERIFIED] unit U2 write-set: b.txt "
+            "— basis: <the unit enumeration>",
+        ]
+        printed = [l for l in p.stdout.splitlines()
+                  if l.startswith(self.RECORD_LINE_PREFIX)]
+        self.assertEqual(printed, expected, p.stdout)
+
+    def test_clean_verdict_without_unit_flag_uses_placeholder(self):
+        p = self.tool("unit-start", "--write-set", "a.txt")
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "UNIT_START_CLEAN", p.stdout + p.stderr)
+        self.assertIn(
+            "- F<n> [VERIFIED] unit U<k> write-set: a.txt "
+            "— basis: <the unit enumeration>",
+            p.stdout.splitlines())
+
+    def test_record_lines_absent_on_collision(self):
+        # printed evidence lines are conditioned on UNIT_START_CLEAN only
+        # (the settled design) — a halted start must not paste a line for
+        # a write-set the unit never cleanly claimed.
+        self.write("src.txt", "operator draft\n")
+        p = self.tool("unit-start", "--write-set", "src.txt", "--unit", "U3")
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "UNIT_COLLISION")
+        self.assertFalse(
+            any(l.startswith(self.RECORD_LINE_PREFIX)
+                for l in p.stdout.splitlines()),
+            p.stdout)
+
+    def test_record_lines_absent_on_directory_halt(self):
+        self.write("docs/a.txt", "a\n")
+        p = self.tool("unit-start", "--write-set", "docs", "--unit", "U4")
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "HALT_DIRECTORY_PATH")
+        self.assertFalse(
+            any(l.startswith(self.RECORD_LINE_PREFIX)
+                for l in p.stdout.splitlines()),
+            p.stdout)
+
+    def test_verdict_line_still_the_only_verdict_line(self):
+        # the printed record lines are evidence, invisible to verdict
+        # parsing — self.verdict() already enforces exactly one
+        # VERDICT_PREFIX line; this test pins that against a multi-path
+        # write-set, where the printed-line count is highest.
+        p = self.tool("unit-start", "--write-set", "a.txt", "b.txt", "c.txt",
+                      "--unit", "U2")
+        self.verdict(p)  # raises if more/less than one verdict line
+
+    def test_printed_line_round_trips_through_waves_over_units(self):
+        # brief verifier (b): substitute F<n> -> F7 (the desk's paste-time
+        # id allocation) and confirm the line parses through the record
+        # tool's own grammar and its UNIT_WRITE_SET_RE, landing in
+        # waves_over_units' write_sets keyed by the printed unit id.
+        p = self.tool("unit-start", "--write-set", "src.txt", "--unit", "U2")
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "UNIT_START_CLEAN", p.stdout + p.stderr)
+        printed = next(l for l in p.stdout.splitlines()
+                       if l.startswith(self.RECORD_LINE_PREFIX))
+        line = printed.replace("F<n>", "F7", 1)
+        self.assertEqual(
+            line,
+            "- F7 [VERIFIED] unit U2 write-set: src.txt "
+            "— basis: <the unit enumeration>")
+
+        sys.path.insert(0, str(SCRIPT.parent))
+        self.addCleanup(sys.path.remove, str(SCRIPT.parent))
+        import statiker_record as sr
+
+        m = sr.ENTRY_RE.match(line)
+        self.assertIsNotNone(m, line)
+        cls, num, tag, body = m.groups()
+        self.assertEqual(f"{cls}{num}", "F7")
+        self.assertEqual(tag, "VERIFIED")
+        self.assertIn("— basis:", body)
+        body_main, basis = body.split("— basis:", 1)
+        body_main, basis = body_main.strip(), basis.strip()
+
+        wm = sr.UNIT_WRITE_SET_RE.match(body_main)
+        self.assertIsNotNone(wm, body_main)
+        self.assertEqual(wm.group(1), "U2")
+        self.assertEqual(wm.group(2), "src.txt")
+
+        entry = sr.Entry(lineno=1, cls=cls, id=f"{cls}{num}", tag=tag,
+                         body=body_main, basis=basis)
+        write_sets, unplannable, waves = sr.waves_over_units([entry])
+        self.assertEqual(write_sets.get("U2"), {"src.txt"})
+        self.assertEqual(unplannable, [])
+        self.assertEqual(waves, [["U2"]])
+
+
 # -------------------------------------------------------------- unit commit
 
 class TestUnitCommit(GitFixture):
