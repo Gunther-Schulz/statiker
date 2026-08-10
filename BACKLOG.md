@@ -7,7 +7,34 @@ build tooling, but a clause mint still needs its incident.
 
 ## Open
 
-- **READY — mechanical wave derivation over unit write-sets: the
+- **READY — the unit write-set record-line form: the grammar names
+  none, nothing emits one, and `waves` reads a composed
+  convention.** Booked 2026-08-10; fire-born incident provenance:
+  the wave-derivation entry's cited premise (":471-478 covers unit
+  write-sets") failed its body-read in the realizing dispatch —
+  SKILL.md's per-path line form governs the LOCK's own pathspec,
+  and a unit's write-set exists only as `--write-set` CLI args in
+  briefs; the shipped parser documents its line form as inference
+  (statiker_record.py, UNIT_WRITE_SET_RE block). Design, decided —
+  derived from the requirement (unit write-sets must be
+  desk-appendable record lines under the EXISTING entry grammar),
+  with the parser following the settled form, never ratifying it:
+  the form is `- F<n> [VERIFIED] unit U<k> write-set: <path> —
+  basis: <the unit's brief>`, one path per line,
+  latest-line-per-id supersede; `statiker_git.py unit-start`
+  PRINTS the record lines for the desk to append (the tracker
+  stays desk-append-only — one writer), and SKILL.md's
+  Implementation section names the form beside the `--write-set`
+  args (SKILL.md edit: skill-craft + the trial's opus skill-edit
+  review). Realizing write-boundary: SKILL.md, `statiker_git.py`,
+  `tools/test_statiker_git.py`. Verifier, red-first: unit-start's
+  printed lines round-trip through `waves_over_units` into the
+  partition; battery green; contract parity holds. Done-criterion:
+  a real run's tracker carries machine-printed write-set lines and
+  `waves` partitions them with no UNPLANNABLE flag.
+
+- _(superseded booking, closed 2026-08-10 — see Done)_
+  **READY — mechanical wave derivation over unit write-sets: the
   parallel clause exists, its input is data, and the grouping is
   still done by eye.** Booked 2026-08-10, cross-repo provenance
   (operator GO "add it to statiker's backlog"): SKILL.md:816 says
@@ -43,7 +70,8 @@ build tooling, but a clause mint still needs its incident.
   tracker cites the subcommand's wave output instead of a desk read
   of the write-sets.
 
-- **READY — the round-trend read has data and no instrument: A-lines
+- _(superseded booking, closed 2026-08-10 — see Done)_
+  **READY — the round-trend read has data and no instrument: A-lines
   carry every round's outcome and the re-entry trend is still a hand
   read.** Booked 2026-08-10, cross-repo provenance (cache-fix drain
   day; operator direction "improve the efficiency and speed of cycle
@@ -105,3 +133,7 @@ build tooling, but a clause mint still needs its incident.
   — showing the batched arm's per-design yield holds. Until
   measured, the sequential default stands on its own recorded
   basis.
+
+## Done
+
+- 2026-08-10 — **wave derivation (`waves`) + round-trend instrument (`trend`)**: shipped `1eb4380` (subcommands + red-first batteries, sonnet dispatch) and `4b56648` (contract battery rows + SKILL.md verdict routing), version bump `8a8ce22` (0.2.56). Deviation from the booking: the waves entry's "premise verified against the grammar" note was FALSE — no unit write-set record-line form exists in the grammar (the realizing dispatch's gap 1); `waves` ships reading a composed convention, failing loud (UNPLANNABLE) on every real tracker until the line-form mint above lands. Entry bodies retained above under superseded markers until the mint closes; drop them with it.
