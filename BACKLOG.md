@@ -7,6 +7,47 @@ build tooling, but a clause mint still needs its incident.
 
 ## Open
 
+- **READY 2026-08-11 — begehung-harvest 2: four gate/instrument
+  defects in the record tool, each with an executed false-clean or
+  false-verdict probe.** Complete record with fixtures:
+  begehung repo, dev-notes/eval-begehung/2026-08-11-opus/
+  (tier2-without.md findings 2-5; probe fixtures re-runnable in
+  that session's scratchpad, arrangements quoted in the file).
+  The set: (a) `corrects line <n>` sheds by line number without
+  consulting the violation's class — reaches the header and
+  INTENT (Red executed: `Status: bogus-status` + one record-scoped
+  token → LINT_CLEAN + SWEEP_CLEAN with the bogus header standing;
+  INTENT tag-literal shed on the verdict's own recommended line →
+  SWEEP_CLEAN with `[PASSED]` standing for clippy-stats' unanchored
+  grep); fix shape: shed only REPAIR_BOOKKEEPING codes, supersede
+  only MACHINE_TOKEN_CODES, else `corrects-nothing`. (b) `waves`
+  path FIELD lacks the composition lint the declarator got: a
+  two-path line reads as one exotic filename (Red executed: U2
+  `src/app.py src/util.py` placed parallel-eligible beside U1
+  `src/app.py`, LINT_CLEAN); fix shape: whitespace-in-path and
+  leading-`/` lint positionally, like write-set-near-miss. (c)
+  `trend` annexes a VOID round's span into its successor and
+  computes bucket 1 from line 0 (Red executed: verdict flip
+  WORSENING→IMPROVING on three pre-attack F-lines over an
+  unchanged 2→1 yield series); fix shape: advance window at VOID
+  A-lines, start bucket 1 at first [DISPATCHED], or emit the
+  merge visibly. (d) BrokenPipe kills the one-verdict-line
+  guarantee with exit 0 (Red executed: `waves | head -1` →
+  traceback, no verdict, pipeline exit 0); fix shape: catch at
+  the emit boundary, defined exit code — both tools. Design,
+  decided: the four fix shapes above, each taken from the arm's
+  own repair paragraph (the classification-table consult for (a)
+  and the positional-lint mirror for (b) are existing in-repo
+  patterns, not new design). Verifier:
+  each probe as a red-first battery case; full `pytest tools/`
+  green. Done: all four probes flip (false-clean cases now
+  lint/halt, the trend fixture reads its true series), battery
+  green, and the boundary note from the WITHOUT arm (sweep-code
+  immunity is ordering-dependent) either pinned by a test or
+  recorded as accepted. Write boundary: statiker_record.py,
+  statiker_git.py, tools/test_statiker_record.py,
+  tools/test_statiker_git.py, tools/test_contract.py.
+
 - **READY 2026-08-11 — worktree-add containment joins the record
   tool's semantics (every-repo walk + as-named/real agreement).**
   Provenance: 0.2.59 review F1+F2, both EXECUTED — (F1) from repo A,
@@ -72,12 +113,16 @@ build tooling, but a clause mint still needs its incident.
 ## Done
 
 - 2026-08-11 — **worktree subcommands (`worktree-add`/`worktree-remove`)
-  shipped** (da8fb76, sonnet dispatch; battery 99/99, red-first via
-  stash-proof — all 7 new tests red against old code; git's own
-  worktree semantics verified empirically first). New halt member
-  PATH_INSIDE_REPO (reported as deviation, accepted). SKILL.md
-  provisioning sentence swapped to cite the subcommands (desk, same
-  batch).
+  shipped** (da8fb76, sonnet dispatch; LANE battery
+  tools/test_statiker_git.py 99/99, red-first via stash-proof — all
+  7 new tests red against old code; git's own worktree semantics
+  verified empirically first). The CONTRACT battery
+  (test_contract.py) went red in this same commit — three new
+  verdicts undriven — and stayed red four commits; found by the
+  0.2.60 begehung harvest (F1), repaired there. Closure lines name
+  WHICH battery from here on. New halt member PATH_INSIDE_REPO
+  (reported as deviation, accepted). SKILL.md provisioning sentence
+  swapped to cite the subcommands (desk, same batch).
 
 - 2026-08-11 — **write-set near-miss lint shipped** (c2c5baf, sonnet
   dispatch; battery 173/173, red-first — four misspelling variants

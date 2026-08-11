@@ -142,6 +142,11 @@
 ## Verify
 
 ```bash
+python3 -m pytest tools/ -q     # the WHOLE suite: the lane
+                                # batteries prove their own lanes,
+                                # test_contract.py is the reach
+                                # detector over them — green lanes
+                                # alone verify less than they read
 awk '/^---$/{c++} c>=2' plugin/skills/statiker/SKILL.md | grep -vc '^$'
                                 # operational (non-blank body) lines —
                                 # trial metric, printed for the record;
