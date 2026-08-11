@@ -213,8 +213,7 @@ def parser_subcommands(script):
 
 
 GIT_SUBCOMMANDS = parser_subcommands(SCRIPTS[0])
-RECORD_SUBCOMMANDS = {"lint", "sweep", "closure", "filter", "quote",
-                      "waves", "trend"}
+RECORD_SUBCOMMANDS = parser_subcommands(SCRIPTS[1])
 
 VERDICT_LINE_RE = re.compile(r"^STATIKER-(?:GIT|RECORD) VERDICT: (.*)$")
 
@@ -704,6 +703,12 @@ class TestVerdictParity(unittest.TestCase):
         # assertion whatever the tool offers
         self.assertIn("worktree-add", GIT_SUBCOMMANDS)
         self.assertNotIn("__no_such_subcommand__", GIT_SUBCOMMANDS)
+        # the record tool registers four of its lanes from a LOOP
+        # variable, so a source-literal scan would miss them; the
+        # parser answers for those the same as for the rest
+        self.assertLessEqual({"lint", "sweep", "waves", "trend", "quote"},
+                             RECORD_SUBCOMMANDS)
+        self.assertNotIn("__no_such_subcommand__", RECORD_SUBCOMMANDS)
 
     def test_extractor_is_live(self):
         # instrument check: the extractor matches known positives from

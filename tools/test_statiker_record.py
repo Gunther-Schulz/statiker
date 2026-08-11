@@ -73,7 +73,12 @@ class RecordFixture(unittest.TestCase):
         return p
 
     def verdict(self, p):
-        lines = [l for l in p.stdout.splitlines() if l.startswith(VERDICT_PREFIX)]
+        # a line ends at "\n" and nowhere else — the record's own rule
+        # (split_lines in the script). Verdict lines carry the input's
+        # characters verbatim (ensure_ascii=False), so str.splitlines()
+        # severs the JSON at a U+2028, U+000C or U+0085 the tool
+        # correctly kept: a reader defines a line as the tool does
+        lines = [l for l in p.stdout.split("\n") if l.startswith(VERDICT_PREFIX)]
         self.assertEqual(
             len(lines), 1,
             f"expected one verdict line, stdout:\n{p.stdout}\nstderr:\n{p.stderr}")
@@ -2376,6 +2381,18 @@ class TestES9ByteLevelEmit(RecordFixture):
     def test_a_form_feed_quotes_as_one_line_and_survives(self):
         v, block = self.quote("alpha\x0cbeta\n")
         self.assertEqual(block[1:], ["> alpha\x0cbeta"], block)
+        self.assertEqual(v["lines"], 2, v)
+
+    def test_the_fixture_reader_survives_a_separator_in_the_block(self):
+        # the suite's own verdict reader is a CONSUMER of the record's
+        # line rule: a verdict line carries the input's characters
+        # verbatim (ensure_ascii=False), so a reader breaking on U+2028
+        # severs the JSON it is about to parse — the defect the cases
+        # above test for, one level up in the instrument itself
+        v = self.verdict(tool(["quote", "--label", "A7 quotes"],
+                              stdin_text="alpha\u2028beta\n"))
+        self.assertEqual(v["verdict"], "QUOTE_BLOCK")
+        self.assertIn("\u2028", v["block"])
         self.assertEqual(v["lines"], 2, v)
 
     def test_a_tab_is_untouched_by_the_line_rule(self):
