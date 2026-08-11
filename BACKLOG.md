@@ -37,39 +37,23 @@ build tooling, but a clause mint still needs its incident.
   pattern; sentence: A1-A5, B1-B6, C1, NEW-1..3), duplicates merged
   with both ids kept.
 
-- **READY — worktree provisioning joins the git tool: the batched
-  trip's only hand-run git operation gets verdicts.** Booked
-  2026-08-10 (0.2.57 review N1: hand-run `worktree add/remove`
-  has no verdict to book and no halt route; dirty removal needs
-  `--force` on its normal path — executed evidence in the review).
-  Design, decided: `statiker_git.py` gains `worktree-add --sha
-  <lock sha> --path <outside-repo path>` and `worktree-remove
-  --path <path>` (forced removal, the by-product case is normal),
-  each ending in one verdict line (WORKTREE_ADDED /
-  WORKTREE_REMOVED / halt members per the tool's catch-all rule);
-  SKILL.md's provisioning sentence then cites the subcommands in
-  place of raw git. Realizing write-boundary: `statiker_git.py`,
-  `tools/test_statiker_git.py`, SKILL.md (one sentence swap;
-  skill-craft + review). Verifier, red-first: dirty-worktree
-  removal green through the subcommand, red through plain
-  `git worktree remove`; battery green. Done: a batched round's
-  tracker books worktree verdict lines.
-
-- **READY — `write-set:` near-miss detection joins the lint.**
-  Booked 2026-08-10 (0.2.57 review N5 second half; the
-  normalization half landed same day). Premise re-read 2026-08-11
-  before dispatch: the SKILL.md token-list half ALREADY landed
-  (4138fe6, 0.2.57 delta round D2 — "validity only — near-miss
-  lint stays booked"); remaining scope is the lint half alone.
-  Design, decided: the lint's positional near-miss detection
-  covers the `write-set: ` declarator (a would-be write-set line
-  failing the exact literal lints as a near-miss, same as every
-  other token); battery gains the near-miss case red-first.
-  Realizing write-boundary: `statiker_record.py`,
-  `tools/test_statiker_record.py`. Done: a misspelled write-set
-  line lints instead of silently not parsing.
-
 ## Done
+
+- 2026-08-11 — **worktree subcommands (`worktree-add`/`worktree-remove`)
+  shipped** (da8fb76, sonnet dispatch; battery 99/99, red-first via
+  stash-proof — all 7 new tests red against old code; git's own
+  worktree semantics verified empirically first). New halt member
+  PATH_INSIDE_REPO (reported as deviation, accepted). SKILL.md
+  provisioning sentence swapped to cite the subcommands (desk, same
+  batch).
+
+- 2026-08-11 — **write-set near-miss lint shipped** (c2c5baf, sonnet
+  dispatch; battery 173/173, red-first — four misspelling variants
+  read LINT_CLEAN and did not block closure under old code, violate
+  and block under new). Class `write-set-near-miss` in
+  MACHINE_TOKEN_CODES + CLOSURE_BLOCKING_CODES, mirroring
+  scope-near-miss; UNIT_WRITE_SET_RE untouched.
+
 
 - 2026-08-11 — **blast-radius clause minted into the attack block**
   ((hypothesis) provenance class, operator GO; adjacent non-statiker

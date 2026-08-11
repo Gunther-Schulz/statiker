@@ -689,13 +689,15 @@ round machinery — its own pinned artifact, its own A-lines in its
 own tracker, its own seal and queue (both key per tracker) — and
 the return carries a complete per-design verdict block: findings,
 or that design's explicit zero-delta. The desk provisions one
-worktree per design — `git worktree add --detach <path> <lock
-sha>`, the path OUTSIDE every repo like the seals and for the
-seal rule's reason — and removes each at the return with
-`git worktree remove --force <path>` (probe by-products make
-plain removal fail by design); a failed add halts that design's
-dispatch, a failed remove is booked as a `record:` F-line from
-the command's own output, and either way sibling designs run on.
+worktree per design through the git tool — `worktree-add --sha
+<lock sha> --path <path>`, the path OUTSIDE every repo like the
+seals and for the seal rule's reason (the tool halts
+PATH_INSIDE_REPO) — and removes each at the return with
+`worktree-remove --path <path>` (forced removal: probe
+by-products make plain removal fail by design); WORKTREE_ADDED
+and WORKTREE_REMOVED proceed, a halt at add stops that design's
+dispatch, a halt at remove is booked as a `record:` F-line from
+the verdict line, and either way sibling designs run on.
 The tree claim binds the design's
 worktree, so every claim holds at once whatever repo the designs
 share, attackers execute in their worktrees only, and the working
