@@ -37,6 +37,21 @@ build tooling, but a clause mint still needs its incident.
   un-enumerated consumer must draw the finding from a fresh-context
   attack round (red), and the same design with the search recorded
   must not (green).
+  Adjacent evidence (2026-08-11, same day, NON-statiker session —
+  supports the class, proves nothing about statiker's own reach): a
+  retry-bound keyed (signal_id, failure_class) with no variant
+  dimension let one broken wallet's exhaustion suppress every wallet
+  sharing a signal (~100 shared signals/week, live, silent); the
+  red-first battery never varied the missing dimension because
+  expectation and implementation shared an author, and the bug was
+  found by an operator design question, not by the system. The
+  design-time question the parked clause encodes — who else consumes
+  or shares this key's scope — would have surfaced it for the cost
+  of one query. Recommendation updated on this evidence: GO on the
+  (hypothesis) mint rather than waiting for a statiker-run incident;
+  validation criterion at mint (dev-notes): the clause draws at
+  least one blast-radius finding across real attack rounds by the
+  next fire-rate review, else cut.
 
 - **READY 2026-08-11 — triage the three-arm review harvest (~25
   findings, three independent opus reviewers, all probes executed).**
