@@ -186,8 +186,33 @@ def skill_named_verdicts():
 # durable layer for that class is the runtime battery — drive each
 # subcommand's error paths, grep the ACTUAL emitted verdict lines").
 
-GIT_SUBCOMMANDS = {"state-gate", "preflight", "lock-check", "lock-commit",
-                   "unit-start", "unit-commit"}
+def parser_subcommands(script):
+    """The subcommands a tool actually ACCEPTS, asked of its own
+    parser: an unknown subcommand makes argparse render its choice
+    list, which both tools route as a USAGE_ERROR verdict. Derived
+    rather than restated, because a restated set cannot go stale
+    loudly — it stays green while the tool grows a lane no battery row
+    drives, which is the one thing the coverage assertion exists to
+    catch. An unparseable message raises here instead of yielding a
+    thin set: a coverage test over an empty declaration passes
+    vacuously."""
+    p = subprocess.run(
+        [sys.executable, str(script), "__no_such_subcommand__"],
+        capture_output=True, text=True, timeout=60)
+    m = re.search(r"invalid choice:.*?\(choose from ([^)]*)\)", p.stdout)
+    if m is None:
+        raise RuntimeError(
+            f"{Path(script).name}: no argparse choice list in the usage "
+            f"error — the derivation lost its source.\n"
+            f"stdout:\n{p.stdout}\nstderr:\n{p.stderr}")
+    subs = set(re.findall(r"'([^']+)'", m.group(1)))
+    if not subs:
+        raise RuntimeError(f"{Path(script).name}: empty choice list in "
+                           f"{m.group(1)!r}")
+    return subs
+
+
+GIT_SUBCOMMANDS = parser_subcommands(SCRIPTS[0])
 RECORD_SUBCOMMANDS = {"lint", "sweep", "closure", "filter", "quote",
                       "waves", "trend"}
 
@@ -395,6 +420,16 @@ def run_battery(git_script, record_script, root):
     r_corrupt = scratch_repo("r_corrupt")
     (r_corrupt / ".git" / "index").write_bytes(b"GARBAGE-NOT-AN-INDEX")
 
+    # the worktree lane: provisioning registers .git/worktrees state in
+    # the repo it runs from, so it gets its own repo rather than
+    # poisoning the shared one. The provisioned path is a SIBLING of
+    # that repo — repo.outside() halts on anything under the top.
+    r_wt = scratch_repo("r_wt", tracker=False)
+    wt_sha = subprocess.run(["git", "rev-parse", "HEAD"], cwd=r_wt, env=env,
+                            capture_output=True, text=True,
+                            check=True).stdout.strip()
+    wt_path = str(root / "wt_r_wt")
+
     # -- record-side trackers, read-only rows over the main repo -------
     (repo / "absent.md").write_text(
         "# Run: a\nStatus: in-progress\nPhase: implement\n\n## Cycle 1\n"
@@ -503,6 +538,16 @@ def run_battery(git_script, record_script, root):
          r_addfail, None, None),
         ("git", "preflight", ["preflight", "--tracker", TRACKER_REL],
          r_corrupt, None, None),
+
+        # -- the worktree lane: add, remove, and the containment halt --
+        # ordered: the remove row consumes the worktree the add row
+        # provisions, and the halt row runs last on a path INSIDE r_wt
+        ("git", "worktree-add", ["worktree-add", "--sha", wt_sha,
+                                 "--path", wt_path], r_wt, None, None),
+        ("git", "worktree-remove", ["worktree-remove", "--path", wt_path],
+         r_wt, None, None),
+        ("git", "worktree-add", ["worktree-add", "--sha", wt_sha,
+                                 "--path", "inner-wt"], r_wt, None, None),
 
         # -- the record-side routes ----------------------------------
         ("record", "lint", ["lint", "--tracker", str(repo / "malformed.md")],
@@ -651,6 +696,14 @@ class TestVerdictParity(unittest.TestCase):
                 offenders, [],
                 f"{script.name}: emit-position args that are not "
                 f"morphology-passing literals or declared conduits")
+
+    def test_subcommand_derivation_is_live(self):
+        # instrument check on the pair: a lane the parser really
+        # carries is present, and the probe's own sentinel is not — a
+        # set derived from neither would satisfy the coverage
+        # assertion whatever the tool offers
+        self.assertIn("worktree-add", GIT_SUBCOMMANDS)
+        self.assertNotIn("__no_such_subcommand__", GIT_SUBCOMMANDS)
 
     def test_extractor_is_live(self):
         # instrument check: the extractor matches known positives from
