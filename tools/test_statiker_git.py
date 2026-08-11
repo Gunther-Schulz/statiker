@@ -1397,5 +1397,94 @@ class TestES11GitResidue(GitFixture):
         self.assertIn("R  old.txt -> new.txt", status)
 
 
+# -------------------------------------------------------------- worktree
+# Backlog: "worktree provisioning joins the git tool" (0.2.57 review N1):
+# hand-run `git worktree add/remove` has no verdict to book and no halt
+# route; dirty removal needs `--force` on its normal path.
+
+class TestWorktreeAdd(GitFixture):
+    def test_clean_add_at_locked_sha(self):
+        sha = self.git("rev-parse", "HEAD").stdout.strip()
+        wt = Path(self._tmp.name) / "wt1"
+        v = self.verdict(self.tool("worktree-add", "--sha", sha,
+                                   "--path", str(wt)))
+        self.assertEqual(v["verdict"], "WORKTREE_ADDED")
+        self.assertEqual(v["sha"], sha)
+        # read HEAD from the new worktree directly (not via self.git,
+        # which is cwd-pinned to the main repo)
+        wt_head = subprocess.run(
+            ["git", "rev-parse", "HEAD"], cwd=wt, env=self.env,
+            capture_output=True, text=True, check=True).stdout.strip()
+        self.assertEqual(wt_head, sha)
+        # detached, never a new branch on the provisioned worktree
+        branch = subprocess.run(
+            ["git", "symbolic-ref", "-q", "HEAD"], cwd=wt, env=self.env,
+            capture_output=True, text=True, check=False)
+        self.assertNotEqual(branch.returncode, 0, "worktree is not detached")
+
+    def test_path_inside_repo_halts(self):
+        # git itself will happily nest a worktree inside a repo; the
+        # halt has to land at the tool, before git ever runs
+        sha = self.git("rev-parse", "HEAD").stdout.strip()
+        p = self.tool("worktree-add", "--sha", sha, "--path", "inner-wt")
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "PATH_INSIDE_REPO")
+        self.assertNotEqual(p.returncode, 0)
+        self.assertEqual(
+            subprocess.run(["git", "worktree", "list"], cwd=self.repo,
+                           env=self.env, capture_output=True,
+                           text=True).stdout.count("\n"),
+            1, "a worktree was registered despite the halt")
+
+    def test_repo_root_itself_halts_as_inside(self):
+        v = self.verdict(self.tool("worktree-add", "--sha",
+                                   self.git("rev-parse", "HEAD").stdout.strip(),
+                                   "--path", "."))
+        self.assertEqual(v["verdict"], "PATH_INSIDE_REPO")
+
+    def test_bad_sha_reports_git_error(self):
+        p = self.tool("worktree-add", "--sha", "not-a-real-sha",
+                      "--path", str(Path(self._tmp.name) / "wt-bad"))
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "GIT_ERROR")
+        self.assertNotEqual(p.returncode, 0)
+
+
+class TestWorktreeRemove(GitFixture):
+    def add_worktree(self, name="wt1"):
+        sha = self.git("rev-parse", "HEAD").stdout.strip()
+        wt = Path(self._tmp.name) / name
+        v = self.verdict(self.tool("worktree-add", "--sha", sha,
+                                   "--path", str(wt)))
+        self.assertEqual(v["verdict"], "WORKTREE_ADDED", v)
+        return wt
+
+    def test_dirty_worktree_removes_green_through_the_tool(self):
+        wt = self.add_worktree()
+        (wt / "byproduct.txt").write_text("run leftover\n")
+        v = self.verdict(self.tool("worktree-remove", "--path", str(wt)))
+        self.assertEqual(v["verdict"], "WORKTREE_REMOVED")
+        self.assertFalse(wt.exists())
+
+    def test_dirty_worktree_removal_red_without_force(self):
+        # the RED arm: plain git, no --force, on the same dirty
+        # worktree the tool above removes clean
+        wt = self.add_worktree(name="wt-red")
+        (wt / "byproduct.txt").write_text("run leftover\n")
+        p = subprocess.run(["git", "worktree", "remove", str(wt)],
+                           cwd=self.repo, env=self.env,
+                           capture_output=True, text=True)
+        self.assertNotEqual(p.returncode, 0,
+                            "plain git worktree remove unexpectedly "
+                            "succeeded on a dirty worktree")
+        self.assertTrue(wt.exists(), "worktree removed without --force")
+
+    def test_path_inside_repo_halts(self):
+        p = self.tool("worktree-remove", "--path", "docs")
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "PATH_INSIDE_REPO")
+        self.assertNotEqual(p.returncode, 0)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

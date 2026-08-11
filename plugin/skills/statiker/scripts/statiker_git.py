@@ -23,6 +23,10 @@ Subcommands (each prints evidence lines, then exactly one final line
   unit-commit --write-set P ... -m MSG
                                     unit COMMIT with capped contention
                                     retry and HEAD-read discriminator
+  worktree-add    --sha S --path P provision a worktree at a locked
+                                    sha; P must sit OUTSIDE the repo
+  worktree-remove --path P         forced removal of a provisioned
+                                    worktree (dirty is the normal case)
 
 Exit codes: 0 = proceedable verdict, 2 = halt/collision/blocked,
 3 = usage or internal error (argparse failures included: they emit
@@ -46,6 +50,11 @@ Design constraints carried from the attack rounds:
   over the write-set after adds), never a worktree existence check.
 - Everything outside the given pathspec is operator state: never
   committed, never staged, never unstaged, never deleted.
+- A provisioning path is the rel()/containment rule INVERTED: taken
+  as named (never resolved through a symlink), required OUTSIDE the
+  repo rather than inside, decided on the REAL path via the same
+  nearest-existing-ancestor probe — git itself happily makes a
+  worktree inside a repo, so the halt has to land at the tool.
 """
 
 import argparse
@@ -279,6 +288,28 @@ class Repo:
             if note not in RESOLVED:
                 RESOLVED.append(note)
         return rel
+
+    def outside(self, path_arg: str) -> str:
+        """A worktree-provisioning path: rel()'s containment rule
+        INVERTED. Relative inputs are repo-root-relative (same
+        convention as rel()); the path is returned as named, never
+        resolved through a symlink; containment is decided on the
+        REAL path via the same nearest-existing-ancestor probe
+        (ES-7) — but here the ancestor must sit OUTSIDE (or the path
+        must simply not exist as an ancestor of) the repo top, since
+        git itself will happily create a worktree inside a repo."""
+        top = os.path.realpath(str(self.top))
+        p = os.path.normpath(os.path.join(str(self.top), path_arg))
+        anc = nearest_existing_ancestor(p)
+        anc_real = os.path.realpath(anc) if anc else os.path.realpath(p)
+        inside = bool(anc_real == top or anc_real.startswith(top + os.sep))
+        if inside:
+            detail = {"path": path_arg}
+            real_p = os.path.realpath(p)
+            if real_p != p:
+                detail["resolved_from"] = {"named": p, "real": real_p}
+            raise Halt("PATH_INSIDE_REPO", **detail)
+        return p
 
     # -- state gate ---------------------------------------------------------
     def ops_in_progress(self):
@@ -622,6 +653,24 @@ def cmd_unit_commit(repo, args):
     finish(name, 0, write_set=rels, **detail)
 
 
+# --------------------------------------------------------------- worktree
+
+def cmd_worktree_add(repo, args):
+    path = repo.outside(args.path)
+    repo.git("worktree", "add", "--detach", path, args.sha)
+    finish("WORKTREE_ADDED", 0, path=path, sha=args.sha)
+
+
+def cmd_worktree_remove(repo, args):
+    path = repo.outside(args.path)
+    # forced: a by-product file left inside a provisioned worktree is
+    # the normal case, never an operator-precious draft to protect —
+    # unlike the pathspec commits above, nothing here operates on
+    # repo-tracked content outside the given path.
+    repo.git("worktree", "remove", "--force", path)
+    finish("WORKTREE_REMOVED", 0, path=path)
+
+
 # ------------------------------------------------------------------ misc
 
 def cmd_state_gate(repo, args):
@@ -702,6 +751,13 @@ def main():
     p.add_argument("--write-set", action="append", nargs="+", required=True)
     p.add_argument("-m", "--message", required=True)
 
+    p = sub.add_parser("worktree-add")
+    p.add_argument("--sha", required=True)
+    p.add_argument("--path", required=True)
+
+    p = sub.add_parser("worktree-remove")
+    p.add_argument("--path", required=True)
+
     handlers = {
         "state-gate": cmd_state_gate,
         "preflight": cmd_preflight,
@@ -709,6 +765,8 @@ def main():
         "lock-commit": cmd_lock_commit,
         "unit-start": cmd_unit_start,
         "unit-commit": cmd_unit_commit,
+        "worktree-add": cmd_worktree_add,
+        "worktree-remove": cmd_worktree_remove,
     }
     try:
         args = ap.parse_args()
