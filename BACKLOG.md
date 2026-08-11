@@ -7,6 +7,23 @@ build tooling, but a clause mint still needs its incident.
 
 ## Open
 
+- **READY (small) 2026-08-11 — close the splitlines CLASS in the
+  remaining verdict readers.** The record fixture's reader is
+  repaired (2eb6b59, with a standing separator case); the same
+  class sits latent in test_contract.py's `run_battery` stdout
+  reader and tools/test_statiker_git.py's reader — no row emits an
+  exotic byte, so nothing fails, which is exactly the quiet
+  direction. Design, decided: both readers split on "\n" only,
+  mirroring the record fixture's repair; one separator-carrying
+  case per reader, mirroring
+  test_the_fixture_reader_survives_a_separator_in_the_block.
+  Verifier: each new case parses its verdict line through the
+  repaired reader; full `pytest tools/` green. Done: no
+  str.splitlines() over tool stdout remains in tools/ (grep shows
+  the two named sites gone; the record fixture's already is).
+  Write boundary: tools/test_contract.py,
+  tools/test_statiker_git.py.
+
 - **READY 2026-08-11 — begehung-harvest 2: four gate/instrument
   defects in the record tool, each with an executed false-clean or
   false-verdict probe.** Complete record with fixtures:
@@ -111,6 +128,23 @@ build tooling, but a clause mint still needs its incident.
   with both ids kept.
 
 ## Done
+
+- 2026-08-11 — **begehung-harvest F1/F3/F4 repaired + supplements**
+  (opus lane: a288a42 contract battery drives the worktree lane +
+  GIT_SUBCOMMANDS derived from the parser; 82ed13c quote uses
+  split_lines; 2eb6b59 RECORD_SUBCOMMANDS derived + record fixture
+  reader splits on "\n" with a standing separator case; desk half
+  84de7c5 Verify-line + F1b). Verification, WHOLE suite
+  (`python3 -m pytest tools/ -q`, dispatcher's own run): 286
+  passed, 0 failed — the four-commit contract red is closed.
+  Red-first three-arm proofs per repair in the lane report;
+  restated-set blindness now measured on BOTH tools (n=2).
+  Incident, fully reverted in-lane: a U+2028 degraded to a plain
+  space in a tool payload and a single-char replace hit 30323
+  sites — recovered by checkout, lessons in the lane report
+  (expected-count assertion before single-char replaces; invisible
+  chars constructed from escapes, never passed literal).
+
 
 - 2026-08-11 — **worktree subcommands (`worktree-add`/`worktree-remove`)
   shipped** (da8fb76, sonnet dispatch; LANE battery
