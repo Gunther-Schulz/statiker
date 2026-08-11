@@ -7,6 +7,37 @@ build tooling, but a clause mint still needs its incident.
 
 ## Open
 
+- **PARKED 2026-08-11 — no forcing point demands a side-effect /
+  dependents enumeration for the locked design; blast radius rides on
+  attacker initiative and repo-suite luck.** Finding (operator
+  question, coverage read at SKILL.md): what EXISTS touches the class
+  in three layers, none of which forces it — the decision-commit
+  basis reaches the consuming read of the decision's OWN premise
+  only (The loop, hop-trace clause); the attack's verbatim question
+  block names fit-to-requirement, decomposition, simplicity — a side
+  effect on functionality outside the head is caught only if the
+  fresh context thinks of it unprompted; verify's verdict is
+  per-R-line, so a regression no R-line names is structurally never
+  asked (only the repo's own checks catch it, where they cover it).
+  The operator corpus's dependents-search rule (grounding: a change
+  to anything others depend on lands with the dependents search
+  stated, command + hits) binds via composition but has no statiker
+  seam — prose riding on desk memory. Design sketch (recommendation,
+  not settled): cheapest landing is ONE clause in the attack's
+  pasted question block — attack the design's blast radius: for each
+  surface the design changes, are consumers/dependents enumerated by
+  executed search, and does the design hold at each; alternative
+  landing is a [READY] precondition (each unit enumeration names its
+  changed-surface dependents search). Missing evidence (the park
+  reason, per this file's header rule): no fired incident — a side
+  effect slipping through a statiker run — and no operator decision
+  to mint it as a (hypothesis) clause with validation criterion
+  instead. Trigger: first such incident, or operator GO on the
+  hypothesis mint. Verifier at build time: a design with a known
+  un-enumerated consumer must draw the finding from a fresh-context
+  attack round (red), and the same design with the search recorded
+  must not (green).
+
 - **READY 2026-08-11 — triage the three-arm review harvest (~25
   findings, three independent opus reviewers, all probes executed).**
   Evidence, the complete record: begehung repo,
