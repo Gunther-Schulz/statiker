@@ -7,6 +7,36 @@ build tooling, but a clause mint still needs its incident.
 
 ## Open
 
+- **READY 2026-08-11 — triage the three-arm review harvest (~25
+  findings, three independent opus reviewers, all probes executed).**
+  Evidence, the complete record: begehung repo,
+  `dev-notes/eval-begehung/2026-08-11/tier2-{with,without,sentence}.md`
+  (+ `tier2-with-MAP.md`, a 12-row axis map of this repo). Findings
+  arrived as an eval by-product but are real and probe-backed; each
+  carries its executed probe, most carry red-first arrangements.
+  Cross-arm confirmed classes (independent instruments agreeing):
+  vacuous sweep/lint over zero parsed entries (3/3 arms — with-B/F1/A1);
+  path-alias parallel-eligibility in waves (3/3 — B3/F10/A4);
+  seal/queue/repo-key namespace prose-only + ambiguous derivation
+  (3/3 — B1/F7/B5-sentence); unit-id typo clears holds (2/3 — F2/A2);
+  byte-policy not carried to the git tool (2/3 — F4/A3); clippy-stats
+  contract dated hand-read, currently HOLDS (2/3 — B5-with/B6-sentence).
+  Single-arm blockers deserving first look: F9 (booked sha is not the
+  unit's own commit under the in-design parallel window — landing
+  annotations and extras both wrong), B9 (unit-commit lands over
+  CLOSURE_VOID — FP4's own invariant, gate present but unconsulted),
+  NEW-1 (module-level failure emits no verdict line at all). Design
+  (decided): a triage session walks the three files, dedupes into
+  per-finding entries or fix commits, records a disposition per
+  finding (fix / entry / prose-rest / rejected-with-reason) — the
+  reviewers' own fix-shapes and red-first cases are in the texts.
+  Verifier: per-finding red-first before any repair lands (the probes
+  are re-runnable as written). Done: every finding across the three
+  files dispositioned, the set reconciled against the files' own
+  enumeration (with: B1-B9 + namespace note; without: F1-F12 +
+  pattern; sentence: A1-A5, B1-B6, C1, NEW-1..3), duplicates merged
+  with both ids kept.
+
 - **READY — worktree provisioning joins the git tool: the batched
   trip's only hand-run git operation gets verdicts.** Booked
   2026-08-10 (0.2.57 review N1: hand-run `worktree add/remove`
