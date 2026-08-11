@@ -7,6 +7,38 @@ build tooling, but a clause mint still needs its incident.
 
 ## Open
 
+- **READY 2026-08-11 — worktree-add containment joins the record
+  tool's semantics (every-repo walk + as-named/real agreement).**
+  Provenance: 0.2.59 review F1+F2, both EXECUTED — (F1) from repo A,
+  `worktree-add --path ../B/wt-in-B` returned WORKTREE_ADDED and
+  left `?? wt-in-B/` in sibling B's tree (green verdict, foreign
+  tree polluted — the attack-9 exposure the record tool's `--out`
+  check already closes, statiker_record.py:1156-1184); (F2) the
+  symlink spelling `link/wt` (link -> outside dir) passed
+  worktree-add while `filter --out link/art.md` halts
+  ARTIFACT_IN_REPO — the worktree path is the one must-be-outside
+  member decided real-only. Design, decided: `Repo.outside()` gains
+  the every-enclosing-repo probe the record tool carries AND the
+  named-and-real-agree rule; PATH_INSIDE_REPO fires on any
+  enclosing repo and on as-named/real disagreement. Same commit:
+  SKILL.md's principle-sentence worktree exception (The tools) and
+  the provisioning parenthetical's this-repo-only scope both die —
+  the wording exists only because the tool lacks the check.
+  Verifier, red-first: the reviewer's two probes as battery cases
+  (both currently WORKTREE_ADDED, must halt), plus the existing
+  outside-dir case staying green; battery green. Red executed
+  (0.2.59 review, fresh-context probes against HEAD, observed
+  output in the review record): from repo A `worktree-add --sha
+  <lock> --path ../B/wt-in-B` → `WORKTREE_ADDED`, then
+  `git status --porcelain` in B → `?? wt-in-B/`; with symlink
+  `A/link -> <outside dir>`, `worktree-add --path link/wt` →
+  `WORKTREE_ADDED` while `filter --out link/art.md` →
+  `ARTIFACT_IN_REPO`. Done: both probes halt PATH_INSIDE_REPO,
+  the outside-dir case stays WORKTREE_ADDED, battery green, and
+  the two SKILL.md reach-exception sentences are deleted in the
+  same commit. Write boundary: statiker_git.py,
+  tools/test_statiker_git.py, SKILL.md (the two sentences).
+
 - **READY 2026-08-11 — triage the three-arm review harvest (~25
   findings, three independent opus reviewers, all probes executed).**
   Evidence, the complete record: begehung repo,
