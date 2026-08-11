@@ -57,9 +57,11 @@ on: a path is taken AS NAMED in every git operation, never
 substituted; containment resolves in the direction of SAFETY — a
 must-be-inside path (lock-set, write-set) is decided on its REAL
 resolution, a must-be-outside path (artifact, seals) is outside
-only when named and real form agree — any realpath acceptance
-noted per path in the verdict as `resolved_from`, and a path
-problem halts at a CHECK, never a commit. Byte policy runs both
+only when named and real form agree — the worktree path is the
+one must-be-outside member still decided on its real form
+alone, its as-named half the desk's check — any realpath
+acceptance noted per path in the verdict as `resolved_from`,
+and a path problem halts at a CHECK, never a commit. Byte policy runs both
 directions: git byte output decodes the way the OS decodes argv,
 and verdict and quote output emit at the byte level over the
 input's own bytes — a tool that re-spells a byte on output mints
@@ -94,8 +96,8 @@ composed from the verdict's violation lines). ANY verdict no
 section names is a halt for
 the seam that ran it — booked as a `record:` F-line from the
 verdict line, the seam's halt route applying (TRACKER_UNREADABLE,
-PIN_UNREADABLE, NOT_A_REPO, PATH_OUTSIDE_REPO, USAGE_ERROR,
-GIT_ERROR, INTERNAL_ERROR, and any future member). One override
+PIN_UNREADABLE, NOT_A_REPO, PATH_OUTSIDE_REPO, PATH_INSIDE_REPO,
+USAGE_ERROR, GIT_ERROR, INTERNAL_ERROR, and any future member). One override
 on every route: a halt verdict carrying a `shas` or `sha` field
 has LANDED commits — routed like HALT_RESIDUE_PERSISTS, never as
 uncommitted. Unit briefs carry the git tool's
@@ -644,9 +646,10 @@ clauses):
     design changes (a key's scope, a shared file, a value set, a
     schema, a shared resource), who else consumes or shares it,
     established by executed search where the surface exists to
-    search; a co-consumer the design was never checked against is
-    a finding, and a scope dimension the design's key omits is
-    the canonical member.
+    search, by full source-chain trace while it is still design
+    prose; a co-consumer or co-sharer the design was never
+    checked against is a finding, and a scope dimension the
+    design's key omits is the canonical member.
 
 The brief never carries the desk's reasoning — it transmits the
 producer's blind spots — and the rule reaches the ARTIFACT: an
@@ -691,8 +694,10 @@ the return carries a complete per-design verdict block: findings,
 or that design's explicit zero-delta. The desk provisions one
 worktree per design through the git tool — `worktree-add --sha
 <lock sha> --path <path>`, the path OUTSIDE every repo like the
-seals and for the seal rule's reason (the tool halts
-PATH_INSIDE_REPO) — and removes each at the return with
+seals and for the seal rule's reason (the tool's
+PATH_INSIDE_REPO halt covers THIS repo's containment only;
+sibling checkouts and the as-named spelling stay the desk's
+check) — and removes each at the return with
 `worktree-remove --path <path>` (forced removal: probe
 by-products make plain removal fail by design); WORKTREE_ADDED
 and WORKTREE_REMOVED proceed, a halt at add stops that design's
