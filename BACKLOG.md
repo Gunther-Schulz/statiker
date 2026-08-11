@@ -7,41 +7,6 @@ build tooling, but a clause mint still needs its incident.
 
 ## Open
 
-- **PARKED 2026-08-11 — coverage-ledger review process ("lamp
-  rotation"): a review skill candidate, later a statiker-framework
-  component — the scheduling layer anneal-dev never had.** Booked from
-  the pbs second-opinion session (operator request: make the process
-  ad-hoc invocable). Observed mechanism, measured in one session:
-  review yield tracks the LENS, not the effort — repeated rounds under
-  one lens exhausted (round 2 found defects mostly in the round's own
-  new artifacts), while every operator question that rotated the lens
-  produced fresh findings; the pbs Achsen-Inventur is the working
-  domain instance (its axis 7 was "found at the desk, not at the
-  damage"). Design core, settled by that evidence: (1) a persistent
-  AXIS LEDGER per system under review, first derived from the
-  artifact's STRUCTURE (claim-emission surfaces × consumers ×
-  failure-class dimensions), not from incident history; per row:
-  guarded-mechanically (with red-proof pointer) / prose-covered / dark,
-  dated — a row unrefreshed past a stated interval is itself a
-  finding. (2) Each round PRE-REGISTERS its lens before searching (the
-  anti-incident-pull move). (3) Per-lens stop rule: falling yield ends
-  the lens, never the ledger; global "done" does not exist. (4)
-  Rotation: next round takes the darkest/stalest row. (5) Exit per
-  finding: a mechanism at the emission point (mandatory-field move) or
-  an honest prose-rest label. Contrast that makes it not-anneal-dev:
-  anneal ran a FIXED lens set exhaustively per pass (cost ∝ lenses ×
-  artifact, lens list = past incidents); this is cheap per pass (one
-  axis), compounds via the ledger, and COMPOSES with lens definitions
-  rather than replacing them. The operator corpus pre-names the skill
-  slot (insurance: "a protocol skill covering this shape is a routing
-  destination"). PARKED on three named decisions: skill-first vs
-  framework-first (recommendation: thin skill, probe-then-certify per
-  statiker's own trial method, framework absorbs later); name; home
-  (statiker sibling skill vs own plugin). Evidence: pbs-office
-  `erhebungen/robustheits-review-2026-08-11.md` (Zweitrunde section) +
-  `verifikations-achsen-inventur-2026-08-01.md`. Unpark trigger:
-  operator GO, or the next system-review need in any repo.
-
 - **READY — worktree provisioning joins the git tool: the batched
   trip's only hand-run git operation gets verdicts.** Booked
   2026-08-10 (0.2.57 review N1: hand-run `worktree add/remove`
@@ -198,6 +163,14 @@ build tooling, but a clause mint still needs its incident.
   dispositions.
 
 ## Done
+
+- 2026-08-11 — **coverage-ledger review process ("lamp rotation")**:
+  unparked same day by operator GO and built as its own thin skill,
+  repo `Gunther-Schulz/begehung` (f376238, 0.1.0 trial; design core
+  quoted authoritatively in its PLAN.md from this entry's body,
+  founding incident in its dev-notes). The parked residual —
+  statiker-framework absorption — is rebooked in begehung/BACKLOG.md
+  with its trigger; nothing remains here.
 
 - 2026-08-10 — **unit write-set record-line form**: fully realized —
   the form is normative in SKILL.md's Implementation section with
