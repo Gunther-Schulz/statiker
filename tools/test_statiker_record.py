@@ -2347,6 +2347,45 @@ class TestES9ByteLevelEmit(RecordFixture):
         self.assertIn(self.BAD, r.stdout,
                       "quote mangled the byte before it reached the block")
 
+    def quote(self, text):
+        """(verdict, block lines) for one quote invocation, read at the
+        byte level and split on NEWLINES ONLY — str.splitlines() breaks
+        on the very characters the cases below are about, so a reader
+        using it would itself see the fabricated lines they detect."""
+        r = tool_bytes(["quote", "--label", "A7 quotes"],
+                       stdin_bytes=text.encode())
+        out = r.stdout.decode("utf-8", "surrogateescape")
+        lines = out.split("\n")
+        if lines and lines[-1] == "":
+            lines.pop()
+        heads = [l for l in lines if l.startswith(VERDICT_PREFIX)]
+        self.assertEqual(len(heads), 1, f"stdout:\n{out}")
+        return (json.loads(heads[0][len(VERDICT_PREFIX):]),
+                [l for l in lines if not l.startswith(VERDICT_PREFIX)])
+
+    def test_a_line_separator_quotes_as_one_line_and_survives(self):
+        # U+2028 is a break to str.splitlines() and to nothing else:
+        # quoting on it emits two body lines the report never held and
+        # drops the character on the way, so the block the desk pastes
+        # is text the report does not contain
+        v, block = self.quote("alpha\u2028beta\n")
+        self.assertEqual(block[1:], ["> alpha\u2028beta"], block)
+        self.assertEqual(v["lines"], 2, v)
+        self.assertIn("\u2028", v["block"])
+
+    def test_a_form_feed_quotes_as_one_line_and_survives(self):
+        v, block = self.quote("alpha\x0cbeta\n")
+        self.assertEqual(block[1:], ["> alpha\x0cbeta"], block)
+        self.assertEqual(v["lines"], 2, v)
+
+    def test_a_tab_is_untouched_by_the_line_rule(self):
+        # the control: a tab breaks no line under either rule, so this
+        # case reads the same in both worlds — an assertion that moved
+        # with the defect would say nothing about the two above
+        v, block = self.quote("alpha\tbeta\n")
+        self.assertEqual(block[1:], ["> alpha\tbeta"], block)
+        self.assertEqual(v["lines"], 2, v)
+
 
 # ------------------------------------------------------------------ ES-10
 

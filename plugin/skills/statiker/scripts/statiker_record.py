@@ -1270,11 +1270,16 @@ def cmd_quote(args):
     first = f"> Superseded — {args.label}"
     if names:
         first += "; " + ", ".join(names)
-    body = [("> " + l) if l else ">" for l in defanged.splitlines()]
+    # split_lines, never str.splitlines() (the parser's rule, same
+    # reason): a U+2028, U+000C or U+0085 in the report would become a
+    # quoted line the report never held, and the character itself would
+    # be dropped at the join — the quoted block has to be the report's
+    # own text, byte for byte
+    body = [("> " + l) if l else ">" for l in split_lines(defanged)]
     block = "\n".join([first] + body)
     emit(block)
     finish("QUOTE_BLOCK", 0, block=block, defanged=names,
-           lines=len(block.splitlines()))
+           lines=len(split_lines(block)))
 
 
 class Parser(argparse.ArgumentParser):
