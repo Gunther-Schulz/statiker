@@ -1345,6 +1345,46 @@ class TestAttack10HoldForm(RecordFixture):
         self.assertEqual(v["verdict"], "UNIT_DISPATCHABLE")
 
 
+class TestWriteSetNearMiss(RecordFixture):
+    """write-set: near-miss detection joins the lint. A near-missed
+    `write-set: ` declarator (wrong case, missing hyphen, missing
+    colon, extra spacing) fails UNIT_WRITE_SET_RE silently — the unit
+    reads UNPLANNABLE (waves) with no lint pointing at the slip, and a
+    closure resting on it is unsound. Positional, like scope-near-miss:
+    only the token immediately after an EXACT `unit U<k> ` prefix is
+    examined."""
+
+    VARIANTS = [
+        "unit U2 writeset: tools/x.py",       # missing hyphen
+        "unit U2 Write-set: tools/x.py",      # wrong case
+        "unit U2 write-set tools/x.py",       # missing colon
+        "unit U2 write-set :  tools/x.py",    # extra spacing
+    ]
+
+    def test_every_variant_lints_write_set_near_miss(self):
+        for body_text in self.VARIANTS:
+            v = self.lint(
+                f"- F9 [VERIFIED] {body_text} — basis: e\n")
+            self.assertEqual(v["verdict"], "LINT_VIOLATIONS",
+                             f"{body_text!r} stayed clean")
+            self.assertIn("write-set-near-miss", self.violation_codes(v),
+                          f"{body_text!r}: {v}")
+
+    def test_correct_write_set_line_stays_clean(self):
+        # the discriminating pair: the exact literal never near-misses
+        v = self.lint(
+            "- F9 [VERIFIED] unit U2 write-set: tools/x.py — basis: e\n")
+        self.assertEqual(v["verdict"], "LINT_CLEAN")
+
+    def test_near_miss_blocks_closure(self):
+        v = self.closure(
+            CLOSED +
+            "- F9 [VERIFIED] unit U2 writeset: tools/x.py — basis: e\n",
+            unit="U2")
+        self.assertEqual(v["verdict"], "CLOSURE_RECORD_MALFORMED")
+        self.assertIn("write-set-near-miss", self.violation_codes(v))
+
+
 class TestAttack10ClauseGrammar(RecordFixture):
     """attack-10 N9: four clause dispositions on one [INVALIDATED]
     line, in mixed spellings. One parsed with a stray `;` glued to its

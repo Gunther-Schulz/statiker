@@ -145,6 +145,14 @@ HOLD_EXACT_RE = re.compile(r"^unit U\d+ held: ")
 HOLD_NEAR_RE = re.compile(r"(?i)^(?:hold|held)s?\b")
 HOLD_COLON_RE = re.compile(r"(?i)(?<![A-Za-z])(?:hold|held)s?\s*:")
 BACKTICK_RE = re.compile(r"`[^`]*`")
+# the write-set token gets the same positional near-miss treatment as
+# the scope opener (SCOPE_NEAR_RE/SCOPE_EXACT_RE, above): a wrong-case,
+# unhyphenated, colonless, or oddly-spaced spelling fails
+# UNIT_WRITE_SET_RE (:915) silently — the unit then reads UNPLANNABLE
+# with no lint pointing at the slip. Examined only immediately after an
+# EXACT `unit U<k> ` prefix, never a body-wide search.
+WRITE_SET_NEAR_RE = re.compile(r"(?i)^write[\s-]*set\s*:?\s*")
+WRITE_SET_EXACT_RE = re.compile(r"^write-set: \S")
 LANDING_RE = re.compile(r"^unit U\d+ landed:")
 LANDING_INDENTED_RE = re.compile(r"^\s+unit U\d+ landed:")
 SUPERSEDED_OPEN_RE = re.compile(r"^> Superseded — ")
@@ -191,7 +199,7 @@ REPAIR_STATUS_LINE = ("status line: append a new tag-first line under "
 MACHINE_TOKEN_CODES = {
     "entry-form", "tag-enum", "entry-near-miss", "scope-near-miss",
     "hold-form", "corrects-nothing", "multi-corrects-token",
-    "repair-tag-change", "repair-scope-change",
+    "repair-tag-change", "repair-scope-change", "write-set-near-miss",
 }
 BODY_CONTENT_CODES = {
     "tag-literal-in-body", "basis-missing", "clause-unparsed",
@@ -285,6 +293,23 @@ def hold_violations(body: str, tag: str):
         return []
     if HOLD_COLON_RE.match(scrubbed):
         return ["hold-form"]                # a colon form opening a body
+    return []
+
+
+def write_set_violations(body: str):
+    """Positional near-miss on the write-set declarator, mirroring
+    hold_violations' shape but scoped strictly to a body opened by an
+    EXACT `unit U<k> ` prefix — write-set has no scopeless or displaced
+    spelling to catch, unlike the hold form."""
+    scrubbed = BACKTICK_RE.sub(" ", body)   # quoting a literal is legal
+    m = UNIT_SCOPE_RE.match(scrubbed)
+    if not m:
+        return []
+    rest = scrubbed[m.end():]
+    if WRITE_SET_EXACT_RE.match(rest):
+        return []
+    if WRITE_SET_NEAR_RE.match(rest):
+        return ["write-set-near-miss"]
     return []
 
 
@@ -437,6 +462,8 @@ def parse_tracker(text: str):
             scope_parsed = False               # the opener IS the violation
         else:
             for code in hold_violations(body_main, tag):
+                viol(code, i, line)
+            for code in write_set_violations(body_main):
                 viol(code, i, line)
         # ES-4: what a repair must re-carry is what PARSED here — a
         # violated token pins nothing, since repairing it is the
@@ -806,7 +833,8 @@ def cmd_sweep(args):
 # ------------------------------------------------------------------- closure
 
 CLOSURE_BLOCKING_CODES = ("entry-form", "tag-enum", "entry-near-miss",
-                          "scope-near-miss", "hold-form")
+                          "scope-near-miss", "hold-form",
+                          "write-set-near-miss")
 
 
 def closure_blocking_violations(violations):
