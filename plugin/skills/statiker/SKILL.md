@@ -640,7 +640,13 @@ clauses):
     is the derived head a faithful AND professionally complete
     reading of the INTENT — and the design's SIMPLICITY — the
     simplest design that meets the head; unjustified structure
-    is a finding.
+    is a finding. Attack the BLAST RADIUS — for each surface the
+    design changes (a key's scope, a shared file, a value set, a
+    schema, a shared resource), who else consumes or shares it,
+    established by executed search where the surface exists to
+    search; a co-consumer the design was never checked against is
+    a finding, and a scope dimension the design's key omits is
+    the canonical member.
 
 The brief never carries the desk's reasoning — it transmits the
 producer's blind spots — and the rule reaches the ARTIFACT: an

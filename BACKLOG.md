@@ -7,52 +7,6 @@ build tooling, but a clause mint still needs its incident.
 
 ## Open
 
-- **PARKED 2026-08-11 — no forcing point demands a side-effect /
-  dependents enumeration for the locked design; blast radius rides on
-  attacker initiative and repo-suite luck.** Finding (operator
-  question, coverage read at SKILL.md): what EXISTS touches the class
-  in three layers, none of which forces it — the decision-commit
-  basis reaches the consuming read of the decision's OWN premise
-  only (The loop, hop-trace clause); the attack's verbatim question
-  block names fit-to-requirement, decomposition, simplicity — a side
-  effect on functionality outside the head is caught only if the
-  fresh context thinks of it unprompted; verify's verdict is
-  per-R-line, so a regression no R-line names is structurally never
-  asked (only the repo's own checks catch it, where they cover it).
-  The operator corpus's dependents-search rule (grounding: a change
-  to anything others depend on lands with the dependents search
-  stated, command + hits) binds via composition but has no statiker
-  seam — prose riding on desk memory. Design sketch (recommendation,
-  not settled): cheapest landing is ONE clause in the attack's
-  pasted question block — attack the design's blast radius: for each
-  surface the design changes, are consumers/dependents enumerated by
-  executed search, and does the design hold at each; alternative
-  landing is a [READY] precondition (each unit enumeration names its
-  changed-surface dependents search). Missing evidence (the park
-  reason, per this file's header rule): no fired incident — a side
-  effect slipping through a statiker run — and no operator decision
-  to mint it as a (hypothesis) clause with validation criterion
-  instead. Trigger: first such incident, or operator GO on the
-  hypothesis mint. Verifier at build time: a design with a known
-  un-enumerated consumer must draw the finding from a fresh-context
-  attack round (red), and the same design with the search recorded
-  must not (green).
-  Adjacent evidence (2026-08-11, same day, NON-statiker session —
-  supports the class, proves nothing about statiker's own reach): a
-  retry-bound keyed (signal_id, failure_class) with no variant
-  dimension let one broken wallet's exhaustion suppress every wallet
-  sharing a signal (~100 shared signals/week, live, silent); the
-  red-first battery never varied the missing dimension because
-  expectation and implementation shared an author, and the bug was
-  found by an operator design question, not by the system. The
-  design-time question the parked clause encodes — who else consumes
-  or shares this key's scope — would have surfaced it for the cost
-  of one query. Recommendation updated on this evidence: GO on the
-  (hypothesis) mint rather than waiting for a statiker-run incident;
-  validation criterion at mint (dev-notes): the clause draws at
-  least one blast-radius finding across real attack rounds by the
-  next fire-rate review, else cut.
-
 - **READY 2026-08-11 — triage the three-arm review harvest (~25
   findings, three independent opus reviewers, all probes executed).**
   Evidence, the complete record: begehung repo,
@@ -101,144 +55,45 @@ build tooling, but a clause mint still needs its incident.
   `git worktree remove`; battery green. Done: a batched round's
   tracker books worktree verdict lines.
 
-- **READY — `write-set:` joins the machine-token discipline.**
+- **READY — `write-set:` near-miss detection joins the lint.**
   Booked 2026-08-10 (0.2.57 review N5 second half; the
-  normalization half landed same day). Design, decided: SKILL.md's
-  machine-token literal list gains `write-set: ` beside the
-  scope-openers, and the lint's positional near-miss detection
-  covers it (a would-be write-set line failing the exact literal
-  lints as a near-miss, same as every other token); battery gains
-  the near-miss case red-first. Realizing write-boundary:
-  `statiker_record.py`, `tools/test_statiker_record.py`, SKILL.md
-  (token list line; skill-craft + review). Done: a misspelled
-  write-set line lints instead of silently not parsing.
-
-- _(superseded booking, closed 2026-08-10 — see Done)_
-  **READY — mechanical wave derivation over unit write-sets: the
-  parallel clause exists, its input is data, and the grouping is
-  still done by eye.** Booked 2026-08-10, cross-repo provenance
-  (operator GO "add it to statiker's backlog"): SKILL.md:816 says
-  units with disjoint write-sets run parallel, `statiker_git.py`
-  enforces each unit's declared write-set — but nothing computes
-  which units ARE disjoint; the desk reads the write-sets and
-  decides. The incident this inherits (cache-fix, same day): a
-  9-lane parallel wave where every boundary inferred from prose
-  produced returned members (8 across the wave) and the one lane
-  with mechanically-derived disjoint boundaries returned zero —
-  measured, in that repo's wave-1 record. Statiker is one step
-  ahead (its boundaries are declared data, not prose) and one step
-  short (nobody joins them).
-  Design, decided: a `waves --tracker P` read-only subcommand in
-  `statiker_record.py` (extend the existing tool, no new file):
-  collect each unit's declared write-set from the tracker — the
-  parse source is the record's own lock-set/write-set line form
-  (`SKILL.md:471-478`: file-granular paths, appended as record
-  lines; premise verified against the grammar 2026-08-10), compute
-  connected components over shared paths, emit the wave partition
-  (disjoint components = one wave, overlapping units serialized
-  within their component) and flag any unit with no declared
-  write-set as UNPLANNABLE rather than guessing. Report, never a
-  gate — the desk's parallel decision cites the output; the git
-  transaction stays the enforcement layer.
-  Realizing write-boundary: `plugin/skills/statiker/scripts/
-  statiker_record.py` + its red-first battery (`tools/` suites).
-  Verifier, red-first: a constructed tracker with three units — two
-  disjoint, one overlapping a first — must yield waves
-  `{U1,U3},{U2}` with the overlap named; a unit missing its
-  write-set must come back UNPLANNABLE, not placed; battery green.
-  Done-criterion: the next multi-unit run's parallel decision in the
-  tracker cites the subcommand's wave output instead of a desk read
-  of the write-sets.
-
-- _(superseded booking, closed 2026-08-10 — see Done)_
-  **READY — the round-trend read has data and no instrument: A-lines
-  carry every round's outcome and the re-entry trend is still a hand
-  read.** Booked 2026-08-10, cross-repo provenance (cache-fix drain
-  day; operator direction "improve the efficiency and speed of cycle
-  and attack rounds"). The operator corpus's re-entry-seam
-  convention binds the desk already: the reply opening a same-form
-  repeat round names the series trend — counts and locations across
-  rounds, read from the record — and a flat or worsening series
-  indicts the FORM, not the latest findings. Statiker's tracker
-  records exactly the needed series (`A<n>
-  [DISPATCHED|BIT|ZERO-DELTA|VOID]` lines with finding bodies), so
-  the convention's computable slice is a report: rounds per design,
-  findings per round, BIT-vs-ZERO-DELTA trajectory, and whether the
-  newest round's findings concentrate in the prior round's repairs
-  (the form-indicting signature). A desk on any tier reads the
-  command instead of re-deriving the series — the cheaper the desk,
-  the more this matters.
-  Design, decided: a `trend --tracker P` read-only subcommand in
-  `statiker_record.py`; output one line per design (round count,
-  per-round finding counts, trajectory verdict FLAT / IMPROVING /
-  WORSENING as arithmetic over the counts, never judgment) plus the
-  concentration flag where a finding's cited site lies in the prior
-  re-lock's repair set — in record terms: the finding's body cites a
-  D-id whose LATEST revision (the grammar is latest-line-per-id)
-  landed at the previous re-lock; attack repairs revise D-lines, so
-  the repair set is those revised ids, no code diff involved.
-  REPORT, never a gate — the form question
-  stays desk judgment; this delivers its inputs (the closing-gate
-  rule: below the judgment, evidence delivery is always
-  mechanizable).
-  Realizing write-boundary: `plugin/skills/statiker/scripts/
-  statiker_record.py` + battery.
-  Verifier, red-first: a constructed tracker with a worsening
-  three-round series whose round-3 findings cite round-2 repair
-  sites must render WORSENING with the concentration flag; an
-  improving series must not; battery green.
-  Done-criterion: a real run's repeat-round reply cites the
-  subcommand's output as its trend line.
-
-- **READY — attack-round batching: one fresh-context trip carrying
-  every locked design ready at that moment, instead of one design
-  per trip.** Raised 2026-08-10 from the corpus's priced-unit rule
-  (a round trip through another party carries a BATTERY, not one
-  candidate — the recorded waste shape is splitting across trips
-  what one trip carries) applied to statiker's rounds, where each
-  locked design takes its own sequential round and each round costs
-  a full freeze window (desk appends queue for the round's
-  duration). Fewer, fuller rounds would cut both the trip count and
-  the total freeze time.
-  Parked, not ready, because the design tension is real and
-  unmeasured: the single-design round buys attention depth and
-  independence (an attacker reading design A's flaws inherits a
-  frame for design B — the same reason a resumed attacker is
-  forbidden), and the per-design verdict discipline would need the
-  per-member disposition form so a batched round cannot silently
-  under-attack its tail. Named missing evidence, which is the
-  un-park trigger: a paired probe — same locked designs, batched
-  attacker vs single-design attackers, pre-registered per-design
-  blocker-yield criterion, arms graded before outcomes are compared
-  — showing the batched arm's per-design yield holds. Until
-  measured, the sequential default stands on its own recorded
-  basis.
-  UN-PARKED 2026-08-10: the paired probe ran and the criterion
-  HELD on both designs (pre-registration + grading record:
-  `dev-notes/probe-attack-batching-2026-08-10.md`; per-design
-  confirmed-blocker counts batched ≥ single, no tail yield
-  collapse, plus an emergent cross-design coupling finding only a
-  batched round can produce). Standing caveat carried into the
-  design: n=1 and largely disjoint finding sets, so the HOLDS is
-  evidence, not equivalence proof — the per-design disposition
-  form is mandatory, and the batched arm's one tail-accuracy slip
-  is its motivating incident. Design, decided: SKILL.md's attack
-  section gains — a round MAY carry every locked design ready at
-  that moment; the brief states the order and requires a complete
-  per-design verdict block (findings, or that design's explicit
-  zero-delta — a design without its own block is an incomplete
-  return); the A-line records per-design outcomes; the sequential
-  single-design round stays the default where only one design is
-  ready. Realizing write-boundary: SKILL.md (skill-craft + the
-  trial's opus skill-edit review; the clause mint cites the probe
-  record as its provenance — whether that satisfies the fire-born
-  bar is the meta-session's call at minting, recorded either way).
-  Verifier: the next multi-design moment runs batched with the
-  per-design blocks present in the round's A-line. Done-criterion:
-  one real batched round recorded with complete per-design
-  dispositions.
+  normalization half landed same day). Premise re-read 2026-08-11
+  before dispatch: the SKILL.md token-list half ALREADY landed
+  (4138fe6, 0.2.57 delta round D2 — "validity only — near-miss
+  lint stays booked"); remaining scope is the lint half alone.
+  Design, decided: the lint's positional near-miss detection
+  covers the `write-set: ` declarator (a would-be write-set line
+  failing the exact literal lints as a near-miss, same as every
+  other token); battery gains the near-miss case red-first.
+  Realizing write-boundary: `statiker_record.py`,
+  `tools/test_statiker_record.py`. Done: a misspelled write-set
+  line lints instead of silently not parsing.
 
 ## Done
+
+- 2026-08-11 — **blast-radius clause minted into the attack block**
+  ((hypothesis) provenance class, operator GO; adjacent non-statiker
+  incident as class evidence — full lineage in dev-notes
+  OBSERVATIONS 2026-08-11). Residue, carried to the next fire-rate
+  review: validation criterion — the clause draws >=1 real
+  blast-radius finding across attack rounds, else cut. Build-time
+  verifier carried with it: a design with a known un-enumerated
+  co-consumer must draw the finding from a fresh round (red), the
+  same design with the search recorded must not (green).
+
+- 2026-08-11 — **attack-round batching: realized in the 0.2.57
+  series** (eb6ab88 batched rounds with per-design worktrees and
+  per-design death; b26fb93 follow-through) — the entry's design
+  landed via the 0.2.57 review loop rather than as its own commit.
+  Done-criterion residue, carried to the first real multi-design
+  moment: one real batched round recorded with complete per-design
+  dispositions. Probe provenance: dev-notes/
+  probe-attack-batching-2026-08-10.md.
+
+- 2026-08-11 — **superseded waves/trend entry bodies dropped** per
+  their own Done note's trigger (the line-form mint closed
+  2026-08-10); bodies remain in git history.
+
 
 - 2026-08-11 — **coverage-ledger review process ("lamp rotation")**:
   unparked same day by operator GO and built as its own thin skill,
