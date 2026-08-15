@@ -4546,3 +4546,26 @@ and/or review-2 report; then pin move and the cycle-10 desk.
 - 2026-08-11 — **BLAST-RADIUS clause minted into the attack block ((hypothesis) provenance class, operator GO).** The attack's pasted question gains: for each surface the design changes, who else consumes or shares it, by executed search; a scope dimension the design's key omits is the canonical member. Placement basis (governed-set scan): grep side-effect/blast/dependents over SKILL.md+BACKLOG+PLAN — zero prior homes; coverage read found three layers touching the class (hop-trace, attack mandate, per-R verify), none forcing it (BACKLOG entry 2026-08-11). NOT fire-born from a statiker run: adjacent same-day incident in a non-statiker session (retry-bound keyed without its variant dimension; one wallet's exhaustion suppressed co-consumers of shared signals; red-first battery never varied the missing dimension — expectation and implementation shared an author; found by operator question, not the system). Validation criterion (the (hypothesis) bar): the clause draws ≥1 real blast-radius finding across attack rounds by the next fire-rate review, else cut.
 
 - 2026-08-11 — **0.2.59 skill-edit review (trial convention, opus fresh context): 6 findings (3 moderate, 3 low, none blocking), all dispositioned before release.** F1 (provisioning parenthetical attributed every-repo reach to a this-repo-only check; EXECUTED sibling-repo probe: green verdict, foreign tree polluted) → wording states the tool's actual reach, durable tool repair booked READY with the reviewer's probes as red arrangement. F2 (must-be-outside principle sentence false for the worktree path, real-only containment; EXECUTED symlink probe) → sentence carries the exception until the same booked repair kills it. F3 (finding sentence dropped "co-sharer" — the canonical member's own class) → one-word repair. F4 (block-resident hypothesis clauses carry no in-artifact marker) → accepted-as-standing: the block is marker-free by construction (pasted verbatim to attackers); the hypothesis registry lives in dev-notes, where both A3 and blast-radius are logged with criteria. F5 (no evidence fallback for not-yet-existing surfaces) → source-chain-trace clause added. F6 (stale halt enumeration) → PATH_INSIDE_REPO added beside PATH_OUTSIDE_REPO. Reviewer verified the mechanical contract half executed (flags, verdicts, forced-removal red-pair, catch-all routing) and ran the duplication/no-other-home greps with hits read.
+
+- 2026-08-15 — **ed3071c skill-edit review (trial convention, opus
+  fresh context): RELEASE-READY, 0 blocking, 2 notes, both
+  dispositioned pre-release.** Reviewer EXECUTED both directions:
+  sibling-repo probe (`--path <S>/repoB/wt3`) and as-named symlink
+  probe (`inlink/wt4`) both halt PATH_INSIDE_REPO — exactly the
+  cases the deleted clauses declared uncovered — and both known
+  negatives (plain outside path; symlinked-parent resolving outside
+  all repos) stay WORKTREE_ADDED; suite 307/307 at review tip.
+  Consistency greps over the whole file: no passage still assumes
+  the exception. NOTE 1 (line ~59 membership list omitted the
+  attack worktree after the deletion, membership riding only on
+  "like the seals" at ~:694) → FIXED in place, reviewer's own
+  wording: "(artifact, seals, attack worktrees)". NOTE 2 (predates
+  the edit: `resolved_from` is noted on ACCEPTANCE only for
+  must-be-inside paths; for must-be-outside it appears only on a
+  halt, and the code's gloss settles "agree" as both-computations-
+  outside, not identical spellings) → ACCEPTED-AS-STANDING with the
+  reviewer's reading recorded here as the intended one; no text
+  change (the artifact path behaves identically,
+  statiker_record.py:1316-1325, so this is the rule's standing
+  shape, not a regression of this edit). Experiment slot: review 1
+  of the ed3071c-era edits, discharged pre-pin-move.

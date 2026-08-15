@@ -56,7 +56,8 @@ never against this page's wording. Principles the desk relies
 on: a path is taken AS NAMED in every git operation, never
 substituted; containment resolves in the direction of SAFETY — a
 must-be-inside path (lock-set, write-set) is decided on its REAL
-resolution, a must-be-outside path (artifact, seals) is outside
+resolution, a must-be-outside path (artifact, seals, attack
+worktrees) is outside
 only when named and real form agree — any realpath
 acceptance noted per path in the verdict as `resolved_from`,
 and a path problem halts at a CHECK, never a commit. Byte policy runs both
