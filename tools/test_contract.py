@@ -66,6 +66,16 @@ EMIT_ARG_INDEX = {"finish": 0, "Halt": 0, "_index_write_with_retry": 1}
 # sanctioned indirections: variables/attributes that CARRY a verdict
 # from another checked emit position (their sources are the retry
 # helper's literal args and the *_verdict factory returns below)
+#
+# False-fire class (lane G, BACKLOG.md E-K): this is a bare-name AST
+# match, scope-unaware — any local or attribute sharing one of these
+# names trips the exemption whether or not it carries a verdict (an
+# ordinary local `name` in branch_state(), statiker_git.py, false-
+# fired this way). Observed cure: rename the unrelated local. A
+# scoped match (restrict to assignments reaching a finish()/say()
+# call) was evaluated and deferred — it needs cross-referencing an
+# assignment target against later call-argument uses within function
+# scope, which the flat ast.walk() below does not provide.
 EMIT_CONDUITS = {"failure_verdict", "name", "verdict"}
 
 
