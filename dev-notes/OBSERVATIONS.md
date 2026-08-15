@@ -4999,3 +4999,41 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   change. Release sequencing: P2+P6 ship together; run continues
   on 0.2.65 through round 10; pin targets the post-A10 seam.
   Consumer: Lane E's dispatch; the release seam.
+
+- 2026-08-15 — **Relay 8 harvested (RUN STOPPED CLEAN on operator
+  scheduling call — final state token afbb5ae3, 12 ahead unpushed,
+  closure zero violations, round 10 never dispatched, close block
+  at the TAIL stating the stop grades nothing).** The pass-first
+  pacing decision paid before the stop: the decomposition pass
+  found THREE derived requirements the head never carried, each
+  absence claimed with the search instrument shown live on a known
+  positive (R6 exactness domain unstated + boundary unguarded —
+  the always-quantizing never-raising validator stores 2.125 as
+  2.12 silently, a wrong matching key under the typed identity;
+  R7 the customer-legible mirror incl. the ~46-markets consequence
+  named rather than discovered; R8 the success metric as a query,
+  F33's ~34% to zero). R6 PARKED at D115 with the false-clean
+  shape correctly named: a prod query cannot discriminate because
+  the validator quantizes BEFORE persistence — the discriminating
+  evidence is a pre-quantization payload capture; outcomes named
+  both ways; the desk cited its own D97 reversal as the recorded
+  cost of widening on speculation. A9 seal comparison kept OUT of
+  the tracker (later attackers read the repo) — correct. Close
+  carries four open operator items: D94/D108 five-unit
+  authorization (OPEN, unanswered), D114, F130 disclosure, D115
+  residual. Desk's closing self-review clustered its nine
+  session-corrections into four classes — executed beats modelled
+  (F146/F147/D97); verify the effect, not the generator's report
+  (F203); read the ledger before re-deriving (D97); a resume owes
+  world-facing re-checks (F213→F220, mechanised) — a body-read
+  answer to the three closing questions, delivered unprompted.
+  TRIAL NOTE for the close's grading: two desk pushbacks against
+  meta GOs this session (relay 4's halt, the F158 gaps; the
+  pass-first lean) were both CORRECT and both amended rather than
+  pressed — desk-side stop-rule conduct under 0.2.65 grades
+  strongly. Successor-session queue (carried by BACKLOG + task
+  record): Lane D verify+integrate → Lane E (P6, ships WITH P2) →
+  F213/F220 resume-world-check mint → release batch → ONE opus
+  review → pin at a run seam → fresh desk resumes from the
+  tracker at the decomposition-pass outcome. Consumer: the next
+  meta session; the trial close's grading.
