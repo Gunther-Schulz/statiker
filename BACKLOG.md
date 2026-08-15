@@ -108,18 +108,6 @@ it is not decision-complete.
   AFTER the P3/P4/E-M lane integrates (statiker_record.py +
   SKILL.md overlap).
 
-- **PARKED 2026-08-15 — P3: version provenance needs a header-field
-  decision.** Provenance: triage T14 (WITH-B7 executed: the
-  beat-the-books record attributes cycles 10-11 to a version ~38
-  releases stale; structural — Status/Phase are the header's only
-  mutable fields, so a run spanning releases has nowhere to write
-  the truth, while CLAUDE.md makes spanning routine and the trial
-  grades arms on these records). Missing design, named: a mutable
-  version/continuation field vs a new line class vs accepting the
-  gap — contradicts the Status/Phase-only rule, so it is a SKILL.md
-  design decision (fire-born discipline satisfied: incident logged
-  in the arm file + triage record).
-
 - **PARKED 2026-08-15 — P6: disposition entries trip
   basis-cites-invalidated by construction.** Provenance: relay 3
   (twelve F155 holds on F150 itself — the sweep firing on the
@@ -155,6 +143,10 @@ it is not decision-complete.
   integrates).
 
 ## Done
+
+- 2026-08-15 — **P3-parked ausgebucht: realized by the P3 ship
+  above (58b224b) — the header-field decision resolved to the new
+  line class, header untouched.**
 
 - 2026-08-15 — **E-J/E-K/E-L shipped (lanes A+B, sonnet, shared
   copy): a979442 (E-J shared byte-level stderr fallback,
