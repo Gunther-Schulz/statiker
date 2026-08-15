@@ -16,137 +16,6 @@ it is not decision-complete.
 
 ## Open
 
-- **READY 2026-08-15 — E-A: verdicts carry their reach (entry
-  count, head boundary, R-line count, tracker-path lint).**
-  Provenance: triage T1 (three-arm WITHOUT-F1 blocking +
-  SENTENCE-A1 + SENTENCE-B2 + SENTENCE-B6 second half; probes
-  executed, arrangements in the arm files). Design, decided (the
-  arms' shared fix shape): every record-tool verdict gains
-  `entries: <n>`; an evidence line fires when entry-shaped lines
-  sit in the head region; sweep/closure verdicts gain an R-line
-  count from the head; lint emits an evidence line when the
-  tracker path is not under `.clippy/runs/`. No gate semantics
-  change; ES-1's exclusion untouched. Verifier, red-first: F1/A1's
-  probe trackers (live [PENDING] above the first `## ` heading;
-  no heading at all) must show entries: 0 where they showed bare
-  CLEAN; heading-present control unchanged. Done: probes flip,
-  full `pytest tools/` green. Write boundary: statiker_record.py,
-  tools/test_statiker_record.py, tools/test_contract.py.
-
-- **READY 2026-08-15 — E-B: an unknown `--unit` halts instead of
-  reading UNIT_DISPATCHABLE.** Provenance: triage T2 (WITHOUT-F2
-  blocking + SENTENCE-A2; attack-8 N3's class, spelling half
-  closed at :855, referent half open). Design, decided: closure
-  --unit consults the known-unit set the module already computes
-  (known_units, waves_over_units) and returns its own verdict
-  (UNIT_UNKNOWN, exit 2) for an id the record never names.
-  Verifier, red-first: F2's probe battery (U11/U21/U7 over a
-  tracker holding U1 HELD, U2 amended) — each read
-  UNIT_DISPATCHABLE in the arm's executed probe (2026-08-11 arm
-  file, arrangement quoted there); premise re-checked at HEAD
-  2bb9830 (desk grep: form-only fullmatch at :855, known_units
-  computed at :965, unconsulted between them) — the battery must
-  halt them; U1→UNIT_HELD and U2→amendments stay. Done: battery
-  green, full suite green. Write boundary:
-  statiker_record.py, tools/test_statiker_record.py,
-  tools/test_contract.py (new verdict row).
-  AMENDED 2026-08-15 (lane R gap 1): the SKILL.md route sentence
-  is PRE-NAMED here and lands IN the E-B commit itself — the
-  parity battery is set-exact BOTH ways, so a route minted ahead
-  of the emitting code is a phantom verdict (fired 2026-08-15,
-  desk mint-first commit, reverted same hour). SKILL.md write
-  access scoped to exactly this insertion, in the closure verdict
-  enumeration after "UNIT_HELD bars that unit on its unresolved
-  hold entry;": "UNIT_UNKNOWN halts on an id the record never
-  scoped — re-run with the id read from the record, never a guess
-  (a typo'd digit otherwise clears a hold silently);".
-  Implementation note from lane R, binding: compute via a
-  standalone `known_units_of(entries)` helper — never widen
-  waves_over_units' return tuple, which tools/test_statiker_git.py
-  (a foreign lane's file) unpacks as a 4-tuple.
-
-- **READY 2026-08-15 — E-C: the byte-level emit rule (ES-9) joins
-  the git tool.** Provenance: triage T3 (WITHOUT-F4 high +
-  SENTENCE-A3; both executed — the drop handshake is unsatisfiable
-  by pasting, and the paste-ready record line re-spells the byte
-  three ways). Design, decided: statiker_git.py emits via the
-  record tool's emit() shape (sys.stdout.buffer, surrogateescape at
-  byte level) so printed drop values and write-set paste lines
-  carry the input's own bytes. Verifier, red-first: F4's
-  caf\xff drop-handshake probe (pasting each printed spelling must
-  LOCK_COMMITTED, not HALT_DROPS_STALE) and A3's caf\xe9
-  unit-start paste-line probe (record line carries the byte
-  intact); existing ASCII round-trip stays green. Done: probes
-  flip, full suite green. Write boundary: statiker_git.py,
-  tools/test_statiker_git.py.
-
-- **READY 2026-08-15 — E-D: the unit sha comes from the commit's
-  own output, never a later HEAD read.** Provenance: triage T6
-  (WITHOUT-F9 blocking; hook-occupied window probe executed —
-  UNIT_COMMITTED_EXTRAS booked a sibling's sha and a false extra).
-  Design, decided (the arm's fix shape + the corpus verifier's-own-
-  output rule): take the sha from the commit operation itself and
-  read the landed diff at THAT sha, not at HEAD. Verifier,
-  red-first: F9's post-commit-hook probe — verdict must name the
-  commit carrying the unit's write-set, extras must be empty.
-  Done: probe flips, full suite green. Write boundary:
-  statiker_git.py, tools/test_statiker_git.py.
-
-- **READY 2026-08-15 — E-E: small verdict/lint set (four one-shape
-  fixes, per-fix red-first).** Provenance: triage T7/T10/T17/T18;
-  probes executed by the arms 2026-08-11 (arrangements in the arm
-  files), premises re-checked at HEAD 2bb9830 per item. Design,
-  decided per item: (1) WITHOUT-F11: ARTIFACT_WRITTEN gains a
-  field naming the tracker's newest commit beside the given sha
-  (field, not gate). (2) WITH-B4: lint evidence line (never a
-  halt) when a NEW id sits below its class's allocated max. (3)
-  SENTENCE-A5: PermissionError on the `filter --out` write routes
-  USAGE_ERROR like its two sibling cases (premise at HEAD: the
-  missing-parent and is-a-directory branches sit at :1164-1173, no
-  PermissionError branch follows — desk read). (4) SENTENCE-C1:
-  the docstring's stale "no literal write-set record-line form"
-  NOTE dies; drifted :471-472/:499 citations refreshed (premise at
-  HEAD: the NOTE stands in the docstring while the inline comment
-  near :907-913 calls the form normative — desk read). Verifier,
-  red-first per item: (1) the arm's stale-lock probe — its two
-  identical verdicts must now carry distinguishing fields; (2) the
-  arm's gap-filling-id case must draw the evidence line, an
-  ordinary status-change reuse must not; (3) the unwritable-dir
-  probe (arm-read INTERNAL_ERROR) must read USAGE_ERROR; (4) grep:
-  docstring and inline comment agree, citations resolve. Done:
-  the four reds flip, full suite green. Write boundary:
-  statiker_record.py, tools/test_statiker_record.py.
-
-- **READY 2026-08-15 — E-F: append-freeze breach is decidable from
-  the tracker — detect it.** Provenance: triage T8's mechanical
-  half (WITHOUT-F7; probe executed — two entries appended under a
-  live [DISPATCHED] A-line read SWEEP_CLEAN + LINT_CLEAN). Design,
-  decided: sweep and lint fire on any F/D/R line appended after
-  the latest A-line when that A-line is [DISPATCHED] with no
-  resolving line (`trend` already parses the window). Verifier,
-  red-first: F7's probe must fire; a resolved-A-line control and a
-  queue-landed-before-outcome control stay clean. Done: probe
-  flips, full suite green. Write boundary: statiker_record.py,
-  tools/test_statiker_record.py.
-
-- **READY 2026-08-15 — E-G′: the computable header-field slice,
-  Mode + Budget halves only.** Provenance: triage T14's mechanical
-  half (WITHOUT-F8 + SENTENCE-B4; probes executed — a header with
-  neither field and no V-line reads LINT_CLEAN; `Mode:`/`Budget`
-  appear in no script or suite). RESCOPED 2026-08-15 (lane R gap
-  3): the irreversible half is PARKED separately below — SKILL.md
-  defines no record-line grammar for it, and its own text routes
-  enforcement through the existing hold entry. Design, decided:
-  sweep/closure verdicts surface the Mode line (late_intent
-  pattern); sweep emits an evidence line when trend's
-  resolved-round count meets/exceeds Budget. `Mode:` and `Budget:`
-  are literal header-line reads, same shape as Status/Phase.
-  Verifier, red-first: Budget-exhausted tracker shows the evidence
-  line, under-budget control clean; Mode line surfaces in the
-  verdict, absent-Mode control shows the field absent/none. Done:
-  probes flip, full suite green. Write boundary:
-  statiker_record.py, tools/test_statiker_record.py.
-
 - **READY (small, desk-only) 2026-08-15 — grade the skill-edit-review
   experiment.** The trial convention (CLAUDE.md, operator-settled
   2026-08-06) ran its three releases: 0.2.56 review (2026-08-10, 8
@@ -176,46 +45,6 @@ it is not decision-complete.
   HOLD_EXACT_RE precedent) OR decide the hold-entry route suffices
   and record that as the standing shape — a SKILL.md design
   decision at a seam, fire-born discipline applies.
-
-- **READY 2026-08-15 — E-H: preflight reports branch state.**
-  Provenance: triage T15 (WITHOUT-F6; both probes executed —
-  detached HEAD and a linked-worktree cwd each ran the full
-  transaction chain onto no branch, silently). Design, decided
-  (field-not-gate, the F11 precedent): the preflight verdict
-  gains `branch: <name|none>` plus a linked-worktree marker;
-  routing stays SKILL.md's (no new halt member). Verifier,
-  red-first: F6's two probes must surface branch none / worktree
-  in the verdict; a normal checkout shows its branch. Done: probes
-  flip, full suite green. Write boundary: statiker_git.py,
-  tools/test_statiker_git.py.
-
-- **READY 2026-08-15 — E-I: `pinned` — the append-only
-  instrument.** Provenance: triage T16 (SENTENCE-B1; probe
-  executed — an in-place [PENDING]→[VERIFIED] rewrite under a pin
-  reads SWEEP_CLEAN while `git diff --stat <pin>` shows 1+/1-).
-  Design, decided (the arm's shape): a record-tool subcommand
-  `pinned --tracker P --sha S` asserting the working tracker is a
-  pure append over the pinned version (old content a prefix of
-  new, at byte level per ES-9); verdict pair
-  PINNED_APPEND_ONLY / PINNED_REWRITTEN with the first divergent
-  line as evidence. Verifier, red-first: B1's rewrite probe must
-  read PINNED_REWRITTEN; a genuine append and a byte-identical
-  tracker read PINNED_APPEND_ONLY. Done: probes flip, full suite
-  green, contract battery rows added. Write boundary:
-  statiker_record.py, tools/test_statiker_record.py,
-  tools/test_contract.py.
-  AMENDED 2026-08-15 (lane R gap 2): the SKILL.md passage is
-  PRE-NAMED here and lands IN the E-I commit itself (same
-  phantom-verdict reason as E-B's amendment). SKILL.md write
-  access scoped to exactly this insertion, directly after the
-  sentence "…whose head the append-only rule cannot rewrite.":
-  "The claim itself is checked mechanically once a pin exists:
-  `pinned --tracker P --sha S` — PINNED_APPEND_ONLY proceeds;
-  PINNED_REWRITTEN halts the seam that ran it, first divergent
-  line in the verdict (an in-place status rewrite reads exactly
-  like a clean record to every positional gate; the diff against
-  the pin is the one thing it cannot fool). Run it at resume and
-  before any re-lock."
 
 - **READY (small) 2026-08-15 — E-J: byte-level fidelity reaches the
   git tool's broken-pipe stderr fallback.** Provenance: lane G gap
@@ -293,6 +122,30 @@ it is not decision-complete.
   in the arm file + triage record).
 
 ## Done
+
+- 2026-08-15 — **E-B/E-I/E-G′ shipped (lane R2, sonnet worktree
+  dispatch; brief docs/directives/2026-08-15-lane-R2-brief.md).**
+  On main as 32914d3 (E-B: UNIT_UNKNOWN for ids the record never
+  scoped, known_units_of shared with waves_over_units, SKILL.md
+  route sentence same commit), ef69925 (E-I: `pinned` subcommand,
+  byte-level prefix check against the pin,
+  PINNED_APPEND_ONLY/PINNED_REWRITTEN, SKILL.md passage same
+  commit), c9038e9 + 017e95b (E-G′: Mode/Budget literal header
+  reads; the correction commit fixed the Budget read to the
+  declared compound grammar — the lane's own late grounding
+  re-check caught an int() parse that would have silently never
+  fired). Dispatcher's combined suite 348/348; SKILL.md diff
+  verified as exactly the two pre-named insertions. Deviations
+  accepted: five pre-existing fixtures + one battery row had
+  ridden the old unknown-id fallthrough (the predicate-gain class
+  landing live) and were migrated with intent preserved. OWED at
+  the release seam: one opus review of the two R2 SKILL.md
+  insertions before the pin moves (batch with any further SKILL.md
+  edits per the final-form rule). Composition miss, desk's own:
+  E-G′'s rescope did not quote Budget's compound grammar although
+  the quote-the-literal header check existed since the same
+  morning — the lane's SKILL.md re-read caught what the entry
+  should have carried.
 
 - 2026-08-15 — **E-C/E-D/E-H shipped (lane G, sonnet worktree
   dispatch; brief docs/directives/2026-08-15-lane-G-brief.md).**
