@@ -272,6 +272,51 @@ class TestPreflight(GitFixture):
         self.assertEqual(v["verdict"], "PREFLIGHT_UNPINNABLE_TRACKER")
 
 
+class TestF6BranchStateAndLinkedWorktree(GitFixture):
+    """begehung tier2-without.md F6 (medium): detached HEAD and a
+    linked-worktree cwd let the full lock/unit transaction chain land
+    silently onto no branch — SKILL.md's own worktree provisioning
+    makes the linked-worktree case directly reachable. Preflight is
+    the run-start seam that now names the state, field-not-gate (no
+    routing change; the F11 precedent) — probes: main checkout with
+    HEAD detached (A), invocation cwd inside a linked detached
+    worktree (B)."""
+
+    def test_normal_checkout_shows_its_branch(self):
+        v = self.verdict(self.tool(
+            "preflight", "--tracker", ".clippy/runs/t.md"))
+        self.assertEqual(v["verdict"], "PREFLIGHT_OK")
+        self.assertEqual(v["branch"], "main", v)
+        self.assertFalse(v["worktree"], v)
+
+    def test_detached_head_reports_branch_none(self):
+        # Probe A: everything downstream still works (the machinery has
+        # no branch check anywhere), so the run completes normally
+        # while its certified surfaces land on no branch — silently,
+        # unless preflight names it.
+        self.git("checkout", "--detach", "HEAD")
+        v = self.verdict(self.tool(
+            "preflight", "--tracker", ".clippy/runs/t.md"))
+        self.assertEqual(v["verdict"], "PREFLIGHT_OK")
+        self.assertEqual(v["branch"], "none", v)
+        self.assertFalse(v["worktree"], v)
+
+    def test_linked_detached_worktree_reports_both_markers(self):
+        # Probe B: invocation cwd inside a linked detached worktree —
+        # both markers fire together.
+        wt = Path(self._tmp.name) / "wt"
+        self.git("worktree", "add", "--detach", str(wt), "HEAD")
+        p = subprocess.run(
+            [sys.executable, str(SCRIPT), "preflight",
+             "--tracker", ".clippy/runs/t.md"],
+            cwd=wt, env=self.env, capture_output=True, text=True,
+            timeout=60)
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "PREFLIGHT_OK")
+        self.assertEqual(v["branch"], "none", v)
+        self.assertTrue(v["worktree"], v)
+
+
 # ---------------------------------------------------------------- lock check
 
 class TestLockCheck(GitFixture):

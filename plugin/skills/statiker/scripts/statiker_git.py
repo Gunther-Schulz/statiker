@@ -466,6 +466,23 @@ class Repo:
             raise Halt("HALT_STATE", ops=ops)
         say("state gate: clean (no merge/cherry-pick/revert/rebase in progress)")
 
+    def branch_state(self):
+        """E-H: `git symbolic-ref` fails (non-zero, empty) exactly when
+        HEAD is detached — the direct, git-documented branch-or-not
+        read, never inferred from a ref file's presence. Linked-worktree
+        detection: `--git-dir` differs from `--git-common-dir` only
+        inside a linked worktree (the main checkout's git-dir IS its
+        common-dir) — both detached HEAD and a linked-worktree cwd let
+        the full lock/unit transaction chain land silently onto no
+        branch (WITHOUT-F6); this reports the state, field-not-gate —
+        routing what to do about it stays SKILL.md's."""
+        p = self.git("symbolic-ref", "-q", "--short", "HEAD", check=False)
+        ref_short = os.fsdecode(p.stdout.strip())
+        branch = ref_short if p.returncode == 0 and ref_short else "none"
+        git_dir = self.git("rev-parse", "--git-dir").stdout.strip()
+        common_dir = self.git("rev-parse", "--git-common-dir").stdout.strip()
+        return branch, git_dir != common_dir
+
     # -- path facts ---------------------------------------------------------
     def is_tracked(self, rel):
         return self.git("ls-files", "--error-unmatch", "--", rel,
@@ -853,12 +870,14 @@ def cmd_preflight(repo, args):
     # documented exit semantics, where a non-error exit is an answer.
     repo.git("ls-files", "-z", "--", tracker_rel)
     ops = repo.ops_in_progress()
+    branch, worktree = repo.branch_state()          # E-H: field, not gate
     if not repo.is_tracked(tracker_rel) and repo.is_ignored(tracker_rel):
         finish("PREFLIGHT_UNPINNABLE_TRACKER", 2, tracker=tracker_rel,
-               ops=ops,
+               ops=ops, branch=branch, worktree=worktree,
                note="the repo ignores the tracker path: the run cannot "
                     "pin its record here — surface before any design work")
-    finish("PREFLIGHT_OK", 0, tracker=tracker_rel, ops=ops)
+    finish("PREFLIGHT_OK", 0, tracker=tracker_rel, ops=ops,
+           branch=branch, worktree=worktree)
 
 
 HALT_EXIT = 2
