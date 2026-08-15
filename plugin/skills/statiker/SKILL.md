@@ -835,7 +835,9 @@ re-run;
 CLOSURE_ABSENT means the gate is not open (the last A-line is
 not [ZERO-DELTA] — the normal state during a reopened design;
 dispatch waits); UNIT_HELD bars that unit on its
-unresolved hold entry; UNIT_DISPATCHABLE lists the live
+unresolved hold entry; UNIT_UNKNOWN halts on an id the record never
+scoped — re-run with the id read from the record, never a guess (a
+typo'd digit otherwise clears a hold silently); UNIT_DISPATCHABLE lists the live
 amendment lines that travel. The brief carries the tool's
 verdict line, the closing A-line quoted, the lock sha, and the
 listed amendments — never the raw criterion. The criterion the

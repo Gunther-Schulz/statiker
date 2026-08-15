@@ -571,8 +571,18 @@ def run_battery(git_script, record_script, root):
          repo, None, None),
         ("record", "closure", ["closure", "--tracker", str(repo / "held.md"),
                                "--unit", "U2"], repo, None, None),
+        # tracker_abs (CLOSED_TRACKER) scopes no unit at all — E-B:
+        # U2 is therefore UNKNOWN here, not dispatchable
         ("record", "closure", ["closure", "--tracker", tracker_abs,
                                "--unit", "U2"], repo, None, None),
+        # E-B: an id the tracker never scoped halts UNIT_UNKNOWN, kept
+        # distinct from the row above (a different tracker, same class)
+        ("record", "closure", ["closure", "--tracker", str(repo / "held.md"),
+                               "--unit", "U9"], repo, None, None),
+        # waves.md's U1 is a genuinely KNOWN, non-held unit — drives
+        # UNIT_DISPATCHABLE now that an unscoped id no longer does
+        ("record", "closure", ["closure", "--tracker", str(repo / "waves.md"),
+                               "--unit", "U1"], repo, None, None),
         ("record", "waves", ["waves", "--tracker", str(repo / "waves.md")],
          repo, None, None),
         ("record", "waves", ["waves", "--tracker",

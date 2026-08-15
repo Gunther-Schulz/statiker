@@ -300,7 +300,13 @@ class TestClosure(RecordFixture):
         self.assertEqual(v["verdict"], "CLOSURE_LIVE")
 
     def test_unit_scoped_line_reopens_only_that_unit(self):
-        body = CLOSED + "- R2 [AMENDED] unit U2 new letter — basis: gap report\n"
+        # E-B: UNIT_DISPATCHABLE now requires U1 to be a KNOWN unit —
+        # a harmless dead line establishes it, [INVALIDATED] so it
+        # never counts as an amendment of its own
+        body = (CLOSED +
+                "- R2 [AMENDED] unit U2 new letter — basis: gap report\n"
+                "- D0 [INVALIDATED] unit U1 established (never "
+                "dispatched) — basis: design\n")
         v2 = self.closure(body, unit="U2")
         self.assertEqual(v2["verdict"], "UNIT_DISPATCHABLE")
         self.assertTrue(any("R2" in a["line"] for a in v2["amendments"]))
@@ -1289,7 +1295,11 @@ class TestAttack10ScopeNearMiss(RecordFixture):
         n = self.lineno_of(CLOSED + bad, "Record:")
         body = (CLOSED + bad +
                 f"- D5 [COMMITTED] record: bookkeeping (corrects line "
-                f"{n}) — basis: probe\n")
+                f"{n}) — basis: probe\n"
+                # E-B: U1 must be a KNOWN unit for closure --unit U1
+                # to read at all
+                "- D0 [INVALIDATED] unit U1 established (never "
+                "dispatched) — basis: design\n")
         v = self.closure(body, unit="U1")
         self.assertEqual(v["verdict"], "UNIT_DISPATCHABLE")
 
@@ -1344,9 +1354,15 @@ class TestAttack10HoldForm(RecordFixture):
         self.assertEqual(v["verdict"], "UNIT_DISPATCHABLE")
 
     def test_hold_for_another_unit_does_not_hold_this_one(self):
-        v = self.closure(
-            self.hold_body("- D9 [AUTO-ACCEPTED] unit U3 held: x.txt "
-                           "— basis: F9"), unit="U2")
+        # E-B: U2 must be a KNOWN unit for closure --unit U2 to read
+        # at all — the dead establishing line never counts as U2's
+        # hold or amendment ([INVALIDATED])
+        body = (self.hold_body(
+                    "- D9 [AUTO-ACCEPTED] unit U3 held: x.txt "
+                    "— basis: F9") +
+                "- D0 [INVALIDATED] unit U2 established (never "
+                "dispatched) — basis: design\n")
+        v = self.closure(body, unit="U2")
         self.assertEqual(v["verdict"], "UNIT_DISPATCHABLE")
 
 
@@ -1663,11 +1679,15 @@ class TestCorrectedLineSupersession(RecordFixture):
         # the entry half: the superseded line is not the latest line
         # for its id, does not travel as an amendment, and cannot
         # classify as anything
-        body = self.corrected(
+        body = (self.corrected(
             "- D5 [COMMITTED] Record: bookkeeping — basis: probe\n",
             "- D5 [COMMITTED] record: bookkeeping (corrects line {n}) "
             "— basis: probe\n",
-            "Record:")
+            "Record:") +
+            # E-B: U1 must be a KNOWN unit for closure --unit U1 to
+            # read; [INVALIDATED] keeps this line out of amendments
+            "- D0 [INVALIDATED] unit U1 established (never "
+            "dispatched) — basis: design\n")
         v = self.closure(body, unit="U1")
         self.assertEqual(v["verdict"], "UNIT_DISPATCHABLE")
         self.assertEqual(v["amendments"], [],
@@ -2062,7 +2082,11 @@ class TestES1HeadRegionExclusion(RecordFixture):
         self.assertEqual(v["verdict"], "LINT_CLEAN", v.get("violations"))
 
     def test_head_region_bullet_cannot_brick_the_closure(self):
-        v = self.closure(CLOSED, unit="U1",
+        # E-B: U1 must be a KNOWN unit for closure --unit U1 to read
+        # at all
+        body = (CLOSED + "- D0 [INVALIDATED] unit U1 established "
+                "(never dispatched) — basis: design\n")
+        v = self.closure(body, unit="U1",
                          header=HEAD_WITH_OPERATOR_BULLET)
         self.assertEqual(v["verdict"], "UNIT_DISPATCHABLE")
 
@@ -2940,6 +2964,40 @@ class TestEESmallFixes(RecordFixture):
         self.assertIn("record-line form is normative in", text)
         self.assertIn(":876-880", text)
         self.assertIn(":486-487", text)
+
+
+# ---------------------------------------- E-B: unknown --unit halts
+
+class TestEBUnitUnknown(RecordFixture):
+    """begehung-harvest triage T2 (WITHOUT-F2, attack-8 N3's referent
+    half): closure --unit consulted no known-unit set — an id the
+    record never scoped (a mistyped digit) fell through every
+    predicate and read UNIT_DISPATCHABLE, silently clearing a hold on
+    the REAL unit under the wrong id. known_units_of (shared with
+    waves_over_units' own unplannable computation) now halts it."""
+
+    BODY = (CLOSED +
+            "- D9 [AUTO-ACCEPTED] unit U1 held: x.txt — basis: F9\n"
+            "- R2 [AMENDED] unit U2 new letter — basis: gap report\n")
+
+    def test_unscoped_ids_halt_unit_unknown(self):
+        for unit in ("U11", "U21", "U7"):
+            v = self.closure(self.BODY, unit=unit)
+            self.assertEqual(v["verdict"], "UNIT_UNKNOWN",
+                             f"{unit} parses as U<k> but names no line "
+                             f"the tracker ever scoped")
+            self.assertEqual(v["unit"], unit)
+
+    def test_the_actually_held_unit_still_holds(self):
+        # U1 → UNIT_HELD stays: known units are unaffected
+        v = self.closure(self.BODY, unit="U1")
+        self.assertEqual(v["verdict"], "UNIT_HELD")
+
+    def test_the_actually_amended_unit_still_dispatches(self):
+        # U2 → amendments stays: known units are unaffected
+        v = self.closure(self.BODY, unit="U2")
+        self.assertEqual(v["verdict"], "UNIT_DISPATCHABLE")
+        self.assertTrue(any("R2" in a["line"] for a in v["amendments"]))
 
 
 # --------------------------------------------- E-F: the append freeze

@@ -1151,6 +1151,16 @@ def cmd_closure(args):
         finish("CLOSURE_LIVE", 0,
                closing=f"{closing.id} at line {closing.lineno}", **late)
 
+    # E-B (attack-8 N3, referent half): a mistyped id that still MATCHES
+    # U<k> form (spelling half, closed above) fell through the rest of
+    # this predicate untested and read UNIT_DISPATCHABLE — a hold on
+    # the real unit cleared silently under the wrong id. An id the
+    # record never scoped anywhere (known_units_of, the same known-unit
+    # test waves_over_units computes for its own unplannable set) halts
+    # instead.
+    if args.unit not in known_units_of(entries):
+        finish("UNIT_UNKNOWN", 2, unit=args.unit, **late)
+
     hold_prefix = f"unit {args.unit} held: "
     held = [e for (u, e) in unit_lines
             if u == args.unit and e.tag == "AUTO-ACCEPTED"
@@ -1184,6 +1194,23 @@ def _normalize_write_set_path(p):
     return os.path.normpath(p.strip())
 
 
+def known_units_of(entries):
+    """Units KNOWN in the tracker: any live or dead entry opens
+    `unit U<k> ` anywhere (classify_scope, the established scope-opener
+    grammar) — write-set lines and any other unit-scoped line both
+    count. The same known-unit test waves_over_units computes for its
+    own unplannable set (write_sets.keys() vs this set), shared via
+    this standalone helper (E-B, prior-lane implementation note:
+    waves_over_units' own return tuple stays 4 values — a foreign
+    lane's tools/test_statiker_git.py unpacks it)."""
+    known = set()
+    for e in latest_by_id(entries).values():
+        scope, unit = classify_scope(e.body)
+        if scope == "unit":
+            known.add(unit)
+    return known
+
+
 def waves_over_units(entries):
     """(write_sets: unit -> live path set (normalized), unplannable
     units sorted ascending, waves: list of unit-id lists, each sorted
@@ -1200,14 +1227,13 @@ def waves_over_units(entries):
     uses (SKILL.md:486-487; SENTENCE-C1 citation refresh, computed
     against the current file)."""
     latest = latest_by_id(entries)
-    known_units = set()
+    known_units = known_units_of(entries)
     write_sets = {}
     aliases = {}
     for e in sorted(latest.values(), key=lambda e: e.lineno):
         scope, unit = classify_scope(e.body)
         if scope != "unit":
             continue
-        known_units.add(unit)
         if e.tag == "INVALIDATED":
             continue
         m = UNIT_WRITE_SET_RE.match(e.body)
