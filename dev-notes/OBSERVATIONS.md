@@ -4724,3 +4724,68 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   Triage class: unverified-liveness inference; mechanism: none
   minted (judgment-shaped — the computable half is already the
   listing read, which was available and unconsulted).
+
+- 2026-08-15 — **The sweep prescribes a repair its own token resolver
+  refuses: `clause-unparsed` (and every other SWEEP-stage-only hold)
+  is unreachable by the bookkeeping form the verdict prints.**
+  Incident, measured at a beat-the-books desk on 0.2.65 (tracker
+  `.clippy/runs/2026-08-05-canonical-market-identity-statiker.md`,
+  repo commit `a91d322b`): four `clause-unparsed` holds at two lines.
+  The sweep verdict's own `repair` field read ``bookkeeping: append
+  `- <id> [<tag>] record: corrects line <n>` — sheds violations only,
+  status untouched``. The desk pasted that form verbatim for both
+  lines. The four holds did NOT clear and two `corrects-nothing`
+  holds appeared — "names line 7838, which carries no violation to
+  repair". Before 4, after 6: following the verdict made the record
+  strictly worse, and the record is append-only, so both dead tokens
+  are permanent. Basis: two executed sweeps, before and after, at
+  that commit; the verdict strings pasted in the run reply.
+  Mechanism, read AFTER the measurement rather than to predict it
+  (`scripts/statiker_record.py`): `apply_supersession` builds its
+  `violated` map from the LINT-stage violation list, while
+  `clause-unparsed` is computed later, at the sweep stage — so the
+  token is resolved against a map that structurally cannot contain
+  its target. `annotate_repairs` attaches the repair string by CODE
+  from `REPAIR_FORMS`, with no check that the code's stage is one the
+  resolver can reach, so every sweep-stage code inherits a repair
+  form that is dead on arrival. The desk that followed it was doing
+  exactly what The tools section says to do — "the desk composes
+  repairs from the verdict, never from memory" — which is what makes
+  this a tool defect and not desk error.
+  Class: instrument prescribing an unprovable repair — the
+  guard-fires-on-a-non-defect family, in its costliest direction,
+  since the prescribed cure adds permanent holds to an append-only
+  record and trains the desk to discount the verdict's repair field.
+  PRE-FORMULATED FIX, two parts, the first sufficient alone:
+  (1) in `annotate_repairs`, gate the repair string on whether the
+  code is resolver-reachable — a sweep-stage-only code gets a form
+  naming what the desk can actually do (supersede the line with a
+  clean restatement; the hold on the superseded line persists and is
+  expected), never the bookkeeping token; (2) failing that, teach
+  `apply_supersession` to build `violated` from the union of both
+  stages so the printed form becomes true. Either way the invariant
+  worth asserting in the red-first suite is that EVERY code in
+  `REPAIR_FORMS` whose form contains the correcting token is
+  reachable by that token — a table-driven test over the code list,
+  which would have gone red on `clause-unparsed` the day it was
+  added, and which is derived from the code table rather than
+  restating it.
+  Consumer + drain seam: the next maintenance pass over
+  `statiker_record.py`'s repair table, and the fire-rate review that
+  reads this file; drains by the backlog-retirement quota with the
+  fix text above applied or discarded with a one-line reason.
+  Second, smaller datapoint from the same desk, recorded because it
+  is the same shape one level up: on that tracker 696 of 718 sweep
+  holds are grammar rules that arrived in the tool AFTER the lines
+  they grade (`superseded-block-form` 275, `basis-missing` 248,
+  `tag-literal-in-body` 173, every one of them pre-cycle-11, zero in
+  the ~40 entries the 0.2.65 session appended). A long-running
+  record therefore becomes ready-gate-unreachable purely by the tool
+  improving under it, with no defect in its content. Worth a
+  decision the skill does not currently carry: whether the sweep's
+  retroactive slice is separable from the live one, e.g. a
+  `--since <line|sha>` reach so the ready gate grades the record the
+  run's own conventions actually governed. Triage class:
+  retroactive-grammar debt on append-only records; mechanism: the
+  `--since` reach above, or an explicit stated-deviation route at
+  the ready gate — neither exists today.
