@@ -273,21 +273,84 @@ REPAIR_STATUS_LINE = ("status line: append a new tag-first line under "
 REPAIR_INTENT_HOLD = ("hold: an undefanged tag literal here holds the "
                       "sweep for the run's life — write the defanged "
                       "literal in place; no repair token reaches it")
+# E-M (BACKLOG; dev-notes/OBSERVATIONS.md, "the sweep prescribes a
+# repair its own token resolver refuses", commit 271a6bf):
+# `apply_supersession` builds its `violated` map ONCE, from the
+# LINT-stage violations `parse_tracker` itself accumulates —
+# `clause-unparsed` is computed later, at the SWEEP stage
+# (sweep_checks), so it can never be a member of that map and a
+# `corrects line <n>` token naming it can never resolve. Printing
+# REPAIR_BOOKKEEPING's corrects-token form on it prescribed a repair
+# the record's own resolver structurally refuses; a desk that pasted
+# the verdict's own form verbatim (as the tools section directs)
+# appended two permanent corrects-nothing holds to a live,
+# append-only tracker. This form carries no token at all.
+REPAIR_SWEEP_BOOKKEEPING = ("bookkeeping (sweep-stage code): no "
+                            "`corrects line` token resolves against "
+                            "this code — restate a clean clause "
+                            "disposition on the entry's own next line; "
+                            "the record is append-only, the flagged "
+                            "line stands as written")
+# E-M, widened (halted mid-build, decision recorded here): building
+# the assertion below surfaced FOUR MORE codes with clause-unparsed's
+# exact defect, for a DIFFERENT structural reason — `corrects-nothing`,
+# `multi-corrects-token`, `repair-tag-change`, `repair-scope-change`
+# are apply_supersession's OWN complaints, attached to the CORRECTING
+# line (the one carrying the defective `corrects line <n>` token)
+# rather than to a target line, and never fed back into the `violated`
+# map a later token would need to resolve against them. Empirically
+# confirmed, not just reasoned: a planted corrects-nothing violation's
+# own printed SUPERSEDE repair, followed literally, mints a SECOND
+# permanent corrects-nothing hold — 271a6bf's exact failure shape
+# under a different trigger. Governing principle: a defective
+# correcting line is never itself a corrects target; append-only text
+# means whatever it NAMED keeps carrying its own violation on every
+# future scan regardless of what superseded it, so the surviving path
+# is a fresh, correctly-formed token aimed at THAT name, never at the
+# line that got the token wrong.
+REPAIR_CORRECTS_NOTHING = ("bookkeeping: a defective correcting line "
+                           "is never itself a corrects target — check "
+                           "the line it named: a live, reachable "
+                           "violation there earns a fresh `corrects "
+                           "line <n>` naming it; none standing (or "
+                           "unreachable by any token) leaves this "
+                           "line's own defect as permanent, accepted "
+                           "record noise")
+REPAIR_TOKEN_RETRY = ("bookkeeping: a defective correcting line is "
+                      "never itself a corrects target — whatever it "
+                      "named still stands (superseding never edits "
+                      "text): a fresh, single `corrects line <n>` "
+                      "aimed at the intended target, carried "
+                      "correctly this time, replaces this attempt")
 
 MACHINE_TOKEN_CODES = {
     "entry-form", "tag-enum", "entry-near-miss", "scope-near-miss",
-    "hold-form", "corrects-nothing", "multi-corrects-token",
-    "repair-tag-change", "repair-scope-change", "write-set-near-miss",
-    "write-set-path-near-miss",
+    "hold-form", "write-set-near-miss", "write-set-path-near-miss",
 }
 BODY_CONTENT_CODES = {
-    "tag-literal-in-body", "basis-missing", "clause-unparsed",
+    "tag-literal-in-body", "basis-missing",
     "superseded-block-form", "landing-indent", "landing-blank",
     "intent-near-miss",
+}
+# SWEEP-stage-only codes whose REPAIR_FORMS entry must never carry the
+# `corrects line <n>` token (E-M): resolver-unreachable by
+# construction, named individually rather than folded into
+# BODY_CONTENT_CODES's blanket REPAIR_BOOKKEEPING mapping above.
+SWEEP_STAGE_BOOKKEEPING_CODES = {"clause-unparsed"}
+# apply_supersession's own complaint codes (E-M, widened): a defective
+# corrects-token is a machine-token defect too, but on the CORRECTING
+# line, not a target — REPAIR_SUPERSEDE's "restate under the same id
+# with `corrects line {n}`" would have n resolve to the correcting
+# line's OWN number, which the `violated` map can never contain.
+SELF_TARGET_UNREACHABLE_CODES = {
+    "multi-corrects-token", "repair-tag-change", "repair-scope-change",
 }
 REPAIR_FORMS = dict(
     [(c, REPAIR_SUPERSEDE) for c in MACHINE_TOKEN_CODES]
     + [(c, REPAIR_BOOKKEEPING) for c in BODY_CONTENT_CODES]
+    + [(c, REPAIR_SWEEP_BOOKKEEPING) for c in SWEEP_STAGE_BOOKKEEPING_CODES]
+    + [("corrects-nothing", REPAIR_CORRECTS_NOTHING)]
+    + [(c, REPAIR_TOKEN_RETRY) for c in SELF_TARGET_UNREACHABLE_CODES]
     + [(c, REPAIR_HEADER) for c in
        ("status-enum", "phase-enum", "admission-window")]
     + [(c, REPAIR_STATUS_LINE) for c in

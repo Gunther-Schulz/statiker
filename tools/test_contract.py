@@ -228,6 +228,50 @@ RECORD_SUBCOMMANDS = parser_subcommands(SCRIPTS[1])
 VERDICT_LINE_RE = re.compile(r"^STATIKER-(?:GIT|RECORD) VERDICT: (.*)$")
 
 
+def lint_stage_codes(source_text):
+    """E-M (BACKLOG; dev-notes/OBSERVATIONS.md, "the sweep prescribes
+    a repair its own token resolver refuses", commit 271a6bf):
+    `apply_supersession` is invoked exactly once, inside
+    `parse_tracker`, over the violations `parse_tracker` itself
+    accumulates before returning — its own `viol()` call sites, plus
+    every code `hold_violations`/`write_set_violations` return (both
+    invoked from inside `parse_tracker`'s own scan). No other function
+    can ever contribute to the `violated` map that resolver-reachable
+    codes are: a code minted anywhere else (`sweep_checks`, for
+    instance) is refused by construction.
+
+    Derived by walking those three functions' own ASTs — never
+    restated — because a restated list cannot go stale loudly: it
+    stays green while a code silently migrates to a later stage,
+    which is exactly this defect one level up. String-literal codes
+    only (`viol(code, ...)`'s first positional arg; each helper's
+    `return [...]` list elements) — a code assembled at runtime would
+    escape this and every other set in this suite alike."""
+    tree = ast.parse(source_text)
+    funcs = {n.name: n for n in ast.walk(tree)
+             if isinstance(n, ast.FunctionDef)}
+    for name in ("parse_tracker", "hold_violations", "write_set_violations"):
+        if name not in funcs:
+            raise RuntimeError(
+                f"lint_stage_codes: {name}() not found — the derivation "
+                f"lost its source")
+    codes = set()
+    for node in ast.walk(funcs["parse_tracker"]):
+        if isinstance(node, ast.Call) and _call_name(node) == "viol":
+            if node.args and isinstance(node.args[0], ast.Constant) and \
+                    isinstance(node.args[0].value, str):
+                codes.add(node.args[0].value)
+    for name in ("hold_violations", "write_set_violations"):
+        for node in ast.walk(funcs[name]):
+            if isinstance(node, ast.Return) and \
+                    isinstance(node.value, ast.List):
+                for elt in node.value.elts:
+                    if isinstance(elt, ast.Constant) and \
+                            isinstance(elt.value, str):
+                        codes.add(elt.value)
+    return codes
+
+
 def split_lines(text):
     """Split a tool's own stdout on newlines ONLY, mirroring
     statiker_record.py's split_lines: str.splitlines() also breaks on
@@ -805,6 +849,47 @@ class TestVerdictParity(unittest.TestCase):
                       "LOCK_COMMITTED_EXTRAS", "CLOSURE_RECORD_MALFORMED"):
             self.assertIn(known, got)
         self.assertIn("HALT_STATE", skill_named_verdicts())
+
+
+class TestRepairFormReachability(unittest.TestCase):
+    """E-M (BACKLOG; dev-notes/OBSERVATIONS.md 271a6bf): a
+    REPAIR_FORMS entry that prints the `corrects line {n}` token
+    promises the desk a repair `apply_supersession` can resolve — a
+    promise only LINT-stage-reachable codes can keep, since that
+    resolver's `violated` map is built once, from `parse_tracker`'s
+    own scan, before any SWEEP-stage code (`sweep_checks`) exists.
+    This suite's own reachable set is DERIVED (`lint_stage_codes`,
+    above), never restated, so a code migrating stage in either
+    direction moves this assertion with it rather than leaving it
+    silently stale."""
+
+    @classmethod
+    def setUpClass(cls):
+        sys.path.insert(0, str(SCRIPTS[1].parent))
+        import statiker_record
+        cls.record = statiker_record
+
+    def test_corrects_token_only_on_lint_stage_reachable_codes(self):
+        reachable = lint_stage_codes(SCRIPTS[1].read_text(encoding="utf-8"))
+        unreachable = sorted(
+            code for code, form in self.record.REPAIR_FORMS.items()
+            if "corrects line {n}" in form and code not in reachable)
+        self.assertEqual(
+            unreachable, [],
+            f"REPAIR_FORMS prints the `corrects line <n>` token on a "
+            f"code apply_supersession's violated map can never contain "
+            f"(computed at LINT stage only, before these codes exist): "
+            f"{unreachable} — the printed repair can never resolve")
+
+    def test_instrument_is_live(self):
+        # instrument check on the pair: a code the derivation really
+        # carries is present, and a sentinel it never emitted is
+        # absent — a set derived from neither would satisfy the
+        # reachability assertion whatever the tool offers
+        reachable = lint_stage_codes(SCRIPTS[1].read_text(encoding="utf-8"))
+        self.assertIn("hold-form", reachable)
+        self.assertIn("write-set-near-miss", reachable)
+        self.assertNotIn("__no_such_code__", reachable)
 
 
 if __name__ == "__main__":

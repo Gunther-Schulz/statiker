@@ -1445,6 +1445,65 @@ class TestAttack10ClauseGrammar(RecordFixture):
                          "restated-at-F8")
 
 
+class TestEMRepairFormGating(RecordFixture):
+    """BACKLOG E-M, widened (dev-notes/OBSERVATIONS.md 271a6bf): a
+    hold's printed repair string gates on resolver reachability.
+    apply_supersession's `violated` map is built once, at LINT stage,
+    from parse_tracker's own scan — a code computed later
+    (clause-unparsed, SWEEP stage) or synthesized by
+    apply_supersession itself on the CORRECTING line
+    (corrects-nothing, multi-corrects-token, and by the same
+    reasoning repair-tag-change/repair-scope-change) can never be a
+    member of it. The desk pasting the printed `corrects line <n>`
+    token verbatim (as the tools section directs) minted a second,
+    permanent hold on a live tracker — every one of these codes must
+    print a repair string carrying no RESOLVABLE token."""
+
+    def test_sweep_stage_hold_repair_carries_no_resolvable_token(self):
+        line = ("- F5 [INVALIDATED] clause a restated-at-D7; clause b "
+                "dead (killed by F9); clause c restated at D8; clause d "
+                "dead — basis: F6\n")
+        v = self.sweep(line)
+        unparsed = [x for x in v["violations"]
+                    if x["code"] == "clause-unparsed"]
+        self.assertTrue(unparsed)
+        for x in unparsed:
+            self.assertNotRegex(x["repair"], r"corrects line \d")
+
+    def test_corrects_nothing_repair_carries_no_resolvable_token(self):
+        body = ("- F1 [VERIFIED] a fact — basis: y\n"
+                "- F2 [VERIFIED] record: corrects line 9 — basis: y\n")
+        v = self.sweep(body)
+        hits = [x for x in v["violations"] if x["code"] == "corrects-nothing"]
+        self.assertTrue(hits)
+        for x in hits:
+            self.assertNotRegex(x["repair"], r"corrects line \d")
+
+    def test_multi_corrects_token_repair_carries_no_resolvable_token(self):
+        body = ("- F1 [VERIFIED] a fact — basis: y\n"
+                "- F2 [VERIFIED] record: corrects line 9 and corrects "
+                "line 10 — basis: y\n")
+        v = self.sweep(body)
+        hits = [x for x in v["violations"]
+                if x["code"] == "multi-corrects-token"]
+        self.assertTrue(hits)
+        for x in hits:
+            self.assertNotRegex(x["repair"], r"corrects line \d")
+
+    def test_following_the_printed_repair_no_longer_mints_a_second_hold(self):
+        # the empirical regression case: before the fix, appending the
+        # verdict's own printed repair for a corrects-nothing violation
+        # minted a SECOND permanent corrects-nothing hold (271a6bf's
+        # shape). After the fix the desk is told this line is not a
+        # legal target at all, so nothing invites that append.
+        body = ("- F1 [VERIFIED] a fact — basis: y\n"
+                "- F2 [VERIFIED] record: corrects line 9 — basis: y\n")
+        v = self.sweep(body)
+        hits = [x for x in v["violations"] if x["code"] == "corrects-nothing"]
+        self.assertTrue(hits)
+        self.assertIn("never itself a corrects target", hits[0]["repair"])
+
+
 class TestAttack10SymlinkedAncestor(RecordFixture):
     """attack-10 N4: the tracker's containment compared a TEXTUAL path
     against the repo top's REALPATH, so a tracker reached through a
