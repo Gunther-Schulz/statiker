@@ -105,19 +105,6 @@ it is not decision-complete.
   — build after Lane A integrates (bundle candidate with the P3/P4
   lane).
 
-- **PARKED 2026-08-15 — P5: record rules grade lines that predate
-  their mint (sweep retroactivity).** Provenance: relay 2 — 696 of
-  718 sweep holds on the beat-the-books tracker are rules minted
-  after the lines they grade (superseded-block-form 275,
-  basis-missing 248, tag-literal-in-body 173; all ≤:7598, zero in
-  the cycle-12 appends); disposed for that run as a stated
-  deviation (desk D-line, meta-affirmed). Missing design, named:
-  epoch-scoping needs per-line version attribution, which only
-  P3's version line class provides once runs carry it — and the
-  decision whether the sweep then scopes by epoch or the stated
-  deviation stays the standing disposition. Trigger: the next run
-  bitten by retroactive holds after P3 ships.
-
 - **PARKED 2026-08-15 — P1: the seal/queue/repo-key namespace
   needs a design decision before any mechanism.** Provenance:
   triage T8 (WITH-B1 executed: three defensible derivations of one
@@ -160,6 +147,14 @@ it is not decision-complete.
   in the arm file + triage record).
 
 ## Done
+
+- 2026-08-15 — **P5 dropped same-day (no-grandfather rule, CLAUDE.md
+  trial conventions):** the epoch-scoping design was grandfathering
+  machinery, which the trial builds none of; the standing
+  disposition for retroactive sweep holds is the stated deviation
+  (relay 2, desk D-line, meta-affirmed). Booked body in git history
+  (c4c87f7). Re-opens only with the trial's close or an external
+  user.
 
 - 2026-08-15 — **skill-edit-review experiment graded: SUSTAINS,
   3-for-3 on the pre-registered criterion** (grading entry in

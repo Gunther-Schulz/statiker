@@ -137,6 +137,18 @@
   the seam. Prefer what/which-shaped questions; post-hoc
   why-shaped answers decay into rationalization.
 
+- **No grandfather clauses during the trial (operator-settled
+  2026-08-15).** While statiker is experimental, no
+  version-transition or grandfathering machinery is minted — in
+  skill text, tool behavior, or record grammar. The affected
+  population is at most this repo's own runs, and a live case is
+  handled at the desk as a declaration or stated deviation on
+  record (the pre-Budget run declared its budget at resume;
+  retroactive sweep holds ride a stated deviation). Provenance:
+  the budget-grandfather clause reverted same-day (f5471ac), P5's
+  epoch-scoping direction dropped on this rule. Re-opens when the
+  trial phase closes or an external user exists.
+
 ## Verify
 
 ```bash
