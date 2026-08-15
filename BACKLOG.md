@@ -16,95 +16,6 @@ it is not decision-complete.
 
 ## Open
 
-- **PARKED 2026-08-15 — P4: the irreversible-unit hold needs a
-  record-line grammar minted first.** Provenance: SENTENCE-B3
-  (the damage-limiting rule has no instrument on either half) +
-  lane R gap 3 (first-build-step check executed: SKILL.md
-  :441-450 says a unit "is tagged irreversible in its enumeration"
-  as prose — no backtick-quoted literal exists, and the
-  unattended-irreversible case "takes the hold entry", i.e. the
-  text routes enforcement through the EXISTING UNIT_HELD
-  mechanism; a bare-word scan would false-fire on "not
-  irreversible" and on shared bodies). Missing design, named: mint
-  an exact irreversible tag grammar into SKILL.md (the
-  HOLD_EXACT_RE precedent) OR decide the hold-entry route suffices
-  and record that as the standing shape — a SKILL.md design
-  decision at a seam, fire-born discipline applies.
-
-- **READY (small) 2026-08-15 — E-J: byte-level fidelity reaches the
-  git tool's broken-pipe stderr fallback.** Provenance: lane G gap
-  (report 2/4): `_stderr_fallback` still uses text-mode
-  `print(file=sys.stderr)` while the record tool's version writes
-  the buffer with surrogateescape — the E-C class, one path over.
-  Fires only when stdout is already gone, so severity is low, but
-  it is the third byte-policy carry-across instance (T22's counter:
-  the shared-emit-helper extraction trigger is now met — extracting
-  ONE emit/stderr helper both tools import satisfies this entry
-  AND retires the class). Design, decided: mirror the record
-  tool's byte-level stderr fallback, by extraction or by copy —
-  extraction preferred per T22. Verifier, red-first: broken-pipe +
-  non-UTF-8-path arrangement, fallback line carries the byte.
-  Done: probe flips, full suite green. Write boundary:
-  statiker_git.py, statiker_record.py (if extracting),
-  tools/test_statiker_git.py.
-
-- **READY (small) 2026-08-15 — E-K: EMIT_CONDUITS false-fire gets
-  its declared exemption.** Provenance: lane G deviation 3
-  (executed): the contract battery's conduit check is a bare-name
-  AST match ({"failure_verdict","name","verdict"}, scope-unaware) —
-  an ordinary local named `name` in branch_state() tripped it, and
-  the lane's cure was a rename (workaround, not repair). Per the
-  corpus guard rule, a check firing on legitimate work gets a
-  declared, checked exemption — never a softened predicate or an
-  avoidance habit. Design, decided (minimum): a comment at the
-  EMIT_CONDUITS definition naming the false-fire class and the
-  rename cure; better if cheap at build time: restrict the match to
-  assignments that reach a finish()/say() call. Verifier: the
-  battery stays green on the current tree and still fails on a real
-  conduit rename (existing red case re-run). Done: comment (or
-  scoped match) landed, battery green both directions. Write
-  boundary: tools/test_contract.py.
-
-- **READY (small) 2026-08-15 — E-L: requirement-head detection
-  survives a leading `## ` head heading.** Provenance: relay 1
-  (cycle-12 resume report, desk-executed, tool source verified at
-  the meta desk): the beat-the-books tracker's `## Requirement
-  head` at :225 IS the file's first heading, and the tool counts
-  R-lines only above the first `## ` heading (HEAD_BOUNDARY_RE,
-  statiker_record.py:132) → r_lines: 0 on sweep and closure,
-  INTENT/R1–R5 parsed as malformed entries. Informational (field,
-  not gate) but Verify grades per R-line, so the miss is silent.
-  Design, decided: the head region extends THROUGH a first heading
-  whose title is `Requirement head` (case-insensitive exact title)
-  to the NEXT `## ` heading; any other first heading keeps the
-  current boundary. Verifier, red-first: fixture mirroring the
-  beat-the-books shape (head under a first `## Requirement head`
-  heading) reads r_lines: 0 under old code, the true count under
-  new; existing above-heading fixtures stay green. Done: probe
-  flips, full suite green. Write boundary:
-  plugin/skills/statiker/scripts/statiker_record.py,
-  tools/test_statiker_record.py.
-
-- **READY (small) 2026-08-15 — E-M: sweep-printed repair forms gate
-  on resolver reachability.** Provenance: F147, measured at the
-  beat-the-books desk on 0.2.65 (booking 271a6bf in OBSERVATIONS —
-  incident + mechanism: `apply_supersession` builds its violated
-  map at the LINT stage while `clause-unparsed` is SWEEP-stage, so
-  the verdict's printed `corrects line <n>` form resolves against a
-  map that structurally cannot contain its target; pasting the
-  verdict's own form added two permanent corrects-nothing holds).
-  Design, decided (desk's pre-formulated fix, adopted): a hold's
-  printed repair string gates on its code being resolver-reachable
-  — SWEEP-stage-only codes print a repair form WITHOUT the corrects
-  token (naming the hand-bookkeeping shape instead); red-first
-  suite assertion: every REPAIR_FORMS entry containing the
-  correcting token is reachable by apply_supersession — red on the
-  current tree. Write boundary:
-  plugin/skills/statiker/scripts/statiker_record.py,
-  tools/test_statiker_record.py. NOTE: overlaps Lane A's write set
-  — build after Lane A integrates (bundle candidate with the P3/P4
-  lane).
-
 - **READY 2026-08-15 — P1: the seal/queue namespace gets its tool
   and its two missing grammar pieces.** Provenance: triage T8
   (WITH-B1 executed: three defensible derivations of one prose
@@ -244,6 +155,25 @@ it is not decision-complete.
   integrates).
 
 ## Done
+
+- 2026-08-15 — **E-J/E-K/E-L shipped (lanes A+B, sonnet, shared
+  copy): a979442 (E-J shared byte-level stderr fallback,
+  statiker_emit.py extraction, T22 class retired), fdcd005 (E-K
+  declared-exemption comment), 65d46ef (E-L requirement-head
+  boundary).** Suite 358/358 at integration; per-entry stash-proof
+  reds in the lane reports (booked in session record).
+
+- 2026-08-15 — **P3/P4/E-M shipped (lane C, sonnet): 58b224b (P3
+  `SKILL: statiker <version>` line class + skill_versions field),
+  2f4d7f1 (P4 `unit U<k> irreversible: <effect>` line + 
+  irreversible_units field; the parked P4 decision resolved to the
+  tag grammar, hold-entry enforcement untouched), 4e30545 (E-M
+  WIDENED: five codes printed resolver-unreachable corrects
+  tokens, not one — the lane's derived assertion found four more,
+  empirically reproduced; repair strings quoted in the lane
+  report).** Suite 372/372 at integration; SKILL.md diffs verified
+  as exactly the pre-named insertions. All unpushed pending the
+  release seam.
 
 - 2026-08-15 — **P5 dropped same-day (no-grandfather rule, CLAUDE.md
   trial conventions):** the epoch-scoping design was grandfathering
