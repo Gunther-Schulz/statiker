@@ -1769,6 +1769,226 @@ class PinnedFixture(RecordFixture):
         return d
 
 
+# ----------------------------------------------- begehung-harvest 2 (a)-(c)
+
+BOGUS_STATUS_HEADER = """# Run: test
+Status: bogus-status
+Phase: investigate-design
+Skill: statiker 0.2.33
+
+INTENT — do the thing.
+
+## Cycle 1
+"""
+
+
+class TestHarvest2CorrectsReachClass(RecordFixture):
+    """begehung-harvest 2, finding 2 (tier2-without.md parts 3/7-4/7,
+    probe A): `apply_supersession` decided shed/supersede by LINE
+    NUMBER alone, never consulting the violation's own REPAIR_FORMS
+    class — a `corrects line <n>` token cleared a header's
+    status-enum violation with the header itself never rewritten.
+    Repair: `repair_class()` gates the shed on the declared form —
+    only REPAIR_BOOKKEEPING codes shed, only MACHINE_TOKEN_CODES
+    members supersede, everything else lints `corrects-nothing`
+    carrying the declared (unreachable) form.
+
+    NOT covered here (surfaced as a gap, per the closing report):
+    probe B (an undefanged tag literal in INTENT, corrected by a
+    bookkeeping token) still reaches SWEEP_CLEAN after this fix —
+    `tag-literal-in-body` genuinely IS a REPAIR_BOOKKEEPING member
+    (TestES10RepairFieldPerViolation.
+    test_a_body_content_violation_names_bookkeeping pins that label),
+    so gating shed-eligibility on REPAIR_FORMS class alone does not
+    disqualify it. Making probe B lint too needs a further design
+    decision this entry does not state (e.g. excluding owner-less /
+    head-region targets, or a new REPAIR class for an INTENT-scoped
+    literal) — confirmed empirically, not by inference: reverting
+    this fix's apply_supersession hunk still sheds probe B."""
+
+    def test_a_header_violation_is_not_shed_by_a_bookkeeping_token(self):
+        n = self.lineno_of("", "bogus-status", header=BOGUS_STATUS_HEADER)
+        body = f"- F1 [VERIFIED] record: corrects line {n} — basis: D1\n"
+        v = self.sweep(body, header=BOGUS_STATUS_HEADER)
+        self.assertEqual(v["verdict"], "SWEEP_HOLDS", v)
+        codes = self.violation_codes(v)
+        self.assertIn("status-enum", codes, v)
+        self.assertIn("corrects-nothing", codes, v)
+        header_viol = next(x for x in v["violations"]
+                           if x["code"] == "status-enum")
+        self.assertTrue(header_viol["repair"].startswith("header rewrite:"),
+                        header_viol)
+
+    def test_lint_reaches_the_same_header_result(self):
+        n = self.lineno_of("", "bogus-status", header=BOGUS_STATUS_HEADER)
+        body = f"- F1 [VERIFIED] record: corrects line {n} — basis: D1\n"
+        v = self.lint(body, header=BOGUS_STATUS_HEADER)
+        self.assertEqual(v["verdict"], "LINT_VIOLATIONS", v)
+        self.assertIn("status-enum", self.violation_codes(v))
+
+    def test_sweep_code_immunity_is_ordering_independent(self):
+        # AMENDED 2026-08-15 boundary note (arm part 4/7): a
+        # `pending-latest` line is structurally unreachable now (it
+        # is not a REPAIR_BOOKKEEPING member) rather than immune only
+        # because sweep_checks happens to run after apply_supersession
+        # — pinned as a test rather than left an accepted ordering
+        # accident. A cross-id token targeting F1's [PENDING] line
+        # fails reachability (owner mismatch) AND the sweep-level
+        # violation still stands: both hold together.
+        f1 = "- F1 [PENDING] awaiting a leg — basis: dispatched\n"
+        n = self.lineno_of(f1, "[PENDING] awaiting a leg")
+        body = f1 + f"- F2 [VERIFIED] record: corrects line {n} — basis: y\n"
+        v = self.sweep(body)
+        self.assertEqual(v["verdict"], "SWEEP_HOLDS", v)
+        codes = self.violation_codes(v)
+        self.assertIn("pending-latest", codes, v)
+        self.assertIn("corrects-nothing", codes, v)
+
+
+class TestHarvest2WriteSetPathField(RecordFixture):
+    """begehung-harvest 2, finding 3 (tier2-without.md part 5/7): the
+    write-set PATH FIELD got no positional lint, so a two-path line
+    (`unit U2 write-set: a.py b.py`) read as one exotic filename that
+    could intersect nothing, and an absolute spelling (`/abs/...`)
+    read as a residue rather than a defect — both certified
+    parallel-eligible by `waves`. Repair mirrors the existing
+    write-set-near-miss declarator lint (c2c5baf), applied to the
+    path field: whitespace inside it or a leading `/` lints
+    `write-set-path-near-miss` and blocks waves/closure like any
+    other CLOSURE_BLOCKING_CODES member. An INVALIDATED line is
+    exempt (disposal commentary, e.g. `dead (mis-scoped)`, is not a
+    second declared path — TestWaves.
+    test_invalidated_write_set_path_dropped_leaves_unit_unplannable
+    pins that the INVALIDATED case stays WAVES_COMPUTED)."""
+
+    FOUR_UNIT_BODY = (
+        "- F1 [VERIFIED] unit U1 write-set: src/app.py — basis: y\n"
+        "- F2 [VERIFIED] unit U2 write-set: src/app.py src/util.py "
+        "— basis: y\n"
+        "- F3 [VERIFIED] unit U3 write-set: ./src/app.py — basis: y\n"
+        "- F4 [VERIFIED] unit U4 write-set: /abs/repo/src/app.py "
+        "— basis: y\n")
+
+    def test_two_paths_on_one_line_lints(self):
+        v = self.lint(self.FOUR_UNIT_BODY)
+        self.assertEqual(v["verdict"], "LINT_VIOLATIONS", v)
+        codes = {viol["code"]: viol for viol in v["violations"]}
+        self.assertIn("write-set-path-near-miss", codes, v)
+        u2_line = self.lineno_of(self.FOUR_UNIT_BODY, "src/util.py")
+        self.assertEqual(
+            {viol["line"] for viol in v["violations"]
+             if viol["code"] == "write-set-path-near-miss"},
+            {u2_line, self.lineno_of(self.FOUR_UNIT_BODY, "/abs/repo")})
+
+    def test_normalized_dot_slash_stays_clean(self):
+        # U1/U3 collapse to the same normalized key and lint nothing —
+        # the fix must not touch the case that already works
+        v = self.lint("- F1 [VERIFIED] unit U1 write-set: src/app.py "
+                      "— basis: y\n"
+                      "- F3 [VERIFIED] unit U3 write-set: ./src/app.py "
+                      "— basis: y\n")
+        self.assertEqual(v["verdict"], "LINT_CLEAN", v)
+
+    def test_waves_halts_instead_of_certifying_colliding_units_parallel(self):
+        v = self.waves(self.FOUR_UNIT_BODY)
+        self.assertEqual(v["verdict"], "WAVES_RECORD_MALFORMED", v)
+
+    def test_absolute_spelling_alone_lints(self):
+        # the three-arm cross-confirmed class (dev-notes/
+        # triage-three-arm-2026-08-15.md T4: WITH-B3 / WITHOUT-F10 /
+        # SENTENCE-A4) merged into this defect — an absolute write-set
+        # path, on its own (no colliding second unit), must lint too
+        body = ("- F1 [VERIFIED] unit U1 write-set: /abs/repo/a.py "
+                "— basis: y\n")
+        v = self.lint(body)
+        self.assertEqual(v["verdict"], "LINT_VIOLATIONS", v)
+        self.assertIn("write-set-path-near-miss", self.violation_codes(v))
+
+    def test_invalidated_disposal_commentary_stays_exempt(self):
+        # the existing TestWaves fixture's own shape, re-pinned at the
+        # lint level: trailing prose after a dead write-set path is
+        # not a second path
+        body = ("- F2 [VERIFIED] unit U2 write-set: src/a.py "
+                "— basis: design\n"
+                "- F2 [INVALIDATED] unit U2 write-set: src/a.py dead "
+                "(mis-scoped) — basis: F9\n")
+        v = self.lint(body)
+        self.assertEqual(v["verdict"], "LINT_CLEAN", v)
+
+
+class TestHarvest2TrendWindow(RecordFixture):
+    """begehung-harvest 2, finding 4 (tier2-without.md part 6/7): a
+    VOID round's span was annexed by the round that follows it (prev
+    only advanced at resolved A-lines), and bucket 1 always started
+    at line 0, folding cycle-1's pre-attack investigation F-lines
+    into the first round's count. Repair: every round's window opens
+    at its OWN id's first [DISPATCHED] line rather than the previous
+    round's resolution — VOID needs no special case (it is simply
+    absent from the resolved-round list and opens no window), and the
+    same anchor gives round 1 its own start."""
+
+    ROUND_BODY = (
+        "- A1 [DISPATCHED] attacker one — basis: brief\n"
+        "- F1 [VERIFIED] finding one — basis: x\n"
+        "- F2 [VERIFIED] finding two — basis: x\n"
+        "- A1 [BIT] two findings — basis: report\n"
+        "- A2 [DISPATCHED] attacker two — basis: brief\n"
+        "- A2 [VOID] premise: wrong sha pinned — basis: desk\n"
+        "- F3 [VERIFIED] desk re-derived one — basis: desk\n"
+        "- F4 [VERIFIED] desk re-derived two — basis: desk\n"
+        "- F5 [VERIFIED] desk re-derived three — basis: desk\n"
+        "- A3 [DISPATCHED] attacker three — basis: brief\n"
+        "- F6 [VERIFIED] finding three — basis: x\n"
+        "- A3 [ZERO-DELTA] one finding — basis: report\n")
+
+    def test_a_void_rounds_findings_are_not_annexed_by_its_successor(self):
+        # probe 1: true attacker yield 2 -> 1, never 2 -> 4
+        v = self.trend(self.ROUND_BODY)
+        self.assertEqual(v["verdict"], "TREND_COMPUTED", v)
+        self.assertEqual(v["rounds"], 2, v)
+        self.assertEqual(v["counts"], [2, 1], v)
+        self.assertEqual(v["trajectory"], "IMPROVING", v)
+
+    def test_pre_attack_investigation_lines_never_inflate_round_one(self):
+        # probe 2: the same true series survives 3 pre-attack F-lines
+        # ahead of A1's own dispatch
+        body = ("- F7 [VERIFIED] pre-attack investigation one — basis: x\n"
+                "- F8 [VERIFIED] pre-attack investigation two — basis: x\n"
+                "- F9 [VERIFIED] pre-attack investigation three "
+                "— basis: x\n" + self.ROUND_BODY)
+        v = self.trend(body)
+        self.assertEqual(v["verdict"], "TREND_COMPUTED", v)
+        self.assertEqual(v["counts"], [2, 1], v)
+        self.assertEqual(v["trajectory"], "IMPROVING", v)
+
+
+class TestHarvest2BrokenPipeVerdict(RecordFixture):
+    """begehung-harvest 2, finding 5 (tier2-without.md part 7/7): a
+    closed reader (`| head -1`) broke the one-verdict-line guarantee
+    — the catch-all's own re-entry into finish()/emit() died on the
+    same broken pipe, exit 0, no verdict line at all. Repair: emit()
+    swallows a BrokenPipeError on an evidence line and remembers it;
+    finish() falls back to a stderr-safe write and a defined exit
+    code (3, USAGE_ERROR-class per SKILL.md's own 0/2/3 contract) —
+    and redirects stdout to devnull first, since CPython's own
+    interpreter-finalization flush hits the SAME broken pipe and
+    would otherwise override the exit code with its hardcoded 120."""
+
+    def test_a_closed_reader_still_gets_exactly_one_verdict_line(self):
+        p = self.write_tracker(TestHarvest2WriteSetPathField.FOUR_UNIT_BODY)
+        proc = subprocess.Popen(
+            [sys.executable, str(SCRIPT), "waves", "--tracker", str(p)],
+            cwd=self.dir, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        proc.stdout.close()   # closed before any read: guarantees EPIPE
+        err = proc.stderr.read()
+        proc.wait(timeout=10)
+        self.assertEqual(proc.returncode, 3, err)
+        lines = [l for l in err.decode("utf-8", "surrogateescape")
+                .split("\n") if l.startswith(VERDICT_PREFIX)]
+        self.assertEqual(len(lines), 1, err)
+        self.assertIn('"verdict": "WAVES_RECORD_MALFORMED"', lines[0])
+
+
 # ------------------------------------------------------------------- ES-1
 
 HEAD_WITH_OPERATOR_BULLET = """# Run: test

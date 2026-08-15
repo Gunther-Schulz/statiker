@@ -200,6 +200,7 @@ MACHINE_TOKEN_CODES = {
     "entry-form", "tag-enum", "entry-near-miss", "scope-near-miss",
     "hold-form", "corrects-nothing", "multi-corrects-token",
     "repair-tag-change", "repair-scope-change", "write-set-near-miss",
+    "write-set-path-near-miss",
 }
 BODY_CONTENT_CODES = {
     "tag-literal-in-body", "basis-missing", "clause-unparsed",
@@ -231,6 +232,25 @@ def violation_site(codes):
             else "body-content")
 
 
+def repair_class(codes):
+    """Which of the three REPAIR_FORMS classes a violated line's codes
+    settle a `corrects line <n>` token into: 'supersede' when any code
+    is a MACHINE_TOKEN_CODES member (REPAIR_SUPERSEDE — the semantics
+    every gate reads); 'bookkeeping' only when EVERY code at the line
+    declares REPAIR_BOOKKEEPING; else 'unreachable' — REPAIR_HEADER,
+    REPAIR_STATUS_LINE, or an unclassified code, none of which a
+    token sheds (consulted at the decision point, per the table these
+    forms already state — Finding 2, tier2-without.md parts 3/7-4/7)."""
+    if any(c in MACHINE_TOKEN_CODES for c in codes):
+        return "supersede", None
+    forms = {REPAIR_FORMS.get(c) for c in codes}
+    if forms == {REPAIR_BOOKKEEPING}:
+        return "bookkeeping", None
+    declared = next((REPAIR_FORMS.get(c) for c in codes
+                     if REPAIR_FORMS.get(c) != REPAIR_BOOKKEEPING), None)
+    return "unreachable", declared
+
+
 @dataclass
 class Entry:
     lineno: int
@@ -241,24 +261,73 @@ class Entry:
     basis: str | None
 
 
+BROKEN_PIPE = False
+
+
 def emit(text):
     """Write one line at the BYTE level (ES-9): the tracker is bytes,
     so a byte quoted in a violation or a quote block leaves as the byte
     it arrived as. The text layer's blanket errors='replace' would mint
     a SECOND spelling on output — the very thing the input-side decode
-    rule exists to prevent (attack-11 N6)."""
-    sys.stdout.flush()
-    sys.stdout.buffer.write(text.encode("utf-8", "surrogateescape") + b"\n")
-    sys.stdout.buffer.flush()
+    rule exists to prevent (attack-11 N6).
+
+    A closed reader (`| head`) breaks the pipe mid-run: an evidence
+    line's write is swallowed here — best-effort, the reader already
+    stopped listening — and the fact is remembered so the CLOSING
+    verdict falls back to stderr instead of dying on the same broken
+    pipe with no verdict line at all and exit 0 (finding 5,
+    tier2-without.md part 7/7)."""
+    global BROKEN_PIPE
+    if BROKEN_PIPE:
+        return
+    try:
+        sys.stdout.flush()
+        sys.stdout.buffer.write(text.encode("utf-8", "surrogateescape") + b"\n")
+        sys.stdout.buffer.flush()
+    except BrokenPipeError:
+        BROKEN_PIPE = True
 
 
 def say(msg):
     emit(msg)
 
 
+def _stderr_fallback(text):
+    try:
+        sys.stderr.buffer.write(text.encode("utf-8", "surrogateescape") + b"\n")
+        sys.stderr.buffer.flush()
+    except OSError:
+        pass
+
+
+def _exit_after_broken_pipe(code):
+    # CPython's interpreter finalization flushes stdout unconditionally
+    # on the way out; hitting the SAME broken pipe there overrides
+    # whatever exit() we just called with its own hardcoded 120 (the
+    # documented SIGPIPE idiom) — redirecting the fd to devnull first
+    # makes that flush a no-op so our own exit code is what lands.
+    try:
+        devnull = os.open(os.devnull, os.O_WRONLY)
+        os.dup2(devnull, sys.stdout.fileno())
+    except OSError:
+        pass
+    sys.exit(code)
+
+
 def finish(verdict, exit_code, **detail):
-    emit(VERDICT_PREFIX + json.dumps({"verdict": verdict, **detail},
-                                     ensure_ascii=False))
+    text = VERDICT_PREFIX + json.dumps({"verdict": verdict, **detail},
+                                       ensure_ascii=False)
+    if BROKEN_PIPE:
+        # stdout is already gone — the one-verdict-line guarantee's
+        # last stderr-safe attempt, exit reporting the broken pipe
+        # rather than the caller's own exit_code
+        _stderr_fallback(text)
+        _exit_after_broken_pipe(3)
+    emit(text)
+    if BROKEN_PIPE:
+        # the verdict line itself was the write that broke
+        _stderr_fallback(text)
+        _exit_after_broken_pipe(3)
     sys.exit(exit_code)
 
 
@@ -296,17 +365,35 @@ def hold_violations(body: str, tag: str):
     return []
 
 
-def write_set_violations(body: str):
+def write_set_violations(body: str, tag: str):
     """Positional near-miss on the write-set declarator, mirroring
     hold_violations' shape but scoped strictly to a body opened by an
     EXACT `unit U<k> ` prefix — write-set has no scopeless or displaced
-    spelling to catch, unlike the hold form."""
+    spelling to catch, unlike the hold form.
+
+    Once the declarator itself parses, a LIVE line's PATH FIELD gets
+    the same positional treatment (begehung-harvest 2, finding 3):
+    whitespace inside the field reads as two paths on one line — the
+    grammar is one repo-root-relative path per line, so
+    `UNIT_WRITE_SET_RE`'s `(\\S.*)` swallowing a second path made two
+    colliding units read disjoint and parallel-eligible — and a
+    leading `/` is an alias outside the grammar (an absolute or
+    symlinked spelling), a declaration defect the desk composes,
+    caught here rather than silently normalized or silently accepted.
+    An INVALIDATED line is exempt: its trailing prose (the standing
+    `dead (mis-scoped)`-style annotation) is disposal commentary, not
+    a second declared path, and the line is already excluded from
+    every collision computation by tag alone (waves_over_units)."""
     scrubbed = BACKTICK_RE.sub(" ", body)   # quoting a literal is legal
     m = UNIT_SCOPE_RE.match(scrubbed)
     if not m:
         return []
     rest = scrubbed[m.end():]
     if WRITE_SET_EXACT_RE.match(rest):
+        path = rest[len("write-set: "):]
+        if tag != "INVALIDATED" and (
+                len(path.split()) > 1 or path.lstrip().startswith("/")):
+            return ["write-set-path-near-miss"]
         return []
     if WRITE_SET_NEAR_RE.match(rest):
         return ["write-set-near-miss"]
@@ -463,7 +550,7 @@ def parse_tracker(text: str):
         else:
             for code in hold_violations(body_main, tag):
                 viol(code, i, line)
-            for code in write_set_violations(body_main):
+            for code in write_set_violations(body_main, tag):
                 viol(code, i, line)
         # ES-4: what a repair must re-carry is what PARSED here — a
         # violated token pins nothing, since repairing it is the
@@ -580,12 +667,19 @@ def apply_supersession(entries, violations, line_ids, line_parse):
                              + _corrects_nothing_reason(n, e, violated,
                                                         line_ids)})
                 continue
-            if violation_site(violated[n]) == "machine-token":
+            site, declared = repair_class(violated[n])
+            if site == "supersede":
                 superseded.add(n)
                 complaints += _repair_pin_complaints(e, n, line_parse)
-            else:
+            elif site == "bookkeeping":
                 shed.add(n)
                 bookkeeping.add(e.lineno)
+            else:
+                complaints.append(
+                    {"code": "corrects-nothing", "line": e.lineno,
+                     "text": f"{e.id}: `corrects line {n}` names a "
+                             f"violation no repair token reaches — "
+                             f"{declared}"})
     return ([e for e in entries
              if e.lineno not in superseded and e.lineno not in bookkeeping],
             [v for v in violations
@@ -834,7 +928,7 @@ def cmd_sweep(args):
 
 CLOSURE_BLOCKING_CODES = ("entry-form", "tag-enum", "entry-near-miss",
                           "scope-near-miss", "hold-form",
-                          "write-set-near-miss")
+                          "write-set-near-miss", "write-set-path-near-miss")
 
 
 def closure_blocking_violations(violations):
@@ -1078,11 +1172,25 @@ def trend_over_rounds(entries):
     a_latest = sorted([e for e in latest.values() if e.cls == "A"],
                       key=lambda e: e.lineno)
     rounds_a = [e for e in a_latest if e.tag in ("BIT", "ZERO-DELTA")]
+    # Each round's window opens at ITS OWN id's [DISPATCHED] line,
+    # never at the previous round's resolution line (begehung-harvest
+    # 2, finding 4): a VOID round's desk-re-derived F-lines land
+    # between the void and the NEXT id's dispatch, so anchoring on
+    # dispatch drops them from every round instead of annexing them
+    # into whichever round follows (probe 1) — VOID needs no special
+    # case; it is simply absent from rounds_a and opens no window of
+    # its own. The same anchor gives round 1 its own start at the
+    # first attack rather than line 0, so cycle-1's pre-attack
+    # investigation F-lines never inflate it (probe 2).
+    dispatch_line = {}
+    for e in entries:
+        if e.cls == "A" and e.tag == "DISPATCHED":
+            dispatch_line.setdefault(e.id, e.lineno)   # first, not latest
     bounds = []
-    prev = 0
+    prev_end = 0
     for e in rounds_a:
-        bounds.append((prev, e.lineno, e))
-        prev = e.lineno
+        bounds.append((dispatch_line.get(e.id, prev_end), e.lineno, e))
+        prev_end = e.lineno
     f_entries = [e for e in entries if e.cls == "F"]
     counts = [sum(1 for f in f_entries if start < f.lineno <= end)
              for start, end, _ in bounds]

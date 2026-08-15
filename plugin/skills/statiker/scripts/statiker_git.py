@@ -68,7 +68,12 @@ from pathlib import Path
 
 VERDICT_PREFIX = "STATIKER-GIT VERDICT: "
 RETRY_ATTEMPTS = 5
-RETRY_BASE = float(os.environ.get("STATIKER_GIT_RETRY_BASE", "1.0"))
+# read inside main()'s guarded try (_read_retry_base, called at the
+# top of main): a module-level float() here sat OUTSIDE every halt
+# route, so a bad env value died a bare traceback, exit 1, no verdict
+# line at all (begehung-harvest 2, AMENDED (d2)) — the module-level
+# default below is overwritten before any handler runs.
+RETRY_BASE = 1.0
 
 
 class Halt(Exception):
@@ -83,15 +88,60 @@ class Halt(Exception):
 # booked verdict never hides which bytes the operation reached.
 RESOLVED = []
 
+BROKEN_PIPE = False
+
 
 def say(msg):
-    print(msg)
+    # A closed reader (`| head`) breaks the pipe mid-run: an evidence
+    # line's write is swallowed here — best-effort, the reader already
+    # stopped listening — and the fact is remembered so the CLOSING
+    # verdict falls back to stderr instead of dying on the same broken
+    # pipe with no verdict line at all and exit 0 (statiker_record.py's
+    # sibling fix, finding 5, begehung tier2-without.md part 7/7).
+    global BROKEN_PIPE
+    if BROKEN_PIPE:
+        return
+    try:
+        print(msg)
+        sys.stdout.flush()   # forces the write NOW — unflushed, a
+        # broken pipe surfaces only at interpreter shutdown, past
+        # every try/except this fix installs
+    except BrokenPipeError:
+        BROKEN_PIPE = True
+
+
+def _stderr_fallback(text):
+    try:
+        print(text, file=sys.stderr)
+    except OSError:
+        pass
+
+
+def _exit_after_broken_pipe(code):
+    # CPython's interpreter finalization flushes stdout unconditionally
+    # on the way out; hitting the SAME broken pipe there overrides
+    # whatever exit() we just called with its own hardcoded 120 (the
+    # documented SIGPIPE idiom) — redirecting the fd to devnull first
+    # makes that flush a no-op so our own exit code is what lands.
+    try:
+        devnull = os.open(os.devnull, os.O_WRONLY)
+        os.dup2(devnull, sys.stdout.fileno())
+    except OSError:
+        pass
+    sys.exit(code)
 
 
 def finish(verdict, exit_code, **detail):
     if RESOLVED and "resolved_from" not in detail:
         detail["resolved_from"] = RESOLVED
-    say(VERDICT_PREFIX + json.dumps({"verdict": verdict, **detail}))
+    text = VERDICT_PREFIX + json.dumps({"verdict": verdict, **detail})
+    if BROKEN_PIPE:
+        _stderr_fallback(text)
+        _exit_after_broken_pipe(3)
+    say(text)
+    if BROKEN_PIPE:
+        _stderr_fallback(text)
+        _exit_after_broken_pipe(3)
     sys.exit(exit_code)
 
 
@@ -720,6 +770,20 @@ def flat(list_of_lists):
     return [x for sub in list_of_lists for x in sub]
 
 
+def _read_retry_base():
+    """STATIKER_GIT_RETRY_BASE, parsed inside main()'s guarded try
+    (AMENDED (d2)): a bad value halts USAGE_ERROR with a verdict line,
+    same defined exit code as (d)'s broken-pipe halt, rather than a
+    bare traceback dying before any subcommand — even state-gate,
+    which never reads it — gets to run."""
+    raw = os.environ.get("STATIKER_GIT_RETRY_BASE", "1.0")
+    try:
+        return float(raw)
+    except ValueError:
+        raise Halt("USAGE_ERROR",
+                   error=f"STATIKER_GIT_RETRY_BASE is not a float: {raw!r}")
+
+
 def main():
     for stream in (sys.stdout, sys.stderr):
         if hasattr(stream, "reconfigure"):
@@ -773,6 +837,8 @@ def main():
         for attr in ("lock_set", "drop", "write_set"):
             if hasattr(args, attr):
                 setattr(args, attr, flat(getattr(args, attr)))
+        global RETRY_BASE
+        RETRY_BASE = _read_retry_base()
         repo = Repo()
         handlers[args.cmd](repo, args)
     except Halt as h:

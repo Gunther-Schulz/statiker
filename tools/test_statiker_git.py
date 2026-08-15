@@ -1516,5 +1516,60 @@ class TestWorktreeRemove(GitFixture):
         self.assertNotEqual(p.returncode, 0)
 
 
+# -------------------------------------------------- begehung-harvest 2 (d)/(d2)
+
+class TestHarvest2BrokenPipeAndRetryBaseEnv(GitFixture):
+    """begehung-harvest 2 (d) + AMENDED (d2) (tier2-without.md part
+    7/7 + dev-notes/triage-three-arm-2026-08-15.md T3's sibling
+    class): the same one-verdict-line guarantee this suite's sibling
+    (statiker_record.py) carries, joined here.
+
+    (d) A closed reader broke the pipe mid-run with no catch — say()
+    now swallows a BrokenPipeError on an evidence line and remembers
+    it, finish() falls back to stderr with a defined exit code (3),
+    and the stdout fd is redirected to devnull first so CPython's own
+    interpreter-finalization flush cannot override that exit code
+    with its hardcoded 120.
+
+    (d2) `STATIKER_GIT_RETRY_BASE`'s float() sat at module level,
+    outside main()'s guarded try — a bad value died a bare traceback,
+    exit 1, no verdict line, even for state-gate, which never reads
+    it. `_read_retry_base()` now runs inside the guarded region and
+    routes a bad value USAGE_ERROR, same defined exit code as (d)."""
+
+    def test_a_closed_reader_still_gets_exactly_one_verdict_line(self):
+        proc = subprocess.Popen(
+            [sys.executable, str(SCRIPT), "unit-start", "--write-set",
+             "a.txt", "b.txt", "c.txt", "d.txt", "e.txt"],
+            cwd=self.repo, env=self.env,
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        proc.stdout.close()   # closed before any read: guarantees EPIPE
+        err = proc.stderr.read()
+        proc.wait(timeout=10)
+        self.assertEqual(proc.returncode, 3, err)
+        lines = [l for l in split_lines(err.decode("utf-8", "surrogateescape"))
+                if l.startswith(VERDICT_PREFIX)]
+        self.assertEqual(len(lines), 1, err)
+        self.assertIn('"verdict": "UNIT_START_CLEAN"', lines[0])
+
+    def test_a_bad_retry_base_halts_usage_error_not_a_bare_traceback(self):
+        env = dict(self.env)
+        env["STATIKER_GIT_RETRY_BASE"] = "abc"
+        p = subprocess.run([sys.executable, str(SCRIPT), "state-gate"],
+                           cwd=self.repo, env=env,
+                           capture_output=True, text=True, timeout=10)
+        self.assertEqual(p.returncode, 3, p.stdout + p.stderr)
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "USAGE_ERROR", v)
+        self.assertIn("STATIKER_GIT_RETRY_BASE", v.get("error", ""), v)
+
+    def test_a_good_retry_base_still_reaches_state_clean(self):
+        # the guard must not cost the happy path: a parseable value
+        # (hermetic_env's own "0.01") proceeds exactly as before
+        p = self.tool("state-gate")
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "STATE_CLEAN", v)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
