@@ -78,6 +78,19 @@ import re
 import subprocess
 import sys
 from dataclasses import dataclass
+from pathlib import Path
+
+# E-J: shared byte-level stderr fallback, extracted out of this file
+# (the source of truth statiker_git.py's mirror was built against) so
+# both tools import one body rather than carrying two copies to drift
+# apart. Loader-robust: tests import tools by file path, which does
+# not put the scripts dir on sys.path — the guarded insert makes
+# `import statiker_emit` resolve the same way whether this file runs
+# as a script or is imported directly.
+_SCRIPTS_DIR = str(Path(__file__).resolve().parent)
+if _SCRIPTS_DIR not in sys.path:
+    sys.path.insert(0, _SCRIPTS_DIR)
+import statiker_emit
 
 VERDICT_PREFIX = "STATIKER-RECORD VERDICT: "
 
@@ -349,11 +362,7 @@ def say(msg):
 
 
 def _stderr_fallback(text):
-    try:
-        sys.stderr.buffer.write(text.encode("utf-8", "surrogateescape") + b"\n")
-        sys.stderr.buffer.flush()
-    except OSError:
-        pass
+    statiker_emit.stderr_fallback(text)
 
 
 def _exit_after_broken_pipe(code):

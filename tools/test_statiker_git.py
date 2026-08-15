@@ -1173,6 +1173,44 @@ class TestAttack9PathDecoding(GitFixture):
         self.assertIn(self.NAME, printed, printed)
 
 
+class TestEJStderrFallbackByteFidelity(GitFixture):
+    """E-J (BACKLOG, provenance lane G gap report 2/4): pre-fix,
+    `_stderr_fallback` used text-mode `print(text, file=sys.stderr)`
+    — main() reconfigures stderr with errors="replace", so the
+    surrogateescape-decoded non-UTF-8 byte inside a verdict's own
+    detail (E-C's own `caf\\xe9.txt` path shape) is silently minted a
+    SECOND spelling (replaced by U+FFFD) rather than reaching stderr
+    as the byte it names. The record tool's mirror
+    (statiker_record.py:351-356) writes the buffer directly with
+    surrogateescape, immune to the substitution. Arrangement: stdout
+    closed before any read (guarantees a broken pipe on the first
+    evidence write, same as record.py's TestHarvest2BrokenPipeVerdict),
+    forcing the UNIT_COMMITTED verdict itself — carrying the raw byte
+    in write_set — down the stderr fallback path."""
+
+    NAME = os.fsdecode(b"caf\xe9.txt")
+
+    def test_broken_pipe_stderr_fallback_carries_the_raw_byte(self):
+        (self.repo / self.NAME).write_bytes(b"unit output\n")
+        proc = subprocess.Popen(
+            [sys.executable, str(SCRIPT), "unit-commit",
+             "--write-set", self.NAME, "-m", "unit U1"],
+            cwd=self.repo, env=self.env,
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        proc.stdout.close()   # closed before any read: guarantees EPIPE
+        err = proc.stderr.read()
+        proc.wait(timeout=10)
+        self.assertEqual(proc.returncode, 3, err)
+        lines = [l for l in split_lines(err.decode("utf-8", "surrogateescape"))
+                if l.startswith(VERDICT_PREFIX)]
+        self.assertEqual(len(lines), 1, err)
+        self.assertIn('"verdict": "UNIT_COMMITTED"', lines[0], err)
+        self.assertIn(b"\xe9", err,
+                      f"the raw byte never reached the stderr fallback "
+                      f"(text-mode print minted a second spelling instead): "
+                      f"{err!r}")
+
+
 class TestF9PostCommitHookWindowOccupier(GitFixture):
     """begehung tier2-without.md F9 (round 2, BLOCKING): a post-commit
     hook that lands a sibling commit occupies the window between our

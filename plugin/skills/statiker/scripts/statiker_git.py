@@ -67,6 +67,18 @@ import time
 from dataclasses import dataclass
 from pathlib import Path
 
+# E-J: shared byte-level stderr fallback, extracted so both tools carry
+# byte-identical broken-pipe fallback semantics (statiker_record.py's
+# emit()/_stderr_fallback pair was the source of truth this mirrors).
+# Loader-robust: tests import tools by file path, which does not put
+# the scripts dir on sys.path — the guarded insert makes `import
+# statiker_emit` resolve the same way whether this file runs as a
+# script or is imported directly.
+_SCRIPTS_DIR = str(Path(__file__).resolve().parent)
+if _SCRIPTS_DIR not in sys.path:
+    sys.path.insert(0, _SCRIPTS_DIR)
+import statiker_emit
+
 VERDICT_PREFIX = "STATIKER-GIT VERDICT: "
 RETRY_ATTEMPTS = 5
 # read inside main()'s guarded try (_read_retry_base, called at the
@@ -122,10 +134,7 @@ def say(msg):
 
 
 def _stderr_fallback(text):
-    try:
-        print(text, file=sys.stderr)
-    except OSError:
-        pass
+    statiker_emit.stderr_fallback(text)
 
 
 def _exit_after_broken_pipe(code):
