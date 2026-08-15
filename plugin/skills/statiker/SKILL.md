@@ -46,7 +46,8 @@ python3): `scripts/statiker_git.py` — git transactions: the
 run-start preflight, the LOCK commit, unit START and COMMIT — and
 `scripts/statiker_record.py` — record grammar: tracker lint, the
 [READY] sweep's computable slice, the closure predicate, the
-pinned attack artifact, defanged quote blocks. The two scripts
+pinned attack artifact, the append-only check against the pin
+(`pinned`), defanged quote blocks. The two scripts
 plus their red-first battery (the source repo's tools/ suites —
 the attack rounds' probes and record findings mechanized) are the
 EXECUTABLE SPEC of the record grammar and the transaction
@@ -249,13 +250,18 @@ brackets (the stats reader admits only the bracketed form).
 Run `lint` once the header and head are written: a form defect
 found here costs re-creating a one-screen file before anything
 rests on it; found at the [READY] sweep it holds a full record
-whose head the append-only rule cannot rewrite. The claim itself is
-checked mechanically once a pin exists: `pinned --tracker P --sha
-S` — PINNED_APPEND_ONLY proceeds; PINNED_REWRITTEN halts the seam
+whose head the append-only rule cannot rewrite. The append-only
+claim is checked mechanically once a pin exists: `pinned
+--tracker P --sha S` — the two mutable field lines above are
+exempt, every other line binds byte-exact against the pin.
+PINNED_APPEND_ONLY proceeds; PINNED_REWRITTEN halts the seam
 that ran it, first divergent line in the verdict (an in-place
-status rewrite reads exactly like a clean record to every
+TAG rewrite reads exactly like a clean record to every
 positional gate; the diff against the pin is the one thing it
-cannot fool). Run it at resume and before any re-lock.
+cannot fool). Run it at resume and before any re-lock — S is
+the standing lock, recoverable as the newest commit touching
+the tracker (every lock's pathspec carries the tracker, and
+nothing else legitimately commits it).
 
 Entries are one line each, status tag first, appended never
 rewritten (the templates below wrap only on this page). A status
@@ -841,9 +847,10 @@ re-run;
 CLOSURE_ABSENT means the gate is not open (the last A-line is
 not [ZERO-DELTA] — the normal state during a reopened design;
 dispatch waits); UNIT_HELD bars that unit on its
-unresolved hold entry; UNIT_UNKNOWN halts on an id the record never
-scoped — re-run with the id read from the record, never a guess (a
-typo'd digit otherwise clears a hold silently); UNIT_DISPATCHABLE lists the live
+unresolved hold entry; UNIT_UNKNOWN halts on an id no live
+record line scopes — re-run with the id read from the record,
+never a guess (a typo'd digit otherwise clears a hold
+silently); UNIT_DISPATCHABLE lists the live
 amendment lines that travel. The brief carries the tool's
 verdict line, the closing A-line quoted, the lock sha, and the
 listed amendments — never the raw criterion. The criterion the

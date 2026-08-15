@@ -1602,16 +1602,39 @@ def cmd_filter(args):
 
 # -------------------------------------------------------------------- pinned
 
+def _mutable_field_positions(lines):
+    """The header's declared mutable surface (SKILL.md, The record:
+    "The record's one mutable surface is the header's Status and
+    Phase fields"): the FIRST Status: and FIRST Phase: line — the
+    same first-match read parse_tracker itself uses. 0-based."""
+    pos = {}
+    for i, line in enumerate(lines):
+        if "Status:" not in pos and line.startswith("Status:"):
+            pos["Status:"] = i
+        if "Phase:" not in pos and line.startswith("Phase:"):
+            pos["Phase:"] = i
+        if len(pos) == 2:
+            break
+    return pos
+
+
 def cmd_pinned(args):
     """E-I (begehung-harvest triage T16, SENTENCE-B1): an IN-PLACE
-    status rewrite (`[PENDING]` edited to `[VERIFIED]` on its own
+    tag rewrite (`[PENDING]` edited to `[VERIFIED]` on its own
     line, never a new appended line) reads exactly like a clean
     record to every positional gate — SWEEP_CLEAN included — while
     `git diff --stat <pin>` shows the edit as 1+/1-. The append-only
-    CLAIM is mechanically checkable once a pin exists: the pinned
-    version's bytes must be a PREFIX of the working tracker's bytes
-    (ES-9, byte level — a text-layer decode could paper over a
-    divergence the raw file carries)."""
+    CLAIM is mechanically checkable once a pin exists: every pinned
+    line binds byte-exact against the working tracker (ES-9 — a
+    text-layer decode could paper over a divergence the raw file
+    carries), EXCEPT the header's two declared-mutable field lines
+    (first Status:/Phase:), where only the field's presence binds —
+    a whole-file byte prefix fired on the very Status flip the spec
+    mandates at each phase seam, and the header divergence MASKED a
+    real entry rewrite further down (release review 2026-08-15,
+    B1). The last pinned line binds as a byte PREFIX of its
+    counterpart: an append legitimately extends a pin that lacked a
+    trailing newline."""
     fs, rel, top, resolved = repo_paths(args.tracker)
     check_tracker_dir(args.tracker, fs)
     if os.path.islink(fs):
@@ -1634,27 +1657,39 @@ def cmd_pinned(args):
             current_bytes = f.read()
     except OSError as e:
         finish("TRACKER_UNREADABLE", 2, error=str(e))
-    if current_bytes[:len(pinned_bytes)] == pinned_bytes:
-        finish("PINNED_APPEND_ONLY", 0, sha=args.sha, tracker=args.tracker,
-               pinned_bytes=len(pinned_bytes),
-               current_bytes=len(current_bytes))
-    # divergence found — the first differing LINE, for a human-
-    # addressable evidence field (surrogateescape, same as every other
-    # tracker read: a preserved line stays byte-identical to source)
     pinned_lines = split_lines(pinned_bytes.decode("utf-8", "surrogateescape"))
     current_lines = split_lines(current_bytes.decode("utf-8", "surrogateescape"))
+    exempt = _mutable_field_positions(pinned_lines)
     divergent_line, divergent_text = None, None
-    for i, (a, b) in enumerate(zip(pinned_lines, current_lines), 1):
+    for i, a in enumerate(pinned_lines):
+        if i >= len(current_lines):
+            divergent_line = i + 1
+            divergent_text = "the current tracker is shorter than the pin"
+            break
+        b = current_lines[i]
+        field = next((f for f, p in exempt.items() if p == i), None)
+        if field is not None:
+            # the declared-mutable position: the field must still sit
+            # on its line; its VALUE is the one legitimate rewrite
+            if not b.startswith(field):
+                divergent_line = i + 1
+                divergent_text = (f"pinned: {a!r} — current: {b!r} "
+                                  f"(the {field} field left its line)")
+                break
+            continue
+        if i == len(pinned_lines) - 1:
+            if not b.startswith(a):
+                divergent_line = i + 1
+                divergent_text = f"pinned: {a!r} — current: {b!r}"
+            break
         if a != b:
-            divergent_line = i
+            divergent_line = i + 1
             divergent_text = f"pinned: {a!r} — current: {b!r}"
             break
     if divergent_line is None:
-        # every compared line matched — the divergence is a length
-        # shrink (the pinned tracker has MORE lines than the current
-        # one truncates to), one line past the shorter side
-        divergent_line = min(len(pinned_lines), len(current_lines)) + 1
-        divergent_text = "the current tracker is shorter than the pin"
+        finish("PINNED_APPEND_ONLY", 0, sha=args.sha, tracker=args.tracker,
+               pinned_bytes=len(pinned_bytes),
+               current_bytes=len(current_bytes))
     say(f"pinned: first divergent line @ {divergent_line}: {divergent_text}")
     finish("PINNED_REWRITTEN", 2, sha=args.sha, tracker=args.tracker,
            first_divergent_line=divergent_line, evidence=divergent_text)

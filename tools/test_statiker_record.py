@@ -2287,6 +2287,64 @@ class TestEIPinned(PinnedFixture):
         self.committed_repo(HEADER + "- F1 [VERIFIED] x — basis: y\n")
         self.assertEqual(self.pinned("deadbeef")["verdict"], "PIN_UNREADABLE")
 
+    # Release review 2026-08-15 B1: the whole-file byte prefix fired
+    # on the header mutation SKILL.md itself mandates (Status/Phase
+    # are the record's one mutable surface), and the header
+    # divergence MASKED a real tag rewrite further down. The four
+    # cases below pin the repaired predicate from both directions.
+
+    def test_the_mandated_header_flip_reads_append_only(self):
+        # red-first against the whole-file prefix: this read
+        # PINNED_REWRITTEN with first_divergent_line 2 before the
+        # exemption landed
+        sha = self.committed_repo(
+            HEADER + "- F1 [PENDING] awaiting leg — basis: dispatched\n")
+        text = (self.dir / "t.md").read_text()
+        text = text.replace("Status: in-progress", "Status: [READY]")
+        text = text.replace("Phase: investigate-design",
+                            "Phase: implement")
+        (self.dir / "t.md").write_text(text)
+        self.assertEqual(self.pinned(sha)["verdict"], "PINNED_APPEND_ONLY")
+
+    def test_a_header_flip_does_not_mask_a_tag_rewrite(self):
+        # red-first: before the exemption, this reported the Status
+        # line as the divergence while the real rewrite sat below —
+        # the promised evidence pointed at a non-defect
+        bad = "- F1 [PENDING] awaiting leg — basis: dispatched\n"
+        n = self.lineno_of(bad, "[PENDING]")
+        sha = self.committed_repo(HEADER + bad)
+        text = (self.dir / "t.md").read_text()
+        text = text.replace("Status: in-progress", "Status: [READY]")
+        text = text.replace("[PENDING]", "[VERIFIED]")
+        (self.dir / "t.md").write_text(text)
+        v = self.pinned(sha)
+        self.assertEqual(v["verdict"], "PINNED_REWRITTEN")
+        self.assertEqual(v["first_divergent_line"], n)
+        self.assertNotIn("Status", v["evidence"])
+
+    def test_a_nonmutable_header_line_rewrite_stays_rewritten(self):
+        # the exemption is exactly two field lines — the Skill: line
+        # is header but NOT mutable surface
+        sha = self.committed_repo(
+            HEADER + "- F1 [PENDING] awaiting leg — basis: dispatched\n")
+        text = (self.dir / "t.md").read_text()
+        (self.dir / "t.md").write_text(
+            text.replace("Skill: statiker 0.2.33", "Skill: statiker 9.9.9"))
+        self.assertEqual(self.pinned(sha)["verdict"], "PINNED_REWRITTEN")
+
+    def test_the_mutable_field_leaving_its_line_reads_rewritten(self):
+        # the exemption binds the field's PRESENCE at its position:
+        # a Status: line replaced by arbitrary text is a rewrite,
+        # not a permitted value change
+        sha = self.committed_repo(
+            HEADER + "- F1 [PENDING] awaiting leg — basis: dispatched\n")
+        text = (self.dir / "t.md").read_text()
+        (self.dir / "t.md").write_text(
+            text.replace("Status: in-progress", "no field here anymore"))
+        v = self.pinned(sha)
+        self.assertEqual(v["verdict"], "PINNED_REWRITTEN")
+        self.assertIn("left its line", v["evidence"])
+
 
 # ------------------------------------------------------------------- ES-4
 

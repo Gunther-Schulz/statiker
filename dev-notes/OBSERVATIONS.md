@@ -4603,3 +4603,34 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   direction's first live catch (the F1 harvest incident was the
   emit-without-route direction) — the battery has now gone red on
   both directions it was built for, on real defects both times.
+
+- 2026-08-15 — **R2-insertions skill-edit review (opus fresh context,
+  pre-release): NOT release-ready — 2 blocking, both dispositioned
+  and repaired before the pin move.** B1 (EXECUTED: `pinned`'s
+  whole-file byte prefix fired PINNED_REWRITTEN on the mandated
+  Status/Phase flip — the spec's own mutable surface — at both
+  prescribed seams, and the header divergence MASKED a real tag
+  rewrite below: divergence reported at the header while line 14's
+  [COMMITTED]→[INVALIDATED] stayed invisible; battery blind spot:
+  all four cases held HEADER constant, same-parentage) → FIXED in
+  the instrument: predicate exempts exactly the two first
+  Status:/Phase: lines (field presence still binds), all else
+  byte-exact, tail line binds as byte prefix; four new battery
+  cases, the reviewer's two probes red-first stash-proven against
+  the old predicate, boundary pins (non-mutable header line;
+  field-leaves-its-line) both directions. B2 (--sha S had no named
+  referent and no producer — grep confirmed no mandate records the
+  lock sha) → FIXED in the sentence: S is the standing lock,
+  recoverable as the newest commit touching the tracker (every
+  lock's pathspec carries the tracker; the same read filter's
+  newest_commit ships). Lessers: TAG-rewrite wording, append-only
+  antecedent, `pinned` added to the tools inventory, UNIT_UNKNOWN
+  "no live record line scopes" (predicate-true wording), rewrap —
+  all in the repair commit. ACCEPTED-AS-STANDING: duty sentences
+  sit at the record home rather than beside the resume/re-lock seam
+  passages (the skill's citation style); UNIT_UNKNOWN evaluated
+  before UNIT_HELD (an unknown id has no hold to mask). Insertion 2
+  probed behaviourally clean by the reviewer (UNIT_UNKNOWN exit 2,
+  UNIT_HELD/UNIT_DISPATCHABLE unaffected, "u1" → USAGE_ERROR).
+  Full report: the reviewer's scratchpad file named in its message;
+  substance restated here completely (scratchpads are mortal).
