@@ -118,6 +118,17 @@ SIGNATURE_RE = re.compile(
 # phantom entry. Header parsing and the whole-file defang lint are
 # untouched by the exclusion.
 HEAD_BOUNDARY_RE = re.compile(r"^## ")
+# E-A (begehung-harvest F1/A1): the head-region exclusion suppresses
+# the entry scan silently — a live entry sitting above the first `## `
+# heading, or the whole file when no heading exists at all, parses as
+# zero entries and every gate reads that as clean. `entries: <n>` and
+# `head_boundary: <n>` ride every verdict so "clean" and "examined
+# nothing" are no longer the same JSON; this re-uses SIGNATURE_RE's own
+# "entry-INTENDED" test to find the specific lines an evidence line
+# should name.
+# R-lines (E-A, begehung-harvest B2): the numbered `R<n>.` form
+# (never dash-led `- R<n>`, the amendment form) inside the head only.
+R_LINE_RE = re.compile(r"^R\d+\.")
 # a mid-run operator instruction lands at the record's END, labeled
 # (ES-2; R3-B2). The label is machine-findable so verify's composition
 # grades against the head PLUS what the tool lists, never memory.
@@ -473,8 +484,14 @@ def split_lines(text: str):
 
 
 def parse_tracker(text: str):
-    """Return (entries, violations, meta). Violations are lint-grade
-    dicts {code, line, text}."""
+    """Return (entries, violations, meta, reach). Violations are
+    lint-grade dicts {code, line, text}. `meta["entries"]` and
+    `meta["head_boundary"]` ride every verdict (E-A); `reach` carries
+    the two auxiliary reach signals scoped to their own consumers
+    rather than blanket-spread: `r_lines` (sweep/closure only) and
+    `head_region_entries` (an evidence line per entry-shaped line the
+    head-region exclusion made invisible to every gate — every
+    subcommand that parses a tracker prints one)."""
     entries, violations = [], []
     line_ids = {}          # lineno -> the id the line NAMES, parsed or not
     line_parse = {}        # lineno -> what PARSED there (ES-4's pins)
@@ -487,6 +504,16 @@ def parse_tracker(text: str):
         if HEAD_BOUNDARY_RE.match(line):
             head_end = i
             break
+
+    # E-A: the two reach signals scoped to the head region, computed
+    # once here whether or not any consumer prints them — an
+    # entry-shaped line the exclusion makes invisible to every gate,
+    # and the R-line count sweep/closure surface.
+    head_region_entries = [{"line": i, "text": line}
+                           for i, line in enumerate(lines, 1)
+                           if i < head_end and SIGNATURE_RE.match(line)]
+    r_lines = sum(1 for i, line in enumerate(lines, 1)
+                 if i < head_end and R_LINE_RE.match(line))
 
     status_line = phase_line = None
     status_val = phase_val = None
@@ -608,8 +635,11 @@ def parse_tracker(text: str):
     entries, violations = apply_supersession(entries, violations, line_ids,
                                              line_parse)
     annotate_repairs(violations, line_ids)
-    return entries, violations, {"status": status_val, "phase": phase_val,
-                                 "late_intent": late_intent}
+    meta = {"status": status_val, "phase": phase_val,
+            "late_intent": late_intent, "entries": len(entries),
+            "head_boundary": head_end}
+    reach = {"r_lines": r_lines, "head_region_entries": head_region_entries}
+    return entries, violations, meta, reach
 
 
 def _corrects_nothing_reason(n, e, violated, line_ids):
@@ -885,8 +915,29 @@ def load(path_arg):
 
 # ---------------------------------------------------------------- lint/sweep
 
+CLIPPY_RUNS_PREFIX = ".clippy" + os.sep + "runs" + os.sep
+
+
+def say_head_region_entries(cmd, reach):
+    """E-A evidence line: an entry-shaped line the head-region
+    exclusion (ES-1) makes invisible to every gate — printed, never
+    gated, so a clean verdict over such a tracker is distinguishable
+    from a clean verdict over an examined one."""
+    for hr in reach["head_region_entries"]:
+        say(f"{cmd}: entry-shaped line in the head region (parses as "
+            f"nothing there) @ line {hr['line']}: {hr['text']}")
+
+
 def cmd_lint(args):
-    _, violations, meta = parse_tracker(load(args.tracker))
+    _, rel, _, _ = repo_paths(args.tracker)
+    _, violations, meta, reach = parse_tracker(load(args.tracker))
+    say_head_region_entries("lint", reach)
+    if rel is not None and not rel.startswith(CLIPPY_RUNS_PREFIX):
+        # E-A (begehung-harvest B6): the stats reader admits a run only
+        # under .clippy/runs/ — a tracker anywhere else passes every
+        # gate here and is permanently invisible to that reader.
+        # Evidence only; the record tool names no home of its own.
+        say(f"lint: tracker path not under {CLIPPY_RUNS_PREFIX.rstrip(os.sep)}/: {rel}")
     for v in violations:
         say(f"lint: {v['code']} @ line {v['line']}: {v['text']}")
     if violations:
@@ -943,7 +994,8 @@ def sweep_checks(entries):
 
 
 def cmd_sweep(args):
-    entries, violations, meta = parse_tracker(load(args.tracker))
+    entries, violations, meta, reach = parse_tracker(load(args.tracker))
+    say_head_region_entries("sweep", reach)
     sweep_viols, clause_dispositions = sweep_checks(entries)
     violations += annotate_repairs(sweep_viols)
     for v in violations:
@@ -951,7 +1003,8 @@ def cmd_sweep(args):
     say("judgment residue (desk work, not checked here): dead-basis "
         "body-reads, duplicate-id body-read, restatement adoption "
         "checks, basis reach")
-    detail = {"clause_dispositions": clause_dispositions, **meta}
+    detail = {"clause_dispositions": clause_dispositions,
+             "r_lines": reach["r_lines"], **meta}
     if violations:
         finish("SWEEP_HOLDS", 2, violations=violations, **detail)
     finish("SWEEP_CLEAN", 0, **detail)
@@ -984,11 +1037,14 @@ def cmd_closure(args):
         # and fell through to UNIT_DISPATCHABLE — a silent hold-clear
         finish("USAGE_ERROR", 3,
                error=f"--unit must match U<k>, got {args.unit!r}")
-    entries, violations, meta = parse_tracker(load(args.tracker))
+    entries, violations, meta, reach = parse_tracker(load(args.tracker))
+    say_head_region_entries("closure", reach)
     # ES-2: every closure verdict lists the labeled late-INTENT lines —
     # verify's composition grades against the head PLUS these, and the
-    # tool is what finds them
-    late = {"late_intent": meta["late_intent"]}
+    # tool is what finds them. E-A: entries/head_boundary ride every
+    # verdict, r_lines rides sweep/closure's.
+    late = {"late_intent": meta["late_intent"], "entries": meta["entries"],
+           "head_boundary": meta["head_boundary"], "r_lines": reach["r_lines"]}
     blocking = closure_blocking_violations(violations)
     if blocking:
         for v in blocking:
@@ -1138,7 +1194,8 @@ def waves_over_units(entries):
 
 
 def cmd_waves(args):
-    entries, violations, meta = parse_tracker(load(args.tracker))
+    entries, violations, meta, reach = parse_tracker(load(args.tracker))
+    say_head_region_entries("waves", reach)
     blocking = closure_blocking_violations(violations)
     if blocking:
         for v in blocking:
@@ -1249,7 +1306,8 @@ def trend_over_rounds(entries):
 
 
 def cmd_trend(args):
-    entries, violations, meta = parse_tracker(load(args.tracker))
+    entries, violations, meta, reach = parse_tracker(load(args.tracker))
+    say_head_region_entries("trend", reach)
     blocking = closure_blocking_violations(violations)
     if blocking:
         for v in blocking:

@@ -2701,6 +2701,133 @@ class TestES10RepairFieldPerViolation(RecordFixture):
             self.assertTrue(viol["repair"], viol)
 
 
+# ------------------------------------------------ E-A: verdicts carry reach
+
+class TestEAVerdictReach(RecordFixture):
+    """begehung-harvest F1/A1/B2/B3(no)/B6: no verdict of any subcommand
+    reported how many entries it parsed, so a gate examining zero
+    entries returned exactly what one examining a clean tracker
+    returns. `entries`/`head_boundary` now ride every tracker-parsing
+    verdict; `r_lines` rides sweep/closure's; lint prints an evidence
+    line off the tag contract's own tracker-location convention."""
+
+    NO_HEADING_HEADER = ("# Run: test\n"
+                         "Status: in-progress\n"
+                         "Phase: investigate-design\n"
+                         "Skill: statiker 0.2.33\n\n"
+                         "INTENT — do the thing.\n\n")
+
+    HEADING_WITH_ENTRY_ABOVE = ("# Run: test\n"
+                                "Status: in-progress\n"
+                                "Phase: investigate-design\n"
+                                "Skill: statiker 0.2.33\n\n"
+                                "INTENT — do the thing.\n\n"
+                                "- F1 [PENDING] awaiting a leg — "
+                                "basis: dispatched\n\n"
+                                "## Cycle 1\n")
+
+    def test_no_heading_at_all_reports_entries_zero_not_bare_clean(self):
+        # F1's exact probe: a live [PENDING] entry, no `## ` heading
+        # anywhere in the file — the whole file is head region, the
+        # entry parses as nothing, and the gate used to return bare
+        # SWEEP_CLEAN/LINT_CLEAN indistinguishable from a genuinely
+        # clean, fully-examined tracker.
+        body = "- F1 [PENDING] awaiting a leg — basis: dispatched\n"
+        sv = self.sweep(body, header=self.NO_HEADING_HEADER)
+        self.assertEqual(sv["verdict"], "SWEEP_CLEAN")
+        self.assertEqual(sv["entries"], 0)
+        lv = self.lint(body, header=self.NO_HEADING_HEADER)
+        self.assertEqual(lv["verdict"], "LINT_CLEAN")
+        self.assertEqual(lv["entries"], 0)
+        wv = self.waves(body, header=self.NO_HEADING_HEADER)
+        self.assertEqual(wv["verdict"], "WAVES_COMPUTED")
+        self.assertEqual(wv["entries"], 0)
+
+    def test_entry_above_the_heading_reports_entries_zero_and_evidence(self):
+        # same defect, heading present but the entry sits above it —
+        # F1's second byte-identical variant.
+        p = tool(["sweep", "--tracker",
+                 str(self.write_tracker("", header=self.HEADING_WITH_ENTRY_ABOVE))],
+                cwd=self.dir)
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "SWEEP_CLEAN")
+        self.assertEqual(v["entries"], 0)
+        self.assertIn("entry-shaped line in the head region", p.stdout)
+        self.assertIn("F1", p.stdout)
+
+    def test_heading_present_control_unchanged(self):
+        # the ordinary case — same entry, BELOW the heading — keeps its
+        # existing SWEEP_HOLDS behavior; only the reach fields are new
+        v = self.sweep("- F1 [PENDING] awaiting a leg — basis: dispatched\n")
+        self.assertEqual(v["verdict"], "SWEEP_HOLDS")
+        self.assertEqual(v["entries"], 1)
+        self.assertEqual({viol["code"] for viol in v["violations"]},
+                         {"pending-latest"})
+
+    def test_head_boundary_names_the_first_heading_line(self):
+        v = self.sweep("- F1 [VERIFIED] a fact — basis: cmd output\n")
+        boundary = self.lineno_of("", "## Cycle 1")
+        self.assertEqual(v["head_boundary"], boundary)
+
+    def test_head_boundary_past_end_of_file_when_no_heading_exists(self):
+        body = "prose only, no entries\n"
+        v = self.sweep(body, header=self.NO_HEADING_HEADER)
+        total_lines = len((self.NO_HEADING_HEADER + body).split("\n")) - 1
+        self.assertEqual(v["head_boundary"], total_lines + 1)
+
+    def test_r_lines_counted_on_sweep_and_closure_only(self):
+        header = ("# Run: test\n"
+                  "Status: in-progress\n"
+                  "Phase: investigate-design\n"
+                  "Skill: statiker 0.2.33\n\n"
+                  "INTENT — do the thing.\n\n"
+                  "R1. the first requirement\n"
+                  "R2. the second requirement\n"
+                  "- an operator bullet, not an R-line\n\n"
+                  "## Cycle 1\n")
+        body = ("- D1 [COMMITTED] the design — basis: probe\n"
+               "- A1 [DISPATCHED] round 1 — basis: brief\n"
+               "- A1 [ZERO-DELTA] clean return — basis: report\n")
+        sv = self.sweep(body, header=header)
+        self.assertEqual(sv["r_lines"], 2)
+        cv = self.closure(body, header=header)
+        self.assertEqual(cv["r_lines"], 2)
+        lv = self.lint(body, header=header)
+        self.assertNotIn("r_lines", lv)
+        wv = self.waves(body, header=header)
+        self.assertNotIn("r_lines", wv)
+
+    def test_dash_led_r_line_does_not_count(self):
+        # SKILL.md: numbered `R<n>.`, never dash-led `- R<n>` (the
+        # amendment form) — the two must not collapse into one count
+        header = ("# Run: test\nStatus: in-progress\n"
+                  "Phase: investigate-design\nSkill: statiker 0.2.33\n\n"
+                  "INTENT — x.\n\n- R1 dash-led, not a requirement line\n\n"
+                  "## Cycle 1\n")
+        v = self.sweep("- F1 [VERIFIED] a fact — basis: y\n", header=header)
+        self.assertEqual(v["r_lines"], 0)
+
+    def test_lint_flags_a_tracker_path_outside_clippy_runs(self):
+        # the RecordFixture tracker (t.md at the repo root) is exactly
+        # this case — every existing lint call already exercises it;
+        # this test names the evidence line explicitly (B6)
+        v = self.lint("- F1 [VERIFIED] a fact — basis: y\n")
+        self.assertEqual(v["verdict"], "LINT_CLEAN")
+        p = tool(["lint", "--tracker",
+                 str(self.write_tracker("- F1 [VERIFIED] a fact — basis: y\n"))],
+                cwd=self.dir)
+        self.assertIn("tracker path not under .clippy/runs/", p.stdout)
+
+    def test_lint_silent_on_a_tracker_under_clippy_runs(self):
+        runs_dir = self.dir / ".clippy" / "runs"
+        runs_dir.mkdir(parents=True)
+        p = runs_dir / "t.md"
+        p.write_text(HEADER + "- F1 [VERIFIED] a fact — basis: y\n")
+        result = tool(["lint", "--tracker", str(p)], cwd=self.dir)
+        self.assertNotIn("tracker path not under", result.stdout)
+        self.assertEqual(self.verdict(result)["verdict"], "LINT_CLEAN")
+
+
 # ---------------------------------------------------- pure-function checks
 
 class TestPureFunctions(unittest.TestCase):
@@ -2730,7 +2857,7 @@ class TestPureFunctions(unittest.TestCase):
                 "- F1 [VERIFIED] a fact — basis: y"
                 "\x0c- F3 [VERIFIED] phantom entry — basis: y\n"
                 "- F2 [VERIFIED] plain — basis: y\n")
-        entries, _, _ = self.m.parse_tracker(text)
+        entries, _, _, _ = self.m.parse_tracker(text)
         grep = sum(1 for l in text.split("\n") if l.startswith("- "))
         self.assertEqual(len(entries), grep)
 
