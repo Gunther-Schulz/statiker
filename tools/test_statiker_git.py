@@ -1516,6 +1516,77 @@ class TestWorktreeRemove(GitFixture):
         self.assertNotEqual(p.returncode, 0)
 
 
+# ------------------------------------------------ worktree-add containment
+
+class TestWorktreeAddEveryRepoContainment(GitFixture):
+    """0.2.59 review F1+F2, worktree-add containment joins the record
+    tool's `--out` semantics (BACKLOG.md): `Repo.outside()` gains the
+    every-enclosing-repo probe (git_toplevel + textual_repo_top,
+    mirroring cmd_filter) and the named/real agreement rule —
+    PATH_INSIDE_REPO fires on any enclosing repo, not just this one,
+    and on as-named/real disagreement, not just a real-side escape.
+
+    Both probes walk from the target's PARENT: a legitimately
+    provisioned worktree is itself a valid (linked) repo by the time
+    worktree-remove meets it again, and `git rev-parse
+    --show-toplevel` run from inside one reports the worktree's own
+    root — checking the target ITSELF would read every real worktree
+    as its own containing repo (caught red during this fix's own
+    development: worktree-remove on a real outside-dir worktree
+    regressed to PATH_INSIDE_REPO before the parent-walk correction)."""
+
+    def sibling_repo(self, name):
+        d = Path(self._tmp.name) / name
+        d.mkdir()
+        subprocess.run(["git", "init", "-q", "-b", "main"], cwd=d,
+                       env=self.env, check=True)
+        (d / "base.txt").write_text("base\n")
+        subprocess.run(["git", "add", "base.txt"], cwd=d, env=self.env,
+                       check=True)
+        subprocess.run(["git", "commit", "-m", "base"], cwd=d, env=self.env,
+                       check=True)
+        return d
+
+    def test_worktree_add_into_a_sibling_repo_halts_and_pollutes_nothing(self):
+        # F1: from repo A, --path ../B/wt-in-B used to read
+        # WORKTREE_ADDED and leave `?? wt-in-B/` in sibling B's tree
+        sha = self.git("rev-parse", "HEAD").stdout.strip()
+        b = self.sibling_repo("B")
+        p = self.tool("worktree-add", "--sha", sha,
+                      "--path", str(b / "wt-in-B"))
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "PATH_INSIDE_REPO", v)
+        status = subprocess.run(["git", "status", "--porcelain"], cwd=b,
+                                env=self.env, capture_output=True,
+                                text=True, check=True).stdout
+        self.assertEqual(status, "", "sibling B's tree was polluted")
+
+    def test_symlink_spelling_into_the_repo_halts(self):
+        # F2: `link/wt` (link -> a real outside dir) used to read
+        # WORKTREE_ADDED — the as-named walk reaches this repo's own
+        # .git through the symlinked component, exactly the shape
+        # `filter --out link/art.md` already halts on (ES-7)
+        outside = Path(self._tmp.name) / "outside-dir"
+        outside.mkdir()
+        (self.repo / "link").symlink_to(outside)
+        sha = self.git("rev-parse", "HEAD").stdout.strip()
+        v = self.verdict(self.tool("worktree-add", "--sha", sha,
+                                   "--path", "link/wt"))
+        self.assertEqual(v["verdict"], "PATH_INSIDE_REPO", v)
+
+    def test_outside_dir_worktree_still_adds_and_removes_clean(self):
+        # must-not-fire: the existing, legitimate case — provisioned
+        # at a real directory outside every repo, then removed again
+        # (the round trip the parent-walk correction protects)
+        sha = self.git("rev-parse", "HEAD").stdout.strip()
+        wt = Path(self._tmp.name) / "legit-wt"
+        v = self.verdict(self.tool("worktree-add", "--sha", sha,
+                                   "--path", str(wt)))
+        self.assertEqual(v["verdict"], "WORKTREE_ADDED", v)
+        v = self.verdict(self.tool("worktree-remove", "--path", str(wt)))
+        self.assertEqual(v["verdict"], "WORKTREE_REMOVED", v)
+
+
 # -------------------------------------------------- begehung-harvest 2 (d)/(d2)
 
 class TestHarvest2BrokenPipeAndRetryBaseEnv(GitFixture):

@@ -57,9 +57,7 @@ on: a path is taken AS NAMED in every git operation, never
 substituted; containment resolves in the direction of SAFETY — a
 must-be-inside path (lock-set, write-set) is decided on its REAL
 resolution, a must-be-outside path (artifact, seals) is outside
-only when named and real form agree — the worktree path is the
-one must-be-outside member still decided on its real form
-alone, its as-named half the desk's check — any realpath
+only when named and real form agree — any realpath
 acceptance noted per path in the verdict as `resolved_from`,
 and a path problem halts at a CHECK, never a commit. Byte policy runs both
 directions: git byte output decodes the way the OS decodes argv,
@@ -694,10 +692,7 @@ the return carries a complete per-design verdict block: findings,
 or that design's explicit zero-delta. The desk provisions one
 worktree per design through the git tool — `worktree-add --sha
 <lock sha> --path <path>`, the path OUTSIDE every repo like the
-seals and for the seal rule's reason (the tool's
-PATH_INSIDE_REPO halt covers THIS repo's containment only;
-sibling checkouts and the as-named spelling stay the desk's
-check) — and removes each at the return with
+seals and for the seal rule's reason — and removes each at the return with
 `worktree-remove --path <path>` (forced removal: probe
 by-products make plain removal fail by design); WORKTREE_ADDED
 and WORKTREE_REMOVED proceed, a halt at add stops that design's

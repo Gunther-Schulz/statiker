@@ -243,6 +243,38 @@ def rebase_at_symlinked_ancestor(p: str, top_real: str):
         cur = parent
 
 
+def git_toplevel(cwd):
+    """The nearest enclosing repo's toplevel from `cwd`, or None — the
+    REAL half of the every-enclosing-repo probe (begehung-harvest 2,
+    worktree-add containment entry). `git rev-parse` resolves symlinked
+    ancestors the way the filesystem does, so this catches a target
+    that sits inside SOME repo even when that repo is not this one.
+    (The record tool carries the same helper standalone;
+    statiker_record.py:git_toplevel is its twin — the two scripts
+    ship without importing each other.)"""
+    try:
+        p = subprocess.run(["git", "rev-parse", "--show-toplevel"], cwd=cwd,
+                           capture_output=True)
+    except OSError:
+        return None
+    return os.fsdecode(p.stdout.strip()) if p.returncode == 0 else None
+
+
+def textual_repo_top(path: str):
+    """The nearest ancestor carrying a `.git`, walking `path` AS
+    NAMED — the as-named half of the must-be-outside probe. A
+    cwd-based read cannot answer this: passing a directory as cwd
+    resolves its links, which is exactly the spelling under test."""
+    cur = os.path.normpath(path)
+    while True:
+        if os.path.lexists(os.path.join(cur, ".git")):
+            return cur
+        parent = os.path.dirname(cur)
+        if parent == cur:
+            return None
+        cur = parent
+
+
 def lock_committed_verdict(shas, extras, drops):
     """Pure: the landed lock verdict from readback data — red-tested on
     constructed extras (git's own pathspec commit is not known to
@@ -341,21 +373,44 @@ class Repo:
 
     def outside(self, path_arg: str) -> str:
         """A worktree-provisioning path: rel()'s containment rule
-        INVERTED. Relative inputs are repo-root-relative (same
-        convention as rel()); the path is returned as named, never
-        resolved through a symlink; containment is decided on the
-        REAL path via the same nearest-existing-ancestor probe
-        (ES-7) — but here the ancestor must sit OUTSIDE (or the path
-        must simply not exist as an ancestor of) the repo top, since
-        git itself will happily create a worktree inside a repo."""
+        INVERTED, extended to EVERY enclosing repo and the named/real
+        agreement rule (begehung-harvest 2, worktree-add containment
+        entry) — mirrors the record tool's `--out` check
+        (statiker_record.py:1156-1184, cmd_filter). Relative inputs
+        are repo-root-relative (same convention as rel()); the path
+        is returned as named, never resolved through a symlink.
+
+        The REAL form catches a target that resolves inside a SIBLING
+        repo's tree, not just this one — `worktree-add --path
+        ../B/wt-in-B` from repo A used to read WORKTREE_ADDED while
+        leaving an untracked directory in repo B (0.2.59 review F1).
+        The AS-NAMED form catches a symlink spelling whose textual
+        path never leaves THIS repo's own tree even though the
+        link's target does — `link/wt` (link -> outside dir) used to
+        read WORKTREE_ADDED while `filter --out link/art.md` already
+        halted on the identical shape (0.2.59 review F2). Either
+        finding an enclosing repo halts PATH_INSIDE_REPO.
+
+        Both probes walk from the target's PARENT, never the target
+        itself: a worktree-remove path already exists as a
+        provisioned worktree by the time this runs, and `git
+        rev-parse --show-toplevel` run FROM INSIDE a linked worktree
+        reports the worktree's own root — checking the target itself
+        would read every legitimate worktree as its own containing
+        repo. THIS repo's own root is the one path that must still
+        halt without an ancestor to climb to, so it is checked
+        directly first."""
         top = os.path.realpath(str(self.top))
         p = os.path.normpath(os.path.join(str(self.top), path_arg))
-        anc = nearest_existing_ancestor(p)
-        anc_real = os.path.realpath(anc) if anc else os.path.realpath(p)
-        inside = bool(anc_real == top or anc_real.startswith(top + os.sep))
-        if inside:
-            detail = {"path": path_arg}
-            real_p = os.path.realpath(p)
+        real_p = os.path.realpath(p)
+        if p == str(self.top) or real_p == top:
+            raise Halt("PATH_INSIDE_REPO", path=path_arg)
+        real_parent = os.path.dirname(real_p) or "."
+        real_anc = nearest_existing_ancestor(real_parent) or real_parent
+        named_parent = os.path.dirname(p) or "."
+        enclosing = git_toplevel(real_anc) or textual_repo_top(named_parent)
+        if enclosing:
+            detail = {"path": path_arg, "repo": enclosing}
             if real_p != p:
                 detail["resolved_from"] = {"named": p, "real": real_p}
             raise Halt("PATH_INSIDE_REPO", **detail)
