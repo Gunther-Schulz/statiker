@@ -6,11 +6,13 @@ and a SKILL.md change stays fire-born per CLAUDE.md — an entry can
 build tooling, but a clause mint still needs its incident.
 Composition checks, from lane R's two independent hits 2026-08-15:
 an entry minting a NEW verdict name carries a SKILL.md-authorship
-dependency (the contract battery's parity test demands the name be
-routed there) — the entry names the route sentence or the mint
-lands first; and an entry citing SKILL.md prose as a record-line
-grammar quotes the backtick literal at MINT time, or it is not
-decision-complete.
+dependency (the parity battery is set-exact BOTH ways) — the entry
+pre-names the exact route sentence, and it lands in the SAME
+commit as the emitting code: a route minted ahead is a phantom
+verdict, red within minutes (fired 2026-08-15); an emit without a
+route is the F1 class. And an entry citing SKILL.md prose as a
+record-line grammar quotes the backtick literal at MINT time, or
+it is not decision-complete.
 
 ## Open
 
@@ -48,13 +50,20 @@ decision-complete.
   green, full suite green. Write boundary:
   statiker_record.py, tools/test_statiker_record.py,
   tools/test_contract.py (new verdict row).
-  AMENDED 2026-08-15 (lane R gap 1): the SKILL.md route for
-  UNIT_UNKNOWN is now minted (closure --unit enumeration; the
-  parity test passes with it). Implementation note from lane R,
-  binding: compute via a standalone `known_units_of(entries)`
-  helper — never widen waves_over_units' return tuple, which
-  tools/test_statiker_git.py (a foreign lane's file) unpacks
-  as a 4-tuple.
+  AMENDED 2026-08-15 (lane R gap 1): the SKILL.md route sentence
+  is PRE-NAMED here and lands IN the E-B commit itself — the
+  parity battery is set-exact BOTH ways, so a route minted ahead
+  of the emitting code is a phantom verdict (fired 2026-08-15,
+  desk mint-first commit, reverted same hour). SKILL.md write
+  access scoped to exactly this insertion, in the closure verdict
+  enumeration after "UNIT_HELD bars that unit on its unresolved
+  hold entry;": "UNIT_UNKNOWN halts on an id the record never
+  scoped — re-run with the id read from the record, never a guess
+  (a typo'd digit otherwise clears a hold silently);".
+  Implementation note from lane R, binding: compute via a
+  standalone `known_units_of(entries)` helper — never widen
+  waves_over_units' return tuple, which tools/test_statiker_git.py
+  (a foreign lane's file) unpacks as a 4-tuple.
 
 - **READY 2026-08-15 — E-C: the byte-level emit rule (ES-9) joins
   the git tool.** Provenance: triage T3 (WITHOUT-F4 high +
@@ -180,9 +189,18 @@ decision-complete.
   green, contract battery rows added. Write boundary:
   statiker_record.py, tools/test_statiker_record.py,
   tools/test_contract.py.
-  AMENDED 2026-08-15 (lane R gap 2): SKILL.md now names `pinned`
-  and its verdict pair at the append-only home (run at resume and
-  before any re-lock); the parity blocker is gone.
+  AMENDED 2026-08-15 (lane R gap 2): the SKILL.md passage is
+  PRE-NAMED here and lands IN the E-I commit itself (same
+  phantom-verdict reason as E-B's amendment). SKILL.md write
+  access scoped to exactly this insertion, directly after the
+  sentence "…whose head the append-only rule cannot rewrite.":
+  "The claim itself is checked mechanically once a pin exists:
+  `pinned --tracker P --sha S` — PINNED_APPEND_ONLY proceeds;
+  PINNED_REWRITTEN halts the seam that ran it, first divergent
+  line in the verdict (an in-place status rewrite reads exactly
+  like a clean record to every positional gate; the diff against
+  the pin is the one thing it cannot fool). Run it at resume and
+  before any re-lock."
 
 - **PARKED 2026-08-15 — P1: the seal/queue/repo-key namespace
   needs a design decision before any mechanism.** Provenance:

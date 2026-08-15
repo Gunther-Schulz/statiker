@@ -4588,3 +4588,18 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   skill-edit-review experiment — the pre-registered decision
   criterion (dev-notes, 2026-08-06) is now gradeable; grading
   booked, not yet run.
+
+- 2026-08-15 — **Parity battery FIRED live (phantom direction) on the
+  desk's own mint-first commit** (d56c64f): the two route mints
+  above landed ahead of their emitting code, and
+  test_every_skill_named_verdict_is_emitted went red on
+  UNIT_UNKNOWN/PINNED_APPEND_ONLY/PINNED_REWRITTEN within minutes —
+  caught by the dispatcher's own post-commit battery run, before
+  any push. Correction, same hour: mints reverted from SKILL.md;
+  the exact sentences now travel PRE-NAMED in the E-B/E-I backlog
+  amendments and land in the same commits as the emitting code
+  (SKILL.md write access scoped to those insertions). Instrument
+  firing logged per fire-log discipline: this is the phantom
+  direction's first live catch (the F1 harvest incident was the
+  emit-without-route direction) — the battery has now gone red on
+  both directions it was built for, on real defects both times.
