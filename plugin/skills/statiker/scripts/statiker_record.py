@@ -170,6 +170,18 @@ R_LINE_RE = re.compile(r"^R\d+\.")
 # grades against the head PLUS what the tool lists, never memory.
 INTENT_EXACT_RE = re.compile(r"^INTENT: ")
 INTENT_NEAR_RE = re.compile(r"(?i)^intent\b")
+# P3 (BACKLOG, SKILL.md :145): a resuming desk's version-crossing
+# APPEND entry carries this literal line as its machine-readable
+# core — INTENT_EXACT_RE's sibling, same body-region placement, same
+# field-not-gate treatment (no near-miss class: attribution only).
+SKILL_VERSION_EXACT_RE = re.compile(r"^SKILL: statiker (\S+)$")
+# the header's own `Skill: statiker <version>` line (SKILL.md, The
+# record) — read here for the FIRST time; the header capture below
+# stores the raw text, this pattern pulls just the version out of it,
+# falling back to the raw text when the header line does not carry
+# the documented shape (a field never fails to attach on a malformed
+# header, it degrades to the unparsed string).
+SKILL_HEADER_VERSION_RE = re.compile(r"^statiker (\S+)$")
 # the scope openers are CASE-SENSITIVE LITERALS (SKILL.md, The
 # record): a case or spacing variant is entry-INTENDED scope that no
 # predicate can read, so it lints rather than passing as scopeless
@@ -519,15 +531,19 @@ def parse_tracker(text: str):
     """Return (entries, violations, meta, reach). Violations are
     lint-grade dicts {code, line, text}. `meta["entries"]` and
     `meta["head_boundary"]` ride every verdict (E-A); `reach` carries
-    the two auxiliary reach signals scoped to their own consumers
-    rather than blanket-spread: `r_lines` (sweep/closure only) and
+    the auxiliary reach signals scoped to their own consumers rather
+    than blanket-spread: `r_lines` (sweep/closure only),
     `head_region_entries` (an evidence line per entry-shaped line the
     head-region exclusion made invisible to every gate — every
-    subcommand that parses a tracker prints one)."""
+    subcommand that parses a tracker prints one), and `skill_versions`
+    (P3, sweep/closure only: header entry first, then every mid-run
+    `SKILL: statiker <version>` line in file order — attribution, never
+    a gate)."""
     entries, violations = [], []
     line_ids = {}          # lineno -> the id the line NAMES, parsed or not
     line_parse = {}        # lineno -> what PARSED there (ES-4's pins)
     late_intent = []       # ES-2: the labeled mid-run INTENT lines
+    skill_version_lines = []  # P3: labeled mid-run SKILL: version lines
     lines = split_lines(text)
 
     # ES-1: surface 1 begins at the first `## ` heading — E-L: unless
@@ -566,8 +582,8 @@ def parse_tracker(text: str):
     # SENTENCE-B4): Mode and Budget are literal header-line reads, the
     # same shape as Status/Phase — no enum, no admission window, they
     # are surfaced, never gated.
-    mode_line = budget_line = None
-    mode_val = budget_val = None
+    mode_line = budget_line = skill_line = None
+    mode_val = budget_val = skill_val = None
     for i, line in enumerate(lines, 1):
         if status_line is None and line.startswith("Status:"):
             status_line, status_val = i, line[len("Status:"):].strip()
@@ -577,6 +593,8 @@ def parse_tracker(text: str):
             mode_line, mode_val = i, line[len("Mode:"):].strip()
         if budget_line is None and line.startswith("Budget:"):
             budget_line, budget_val = i, line[len("Budget:"):].strip()
+        if skill_line is None and line.startswith("Skill:"):
+            skill_line, skill_val = i, line[len("Skill:"):].strip()
 
     def viol(code, lineno, text_):
         violations.append({"code": code, "line": lineno, "text": text_})
@@ -625,6 +643,11 @@ def parse_tracker(text: str):
             continue
         if INTENT_NEAR_RE.match(line):
             viol("intent-near-miss", i, line)
+            continue
+
+        m = SKILL_VERSION_EXACT_RE.match(line)  # P3
+        if m:
+            skill_version_lines.append({"line": i, "version": m.group(1)})
             continue
 
         head = ENTRY_HEAD_RE.match(line)
@@ -694,7 +717,17 @@ def parse_tracker(text: str):
             "late_intent": late_intent, "entries": len(entries),
             "head_boundary": head_end,
             "mode": mode_val, "budget": budget_val}
-    reach = {"r_lines": r_lines, "head_region_entries": head_region_entries}
+    # P3: header entry first (if the header carries one), then every
+    # body SKILL: line in file order — scoped to sweep/closure only
+    # (reach's own scoping convention, docstring above), never lint.
+    skill_versions = []
+    if skill_line is not None:
+        hm = SKILL_HEADER_VERSION_RE.match(skill_val) if skill_val else None
+        skill_versions.append({"line": skill_line,
+                               "version": hm.group(1) if hm else skill_val})
+    skill_versions.extend(skill_version_lines)
+    reach = {"r_lines": r_lines, "head_region_entries": head_region_entries,
+             "skill_versions": skill_versions}
     return entries, violations, meta, reach
 
 
@@ -1131,7 +1164,8 @@ def cmd_sweep(args):
         "body-reads, duplicate-id body-read, restatement adoption "
         "checks, basis reach")
     detail = {"clause_dispositions": clause_dispositions,
-             "r_lines": reach["r_lines"], **meta}
+             "r_lines": reach["r_lines"],
+             "skill_versions": reach["skill_versions"], **meta}
     if violations:
         finish("SWEEP_HOLDS", 2, violations=violations, **detail)
     finish("SWEEP_CLEAN", 0, **detail)
@@ -1171,9 +1205,10 @@ def cmd_closure(args):
     # tool is what finds them. E-A: entries/head_boundary ride every
     # verdict, r_lines rides sweep/closure's. E-G': the Mode line rides
     # the same way (surfaced, never gated) — absent-Mode reads None.
+    # P3: skill_versions rides sweep/closure's the same way r_lines does.
     late = {"late_intent": meta["late_intent"], "entries": meta["entries"],
            "head_boundary": meta["head_boundary"], "r_lines": reach["r_lines"],
-           "mode": meta["mode"]}
+           "mode": meta["mode"], "skill_versions": reach["skill_versions"]}
     blocking = closure_blocking_violations(violations)
     if blocking:
         for v in blocking:

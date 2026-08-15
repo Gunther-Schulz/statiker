@@ -142,7 +142,10 @@ pin resolves at session start and the already-loaded skill text owns
 a live desk's conduct, so a delta means the record ahead was built
 under rules this desk no longer runs. On a mismatch the desk names
 the delta and what it invalidates before the next forcing point, and
-records it as a new APPEND entry: the `Skill:` line is pinned
+records it as a new APPEND entry carrying the literal line
+`SKILL: statiker <version>` — `INTENT: `'s sibling label, surfaced
+with the header's version as `skill_versions` in sweep and closure
+verdicts (attribution, never a gate): the `Skill:` line is pinned
 surface — Status and Phase are the only mutable fields — so a header
 rewritten to the new version reads as tampering, not as an update. A resuming
 desk's first reply enumerates the run's standing operator state

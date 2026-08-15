@@ -3251,6 +3251,57 @@ class TestEGPrimeHeaderFields(RecordFixture):
         self.assertNotIn("Budget", p.stdout)
 
 
+# ------------------------------- P3: the mid-run SKILL: version line
+
+class TestP3SkillVersionLine(RecordFixture):
+    """BACKLOG P3: a resuming desk's version-crossing APPEND entry
+    carries the literal line `SKILL: statiker <version>` —
+    INTENT_EXACT_RE's sibling. Attribution only (FIELD, never a
+    gate): the header's own `Skill: statiker <version>` line rides
+    first, every mid-run `SKILL: ` line follows in file order."""
+
+    def test_planted_line_surfaces_alongside_header_and_adds_no_violations(self):
+        body = ("SKILL: statiker 0.2.99\n"
+                "- F1 [VERIFIED] x — basis: y\n")
+        v = self.sweep(body)
+        # legality: the planted line is otherwise-clean-fixture-safe
+        self.assertEqual(v["verdict"], "SWEEP_CLEAN")
+        header_line = self.lineno_of(body, "Skill: statiker")
+        planted_line = self.lineno_of(body, "SKILL: statiker 0.2.99")
+        self.assertEqual(v["skill_versions"], [
+            {"line": header_line, "version": "0.2.33"},
+            {"line": planted_line, "version": "0.2.99"},
+        ])
+
+    def test_absence_pair_carries_exactly_the_header_entry(self):
+        body = "- F1 [VERIFIED] x — basis: y\n"
+        v = self.sweep(body)
+        self.assertEqual(v["verdict"], "SWEEP_CLEAN")
+        header_line = self.lineno_of(body, "Skill: statiker")
+        self.assertEqual(v["skill_versions"],
+                         [{"line": header_line, "version": "0.2.33"}])
+
+    def test_planted_line_surfaces_in_closure_too(self):
+        body = "SKILL: statiker 0.2.99\n" + CLOSED
+        v = self.closure(body)
+        self.assertEqual(v["verdict"], "CLOSURE_LIVE")
+        header_line = self.lineno_of(body, "Skill: statiker")
+        planted_line = self.lineno_of(body, "SKILL: statiker 0.2.99")
+        self.assertEqual(v["skill_versions"], [
+            {"line": header_line, "version": "0.2.33"},
+            {"line": planted_line, "version": "0.2.99"},
+        ])
+
+    def test_planted_line_never_reads_as_an_entry(self):
+        # a line matching SIGNATURE_RE's opener alphabet could in
+        # principle collide; SKILL: starts with a letter outside
+        # {F,D,R,A,V} so it never near-misses as an entry
+        body = "SKILL: statiker 0.2.99\n" + "- F1 [VERIFIED] x — basis: y\n"
+        v = self.sweep(body)
+        self.assertNotIn("entry-near-miss", self.violation_codes(v))
+        self.assertNotIn("intent-near-miss", self.violation_codes(v))
+
+
 # --------------------------------------------- E-F: the append freeze
 
 class TestEFFreezeBreach(RecordFixture):
