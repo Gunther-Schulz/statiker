@@ -16,98 +16,6 @@ it is not decision-complete.
 
 ## Open
 
-- **READY 2026-08-15 — P1: the seal/queue namespace gets its tool
-  and its two missing grammar pieces.** Provenance: triage T8
-  (WITH-B1 executed: three defensible derivations of one prose
-  sentence — since narrowed by the exact repo-key pin now in
-  SKILL.md :624-631, which answers the DERIVATION but leaves every
-  desk re-composing the hash one-liner by hand, the re-pasted
-  one-liner class; WITH-B2: a consumed queue is byte-identical to
-  an unconsumed one and its header instructs re-landing — the live
-  A8 queue shows a desk improvising a `LANDED` tail; WITH
-  namespace note: desks invented `artifacts/` and `.report` homes
-  the spec never defines). DESIGN SETTLED (meta desk 2026-08-15,
-  derived from the work's requirements, not the incumbents):
-  (1) `seal-path` subcommand in the git tool (owner of toplevel/
-  common-dir/worktree semantics): `seal-path --tracker <path>
-  --round A<n>` → verdict SEAL_PATH with every species' full path
-  as fields — kills the hand-derivation class; SKILL.md route
-  sentence same commit (parity battery).
-  (2) Queue consumption grammar: a queue is SPENT when its last
-  non-blank line matches `^LANDED <date> — at line <n>$` (the
-  tracker line of the landing append) — in-band so a successor
-  desk reading the queue sees it, append-only, and verifiable
-  against the tracker; re-landing a spent queue halts at the desk.
-  Requirements basis: successor-visible + append-only + names
-  where it landed; deletion fails evidence, rename breaks the
-  re-derive-from-filename property.
-  (3) The invented homes get pinned into the ONE namespace, same
-  derivation, new species suffixes beside `.seal`/`.queue`/
-  `.paths`: `.A<n>.artifact` (the filter --out target),
-  `.A<n>.report` (an attacker report persisted as file),
-  `.A<n>.comparison` (the seal comparison the text says lands
-  "beside the seal"). SKILL.md names them where each is first
-  mentioned. Verifiers, red-first: seal-path verdict paths equal
-  the SKILL.md-pinned derivation on a real repo + a worktree case
-  (derive-in-main); queue-spent grammar positive/negative pair.
-  Done: seal-path verdict's paths equal the SKILL.md-pinned
-  derivation on both fixtures, the queue-spent pair passes both
-  directions, full suite green. Write boundary: statiker_git.py,
-  SKILL.md, tools/test_statiker_git.py, tools/test_contract.py.
-  BUILD AFTER the P3/P4/E-M lane integrates (SKILL.md overlap);
-  bundles with P2 as one lane, separate commits.
-
-- **READY 2026-08-15 — P2: gate verdicts bind to the transactions
-  they gate (the unit seam).** Provenance: triage T9 (WITH-B8:
-  lock-commit LOCK_CHECK_CLEAN over SWEEP_HOLDS; WITH-B9 blocking:
-  UNIT_COMMITTED over CLOSURE_VOID — forcing point 4's invariant
-  with the detecting gate in the same toolchain, unconsulted;
-  WITHOUT-F3 blocking: START↔COMMIT unlinked, an operator's
-  unstaged draft committed as the unit's own; WITHOUT-F12: a
-  write-set may name the tracker itself — all executed). The arms'
-  red-first pairs travel with this entry (with/without files,
-  B8/B9/F3 sections). DESIGN SETTLED (meta desk 2026-08-15, basis:
-  body-read of cmd_lock_commit :700-758, cmd_unit_start :768-791,
-  cmd_unit_commit :794-834):
-  (1) Gate consult = SUBPROCESS to the record tool over the
-  documented verdict-line contract (parse the single final
-  `STATIKER-RECORD VERDICT:` line; embed it verbatim in the git
-  tool's own verdict as `gate` field). Rejected: pasted token —
-  testimony with staleness; import — couples process state and
-  inherits the record tool's stage-coupling defects (E-M class).
-  Gate unconsultable (subprocess fails, no verdict line) → halt,
-  FAIL-CLOSED.
-  (2) Lock seam: lock-check + lock-commit consult `sweep`;
-  blocking holds → halt LOCK_GATE_HOLDS (closes B8).
-  (3) Unit seam: unit-start + unit-commit take REQUIRED --tracker
-  and REQUIRED --unit; both consult `closure --unit`; a blocking
-  gate verdict → halt UNIT_GATE_BLOCKED (closes B9).
-  (4) START↔COMMIT link (closes F3): the RECORD's declared
-  write-set becomes the single write-set source — closure --unit
-  gains a declared_write_set field; unit-start/unit-commit drop
-  the free --write-set args (briefs stop restating it:
-  paraphrase-drift kill). unit-commit takes --start-sha (from the
-  start verdict); checks start-sha ancestor-of-HEAD AND
-  `git log start-sha..HEAD -- <declared write-set>` EMPTY (foreign
-  touch mid-unit → halt UNIT_START_MISMATCH).
-  (5) F12: at the unit seam, tracker path ∈ declared write-set →
-  halt WRITE_SET_NAMES_TRACKER.
-  New verdict names (LOCK_GATE_HOLDS, UNIT_GATE_BLOCKED,
-  UNIT_START_MISMATCH, WRITE_SET_NAMES_TRACKER) each carry their
-  SKILL.md route sentence in the SAME commit (parity battery,
-  set-exact both ways); the unit-brief invocation lines in
-  SKILL.md update in the same batch — no old-form escape hatch
-  (no-grandfather rule, CLAUDE.md). Verifiers, red-first: the
-  arms' B8/B9/F3 pairs + one per new verdict. Done: all four T9
-  pairs flip (red under old code, green through the fix), parity
-  battery set-exact both ways over the four new verdicts, SKILL.md
-  invocation lines updated, full suite green. Write boundary:
-  statiker_git.py, statiker_record.py (declared_write_set field),
-  SKILL.md, tools/test_statiker_git.py,
-  tools/test_statiker_record.py, tools/test_contract.py. BUILD
-  AFTER the P3/P4/E-M lane integrates (statiker_record.py +
-  SKILL.md overlap).
-
 - **READY 2026-08-15 — P6: the sweep gets a declared-exemption
   grammar the gate verifies (P2's necessary companion).**
   Provenance: (a) relay 3/F155 — twelve holds on the entry whose
@@ -140,28 +48,6 @@ it is not decision-complete.
   tools/test_statiker_record.py, tools/test_contract.py. BUILD
   as Lane E after Lane D integrates (same-file overlap), before
   the release (ships WITH P2, never after it).
-- **READY (small) 2026-08-15 — E-N: a corrects token outside the
-  entry body lints loudly instead of no-opping silently.**
-  Provenance: F205 (relay 5, measured at the beat-the-books desk):
-  a `corrects line <n>` token placed in an entry's BASIS clause is
-  invisible to the resolver — the parser searches only entry
-  bodies — and no lint fires: a silent no-op, the worst shape (the
-  repair looked landed and repaired nothing). Design, decided: new
-  lint class `corrects-token-out-of-body` — fires when the
-  correcting token appears in a region the resolver does not
-  search (basis clause; any non-body position of an entry line);
-  the repair form names the split the desk derived (token sheds
-  the violation under the same id in the BODY; a fresh id
-  re-declares any path). Lint class, not closure-blocking.
-  Verifier, red-first: fixture with the token in a basis clause —
-  silent under old code (zero violations), the new class under
-  new; body-token fixtures stay clean. Done: pair flips, full
-  suite green. Write boundary:
-  plugin/skills/statiker/scripts/statiker_record.py,
-  tools/test_statiker_record.py. BUILD in Lane D (bundles with
-  P1/P2; statiker_record.py overlap with Lane C — after it
-  integrates).
-
 - **PARKED 2026-08-15 — P7: `waves`' write-set join is blind to
   shared LINEAR resources.** Provenance: A9/F217 (relay 6,
   executed: one alembic head, 111 revisions vs the 109 the record
@@ -221,6 +107,16 @@ it is not decision-complete.
   first real unit needing a space-carrying or absolute path.
 
 ## Done
+
+- 2026-08-15 — **P1/P2/E-N shipped (Lane D, sonnet): 3e78dba (E-N
+  corrects-token-out-of-body lint), b825de4 (P1 seal-path
+  subcommand + queue-spent grammar, worktree derive-in-main
+  proven), 2ab7651 (P2 gate-bound transactions: subprocess gate
+  consult, record-sourced write-set, --start-sha link; six SKILL.md
+  edits verified per-commit).** Suite 380/380 at integration.
+  P2 RIDER: dispatcher verification found LOCK_GATE_HOLDS
+  over-firing two-axis (E-O, Open) — P2 releases only together
+  with P6 + E-O (Lane E). Full booking: OBSERVATIONS 2026-08-15.
 
 - 2026-08-15 — **P3-parked ausgebucht: realized by the P3 ship
   above (58b224b) — the header-field decision resolved to the new
