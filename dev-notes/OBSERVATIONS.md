@@ -4858,3 +4858,36 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   the exemption grammar (how a disposition entry declares itself
   so the sweep verifies rather than fires). Trigger: the next
   run's grading entry tripping it.
+
+- 2026-08-15 — **Relay 4 harvested (STOP-AND-TELL: GO not executed
+  — halt affirmed, GO amended).** CORRECTION to the relay-3
+  booking, appended never edited: D97 is REVERSED — the desk found
+  at the lock seam (resolving the prospective unit into a
+  write-set forced the surrounding entries open) that D46(a),
+  committed at round 4 and never invalidated, had settled the
+  freshness-gate question TWICE over, and its own scope change was
+  written without opening D46 — the ledger-check rule violated,
+  self-caught before anything rested on it; unit count returns to
+  NINE, and the id it was about to mint (U8) was already spent
+  (D36(b)) — a silent collision sidestepped by the same ledger
+  read. The round-8 attacker made the identical miss (F131
+  attacked a twice-settled decision it had in its artifact) —
+  recorded for the close's grading. What survives runs toward
+  descoping: the executed 17-value float probe NARROWS the booked
+  D9(e) gap, and F131's surviving clause is the disclosure (three
+  consumers named, two delivered, never told) — now D102, riding
+  the close. SECOND halt reason, F158: two decision-completeness
+  gaps found by the desk running the decomposition question itself
+  (U7's residue scope resolves to entries whose realizing files
+  the record never names; D55/U4 cites a path that does not
+  resolve from root, a standing D73 violation) — locking over
+  known gaps inside the cycle that re-derived round 8's
+  lock-unready finding would be the form failure with more
+  evidence. AMENDED GO issued: close both gaps from the repo, then
+  [READY] (nine units, write-set lines, D93 reversibility tags),
+  lock, round 9 to opus. Conduct grading: the halt is forcing
+  point 2 (dispatchable-design stop rule) firing correctly
+  deskside; no skill gap — the attack-side miss is judgment inside
+  an artifact that carried the evidence. D94 unaffected, still
+  with the operator. Consumer: the close's grading; the post-A9
+  release seam.
