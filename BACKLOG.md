@@ -209,6 +209,18 @@ it is not decision-complete.
   design decision (fire-born discipline satisfied: incident logged
   in the arm file + triage record).
 
+- **PARKED 2026-08-15 — P6: disposition entries trip
+  basis-cites-invalidated by construction.** Provenance: relay 3
+  (twelve F155 holds on F150 itself — the sweep firing on the
+  entry that documents its over-fire; dispositioned, not chased,
+  at the desk). An entry whose job is grading dead entries must
+  name them; the corpus guard rule demands a declared, CHECKED
+  exemption (E-K's class) rather than disposition-noise per run.
+  Missing design, named: the exemption grammar — how a
+  disposition/grading entry declares itself so the sweep verifies
+  the declaration instead of firing. Trigger: the next run's
+  grading entry tripping it.
+
 ## Done
 
 - 2026-08-15 — **P5 dropped same-day (no-grandfather rule, CLAUDE.md

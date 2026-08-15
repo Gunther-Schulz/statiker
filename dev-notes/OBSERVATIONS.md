@@ -4817,3 +4817,44 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   population is empty (the one pre-Budget run has its budget
   declared on record). Incident and rationale remain in the
   relay-1 entry; a recorded drop, not a loss.
+
+- 2026-08-15 — **Relay 3 harvested (CYCLE 12 COMPLETE, tracker
+  cc891b3e; GO issued for re-lock + round 9).** Three round-8
+  findings changed shape when the desk executed instead of
+  trusting the attacker's framing: F129→D90 (both membership
+  consumers decide on set-ABSENCE, so the obvious skip-guard
+  deepens the absence — repair is suppression of the destructive
+  branch on an incomplete set); F132→D93 (FIVE irreversible units,
+  not four; U4a waits on U3 confirmed-good — a pre-U3 rollback
+  under live U4a rolls back whole games); F131→F151/D97 (freshness
+  gate reads a LIVE payload, R4 cannot reach it — refuted by a
+  17-value executed probe with a firing control; what survives
+  enters R2 only, one narrow unit). The clean split
+  reasoned-vs-executed held again: all five of the desk's own
+  cycle-12 defects were caught by execution (incl. F146: "repairs
+  unexecutable" disproved by one command; F154: header-insertion
+  shifted every line under 25 live corrects tokens — recovered
+  uncommitted; run-local rule minted: live state block at the
+  TAIL, the skill's positional append-only principle already
+  covers the class, no skill mint). F152/D98: the run-local
+  dead-basis checker's premise died (zero true positives over 44
+  commits, an instrument nothing reads) — the criterion moved to
+  desk procedure and immediately found a real orphaned clause
+  (D3). DECISIONS this relay: GO re-lock + round 9 on 0.2.65;
+  RELEASE TARGETED at the post-A9 seam (pre-implementation) so
+  the P2 gate-binding and P4 irreversible lines are in the
+  toolchain BEFORE the five irreversible units dispatch; D94 (U5
+  authorization — operator ground, count-named) routed to the
+  operator with the desk's recommendation. P6 booked PARKED below.
+  Consumer: the post-A9 release seam; the close's grading.
+
+- 2026-08-15 — **P6 PARKED (BACKLOG): disposition entries trip
+  basis-cites-invalidated by construction.** An entry whose job is
+  grading dead entries cannot do it without naming them; the sweep
+  then fires on the grader (measured: twelve F155 holds on F150
+  itself, the check firing on the entry documenting its own
+  over-fire). The corpus guard rule (declared, checked exemption —
+  E-K's class) applies to the sweep's own checks; missing design:
+  the exemption grammar (how a disposition entry declares itself
+  so the sweep verifies rather than fires). Trigger: the next
+  run's grading entry tripping it.
