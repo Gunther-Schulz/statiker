@@ -3060,7 +3060,7 @@ INTENT — do the thing.
 BUDGET_HEADER_2 = """# Run: test
 Status: in-progress
 Phase: investigate-design
-Budget: 2
+Budget: cycles 7 / rounds 2 / verify 3
 
 INTENT — do the thing.
 

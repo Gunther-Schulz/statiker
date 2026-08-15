@@ -89,6 +89,10 @@ VERDICT_PREFIX = "STATIKER-RECORD VERDICT: "
 STATUS_ENUM = {"in-progress", "[READY]", "PASSED", "FAILED", "COMPLETE"}
 PHASE_ENUM = {"investigate-design", "implement", "verify"}
 ADMISSION_WINDOW = 20
+# E-G': Budget's own declared grammar (SKILL.md, The record) is the
+# compound `cycles <n> / rounds <n> / verify <n>` — trend counts
+# ROUNDS, so that is the component sweep's evidence line reads.
+BUDGET_ROUNDS_RE = re.compile(r"\brounds\s+(\d+)\b")
 
 CLASS_TAGS = {
     "F": {"VERIFIED", "PENDING", "INVALIDATED", "AUTO-ACCEPTED"},
@@ -1076,19 +1080,20 @@ def cmd_sweep(args):
     for v in violations:
         say(f"sweep: {v['code']} @ line {v['line']}: {v['text']}")
     # E-G' (WITHOUT-F8 + SENTENCE-B4): Budget is a literal header read
-    # (like Status/Phase), consulted against trend's own resolved-
-    # round count — an EVIDENCE line, never a gate; a non-numeric or
-    # absent Budget checks nothing.
+    # (like Status/Phase) — the field's OWN grammar is already declared
+    # (SKILL.md, The record: `Budget: cycles <n> / rounds <n> / verify
+    # <n>`), so trend's resolved-round count is consulted against the
+    # ROUNDS component specifically, never the whole string as a bare
+    # int. An EVIDENCE line, never a gate; no rounds component (a
+    # malformed or absent Budget) checks nothing.
     if meta["budget"] is not None:
-        try:
-            budget_n = int(meta["budget"])
-        except ValueError:
-            budget_n = None
-        if budget_n is not None:
+        m = BUDGET_ROUNDS_RE.search(meta["budget"])
+        if m:
+            budget_n = int(m.group(1))
             bounds, _, _, _, _ = trend_over_rounds(entries)
             if len(bounds) >= budget_n:
                 say(f"sweep: resolved rounds ({len(bounds)}) meet/exceed "
-                    f"Budget ({budget_n})")
+                    f"Budget (rounds {budget_n})")
     say("judgment residue (desk work, not checked here): dead-basis "
         "body-reads, duplicate-id body-read, restatement adoption "
         "checks, basis reach")
