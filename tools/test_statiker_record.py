@@ -2955,6 +2955,77 @@ class TestEAVerdictReach(RecordFixture):
         self.assertEqual(self.verdict(result)["verdict"], "LINT_CLEAN")
 
 
+# ---------------------------- E-L: requirement-head boundary survival
+
+class TestELRequirementHeadBoundary(RecordFixture):
+    """E-L (BACKLOG, provenance relay 1 / cycle-12 resume report,
+    desk-executed, tool source verified at the meta desk): a
+    production tracker's `## Requirement head` heading IS the file's
+    first `## ` heading, so the old rule (head region = file start to
+    the first `## ` heading) stops the head AT that heading — the
+    requirements sitting below it read r_lines: 0 and parse as
+    malformed entries. Fixed rule: a first heading whose title is
+    `Requirement head` (case-insensitive exact title) does not
+    terminate the head region — it extends through to the NEXT `## `
+    heading (or EOF); any other first heading keeps the current
+    boundary."""
+
+    REQUIREMENT_HEAD_TRACKER = (
+        "# Run: test\n"
+        "Status: in-progress\n"
+        "Phase: investigate-design\n"
+        "Skill: statiker 0.2.33\n\n"
+        "## Requirement head\n\n"
+        "INTENT — do the thing.\n\n"
+        "R1. the first requirement\n"
+        "R2. the second requirement\n\n"
+        "## Cycle 1\n")
+
+    def test_r_lines_survive_a_leading_requirement_head_heading(self):
+        body = "- F1 [VERIFIED] a fact — basis: cmd output\n"
+        v = self.sweep(body, header=self.REQUIREMENT_HEAD_TRACKER)
+        self.assertEqual(v["r_lines"], 2, v)
+        boundary = self.lineno_of(body, "## Cycle 1",
+                                  header=self.REQUIREMENT_HEAD_TRACKER)
+        self.assertEqual(v["head_boundary"], boundary, v)
+
+    def test_closure_r_lines_survive_too(self):
+        v = self.closure("- A1 [DISPATCHED] round 1 — basis: brief\n"
+                         "- A1 [ZERO-DELTA] clean return — basis: report\n",
+                         header=self.REQUIREMENT_HEAD_TRACKER)
+        self.assertEqual(v["r_lines"], 2, v)
+
+    def test_case_insensitive_title_match(self):
+        header = self.REQUIREMENT_HEAD_TRACKER.replace(
+            "## Requirement head", "## REQUIREMENT HEAD")
+        v = self.sweep("- F1 [VERIFIED] a fact — basis: cmd output\n",
+                       header=header)
+        self.assertEqual(v["r_lines"], 2, v)
+
+    def test_any_other_first_heading_keeps_current_boundary(self):
+        # control: an ordinary first heading (not "Requirement head")
+        # still stops the head region AT the heading — unchanged
+        header = ("# Run: test\nStatus: in-progress\n"
+                  "Phase: investigate-design\nSkill: statiker 0.2.33\n\n"
+                  "## Not A Requirement Head\n\n"
+                  "R1. a requirement below an unrelated heading\n\n"
+                  "## Cycle 1\n")
+        v = self.sweep("- F1 [VERIFIED] a fact — basis: cmd output\n",
+                       header=header)
+        self.assertEqual(v["r_lines"], 0, v)
+
+    def test_no_further_heading_extends_head_to_eof(self):
+        header = ("# Run: test\nStatus: in-progress\n"
+                  "Phase: investigate-design\nSkill: statiker 0.2.33\n\n"
+                  "## Requirement head\n\n"
+                  "R1. the only requirement\n\n")
+        body = ""
+        v = self.sweep(body, header=header)
+        total_lines = len((header + body).split("\n")) - 1
+        self.assertEqual(v["r_lines"], 1, v)
+        self.assertEqual(v["head_boundary"], total_lines + 1, v)
+
+
 # --------------------------------------------- E-E: four one-shape fixes
 
 class TestEESmallFixes(RecordFixture):

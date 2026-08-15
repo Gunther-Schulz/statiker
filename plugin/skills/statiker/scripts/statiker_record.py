@@ -143,6 +143,17 @@ SIGNATURE_RE = re.compile(
 # phantom entry. Header parsing and the whole-file defang lint are
 # untouched by the exclusion.
 HEAD_BOUNDARY_RE = re.compile(r"^## ")
+# E-L (BACKLOG, provenance relay 1 / cycle-12 resume report): a
+# production tracker's own `## Requirement head` heading is routinely
+# the file's FIRST `## ` heading, which the plain HEAD_BOUNDARY_RE
+# read above stops the head region AT — the requirements sitting
+# below it then read r_lines: 0 and parse as malformed entries. A
+# first heading matching this title (case-insensitive, whole line) is
+# itself part of the head and does not terminate the region — the
+# region extends through it to the NEXT `## ` heading (or EOF); any
+# other first heading keeps the plain HEAD_BOUNDARY_RE behavior.
+REQUIREMENT_HEAD_TITLE_RE = re.compile(r"^##\s+Requirement Head\s*$",
+                                       re.IGNORECASE)
 # E-A (begehung-harvest F1/A1): the head-region exclusion suppresses
 # the entry scan silently — a live entry sitting above the first `## `
 # heading, or the whole file when no heading exists at all, parses as
@@ -519,12 +530,25 @@ def parse_tracker(text: str):
     late_intent = []       # ES-2: the labeled mid-run INTENT lines
     lines = split_lines(text)
 
-    # ES-1: surface 1 begins at the first `## ` heading
+    # ES-1: surface 1 begins at the first `## ` heading — E-L: unless
+    # that first heading is titled "Requirement head" (case-
+    # insensitive), which does not terminate the head: the region
+    # then extends to the NEXT `## ` heading, or EOF when none follows.
     head_end = len(lines) + 1
+    first_heading = None
     for i, line in enumerate(lines, 1):
         if HEAD_BOUNDARY_RE.match(line):
-            head_end = i
+            first_heading = i
             break
+    if first_heading is not None:
+        if REQUIREMENT_HEAD_TITLE_RE.match(lines[first_heading - 1]):
+            head_end = len(lines) + 1
+            for i in range(first_heading + 1, len(lines) + 1):
+                if HEAD_BOUNDARY_RE.match(lines[i - 1]):
+                    head_end = i
+                    break
+        else:
+            head_end = first_heading
 
     # E-A: the two reach signals scoped to the head region, computed
     # once here whether or not any consumer prints them — an
