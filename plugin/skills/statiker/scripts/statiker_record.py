@@ -525,11 +525,21 @@ def parse_tracker(text: str):
 
     status_line = phase_line = None
     status_val = phase_val = None
+    # E-G' (begehung-harvest T14 mechanical half, WITHOUT-F8 +
+    # SENTENCE-B4): Mode and Budget are literal header-line reads, the
+    # same shape as Status/Phase — no enum, no admission window, they
+    # are surfaced, never gated.
+    mode_line = budget_line = None
+    mode_val = budget_val = None
     for i, line in enumerate(lines, 1):
         if status_line is None and line.startswith("Status:"):
             status_line, status_val = i, line[len("Status:"):].strip()
         if phase_line is None and line.startswith("Phase:"):
             phase_line, phase_val = i, line[len("Phase:"):].strip()
+        if mode_line is None and line.startswith("Mode:"):
+            mode_line, mode_val = i, line[len("Mode:"):].strip()
+        if budget_line is None and line.startswith("Budget:"):
+            budget_line, budget_val = i, line[len("Budget:"):].strip()
 
     def viol(code, lineno, text_):
         violations.append({"code": code, "line": lineno, "text": text_})
@@ -645,7 +655,8 @@ def parse_tracker(text: str):
     annotate_repairs(violations, line_ids)
     meta = {"status": status_val, "phase": phase_val,
             "late_intent": late_intent, "entries": len(entries),
-            "head_boundary": head_end}
+            "head_boundary": head_end,
+            "mode": mode_val, "budget": budget_val}
     reach = {"r_lines": r_lines, "head_region_entries": head_region_entries}
     return entries, violations, meta, reach
 
@@ -1064,6 +1075,20 @@ def cmd_sweep(args):
     violations += freeze_breach_violations(entries)
     for v in violations:
         say(f"sweep: {v['code']} @ line {v['line']}: {v['text']}")
+    # E-G' (WITHOUT-F8 + SENTENCE-B4): Budget is a literal header read
+    # (like Status/Phase), consulted against trend's own resolved-
+    # round count — an EVIDENCE line, never a gate; a non-numeric or
+    # absent Budget checks nothing.
+    if meta["budget"] is not None:
+        try:
+            budget_n = int(meta["budget"])
+        except ValueError:
+            budget_n = None
+        if budget_n is not None:
+            bounds, _, _, _, _ = trend_over_rounds(entries)
+            if len(bounds) >= budget_n:
+                say(f"sweep: resolved rounds ({len(bounds)}) meet/exceed "
+                    f"Budget ({budget_n})")
     say("judgment residue (desk work, not checked here): dead-basis "
         "body-reads, duplicate-id body-read, restatement adoption "
         "checks, basis reach")
@@ -1106,9 +1131,11 @@ def cmd_closure(args):
     # ES-2: every closure verdict lists the labeled late-INTENT lines —
     # verify's composition grades against the head PLUS these, and the
     # tool is what finds them. E-A: entries/head_boundary ride every
-    # verdict, r_lines rides sweep/closure's.
+    # verdict, r_lines rides sweep/closure's. E-G': the Mode line rides
+    # the same way (surfaced, never gated) — absent-Mode reads None.
     late = {"late_intent": meta["late_intent"], "entries": meta["entries"],
-           "head_boundary": meta["head_boundary"], "r_lines": reach["r_lines"]}
+           "head_boundary": meta["head_boundary"], "r_lines": reach["r_lines"],
+           "mode": meta["mode"]}
     blocking = closure_blocking_violations(violations)
     if blocking:
         for v in blocking:

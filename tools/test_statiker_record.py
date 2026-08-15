@@ -3045,6 +3045,83 @@ class TestEBUnitUnknown(RecordFixture):
         self.assertTrue(any("R2" in a["line"] for a in v["amendments"]))
 
 
+# --------------------------------------- E-G': Mode + Budget (header)
+
+MODE_HEADER = """# Run: test
+Status: in-progress
+Phase: investigate-design
+Mode: careful
+
+INTENT — do the thing.
+
+## Cycle 1
+"""
+
+BUDGET_HEADER_2 = """# Run: test
+Status: in-progress
+Phase: investigate-design
+Budget: 2
+
+INTENT — do the thing.
+
+## Cycle 1
+"""
+
+
+class TestEGPrimeHeaderFields(RecordFixture):
+    """begehung-harvest triage T14's mechanical half (WITHOUT-F8 +
+    SENTENCE-B4): Mode and Budget are literal header-line reads, the
+    same shape as Status/Phase — surfaced, never gated. The
+    irreversible half (P4) needs its own record-line grammar first
+    and stays parked."""
+
+    def test_mode_line_surfaces_in_sweep(self):
+        v = self.sweep("- F1 [VERIFIED] x — basis: y\n", header=MODE_HEADER)
+        self.assertEqual(v["verdict"], "SWEEP_CLEAN")
+        self.assertEqual(v["mode"], "careful")
+
+    def test_absent_mode_reads_none_in_sweep(self):
+        v = self.sweep("- F1 [VERIFIED] x — basis: y\n")
+        self.assertEqual(v["verdict"], "SWEEP_CLEAN")
+        self.assertIsNone(v["mode"])
+
+    def test_mode_line_surfaces_in_closure(self):
+        v = self.closure(CLOSED, header=MODE_HEADER)
+        self.assertEqual(v["verdict"], "CLOSURE_LIVE")
+        self.assertEqual(v["mode"], "careful")
+
+    def test_absent_mode_reads_none_in_closure(self):
+        v = self.closure(CLOSED)
+        self.assertEqual(v["verdict"], "CLOSURE_LIVE")
+        self.assertIsNone(v["mode"])
+
+    def test_budget_exhausted_tracker_shows_the_evidence_line(self):
+        body = (
+            "- A1 [DISPATCHED] round 1 — basis: brief\n"
+            "- F1 [VERIFIED] finding a — basis: probe\n"
+            "- A1 [BIT] one finding — basis: report\n"
+            "- A2 [DISPATCHED] round 2 — basis: brief\n"
+            "- F2 [VERIFIED] finding b — basis: probe\n"
+            "- A2 [BIT] one finding — basis: report\n")
+        p = tool(["sweep", "--tracker",
+                 str(self.write_tracker(body, header=BUDGET_HEADER_2))],
+                 cwd=self.dir)
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "SWEEP_CLEAN")
+        self.assertIn("meet/exceed Budget", p.stdout)
+
+    def test_under_budget_control_stays_clean_and_silent(self):
+        body = ("- A1 [DISPATCHED] round 1 — basis: brief\n"
+                "- F1 [VERIFIED] finding a — basis: probe\n"
+                "- A1 [BIT] one finding — basis: report\n")
+        p = tool(["sweep", "--tracker",
+                 str(self.write_tracker(body, header=BUDGET_HEADER_2))],
+                 cwd=self.dir)
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "SWEEP_CLEAN")
+        self.assertNotIn("Budget", p.stdout)
+
+
 # --------------------------------------------- E-F: the append freeze
 
 class TestEFFreezeBreach(RecordFixture):
