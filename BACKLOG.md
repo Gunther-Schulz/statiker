@@ -142,6 +142,20 @@ it is not decision-complete.
   P1/P2; statiker_record.py overlap with Lane C — after it
   integrates).
 
+- **PARKED 2026-08-15 — P7: `waves`' write-set join is blind to
+  shared LINEAR resources.** Provenance: A9/F217 (relay 6,
+  executed: one alembic head, 111 revisions vs the 109 the record
+  held; two migration units built concurrently under "down_revision
+  = head at implementation time" branch the chain, and the app
+  auto-migrates fail-closed on boot) — a shared linear resource
+  crossing four units' write-sets, invisible to the file-based
+  join. The run repaired locally (down_revisions assigned in the
+  record, like revision ids — D107 amended). Missing design,
+  named: whether the write-set grammar grows a declarable shared
+  RESOURCE token the join serializes on, or the record-assigned
+  ordering stays the standing per-run disposition. Trigger: the
+  next run whose units share a linear resource.
+
 ## Done
 
 - 2026-08-15 — **P3-parked ausgebucht: realized by the P3 ship

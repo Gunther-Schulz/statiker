@@ -4925,3 +4925,46 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   9's return processes on 0.2.65 if the review batch is not
   through by its A-line. Consumer: the release seam; the close's
   grading.
+
+- 2026-08-15 — **Relay 6 harvested (ROUND 9 BOOKED: A9 [BIT] — 1
+  HIGH, 5 MODERATE, 1 MINOR; six substance + one fit, ZERO
+  record/instrument; total reopen; all seven desk-re-executed
+  before booking).** Trend named at the re-entry seam: attacker
+  findings 10→9→7 over A7–A9, record findings 4→0, tool trend
+  FLAT — form stands, GO cycle 13 issued, F212 first. THE HIGH
+  (F212): an env var retargets the locked pg17 harness's alembic
+  at a database nobody chose (env.py installs the resolved URL
+  unconditionally unless the caller stamps the source; the
+  mechanism landed 2026-08-11, D80 was written 2026-08-06 citing
+  a line range that contains neither half) — and C2 does NOT
+  bound it: C2 forbids a push, this is an outbound connection
+  from a local run. CONSEQUENCE AT THIS DESK: D94 deliberately
+  PARKED — the operator authorization sentence ("bounded to local
+  and harness databases") is exactly what F212 holes, so a U5
+  answer now would ratify a broken bound; the whole five-unit
+  authorization re-presents ONCE after F212's repair is verified
+  by executed probe. MINT CANDIDATE, strong (F213, purest desk
+  error by the desk's own grading): a dated staleness discharge
+  (F121, "zero commits since") was never re-run across a 7-day
+  resume — re-executed at the lock it shows 16 commits, ONE
+  touching a design-cited file, and that file is the HIGH's.
+  The resume path verifies the RECORD (preflight, pin, tree) and
+  says nothing about the WORLD the design cites. Draft clause for
+  the resume passage, minting AFTER Lane D closes (same-file
+  collision with its six pre-named edits): "A resume re-runs the
+  record's dated, world-facing discharges: a staleness check
+  measured at its date expires with every commit since — re-run
+  the bounded diff over design-cited paths before any work rests
+  on the record's citations." Seal post-mortem booked verbatim
+  (hypothesis-grade, n=1, for the fire-rate review): "every item
+  I predicted was something I had worried about while writing it;
+  every finding that landed was in something I had CONCLUDED —
+  the seal measured my anxiety, not my risk"; operational form:
+  spend the seal on the least-hesitation entries, naming for each
+  the fact that would have to be true for it to hold. F217 →
+  P7 PARKED below (waves' file-based join blind to shared linear
+  resources; run repaired locally by record-assigned
+  down_revisions). WHAT HELD: D46(a) independently confirmed by
+  the attacker; DECOMPOSITION/SIMPLICITY sound; R1–R5 faithful
+  and professionally complete. Consumer: the post-Lane-D mint;
+  the release seam; the close's grading.
