@@ -176,6 +176,50 @@ it is not decision-complete.
   ordering stays the standing per-run disposition. Trigger: the
   next run whose units share a linear resource.
 
+- **READY 2026-08-15 — E-O: LOCK_GATE_HOLDS' predicate repairs to
+  Status-conditioned blocking-set-keyed (P2 defect, dispatcher's
+  own).** Provenance: Lane D booking (OBSERVATIONS 2026-08-15):
+  shipped lock_gate_check halts on `verdict != SWEEP_CLEAN`
+  unconditionally; the T9 arm's must-not-fire case (tier2-with.md
+  B8: a close-time lock under Status FAILED/COMPLETE legitimately
+  carries PENDINGs) fires, so a failed run could never close; and
+  verdict-name keying defeats SWEEP_EXEMPT netting. Design,
+  decided: the gate keys on the sweep verdict's BLOCKING set (net
+  of exemptions once P6 lands) AND is Status-conditioned — under
+  Status [READY]/in-progress a non-empty blocking set halts; under
+  FAILED/COMPLETE (the close path) the gate passes with the holds
+  carried in the verdict as information. Verifier, red-first (from
+  the arm, both halves): must-fire = [READY] + blocking hold;
+  must-not-fire = FAILED + PENDING at the close lock. Done: pair
+  flips both directions, full suite green. Write boundary:
+  plugin/skills/statiker/scripts/statiker_git.py,
+  tools/test_statiker_git.py (+ SKILL.md Edit-C sentence amended
+  in the same commit if its wording binds the old predicate).
+  BUILD in Lane E with P6 — P2 ships with BOTH or not at all.
+
+- **READY (small) 2026-08-15 — E-P: GATE_UNREADABLE goes red on a
+  real defect before it is trusted.** Provenance: Lane D residue
+  (g): the fail-closed branch is frozen in UNDRIVEN_REMAINDER,
+  exercised by inspection only. Design, decided: red-first probe
+  via a substitute record-tool path emitting garbage (no verdict
+  line) and one emitting unparseable JSON — both must yield
+  GATE_UNREADABLE, and a healthy consult must not; drive the
+  battery row out of UNDRIVEN_REMAINDER. Done: pair flips, suite
+  green. Write boundary: tools/test_statiker_git.py (+ the
+  contract battery row), statiker_git.py only if the probe finds
+  the branch defective. Lane E bundle.
+
+- **PARKED 2026-08-15 — P8: write-set paths with whitespace (or
+  leading /) are structurally undeclarable since P2.** Provenance:
+  Lane D gap (c)(1)-(2): write_set_violations' single-token rule
+  (itself fire-born — whitespace once read as two colliding
+  units) now bounds what a unit can commit, since the record is
+  the write-set's single source; the old free CLI arg accepted
+  such paths. Accepted as shipped (the grammar rule's incident
+  outranks the speculative capability). Missing design, named: a
+  quoting/escaping grammar for the write-set field. Trigger: the
+  first real unit needing a space-carrying or absolute path.
+
 ## Done
 
 - 2026-08-15 — **P3-parked ausgebucht: realized by the P3 ship

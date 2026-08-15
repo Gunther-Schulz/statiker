@@ -5037,3 +5037,35 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   review → pin at a run seam → fresh desk resumes from the
   tracker at the decomposition-pass outcome. Consumer: the next
   meta session; the trial close's grading.
+
+- 2026-08-15 — **Lane D booked (P1/P2/E-N shipped: 3e78dba E-N
+  out-of-body corrects lint; b825de4 P1 seal-path + queue-spent
+  grammar, worktree derive-in-main proven; 2ab7651 P2 gate-bound
+  transactions, --write-set removed, record as single source;
+  suite 380/380; all six SKILL.md edits verified per-commit) —
+  AND a P2 defect found at dispatcher verification.** The lane
+  self-flagged not reading the T9 arm files (built reds from the
+  BACKLOG summaries); the dispatcher's cross-check against
+  tier2-with.md B8 found the arm's MUST-NOT-FIRE case unhandled:
+  shipped lock_gate_check halts on `verdict != SWEEP_CLEAN`
+  UNCONDITIONALLY — (axis 1) a FAILED/COMPLETE close-time
+  lock-commit (SKILL.md's own close path) halts on holds the close
+  is explicitly allowed to carry: a failed run could never close;
+  (axis 2) keying on the verdict NAME rather than the blocking
+  set defeats the coming SWEEP_EXEMPT netting by construction.
+  ATTRIBUTION, honest: the dispatcher's OWN P2 design carried the
+  identical summary-instead-of-source miss — the arm cross-check
+  happened only at verification. LESSONS, both sides: (a) an
+  incident-derived red-first arrangement's MUST-NOT-FIRE half is
+  where the summary loses information first (the must-fire half
+  survives summarization; the boundary case does not); (b) briefs
+  citing arm/incident files mark them MANDATORY reads with the
+  report slot (h) proving it — a named-but-unread source is the
+  drift channel. E-O booked READY (gate predicate repair, rides
+  Lane E with P6 — P2 ships with BOTH or not at all); E-P booked
+  (drive GATE_UNREADABLE red); whitespace write-set quoting
+  PARKED with trigger. Lane D's two candidate lessons booked for
+  minting: source-derivation changes inherit the source's WHOLE
+  acceptance grammar (narrower-acceptance is the silent mode);
+  subprocess bridges here default bytes+surrogateescape, never
+  text=True.
