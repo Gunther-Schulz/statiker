@@ -105,34 +105,97 @@ it is not decision-complete.
   — build after Lane A integrates (bundle candidate with the P3/P4
   lane).
 
-- **PARKED 2026-08-15 — P1: the seal/queue/repo-key namespace
-  needs a design decision before any mechanism.** Provenance:
-  triage T8 (WITH-B1 executed: three defensible derivations of one
-  prose sentence, live directory matches only one; WITH-B2: a
-  consumed queue is byte-identical to an unconsumed one and its
-  header instructs re-landing; WITH namespace note: desks invented
-  `artifacts/` and `.report` homes the spec never defines;
-  WITHOUT-F7, SENTENCE-B5: zero hits for the namespace in scripts
-  and suites). Missing design, named: which tool owns repo-key
-  derivation (or whether SKILL.md instead pins the exact command),
-  the queue consumption-marker form, and lifecycle homes for the
-  two invented namespaces. The freeze-breach check is NOT parked
-  (E-F).
+- **READY 2026-08-15 — P1: the seal/queue namespace gets its tool
+  and its two missing grammar pieces.** Provenance: triage T8
+  (WITH-B1 executed: three defensible derivations of one prose
+  sentence — since narrowed by the exact repo-key pin now in
+  SKILL.md :624-631, which answers the DERIVATION but leaves every
+  desk re-composing the hash one-liner by hand, the re-pasted
+  one-liner class; WITH-B2: a consumed queue is byte-identical to
+  an unconsumed one and its header instructs re-landing — the live
+  A8 queue shows a desk improvising a `LANDED` tail; WITH
+  namespace note: desks invented `artifacts/` and `.report` homes
+  the spec never defines). DESIGN SETTLED (meta desk 2026-08-15,
+  derived from the work's requirements, not the incumbents):
+  (1) `seal-path` subcommand in the git tool (owner of toplevel/
+  common-dir/worktree semantics): `seal-path --tracker <path>
+  --round A<n>` → verdict SEAL_PATH with every species' full path
+  as fields — kills the hand-derivation class; SKILL.md route
+  sentence same commit (parity battery).
+  (2) Queue consumption grammar: a queue is SPENT when its last
+  non-blank line matches `^LANDED <date> — at line <n>$` (the
+  tracker line of the landing append) — in-band so a successor
+  desk reading the queue sees it, append-only, and verifiable
+  against the tracker; re-landing a spent queue halts at the desk.
+  Requirements basis: successor-visible + append-only + names
+  where it landed; deletion fails evidence, rename breaks the
+  re-derive-from-filename property.
+  (3) The invented homes get pinned into the ONE namespace, same
+  derivation, new species suffixes beside `.seal`/`.queue`/
+  `.paths`: `.A<n>.artifact` (the filter --out target),
+  `.A<n>.report` (an attacker report persisted as file),
+  `.A<n>.comparison` (the seal comparison the text says lands
+  "beside the seal"). SKILL.md names them where each is first
+  mentioned. Verifiers, red-first: seal-path verdict paths equal
+  the SKILL.md-pinned derivation on a real repo + a worktree case
+  (derive-in-main); queue-spent grammar positive/negative pair.
+  Done: seal-path verdict's paths equal the SKILL.md-pinned
+  derivation on both fixtures, the queue-spent pair passes both
+  directions, full suite green. Write boundary: statiker_git.py,
+  SKILL.md, tools/test_statiker_git.py, tools/test_contract.py.
+  BUILD AFTER the P3/P4/E-M lane integrates (SKILL.md overlap);
+  bundles with P2 as one lane, separate commits.
 
-- **PARKED 2026-08-15 — P2: gate verdicts bind to the transactions
+- **READY 2026-08-15 — P2: gate verdicts bind to the transactions
   they gate (the unit seam).** Provenance: triage T9 (WITH-B8:
   lock-commit LOCK_CHECK_CLEAN over SWEEP_HOLDS; WITH-B9 blocking:
   UNIT_COMMITTED over CLOSURE_VOID — forcing point 4's invariant
   with the detecting gate in the same toolchain, unconsulted;
   WITHOUT-F3 blocking: START↔COMMIT unlinked, an operator's
   unstaged draft committed as the unit's own; WITHOUT-F12: a
-  write-set may name the tracker itself — all executed). Missing
-  design, named: how the git tool learns and consults the record
-  gate — a --tracker flag plus import vs subprocess vs a pasted
-  verdict token — and what links START to COMMIT (the lock's
-  --drop handshake is the in-repo precedent). The arms' red-first
-  pairs travel with this entry (with/without files, B8/B9/F3
-  sections).
+  write-set may name the tracker itself — all executed). The arms'
+  red-first pairs travel with this entry (with/without files,
+  B8/B9/F3 sections). DESIGN SETTLED (meta desk 2026-08-15, basis:
+  body-read of cmd_lock_commit :700-758, cmd_unit_start :768-791,
+  cmd_unit_commit :794-834):
+  (1) Gate consult = SUBPROCESS to the record tool over the
+  documented verdict-line contract (parse the single final
+  `STATIKER-RECORD VERDICT:` line; embed it verbatim in the git
+  tool's own verdict as `gate` field). Rejected: pasted token —
+  testimony with staleness; import — couples process state and
+  inherits the record tool's stage-coupling defects (E-M class).
+  Gate unconsultable (subprocess fails, no verdict line) → halt,
+  FAIL-CLOSED.
+  (2) Lock seam: lock-check + lock-commit consult `sweep`;
+  blocking holds → halt LOCK_GATE_HOLDS (closes B8).
+  (3) Unit seam: unit-start + unit-commit take REQUIRED --tracker
+  and REQUIRED --unit; both consult `closure --unit`; a blocking
+  gate verdict → halt UNIT_GATE_BLOCKED (closes B9).
+  (4) START↔COMMIT link (closes F3): the RECORD's declared
+  write-set becomes the single write-set source — closure --unit
+  gains a declared_write_set field; unit-start/unit-commit drop
+  the free --write-set args (briefs stop restating it:
+  paraphrase-drift kill). unit-commit takes --start-sha (from the
+  start verdict); checks start-sha ancestor-of-HEAD AND
+  `git log start-sha..HEAD -- <declared write-set>` EMPTY (foreign
+  touch mid-unit → halt UNIT_START_MISMATCH).
+  (5) F12: at the unit seam, tracker path ∈ declared write-set →
+  halt WRITE_SET_NAMES_TRACKER.
+  New verdict names (LOCK_GATE_HOLDS, UNIT_GATE_BLOCKED,
+  UNIT_START_MISMATCH, WRITE_SET_NAMES_TRACKER) each carry their
+  SKILL.md route sentence in the SAME commit (parity battery,
+  set-exact both ways); the unit-brief invocation lines in
+  SKILL.md update in the same batch — no old-form escape hatch
+  (no-grandfather rule, CLAUDE.md). Verifiers, red-first: the
+  arms' B8/B9/F3 pairs + one per new verdict. Done: all four T9
+  pairs flip (red under old code, green through the fix), parity
+  battery set-exact both ways over the four new verdicts, SKILL.md
+  invocation lines updated, full suite green. Write boundary:
+  statiker_git.py, statiker_record.py (declared_write_set field),
+  SKILL.md, tools/test_statiker_git.py,
+  tools/test_statiker_record.py, tools/test_contract.py. BUILD
+  AFTER the P3/P4/E-M lane integrates (statiker_record.py +
+  SKILL.md overlap).
 
 - **PARKED 2026-08-15 — P3: version provenance needs a header-field
   decision.** Provenance: triage T14 (WITH-B7 executed: the
