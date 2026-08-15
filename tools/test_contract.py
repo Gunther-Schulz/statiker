@@ -217,6 +217,18 @@ RECORD_SUBCOMMANDS = parser_subcommands(SCRIPTS[1])
 
 VERDICT_LINE_RE = re.compile(r"^STATIKER-(?:GIT|RECORD) VERDICT: (.*)$")
 
+
+def split_lines(text):
+    """Split a tool's own stdout on newlines ONLY, mirroring
+    statiker_record.py's split_lines: str.splitlines() also breaks on
+    U+000C, U+2028 and U+0085, fabricating a line the process never
+    printed and shifting every later line's meaning (the splitlines
+    CLASS, closed here to close the reader's own reach — 2eb6b59)."""
+    lines = text.split("\n")
+    if lines and lines[-1] == "":
+        lines.pop()
+    return [l[:-1] if l.endswith("\r") else l for l in lines]
+
 # The battery's frozen remainder: emitted verdicts no row drives, each
 # with the reason it cannot be driven. Asserted set-exact below, so
 # this list is the only silent-under-report exit and editing it is a
@@ -582,7 +594,7 @@ def run_battery(git_script, record_script, root):
                            cwd=str(cwd), env=env, input=stdin,
                            capture_output=True, text=True, timeout=60)
         verdicts = []
-        for line in p.stdout.splitlines():
+        for line in split_lines(p.stdout):
             m = VERDICT_LINE_RE.match(line)
             if m:
                 verdicts.append(re.search(r'"verdict":\s*"([^"]+)"',
@@ -635,6 +647,36 @@ class TestRuntimeVerdictBattery(unittest.TestCase):
                 f"{row['tool']} {' '.join(row['argv'])} printed "
                 f"{row['verdicts']}\nstdout:\n{row['stdout']}\n"
                 f"stderr:\n{row['stderr']}")
+
+    def test_the_battery_reader_survives_a_separator_in_the_verdict_json(self):
+        # closes the splitlines CLASS in this file's own reader
+        # (BACKLOG.md, "close the splitlines CLASS in the remaining
+        # verdict readers"): the record tool's verdict JSON carries
+        # violation text VERBATIM (ensure_ascii=False) — a U+2028 in a
+        # tracker's own Status line reaches the verdict line raw, and
+        # str.splitlines() would read it as a second physical line,
+        # severing the JSON split_lines correctly keeps whole (mirrors
+        # test_statiker_record.py's
+        # test_the_fixture_reader_survives_a_separator_in_the_block).
+        repo = Path(self._tmp.name) / "repo"
+        tracker = repo / "u2028.md"
+        tracker.write_text(
+            "# Run: t\n"
+            "Status: bogus status\n"
+            "Phase: investigate-design\n"
+            "Skill: statiker 0.2.60\n\n"
+            "## Cycle 1\n")
+        p = subprocess.run(
+            [sys.executable, str(SCRIPTS[1]), "lint", "--tracker",
+             str(tracker)],
+            cwd=str(repo), env=battery_env(), capture_output=True,
+            text=True, timeout=60)
+        verdict_lines = [l for l in split_lines(p.stdout)
+                         if l.startswith("STATIKER-RECORD VERDICT: ")]
+        self.assertEqual(len(verdict_lines), 1, p.stdout)
+        self.assertIn(" ", verdict_lines[0], verdict_lines[0])
+        m = re.search(r'"verdict":\s*"([^"]+)"', verdict_lines[0])
+        self.assertEqual(m.group(1), "LINT_VIOLATIONS", verdict_lines[0])
 
     def test_battery_covers_every_subcommand_of_both_tools(self):
         for tool, declared in (("git", GIT_SUBCOMMANDS),

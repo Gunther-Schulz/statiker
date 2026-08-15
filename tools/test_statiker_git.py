@@ -24,6 +24,18 @@ SCRIPT = REPO_ROOT / "plugin" / "skills" / "statiker" / "scripts" / "statiker_gi
 VERDICT_PREFIX = "STATIKER-GIT VERDICT: "
 
 
+def split_lines(text):
+    """Split the tool's own stdout on newlines ONLY, mirroring
+    statiker_record.py's split_lines: str.splitlines() also breaks on
+    U+000C, U+2028 and U+0085, fabricating a line the process never
+    printed (the splitlines CLASS, closed here to close the reader's
+    own reach — 2eb6b59)."""
+    lines = text.split("\n")
+    if lines and lines[-1] == "":
+        lines.pop()
+    return [l[:-1] if l.endswith("\r") else l for l in lines]
+
+
 def hermetic_env():
     env = {
         "PATH": os.environ["PATH"],
@@ -70,7 +82,7 @@ class GitFixture(unittest.TestCase):
         return p
 
     def verdict(self, p):
-        lines = [l for l in p.stdout.splitlines() if l.startswith(VERDICT_PREFIX)]
+        lines = [l for l in split_lines(p.stdout) if l.startswith(VERDICT_PREFIX)]
         self.assertEqual(
             len(lines), 1,
             f"expected exactly one verdict line, stdout:\n{p.stdout}\nstderr:\n{p.stderr}",
@@ -85,7 +97,7 @@ class GitFixture(unittest.TestCase):
 
     def head_paths(self):
         out = self.git("show", "--name-only", "--format=", "HEAD").stdout
-        return set(l for l in out.splitlines() if l)
+        return set(l for l in split_lines(out) if l)
 
     def start_conflicted_merge(self):
         self.write("c.txt", "main\n")
@@ -521,7 +533,7 @@ class TestUnitStartWriteSetRecordLines(GitFixture):
             "- F<n> [VERIFIED] unit U2 write-set: b.txt "
             "— basis: <the unit enumeration>",
         ]
-        printed = [l for l in p.stdout.splitlines()
+        printed = [l for l in split_lines(p.stdout)
                   if l.startswith(self.RECORD_LINE_PREFIX)]
         self.assertEqual(printed, expected, p.stdout)
 
@@ -532,7 +544,7 @@ class TestUnitStartWriteSetRecordLines(GitFixture):
         self.assertIn(
             "- F<n> [VERIFIED] unit U<k> write-set: a.txt "
             "— basis: <the unit enumeration>",
-            p.stdout.splitlines())
+            split_lines(p.stdout))
 
     def test_record_lines_absent_on_collision(self):
         # printed evidence lines are conditioned on UNIT_START_CLEAN only
@@ -544,7 +556,7 @@ class TestUnitStartWriteSetRecordLines(GitFixture):
         self.assertEqual(v["verdict"], "UNIT_COLLISION")
         self.assertFalse(
             any(l.startswith(self.RECORD_LINE_PREFIX)
-                for l in p.stdout.splitlines()),
+                for l in split_lines(p.stdout)),
             p.stdout)
 
     def test_record_lines_absent_on_directory_halt(self):
@@ -554,7 +566,7 @@ class TestUnitStartWriteSetRecordLines(GitFixture):
         self.assertEqual(v["verdict"], "HALT_DIRECTORY_PATH")
         self.assertFalse(
             any(l.startswith(self.RECORD_LINE_PREFIX)
-                for l in p.stdout.splitlines()),
+                for l in split_lines(p.stdout)),
             p.stdout)
 
     def test_verdict_line_still_the_only_verdict_line(self):
@@ -574,7 +586,7 @@ class TestUnitStartWriteSetRecordLines(GitFixture):
         p = self.tool("unit-start", "--write-set", "src.txt", "--unit", "U2")
         v = self.verdict(p)
         self.assertEqual(v["verdict"], "UNIT_START_CLEAN", p.stdout + p.stderr)
-        printed = next(l for l in p.stdout.splitlines()
+        printed = next(l for l in split_lines(p.stdout)
                        if l.startswith(self.RECORD_LINE_PREFIX))
         line = printed.replace("F<n>", "F7", 1)
         self.assertEqual(
@@ -608,6 +620,24 @@ class TestUnitStartWriteSetRecordLines(GitFixture):
         self.assertEqual(unplannable, [])
         self.assertEqual(waves, [["U2"]])
         self.assertEqual(spellings, {})
+
+    def test_the_verdict_reader_survives_a_separator_in_a_printed_line(self):
+        # closes the splitlines CLASS in this suite's own reader
+        # (BACKLOG.md, "close the splitlines CLASS in the remaining
+        # verdict readers"): a U+2028 in a write-set path reaches
+        # stdout raw in the printed record line (say(), never JSON-
+        # escaped like the verdict line itself) — str.splitlines()
+        # would read it as a second physical line, an exotic byte
+        # nothing here plants today, exactly the quiet direction
+        # (mirrors test_statiker_record.py's
+        # test_the_fixture_reader_survives_a_separator_in_the_block).
+        rel = "a b.txt"
+        p = self.tool("unit-start", "--write-set", rel, "--unit", "U2")
+        v = self.verdict(p)   # raises if split_lines saw a second line
+        self.assertEqual(v["verdict"], "UNIT_START_CLEAN", p.stdout + p.stderr)
+        self.assertIn(" ",
+                      next(l for l in split_lines(p.stdout)
+                           if l.startswith(self.RECORD_LINE_PREFIX)))
 
 
 # -------------------------------------------------------------- unit commit
