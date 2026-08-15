@@ -325,6 +325,24 @@ def run_battery(git_script, record_script, root):
     sha = subprocess.run(["git", "rev-parse", "HEAD"], cwd=repo, env=env,
                          capture_output=True, text=True,
                          check=True).stdout.strip()
+    # E-I: two dedicated pin fixtures, mutated on disk AFTER their own
+    # commit — a genuine append (a real new line) and an IN-PLACE
+    # status rewrite (the SAME line edited, B1's own red case:
+    # SWEEP_CLEAN over a file `git diff --stat <pin>` reads 1+/1-)
+    (repo / "pin_append.md").write_text(CLOSED_TRACKER)
+    (repo / "pin_rewrite.md").write_text(
+        CLOSED_TRACKER +
+        "- F9 [PENDING] awaiting a leg — basis: dispatched\n")
+    git("add", "pin_append.md", "pin_rewrite.md")
+    git("commit", "-m", "pin fixtures")
+    pin_sha = subprocess.run(["git", "rev-parse", "HEAD"], cwd=repo, env=env,
+                             capture_output=True, text=True,
+                             check=True).stdout.strip()
+    with (repo / "pin_append.md").open("a") as f:
+        f.write("- F9 [VERIFIED] leg returned clean — basis: report\n")
+    (repo / "pin_rewrite.md").write_text(
+        CLOSED_TRACKER +
+        "- F9 [VERIFIED] awaiting a leg — basis: dispatched\n")
     (repo / "docs").mkdir()
     (repo / "docs" / "a.txt").write_text("a\n")
     (repo / "holds.md").write_text(
@@ -502,6 +520,12 @@ def run_battery(git_script, record_script, root):
         ("record", "filter", ["filter", "--tracker", tracker_abs,
                               "--sha", "deadbeef",
                               "--out", str(outside / "art2.md")],
+         repo, None, None),
+        ("record", "pinned", ["pinned", "--tracker",
+                              str(repo / "pin_append.md"), "--sha", pin_sha],
+         repo, None, None),
+        ("record", "pinned", ["pinned", "--tracker",
+                              str(repo / "pin_rewrite.md"), "--sha", pin_sha],
          repo, None, None),
         ("record", "quote", ["quote", "--label", "A1 quotes"], repo,
          "a report line holding [VERIFIED]\n", None),

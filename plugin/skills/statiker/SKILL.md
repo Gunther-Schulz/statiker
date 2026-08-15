@@ -249,7 +249,13 @@ brackets (the stats reader admits only the bracketed form).
 Run `lint` once the header and head are written: a form defect
 found here costs re-creating a one-screen file before anything
 rests on it; found at the [READY] sweep it holds a full record
-whose head the append-only rule cannot rewrite.
+whose head the append-only rule cannot rewrite. The claim itself is
+checked mechanically once a pin exists: `pinned --tracker P --sha
+S` — PINNED_APPEND_ONLY proceeds; PINNED_REWRITTEN halts the seam
+that ran it, first divergent line in the verdict (an in-place
+status rewrite reads exactly like a clean record to every
+positional gate; the diff against the pin is the one thing it
+cannot fool). Run it at resume and before any re-lock.
 
 Entries are one line each, status tag first, appended never
 rewritten (the templates below wrap only on this page). A status

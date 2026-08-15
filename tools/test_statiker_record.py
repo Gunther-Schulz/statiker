@@ -2243,6 +2243,51 @@ class TestES3FilterBlanksInPlace(PinnedFixture):
         self.assertIn("blank", v["form"].lower())
 
 
+# --------------------------------------------------------------------- E-I
+
+class TestEIPinned(PinnedFixture):
+    """begehung-harvest triage T16 (SENTENCE-B1): an in-place status
+    rewrite (`[PENDING]` edited to `[VERIFIED]` on its OWN line,
+    never a new appended line) reads SWEEP_CLEAN — every positional
+    gate reads the edited file as a clean record — while `git diff
+    --stat <pin>` shows the edit as 1+/1-. `pinned` is the one check
+    that cannot be fooled: the pinned version's bytes must be a
+    PREFIX of the working tracker's, at the BYTE level (ES-9)."""
+
+    def pinned(self, sha, tracker="t.md"):
+        return self.verdict(tool(
+            ["pinned", "--tracker", tracker, "--sha", sha], cwd=self.dir))
+
+    def test_byte_identical_tracker_reads_append_only(self):
+        sha = self.committed_repo(
+            HEADER + "- F1 [PENDING] awaiting leg — basis: dispatched\n")
+        self.assertEqual(self.pinned(sha)["verdict"], "PINNED_APPEND_ONLY")
+
+    def test_genuine_append_reads_append_only(self):
+        sha = self.committed_repo(
+            HEADER + "- F1 [PENDING] awaiting leg — basis: dispatched\n")
+        with (self.dir / "t.md").open("a") as f:
+            f.write("- F1 [VERIFIED] leg returned clean — basis: report\n")
+        self.assertEqual(self.pinned(sha)["verdict"], "PINNED_APPEND_ONLY")
+
+    def test_in_place_status_rewrite_reads_rewritten(self):
+        # B1's own red case: SWEEP_CLEAN over an edited file that
+        # `git diff --stat` shows as 1+/1- — the one check `pinned`
+        # exists to catch
+        bad = "- F1 [PENDING] awaiting leg — basis: dispatched\n"
+        n = self.lineno_of(bad, "[PENDING]")
+        sha = self.committed_repo(HEADER + bad)
+        (self.dir / "t.md").write_text(
+            HEADER + "- F1 [VERIFIED] awaiting leg — basis: dispatched\n")
+        v = self.pinned(sha)
+        self.assertEqual(v["verdict"], "PINNED_REWRITTEN")
+        self.assertEqual(v["first_divergent_line"], n)
+
+    def test_a_stale_sha_is_pin_unreadable(self):
+        self.committed_repo(HEADER + "- F1 [VERIFIED] x — basis: y\n")
+        self.assertEqual(self.pinned("deadbeef")["verdict"], "PIN_UNREADABLE")
+
+
 # ------------------------------------------------------------------- ES-4
 
 class TestES4RepairPinsTagAndScope(RecordFixture):

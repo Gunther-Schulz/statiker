@@ -46,6 +46,16 @@ Subcommands (each prints evidence lines, then exactly one final line
   filter  --tracker P --sha S --out F pinned attack artifact (reads
                                       the sha, drops the two
                                       Superseded species)
+  pinned  --tracker P --sha S         read-only: asserts the working
+                                      tracker is a pure append over the
+                                      version pinned at S (old content
+                                      a BYTE-LEVEL prefix of new, ES-9)
+                                      — PINNED_APPEND_ONLY proceeds,
+                                      PINNED_REWRITTEN names the first
+                                      divergent line; an in-place
+                                      status rewrite reads clean to
+                                      every positional gate, this is
+                                      the one check it cannot fool
   quote   --label "A<n> quotes"       stdin -> defanged quoted block
 
 The tag contract is anchored on the stats reader's own greps
@@ -1558,6 +1568,66 @@ def cmd_filter(args):
                 "source's — quote these fields beside the artifact")
 
 
+# -------------------------------------------------------------------- pinned
+
+def cmd_pinned(args):
+    """E-I (begehung-harvest triage T16, SENTENCE-B1): an IN-PLACE
+    status rewrite (`[PENDING]` edited to `[VERIFIED]` on its own
+    line, never a new appended line) reads exactly like a clean
+    record to every positional gate — SWEEP_CLEAN included — while
+    `git diff --stat <pin>` shows the edit as 1+/1-. The append-only
+    CLAIM is mechanically checkable once a pin exists: the pinned
+    version's bytes must be a PREFIX of the working tracker's bytes
+    (ES-9, byte level — a text-layer decode could paper over a
+    divergence the raw file carries)."""
+    fs, rel, top, resolved = repo_paths(args.tracker)
+    check_tracker_dir(args.tracker, fs)
+    if os.path.islink(fs):
+        # same reasoning as filter's own guard: a link's git history
+        # is the link string, not the record it names
+        finish("USAGE_ERROR", 3, tracker=args.tracker,
+               error=f"--tracker names a symlink ({args.tracker}): name "
+                     f"the real path — a link's git history is the link "
+                     f"string, not the record")
+    if rel is None:
+        unpinnable_tracker(args.tracker, rel, top, resolved)
+    p = subprocess.run(["git", "show", f"{args.sha}:{rel}"], cwd=top,
+                       capture_output=True)
+    if p.returncode != 0:
+        finish("PIN_UNREADABLE", 2, sha=args.sha, tracker=args.tracker,
+               stderr=p.stderr.decode(errors="replace").strip())
+    pinned_bytes = p.stdout
+    try:
+        with open(fs, "rb") as f:
+            current_bytes = f.read()
+    except OSError as e:
+        finish("TRACKER_UNREADABLE", 2, error=str(e))
+    if current_bytes[:len(pinned_bytes)] == pinned_bytes:
+        finish("PINNED_APPEND_ONLY", 0, sha=args.sha, tracker=args.tracker,
+               pinned_bytes=len(pinned_bytes),
+               current_bytes=len(current_bytes))
+    # divergence found — the first differing LINE, for a human-
+    # addressable evidence field (surrogateescape, same as every other
+    # tracker read: a preserved line stays byte-identical to source)
+    pinned_lines = split_lines(pinned_bytes.decode("utf-8", "surrogateescape"))
+    current_lines = split_lines(current_bytes.decode("utf-8", "surrogateescape"))
+    divergent_line, divergent_text = None, None
+    for i, (a, b) in enumerate(zip(pinned_lines, current_lines), 1):
+        if a != b:
+            divergent_line = i
+            divergent_text = f"pinned: {a!r} — current: {b!r}"
+            break
+    if divergent_line is None:
+        # every compared line matched — the divergence is a length
+        # shrink (the pinned tracker has MORE lines than the current
+        # one truncates to), one line past the shorter side
+        divergent_line = min(len(pinned_lines), len(current_lines)) + 1
+        divergent_text = "the current tracker is shorter than the pin"
+    say(f"pinned: first divergent line @ {divergent_line}: {divergent_text}")
+    finish("PINNED_REWRITTEN", 2, sha=args.sha, tracker=args.tracker,
+           first_divergent_line=divergent_line, evidence=divergent_text)
+
+
 # --------------------------------------------------------------------- quote
 
 def cmd_quote(args):
@@ -1607,13 +1677,17 @@ def main():
     p.add_argument("--tracker", required=True)
     p.add_argument("--sha", required=True)
     p.add_argument("--out", required=True)
+    p = sub.add_parser("pinned")
+    p.add_argument("--tracker", required=True)
+    p.add_argument("--sha", required=True)
     p = sub.add_parser("quote")
     p.add_argument("--label", required=True)
 
     args = ap.parse_args()
     handlers = {"lint": cmd_lint, "sweep": cmd_sweep, "closure": cmd_closure,
                 "waves": cmd_waves, "trend": cmd_trend,
-                "filter": cmd_filter, "quote": cmd_quote}
+                "filter": cmd_filter, "pinned": cmd_pinned,
+                "quote": cmd_quote}
     try:
         handlers[args.cmd](args)
     except SystemExit:
