@@ -1504,6 +1504,55 @@ class TestEMRepairFormGating(RecordFixture):
         self.assertIn("never itself a corrects target", hits[0]["repair"])
 
 
+class TestENCorrectsTokenOutOfBody(RecordFixture):
+    """BACKLOG E-N (F205, relay 5, beat-the-books desk): a `corrects
+    line <n>` token placed in an entry's BASIS clause is invisible to
+    apply_supersession, which scans only `e.body` — the repair looked
+    landed and repaired nothing, a silent no-op, the worst shape. New
+    lint class `corrects-token-out-of-body` fires on the entry whose
+    basis clause carries the token, instead of staying silent."""
+
+    def test_token_in_basis_clause_lints_loudly(self):
+        body = "- F2 [VERIFIED] the fix — basis: corrects line 1\n"
+        v = self.lint(body)
+        self.assertEqual(v["verdict"], "LINT_VIOLATIONS", v)
+        self.assertIn("corrects-token-out-of-body", self.violation_codes(v))
+
+    def test_token_in_basis_clause_is_silent_under_the_resolver(self):
+        # the F205 shape itself: the misplaced token resolves nothing —
+        # apply_supersession's own scan of e.body never sees it, so no
+        # corrects-nothing/multi-corrects-token complaint fires either;
+        # only the new lint class names the defect.
+        body = "- F2 [VERIFIED] the fix — basis: corrects line 1\n"
+        v = self.lint(body)
+        codes = self.violation_codes(v)
+        self.assertNotIn("corrects-nothing", codes)
+        self.assertNotIn("multi-corrects-token", codes)
+
+    def test_legitimate_body_token_is_not_flagged(self):
+        # the positive control: a correctly-placed token, in the BODY,
+        # resolving a real target's violation — never mistaken for the
+        # basis-clause defect.
+        body = "- F1 [VERIFIED] a fact\n"          # no "— basis:": basis-missing
+        n = self.lineno_of(body, "F1 [VERIFIED]")
+        body += f"- F1 [VERIFIED] record: corrects line {n} — basis: fixed\n"
+        v = self.lint(body)
+        self.assertNotIn("corrects-token-out-of-body", self.violation_codes(v))
+
+    def test_repair_carries_no_resolvable_token(self):
+        # E-M's reachability assertion (widened by this class): the
+        # printed repair for corrects-token-out-of-body must carry no
+        # token apply_supersession could act on — the very mechanism
+        # the defect defeats is not the one prescribed to fix it.
+        body = "- F2 [VERIFIED] the fix — basis: corrects line 1\n"
+        v = self.lint(body)
+        hits = [x for x in v["violations"]
+                if x["code"] == "corrects-token-out-of-body"]
+        self.assertTrue(hits)
+        for x in hits:
+            self.assertNotRegex(x["repair"], r"corrects line \d")
+
+
 class TestAttack10SymlinkedAncestor(RecordFixture):
     """attack-10 N4: the tracker's containment compared a TEXTUAL path
     against the repo top's REALPATH, so a tracker reached through a

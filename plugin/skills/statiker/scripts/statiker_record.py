@@ -322,6 +322,22 @@ REPAIR_TOKEN_RETRY = ("bookkeeping: a defective correcting line is "
                       "text): a fresh, single `corrects line <n>` "
                       "aimed at the intended target, carried "
                       "correctly this time, replaces this attempt")
+# E-N (BACKLOG; dev-notes F205, relay 5): a `corrects line <n>` token
+# placed in an entry's BASIS clause is invisible to apply_supersession
+# — it scans only `e.body` — so the token resolves nothing and no
+# violation ever fired: a silent no-op, the worst shape (the repair
+# looked landed and repaired nothing). RESOLVER-UNREACHABLE by the
+# same E-M principle even though this code is LINT-stage (unlike
+# clause-unparsed): the defect IS the token sitting somewhere the
+# resolver never searches, so printing a `corrects line {n}` form
+# that a later entry could target would repeat the exact shape this
+# class exists to catch. No {n} interpolation, no resolvable token.
+REPAIR_CORRECTS_OUT_OF_BODY = (
+    "bookkeeping: a `corrects line` token outside the entry body "
+    "resolves against nothing — the token sheds under the SAME id, "
+    "restated in the BODY where the resolver searches; a FRESH id "
+    "re-declares any content the basis clause was actually naming, "
+    "never a repair token")
 
 MACHINE_TOKEN_CODES = {
     "entry-form", "tag-enum", "entry-near-miss", "scope-near-miss",
@@ -354,7 +370,8 @@ REPAIR_FORMS = dict(
     + [(c, REPAIR_HEADER) for c in
        ("status-enum", "phase-enum", "admission-window")]
     + [(c, REPAIR_STATUS_LINE) for c in
-       ("pending-latest", "killerless-dead", "basis-cites-invalidated")])
+       ("pending-latest", "killerless-dead", "basis-cites-invalidated")]
+    + [("corrects-token-out-of-body", REPAIR_CORRECTS_OUT_OF_BODY)])
 
 
 def annotate_repairs(violations, line_ids=None):
@@ -770,6 +787,11 @@ def parse_tracker(text: str):
         else:
             body_main = body.strip()
             viol("basis-missing", i, line)
+        if basis and CORRECTS_RE.search(basis):
+            # E-N: the resolver (apply_supersession) scans only
+            # e.body — a token sitting in the basis clause is
+            # invisible to it and resolves nothing, silently
+            viol("corrects-token-out-of-body", i, line)
         scope_parsed = True
         if SCOPE_NEAR_RE.match(body_main) and \
                 not SCOPE_EXACT_RE.match(body_main):
