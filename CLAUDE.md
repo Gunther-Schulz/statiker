@@ -94,18 +94,16 @@
   while conduct was unmeasured; retired once 0.2.49/50
   mechanized the grammar and desk conduct graded clean across
   the trial's first relays.
-- **Skill-edit review at opus (experiment, operator-settled
-  2026-08-06).** For the next three SKILL.md releases, each edit
-  gets ONE fresh-context opus review before the pin moves — brief
-  carries the diff, the full skill text, and the question, never
-  the author's reasoning; every finding gets a recorded
-  disposition before release. Decision criterion pre-registered in
-  dev-notes (same date); graded there after the third review.
-  Background: coarse-stage edits currently skip review until
-  stabilization to avoid fable-priced passes; operator-relayed
-  paired evidence (opus arm out-bit fable arm, rounds 1-3,
-  byte-identical artifacts, n=4, one domain) says opus review is
-  not below the bar for this artifact class.
+- **Skill-edit review at opus (standing; experiment sustained
+  2026-08-15).** Every SKILL.md release gets ONE fresh-context
+  opus review before the pin moves — brief carries the diff, the
+  full skill text, and the question, never the author's
+  reasoning; every finding gets a recorded disposition before
+  release. Provenance: the 2026-08-06 experiment's pre-registered
+  criterion resolved 3-for-3 (grading in dev-notes OBSERVATIONS
+  2026-08-15) — every release window yielded substance-changing
+  findings, the third a release-blocking instrument defect caught
+  before the pin moved.
 - **Provenance trace before any operator-routed decision.** When a
   run surfaces a decision or tension to the operator, the meta
   session traces the contested claim to its origin through the

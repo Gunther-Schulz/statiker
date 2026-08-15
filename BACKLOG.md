@@ -16,21 +16,6 @@ it is not decision-complete.
 
 ## Open
 
-- **READY (small, desk-only) 2026-08-15 — grade the skill-edit-review
-  experiment.** The trial convention (CLAUDE.md, operator-settled
-  2026-08-06) ran its three releases: 0.2.56 review (2026-08-10, 8
-  findings), 0.2.59 review (2026-08-11, 6 findings), ed3071c review
-  (2026-08-15, RELEASE-READY + 2 notes) — all dispositioned, records
-  in dev-notes/OBSERVATIONS.md. Design, decided by the convention
-  itself: read the pre-registered decision criterion (dev-notes,
-  2026-08-06) and grade the experiment against it; the outcome is an
-  operator decision round (keep / retire / amend the review
-  convention) with a recommendation. Verifier: the grading cites the
-  criterion's own text and the three review records. Done: graded,
-  operator round delivered, CLAUDE.md convention updated per the
-  decision. Write boundary: dev-notes/OBSERVATIONS.md, CLAUDE.md
-  (post-decision) — desk work, not dispatchable below the meta tier.
-
 - **PARKED 2026-08-15 — P4: the irreversible-unit hold needs a
   record-line grammar minted first.** Provenance: SENTENCE-B3
   (the damage-limiting rule has no instrument on either half) +
@@ -122,6 +107,17 @@ it is not decision-complete.
   in the arm file + triage record).
 
 ## Done
+
+- 2026-08-15 — **skill-edit-review experiment graded: SUSTAINS,
+  3-for-3 on the pre-registered criterion** (grading entry in
+  dev-notes/OBSERVATIONS.md 2026-08-15; body-read of the three
+  release windows' review records). Convention converted from
+  experiment to STANDING in CLAUDE.md: one fresh-context opus
+  review per SKILL.md release before the pin moves, same brief
+  form, findings dispositioned pre-release. Decision-grade without
+  an operator round per the trial's n=1 policy (resolved
+  pre-registered criterion; strengthens, never weakens, the safety
+  floor).
 
 - 2026-08-15 — **E-B/E-I/E-G′ shipped (lane R2, sonnet worktree
   dispatch; brief docs/directives/2026-08-15-lane-R2-brief.md).**

@@ -4634,3 +4634,26 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   UNIT_HELD/UNIT_DISPATCHABLE unaffected, "u1" → USAGE_ERROR).
   Full report: the reviewer's scratchpad file named in its message;
   substance restated here completely (scratchpads are mortal).
+
+- 2026-08-15 — **Skill-edit-review experiment GRADED — SUSTAINS
+  (criterion met 3-for-3; standing step minted into CLAUDE.md).**
+  Basis: body-read of the review records against the pre-registered
+  criterion (this file, 2026-08-06: sustain if >=1 of three reviews
+  yields a substance-changing finding — structural, provenance,
+  reach, or register; retire if all wording-only/empty). (1) 0.2.56
+  review: F4 CODE defect (concentration window one round early,
+  same-parentage fixture), fixed with a red-proven discriminating
+  pair — structural. (2) 0.2.59 review: F1/F2 executed containment
+  probes refuted the text's reach claims and drove the durable tool
+  repair shipped as ed3071c — reach. (3) 0.2.65 window (two
+  passes): ed3071c review RELEASE-READY + 2 dispositioned notes;
+  R2-insertions review B1 — `pinned` false-fired on the mandated
+  Status/Phase flip and MASKED a real tag rewrite, repaired
+  red-first before the pin moved — a release-blocking instrument
+  defect, the strongest catch of the series. Decision (n=1 policy:
+  resolved pre-registered criterion is decision-grade for
+  convention changes): the experiment framing dies, one
+  fresh-context opus review per SKILL.md release is the STANDING
+  pre-release step, same brief form (diff + full skill + question,
+  never author reasoning), findings dispositioned before the pin
+  moves. CLAUDE.md updated in this commit.
