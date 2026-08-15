@@ -948,6 +948,34 @@ def gap_filling_ids(entries):
     return hits
 
 
+def freeze_breach_violations(entries):
+    """E-F (begehung-harvest F7): the append freeze is decidable from
+    the tracker, not desk memory alone — a live round is the LATEST
+    A-line (latest-by-id, ordered by its own line) tagged [DISPATCHED]
+    with no resolving line, exactly the window `trend_over_rounds`
+    already parses for its own `rounds_a` filter. Any F/D/R entry
+    appended after it is a breach: material that should have queued
+    for the round's return landed in the live record instead."""
+    latest = latest_by_id(entries)
+    a_latest = sorted([e for e in latest.values() if e.cls == "A"],
+                      key=lambda e: e.lineno)
+    if not a_latest or a_latest[-1].tag != "DISPATCHED":
+        return []
+    freeze_a, freeze_at = a_latest[-1], a_latest[-1].lineno
+    out = []
+    for e in entries:
+        if e.cls in ("F", "D", "R") and e.lineno > freeze_at:
+            out.append({
+                "code": "freeze-breach", "line": e.lineno,
+                "text": f"{e.id}: appended after {freeze_a.id} [DISPATCHED] "
+                        f"(line {freeze_at}) with no resolving line — the "
+                        "round's own queue, not the live record",
+                "repair": "freeze breach: no repair token reaches it — the "
+                          "desk resolves the round (or the breach itself) "
+                          "before the record continues"})
+    return out
+
+
 def cmd_lint(args):
     _, rel, _, _ = repo_paths(args.tracker)
     entries, violations, meta, reach = parse_tracker(load(args.tracker))
@@ -962,6 +990,7 @@ def cmd_lint(args):
         say(f"lint: gap-filling id {hit['id']} @ line {hit['line']}: "
             f"below its class's already-allocated maximum — near-certainly "
             f"a namespace collision, not a status change")
+    violations = violations + freeze_breach_violations(entries)
     for v in violations:
         say(f"lint: {v['code']} @ line {v['line']}: {v['text']}")
     if violations:
@@ -1022,6 +1051,7 @@ def cmd_sweep(args):
     say_head_region_entries("sweep", reach)
     sweep_viols, clause_dispositions = sweep_checks(entries)
     violations += annotate_repairs(sweep_viols)
+    violations += freeze_breach_violations(entries)
     for v in violations:
         say(f"sweep: {v['code']} @ line {v['line']}: {v['text']}")
     say("judgment residue (desk work, not checked here): dead-basis "

@@ -2942,6 +2942,73 @@ class TestEESmallFixes(RecordFixture):
         self.assertIn(":486-487", text)
 
 
+# --------------------------------------------- E-F: the append freeze
+
+class TestEFFreezeBreach(RecordFixture):
+    """begehung-harvest F7: the append freeze is decidable from the
+    tracker — a live round (latest A-line [DISPATCHED], no resolving
+    line) makes any appended F/D/R line a breach."""
+
+    def test_probe_two_appended_entries_under_a_live_dispatch_fire(self):
+        body = ("- A1 [DISPATCHED] round 1 — basis: brief\n"
+               "- F5 [VERIFIED] queued finding one — basis: probe\n"
+               "- D3 [COMMITTED] queued decision — basis: probe\n")
+        sv = self.sweep(body)
+        self.assertEqual(sv["verdict"], "SWEEP_HOLDS")
+        self.assertEqual(self.violation_codes(sv), {"freeze-breach"})
+        lv = self.lint(body)
+        self.assertEqual(lv["verdict"], "LINT_VIOLATIONS")
+        self.assertEqual(self.violation_codes(lv), {"freeze-breach"})
+        # both breaching lines are named, not just the first
+        breach_lines = {v["line"] for v in sv["violations"]}
+        self.assertEqual(
+            breach_lines,
+            {self.lineno_of(body, "F5"), self.lineno_of(body, "D3")})
+
+    def test_resolved_a_line_control_stays_clean(self):
+        # the SAME two appended lines, but the round already resolved
+        # (ZERO-DELTA) after them — no live round, no breach
+        body = ("- A1 [DISPATCHED] round 1 — basis: brief\n"
+               "- F5 [VERIFIED] finding — basis: probe\n"
+               "- D3 [COMMITTED] decision — basis: probe\n"
+               "- A1 [ZERO-DELTA] clean return — basis: report\n")
+        sv = self.sweep(body)
+        self.assertEqual(sv["verdict"], "SWEEP_CLEAN")
+        lv = self.lint(body)
+        self.assertEqual(lv["verdict"], "LINT_CLEAN")
+
+    def test_queue_landed_before_outcome_control_stays_clean(self):
+        # the normal in-round shape: findings/decisions land, THEN the
+        # round's own outcome line closes it — not a breach
+        body = ("- A2 [DISPATCHED] round 2 — basis: brief\n"
+               "- F6 [VERIFIED] finding during the round — basis: probe\n"
+               "- A2 [BIT] found the mechanism — basis: report\n")
+        sv = self.sweep(body)
+        self.assertEqual(sv["verdict"], "SWEEP_CLEAN")
+        lv = self.lint(body)
+        self.assertEqual(lv["verdict"], "LINT_CLEAN")
+
+    def test_no_a_line_at_all_stays_clean(self):
+        v = self.sweep("- F1 [VERIFIED] a fact — basis: y\n")
+        self.assertEqual(v["verdict"], "SWEEP_CLEAN")
+
+    def test_a_only_line_after_a_live_dispatch_is_not_a_breach(self):
+        # the freeze governs F/D/R, never A itself — a fresh A-line is
+        # how a round's own outcome or the next round gets recorded
+        body = ("- A1 [DISPATCHED] round 1 — basis: brief\n"
+               "- A2 [DISPATCHED] a second, unrelated round — basis: brief\n")
+        v = self.sweep(body)
+        self.assertEqual(v["verdict"], "SWEEP_CLEAN")
+
+    def test_closure_and_waves_scope_is_unchanged(self):
+        # E-F scopes the fire to sweep/lint only; closure's own
+        # blocking set and waves are untouched
+        body = ("- A1 [DISPATCHED] round 1 — basis: brief\n"
+               "- F5 [VERIFIED] queued finding — basis: probe\n")
+        wv = self.waves(body)
+        self.assertEqual(wv["verdict"], "WAVES_COMPUTED")
+
+
 # ---------------------------------------------------- pure-function checks
 
 class TestPureFunctions(unittest.TestCase):
