@@ -7,105 +7,6 @@ build tooling, but a clause mint still needs its incident.
 
 ## Open
 
-- **READY (small) 2026-08-11 — close the splitlines CLASS in the
-  remaining verdict readers.** The record fixture's reader is
-  repaired (2eb6b59, with a standing separator case); the same
-  class sits latent in test_contract.py's `run_battery` stdout
-  reader and tools/test_statiker_git.py's reader — no row emits an
-  exotic byte, so nothing fails, which is exactly the quiet
-  direction. Design, decided: both readers split on "\n" only,
-  mirroring the record fixture's repair; one separator-carrying
-  case per reader, mirroring
-  test_the_fixture_reader_survives_a_separator_in_the_block.
-  Verifier: each new case parses its verdict line through the
-  repaired reader; full `pytest tools/` green. Done: no
-  str.splitlines() over tool stdout remains in tools/ (grep shows
-  the two named sites gone; the record fixture's already is).
-  Write boundary: tools/test_contract.py,
-  tools/test_statiker_git.py.
-
-- **READY 2026-08-11 — begehung-harvest 2: four gate/instrument
-  defects in the record tool, each with an executed false-clean or
-  false-verdict probe.** Complete record with fixtures:
-  begehung repo, dev-notes/eval-begehung/2026-08-11-opus/
-  (tier2-without.md findings 2-5; probe fixtures re-runnable in
-  that session's scratchpad, arrangements quoted in the file).
-  The set: (a) `corrects line <n>` sheds by line number without
-  consulting the violation's class — reaches the header and
-  INTENT (Red executed: `Status: bogus-status` + one record-scoped
-  token → LINT_CLEAN + SWEEP_CLEAN with the bogus header standing;
-  INTENT tag-literal shed on the verdict's own recommended line →
-  SWEEP_CLEAN with `[PASSED]` standing for clippy-stats' unanchored
-  grep); fix shape: shed only REPAIR_BOOKKEEPING codes, supersede
-  only MACHINE_TOKEN_CODES, else `corrects-nothing`. (b) `waves`
-  path FIELD lacks the composition lint the declarator got: a
-  two-path line reads as one exotic filename (Red executed: U2
-  `src/app.py src/util.py` placed parallel-eligible beside U1
-  `src/app.py`, LINT_CLEAN); fix shape: whitespace-in-path and
-  leading-`/` lint positionally, like write-set-near-miss. (c)
-  `trend` annexes a VOID round's span into its successor and
-  computes bucket 1 from line 0 (Red executed: verdict flip
-  WORSENING→IMPROVING on three pre-attack F-lines over an
-  unchanged 2→1 yield series); fix shape: advance window at VOID
-  A-lines, start bucket 1 at first [DISPATCHED], or emit the
-  merge visibly. (d) BrokenPipe kills the one-verdict-line
-  guarantee with exit 0 (Red executed: `waves | head -1` →
-  traceback, no verdict, pipeline exit 0); fix shape: catch at
-  the emit boundary, defined exit code — both tools. Design,
-  decided: the four fix shapes above, each taken from the arm's
-  own repair paragraph (the classification-table consult for (a)
-  and the positional-lint mirror for (b) are existing in-repo
-  patterns, not new design). Verifier:
-  each probe as a red-first battery case; full `pytest tools/`
-  green. Done: all four probes flip (false-clean cases now
-  lint/halt, the trend fixture reads its true series), battery
-  green, and the boundary note from the WITHOUT arm (sweep-code
-  immunity is ordering-dependent) either pinned by a test or
-  recorded as accepted. Write boundary: statiker_record.py,
-  statiker_git.py, tools/test_statiker_record.py,
-  tools/test_statiker_git.py, tools/test_contract.py.
-  AMENDED 2026-08-15 (triage, dev-notes/triage-three-arm-2026-08-15.md):
-  (d2) same class as (d) — module-level `float()` on
-  STATIKER_GIT_RETRY_BASE (statiker_git.py:71) sits outside main()'s
-  try: `STATIKER_GIT_RETRY_BASE=abc … state-gate` → bare traceback,
-  exit 1, NO verdict line (three-arm SENTENCE-NEW-1, executed); fix
-  shape: move the read inside the guarded region, same defined exit
-  code as (d). And defect (b)'s lint is the closer for the three-arm
-  cross-confirmed absolute-path class (WITH-B3 / WITHOUT-F10 /
-  SENTENCE-A4): its red probes join (b)'s battery cases.
-
-- **READY 2026-08-11 — worktree-add containment joins the record
-  tool's semantics (every-repo walk + as-named/real agreement).**
-  Provenance: 0.2.59 review F1+F2, both EXECUTED — (F1) from repo A,
-  `worktree-add --path ../B/wt-in-B` returned WORKTREE_ADDED and
-  left `?? wt-in-B/` in sibling B's tree (green verdict, foreign
-  tree polluted — the attack-9 exposure the record tool's `--out`
-  check already closes, statiker_record.py:1156-1184); (F2) the
-  symlink spelling `link/wt` (link -> outside dir) passed
-  worktree-add while `filter --out link/art.md` halts
-  ARTIFACT_IN_REPO — the worktree path is the one must-be-outside
-  member decided real-only. Design, decided: `Repo.outside()` gains
-  the every-enclosing-repo probe the record tool carries AND the
-  named-and-real-agree rule; PATH_INSIDE_REPO fires on any
-  enclosing repo and on as-named/real disagreement. Same commit:
-  SKILL.md's principle-sentence worktree exception (The tools) and
-  the provisioning parenthetical's this-repo-only scope both die —
-  the wording exists only because the tool lacks the check.
-  Verifier, red-first: the reviewer's two probes as battery cases
-  (both currently WORKTREE_ADDED, must halt), plus the existing
-  outside-dir case staying green; battery green. Red executed
-  (0.2.59 review, fresh-context probes against HEAD, observed
-  output in the review record): from repo A `worktree-add --sha
-  <lock> --path ../B/wt-in-B` → `WORKTREE_ADDED`, then
-  `git status --porcelain` in B → `?? wt-in-B/`; with symlink
-  `A/link -> <outside dir>`, `worktree-add --path link/wt` →
-  `WORKTREE_ADDED` while `filter --out link/art.md` →
-  `ARTIFACT_IN_REPO`. Done: both probes halt PATH_INSIDE_REPO,
-  the outside-dir case stays WORKTREE_ADDED, battery green, and
-  the two SKILL.md reach-exception sentences are deleted in the
-  same commit. Write boundary: statiker_git.py,
-  tools/test_statiker_git.py, SKILL.md (the two sentences).
-
 - **READY 2026-08-15 — E-A: verdicts carry their reach (entry
   count, head boundary, R-line count, tracker-path lint).**
   Provenance: triage T1 (three-arm WITHOUT-F1 blocking +
@@ -295,6 +196,33 @@ build tooling, but a clause mint still needs its incident.
   in the arm file + triage record).
 
 ## Done
+
+- 2026-08-15 — **harvest lane shipped: splitlines class + begehung-
+  harvest 2 + worktree-add containment** (sonnet dispatch, brief
+  docs/directives/2026-08-15-harvest-lane-brief.md; dispatcher's own
+  verification: full suite 307/307, done-greps 0 hits). Commits:
+  9fa8d8e (splitlines class closed in test_contract.py +
+  test_statiker_git.py readers, shared split_lines helper,
+  separator red-first cases); 8b3438e (0.2.62 bump — GAP 1: the
+  desk's pushed 0.2.61 bump had consumed the hook's unpushed-batch
+  exemption, bump ownership extended to the lane); 606c04a
+  (harvest-2 (a) shed gated by REPAIR_FORMS class, (b) write-set
+  path-field positional lint with INVALIDATED-tag exemption
+  [accepted deviation — avoided regressing an existing fixture,
+  both probes still lint], (c) trend windows anchored at own
+  [DISPATCHED] lines, (d)/(d2) BrokenPipe + bad-env verdict at
+  exit 3); ed3071c (worktree-add probes every enclosing repo from
+  the target's PARENT + as-named/real agreement, two SKILL.md
+  reach-exception sentences deleted); 81f2cf6 (GAP 2: probe B did
+  not flip under the booked fix shape — tag-literal-in-body is
+  genuinely bookkeeping-classed — desk redesign: owner-conditioned
+  shed for that code only, repair field states the hold for
+  owner-less targets; ES6 test re-vehicled to
+  superseded-block-form to keep asserting its intended claim).
+  All red-first arrangements stash-proven with pasted output (lane
+  report + commit messages). NOTE: the SKILL.md edit (ed3071c) is
+  release-review-owed — one fresh-context opus review before the
+  pin moves (CLAUDE.md skill-edit experiment, three releases).
 
 - 2026-08-15 — **three-arm review harvest triaged** (booked
   2026-08-11 as ~25 findings; final count 38 raw ids across the
