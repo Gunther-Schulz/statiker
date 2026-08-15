@@ -217,6 +217,40 @@ it is not decision-complete.
   the pin is the one thing it cannot fool). Run it at resume and
   before any re-lock."
 
+- **READY (small) 2026-08-15 — E-J: byte-level fidelity reaches the
+  git tool's broken-pipe stderr fallback.** Provenance: lane G gap
+  (report 2/4): `_stderr_fallback` still uses text-mode
+  `print(file=sys.stderr)` while the record tool's version writes
+  the buffer with surrogateescape — the E-C class, one path over.
+  Fires only when stdout is already gone, so severity is low, but
+  it is the third byte-policy carry-across instance (T22's counter:
+  the shared-emit-helper extraction trigger is now met — extracting
+  ONE emit/stderr helper both tools import satisfies this entry
+  AND retires the class). Design, decided: mirror the record
+  tool's byte-level stderr fallback, by extraction or by copy —
+  extraction preferred per T22. Verifier, red-first: broken-pipe +
+  non-UTF-8-path arrangement, fallback line carries the byte.
+  Done: probe flips, full suite green. Write boundary:
+  statiker_git.py, statiker_record.py (if extracting),
+  tools/test_statiker_git.py.
+
+- **READY (small) 2026-08-15 — E-K: EMIT_CONDUITS false-fire gets
+  its declared exemption.** Provenance: lane G deviation 3
+  (executed): the contract battery's conduit check is a bare-name
+  AST match ({"failure_verdict","name","verdict"}, scope-unaware) —
+  an ordinary local named `name` in branch_state() tripped it, and
+  the lane's cure was a rename (workaround, not repair). Per the
+  corpus guard rule, a check firing on legitimate work gets a
+  declared, checked exemption — never a softened predicate or an
+  avoidance habit. Design, decided (minimum): a comment at the
+  EMIT_CONDUITS definition naming the false-fire class and the
+  rename cure; better if cheap at build time: restrict the match to
+  assignments that reach a finish()/say() call. Verifier: the
+  battery stays green on the current tree and still fails on a real
+  conduit rename (existing red case re-run). Done: comment (or
+  scoped match) landed, battery green both directions. Write
+  boundary: tools/test_contract.py.
+
 - **PARKED 2026-08-15 — P1: the seal/queue/repo-key namespace
   needs a design decision before any mechanism.** Provenance:
   triage T8 (WITH-B1 executed: three defensible derivations of one
@@ -259,6 +293,38 @@ it is not decision-complete.
   in the arm file + triage record).
 
 ## Done
+
+- 2026-08-15 — **E-C/E-D/E-H shipped (lane G, sonnet worktree
+  dispatch; brief docs/directives/2026-08-15-lane-G-brief.md).**
+  On main as 5a6cd46 (E-C byte-level emit in the git tool —
+  say() via stdout.buffer/surrogateescape, ensure_ascii=False),
+  d31909e (E-D unit sha parsed from the commit's own output,
+  head_shown_paths reads at THAT sha — the WITHOUT-F9 hook-window
+  probe books no false extras), 3c948d3 (E-H preflight
+  branch:/worktree: fields, field-not-gate). Per-entry stash-proof
+  reds pasted in the lane report; dispatcher's combined suite
+  335/335. In-lane parity catch: a first-draft new verdict name
+  (COMMIT_SHA_UNPARSEABLE) went red on the battery and was
+  redesigned to reuse COMMIT_FAILED — the brief's rule, applied
+  without a round trip. Residuals booked: E-J (stderr fallback
+  byte fidelity, T22 trigger now met), E-K (EMIT_CONDUITS
+  false-fire exemption). E-D's defensive unreachable fallback and
+  the bare-repo/GIT_DIR layouts remain honest residue (lane report
+  slot g).
+
+- 2026-08-15 — **E-A/E-E/E-F shipped (lane R, sonnet worktree
+  dispatch; brief docs/directives/2026-08-15-lane-R-brief.md).**
+  On main as 0f1e9a5 (E-A verdict reach: entries/head_boundary/
+  r_lines fields + .clippy/runs lint), 0c9e56b (E-E four one-shape
+  fixes: newest_commit field, gap-filling-id lint, USAGE_ERROR
+  routing, C1 docstring), 9589581 (E-F append-freeze breach
+  detection). Suite 329/329 at integration. E-B/E-I/E-G halted on
+  correct gap calls and re-dispatched as lane R2 (E-B/E-I with
+  pre-named SKILL.md route sentences, same-commit parity rule;
+  E-G′ Mode+Budget; irreversible half parked as P4). Desk
+  incident, same hour: mint-first SKILL.md routes went red on the
+  parity battery's phantom direction (d56c64f, reverted b0b1cc9,
+  firing logged in OBSERVATIONS).
 
 - 2026-08-15 — **harvest lane shipped: splitlines class + begehung-
   harvest 2 + worktree-add containment** (sonnet dispatch, brief
