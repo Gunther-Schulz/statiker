@@ -221,6 +221,28 @@ it is not decision-complete.
   the declaration instead of firing. Trigger: the next run's
   grading entry tripping it.
 
+- **READY (small) 2026-08-15 — E-N: a corrects token outside the
+  entry body lints loudly instead of no-opping silently.**
+  Provenance: F205 (relay 5, measured at the beat-the-books desk):
+  a `corrects line <n>` token placed in an entry's BASIS clause is
+  invisible to the resolver — the parser searches only entry
+  bodies — and no lint fires: a silent no-op, the worst shape (the
+  repair looked landed and repaired nothing). Design, decided: new
+  lint class `corrects-token-out-of-body` — fires when the
+  correcting token appears in a region the resolver does not
+  search (basis clause; any non-body position of an entry line);
+  the repair form names the split the desk derived (token sheds
+  the violation under the same id in the BODY; a fresh id
+  re-declares any path). Lint class, not closure-blocking.
+  Verifier, red-first: fixture with the token in a basis clause —
+  silent under old code (zero violations), the new class under
+  new; body-token fixtures stay clean. Done: pair flips, full
+  suite green. Write boundary:
+  plugin/skills/statiker/scripts/statiker_record.py,
+  tools/test_statiker_record.py. BUILD in Lane D (bundles with
+  P1/P2; statiker_record.py overlap with Lane C — after it
+  integrates).
+
 ## Done
 
 - 2026-08-15 — **P5 dropped same-day (no-grandfather rule, CLAUDE.md

@@ -4891,3 +4891,37 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   an artifact that carried the evidence. D94 unaffected, still
   with the operator. Consumer: the close's grading; the post-A9
   release seam.
+
+- 2026-08-15 — **Relay 5 harvested (AMENDED GO EXECUTED — lock
+  83c2e397, ROUND 9 dispatched to opus, ~45min horizon; freeze in
+  force).** F158 gaps closed with independent corroboration (U7's
+  executed search found exactly the 12 call sites D9(b) recorded;
+  search reach shown live on a known positive). Three en-route
+  incidents: (1) F204 — the unit-id grammar is digits-only
+  (`^unit U\d+ ` across four regexes), so the run's U4a/U4b could
+  not carry write-sets or holds; the NEAR-MISS machinery made it
+  loud (scope-near-miss fires on `unit U4a …`), the desk remapped
+  U4a→U10/U4b→U11 (D105, both ids verified unused, renumbering
+  chosen against D81(ii)'s silent-unpin warning) — grammar HELD,
+  disposition correct under the no-grandfather rule, NO tool
+  change owed; noted: SKILL.md's `U<k>` could state digits-only
+  explicitly, not minted (executable spec + near-miss already
+  answer it). (2) F203 — desk script shadowed a variable and
+  appended 43 record lines into docs/CHANGELOG.md; the printed
+  success proved nothing (the script reported the right count),
+  caught by the NEXT verification step reading a number that
+  could not be true, recovered effect-read-first with a provably
+  scoped restore — the verify-at-effect-altitude rule working,
+  desk-side, no mint. (3) F205 — a corrects token in a basis
+  clause is INVISIBLE to the resolver and raises no complaint (a
+  measured silent no-op; the parser searches only entry bodies)
+  → E-N booked READY below; the path-field half correctly
+  rejected by the existing whitespace rule. Also at the seam:
+  D100 placements (repo-derived), D107 (migration file_template
+  premise corrected against the repo's actual naming), D106 ready
+  claim naming what it does NOT claim, U5 still HELD under D94
+  (operator answer outstanding). Repo 10 ahead, nothing pushed.
+  Release still targeted at the pre-implementation seam; round
+  9's return processes on 0.2.65 if the review batch is not
+  through by its A-line. Consumer: the release seam; the close's
+  grading.
