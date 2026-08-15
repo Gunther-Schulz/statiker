@@ -4789,3 +4789,31 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   retroactive-grammar debt on append-only records; mechanism: the
   `--since` reach above, or an explicit stated-deviation route at
   the ready gate — neither exists today.
+
+- 2026-08-15 — **Relay 2 harvested + operator override on the
+  grandfather mint.** Relay 2 (cycle-12 progress, tracker
+  a91d322b): the 25 grammar repairs DONE state-preservingly
+  (closure now CLOSURE_ABSENT, zero violations; D91 re-linked to
+  live tags, catching the naive revert-to-historical-text trap on
+  R5); F138 measured ZERO with a discriminating pair drawn from
+  the data (the pre-fix single-home-row rule shows 17,075
+  Pinnacle-side — D40's red-first pin firing live for the first
+  time); F129's repair changed shape at the consuming read —
+  suppression over skipping (D90): both membership sites decide on
+  set-ABSENCE, so a skip-guard would have shipped fail-open in
+  fail-closed clothing; ready gate measured unreachable — 696/718
+  holds are rules postdating the lines they grade → (a) stated
+  deviation AFFIRMED at this desk, branch (2) stays closed, P5
+  booked PARKED; F147 tool defect booked by the desk itself
+  (271a6bf, verified here) → E-M READY; desk corrected its own
+  trend read with the tool's number (FLAT, [80,0,1,7,19,38,149,
+  149]) — attacker-count and F-line-count measures now stand side
+  by side; desk self-applied the form question and stopped its own
+  hygiene loop (D92) after three rounds each minted the next's
+  defect — F143's shape at small scale, caught deskside. OPERATOR
+  OVERRIDE, recorded exit: the budget-grandfather clause
+  (bc5e9d6) REVERTED at f5471ac on operator decision — no other
+  users/repos run the skill, so the clause's future firing
+  population is empty (the one pre-Budget run has its budget
+  declared on record). Incident and rationale remain in the
+  relay-1 entry; a recorded drop, not a loss.
