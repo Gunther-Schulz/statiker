@@ -4,6 +4,13 @@ Future work graded by decision-completeness (operator-corpus file
 roles). PLAN.md stays the design record; entries here are work items,
 and a SKILL.md change stays fire-born per CLAUDE.md — an entry can
 build tooling, but a clause mint still needs its incident.
+Composition checks, from lane R's two independent hits 2026-08-15:
+an entry minting a NEW verdict name carries a SKILL.md-authorship
+dependency (the contract battery's parity test demands the name be
+routed there) — the entry names the route sentence or the mint
+lands first; and an entry citing SKILL.md prose as a record-line
+grammar quotes the backtick literal at MINT time, or it is not
+decision-complete.
 
 ## Open
 
@@ -41,6 +48,13 @@ build tooling, but a clause mint still needs its incident.
   green, full suite green. Write boundary:
   statiker_record.py, tools/test_statiker_record.py,
   tools/test_contract.py (new verdict row).
+  AMENDED 2026-08-15 (lane R gap 1): the SKILL.md route for
+  UNIT_UNKNOWN is now minted (closure --unit enumeration; the
+  parity test passes with it). Implementation note from lane R,
+  binding: compute via a standalone `known_units_of(entries)`
+  helper — never widen waves_over_units' return tuple, which
+  tools/test_statiker_git.py (a foreign lane's file) unpacks
+  as a 4-tuple.
 
 - **READY 2026-08-15 — E-C: the byte-level emit rule (ES-9) joins
   the git tool.** Provenance: triage T3 (WITHOUT-F4 high +
@@ -106,25 +120,38 @@ build tooling, but a clause mint still needs its incident.
   flips, full suite green. Write boundary: statiker_record.py,
   tools/test_statiker_record.py.
 
-- **READY 2026-08-15 — E-G: the computable header-field slice
-  (Budget, Mode, irreversible).** Provenance: triage T14's
-  mechanical half (WITHOUT-F8 + SENTENCE-B3 + SENTENCE-B4; probes
-  executed — a header with neither field and no V-line reads
-  LINT_CLEAN; `irreversible`/`Mode:` appear in no script or
-  suite). Design, decided: closure --unit returns a hold when the
-  unit's scoped entries carry the irreversible literal and the
-  header's Mode is unattended (UNIT_HELD's literal-read pattern);
+- **READY 2026-08-15 — E-G′: the computable header-field slice,
+  Mode + Budget halves only.** Provenance: triage T14's mechanical
+  half (WITHOUT-F8 + SENTENCE-B4; probes executed — a header with
+  neither field and no V-line reads LINT_CLEAN; `Mode:`/`Budget`
+  appear in no script or suite). RESCOPED 2026-08-15 (lane R gap
+  3): the irreversible half is PARKED separately below — SKILL.md
+  defines no record-line grammar for it, and its own text routes
+  enforcement through the existing hold entry. Design, decided:
   sweep/closure verdicts surface the Mode line (late_intent
-  pattern); sweep emits an evidence line when trend's resolved-
-  round count meets/exceeds Budget. First build step: verify the
-  literal forms against SKILL.md's own sentences (:441-450,
-  :475-477, :161-168) before pinning the reads. Verifier,
-  red-first: one probe per instrument (irreversible+unattended
-  must hold; Budget-exhausted tracker must show the evidence
-  line); attended and under-budget controls stay clean. Done:
+  pattern); sweep emits an evidence line when trend's
+  resolved-round count meets/exceeds Budget. `Mode:` and `Budget:`
+  are literal header-line reads, same shape as Status/Phase.
+  Verifier, red-first: Budget-exhausted tracker shows the evidence
+  line, under-budget control clean; Mode line surfaces in the
+  verdict, absent-Mode control shows the field absent/none. Done:
   probes flip, full suite green. Write boundary:
-  statiker_record.py, tools/test_statiker_record.py,
-  tools/test_contract.py if a verdict is added.
+  statiker_record.py, tools/test_statiker_record.py.
+
+- **PARKED 2026-08-15 — P4: the irreversible-unit hold needs a
+  record-line grammar minted first.** Provenance: SENTENCE-B3
+  (the damage-limiting rule has no instrument on either half) +
+  lane R gap 3 (first-build-step check executed: SKILL.md
+  :441-450 says a unit "is tagged irreversible in its enumeration"
+  as prose — no backtick-quoted literal exists, and the
+  unattended-irreversible case "takes the hold entry", i.e. the
+  text routes enforcement through the EXISTING UNIT_HELD
+  mechanism; a bare-word scan would false-fire on "not
+  irreversible" and on shared bodies). Missing design, named: mint
+  an exact irreversible tag grammar into SKILL.md (the
+  HOLD_EXACT_RE precedent) OR decide the hold-entry route suffices
+  and record that as the standing shape — a SKILL.md design
+  decision at a seam, fire-born discipline applies.
 
 - **READY 2026-08-15 — E-H: preflight reports branch state.**
   Provenance: triage T15 (WITHOUT-F6; both probes executed —
@@ -153,6 +180,9 @@ build tooling, but a clause mint still needs its incident.
   green, contract battery rows added. Write boundary:
   statiker_record.py, tools/test_statiker_record.py,
   tools/test_contract.py.
+  AMENDED 2026-08-15 (lane R gap 2): SKILL.md now names `pinned`
+  and its verdict pair at the append-only home (run at resume and
+  before any re-lock); the parity blocker is gone.
 
 - **PARKED 2026-08-15 — P1: the seal/queue/repo-key namespace
   needs a design decision before any mechanism.** Provenance:

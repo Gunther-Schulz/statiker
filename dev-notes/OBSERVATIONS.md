@@ -4569,3 +4569,22 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   statiker_record.py:1316-1325, so this is the rule's standing
   shape, not a regression of this edit). Experiment slot: review 1
   of the ed3071c-era edits, discharged pre-pin-move.
+
+- 2026-08-15 — **Two fire-born SKILL.md route mints (lane R gaps 1+2;
+  provenance: three-arm probes + the parity contract's own red).**
+  (1) UNIT_UNKNOWN at the closure --unit enumeration — incident:
+  WITHOUT-F2/SENTENCE-A2 (a typo'd unit id clears a hold silently,
+  executed), plus lane R's empirical parity red (TestVerdictParity
+  fails on any emitted verdict SKILL.md does not route; diff built,
+  observed, reverted). (2) `pinned` + PINNED_APPEND_ONLY/
+  PINNED_REWRITTEN at the append-only home, routed at resume and
+  before any re-lock — incident: SENTENCE-B1 (in-place
+  [PENDING]→[VERIFIED] rewrite under a pin reads SWEEP_CLEAN,
+  executed), same parity red confirmed via dead-code probe emitting
+  both literals. Both mints precede their implementing lane
+  (E-B/E-I re-dispatched); skill-edit review owed at the next
+  pre-pin seam per the trial convention. NOTE owed to the operator:
+  today's ed3071c review was the THIRD of the three-release
+  skill-edit-review experiment — the pre-registered decision
+  criterion (dev-notes, 2026-08-06) is now gradeable; grading
+  booked, not yet run.
