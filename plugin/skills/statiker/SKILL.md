@@ -601,8 +601,9 @@ not produce it, before implementation. The attack brief carries the
 tracker PINNED at the locked design's commit — produced by the
 record tool: `filter --tracker <path> --sha <lock sha> --out
 <artifact path>` serves the sha, never the working tree (a live
-tree serves HEAD) — the artifact path sits OUTSIDE every repo,
-like the seals and for the seal rule's reason (an in-repo
+tree serves HEAD) — the artifact path is the namespace's
+`.A<n>.artifact` species (seal-path prints it), OUTSIDE every
+repo like the seals and for the seal rule's reason (an in-repo
 artifact is an untracked file under a brief asserting tree ==
 lock commit; the tool halts ARTIFACT_IN_REPO on any, halts a
 symlink tracker — name the real path — and `--out` alone is
@@ -638,7 +639,11 @@ shared store; the tracker's
 filename verbatim with `.md`. XDG state, never `~/.claude/`:
 that path shape draws permission dialogs on every access) —
 existing whether or not a seal was
-written — and append at the round's return, before its A-line. The
+written — and append at the round's return, before its A-line,
+then SPEND the queue: append `LANDED <yyyy-mm-dd> — at line <n>`
+(the tracker line the landing opened) as its last line; a queue
+whose last non-blank line matches that form is spent, and
+re-landing a spent queue is the double-landing halt. The
 freeze's scope is every surface the brief claims immutable: a
 brief asserting the tree matches the lock commit (the TREE
 CLAIM) freezes the whole
@@ -688,8 +693,11 @@ is a sealed prediction, written before the round dispatches to
 `~/.local/state/statiker/seals/<repo-key>/<tracker-filename>.A<n>.seal`
 (repo-key as the queue path derives it, then the tracker's
 filename verbatim, `.md`
-included) — a path any successor desk re-derives from the repo
-it resumes in plus the tracker's filename; out of
+included) — a path any successor desk re-derives through the git
+tool's `seal-path --tracker <path> --round A<n>` verdict
+(SEAL_PATH: every species' full path — seal, queue, paths,
+artifact, report, comparison — from the pinned derivation; paste,
+never hand-compose); out of
 the repo because attackers read the repo, and an in-repo seal
 breaks any brief asserting tree == lock commit. At the round's
 return the desk compares seal against bites and writes the

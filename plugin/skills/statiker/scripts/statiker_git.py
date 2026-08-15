@@ -23,6 +23,14 @@ Subcommands (each prints evidence lines, then exactly one final line
   unit-commit --write-set P ... -m MSG
                                     unit COMMIT with capped contention
                                     retry and HEAD-read discriminator
+  seal-path --tracker P --round A<n>
+                                    every seal-namespace species' full
+                                    path (SEAL_PATH: seal, queue,
+                                    paths, artifact, report,
+                                    comparison) from the pinned
+                                    repo-key derivation — derived in
+                                    the MAIN checkout even when
+                                    invoked from a linked worktree
   worktree-add    --sha S --path P provision a worktree at a locked
                                     sha; P must sit OUTSIDE the repo
   worktree-remove --path P         forced removal of a provisioned
@@ -58,6 +66,7 @@ Design constraints carried from the attack rounds:
 """
 
 import argparse
+import hashlib
 import json
 import os
 import re
@@ -299,6 +308,75 @@ def textual_repo_top(path: str):
         if parent == cur:
             return None
         cur = parent
+
+
+def main_toplevel_real(repo):
+    """The MAIN checkout's toplevel REAL path, even when invoked from
+    inside a linked worktree: `--git-common-dir` names the shared
+    store — its parent (the standard `.git`-directory layout) is the
+    main checkout's toplevel. For the main checkout itself this
+    equals `--show-toplevel` already (git_dir == common_dir there),
+    so no branch is needed (P1, SKILL.md's repo-key derivation:
+    'derive it in the MAIN checkout, never a linked worktree, where
+    --show-toplevel answers with the worktree and --git-common-dir
+    names the shared store')."""
+    common = os.fsdecode(repo.git("rev-parse", "--git-common-dir").stdout.strip())
+    common_path = Path(common)
+    if not common_path.is_absolute():
+        common_path = repo.top / common_path
+    return os.path.realpath(str(common_path.parent))
+
+
+def repo_key(main_top_real: str) -> str:
+    """`basename`-hyphen-first-8-hex-of-sha256(REAL path) (P1,
+    SKILL.md's pinned derivation) — the basename alone collided for
+    two checkouts sharing a name, a fork beside its origin."""
+    digest = hashlib.sha256(
+        main_top_real.encode("utf-8", "surrogateescape")).hexdigest()[:8]
+    return f"{os.path.basename(main_top_real)}-{digest}"
+
+
+SEAL_SPECIES = ("seal", "queue", "paths", "artifact", "report", "comparison")
+
+# P1(2): a queue is SPENT when its LAST NON-BLANK line matches this
+# form (SKILL.md, The attack) — the tracker line the landing opened.
+# In-band so a successor desk reading the queue sees it, append-only,
+# and verifiable against the tracker; a queue whose tail does NOT
+# match is live, whether never-landed or reopened by a later append
+# after a prior landing. No tool enforcement this version — no
+# subcommand reads a queue file; this is the grammar's own certified
+# pure reference.
+QUEUE_SPENT_RE = re.compile(r"^LANDED \d{4}-\d{2}-\d{2} — at line \d+$")
+
+
+def queue_is_spent(text: str) -> bool:
+    lines = [l for l in text.split("\n") if l.strip()]
+    if not lines:
+        return False
+    return bool(QUEUE_SPENT_RE.match(lines[-1]))
+
+
+def seal_namespace_paths(key: str, tracker_filename: str, round_: str):
+    """Every species' full path under the ONE seal namespace (P1,
+    SKILL.md's pinned derivation + the invented-homes pin): XDG state,
+    never `~/.claude/` (that path shape draws permission dialogs on
+    every access)."""
+    base = Path(os.path.expanduser("~/.local/state/statiker/seals")) / key
+    stem = f"{tracker_filename}.{round_}"
+    return {species: str(base / f"{stem}.{species}") for species in SEAL_SPECIES}
+
+
+def cmd_seal_path(repo, args):
+    if not re.fullmatch(r"A\d+", args.round):
+        raise Halt("USAGE_ERROR",
+                   error=f"--round must match A<n>, got {args.round!r}")
+    tracker_rel = repo.rel(args.tracker)
+    tracker_filename = os.path.basename(tracker_rel)
+    main_top_real = main_toplevel_real(repo)
+    key = repo_key(main_top_real)
+    paths = seal_namespace_paths(key, tracker_filename, args.round)
+    finish("SEAL_PATH", 0, repo_key=key, tracker=tracker_rel,
+          round=args.round, **paths)
 
 
 def lock_committed_verdict(shas, extras, drops):
@@ -949,6 +1027,10 @@ def main():
     p.add_argument("--write-set", action="append", nargs="+", required=True)
     p.add_argument("-m", "--message", required=True)
 
+    p = sub.add_parser("seal-path")
+    p.add_argument("--tracker", required=True)
+    p.add_argument("--round", required=True)
+
     p = sub.add_parser("worktree-add")
     p.add_argument("--sha", required=True)
     p.add_argument("--path", required=True)
@@ -963,6 +1045,7 @@ def main():
         "lock-commit": cmd_lock_commit,
         "unit-start": cmd_unit_start,
         "unit-commit": cmd_unit_commit,
+        "seal-path": cmd_seal_path,
         "worktree-add": cmd_worktree_add,
         "worktree-remove": cmd_worktree_remove,
     }

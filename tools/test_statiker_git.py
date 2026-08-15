@@ -1039,6 +1039,26 @@ class TestPureFunctions(unittest.TestCase):
         name, d = self.m.unit_committed_verdict("s1", set(), [])
         self.assertEqual(name, "UNIT_COMMITTED")
 
+    def test_queue_spent_grammar(self):
+        # P1(2): a queue is SPENT when its LAST NON-BLANK line matches
+        # `^LANDED <yyyy-mm-dd> — at line <n>$` (SKILL.md, The attack)
+        # — no tool enforcement this version (no subcommand reads a
+        # queue file); this pure function is the grammar's own
+        # certified reference.
+        spent = ("- desk finding one\n"
+                "- desk finding two\n"
+                "\n"
+                "LANDED 2026-08-15 — at line 42\n")
+        self.assertTrue(self.m.queue_is_spent(spent))
+        unconsumed = "- desk finding one\n- desk finding two\n"
+        self.assertFalse(self.m.queue_is_spent(unconsumed))
+        # a stale LANDED line buried under a later append is NOT the
+        # tail — the queue is live again until its OWN last line lands
+        reopened = ("LANDED 2026-08-15 — at line 42\n"
+                    "- a fresh finding queued after the landing\n")
+        self.assertFalse(self.m.queue_is_spent(reopened))
+        self.assertFalse(self.m.queue_is_spent(""))
+
 
 class TestAttack8NonAsciiReadback(GitFixture):
     """attack-8 B1: `git show --name-only` C-quotes non-ASCII paths
@@ -1835,6 +1855,82 @@ class TestHarvest2BrokenPipeAndRetryBaseEnv(GitFixture):
         p = self.tool("state-gate")
         v = self.verdict(p)
         self.assertEqual(v["verdict"], "STATE_CLEAN", v)
+
+
+# ----------------------------------------------------------- seal-path (P1)
+
+def expected_seal_species(main_top_real, tracker_filename, round_, home):
+    """The independent reference derivation (SKILL.md-pinned, The
+    attack + The tools): basename-hyphen-first-8-hex-sha256 of the
+    MAIN checkout's REAL toplevel path, joined with the tracker's own
+    filename and the round id — computed here from first principles,
+    never by calling into the tool under test. `home` is the
+    SUBPROCESS's own HOME (hermetic_env's `/nonexistent` sentinel,
+    never this process's) — expanduser() here would resolve `~`
+    against the wrong environment entirely."""
+    import hashlib
+    digest = hashlib.sha256(
+        main_top_real.encode("utf-8", "surrogateescape")).hexdigest()[:8]
+    key = f"{os.path.basename(main_top_real)}-{digest}"
+    base = os.path.join(home, ".local/state/statiker/seals", key)
+    stem = f"{tracker_filename}.{round_}"
+    return key, {
+        "seal": os.path.join(base, f"{stem}.seal"),
+        "queue": os.path.join(base, f"{stem}.queue"),
+        "paths": os.path.join(base, f"{stem}.paths"),
+        "artifact": os.path.join(base, f"{stem}.artifact"),
+        "report": os.path.join(base, f"{stem}.report"),
+        "comparison": os.path.join(base, f"{stem}.comparison"),
+    }
+
+
+class TestSealPath(GitFixture):
+    def test_paths_equal_the_pinned_derivation(self):
+        self.write(".clippy/runs/t.md", "# Run: t\n")
+        p = self.tool("seal-path", "--tracker", ".clippy/runs/t.md",
+                      "--round", "A3")
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "SEAL_PATH", p.stdout + p.stderr)
+        main_top_real = os.path.realpath(str(self.repo))
+        key, expected = expected_seal_species(main_top_real, "t.md", "A3",
+                                              self.env["HOME"])
+        self.assertEqual(v["repo_key"], key)
+        for species, path in expected.items():
+            self.assertEqual(v[species], path, species)
+
+    def test_paths_from_a_linked_worktree_derive_in_main(self):
+        # P1: --show-toplevel from INSIDE a linked worktree answers
+        # with the worktree's own root — the pinned derivation must
+        # use the MAIN checkout instead, via --git-common-dir
+        self.write(".clippy/runs/t.md", "# Run: t\n")
+        self.git("add", ".clippy/runs/t.md")
+        self.git("commit", "-m", "tracker")
+        sha = self.git("rev-parse", "HEAD").stdout.strip()
+        wt = Path(self._tmp.name) / "wt1"
+        wv = self.verdict(self.tool("worktree-add", "--sha", sha,
+                                    "--path", str(wt)))
+        self.assertEqual(wv["verdict"], "WORKTREE_ADDED")
+        p = subprocess.run(
+            [sys.executable, str(SCRIPT), "seal-path",
+             "--tracker", ".clippy/runs/t.md", "--round", "A3"],
+            cwd=wt, env=self.env, capture_output=True, text=True, timeout=60)
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "SEAL_PATH", p.stdout + p.stderr)
+        main_top_real = os.path.realpath(str(self.repo))
+        key, expected = expected_seal_species(main_top_real, "t.md", "A3",
+                                              self.env["HOME"])
+        self.assertEqual(v["repo_key"], key,
+                         "repo-key derived from the WORKTREE, not main")
+        for species, path in expected.items():
+            self.assertEqual(v[species], path, species)
+
+    def test_bad_round_form_halts_usage_error(self):
+        self.write(".clippy/runs/t.md", "# Run: t\n")
+        p = self.tool("seal-path", "--tracker", ".clippy/runs/t.md",
+                      "--round", "3")
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "USAGE_ERROR")
+        self.assertEqual(p.returncode, 3)
 
 
 if __name__ == "__main__":

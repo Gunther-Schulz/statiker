@@ -548,6 +548,8 @@ def run_battery(git_script, record_script, root):
         ("git", "unit-commit", ["unit-commit", "--write-set",
                                 "never-made.txt", "-m", "unit U2"],
          repo, None, None),
+        ("git", "seal-path", ["seal-path", "--tracker", TRACKER_REL,
+                              "--round", "A1"], repo, None, None),
         ("record", "lint", ["lint", "--tracker", tracker_abs],
          repo, None, None),
         ("record", "lint", ["lint", "--tracker", str(repo / "nope.md")],
