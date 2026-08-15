@@ -134,7 +134,17 @@ verified by it before the halted procedure re-runs.
 Append-only tracker at `.clippy/runs/<yyyy-mm-dd>-<slug>.md` —
 clippy's ledger convention, shared so `/clippy-stats` and cross-skill
 comparison read both. Never overwrite another run's tracker; resume
-an in-progress run from its tracker, not from memory. A resuming
+an in-progress run from its tracker, not from memory. That resume
+compares the header's `Skill:` version against the version this desk
+is SERVED (the Skill injection's base-directory line): a release
+reaches a running desk only as a RESTART, never as an upgrade — the
+pin resolves at session start and the already-loaded skill text owns
+a live desk's conduct, so a delta means the record ahead was built
+under rules this desk no longer runs. On a mismatch the desk names
+the delta and what it invalidates before the next forcing point, and
+records it as a new APPEND entry: the `Skill:` line is pinned
+surface — Status and Phase are the only mutable fields — so a header
+rewritten to the new version reads as tampering, not as an update. A resuming
 desk's first reply enumerates the run's standing operator state
 read from the record — the Mode line, every live operator-imposed
 hold, any mid-run INTENT line — shown as INFORMATION, never
