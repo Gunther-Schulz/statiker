@@ -1389,8 +1389,16 @@ def cmd_closure(args):
     # record never scoped anywhere (known_units_of, the same known-unit
     # test waves_over_units computes for its own unplannable set) halts
     # instead.
+    # P2: the record's declared write-set is the SINGLE write-set
+    # source for the unit seam (statiker_git.py's gate consult reads
+    # this field) — the same read `waves` uses over its own
+    # write_sets, reused rather than reimplemented.
+    write_sets, _, _, _ = waves_over_units(entries)
+    declared_write_set = sorted(write_sets.get(args.unit, set()))
+
     if args.unit not in known_units_of(entries):
-        finish("UNIT_UNKNOWN", 2, unit=args.unit, **late)
+        finish("UNIT_UNKNOWN", 2, unit=args.unit,
+              declared_write_set=declared_write_set, **late)
 
     hold_prefix = f"unit {args.unit} held: "
     held = [e for (u, e) in unit_lines
@@ -1398,14 +1406,15 @@ def cmd_closure(args):
             and e.body.startswith(hold_prefix) and latest[e.id] is e]
     if held:
         finish("UNIT_HELD", 2, unit=args.unit,
-               holds=[f"{e.id} [{e.tag}] {e.body}" for e in held], **late)
+               holds=[f"{e.id} [{e.tag}] {e.body}" for e in held],
+               declared_write_set=declared_write_set, **late)
     amendments = [
         {"line": f"{e.id} [{e.tag}] {e.body}", "lineno": e.lineno}
         for (u, e) in unit_lines
         if u == args.unit and e.tag != "INVALIDATED"
         and latest[e.id] is e]
     finish("UNIT_DISPATCHABLE", 0, unit=args.unit, amendments=amendments,
-           **late)
+          declared_write_set=declared_write_set, **late)
 
 
 # --------------------------------------------------------------------- waves

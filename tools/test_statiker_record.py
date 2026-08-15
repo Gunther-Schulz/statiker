@@ -338,6 +338,35 @@ class TestClosure(RecordFixture):
         v = self.closure(body, unit="U2")
         self.assertEqual(v["verdict"], "UNIT_DISPATCHABLE")
 
+    def test_declared_write_set_rides_unit_dispatchable(self):
+        # P2: the record's own declared write-set is the single source
+        # the git tool's gate consult reads — the SAME read `waves`
+        # computes over its own write_sets, reused not reimplemented.
+        body = (CLOSED +
+                "- F2 [VERIFIED] unit U2 write-set: a.txt — basis: design\n"
+                "- F3 [VERIFIED] unit U2 write-set: b.txt — basis: design\n")
+        v = self.closure(body, unit="U2")
+        self.assertEqual(v["verdict"], "UNIT_DISPATCHABLE")
+        self.assertEqual(sorted(v["declared_write_set"]), ["a.txt", "b.txt"])
+
+    def test_declared_write_set_empty_when_undeclared(self):
+        # a KNOWN unit (scoped via the hold line) with no live
+        # write-set F-line at all — the empty declaration itself is
+        # what statiker_git.py's gate consult reads as "undeclared
+        # unit cannot start"
+        v = self.closure(CLOSED, unit="U1")
+        self.assertEqual(v["verdict"], "UNIT_UNKNOWN")
+        self.assertEqual(v["declared_write_set"], [])
+
+    def test_declared_write_set_rides_unit_held(self):
+        body = (CLOSED +
+                "- F9 [VERIFIED] record: collision UNIT_COLLISION on x.txt — basis: verdict\n"
+                "- F2 [VERIFIED] unit U2 write-set: x.txt — basis: design\n"
+                "- D9 [AUTO-ACCEPTED] unit U2 held: x.txt — basis: F9\n")
+        v = self.closure(body, unit="U2")
+        self.assertEqual(v["verdict"], "UNIT_HELD")
+        self.assertEqual(v["declared_write_set"], ["x.txt"])
+
 
 # --------------------------------------------------------------------- waves
 

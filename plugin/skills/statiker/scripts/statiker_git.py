@@ -14,15 +14,21 @@ Subcommands (each prints evidence lines, then exactly one final line
   lock-commit --tracker P [--lock-set P ...] [--drop P ...] -m MSG
                                     LOCK steps 0-6 (drops must match
                                     a prior lock-check's drop list)
-  unit-start  --write-set P ... [--unit U<k>]
+  unit-start  --tracker P --unit U<k>
                                     unit START detector, before any edit;
-                                    on UNIT_START_CLEAN, prints one
-                                    paste-ready record line per write-set
-                                    path (unit U<k>, or the literal
-                                    placeholder U<k> when --unit is omitted)
-  unit-commit --write-set P ... -m MSG
+                                    the write-set is READ from the
+                                    record's declared lines through a
+                                    gate consult (closure --unit),
+                                    never restated on the command line;
+                                    UNIT_START_CLEAN carries start_sha
+                                    (HEAD at the clean check)
+  unit-commit --tracker P --unit U<k> --start-sha S -m MSG
                                     unit COMMIT with capped contention
-                                    retry and HEAD-read discriminator
+                                    retry and HEAD-read discriminator;
+                                    same gate consult as START, plus
+                                    UNIT_START_MISMATCH when start-sha
+                                    is stale or a foreign commit
+                                    touched the write-set since
   seal-path --tracker P --round A<n>
                                     every seal-namespace species' full
                                     path (SEAL_PATH: seal, queue,
@@ -188,6 +194,52 @@ def run_git(args, cwd, check=True, input_bytes=None):
                    returncode=p.returncode,
                    stderr=p.stderr.decode(errors="replace").strip())
     return p
+
+
+RECORD_VERDICT_PREFIX = "STATIKER-RECORD VERDICT: "
+_RECORD_SCRIPT = str(Path(_SCRIPTS_DIR) / "statiker_record.py")
+
+
+def gate_consult(repo, record_args):
+    """P2: the record gate, consulted as a SUBPROCESS over the
+    documented verdict-line contract — never an import, which would
+    couple process state and inherit the record tool's own
+    stage-coupling defects (the E-M class). Runs at the repo's
+    toplevel so a relative --tracker in `record_args` resolves against
+    the SAME repo-root-relative convention the record tool documents
+    for itself. Parses ONLY the single FINAL
+    `STATIKER-RECORD VERDICT: ` line as JSON and returns it verbatim;
+    subprocess failure, a missing verdict line, or unparseable JSON
+    halt GATE_UNREADABLE, fail-closed.
+
+    Decoded BYTES, never text=True: the record tool's own verdict line
+    carries a non-UTF-8 write-set path byte verbatim (its own ES-9/E-C
+    rule), and subprocess's text=True default codec dies
+    UnicodeDecodeError on exactly that byte before any halt route
+    could see it — the same surrogateescape round trip every other
+    git-vs-argv byte in this tool takes."""
+    try:
+        p = subprocess.run([sys.executable, _RECORD_SCRIPT, *record_args],
+                           cwd=str(repo.top), capture_output=True,
+                           timeout=60)
+    except OSError as exc:
+        raise Halt("GATE_UNREADABLE",
+                   reason=f"subprocess failed: {type(exc).__name__}: {exc}")
+    stdout = p.stdout.decode("utf-8", "surrogateescape")
+    lines = [l for l in stdout.split("\n")
+             if l.startswith(RECORD_VERDICT_PREFIX)]
+    if not lines:
+        stderr = p.stderr.decode("utf-8", "surrogateescape")
+        raise Halt("GATE_UNREADABLE",
+                   reason="no STATIKER-RECORD VERDICT line in subprocess "
+                          "output",
+                   stdout=stdout[-2000:], stderr=stderr[-2000:])
+    raw = lines[-1][len(RECORD_VERDICT_PREFIX):]
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError as exc:
+        raise Halt("GATE_UNREADABLE",
+                   reason=f"unparseable verdict JSON: {exc}", raw=raw)
 
 
 # ----------------------------------------------------------- porcelain parse
@@ -765,7 +817,17 @@ def lock_survey(repo, tracker, lock_set):
     return pathspec, drops, adds
 
 
+def lock_gate_check(repo, args):
+    """P2: consult `sweep` BEFORE any of lock-check/lock-commit's own
+    work — the record never locks over its own blocking state (closes
+    T9's B8)."""
+    gate = gate_consult(repo, ["sweep", "--tracker", args.tracker])
+    if gate.get("verdict") != "SWEEP_CLEAN":
+        raise Halt("LOCK_GATE_HOLDS", gate=gate)
+
+
 def cmd_lock_check(repo, args):
+    lock_gate_check(repo, args)
     pathspec, drops, adds = lock_survey(repo, args.tracker, args.lock_set)
     for r in adds:
         repo.dry_run_add(r)
@@ -776,6 +838,7 @@ def cmd_lock_check(repo, args):
 
 
 def cmd_lock_commit(repo, args):
+    lock_gate_check(repo, args)
     pathspec, drops, adds = lock_survey(repo, args.tracker, args.lock_set)
     live = sorted(d["path"] for d in drops)
     acked = sorted(repo.rel(p) for p in args.drop)
@@ -838,14 +901,40 @@ def cmd_lock_commit(repo, args):
 
 # ------------------------------------------------------------------ unit
 
-def unit_paths(repo, args):
-    rels = list(dict.fromkeys(repo.rel(p) for p in args.write_set))
-    return rels
+def unit_gate_check(repo, args):
+    """P2: consult `closure --unit` BEFORE any of unit-start's or
+    unit-commit's own work — the write-set is READ from the record's
+    declared lines (closure's own `declared_write_set` field, sourced
+    from the same read `waves` uses), so briefs never restate it. A
+    blocking gate verdict (anything but UNIT_DISPATCHABLE — UNIT_HELD,
+    UNIT_UNKNOWN, CLOSURE_VOID, CLOSURE_ABSENT,
+    CLOSURE_RECORD_MALFORMED) halts UNIT_GATE_BLOCKED (closes T9's
+    B9); an empty declared write-set is blocking too — an undeclared
+    unit cannot start. The tracker path naming itself in the declared
+    write-set halts WRITE_SET_NAMES_TRACKER (F12), checked at both
+    unit seams. Returns the declared write-set (repo-relative strings,
+    as the record wrote them)."""
+    gate = gate_consult(repo, ["closure", "--tracker", args.tracker,
+                              "--unit", args.unit])
+    if gate.get("verdict") != "UNIT_DISPATCHABLE":
+        raise Halt("UNIT_GATE_BLOCKED", gate=gate)
+    declared = gate.get("declared_write_set") or []
+    if not declared:
+        raise Halt("UNIT_GATE_BLOCKED", gate=gate,
+                   reason="empty declared write-set: an undeclared "
+                          "unit cannot start")
+    tracker_rel = repo.rel(args.tracker)
+    if os.path.normpath(tracker_rel) in {os.path.normpath(p)
+                                         for p in declared}:
+        raise Halt("WRITE_SET_NAMES_TRACKER", tracker=tracker_rel,
+                   declared_write_set=declared)
+    return declared
 
 
 def cmd_unit_start(repo, args):
+    declared = unit_gate_check(repo, args)
     repo.state_gate()          # before any edit: operator tree untouched
-    rels = unit_paths(repo, args)
+    rels = list(dict.fromkeys(repo.rel(p) for p in declared))
     dirs = [r for r in rels if (repo.top / r).is_dir()]
     if dirs:
         raise Halt("HALT_DIRECTORY_PATH", paths=dirs)
@@ -862,16 +951,35 @@ def cmd_unit_start(repo, args):
             say(f"collision: {e['porcelain']} {e['path']}")
         raise Halt("UNIT_COLLISION", entries=listing)
     say("write-set clean: every later modification is the unit's own")
-    unit_label = args.unit if args.unit else "U<k>"
-    for rel in rels:
-        say(f"- F<n> [VERIFIED] unit {unit_label} write-set: {rel} "
-            f"— basis: <the unit enumeration>")
-    finish("UNIT_START_CLEAN", 0, write_set=rels)
+    # P2: HEAD at the clean check — unit-commit's --start-sha pins the
+    # transaction to it (UNIT_START_MISMATCH: a foreign commit
+    # touching the write-set between here and the commit seam).
+    start_sha = repo.git("rev-parse", "HEAD").stdout.decode().strip()
+    finish("UNIT_START_CLEAN", 0, write_set=rels, start_sha=start_sha)
 
 
 def cmd_unit_commit(repo, args):
+    declared = unit_gate_check(repo, args)
     repo.state_gate()                       # re-read at the commit seam
-    rels = unit_paths(repo, args)
+    rels = list(dict.fromkeys(repo.rel(p) for p in declared))
+    # P2: START<->COMMIT link — the transaction is pinned to the START
+    # verdict's HEAD; a stale or foreign-touched start-sha halts
+    # before any of the commit seam's own checks run.
+    ancestor = repo.git("merge-base", "--is-ancestor", args.start_sha,
+                        "HEAD", check=False)
+    if ancestor.returncode != 0:
+        raise Halt("UNIT_START_MISMATCH",
+                   reason="start-sha is not an ancestor of (or equal "
+                          "to) HEAD",
+                   start_sha=args.start_sha)
+    foreign = repo.git("log", "--oneline",
+                       f"{args.start_sha}..HEAD", "--", *rels, check=False)
+    if foreign.stdout.strip():
+        raise Halt("UNIT_START_MISMATCH",
+                   reason="a foreign commit touched the declared "
+                          "write-set since start",
+                   start_sha=args.start_sha,
+                   commits=foreign.stdout.decode(errors="replace").strip())
     repo.validate_file_paths(rels)
     # column-one re-read BEFORE any add: an operator stage landing
     # mid-unit would be silently destroyed by the pathspec commit
@@ -1020,11 +1128,13 @@ def main():
     p.add_argument("-m", "--message", required=True)
 
     p = sub.add_parser("unit-start")
-    p.add_argument("--write-set", action="append", nargs="+", required=True)
-    p.add_argument("--unit", default=None)
+    p.add_argument("--tracker", required=True)
+    p.add_argument("--unit", required=True)
 
     p = sub.add_parser("unit-commit")
-    p.add_argument("--write-set", action="append", nargs="+", required=True)
+    p.add_argument("--tracker", required=True)
+    p.add_argument("--unit", required=True)
+    p.add_argument("--start-sha", required=True)
     p.add_argument("-m", "--message", required=True)
 
     p = sub.add_parser("seal-path")
@@ -1051,7 +1161,7 @@ def main():
     }
     try:
         args = ap.parse_args()
-        for attr in ("lock_set", "drop", "write_set"):
+        for attr in ("lock_set", "drop"):
             if hasattr(args, attr):
                 setattr(args, attr, flat(getattr(args, attr)))
         global RETRY_BASE

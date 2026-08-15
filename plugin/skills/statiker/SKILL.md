@@ -531,7 +531,11 @@ points is caught only by this re-read); what it misses rides
 into the commit — the attack
 round's probes are the backstop, the residue named, not hidden.
 (c) `lock-check --tracker <path> [--lock-set <path> …]`.
-Verdict routes: HALT_STATE is the operator's half-finished
+Verdict routes: LOCK_GATE_HOLDS — blocking sweep holds in the
+record gate, the consulted record verdict embedded verbatim as
+the `gate` field — halts lock-check and lock-commit uncommitted:
+the record never locks over its own blocking state.
+HALT_STATE is the operator's half-finished
 operation, the tree untouched — an attended halt re-enters on
 the operator's clearing reply; unattended, a halted LOCK closes
 the run FAILED (no lock, nothing to build on; Close, Status
@@ -971,7 +975,15 @@ backstop) — and every `unit U<k>` id it appends against the
 nothing and reaches no brief, and no tool can know which unit
 was meant (the argument-side validation catches only the
 `--unit` flag). The unit runs: START, before any edit —
-`unit-start --write-set <file> …`. UNIT_START_CLEAN makes
+`unit-start --tracker <tracker> --unit U<k>` — the write-set is
+read from the record's declared lines through the gate consult
+(the record tool run as a subprocess, its verdict embedded
+verbatim as the `gate` field), so briefs never restate it;
+UNIT_GATE_BLOCKED (a blocking record-gate verdict, the empty
+declaration included) and WRITE_SET_NAMES_TRACKER (the declared
+write-set names the tracker itself) halt the unit UNBUILT, and
+GATE_UNREADABLE (no parseable record verdict) halts the same
+way, fail-closed. UNIT_START_CLEAN makes
 every later modification the unit's own; UNIT_COLLISION (an
 operator edit or draft on a write-set path the unit would
 otherwise overwrite and commit), HALT_STATE (the
@@ -979,7 +991,11 @@ operator's half-finished operation, tree untouched), and any
 other START verdict (HALT_IGNORED_WRITESET,
 HALT_DIRECTORY_PATH, USAGE_ERROR, GIT_ERROR …) halt the
 unit UNBUILT — no edit, no commit, no landing annotation.
-COMMIT — `unit-commit --write-set <file> … -m <msg>`.
+COMMIT — `unit-commit --tracker <tracker> --unit U<k>
+--start-sha <the START verdict's start_sha> -m <msg>` — same
+gate consult and halts as START, plus UNIT_START_MISMATCH: the
+start sha is no ancestor of HEAD, or a foreign commit touched
+the declared write-set since it.
 Verdicts: UNIT_COMMITTED → landing annotation with its sha.
 UNIT_COMMIT_COLLISION → an operator stage landed on the
 write-set mid-unit (the commit seam re-reads column one — ANY

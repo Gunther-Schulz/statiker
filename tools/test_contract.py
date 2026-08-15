@@ -300,6 +300,12 @@ UNDRIVEN_REMAINDER = {
                              "produce extras (function-level red)",
     "UNIT_COMMITTED_EXTRAS": "same as the lock seam's extras: no git "
                              "state is known to produce them",
+    "GATE_UNREADABLE": "the record tool always emits its own verdict "
+                       "line by design, even for malformed input — "
+                       "reaching a missing or unparseable line needs "
+                       "breaking the subprocess itself, which the "
+                       "battery does not corrupt (function-level red "
+                       "instead)",
 }
 
 TRACKER_REL = ".clippy/runs/t.md"
@@ -358,7 +364,11 @@ def run_battery(git_script, record_script, root):
     def scratch_repo(name, tracker=True):
         """A fresh repo with a base commit, for rows whose state would
         poison a shared one (staged collisions, halted operations,
-        ignore rules, hooks, filters)."""
+        ignore rules, hooks, filters). The default tracker content is
+        gate-clean (P2: lock-check/lock-commit now consult `sweep`
+        BEFORE their own work, so a bare "# Run: t" tracker would halt
+        LOCK_GATE_HOLDS before ever reaching the route each row
+        exists to drive)."""
         d = root / name
         (d / ".clippy" / "runs").mkdir(parents=True)
         git("init", "-q", "-b", "main", cwd=d)
@@ -366,7 +376,8 @@ def run_battery(git_script, record_script, root):
         git("add", "base.txt", cwd=d)
         git("commit", "-m", "base", cwd=d)
         if tracker:
-            (d / TRACKER_REL).write_text("# Run: t\n")
+            (d / TRACKER_REL).write_text(
+                "# Run: t\nStatus: in-progress\nPhase: implement\n")
         return d
 
     git("init", "-q", "-b", "main")
@@ -449,7 +460,11 @@ def run_battery(git_script, record_script, root):
     r_coll = scratch_repo("r_coll")
     git("add", TRACKER_REL, cwd=r_coll)
     git("commit", "-m", "tracker", cwd=r_coll)
-    (r_coll / TRACKER_REL).write_text("# Run: t\nedit\n")
+    # P2: the staged edit's own on-disk content must stay gate-clean —
+    # lock-check now consults sweep BEFORE its own tracker-collision
+    # check, over whatever the tracker currently holds on disk.
+    (r_coll / TRACKER_REL).write_text(
+        "# Run: t\nStatus: in-progress\nPhase: implement\nedit\n")
     git("add", TRACKER_REL, cwd=r_coll)
 
     r_drops = scratch_repo("r_drops")
@@ -469,10 +484,25 @@ def run_battery(git_script, record_script, root):
     (r_unit / "draft.txt").write_text("operator draft\n")
     (r_unit / "staged.txt").write_text("OPERATOR PRECIOUS\n")
     git("add", "staged.txt", cwd=r_unit)
+    r_unit_head = subprocess.run(
+        ["git", "rev-parse", "HEAD"], cwd=r_unit, env=env,
+        capture_output=True, text=True, check=True).stdout.strip()
+    (r_unit / "units.md").write_text(
+        CLOSED_TRACKER +
+        "- F2 [VERIFIED] unit U1 write-set: draft.txt — basis: design\n"
+        "- F3 [VERIFIED] unit U2 write-set: build/x.txt — basis: design\n"
+        "- F4 [VERIFIED] unit U3 write-set: staged.txt — basis: design\n"
+        "- F5 [VERIFIED] unit U4 write-set: settled.txt — basis: design\n")
 
     r_lock = scratch_repo("r_lock", tracker=False)
     (r_lock / "src.txt").write_text("unit output\n")
     (r_lock / ".git" / "index.lock").write_text("")
+    r_lock_head = subprocess.run(
+        ["git", "rev-parse", "HEAD"], cwd=r_lock, env=env,
+        capture_output=True, text=True, check=True).stdout.strip()
+    (r_lock / "unit.md").write_text(
+        CLOSED_TRACKER +
+        "- F2 [VERIFIED] unit U1 write-set: src.txt — basis: design\n")
 
     r_hook = scratch_repo("r_hook")
     hook = r_hook / ".git" / "hooks" / "pre-commit"
@@ -490,6 +520,12 @@ def run_battery(git_script, record_script, root):
     r_noisy_unit = scratch_repo("r_noisy_unit", tracker=False)
     noisy(r_noisy_unit)
     (r_noisy_unit / "note.md").write_text("unit output\n")
+    r_noisy_unit_head = subprocess.run(
+        ["git", "rev-parse", "HEAD"], cwd=r_noisy_unit, env=env,
+        capture_output=True, text=True, check=True).stdout.strip()
+    (r_noisy_unit / "unit.md").write_text(
+        CLOSED_TRACKER +
+        "- F2 [VERIFIED] unit U1 write-set: note.md — basis: design\n")
 
     # ES-11's unfrozen pair, on the attack-11 attacker's own recipes:
     # a path git refuses though containment accepts it (ADD_FAILED at
@@ -525,6 +561,30 @@ def run_battery(git_script, record_script, root):
         CLOSED_TRACKER +
         "- D9 [AUTO-ACCEPTED] unit U2 held: x.txt — basis: F9\n")
 
+    # -- P2 gate-seam fixtures: the record's declared write-set is now
+    # the unit-seam source, consulted through the record-tool gate ----
+    (repo / "unitgate.md").write_text(
+        CLOSED_TRACKER +
+        "- F2 [VERIFIED] unit U1 write-set: src.txt — basis: design\n"
+        "- F3 [VERIFIED] unit U2 write-set: ../outside.py — basis: design\n"
+        "- F4 [VERIFIED] unit U3 write-set: never-made.txt — basis: design\n"
+        "- F5 [VERIFIED] unit U6 write-set: mismatch.txt — basis: design\n")
+    (repo / "selfname.md").write_text(
+        CLOSED_TRACKER +
+        "- F2 [VERIFIED] unit U1 write-set: selfname.md — basis: design\n")
+    # UNIT_START_MISMATCH's foreign touch: committed AFTER `sha` (the
+    # start-sha the U1/U6 rows below reuse), so `git log sha..HEAD --
+    # mismatch.txt` is non-empty by the time the mismatch row runs.
+    (repo / "mismatch.txt").write_text("foreign touch\n")
+    git("add", "mismatch.txt")
+    git("commit", "-m", "foreign touch on mismatch.txt")
+
+    # LOCK_GATE_HOLDS: a tracker sweep itself holds on (missing
+    # Status/Phase) — own repo, since lock-check now consults sweep
+    # BEFORE any of its own work.
+    r_gate = scratch_repo("r_gate")
+    (r_gate / TRACKER_REL).write_text("# Run: bad\n")
+
     # (tool, subcommand, argv, cwd, stdin, prep)
     table = [
         ("git", "state-gate", ["state-gate"], repo, None, None),
@@ -539,14 +599,33 @@ def run_battery(git_script, record_script, root):
                                "--lock-set", "docs"], repo, None, None),
         ("git", "lock-commit", ["lock-commit", "--tracker", TRACKER_REL,
                                 "-m", "lock"], repo, None, append_tracker),
-        ("git", "unit-start", ["unit-start", "--write-set", "src.txt"],
+        ("git", "unit-start", ["unit-start", "--tracker",
+                               str(repo / "unitgate.md"), "--unit", "U1"],
          repo, None, None),
-        ("git", "unit-start", ["unit-start", "--write-set",
-                               "../outside.py"], repo, None, None),
-        ("git", "unit-commit", ["unit-commit", "--write-set", "src.txt",
-                                "-m", "unit U1"], repo, None, make_src),
-        ("git", "unit-commit", ["unit-commit", "--write-set",
-                                "never-made.txt", "-m", "unit U2"],
+        ("git", "unit-start", ["unit-start", "--tracker",
+                               str(repo / "unitgate.md"), "--unit", "U2"],
+         repo, None, None),
+        ("git", "unit-commit", ["unit-commit", "--tracker",
+                                str(repo / "unitgate.md"), "--unit", "U1",
+                                "--start-sha", sha, "-m", "unit U1"],
+         repo, None, make_src),
+        ("git", "unit-commit", ["unit-commit", "--tracker",
+                                str(repo / "unitgate.md"), "--unit", "U3",
+                                "--start-sha", sha, "-m", "unit U3"],
+         repo, None, None),
+        # P2: UNIT_GATE_BLOCKED (a held unit), WRITE_SET_NAMES_TRACKER
+        # (the declared write-set names the tracker itself),
+        # UNIT_START_MISMATCH (a foreign commit touched the declared
+        # write-set since the stale start-sha), SEAL_PATH (P1)
+        ("git", "unit-start", ["unit-start", "--tracker",
+                               str(repo / "held.md"), "--unit", "U2"],
+         repo, None, None),
+        ("git", "unit-start", ["unit-start", "--tracker",
+                               str(repo / "selfname.md"), "--unit", "U1"],
+         repo, None, None),
+        ("git", "unit-commit", ["unit-commit", "--tracker",
+                                str(repo / "unitgate.md"), "--unit", "U6",
+                                "--start-sha", sha, "-m", "unit U6"],
          repo, None, None),
         ("git", "seal-path", ["seal-path", "--tracker", TRACKER_REL,
                               "--round", "A1"], repo, None, None),
@@ -612,17 +691,29 @@ def run_battery(git_script, record_script, root):
                                 "-m", "lock"], r_hook, None, None),
         ("git", "lock-commit", ["lock-commit", "--tracker", TRACKER_REL,
                                 "-m", "lock"], r_noisy, None, None),
-        ("git", "unit-start", ["unit-start", "--write-set", "draft.txt"],
+        ("git", "lock-check", ["lock-check", "--tracker", TRACKER_REL],
+         r_gate, None, None),
+        ("git", "unit-start", ["unit-start", "--tracker",
+                               str(r_unit / "units.md"), "--unit", "U1"],
          r_unit, None, None),
-        ("git", "unit-start", ["unit-start", "--write-set", "build/x.txt"],
+        ("git", "unit-start", ["unit-start", "--tracker",
+                               str(r_unit / "units.md"), "--unit", "U2"],
          r_unit, None, None),
-        ("git", "unit-commit", ["unit-commit", "--write-set", "staged.txt",
-                                "-m", "unit U1"], r_unit, None, None),
-        ("git", "unit-commit", ["unit-commit", "--write-set", "settled.txt",
-                                "-m", "unit U2"], r_unit, None, None),
-        ("git", "unit-commit", ["unit-commit", "--write-set", "src.txt",
-                                "-m", "unit U1"], r_lock, None, None),
-        ("git", "unit-commit", ["unit-commit", "--write-set", "note.md",
+        ("git", "unit-commit", ["unit-commit", "--tracker",
+                                str(r_unit / "units.md"), "--unit", "U3",
+                                "--start-sha", r_unit_head, "-m", "unit U1"],
+         r_unit, None, None),
+        ("git", "unit-commit", ["unit-commit", "--tracker",
+                                str(r_unit / "units.md"), "--unit", "U4",
+                                "--start-sha", r_unit_head, "-m", "unit U2"],
+         r_unit, None, None),
+        ("git", "unit-commit", ["unit-commit", "--tracker",
+                                str(r_lock / "unit.md"), "--unit", "U1",
+                                "--start-sha", r_lock_head, "-m", "unit U1"],
+         r_lock, None, None),
+        ("git", "unit-commit", ["unit-commit", "--tracker",
+                                str(r_noisy_unit / "unit.md"), "--unit", "U1",
+                                "--start-sha", r_noisy_unit_head,
                                 "-m", "unit U1"], r_noisy_unit, None, None),
         ("git", "lock-check", ["lock-check", "--tracker", TRACKER_REL,
                                "--lock-set", "linkdir/x.txt"],

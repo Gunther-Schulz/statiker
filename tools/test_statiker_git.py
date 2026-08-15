@@ -118,6 +118,37 @@ class GitFixture(unittest.TestCase):
         p.write_text(content)
         return p
 
+    # -- P2 migration helpers: --write-set is gone (BACKLOG P2) — the
+    # unit seam now reads its write-set from the record's declared
+    # lines through a gate consult (closure --unit), so every fixture
+    # built on --write-set needs a tracker-backed arrangement instead.
+
+    CLOSED_TRACKER = (
+        "# Run: t\nStatus: in-progress\nPhase: implement\n\n"
+        "INTENT — fixture.\n\n## Cycle 1\n"
+        "- D1 [COMMITTED] the design — basis: probe\n"
+        "- A1 [DISPATCHED] round 1 — basis: brief\n"
+        "- A1 [ZERO-DELTA] clean return — basis: report\n"
+    )
+    GATE_CLEAN_TRACKER = "# Run: t\nStatus: in-progress\nPhase: implement\n"
+
+    def unit_tracker(self, write_sets, rel="unit.md"):
+        """Write a CLOSED_TRACKER declaring one write-set F-line per
+        (unit, path) pair — `write_sets` is {unit_id: [paths]}, in
+        insertion order. Returns the tracker's repo-relative path."""
+        body = self.CLOSED_TRACKER
+        n = 2
+        for unit, paths in write_sets.items():
+            for p in paths:
+                body += (f"- F{n} [VERIFIED] unit {unit} write-set: {p} "
+                        f"— basis: design\n")
+                n += 1
+        self.write(rel, body)
+        return rel
+
+    def head_sha(self):
+        return self.git("rev-parse", "HEAD").stdout.strip()
+
     def head_paths(self):
         out = self.git("show", "--name-only", "--format=", "HEAD").stdout
         return set(l for l in split_lines(out) if l)
@@ -325,7 +356,7 @@ class TestLockCheck(GitFixture):
     def test_first_lock_clean_untracked_tracker(self):
         # porcelain ?? puts '?' in column one — attack-6 B3: a strict
         # col-1 read halts every first lock on its own fresh tracker.
-        self.write(self.TRACKER, "# Run: t\n")
+        self.write(self.TRACKER, self.GATE_CLEAN_TRACKER)
         v = self.verdict(self.tool("lock-check", "--tracker", self.TRACKER))
         self.assertEqual(v["verdict"], "LOCK_CHECK_CLEAN")
         self.assertIn(self.TRACKER, v["adds"])
@@ -338,7 +369,7 @@ class TestLockCheck(GitFixture):
         self.git("commit", "-m", "art")
         self.write("art.txt", "operator staged\n")
         self.git("add", "art.txt")
-        self.write(self.TRACKER, "# Run: t\n")
+        self.write(self.TRACKER, self.GATE_CLEAN_TRACKER)
         v = self.verdict(self.tool(
             "lock-check", "--tracker", self.TRACKER, "--lock-set", "art.txt"))
         self.assertEqual(v["verdict"], "LOCK_CHECK_DROPS")
@@ -352,16 +383,16 @@ class TestLockCheck(GitFixture):
         self.git("add", "art.txt")
         self.git("commit", "-m", "art")
         self.write("art.txt", "v2 run content\n")
-        self.write(self.TRACKER, "# Run: t\n")
+        self.write(self.TRACKER, self.GATE_CLEAN_TRACKER)
         v = self.verdict(self.tool(
             "lock-check", "--tracker", self.TRACKER, "--lock-set", "art.txt"))
         self.assertEqual(v["verdict"], "LOCK_CHECK_CLEAN")
 
     def test_staged_tracker_halts(self):
-        self.write(self.TRACKER, "# Run: t\n")
+        self.write(self.TRACKER, self.GATE_CLEAN_TRACKER)
         self.git("add", self.TRACKER)
         self.git("commit", "-m", "tracker")
-        self.write(self.TRACKER, "# Run: t\nedit\n")
+        self.write(self.TRACKER, self.GATE_CLEAN_TRACKER + "edit\n")
         self.git("add", self.TRACKER)
         p = self.tool("lock-check", "--tracker", self.TRACKER)
         v = self.verdict(p)
@@ -373,7 +404,7 @@ class TestLockCheck(GitFixture):
         self.git("add", ".gitignore")
         self.git("commit", "-m", "gi")
         self.write("scratch/x.txt", "x\n")
-        self.write(self.TRACKER, "# Run: t\n")
+        self.write(self.TRACKER, self.GATE_CLEAN_TRACKER)
         v = self.verdict(self.tool(
             "lock-check", "--tracker", self.TRACKER, "--lock-set", "scratch/x.txt"))
         self.assertEqual(v["verdict"], "LOCK_CHECK_DROPS")
@@ -390,7 +421,7 @@ class TestLockCheck(GitFixture):
         self.git("add", ".gitignore")
         self.git("commit", "-m", "gi")
         self.write("gen.txt", "v2\n")
-        self.write(self.TRACKER, "# Run: t\n")
+        self.write(self.TRACKER, self.GATE_CLEAN_TRACKER)
         v = self.verdict(self.tool(
             "lock-check", "--tracker", self.TRACKER, "--lock-set", "gen.txt"))
         self.assertEqual(v["verdict"], "LOCK_CHECK_CLEAN")
@@ -399,7 +430,7 @@ class TestLockCheck(GitFixture):
         self.write(".gitignore", ".clippy/\n")
         self.git("add", ".gitignore")
         self.git("commit", "-m", "gi")
-        self.write(self.TRACKER, "# Run: t\n")
+        self.write(self.TRACKER, self.GATE_CLEAN_TRACKER)
         p = self.tool("lock-check", "--tracker", self.TRACKER)
         v = self.verdict(p)
         self.assertEqual(v["verdict"], "HALT_TRACKER_UNPINNABLE")
@@ -409,7 +440,7 @@ class TestLockCheck(GitFixture):
         # attack-4 N6 probe: a directory pathspec sweeps operator
         # state under it into the commit.
         self.write("docs/a.txt", "a\n")
-        self.write(self.TRACKER, "# Run: t\n")
+        self.write(self.TRACKER, self.GATE_CLEAN_TRACKER)
         p = self.tool("lock-check", "--tracker", self.TRACKER, "--lock-set", "docs")
         v = self.verdict(p)
         self.assertEqual(v["verdict"], "HALT_DIRECTORY_PATH")
@@ -417,7 +448,7 @@ class TestLockCheck(GitFixture):
 
     def test_missing_lock_set_path_halts(self):
         # attack-6 B4 kin: an unpopulated path poisons the pathspec.
-        self.write(self.TRACKER, "# Run: t\n")
+        self.write(self.TRACKER, self.GATE_CLEAN_TRACKER)
         p = self.tool("lock-check", "--tracker", self.TRACKER,
                       "--lock-set", "never-made.txt")
         v = self.verdict(p)
@@ -426,7 +457,7 @@ class TestLockCheck(GitFixture):
 
     def test_mid_merge_halts(self):
         self.start_conflicted_merge()
-        self.write(self.TRACKER, "# Run: t\n")
+        self.write(self.TRACKER, self.GATE_CLEAN_TRACKER)
         p = self.tool("lock-check", "--tracker", self.TRACKER)
         v = self.verdict(p)
         self.assertEqual(v["verdict"], "HALT_STATE")
@@ -439,7 +470,7 @@ class TestLockCommit(GitFixture):
     TRACKER = ".clippy/runs/t.md"
 
     def test_clean_lock_commit_and_readback(self):
-        self.write(self.TRACKER, "# Run: t\nStatus: [READY]\n")
+        self.write(self.TRACKER, "# Run: t\nStatus: [READY]\nPhase: implement\n")
         p = self.tool("lock-commit", "--tracker", self.TRACKER, "-m", "lock 1")
         v = self.verdict(p)
         self.assertEqual(v["verdict"], "LOCK_COMMITTED", p.stdout + p.stderr)
@@ -456,7 +487,7 @@ class TestLockCommit(GitFixture):
         # staged state exactly as it was — neither committed nor lost.
         self.write("op.txt", "operator work\n")
         self.git("add", "op.txt")
-        self.write(self.TRACKER, "# Run: t\n")
+        self.write(self.TRACKER, self.GATE_CLEAN_TRACKER)
         v = self.verdict(self.tool(
             "lock-commit", "--tracker", self.TRACKER, "-m", "lock"))
         self.assertEqual(v["verdict"], "LOCK_COMMITTED")
@@ -470,7 +501,7 @@ class TestLockCommit(GitFixture):
         self.git("add", "art.txt")
         self.git("commit", "-m", "art")
         self.write("art.txt", "worktree v2\n")
-        self.write(self.TRACKER, "# Run: t\n")
+        self.write(self.TRACKER, self.GATE_CLEAN_TRACKER)
         v = self.verdict(self.tool(
             "lock-commit", "--tracker", self.TRACKER,
             "--lock-set", "art.txt", "-m", "lock"))
@@ -482,7 +513,7 @@ class TestLockCommit(GitFixture):
         # attack-4 B3: an unchanged inherited path is legitimately
         # absent from --stat; its absence is not a readback failure.
         self.write("art.txt", "v1\n")
-        self.write(self.TRACKER, "# Run: t\n")
+        self.write(self.TRACKER, self.GATE_CLEAN_TRACKER)
         v1 = self.verdict(self.tool(
             "lock-commit", "--tracker", self.TRACKER,
             "--lock-set", "art.txt", "-m", "lock 1"))
@@ -498,7 +529,7 @@ class TestLockCommit(GitFixture):
     def test_acknowledged_drop_commits_rest(self):
         self.write("art.txt", "run\n")
         self.git("add", "art.txt")   # operator-staged collision
-        self.write(self.TRACKER, "# Run: t\n")
+        self.write(self.TRACKER, self.GATE_CLEAN_TRACKER)
         v = self.verdict(self.tool(
             "lock-commit", "--tracker", self.TRACKER, "--lock-set", "art.txt",
             "--drop", "art.txt", "-m", "lock"))
@@ -514,7 +545,7 @@ class TestLockCommit(GitFixture):
         # a differing live drop set means state moved between phases.
         self.write("art.txt", "run\n")
         self.git("add", "art.txt")
-        self.write(self.TRACKER, "# Run: t\n")
+        self.write(self.TRACKER, self.GATE_CLEAN_TRACKER)
         p = self.tool("lock-commit", "--tracker", self.TRACKER,
                       "--lock-set", "art.txt", "-m", "lock")
         v = self.verdict(p)
@@ -524,7 +555,7 @@ class TestLockCommit(GitFixture):
         self.assertEqual(self.head_paths(), {"base.txt"})
 
     def test_stale_acknowledged_drop_halts(self):
-        self.write(self.TRACKER, "# Run: t\n")
+        self.write(self.TRACKER, self.GATE_CLEAN_TRACKER)
         p = self.tool("lock-commit", "--tracker", self.TRACKER,
                       "--lock-set", "art.txt", "--drop", "art.txt", "-m", "lock")
         v = self.verdict(p)
@@ -536,194 +567,98 @@ class TestLockCommit(GitFixture):
 
 class TestUnitStart(GitFixture):
     def test_clean_write_set(self):
-        v = self.verdict(self.tool("unit-start", "--write-set", "src.txt"))
-        self.assertEqual(v["verdict"], "UNIT_START_CLEAN")
+        tracker = self.unit_tracker({"U1": ["src.txt"]})
+        v = self.verdict(self.tool("unit-start", "--tracker", tracker,
+                                   "--unit", "U1"))
+        self.assertEqual(v["verdict"], "UNIT_START_CLEAN", v)
+        self.assertIn("start_sha", v)
 
     def test_untracked_operator_draft_collides(self):
         # attack-4 N7 probe: untracked operator draft on a write-set
         # path would be overwritten and committed by the unit.
+        tracker = self.unit_tracker({"U1": ["src.txt"]})
         self.write("src.txt", "operator draft\n")
-        p = self.tool("unit-start", "--write-set", "src.txt")
+        p = self.tool("unit-start", "--tracker", tracker, "--unit", "U1")
         v = self.verdict(p)
         self.assertEqual(v["verdict"], "UNIT_COLLISION")
         self.assertTrue(any("src.txt" in e["path"] for e in v["entries"]))
         self.assertNotEqual(p.returncode, 0)
 
     def test_modified_tracked_path_collides(self):
+        tracker = self.unit_tracker({"U1": ["src.txt"]})
         self.write("src.txt", "v1\n")
         self.git("add", "src.txt")
         self.git("commit", "-m", "src")
         self.write("src.txt", "operator edit\n")
-        v = self.verdict(self.tool("unit-start", "--write-set", "src.txt"))
+        v = self.verdict(self.tool("unit-start", "--tracker", tracker,
+                                   "--unit", "U1"))
         self.assertEqual(v["verdict"], "UNIT_COLLISION")
 
     def test_dirt_outside_write_set_is_clean(self):
         # attack-5 B3 kin: the check is porcelain scoped to the
         # write-set; unrelated dirt must not spuriously halt the unit.
+        tracker = self.unit_tracker({"U1": ["src.txt"]})
         self.write("other.txt", "operator wip\n")
-        v = self.verdict(self.tool("unit-start", "--write-set", "src.txt"))
+        v = self.verdict(self.tool("unit-start", "--tracker", tracker,
+                                   "--unit", "U1"))
         self.assertEqual(v["verdict"], "UNIT_START_CLEAN")
 
     def test_mid_merge_halts_before_any_edit(self):
+        tracker = self.unit_tracker({"U1": ["src.txt"]})
         self.start_conflicted_merge()
-        v = self.verdict(self.tool("unit-start", "--write-set", "src.txt"))
+        v = self.verdict(self.tool("unit-start", "--tracker", tracker,
+                                   "--unit", "U1"))
         self.assertEqual(v["verdict"], "HALT_STATE")
 
     def test_directory_write_set_halts(self):
+        tracker = self.unit_tracker({"U1": ["docs"]})
         self.write("docs/a.txt", "a\n")
-        v = self.verdict(self.tool("unit-start", "--write-set", "docs"))
+        v = self.verdict(self.tool("unit-start", "--tracker", tracker,
+                                   "--unit", "U1"))
         self.assertEqual(v["verdict"], "HALT_DIRECTORY_PATH")
 
-
-# ---------------------------------------- unit-start write-set record lines
-#
-# Backlog: "the unit write-set record-line form" (BACKLOG.md, remainder of
-# the entry after the 0.2.57 SKILL.md half landed). SKILL.md's settled form:
-# `- F<n> [VERIFIED] unit U<k> write-set: <path> — basis: <the unit
-# enumeration>`, one path per line. On UNIT_START_CLEAN the tool prints one
-# such line per --write-set path as a paste-ready record line (the tracker
-# itself stays desk-append-only); `F<n>` and the basis clause stay literal
-# placeholders (the tool never reads the tracker and cannot allocate an id),
-# `U<k>` is filled from the new `--unit` argument, or stays the literal
-# placeholder `U<k>` when that argument is omitted.
-
-class TestUnitStartWriteSetRecordLines(GitFixture):
-    RECORD_LINE_PREFIX = "- F<n> [VERIFIED] unit "
-
-    def test_clean_verdict_prints_one_line_per_write_set_path(self):
-        p = self.tool("unit-start", "--write-set", "a.txt", "b.txt",
-                      "--unit", "U2")
+    def test_missing_tracker_or_unit_is_usage_error(self):
+        # --tracker and --unit are now REQUIRED (P2): omitting either
+        # halts USAGE_ERROR, never a silent write-set default
+        p = self.tool("unit-start")
         v = self.verdict(p)
-        self.assertEqual(v["verdict"], "UNIT_START_CLEAN", p.stdout + p.stderr)
-        expected = [
-            "- F<n> [VERIFIED] unit U2 write-set: a.txt "
-            "— basis: <the unit enumeration>",
-            "- F<n> [VERIFIED] unit U2 write-set: b.txt "
-            "— basis: <the unit enumeration>",
-        ]
-        printed = [l for l in split_lines(p.stdout)
-                  if l.startswith(self.RECORD_LINE_PREFIX)]
-        self.assertEqual(printed, expected, p.stdout)
+        self.assertEqual(v["verdict"], "USAGE_ERROR")
+        self.assertEqual(p.returncode, 3)
 
-    def test_clean_verdict_without_unit_flag_uses_placeholder(self):
-        p = self.tool("unit-start", "--write-set", "a.txt")
-        v = self.verdict(p)
-        self.assertEqual(v["verdict"], "UNIT_START_CLEAN", p.stdout + p.stderr)
-        self.assertIn(
-            "- F<n> [VERIFIED] unit U<k> write-set: a.txt "
-            "— basis: <the unit enumeration>",
-            split_lines(p.stdout))
 
-    def test_record_lines_absent_on_collision(self):
-        # printed evidence lines are conditioned on UNIT_START_CLEAN only
-        # (the settled design) — a halted start must not paste a line for
-        # a write-set the unit never cleanly claimed.
-        self.write("src.txt", "operator draft\n")
-        p = self.tool("unit-start", "--write-set", "src.txt", "--unit", "U3")
-        v = self.verdict(p)
-        self.assertEqual(v["verdict"], "UNIT_COLLISION")
-        self.assertFalse(
-            any(l.startswith(self.RECORD_LINE_PREFIX)
-                for l in split_lines(p.stdout)),
-            p.stdout)
-
-    def test_record_lines_absent_on_directory_halt(self):
-        self.write("docs/a.txt", "a\n")
-        p = self.tool("unit-start", "--write-set", "docs", "--unit", "U4")
-        v = self.verdict(p)
-        self.assertEqual(v["verdict"], "HALT_DIRECTORY_PATH")
-        self.assertFalse(
-            any(l.startswith(self.RECORD_LINE_PREFIX)
-                for l in split_lines(p.stdout)),
-            p.stdout)
-
-    def test_verdict_line_still_the_only_verdict_line(self):
-        # the printed record lines are evidence, invisible to verdict
-        # parsing — self.verdict() already enforces exactly one
-        # VERDICT_PREFIX line; this test pins that against a multi-path
-        # write-set, where the printed-line count is highest.
-        p = self.tool("unit-start", "--write-set", "a.txt", "b.txt", "c.txt",
-                      "--unit", "U2")
-        self.verdict(p)  # raises if more/less than one verdict line
-
-    def test_printed_line_round_trips_through_waves_over_units(self):
-        # brief verifier (b): substitute F<n> -> F7 (the desk's paste-time
-        # id allocation) and confirm the line parses through the record
-        # tool's own grammar and its UNIT_WRITE_SET_RE, landing in
-        # waves_over_units' write_sets keyed by the printed unit id.
-        p = self.tool("unit-start", "--write-set", "src.txt", "--unit", "U2")
-        v = self.verdict(p)
-        self.assertEqual(v["verdict"], "UNIT_START_CLEAN", p.stdout + p.stderr)
-        printed = next(l for l in split_lines(p.stdout)
-                       if l.startswith(self.RECORD_LINE_PREFIX))
-        line = printed.replace("F<n>", "F7", 1)
-        self.assertEqual(
-            line,
-            "- F7 [VERIFIED] unit U2 write-set: src.txt "
-            "— basis: <the unit enumeration>")
-
-        sys.path.insert(0, str(SCRIPT.parent))
-        self.addCleanup(sys.path.remove, str(SCRIPT.parent))
-        import statiker_record as sr
-
-        m = sr.ENTRY_RE.match(line)
-        self.assertIsNotNone(m, line)
-        cls, num, tag, body = m.groups()
-        self.assertEqual(f"{cls}{num}", "F7")
-        self.assertEqual(tag, "VERIFIED")
-        self.assertIn("— basis:", body)
-        body_main, basis = body.split("— basis:", 1)
-        body_main, basis = body_main.strip(), basis.strip()
-
-        wm = sr.UNIT_WRITE_SET_RE.match(body_main)
-        self.assertIsNotNone(wm, body_main)
-        self.assertEqual(wm.group(1), "U2")
-        self.assertEqual(wm.group(2), "src.txt")
-
-        entry = sr.Entry(lineno=1, cls=cls, id=f"{cls}{num}", tag=tag,
-                         body=body_main, basis=basis)
-        write_sets, unplannable, waves, spellings = sr.waves_over_units(
-            [entry])
-        self.assertEqual(write_sets.get("U2"), {"src.txt"})
-        self.assertEqual(unplannable, [])
-        self.assertEqual(waves, [["U2"]])
-        self.assertEqual(spellings, {})
-
-    def test_the_verdict_reader_survives_a_separator_in_a_printed_line(self):
-        # closes the splitlines CLASS in this suite's own reader
-        # (BACKLOG.md, "close the splitlines CLASS in the remaining
-        # verdict readers"): a U+2028 in a write-set path reaches
-        # stdout raw in the printed record line (say(), never JSON-
-        # escaped like the verdict line itself) — str.splitlines()
-        # would read it as a second physical line, an exotic byte
-        # nothing here plants today, exactly the quiet direction
-        # (mirrors test_statiker_record.py's
-        # test_the_fixture_reader_survives_a_separator_in_the_block).
-        rel = "a b.txt"
-        p = self.tool("unit-start", "--write-set", rel, "--unit", "U2")
-        v = self.verdict(p)   # raises if split_lines saw a second line
-        self.assertEqual(v["verdict"], "UNIT_START_CLEAN", p.stdout + p.stderr)
-        self.assertIn(" ",
-                      next(l for l in split_lines(p.stdout)
-                           if l.startswith(self.RECORD_LINE_PREFIX)))
-
+# unit-start's "paste-ready record line" feature is RETIRED (P2):
+# the write-set is now READ FROM the tracker's own declared lines
+# through the gate consult, so there is nothing left to paste back —
+# printing the very lines the record already carries verbatim would
+# be noise, not evidence. TestUnitStartWriteSetRecordLines and the
+# standalone A3 byte-fidelity test below it are retired with it;
+# UNIT_WRITE_SET_RE/waves_over_units parsing coverage lives on in
+# test_statiker_record.py's TestWaves, which already exercises
+# write-set F-lines read directly off a tracker — the canonical
+# path this class's own printed-line round-trip test only mimicked.
 
 # -------------------------------------------------------------- unit commit
 
 class TestUnitCommit(GitFixture):
     def test_green_commit(self):
+        tracker = self.unit_tracker({"U1": ["src.txt"]})
+        start_sha = self.head_sha()
         self.write("src.txt", "unit output\n")
-        p = self.tool("unit-commit", "--write-set", "src.txt", "-m", "unit U1")
+        p = self.tool("unit-commit", "--tracker", tracker, "--unit", "U1",
+                      "--start-sha", start_sha, "-m", "unit U1")
         v = self.verdict(p)
         self.assertEqual(v["verdict"], "UNIT_COMMITTED", p.stdout + p.stderr)
         self.assertEqual(self.head_paths(), {"src.txt"})
         self.assertEqual(v["sha"], self.git("rev-parse", "HEAD").stdout.strip())
 
     def test_operator_staged_state_outside_write_set_survives(self):
+        tracker = self.unit_tracker({"U1": ["src.txt"]})
+        start_sha = self.head_sha()
         self.write("op.txt", "operator\n")
         self.git("add", "op.txt")
         self.write("src.txt", "unit output\n")
-        v = self.verdict(self.tool("unit-commit", "--write-set", "src.txt",
+        v = self.verdict(self.tool("unit-commit", "--tracker", tracker,
+                                   "--unit", "U1", "--start-sha", start_sha,
                                    "-m", "unit U1"))
         self.assertEqual(v["verdict"], "UNIT_COMMITTED")
         self.assertEqual(self.head_paths(), {"src.txt"})
@@ -734,8 +669,11 @@ class TestUnitCommit(GitFixture):
         self.write("src.txt", "v1\n")
         self.git("add", "src.txt")
         self.git("commit", "-m", "v1")
+        tracker = self.unit_tracker({"U1": ["src.txt"]})
+        start_sha = self.head_sha()
         self.write("src.txt", "v2\n")
-        v = self.verdict(self.tool("unit-commit", "--write-set", "src.txt",
+        v = self.verdict(self.tool("unit-commit", "--tracker", tracker,
+                                   "--unit", "U1", "--start-sha", start_sha,
                                    "-m", "unit U1"))
         self.assertEqual(v["verdict"], "UNIT_COMMITTED")
         self.assertEqual(self.git("show", "HEAD:src.txt").stdout, "v2\n")
@@ -746,9 +684,12 @@ class TestUnitCommit(GitFixture):
         self.write("src.txt", "settled\n")
         self.git("add", "src.txt")
         self.git("commit", "-m", "settled")
+        tracker = self.unit_tracker({"U1": ["src.txt"]})
+        start_sha = self.head_sha()
         head = self.git("rev-parse", "HEAD").stdout.strip()
         self.write("src.txt", "settled\n")  # same content
-        v = self.verdict(self.tool("unit-commit", "--write-set", "src.txt",
+        v = self.verdict(self.tool("unit-commit", "--tracker", tracker,
+                                   "--unit", "U1", "--start-sha", start_sha,
                                    "-m", "unit U1"))
         self.assertEqual(v["verdict"], "UNIT_NO_DIFF_VS_HEAD")
         self.assertEqual(self.git("rev-parse", "HEAD").stdout.strip(), head)
@@ -756,10 +697,12 @@ class TestUnitCommit(GitFixture):
     def test_missing_write_set_path_halts_nothing_lands(self):
         # attack-6 B4 probe: an unpopulated write-set path poisons the
         # pathspec — exit 1, nothing lands, previously booked as landed.
+        tracker = self.unit_tracker({"U1": ["src.txt", "never-made.txt"]})
+        start_sha = self.head_sha()
         self.write("src.txt", "made\n")
         head = self.git("rev-parse", "HEAD").stdout.strip()
-        p = self.tool("unit-commit", "--write-set", "src.txt",
-                      "--write-set", "never-made.txt", "-m", "unit U1")
+        p = self.tool("unit-commit", "--tracker", tracker, "--unit", "U1",
+                      "--start-sha", start_sha, "-m", "unit U1")
         v = self.verdict(p)
         self.assertEqual(v["verdict"], "HALT_MISSING_PATH")
         self.assertIn("never-made.txt", v["paths"])
@@ -769,10 +712,13 @@ class TestUnitCommit(GitFixture):
     def test_contention_blocked_after_capped_retries(self):
         # attack-5 N3: capped, spaced retries; persistent index.lock →
         # blocked-commit REPORT with the error text, never silence.
+        tracker = self.unit_tracker({"U1": ["src.txt"]})
+        start_sha = self.head_sha()
         self.write("src.txt", "unit output\n")
         lock = self.repo / ".git" / "index.lock"
         lock.write_text("")
-        p = self.tool("unit-commit", "--write-set", "src.txt", "-m", "unit U1")
+        p = self.tool("unit-commit", "--tracker", tracker, "--unit", "U1",
+                      "--start-sha", start_sha, "-m", "unit U1")
         v = self.verdict(p)
         self.assertEqual(v["verdict"], "BLOCKED_CONTENTION")
         self.assertEqual(v["attempts"], 5)
@@ -783,20 +729,86 @@ class TestUnitCommit(GitFixture):
     def test_contention_recovers_when_lock_clears(self):
         # probe (attack 4): contention is recoverable — a cleared lock
         # lets the same invocation land.
+        tracker = self.unit_tracker({"U1": ["src.txt"]})
+        start_sha = self.head_sha()
         self.write("src.txt", "unit output\n")
-        v = self.verdict(self.tool("unit-commit", "--write-set", "src.txt",
+        v = self.verdict(self.tool("unit-commit", "--tracker", tracker,
+                                   "--unit", "U1", "--start-sha", start_sha,
                                    "-m", "unit U1"))
         self.assertEqual(v["verdict"], "UNIT_COMMITTED")
 
     def test_state_gate_reread_distinct_from_contention(self):
         # attack-6 N3: an operation the operator began mid-unit blocks
         # the commit as HALT_STATE, never conflated with index.lock.
+        tracker = self.unit_tracker({"U1": ["src.txt"]})
+        start_sha = self.head_sha()
         self.write("src.txt", "unit output\n")
         self.start_conflicted_merge()
-        p = self.tool("unit-commit", "--write-set", "src.txt", "-m", "unit U1")
+        p = self.tool("unit-commit", "--tracker", tracker, "--unit", "U1",
+                      "--start-sha", start_sha, "-m", "unit U1")
         v = self.verdict(p)
         self.assertEqual(v["verdict"], "HALT_STATE")
         self.assertIn("merge", v["ops"])
+
+    def test_stale_start_sha_halts_mismatch(self):
+        # P2: a foreign commit touching the declared write-set after
+        # start-sha halts UNIT_START_MISMATCH before any of the commit
+        # seam's own checks run.
+        tracker = self.unit_tracker({"U1": ["src.txt"]})
+        start_sha = self.head_sha()
+        self.write("src.txt", "foreign touch\n")
+        self.git("add", "src.txt")
+        self.git("commit", "-m", "foreign touch on src.txt")
+        p = self.tool("unit-commit", "--tracker", tracker, "--unit", "U1",
+                      "--start-sha", start_sha, "-m", "unit U1")
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "UNIT_START_MISMATCH", v)
+        self.assertEqual(v["start_sha"], start_sha)
+
+    def test_unknown_start_sha_halts_mismatch(self):
+        tracker = self.unit_tracker({"U1": ["src.txt"]})
+        self.write("src.txt", "unit output\n")
+        p = self.tool("unit-commit", "--tracker", tracker, "--unit", "U1",
+                      "--start-sha", "0" * 40, "-m", "unit U1")
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "UNIT_START_MISMATCH")
+
+    def test_write_set_naming_the_tracker_halts(self):
+        # P2/F12: the declared write-set names the tracker itself
+        tracker = "selfname.md"
+        self.write(tracker, self.CLOSED_TRACKER +
+                  f"- F2 [VERIFIED] unit U1 write-set: {tracker} "
+                  "— basis: design\n")
+        start_sha = self.head_sha()
+        p = self.tool("unit-commit", "--tracker", tracker, "--unit", "U1",
+                      "--start-sha", start_sha, "-m", "unit U1")
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "WRITE_SET_NAMES_TRACKER", v)
+        p2 = self.tool("unit-start", "--tracker", tracker, "--unit", "U1")
+        self.assertEqual(self.verdict(p2)["verdict"],
+                         "WRITE_SET_NAMES_TRACKER")
+
+    def test_empty_declared_write_set_blocks(self):
+        # P2: a KNOWN unit with no live write-set F-line at all — the
+        # gate itself carries why (an undeclared unit cannot start)
+        tracker = self.write("empty.md", self.CLOSED_TRACKER +
+                             "- D9 [AUTO-ACCEPTED] unit U1 gap: no "
+                             "write-set decided — basis: report\n")
+        p = self.tool("unit-start", "--tracker", str(tracker), "--unit", "U1")
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "UNIT_GATE_BLOCKED", v)
+        self.assertEqual(v["gate"]["declared_write_set"], [])
+
+    def test_held_unit_blocks_the_gate(self):
+        tracker = self.write("held.md", self.CLOSED_TRACKER +
+                             "- F2 [VERIFIED] unit U1 write-set: x.txt "
+                             "— basis: design\n"
+                             "- D9 [AUTO-ACCEPTED] unit U1 held: x.txt "
+                             "— basis: F2\n")
+        p = self.tool("unit-start", "--tracker", str(tracker), "--unit", "U1")
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "UNIT_GATE_BLOCKED", v)
+        self.assertEqual(v["gate"]["verdict"], "UNIT_HELD")
 
 
 # ---------------------------------------------------- pure-function checks
@@ -806,13 +818,11 @@ class TestReviewFindings(GitFixture):
     2026-08-07): each test written red against the pre-repair
     behavior the reviewer executed."""
 
-    def test_multi_path_single_flag_parses(self):
-        # review B1: the documented form `--write-set <file> ...`
-        # errored with no verdict line at all
-        p = self.tool("unit-start", "--write-set", "a.txt", "b.txt")
-        v = self.verdict(p)
-        self.assertEqual(v["verdict"], "UNIT_START_CLEAN")
-        self.assertEqual(set(v["write_set"]), {"a.txt", "b.txt"})
+    # review B1's multi-path-single-flag probe targeted --write-set's
+    # `nargs="+"` parsing, which P2 removed from unit-start entirely
+    # (the write-set is read from the tracker now) — the shape it
+    # guarded against still gets covered by lock-check/lock-commit's
+    # own `--lock-set` multi-path flag, unchanged by this lane.
 
     def test_usage_error_emits_verdict_line(self):
         # review B1: argparse exited 2 (the halt code) on stderr with
@@ -831,7 +841,7 @@ class TestReviewFindings(GitFixture):
         self.write(".gitattributes", "*.md filter=noisy\n")
         self.git("add", ".gitattributes")
         self.git("commit", "-m", "attr")
-        self.write(".clippy/runs/t.md", "# Run: t\n")
+        self.write(".clippy/runs/t.md", self.GATE_CLEAN_TRACKER)
         p = self.tool("lock-commit", "--tracker", ".clippy/runs/t.md",
                       "-m", "lock")
         v = self.verdict(p)
@@ -843,7 +853,7 @@ class TestReviewFindings(GitFixture):
         # review N2: relative paths resolved against process cwd —
         # from a subdir, preflight false-cleaned on a phantom path
         (self.repo / "sub").mkdir()
-        self.write(".clippy/runs/t.md", "# Run: t\n")
+        self.write(".clippy/runs/t.md", self.GATE_CLEAN_TRACKER)
         p = subprocess.run(
             [sys.executable, str(SCRIPT), "preflight",
              "--tracker", ".clippy/runs/t.md"],
@@ -859,11 +869,13 @@ class TestReviewFindings(GitFixture):
         self.write("src.txt", "v1\n")
         self.git("add", "src.txt")
         self.git("commit", "-m", "v1")
+        tracker = self.unit_tracker({"U1": ["src.txt"]})
+        start_sha = self.head_sha()
         self.write("src.txt", "operator precious\n")
         self.git("add", "src.txt")
         self.write("src.txt", "unit output\n")
-        p = self.tool("unit-commit", "--write-set", "src.txt",
-                      "-m", "unit U1")
+        p = self.tool("unit-commit", "--tracker", tracker, "--unit", "U1",
+                      "--start-sha", start_sha, "-m", "unit U1")
         v = self.verdict(p)
         self.assertEqual(v["verdict"], "UNIT_COMMIT_COLLISION")
         blob = self.git("show", ":src.txt").stdout
@@ -876,11 +888,13 @@ class TestReviewFindings(GitFixture):
         # the commit seam halts on it; the blocked-prior-attempt
         # leftover never reaches this seam (START catches it and the
         # desk's provenance clearing handles it).
+        tracker = self.unit_tracker({"U1": ["src.txt"]})
+        start_sha = self.head_sha()
         self.write("src.txt", "OPERATOR PRECIOUS DRAFT\n")
         self.git("add", "src.txt")
         self.write("src.txt", "unit output\n")
-        p = self.tool("unit-commit", "--write-set", "src.txt",
-                      "-m", "unit U1")
+        p = self.tool("unit-commit", "--tracker", tracker, "--unit", "U1",
+                      "--start-sha", start_sha, "-m", "unit U1")
         v = self.verdict(p)
         self.assertEqual(v["verdict"], "UNIT_COMMIT_COLLISION")
         blob = self.git("show", ":src.txt").stdout
@@ -902,7 +916,7 @@ class TestReviewFindings(GitFixture):
                         "suite failed' >&2; exit 1; }\n"
                         "touch .hook-armed\nexit 0\n")
         hook.chmod(0o755)
-        self.write(".clippy/runs/t.md", "# Run: t\n")
+        self.write(".clippy/runs/t.md", self.GATE_CLEAN_TRACKER)
         p = self.tool("lock-commit", "--tracker", ".clippy/runs/t.md",
                       "-m", "lock")
         v = self.verdict(p)
@@ -914,7 +928,7 @@ class TestReviewFindings(GitFixture):
     def test_lock_commit_rerun_halts_no_changes(self):
         # attack-7 N6: the Close's re-pin rests on HALT_NO_CHANGES
         # ("benign, delivered as-is") with no test that could go red
-        self.write(".clippy/runs/t.md", "# Run: t\n")
+        self.write(".clippy/runs/t.md", self.GATE_CLEAN_TRACKER)
         v1 = self.verdict(self.tool("lock-commit",
                                     "--tracker", ".clippy/runs/t.md",
                                     "-m", "pin"))
@@ -930,10 +944,12 @@ class TestReviewFindings(GitFixture):
         self.write(".gitignore", "build/\n")
         self.git("add", ".gitignore")
         self.git("commit", "-m", "gi")
+        tracker = self.unit_tracker({"U1": ["build/x.txt"]})
+        start_sha = self.head_sha()
         (self.repo / "build").mkdir()
         self.write("build/x.txt", "unit output\n")
-        p = self.tool("unit-commit", "--write-set", "build/x.txt",
-                      "-m", "unit U1")
+        p = self.tool("unit-commit", "--tracker", tracker, "--unit", "U1",
+                      "--start-sha", start_sha, "-m", "unit U1")
         v = self.verdict(p)
         self.assertEqual(v["verdict"], "HALT_IGNORED_WRITESET")
 
@@ -942,7 +958,8 @@ class TestReviewFindings(GitFixture):
         self.write(".gitignore", "build/\n")
         self.git("add", ".gitignore")
         self.git("commit", "-m", "gi")
-        p = self.tool("unit-start", "--write-set", "build/x.txt")
+        tracker = self.unit_tracker({"U1": ["build/x.txt"]})
+        p = self.tool("unit-start", "--tracker", tracker, "--unit", "U1")
         v = self.verdict(p)
         self.assertEqual(v["verdict"], "HALT_IGNORED_WRITESET")
 
@@ -956,7 +973,7 @@ class TestReviewFindings(GitFixture):
         self.git("add", "old.txt")
         self.git("commit", "-m", "old")
         self.git("mv", "old.txt", "new.txt")
-        self.write(".clippy/runs/t.md", "# Run: t\n")
+        self.write(".clippy/runs/t.md", self.GATE_CLEAN_TRACKER)
         v1 = self.verdict(self.tool("lock-check",
                                     "--tracker", ".clippy/runs/t.md",
                                     "--lock-set", "new.txt"))
@@ -1071,7 +1088,7 @@ class TestAttack8NonAsciiReadback(GitFixture):
 
     def test_lock_commit_non_ascii_tracker_clean(self):
         tracker = ".clippy/runs/2026-08-07-flächennutzung.md"
-        self.write(tracker, "# Run: t\nStatus: [READY]\n")
+        self.write(tracker, "# Run: t\nStatus: [READY]\nPhase: implement\n")
         v = self.verdict(self.tool(
             "lock-commit", "--tracker", tracker, "-m", "lock"))
         self.assertEqual(v["verdict"], "LOCK_COMMITTED",
@@ -1080,19 +1097,38 @@ class TestAttack8NonAsciiReadback(GitFixture):
     def test_unit_commit_non_ascii_write_set_clean(self):
         # the parallel seam — the carry-across pin (one function, two
         # callers; both proven, not one)
+        tracker = self.unit_tracker({"U1": ["grünflächen.py"]})
+        start_sha = self.head_sha()
         self.write("grünflächen.py", "x = 1\n")
         v = self.verdict(self.tool(
-            "unit-commit", "--write-set", "grünflächen.py", "-m", "unit"))
+            "unit-commit", "--tracker", tracker, "--unit", "U1",
+            "--start-sha", start_sha, "-m", "unit"))
         self.assertEqual(v["verdict"], "UNIT_COMMITTED",
                          f"false extras: {v.get('extras')}")
 
     def test_quote_worthy_ascii_specials_clean(self):
         # quotePath also fires on '"' and '\'; spaces never quote —
-        # the attacker's trigger-set probes (P5), pinned as boundary
+        # the attacker's trigger-set probes (P5), pinned as boundary.
+        # P2 GAP (surfaced, not bridged): the record's write-set
+        # grammar reads whitespace inside the path field as TWO paths
+        # on one line (statiker_record.py write_set_violations,
+        # write-set-path-near-miss) — pre-existing record hygiene,
+        # unrelated to this lane's design, but P2 makes the git tool
+        # DEPEND on that declaration for the first time, so a path
+        # this quoting probe used to commit cleanly through a free
+        # --write-set CLI arg now blocks at the gate before the commit
+        # machinery (which still handles the space fine) ever runs.
+        # Report this to the dispatcher as a capability regression.
+        tracker = self.unit_tracker({"U1": ["my report.py"]})
+        start_sha = self.head_sha()
         self.write("my report.py", "x\n")
         v = self.verdict(self.tool(
-            "unit-commit", "--write-set", "my report.py", "-m", "unit"))
-        self.assertEqual(v["verdict"], "UNIT_COMMITTED")
+            "unit-commit", "--tracker", tracker, "--unit", "U1",
+            "--start-sha", start_sha, "-m", "unit"))
+        self.assertEqual(v["verdict"], "UNIT_GATE_BLOCKED", v)
+        self.assertEqual(v["gate"]["verdict"], "CLOSURE_RECORD_MALFORMED")
+        self.assertIn("write-set-path-near-miss",
+                      [x["code"] for x in v["gate"]["violations"]])
 
     def test_real_extras_still_detected_non_ascii(self):
         # the repair must not eat the defect class: a genuinely
@@ -1127,10 +1163,21 @@ class TestAttack9PathDecoding(GitFixture):
     def test_unit_commit_non_utf8_byte_path_clean(self):
         # E-C: the verdict's own byte (ensure_ascii=False) is now the
         # raw byte, invalid UTF-8 alone — tool_raw/verdict_raw, never
-        # self.tool()/self.verdict() (text=True would crash reading it)
+        # self.tool()/self.verdict() (text=True would crash reading it).
+        # The tracker itself carries the raw byte too (surrogateescape
+        # encode on write — Path.write_text's default codec would
+        # reject it outright).
+        tracker_rel = "unit.md"
+        body = (self.CLOSED_TRACKER +
+               f"- F2 [VERIFIED] unit U1 write-set: {self.NAME} "
+               "— basis: design\n")
+        (self.repo / tracker_rel).write_bytes(
+            body.encode("utf-8", "surrogateescape"))
+        start_sha = self.head_sha()
         (self.repo / self.NAME).write_bytes(b"unit output\n")
         v = self.verdict_raw(self.tool_raw(
-            "unit-commit", "--write-set", self.NAME, "-m", "unit U1"))
+            "unit-commit", "--tracker", tracker_rel, "--unit", "U1",
+            "--start-sha", start_sha, "-m", "unit U1"))
         self.assertEqual(v["verdict"], "UNIT_COMMITTED",
                          f"false extras: {v.get('extras')}")
         self.assertEqual(v["write_set"], [self.NAME])
@@ -1138,7 +1185,7 @@ class TestAttack9PathDecoding(GitFixture):
     def test_lock_drop_handshake_completes_non_utf8_byte_path(self):
         (self.repo / self.NAME).write_bytes(b"operator staged\n")
         self.git("add", self.NAME)
-        self.write(self.TRACKER, "# Run: t\n")
+        self.write(self.TRACKER, self.GATE_CLEAN_TRACKER)
         v1 = self.verdict_raw(self.tool_raw(
             "lock-check", "--tracker", self.TRACKER,
             "--lock-set", self.NAME))
@@ -1166,7 +1213,7 @@ class TestAttack9PathDecoding(GitFixture):
         # in the verdict's JSON text on the wire.
         (self.repo / self.NAME).write_bytes(b"operator staged\n")
         self.git("add", self.NAME)
-        self.write(self.TRACKER, "# Run: t\n")
+        self.write(self.TRACKER, self.GATE_CLEAN_TRACKER)
         p = self.tool_raw("lock-check", "--tracker", self.TRACKER,
                           "--lock-set", self.NAME)
         self.assertIn(b"\xe9", p.stdout,
@@ -1176,21 +1223,13 @@ class TestAttack9PathDecoding(GitFixture):
                          "a desk could paste, never equal to the byte "
                          f"it names: {p.stdout!r}")
 
-    def test_A3_write_set_paste_line_carries_the_raw_byte(self):
-        # begehung tier2-sentence.md SENTENCE-A3: unit-start's printed
-        # record line exists to be pasted into the tracker
-        # (statiker_git.py's own docstring: "prints one paste-ready
-        # record line per write-set path"); pre-fix (print() under
-        # stdout reconfigured errors="replace") the byte reached the
-        # line as a replacement character, a second spelling of the
-        # same path the record tool then treats as disjoint.
-        p = self.tool_raw("unit-start", "--write-set", self.NAME,
-                          "--unit", "U1")
-        text = p.stdout.decode("utf-8", "surrogateescape")
-        printed = next(
-            l for l in split_lines(text)
-            if l.startswith("- F<n> [VERIFIED] unit "))
-        self.assertIn(self.NAME, printed, printed)
+    # SENTENCE-A3's paste-line test retired with the feature (P2: the
+    # write-set is read FROM the tracker, no longer printed back to be
+    # pasted). Byte fidelity for a non-UTF-8 write-set path now lives
+    # entirely on the record side (statiker_record.py's own ES-9/E-C
+    # byte tests) plus the git tool's UNIT_START_CLEAN write_set field,
+    # covered by test_unit_commit_non_utf8_byte_path_clean below for
+    # the commit seam.
 
 
 class TestEJStderrFallbackByteFidelity(GitFixture):
@@ -1211,10 +1250,18 @@ class TestEJStderrFallbackByteFidelity(GitFixture):
     NAME = os.fsdecode(b"caf\xe9.txt")
 
     def test_broken_pipe_stderr_fallback_carries_the_raw_byte(self):
+        tracker_rel = "unit.md"
+        body = (self.CLOSED_TRACKER +
+               f"- F2 [VERIFIED] unit U1 write-set: {self.NAME} "
+               "— basis: design\n")
+        (self.repo / tracker_rel).write_bytes(
+            body.encode("utf-8", "surrogateescape"))
+        start_sha = self.head_sha()
         (self.repo / self.NAME).write_bytes(b"unit output\n")
         proc = subprocess.Popen(
             [sys.executable, str(SCRIPT), "unit-commit",
-             "--write-set", self.NAME, "-m", "unit U1"],
+             "--tracker", tracker_rel, "--unit", "U1",
+             "--start-sha", start_sha, "-m", "unit U1"],
             cwd=self.repo, env=self.env,
             stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         proc.stdout.close()   # closed before any read: guarantees EPIPE
@@ -1261,9 +1308,12 @@ class TestF9PostCommitHookWindowOccupier(GitFixture):
 
     def test_unit_commit_names_its_own_sha_under_a_hook_occupied_window(self):
         self.install_post_commit_hook()
+        tracker = self.unit_tracker({"U1": ["unit.txt"]})
+        start_sha = self.head_sha()
         self.write("unit.txt", "unit output\n")
         v = self.verdict(self.tool(
-            "unit-commit", "--write-set", "unit.txt", "-m", "unit U1"))
+            "unit-commit", "--tracker", tracker, "--unit", "U1",
+            "--start-sha", start_sha, "-m", "unit U1"))
         self.assertEqual(v["verdict"], "UNIT_COMMITTED",
                          f"false extras from the hook's own sibling "
                          f"commit: {v}")
@@ -1290,10 +1340,12 @@ class TestAttack9SymlinkContainment(GitFixture):
 
     def test_unit_commit_halts_on_a_symlink_leaf(self):
         # REVERSED by ES-7: at base this committed the link string
+        tracker = self.unit_tracker({"U1": ["alias.py"]})
+        start_sha = self.head_sha()
         self.write("realdir/target.py", "x = 1\n")
         os.symlink("realdir/target.py", self.repo / "alias.py")
-        p = self.tool("unit-commit", "--write-set", "alias.py",
-                      "-m", "unit U1")
+        p = self.tool("unit-commit", "--tracker", tracker, "--unit", "U1",
+                      "--start-sha", start_sha, "-m", "unit U1")
         v = self.verdict(p)
         self.assertEqual(v["verdict"], "USAGE_ERROR")
         self.assertIn("alias.py", v["error"])
@@ -1302,13 +1354,15 @@ class TestAttack9SymlinkContainment(GitFixture):
 
     def test_unit_start_halts_on_a_link_resolving_out_of_the_repo(self):
         # REVERSED by ES-7: containment is decided on the REAL path
+        tracker = self.unit_tracker({"U1": ["link.py"]})
         ext = Path(self._tmp.name) / "ext"
         ext.mkdir()
         (ext / "real.py").write_text("x = 1\n")
         os.symlink("../ext/real.py", self.repo / "link.py")
         self.git("add", "link.py")
         self.git("commit", "-m", "link")
-        v = self.verdict(self.tool("unit-start", "--write-set", "link.py"))
+        v = self.verdict(self.tool("unit-start", "--tracker", tracker,
+                                   "--unit", "U1"))
         self.assertEqual(v["verdict"], "PATH_OUTSIDE_REPO")
         self.assertIn("resolved_from", v)
 
@@ -1316,14 +1370,17 @@ class TestAttack9SymlinkContainment(GitFixture):
         # the containment repair must not re-route the repo root out
         # of the directory check: '.' is a directory pathspec, which
         # sweeps whatever the operator touched under it
-        v = self.verdict(self.tool("unit-start", "--write-set", "."))
+        tracker = self.unit_tracker({"U1": ["."]})
+        v = self.verdict(self.tool("unit-start", "--tracker", tracker,
+                                   "--unit", "U1"))
         self.assertEqual(v["verdict"], "HALT_DIRECTORY_PATH")
 
     def test_literal_dotdot_escape_still_halts(self):
         # the containment rule the repair must not eat: a path naming
         # its way out of the repo is still outside it
+        tracker = self.unit_tracker({"U1": ["../outside.py"]})
         (Path(self._tmp.name) / "outside.py").write_text("x = 1\n")
-        p = self.tool("unit-start", "--write-set", "../outside.py")
+        p = self.tool("unit-start", "--tracker", tracker, "--unit", "U1")
         v = self.verdict(p)
         self.assertEqual(v["verdict"], "PATH_OUTSIDE_REPO")
         self.assertNotEqual(p.returncode, 0)
@@ -1363,19 +1420,37 @@ class TestAttack10SymlinkedAncestor(GitFixture):
                                  f"cwd={cwd} tracker={tracker}")
                 self.assertEqual(v["tracker"], "t.md")
 
-    def test_unit_start_clean_through_the_link_spelling(self):
+    def track_at(self, real):
+        (real / ".clippy" / "runs").mkdir(parents=True)
+        (real / ".clippy" / "runs" / "t.md").write_text(
+            self.GATE_CLEAN_TRACKER)
+
+    # P2: unit-start's write-set is now DECLARED in the tracker, and
+    # the record's own write-set grammar rejects a leading '/' as an
+    # absolute/symlinked-spelling defect (write-set-path-near-miss) —
+    # exactly the ABSOLUTE spelling these three probes exist to drive
+    # through repo.rel()'s symlinked-ancestor rebase. That rebase is
+    # rel()'s own shared machinery, exercised identically through
+    # lock-check's still-free `--lock-set` (never touched by P2),
+    # which migrates the probe without losing what it tests.
+
+    def test_lock_check_clean_through_the_link_spelling(self):
         real, link = self.linked()
-        v = self.verdict(self.run_at(link, "unit-start",
-                                     "--write-set", str(link / "src.txt")))
-        self.assertEqual(v["verdict"], "UNIT_START_CLEAN")
-        self.assertEqual(v["write_set"], ["src.txt"])
+        self.track_at(real)
+        (real / "src.txt").write_text("x\n")
+        v = self.verdict(self.run_at(
+            link, "lock-check", "--tracker", ".clippy/runs/t.md",
+            "--lock-set", str(link / "src.txt")))
+        self.assertEqual(v["verdict"], "LOCK_CHECK_CLEAN", v)
+        self.assertIn("src.txt", v["adds"])
 
     def test_dotdot_escape_through_the_link_still_halts(self):
         # the containment rule the rebase must not eat
         real, link = self.linked()
+        self.track_at(real)
         (Path(self._tmp.name) / "anc" / "real" / "outside.py").write_text("x\n")
-        p = self.run_at(link, "unit-start",
-                        "--write-set", str(link / ".." / "outside.py"))
+        p = self.run_at(link, "lock-check", "--tracker", ".clippy/runs/t.md",
+                        "--lock-set", str(link / ".." / "outside.py"))
         v = self.verdict(p)
         self.assertEqual(v["verdict"], "PATH_OUTSIDE_REPO")
         self.assertNotEqual(p.returncode, 0)
@@ -1385,6 +1460,7 @@ class TestAttack10SymlinkedAncestor(GitFixture):
         # booking would name its target), but a link LEAF no longer
         # reaches a commit — it halts at the check
         real, link = self.linked()
+        self.track_at(real)
         (real / "realdir").mkdir()
         (real / "realdir" / "target.py").write_text("x = 1\n")
         os.symlink("realdir/target.py", real / "alias.py")
@@ -1392,8 +1468,9 @@ class TestAttack10SymlinkedAncestor(GitFixture):
                   ["commit", "-m", "link"]):
             subprocess.run(["git", *a], cwd=real, env=self.env,
                            capture_output=True, check=True)
-        v = self.verdict(self.run_at(link, "unit-start",
-                                     "--write-set", str(link / "alias.py")))
+        v = self.verdict(self.run_at(
+            link, "lock-check", "--tracker", ".clippy/runs/t.md",
+            "--lock-set", str(link / "alias.py")))
         self.assertEqual(v["verdict"], "USAGE_ERROR")
         self.assertIn("alias.py", v["error"])
 
@@ -1439,12 +1516,20 @@ class TestAttack10NonUtf8RepoDir(GitFixture):
         check("STATE_CLEAN", "state-gate")
         check("PREFLIGHT_OK", "preflight", "--tracker", self.TRACKER)
         check("LOCK_CHECK_CLEAN", "lock-check", "--tracker", self.TRACKER,
-              prep=lambda: (d / self.TRACKER).write_text("# Run: t\n"))
+              prep=lambda: (d / self.TRACKER).write_text(self.GATE_CLEAN_TRACKER))
         check("LOCK_COMMITTED", "lock-commit", "--tracker", self.TRACKER,
               "-m", "lock")
-        check("UNIT_START_CLEAN", "unit-start", "--write-set", "src.txt")
-        check("UNIT_COMMITTED", "unit-commit", "--write-set", "src.txt",
-              "-m", "unit U1",
+        start_sha = subprocess.run(
+            ["git", "rev-parse", "HEAD"], cwd=d, env=self.env,
+            capture_output=True, text=True, check=True).stdout.strip()
+        check("UNIT_START_CLEAN", "unit-start", "--tracker", "unit.md",
+              "--unit", "U1",
+              prep=lambda: (d / "unit.md").write_text(
+                  self.CLOSED_TRACKER +
+                  "- F2 [VERIFIED] unit U1 write-set: src.txt "
+                  "— basis: design\n"))
+        check("UNIT_COMMITTED", "unit-commit", "--tracker", "unit.md",
+              "--unit", "U1", "--start-sha", start_sha, "-m", "unit U1",
               prep=lambda: (d / "src.txt").write_text("unit output\n"))
 
 
@@ -1459,16 +1544,20 @@ class TestAttack10PathExistence(GitFixture):
         # REVERSED by ES-7: lexists still tells a broken link from a
         # missing path (it is not HALT_MISSING_PATH), but a link leaf
         # halts rather than committing the link string
+        tracker = self.unit_tracker({"U1": ["alias.py"]})
+        start_sha = self.head_sha()
         os.symlink("no-such-target.py", self.repo / "alias.py")
-        v = self.verdict(self.tool("unit-commit", "--write-set", "alias.py",
+        v = self.verdict(self.tool("unit-commit", "--tracker", tracker,
+                                   "--unit", "U1", "--start-sha", start_sha,
                                    "-m", "unit U1"))
         self.assertEqual(v["verdict"], "USAGE_ERROR")
+        self.assertIn("alias.py", v["error"])
         self.assertEqual(self.head_paths(), {"base.txt"})
 
     def test_broken_symlink_halts_at_the_lock_pathspec_too(self):
         # the parallel seam (one function, two callers)
         os.symlink("no-such-target.py", self.repo / "alias.py")
-        self.write(".clippy/runs/t.md", "# Run: t\n")
+        self.write(".clippy/runs/t.md", self.GATE_CLEAN_TRACKER)
         v = self.verdict(self.tool(
             "lock-check", "--tracker", ".clippy/runs/t.md",
             "--lock-set", "alias.py"))
@@ -1477,8 +1566,10 @@ class TestAttack10PathExistence(GitFixture):
 
     def test_missing_write_set_path_still_halts(self):
         # the boundary the lexists repair must not eat
-        p = self.tool("unit-commit", "--write-set", "never-made.txt",
-                      "-m", "unit U1")
+        tracker = self.unit_tracker({"U1": ["never-made.txt"]})
+        start_sha = self.head_sha()
+        p = self.tool("unit-commit", "--tracker", tracker, "--unit", "U1",
+                      "--start-sha", start_sha, "-m", "unit U1")
         v = self.verdict(p)
         self.assertEqual(v["verdict"], "HALT_MISSING_PATH")
 
@@ -1520,11 +1611,12 @@ class TestES7Containment(GitFixture):
         # the settle's own red case: at base the path is taken as
         # named, accepted, and a unit writes OUTSIDE the repo before
         # any check knows it
+        tracker = self.unit_tracker({"U1": ["linkdir/x.txt"]})
         out = Path(self._tmp.name) / "elsewhere"
         out.mkdir()
         (out / "x.txt").write_text("operator file\n")
         self.link_dir(out)
-        p = self.tool("unit-start", "--write-set", "linkdir/x.txt")
+        p = self.tool("unit-start", "--tracker", tracker, "--unit", "U1")
         v = self.verdict(p)
         self.assertEqual(v["verdict"], "PATH_OUTSIDE_REPO")
         self.assertEqual(v["path"], "linkdir/x.txt",
@@ -1535,11 +1627,12 @@ class TestES7Containment(GitFixture):
     def test_resolved_from_is_noted_when_the_two_spellings_differ(self):
         # accepted, because the link points INSIDE — and the verdict
         # says so per path, the operation still on the named spelling
+        tracker = self.unit_tracker({"U1": ["linkdir/x.txt"]})
         (self.repo / "realdir").mkdir()
         (self.repo / "realdir" / "x.txt").write_text("run content\n")
         self.link_dir(self.repo / "realdir")
-        v = self.verdict(self.tool("unit-start",
-                                   "--write-set", "linkdir/x.txt"))
+        v = self.verdict(self.tool("unit-start", "--tracker", tracker,
+                                   "--unit", "U1"))
         self.assertEqual(v["verdict"], "UNIT_START_CLEAN")
         self.assertEqual(v["write_set"], ["linkdir/x.txt"])
         named = [r["named"] for r in v["resolved_from"]]
@@ -1548,7 +1641,9 @@ class TestES7Containment(GitFixture):
     def test_clean_paths_carry_no_resolved_from_noise(self):
         # GREEN-AT-BASE boundary: the note appears only where the two
         # computations differ
-        v = self.verdict(self.tool("unit-start", "--write-set", "src.txt"))
+        tracker = self.unit_tracker({"U1": ["src.txt"]})
+        v = self.verdict(self.tool("unit-start", "--tracker", tracker,
+                                   "--unit", "U1"))
         self.assertEqual(v["verdict"], "UNIT_START_CLEAN")
         self.assertNotIn("resolved_from", v)
 
@@ -1556,10 +1651,13 @@ class TestES7Containment(GitFixture):
         (self.repo / "realdir").mkdir()
         (self.repo / "realdir" / "x.txt").write_text("content\n")
         os.symlink("realdir/x.txt", self.repo / "alias.py")
-        self.write(".clippy/runs/t.md", "# Run: t\n")
+        self.write(".clippy/runs/t.md", self.GATE_CLEAN_TRACKER)
+        tracker = self.unit_tracker({"U1": ["alias.py"]}, rel="unitseam.md")
+        start_sha = self.head_sha()
         seams = (
-            ("unit-start", "--write-set", "alias.py"),
-            ("unit-commit", "--write-set", "alias.py", "-m", "unit U1"),
+            ("unit-start", "--tracker", tracker, "--unit", "U1"),
+            ("unit-commit", "--tracker", tracker, "--unit", "U1",
+             "--start-sha", start_sha, "-m", "unit U1"),
             ("lock-check", "--tracker", ".clippy/runs/t.md",
              "--lock-set", "alias.py"),
             ("lock-commit", "--tracker", ".clippy/runs/t.md",
@@ -1592,7 +1690,7 @@ class TestES11GitResidue(GitFixture):
         (self.repo / "realdir").mkdir()
         (self.repo / "realdir" / "x.txt").write_text("run content\n")
         os.symlink("realdir", self.repo / "linkdir")
-        self.write(self.TRACKER, "# Run: t\n")
+        self.write(self.TRACKER, self.GATE_CLEAN_TRACKER)
         p = self.tool("lock-check", "--tracker", self.TRACKER,
                       "--lock-set", "linkdir/x.txt")
         v = self.verdict(p)
@@ -1613,7 +1711,7 @@ class TestES11GitResidue(GitFixture):
     def test_other_reads_keep_their_documented_exit_semantics(self):
         # GREEN-AT-BASE boundary: strictness is the health read's
         # alone — a not-ignored answer (exit 1) is an answer
-        self.write(self.TRACKER, "# Run: t\n")
+        self.write(self.TRACKER, self.GATE_CLEAN_TRACKER)
         v = self.verdict(self.tool("preflight", "--tracker", self.TRACKER))
         self.assertEqual(v["verdict"], "PREFLIGHT_OK")
 
@@ -1625,7 +1723,7 @@ class TestES11GitResidue(GitFixture):
         self.git("add", "old.txt")
         self.git("commit", "-m", "old")
         self.git("mv", "old.txt", "new.txt")
-        self.write(self.TRACKER, "# Run: t\n")
+        self.write(self.TRACKER, self.GATE_CLEAN_TRACKER)
         v1 = self.verdict(self.tool(
             "lock-check", "--tracker", self.TRACKER,
             "--lock-set", "new.txt", "--lock-set", "old.txt"))
@@ -1824,9 +1922,11 @@ class TestHarvest2BrokenPipeAndRetryBaseEnv(GitFixture):
     routes a bad value USAGE_ERROR, same defined exit code as (d)."""
 
     def test_a_closed_reader_still_gets_exactly_one_verdict_line(self):
+        tracker = self.unit_tracker(
+            {"U1": ["a.txt", "b.txt", "c.txt", "d.txt", "e.txt"]})
         proc = subprocess.Popen(
-            [sys.executable, str(SCRIPT), "unit-start", "--write-set",
-             "a.txt", "b.txt", "c.txt", "d.txt", "e.txt"],
+            [sys.executable, str(SCRIPT), "unit-start",
+             "--tracker", tracker, "--unit", "U1"],
             cwd=self.repo, env=self.env,
             stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         proc.stdout.close()   # closed before any read: guarantees EPIPE
@@ -1886,7 +1986,7 @@ def expected_seal_species(main_top_real, tracker_filename, round_, home):
 
 class TestSealPath(GitFixture):
     def test_paths_equal_the_pinned_derivation(self):
-        self.write(".clippy/runs/t.md", "# Run: t\n")
+        self.write(".clippy/runs/t.md", self.GATE_CLEAN_TRACKER)
         p = self.tool("seal-path", "--tracker", ".clippy/runs/t.md",
                       "--round", "A3")
         v = self.verdict(p)
@@ -1902,7 +2002,7 @@ class TestSealPath(GitFixture):
         # P1: --show-toplevel from INSIDE a linked worktree answers
         # with the worktree's own root — the pinned derivation must
         # use the MAIN checkout instead, via --git-common-dir
-        self.write(".clippy/runs/t.md", "# Run: t\n")
+        self.write(".clippy/runs/t.md", self.GATE_CLEAN_TRACKER)
         self.git("add", ".clippy/runs/t.md")
         self.git("commit", "-m", "tracker")
         sha = self.git("rev-parse", "HEAD").stdout.strip()
@@ -1925,7 +2025,7 @@ class TestSealPath(GitFixture):
             self.assertEqual(v[species], path, species)
 
     def test_bad_round_form_halts_usage_error(self):
-        self.write(".clippy/runs/t.md", "# Run: t\n")
+        self.write(".clippy/runs/t.md", self.GATE_CLEAN_TRACKER)
         p = self.tool("seal-path", "--tracker", ".clippy/runs/t.md",
                       "--round", "3")
         v = self.verdict(p)
