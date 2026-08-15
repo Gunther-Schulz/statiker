@@ -177,12 +177,7 @@ it (an unattended loop without a declared bound terminates on
 context death, the one ending that produces no readable verdict).
 Exhaustion never continues silently: attended it forces the
 operator prompt, unattended it closes the run FAILED with the
-unexhausted question enumerated in the close. A default binds
-only runs whose start postdates its mint: a run begun under a
-pre-Budget skill version (the header's `Skill:` line) has no
-default to exhaust — the resuming desk declares the budget at
-resume, sized to the remaining work, as an ordinary entry.
-(hypothesis) —
+unexhausted question enumerated in the close. (hypothesis) —
 Status and Phase within the first ~20
 lines (the stats reader's admission window). After the header,
 the requirement head in two
