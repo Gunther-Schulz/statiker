@@ -195,6 +195,16 @@ REPAIR_HEADER = ("header rewrite: Status and Phase are the record's "
 REPAIR_STATUS_LINE = ("status line: append a new tag-first line under "
                       "the same id — a repair token never changes "
                       "status")
+# tag-literal-in-body's OWNER-LESS shape (begehung-harvest 2 finding 2,
+# probe B): a header, INTENT, or bare-prose line parses no entry, so
+# the bracketed literal sitting there is the hand-defang duty SKILL.md
+# names — "an undefanged bracketed tag literal holds the sweep
+# wherever it sits ... in INTENT it is the enforcement of the
+# hand-defang duty" — not an ordinary body-content violation a
+# bookkeeping token may shed.
+REPAIR_INTENT_HOLD = ("hold: an undefanged tag literal here holds the "
+                      "sweep for the run's life — write the defanged "
+                      "literal in place; no repair token reaches it")
 
 MACHINE_TOKEN_CODES = {
     "entry-form", "tag-enum", "entry-near-miss", "scope-near-miss",
@@ -216,12 +226,23 @@ REPAIR_FORMS = dict(
        ("pending-latest", "killerless-dead", "basis-cites-invalidated")])
 
 
-def annotate_repairs(violations):
-    """Attach each violation's repair form, addressed at its own line."""
+def annotate_repairs(violations, line_ids=None):
+    """Attach each violation's repair form, addressed at its own line.
+
+    tag-literal-in-body is OWNER-CONDITIONED (begehung-harvest 2
+    finding 2, probe B): on a line that parsed no entry (`line_ids`
+    carries no id for it — a header, INTENT, or bare-prose line), the
+    tool must not recommend the ordinary bookkeeping shed, since no
+    token can legally reach it (repair_class enforces the same rule
+    at apply time); the desk is shown the hold instead."""
+    line_ids = line_ids or {}
     for v in violations:
-        form = REPAIR_FORMS.get(
-            v["code"],
-            "unclassified: this violation's repair form is not settled")
+        if v["code"] == "tag-literal-in-body" and v["line"] not in line_ids:
+            form = REPAIR_INTENT_HOLD
+        else:
+            form = REPAIR_FORMS.get(
+                v["code"],
+                "unclassified: this violation's repair form is not settled")
         v["repair"] = form.format(n=v["line"])
     return violations
 
@@ -232,17 +253,29 @@ def violation_site(codes):
             else "body-content")
 
 
-def repair_class(codes):
+def repair_class(codes, owner=None):
     """Which of the three REPAIR_FORMS classes a violated line's codes
     settle a `corrects line <n>` token into: 'supersede' when any code
     is a MACHINE_TOKEN_CODES member (REPAIR_SUPERSEDE — the semantics
     every gate reads); 'bookkeeping' only when EVERY code at the line
     declares REPAIR_BOOKKEEPING; else 'unreachable' — REPAIR_HEADER,
-    REPAIR_STATUS_LINE, or an unclassified code, none of which a
-    token sheds (consulted at the decision point, per the table these
-    forms already state — Finding 2, tier2-without.md parts 3/7-4/7)."""
+    REPAIR_STATUS_LINE, REPAIR_INTENT_HOLD, or an unclassified code,
+    none of which a token sheds (consulted at the decision point, per
+    the table these forms already state — Finding 2, tier2-without.md
+    parts 3/7-4/7).
+
+    `tag-literal-in-body` is OWNER-CONDITIONED, this code only (no
+    general owner rule — an ordinary entry's near-miss repair stays
+    reachable regardless of owner): `owner` is the target line's
+    parsed id (line_ids.get(n)), or None when the line parsed no
+    entry at all. An owner-less target is exactly the header/INTENT
+    shape SKILL.md holds "for the run's life" (probe B) — no
+    bookkeeping token reaches it there, whatever the code's general
+    classification says for an ordinary entry body."""
     if any(c in MACHINE_TOKEN_CODES for c in codes):
         return "supersede", None
+    if "tag-literal-in-body" in codes and owner is None:
+        return "unreachable", REPAIR_INTENT_HOLD
     forms = {REPAIR_FORMS.get(c) for c in codes}
     if forms == {REPAIR_BOOKKEEPING}:
         return "bookkeeping", None
@@ -574,7 +607,7 @@ def parse_tracker(text: str):
 
     entries, violations = apply_supersession(entries, violations, line_ids,
                                              line_parse)
-    annotate_repairs(violations)
+    annotate_repairs(violations, line_ids)
     return entries, violations, {"status": status_val, "phase": phase_val,
                                  "late_intent": late_intent}
 
@@ -667,7 +700,7 @@ def apply_supersession(entries, violations, line_ids, line_parse):
                              + _corrects_nothing_reason(n, e, violated,
                                                         line_ids)})
                 continue
-            site, declared = repair_class(violated[n])
+            site, declared = repair_class(violated[n], owner)
             if site == "supersede":
                 superseded.add(n)
                 complaints += _repair_pin_complaints(e, n, line_parse)

@@ -1793,18 +1793,20 @@ class TestHarvest2CorrectsReachClass(RecordFixture):
     members supersede, everything else lints `corrects-nothing`
     carrying the declared (unreachable) form.
 
-    NOT covered here (surfaced as a gap, per the closing report):
-    probe B (an undefanged tag literal in INTENT, corrected by a
-    bookkeeping token) still reaches SWEEP_CLEAN after this fix —
-    `tag-literal-in-body` genuinely IS a REPAIR_BOOKKEEPING member
-    (TestES10RepairFieldPerViolation.
-    test_a_body_content_violation_names_bookkeeping pins that label),
-    so gating shed-eligibility on REPAIR_FORMS class alone does not
-    disqualify it. Making probe B lint too needs a further design
-    decision this entry does not state (e.g. excluding owner-less /
-    head-region targets, or a new REPAIR class for an INTENT-scoped
-    literal) — confirmed empirically, not by inference: reverting
-    this fix's apply_supersession hunk still sheds probe B."""
+    Probe B (an undefanged tag literal in INTENT, corrected by a
+    bookkeeping token) is fixed by a FOLLOW-UP decision (dispatcher,
+    the GAP-2 directive): `tag-literal-in-body` — this code only, no
+    general owner rule — is shed-eligible only when the target line
+    parsed an entry (`line_ids` carries an owner for it); an
+    owner-less target (header, INTENT, bare prose) routes
+    `corrects-nothing` and the verdict's own repair field states the
+    hold (SKILL.md's "holds ... for the run's life ... hand-defang
+    duty") instead of recommending the shed. An ENTRY-owned
+    tag-literal still sheds normally (must-not-fire, tested below) —
+    ordinary near-miss repairs on owner-less malformed lines outside
+    this one code stay reachable (TestES6OwnIdTargeting's own vehicle
+    moved off tag-literal-in-body to superseded-block-form for this
+    reason)."""
 
     def test_a_header_violation_is_not_shed_by_a_bookkeeping_token(self):
         n = self.lineno_of("", "bogus-status", header=BOGUS_STATUS_HEADER)
@@ -1843,6 +1845,41 @@ class TestHarvest2CorrectsReachClass(RecordFixture):
         codes = self.violation_codes(v)
         self.assertIn("pending-latest", codes, v)
         self.assertIn("corrects-nothing", codes, v)
+
+    def test_an_intent_tag_literal_is_not_shed_by_a_bookkeeping_token(self):
+        # GAP-2 (dispatcher-decided follow-up), probe B: appending
+        # exactly what the ORIGINAL (pre-fix) verdict's repair field
+        # recommended used to reach SWEEP_CLEAN with [PASSED] still
+        # standing in INTENT — the recommendation itself was the bug
+        # (tier2-without.md part 4/7, "the tool recommends the shed")
+        header = HEADER.replace(
+            "INTENT — do the thing.",
+            "INTENT — make the thing [PASSED] when it works.")
+        n = self.lineno_of("", "[PASSED] when it works", header=header)
+        baseline = self.sweep("", header=header)
+        self.assertEqual(baseline["verdict"], "SWEEP_HOLDS", baseline)
+        literal_viol = next(x for x in baseline["violations"]
+                            if x["code"] == "tag-literal-in-body")
+        self.assertTrue(literal_viol["repair"].startswith("hold:"),
+                        literal_viol)
+        self.assertNotIn("bookkeeping", literal_viol["repair"], literal_viol)
+        body = f"- F1 [VERIFIED] record: corrects line {n} — basis: y\n"
+        v = self.sweep(body, header=header)
+        self.assertEqual(v["verdict"], "SWEEP_HOLDS", v)
+        codes = self.violation_codes(v)
+        self.assertIn("tag-literal-in-body", codes, v)
+        self.assertIn("corrects-nothing", codes, v)
+
+    def test_an_entry_owned_tag_literal_still_sheds(self):
+        # must-not-fire: an ordinary entry-body tag literal, corrected
+        # by its OWN id, stays reachable — the carve-out is owner-less
+        # targets only, not tag-literal-in-body generally
+        bad = "- F1 [VERIFIED] the [PENDING] tag rides here — basis: y\n"
+        n = self.lineno_of(bad, "[PENDING] tag rides here")
+        body = (bad + f"- F1 [VERIFIED] record: corrects line {n} "
+                "— basis: y2\n")
+        v = self.sweep(body)
+        self.assertEqual(v["verdict"], "SWEEP_CLEAN", v)
 
 
 class TestHarvest2WriteSetPathField(RecordFixture):
@@ -2325,12 +2362,15 @@ class TestES6OwnIdTargeting(RecordFixture):
     naming a DIFFERENT id stays barred (the forgery direction)."""
 
     def test_token_reaches_a_line_naming_no_readable_id(self):
-        # an undefanged literal in a quote block carries a violation
-        # and no id at all — at base the token lints corrects-nothing
-        # ("names no entry") and the violation holds the sweep forever
-        quoted = ("> Superseded — A3 quotes\n"
-                  "> the report said [AUTO-ACCEPTED] verbatim\n")
-        n = self.lineno_of(quoted, "[AUTO-ACCEPTED]")
+        # a stray quoted line outside any recognized Superseded block
+        # carries a violation and no id at all — the vehicle here is
+        # superseded-block-form, not tag-literal-in-body: the latter
+        # is now OWNER-CONDITIONED (begehung-harvest 2, probe B —
+        # TestHarvest2CorrectsReachClass) and no longer demonstrates
+        # this class; every OTHER body-content code stays reachable
+        # regardless of owner, which is what this test pins
+        quoted = "> a stray quoted line outside any Superseded block\n"
+        n = self.lineno_of(quoted, "stray quoted line")
         body = (quoted +
                 f"- F7 [VERIFIED] record: corrects line {n} — basis: y\n")
         v = self.lint(body)
