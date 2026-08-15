@@ -2828,6 +2828,120 @@ class TestEAVerdictReach(RecordFixture):
         self.assertEqual(self.verdict(result)["verdict"], "LINT_CLEAN")
 
 
+# --------------------------------------------- E-E: four one-shape fixes
+
+class TestEESmallFixes(RecordFixture):
+    """begehung-harvest F11 / WITH-B4 / A5 / C1."""
+
+    def _git(self, *a, cwd=None):
+        env = {**os.environ, "GIT_CONFIG_GLOBAL": "/dev/null",
+              "GIT_AUTHOR_NAME": "t", "GIT_AUTHOR_EMAIL": "t@t",
+              "GIT_COMMITTER_NAME": "t", "GIT_COMMITTER_EMAIL": "t@t"}
+        return subprocess.run(["git", *a], cwd=cwd or self.dir, env=env,
+                              capture_output=True, text=True, check=True)
+
+    # (1) F11: ARTIFACT_WRITTEN carries the tracker's newest commit
+    # beside the given sha — a field, never a gate.
+    def test_filter_names_the_tracker_newest_commit_beside_a_stale_sha(self):
+        self._git("init", "-b", "main")
+        p = self.dir / "t.md"
+        p.write_text(HEADER + "- F1 [VERIFIED] first lock — basis: y\n")
+        self._git("add", "t.md")
+        self._git("commit", "-m", "lock 1")
+        stale_sha = self._git("rev-parse", "HEAD").stdout.strip()
+        p.write_text(HEADER + "- F1 [VERIFIED] first lock — basis: y\n"
+                              "- F2 [VERIFIED] second lock — basis: y\n")
+        self._git("add", "t.md")
+        self._git("commit", "-m", "lock 2")
+        newest_sha = self._git("rev-parse", "HEAD").stdout.strip()
+        out_tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(out_tmp.cleanup)
+        out = Path(out_tmp.name) / "artifact.md"
+        v = self.verdict(tool(["filter", "--tracker", "t.md", "--sha",
+                              stale_sha, "--out", str(out)], cwd=self.dir))
+        self.assertEqual(v["verdict"], "ARTIFACT_WRITTEN")
+        self.assertEqual(v["sha"], stale_sha)
+        self.assertEqual(v["newest_commit"], newest_sha)
+        self.assertNotEqual(v["sha"], v["newest_commit"])
+
+    def test_filter_at_the_newest_commit_names_itself(self):
+        self._git("init", "-b", "main")
+        p = self.dir / "t.md"
+        p.write_text(HEADER + "- F1 [VERIFIED] only lock — basis: y\n")
+        self._git("add", "t.md")
+        self._git("commit", "-m", "lock")
+        sha = self._git("rev-parse", "HEAD").stdout.strip()
+        out_tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(out_tmp.cleanup)
+        out = Path(out_tmp.name) / "artifact.md"
+        v = self.verdict(tool(["filter", "--tracker", "t.md", "--sha", sha,
+                              "--out", str(out)], cwd=self.dir))
+        self.assertEqual(v["newest_commit"], sha)
+
+    # (2) WITH-B4: a gap-filling NEW id lints (evidence only); an
+    # ordinary status-change reuse of an existing id does not.
+    def test_gap_filling_new_id_below_class_max_lints(self):
+        body = ("- D1 [COMMITTED] first — basis: probe\n"
+               "- D5 [COMMITTED] fifth, skipping ahead — basis: probe\n"
+               "- D3 [COMMITTED] a NEW id filling the gap — basis: probe\n")
+        p = tool(["lint", "--tracker", str(self.write_tracker(body))],
+                 cwd=self.dir)
+        self.assertIn("gap-filling id D3", p.stdout)
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "LINT_CLEAN")  # evidence, not a hold
+
+    def test_ordinary_status_change_reuse_does_not_lint(self):
+        body = ("- D1 [PENDING] first — basis: probe\n"
+               "- D2 [COMMITTED] second — basis: probe\n"
+               "- D1 [COMMITTED] first, resolved — basis: probe\n")
+        p = tool(["lint", "--tracker", str(self.write_tracker(body))],
+                 cwd=self.dir)
+        self.assertNotIn("gap-filling", p.stdout)
+
+    def test_gap_filling_is_scoped_per_class(self):
+        # D3 after D5 is gap-filling for D; F3 is class F's own FIRST
+        # id and must not trip on D's unrelated maximum
+        body = ("- D1 [COMMITTED] x — basis: y\n"
+               "- D5 [COMMITTED] x — basis: y\n"
+               "- F3 [VERIFIED] class F's own first F3 — basis: y\n")
+        p = tool(["lint", "--tracker", str(self.write_tracker(body))],
+                 cwd=self.dir)
+        self.assertNotIn("gap-filling id F3", p.stdout)
+
+    # (3) A5: an unwritable --out routes USAGE_ERROR like its two
+    # siblings (missing parent, --out naming a directory) — not
+    # INTERNAL_ERROR.
+    @unittest.skipIf(os.name != "posix" or (hasattr(os, "geteuid")
+                     and os.geteuid() == 0),
+                     "permission bits are not enforced for root")
+    def test_filter_unwritable_out_is_a_usage_error(self):
+        self._git("init", "-b", "main")
+        p = self.dir / "t.md"
+        p.write_text(HEADER + "- F1 [VERIFIED] x — basis: y\n")
+        self._git("add", "t.md")
+        self._git("commit", "-m", "lock")
+        sha = self._git("rev-parse", "HEAD").stdout.strip()
+        out_tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(out_tmp.cleanup)
+        out_dir = Path(out_tmp.name) / "ro"
+        out_dir.mkdir()
+        out_dir.chmod(0o555)
+        self.addCleanup(out_dir.chmod, 0o755)
+        out = out_dir / "artifact.md"
+        v = self.verdict(tool(["filter", "--tracker", "t.md", "--sha", sha,
+                              "--out", str(out)], cwd=self.dir))
+        self.assertEqual(v["verdict"], "USAGE_ERROR")
+
+    # (4) C1: the stale "no literal write-set record-line form" NOTE is
+    # gone from the module docstring; the form is stated normative
+    def test_docstring_no_longer_disclaims_the_write_set_form(self):
+        text = SCRIPT.read_text()
+        self.assertNotIn("no literal", text)
+        self.assertIn("record-line form is normative in", text)
+        self.assertIn(":876-880", text)
+        self.assertIn(":486-487", text)
+
+
 # ---------------------------------------------------- pure-function checks
 
 class TestPureFunctions(unittest.TestCase):

@@ -21,19 +21,17 @@ Subcommands (each prints evidence lines, then exactly one final line
                                       write-set: <path>); a unit
                                       carrying no live write-set line
                                       comes back UNPLANNABLE, never
-                                      guessed at. NOTE: no literal
-                                      write-set record-line form is
-                                      spelled out in SKILL.md (only
-                                      the LOCK's own `lock-set:`
-                                      F-line is, :471-472) — this
-                                      parses the composition of two
-                                      ESTABLISHED conventions (the
-                                      per-path F/D-line form and the
-                                      `unit U<k> ` scope-opener); flag
-                                      this convention for desk/
-                                      operator confirmation before
-                                      relying on it against a live
-                                      tracker.
+                                      guessed at. The write-set
+                                      record-line form is normative in
+                                      SKILL.md (Implementation,
+                                      :876-880); the LOCK's own
+                                      `lock-set:` F-line sits at
+                                      :486-487 (SENTENCE-C1: this NOTE
+                                      formerly read the form as
+                                      unspecified prose-composition —
+                                      it is normative, citations
+                                      refreshed against the current
+                                      file, not the triage record's).
   trend   --tracker P                 read-only: per-round finding
                                       counts over resolved
                                       (BIT/ZERO-DELTA) A-lines, a pure-
@@ -928,9 +926,31 @@ def say_head_region_entries(cmd, reach):
             f"nothing there) @ line {hr['line']}: {hr['text']}")
 
 
+def gap_filling_ids(entries):
+    """E-E(2) (begehung-harvest WITH-B4): a NEW id — its FIRST
+    occurrence in the file — below its class's already-allocated
+    maximum is near-certainly a namespace collision, not a status
+    change (WITH-B4's own disclaimer: "genuinely semantic in the
+    general case, since re-using an id for a status change is the
+    core append-only design" — an ordinary status-change REUSE of an
+    id already seen is not a first occurrence and does not fire).
+    Returns a list of {line, id} in file order."""
+    seen, max_num, hits = {}, {}, []
+    for e in entries:
+        n = int(e.id[1:])
+        s = seen.setdefault(e.cls, set())
+        if e.id not in s:
+            cur_max = max_num.get(e.cls)
+            if cur_max is not None and n < cur_max:
+                hits.append({"line": e.lineno, "id": e.id})
+            s.add(e.id)
+        max_num[e.cls] = max(max_num.get(e.cls, n), n)
+    return hits
+
+
 def cmd_lint(args):
     _, rel, _, _ = repo_paths(args.tracker)
-    _, violations, meta, reach = parse_tracker(load(args.tracker))
+    entries, violations, meta, reach = parse_tracker(load(args.tracker))
     say_head_region_entries("lint", reach)
     if rel is not None and not rel.startswith(CLIPPY_RUNS_PREFIX):
         # E-A (begehung-harvest B6): the stats reader admits a run only
@@ -938,6 +958,10 @@ def cmd_lint(args):
         # gate here and is permanently invisible to that reader.
         # Evidence only; the record tool names no home of its own.
         say(f"lint: tracker path not under {CLIPPY_RUNS_PREFIX.rstrip(os.sep)}/: {rel}")
+    for hit in gap_filling_ids(entries):
+        say(f"lint: gap-filling id {hit['id']} @ line {hit['line']}: "
+            f"below its class's already-allocated maximum — near-certainly "
+            f"a namespace collision, not a status change")
     for v in violations:
         say(f"lint: {v['code']} @ line {v['line']}: {v['text']}")
     if violations:
@@ -1143,7 +1167,8 @@ def waves_over_units(entries):
     unit-scoped line both count. A unit is PLANNABLE only if at least
     one of its write-set lines is LIVE (latest-line-per-id, tag !=
     INVALIDATED) — the same supersede convention the lock-set F-line
-    uses (SKILL.md:499)."""
+    uses (SKILL.md:486-487; SENTENCE-C1 citation refresh, computed
+    against the current file)."""
     latest = latest_by_id(entries)
     known_units = set()
     write_sets = {}
@@ -1388,6 +1413,16 @@ def cmd_filter(args):
     if p.returncode != 0:
         finish("PIN_UNREADABLE", 2, sha=args.sha, tracker=args.tracker,
                stderr=p.stderr.decode(errors="replace").strip())
+    # E-E(1) (begehung-harvest F11): "wrong sha pinned" is one of the
+    # three premise breaks that VOID a whole round, and filter accepted
+    # any readable sha with no staleness signal — the artifact of a
+    # superseded design read exactly like the artifact of the current
+    # one. A field, not a gate: the tracker's own newest commit beside
+    # the given sha, so a mismatch is the desk's cue to check whether a
+    # re-lock happened.
+    newest = subprocess.run(["git", "log", "-1", "--format=%H", "--", rel],
+                            cwd=top, capture_output=True, text=True)
+    newest_commit = newest.stdout.strip() or None
     # errors='replace' SUBSTITUTED a non-UTF-8 byte in the artifact —
     # the attacker would grade text the record does not contain
     # (attack-10 N6). Surrogateescape both ways keeps preserved lines
@@ -1443,12 +1478,21 @@ def cmd_filter(args):
             continue
         out.append(line)
     text = "\n".join(out) + "\n"
-    with open(args.out, "w", encoding="utf-8",
-              errors="surrogateescape") as f:
-        f.write(text)
+    try:
+        with open(args.out, "w", encoding="utf-8",
+                  errors="surrogateescape") as f:
+            f.write(text)
+    except PermissionError as e:
+        # E-E(3) (begehung-harvest A5): same class as its two siblings
+        # just above (missing --out parent, --out naming a directory)
+        # — an invocation mistake, not a tool defect. Unguarded this
+        # fell through to the generic handler as INTERNAL_ERROR, which
+        # SKILL.md's catch-all reads as a tool defect.
+        finish("USAGE_ERROR", 3,
+               error=f"--out is not writable: {args.out} ({e})")
     say(f"artifact written: {args.out}")
     finish("ARTIFACT_WRITTEN", 0, sha=args.sha, out=args.out,
-           source_tracker=rel,
+           source_tracker=rel, newest_commit=newest_commit,
            lines_in=len(lines), lines_out=len(out),
            blocks_blanked=blocks, sections_blanked=sections,
            lines_blanked=blanked,
