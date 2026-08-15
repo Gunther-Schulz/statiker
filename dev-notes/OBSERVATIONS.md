@@ -4657,3 +4657,70 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   pre-release step, same brief form (diff + full skill + question,
   never author reasoning), findings dispositioned before the pin
   moves. CLAUDE.md updated in this commit.
+
+- 2026-08-15 — **Relay 1 harvested (cycle-12 resume, desk
+  beat-the-books-08, served 0.2.65 confirmed from the injection's
+  base-directory line).** Desk report, spot-verified at this desk
+  (tracker header, tool source): preflight PREFLIGHT_OK; `pinned`
+  APPEND_ONLY at the standing lock; A-series read from the record:
+  A1–A8 ALL [BIT], zero units landed, six of A8's nine findings on
+  the desk's own cycles 10–11 — the calibration form-signature,
+  measured not felt. CONDUCT MISS under an existing mint: the
+  0.2.48 "record findings never sustain a next round" clause was in
+  force at round 8 and unapplied — F134–F137 (record/instrument
+  class) sustained the reopen. DECISIONS (meta desk per the relay
+  layout; operator informed in-session): budget (1)+(3) — `Budget:
+  cycles 15 / rounds 10 / verify 3` declared at resume with a
+  rationale F-line (a default minted ~44 releases after run start
+  never bound the run; closing FAILED on it would grade nine
+  sessions against a rule that did not exist), and the
+  record-findings clause applied from cycle 12 forward. NO
+  STOP-CALL: the miss's correction is the clause's application, and
+  the desk sat at the cycle seam. Version-jump discoveries: (a) 25
+  grammar violations all in 0.2.4–0.2.11-era entries — append-only
+  `corrects` supersede repair approved, sequenced after F138;
+  (b) NEW TOOL DEFECT → E-L booked (BACKLOG): r_lines counted only
+  above the first `## ` heading (HEAD_BOUNDARY_RE,
+  statiker_record.py:132, boundary loop ~:515), so a tracker whose
+  requirement head sits UNDER `## Requirement head` as the file's
+  first heading reads r_lines: 0 and the head parses as malformed
+  entries; not repairable append-only in the tracker — successor
+  verifier hand-reads :225–:325 + :7775 until the fix ships;
+  (c) P3 SECOND INCIDENT: the frozen stale `Skill:` header line
+  (0.2.13 vs 0.2.49–0.2.51 actually running cycles 10–11) forced
+  cycle 12's version into a free-prose F-line — design signal: the
+  resume-delta APPEND entry SKILL.md :137-147 already mandates has
+  NO machine grammar; P3's parked decision resolves to a NEW LINE
+  CLASS mirroring the mid-run `INTENT: ` label precedent, never a
+  mutable header field (keeps pinned-surface and `pinned` intact).
+  MINT CANDIDATE, incident = this relay's round trip: budget
+  grandfathering — defaults bind from the version that minted them;
+  a run predating the clause declares its budget at resume
+  (prose-only mint, no tool coupling). Consumer: this sitting's
+  parked-set build (operator GO: build all buildable parked); the
+  close's grading.
+
+- 2026-08-15 — **Ghost-writer incident (statiker-1c), booked at the
+  meta desk.** A desk session opened by the operator in THIS repo by
+  mistake received the meta desk's kick-off, then its stand-down
+  message BOUNCED ("not reachable") and the meta desk booked the
+  bounce as "session killed" — unverified. The session was alive:
+  at 18:04 it committed AND PUSHED f4b93b1 (0.2.66 bump) +
+  338487c (SKILL.md resume-version reach fix, +11/-1) to origin,
+  no report delivered, session gone from the agent listing after.
+  GRADED KEPT on body-read: fire-born with genuine provenance (its
+  own blocked-resume incident; the rule existed only in this repo's
+  CLAUDE.md, off every other repo's desk read path — a true
+  carrier-off-read-path fix), pinned-surface constraint respected,
+  pin untouched, suite re-run at this desk 352/352. It BATCHES into
+  the next release's opus review like every SKILL.md edit. Lessons,
+  meta desk's own: (1) a bounced stand-down is not a stand-down —
+  "unreachable" is a channel claim, not a liveness claim, and the
+  inference "bounce = killed" shipped as fact to the operator
+  (corpus altitude rule: the structural read never settles the
+  behavioral claim); recheck via ListAgents or the repo's own log
+  before booking a peer dead. (2) The push consumed the 0.2.66
+  batch exemption — payload lanes re-bump (0.2.67, this batch).
+  Triage class: unverified-liveness inference; mechanism: none
+  minted (judgment-shaped — the computable half is already the
+  listing read, which was available and unconsulted).

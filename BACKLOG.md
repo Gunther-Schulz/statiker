@@ -65,6 +65,26 @@ it is not decision-complete.
   scoped match) landed, battery green both directions. Write
   boundary: tools/test_contract.py.
 
+- **READY (small) 2026-08-15 — E-L: requirement-head detection
+  survives a leading `## ` head heading.** Provenance: relay 1
+  (cycle-12 resume report, desk-executed, tool source verified at
+  the meta desk): the beat-the-books tracker's `## Requirement
+  head` at :225 IS the file's first heading, and the tool counts
+  R-lines only above the first `## ` heading (HEAD_BOUNDARY_RE,
+  statiker_record.py:132) → r_lines: 0 on sweep and closure,
+  INTENT/R1–R5 parsed as malformed entries. Informational (field,
+  not gate) but Verify grades per R-line, so the miss is silent.
+  Design, decided: the head region extends THROUGH a first heading
+  whose title is `Requirement head` (case-insensitive exact title)
+  to the NEXT `## ` heading; any other first heading keeps the
+  current boundary. Verifier, red-first: fixture mirroring the
+  beat-the-books shape (head under a first `## Requirement head`
+  heading) reads r_lines: 0 under old code, the true count under
+  new; existing above-heading fixtures stay green. Done: probe
+  flips, full suite green. Write boundary:
+  plugin/skills/statiker/scripts/statiker_record.py,
+  tools/test_statiker_record.py.
+
 - **PARKED 2026-08-15 — P1: the seal/queue/repo-key namespace
   needs a design decision before any mechanism.** Provenance:
   triage T8 (WITH-B1 executed: three defensible derivations of one
