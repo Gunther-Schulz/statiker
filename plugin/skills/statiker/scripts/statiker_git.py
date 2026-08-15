@@ -60,6 +60,7 @@ Design constraints carried from the attack rounds:
 import argparse
 import json
 import os
+import re
 import subprocess
 import sys
 import time
@@ -515,7 +516,7 @@ class Repo:
         if missing:
             raise Halt("HALT_MISSING_PATH", paths=missing)
 
-    def head_shown_paths(self):
+    def head_shown_paths(self, sha="HEAD"):
         # -z: NUL separators, unquoted paths. Newline output C-quotes
         # any non-ASCII byte under default core.quotePath, and a quoted
         # readback can never match its own pathspec (attack-8 B1: a
@@ -523,8 +524,15 @@ class Repo:
         # a false extra at both seams — in the lock case the "extra"
         # was the tracker, which the desk then excludes from the attack
         # surface). The porcelain reads were always -z and unaffected.
+        #
+        # E-D: reads the LANDED sha the caller names, never a bare
+        # "HEAD" — a synchronous post-commit hook that lands a sibling
+        # commit (the capped-retry contention design SKILL.md blesses)
+        # moves HEAD past ours before this process ever reads it, and
+        # a bare HEAD read then shows the sibling's diff, booking its
+        # sha and a false extra (WITHOUT-F9).
         out = self.git("show", "--name-only", "--format=", "-z",
-                       "HEAD").stdout
+                       sha).stdout
         return set(os.fsdecode(p) for p in out.split(b"\x00") if p)
 
     def _index_write_with_retry(self, git_args, failure_verdict):
@@ -562,11 +570,38 @@ class Repo:
             raise Halt("ADD_FAILED", path=rel, error=err)
 
     def commit_with_retry(self, message, pathspec):
-        self._index_write_with_retry(
+        p = self._index_write_with_retry(
             ["commit", "-m", message, "--", *pathspec], "COMMIT_FAILED")
-        sha = self.git("rev-parse", "HEAD").stdout.decode().strip()
+        sha = self._sha_from_commit_output(p.stdout)
         say(f"commit landed: {sha}")
         return sha
+
+    _COMMIT_SUMMARY_RE = re.compile(r"^\[([^\]]*)\]", re.MULTILINE)
+
+    def _sha_from_commit_output(self, stdout_bytes):
+        """E-D: the sha comes from the commit OPERATION's own output,
+        never a later `rev-parse HEAD` — `git commit` prints its
+        landed commit's summary as `[<branch-desc> <abbrev>]
+        <subject>` before any post-commit hook runs, so parsing THIS
+        line names the commit this call actually made, immune to a
+        hook that lands a sibling commit and moves HEAD past it
+        (WITHOUT-F9). The abbreviation is expanded against the OBJECT
+        it names (`rev-parse --verify <abbrev>^{commit}`), not against
+        the mutable HEAD ref."""
+        text = stdout_bytes.decode("utf-8", "replace")
+        m = self._COMMIT_SUMMARY_RE.search(text)
+        if not m or not m.group(1).split():
+            # defensive only (no verdict name of its own — a commit
+            # landing without git's own summary line is not a shape any
+            # supported git prints on success): routed through the
+            # existing COMMIT_FAILED, since a sha the tool cannot name
+            # is the same "cannot proceed on this commit" as one the
+            # index-write retry never landed.
+            raise Halt("COMMIT_FAILED",
+                       error="commit summary unparseable: " + text.strip())
+        abbrev = m.group(1).split()[-1]
+        return self.git("rev-parse", "--verify",
+                        abbrev + "^{commit}").stdout.decode().strip()
 
 
 # ------------------------------------------------------------------ lock
@@ -669,7 +704,7 @@ def cmd_lock_commit(repo, args):
     # reported without them was routed as "uncommitted" over an
     # orphan lock commit).
     try:
-        extras = readback_extras(repo.head_shown_paths(), set(effective))
+        extras = readback_extras(repo.head_shown_paths(sha), set(effective))
         residue_laps = 0
         while True:
             residue = repo.porcelain(effective)
@@ -686,7 +721,7 @@ def cmd_lock_commit(repo, args):
             lap_spec = sorted(set(residue_paths) | {tracker_rel})
             shas.append(repo.commit_with_retry(
                 args.message + f" [residue lap {residue_laps}]", lap_spec))
-            extras |= readback_extras(repo.head_shown_paths(),
+            extras |= readback_extras(repo.head_shown_paths(shas[-1]),
                                       set(effective))
     except Halt as h:
         h.detail.setdefault("shas", shas)
@@ -765,7 +800,7 @@ def cmd_unit_commit(repo, args):
         finish("UNIT_NO_DIFF_VS_HEAD", 0, write_set=rels)
     sha = repo.commit_with_retry(args.message, rels)
     try:
-        extras = readback_extras(repo.head_shown_paths(), set(rels))
+        extras = readback_extras(repo.head_shown_paths(sha), set(rels))
         residue = [f"{e.x}{e.y} {e.path}" for e in repo.porcelain(rels)]
     except Halt as h:
         h.detail.setdefault("sha", sha)   # the commit landed (B3 kin)

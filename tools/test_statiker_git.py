@@ -1128,6 +1128,54 @@ class TestAttack9PathDecoding(GitFixture):
         self.assertIn(self.NAME, printed, printed)
 
 
+class TestF9PostCommitHookWindowOccupier(GitFixture):
+    """begehung tier2-without.md F9 (round 2, BLOCKING): a post-commit
+    hook that lands a sibling commit occupies the window between our
+    own `git commit` and a LATER separate `rev-parse HEAD` read — the
+    same mechanism SKILL.md's own capped-retry contention design
+    admits for a live sibling unit sharing one index. Pre-fix,
+    commit_with_retry's separate rev-parse HEAD names the hook's own
+    commit (HEAD has already moved by the time it runs — the hook
+    finishes synchronously inside the outer `git commit` call), and
+    a bare-HEAD head_shown_paths() then shows the sibling's diff: the
+    booked sha is the sibling's, and the sibling's own file books as
+    a false extra (UNIT_COMMITTED_EXTRAS over a legitimate file)."""
+
+    def install_post_commit_hook(self):
+        # runs once — the guard file's own presence, checked before
+        # the hook's own git commit fires a recursive post-commit —
+        # is what stops it invoking itself forever.
+        hook = self.repo / ".git" / "hooks" / "post-commit"
+        hook.write_text(
+            "#!/bin/sh\n"
+            "if [ ! -f sibling.txt ]; then\n"
+            "  echo sibling > sibling.txt\n"
+            "  git add sibling.txt\n"
+            "  git commit -m 'sibling landed by hook' -- sibling.txt\n"
+            "fi\n"
+        )
+        hook.chmod(0o755)
+
+    def test_unit_commit_names_its_own_sha_under_a_hook_occupied_window(self):
+        self.install_post_commit_hook()
+        self.write("unit.txt", "unit output\n")
+        v = self.verdict(self.tool(
+            "unit-commit", "--write-set", "unit.txt", "-m", "unit U1"))
+        self.assertEqual(v["verdict"], "UNIT_COMMITTED",
+                         f"false extras from the hook's own sibling "
+                         f"commit: {v}")
+        self.assertEqual(v["write_set"], ["unit.txt"])
+        # the hook really landed its sibling commit — proves the window
+        # was genuinely occupied, not a no-op hook that never fired
+        log = self.git("log", "--oneline", "--all").stdout
+        self.assertIn("sibling landed by hook", log, log)
+        # the booked sha must be the commit that actually carries
+        # unit.txt, never the hook's later sibling commit
+        shown = self.git("show", "--name-only", "--format=", v["sha"]).stdout
+        self.assertIn("unit.txt", shown, shown)
+        self.assertNotIn("sibling.txt", shown, shown)
+
+
 class TestAttack9SymlinkContainment(GitFixture):
     """attack-9: rel() resolved paths through symlinks, so a booked
     verdict named a path the brief never wrote (the link's TARGET),
