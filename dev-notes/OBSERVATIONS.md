@@ -4968,3 +4968,34 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   the attacker; DECOMPOSITION/SIMPLICITY sound; R1–R5 faithful
   and professionally complete. Consumer: the post-Lane-D mint;
   the release seam; the close's grading.
+
+- 2026-08-15 — **Relay 7 harvested (CYCLE 13 COMPLETE — all seven
+  A9 findings re-derived; GO issued: decomposition pass → ready →
+  lock → round 10, the budget's LAST round, which is the stated
+  basis for the pass-first pacing).** F212 repaired and PROVEN by
+  a three-arm executed pair (decoy honored unstamped / refused
+  stamped / control silent — the control's silent no-op is why no
+  reader ever saw the defect); D80 invalidated with all 14 clauses
+  dispositioned, restated at D110 with the corrected citation and
+  a new clause (o): the guard's own red-today pin. D94 parked at
+  D108 with the REASONING recorded, not the instruction; with the
+  repair now proven the five-unit authorization goes to the
+  operator with the repaired sentence. F220's form adopted as the
+  mint-candidate's second half: a discharge NAMES ITS OWN EXPIRY —
+  the next resume inherits an obligation, not a reassurance.
+  LOAD-BEARING FINDING AT THIS DESK (P2×P6 collision): Lane D's
+  LOCK_GATE_HOLDS makes the sweep-hold gate TOOL-enforced at
+  lock-commit — the stated-deviation disposition (this run's 696
+  retroactive holds, D95) then has no mechanical carrier, and the
+  fresh desk's next lock under the new version would halt
+  permanently. P6 therefore UN-PARKS: the declared-exemption
+  grammar is P2's necessary companion (the corpus guard rule's
+  "exemption the guard itself verifies", NOT version-keyed
+  grandfathering — flagged to the operator). Design settled below
+  (BACKLOG P6 → READY): label-line grammar `SWEEP_EXEMPT: <code>
+  lines<=<n>` / `... line <n>`, bounded per code and line ceiling,
+  parsed by sweep into exempt_holds, blocking calculus nets them
+  out — the gate inherits via the embedded verdict, no git-tool
+  change. Release sequencing: P2+P6 ship together; run continues
+  on 0.2.65 through round 10; pin targets the post-A10 seam.
+  Consumer: Lane E's dispatch; the release seam.

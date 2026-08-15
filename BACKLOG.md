@@ -108,18 +108,38 @@ it is not decision-complete.
   AFTER the P3/P4/E-M lane integrates (statiker_record.py +
   SKILL.md overlap).
 
-- **PARKED 2026-08-15 — P6: disposition entries trip
-  basis-cites-invalidated by construction.** Provenance: relay 3
-  (twelve F155 holds on F150 itself — the sweep firing on the
-  entry that documents its over-fire; dispositioned, not chased,
-  at the desk). An entry whose job is grading dead entries must
-  name them; the corpus guard rule demands a declared, CHECKED
-  exemption (E-K's class) rather than disposition-noise per run.
-  Missing design, named: the exemption grammar — how a
-  disposition/grading entry declares itself so the sweep verifies
-  the declaration instead of firing. Trigger: the next run's
-  grading entry tripping it.
-
+- **READY 2026-08-15 — P6: the sweep gets a declared-exemption
+  grammar the gate verifies (P2's necessary companion).**
+  Provenance: (a) relay 3/F155 — twelve holds on the entry whose
+  job is naming dead entries; (b) relay 7, load-bearing: P2's
+  LOCK_GATE_HOLDS tool-enforces the sweep-hold gate at
+  lock-commit, and the stated-deviation disposition (beat-the-books
+  D95, 696 retroactive holds) then has no mechanical carrier — the
+  next lock under the new version would halt permanently. This is
+  the corpus guard rule's declared-exemption-the-guard-verifies
+  (E-K's class), not version-keyed grandfathering. DESIGN SETTLED
+  (meta desk): new label line (SKILL:/INTENT: precedent), exact
+  forms `^SWEEP_EXEMPT: ([a-z-]+) lines<=(\d+)$` and
+  `^SWEEP_EXEMPT: ([a-z-]+) line (\d+)$`, written inside an
+  ordinary entry body (attackable like any entry). Semantics:
+  holds of that code at covered lines move to a sweep verdict
+  field `exempt_holds` (each carrying its declaring line); the
+  BLOCKING calculus nets them out, so ready-gate reads and P2's
+  gate consult inherit through the verdict with no git-tool
+  change. Bounded by construction: code-specific, line-ceiling
+  frozen at declaration — new violations above the ceiling fire
+  untouched. SKILL.md grammar sentence lands in the SAME commit
+  as the parser (route-sentence rule; no new verdict name).
+  Verifier, red-first: the beat-the-books shape as fixture —
+  declared: holds exempt, blocking set shrinks; undeclared:
+  unchanged; a violation ABOVE the ceiling blocks in both.
+  Done: pair flips both directions, ceiling case fires, full
+  suite green. Write boundary:
+  plugin/skills/statiker/scripts/statiker_record.py,
+  plugin/skills/statiker/SKILL.md,
+  tools/test_statiker_record.py, tools/test_contract.py. BUILD
+  as Lane E after Lane D integrates (same-file overlap), before
+  the release (ships WITH P2, never after it).
 - **READY (small) 2026-08-15 — E-N: a corrects token outside the
   entry body lints loudly instead of no-opping silently.**
   Provenance: F205 (relay 5, measured at the beat-the-books desk):
