@@ -3302,6 +3302,54 @@ class TestP3SkillVersionLine(RecordFixture):
         self.assertNotIn("intent-near-miss", self.violation_codes(v))
 
 
+# --------------------------- P4: the unit irreversible-effect tag line
+
+class TestP4IrreversibleTag(RecordFixture):
+    """BACKLOG P4: an impl unit whose green state includes something
+    git cannot undo is tagged irreversible in its [READY] enumeration
+    via its own record line `unit U<k> irreversible: <effect>` —
+    HOLD_EXACT_RE's sibling. Attribution only (FIELD, never a gate;
+    no near-miss lint class in this version — the parked entry's own
+    caution: a bare-word scan false-fires on "not irreversible" and
+    shared bodies, the E-K false-fire lesson). Unattended enforcement
+    is untouched — it still routes through UNIT_HELD."""
+
+    def test_planted_line_surfaces_and_adds_no_violations(self):
+        body = ("- F9 [VERIFIED] unit U3 irreversible: deletes prod "
+                "rows — basis: e\n")
+        v = self.sweep(body)
+        self.assertEqual(v["verdict"], "SWEEP_CLEAN")
+        line = self.lineno_of(body, "irreversible: deletes prod rows")
+        self.assertEqual(v["irreversible_units"],
+                         [{"unit": "U3", "line": line,
+                           "effect": "deletes prod rows"}])
+
+    def test_absence_pair_carries_empty_list(self):
+        body = "- F1 [VERIFIED] x — basis: y\n"
+        v = self.sweep(body)
+        self.assertEqual(v["verdict"], "SWEEP_CLEAN")
+        self.assertEqual(v["irreversible_units"], [])
+
+    def test_planted_line_surfaces_in_closure_too(self):
+        body = ("- F9 [VERIFIED] unit U3 irreversible: deletes prod "
+                "rows — basis: e\n") + CLOSED
+        v = self.closure(body)
+        self.assertEqual(v["verdict"], "CLOSURE_LIVE")
+        line = self.lineno_of(body, "irreversible: deletes prod rows")
+        self.assertEqual(v["irreversible_units"],
+                         [{"unit": "U3", "line": line,
+                           "effect": "deletes prod rows"}])
+
+    def test_multiple_lines_ride_in_file_order(self):
+        body = ("- F9 [VERIFIED] unit U3 irreversible: deletes prod "
+                "rows — basis: e\n"
+                "- F10 [VERIFIED] unit U5 irreversible: sends email "
+                "— basis: e\n")
+        v = self.sweep(body)
+        self.assertEqual([e["unit"] for e in v["irreversible_units"]],
+                         ["U3", "U5"])
+
+
 # --------------------------------------------- E-F: the append freeze
 
 class TestEFFreezeBreach(RecordFixture):

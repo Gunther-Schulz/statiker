@@ -203,6 +203,15 @@ UNIT_SCOPE_RE = re.compile(r"^unit U\d+ ")
 HOLD_EXACT_RE = re.compile(r"^unit U\d+ held: ")
 HOLD_NEAR_RE = re.compile(r"(?i)^(?:hold|held)s?\b")
 HOLD_COLON_RE = re.compile(r"(?i)(?<![A-Za-z])(?:hold|held)s?\s*:")
+# P4 (BACKLOG, SKILL.md :468): the irreversible tag's own record
+# line, HOLD_EXACT_RE's sibling — `unit U<k> irreversible: <effect>`
+# as its own record line's body, [READY]'s enumeration form. FIELD
+# only in this version, NO near-miss lint class (BACKLOG's own
+# caution: a bare-word scan false-fires on "not irreversible" and
+# shared bodies — the E-K false-fire class, conservatism decided
+# rather than an oversight); unattended enforcement stays the hold
+# entry (HOLD_EXACT_RE), unchanged by this line's presence.
+IRREVERSIBLE_EXACT_RE = re.compile(r"^unit U(\d+) irreversible: (\S.*)$")
 BACKTICK_RE = re.compile(r"`[^`]*`")
 # the write-set token gets the same positional near-miss treatment as
 # the scope opener (SCOPE_NEAR_RE/SCOPE_EXACT_RE, above): a wrong-case,
@@ -488,6 +497,20 @@ def write_set_violations(body: str, tag: str):
     return []
 
 
+def irreversible_tag(body: str):
+    """P4: the positional irreversible form on a record line's body —
+    `unit U<k> irreversible: <effect>`, checked directly (the pattern
+    already carries the `unit U<k> ` opener, unlike hold/write-set's
+    strip-then-check). Quoting a literal is legal, as elsewhere.
+    Returns (unit, effect) or None — a field lookup, never a
+    violation list: no near-miss class exists in this version."""
+    scrubbed = BACKTICK_RE.sub(" ", body)
+    m = IRREVERSIBLE_EXACT_RE.match(scrubbed)
+    if not m:
+        return None
+    return f"U{m.group(1)}", m.group(2).strip()
+
+
 def defang_text(text: str):
     """Drop brackets and lowercase counted-tag literals in place;
     return (text, names-in-order-of-first-occurrence)."""
@@ -535,15 +558,19 @@ def parse_tracker(text: str):
     than blanket-spread: `r_lines` (sweep/closure only),
     `head_region_entries` (an evidence line per entry-shaped line the
     head-region exclusion made invisible to every gate — every
-    subcommand that parses a tracker prints one), and `skill_versions`
+    subcommand that parses a tracker prints one), `skill_versions`
     (P3, sweep/closure only: header entry first, then every mid-run
     `SKILL: statiker <version>` line in file order — attribution, never
-    a gate)."""
+    a gate), and `irreversible_units` (P4, sweep/closure only: every
+    `unit U<k> irreversible: <effect>` record-line body in file order
+    — attribution, never a gate; unattended enforcement stays the
+    UNIT_HELD hold entry)."""
     entries, violations = [], []
     line_ids = {}          # lineno -> the id the line NAMES, parsed or not
     line_parse = {}        # lineno -> what PARSED there (ES-4's pins)
     late_intent = []       # ES-2: the labeled mid-run INTENT lines
     skill_version_lines = []  # P3: labeled mid-run SKILL: version lines
+    irreversible_lines = []   # P4: unit U<k> irreversible: <effect> lines
     lines = split_lines(text)
 
     # ES-1: surface 1 begins at the first `## ` heading — E-L: unless
@@ -690,6 +717,11 @@ def parse_tracker(text: str):
                 viol(code, i, line)
             for code in write_set_violations(body_main, tag):
                 viol(code, i, line)
+            irr = irreversible_tag(body_main)          # P4
+            if irr:
+                unit, effect = irr
+                irreversible_lines.append(
+                    {"unit": unit, "line": i, "effect": effect})
         # ES-4: what a repair must re-carry is what PARSED here — a
         # violated token pins nothing, since repairing it is the
         # token's own reason for existing
@@ -727,7 +759,8 @@ def parse_tracker(text: str):
                                "version": hm.group(1) if hm else skill_val})
     skill_versions.extend(skill_version_lines)
     reach = {"r_lines": r_lines, "head_region_entries": head_region_entries,
-             "skill_versions": skill_versions}
+             "skill_versions": skill_versions,
+             "irreversible_units": irreversible_lines}
     return entries, violations, meta, reach
 
 
@@ -1165,7 +1198,8 @@ def cmd_sweep(args):
         "checks, basis reach")
     detail = {"clause_dispositions": clause_dispositions,
              "r_lines": reach["r_lines"],
-             "skill_versions": reach["skill_versions"], **meta}
+             "skill_versions": reach["skill_versions"],
+             "irreversible_units": reach["irreversible_units"], **meta}
     if violations:
         finish("SWEEP_HOLDS", 2, violations=violations, **detail)
     finish("SWEEP_CLEAN", 0, **detail)
@@ -1205,10 +1239,12 @@ def cmd_closure(args):
     # tool is what finds them. E-A: entries/head_boundary ride every
     # verdict, r_lines rides sweep/closure's. E-G': the Mode line rides
     # the same way (surfaced, never gated) — absent-Mode reads None.
-    # P3: skill_versions rides sweep/closure's the same way r_lines does.
+    # P3/P4: skill_versions and irreversible_units ride sweep/closure's
+    # the same way r_lines does.
     late = {"late_intent": meta["late_intent"], "entries": meta["entries"],
            "head_boundary": meta["head_boundary"], "r_lines": reach["r_lines"],
-           "mode": meta["mode"], "skill_versions": reach["skill_versions"]}
+           "mode": meta["mode"], "skill_versions": reach["skill_versions"],
+           "irreversible_units": reach["irreversible_units"]}
     blocking = closure_blocking_violations(violations)
     if blocking:
         for v in blocking:

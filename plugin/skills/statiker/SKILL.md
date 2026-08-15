@@ -469,7 +469,11 @@ classified by the reversibility of its EFFECT, not its diff: one
 whose green state includes something git cannot undo — a schema
 or data migration, an external write, a publish/push/send, a
 deletion outside the write-set — is tagged irreversible in its
-enumeration. Every other bound in this skill limits waste; this
+enumeration, as its own record line `unit U<k> irreversible:
+<effect>` (the hold line's sibling); the record tool surfaces the
+set as `irreversible_units` in sweep and closure verdicts —
+attribution, never a gate: unattended enforcement stays the hold
+entry. Every other bound in this skill limits waste; this
 one limits damage: unattended an irreversible unit never
 dispatches — it takes the hold entry (Implementation) and rides
 the close for the operator; attended it dispatches after the
