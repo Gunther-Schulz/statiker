@@ -98,12 +98,22 @@ def say(msg):
     # verdict falls back to stderr instead of dying on the same broken
     # pipe with no verdict line at all and exit 0 (statiker_record.py's
     # sibling fix, finding 5, begehung tier2-without.md part 7/7).
+    #
+    # ES-9 / E-C: byte-level write over the input's own bytes, mirrored
+    # from statiker_record.py's emit() — a text-layer print() under
+    # stdout reconfigured errors="replace" mints a SECOND spelling of
+    # any non-UTF-8 byte on output, so a printed drop value or
+    # write-set paste line could never be pasted back to match the
+    # real argv bytes (begehung tier2-without.md F4/SENTENCE-A3).
     global BROKEN_PIPE
     if BROKEN_PIPE:
         return
     try:
-        print(msg)
-        sys.stdout.flush()   # forces the write NOW — unflushed, a
+        sys.stdout.flush()   # flush the text layer first: we bypass it
+        # below, and pending buffered text would otherwise interleave
+        # out of order with the raw bytes written next
+        sys.stdout.buffer.write(msg.encode("utf-8", "surrogateescape") + b"\n")
+        sys.stdout.buffer.flush()   # forces the write NOW — unflushed, a
         # broken pipe surfaces only at interpreter shutdown, past
         # every try/except this fix installs
     except BrokenPipeError:
@@ -134,7 +144,13 @@ def _exit_after_broken_pipe(code):
 def finish(verdict, exit_code, **detail):
     if RESOLVED and "resolved_from" not in detail:
         detail["resolved_from"] = RESOLVED
-    text = VERDICT_PREFIX + json.dumps({"verdict": verdict, **detail})
+    # ensure_ascii=False (E-C): a surrogateescape half kept literal in
+    # the JSON string round-trips through say()'s byte-level encode
+    # back to the exact input byte; ensure_ascii's default \udcXX
+    # escape is six literal ASCII characters a desk could paste, never
+    # equal to the one real byte it names (tier2-without.md F4).
+    text = VERDICT_PREFIX + json.dumps({"verdict": verdict, **detail},
+                                       ensure_ascii=False)
     if BROKEN_PIPE:
         _stderr_fallback(text)
         _exit_after_broken_pipe(3)

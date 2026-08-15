@@ -89,6 +89,29 @@ class GitFixture(unittest.TestCase):
         )
         return json.loads(lines[0][len(VERDICT_PREFIX):])
 
+    def tool_raw(self, *args, timeout=60):
+        # E-C: ensure_ascii=False + say()'s byte-level write mean a
+        # non-UTF-8 path byte reaches stdout as the RAW byte — invalid
+        # UTF-8 on its own, so subprocess's own text=True decode
+        # (self.tool()) raises UnicodeDecodeError before the test ever
+        # sees the output. Capture bytes and decode surrogateescape,
+        # the same round trip the tool and desk are meant to share.
+        return subprocess.run(
+            [sys.executable, str(SCRIPT), *args],
+            cwd=self.repo, env=self.env,
+            capture_output=True, timeout=timeout,
+        )
+
+    def verdict_raw(self, p):
+        out = p.stdout.decode("utf-8", "surrogateescape")
+        lines = [l for l in split_lines(out) if l.startswith(VERDICT_PREFIX)]
+        self.assertEqual(
+            len(lines), 1,
+            f"expected exactly one verdict line, stdout:\n{out!r}\n"
+            f"stderr:\n{p.stderr.decode('utf-8', 'surrogateescape')!r}",
+        )
+        return json.loads(lines[0][len(VERDICT_PREFIX):])
+
     def write(self, rel, content):
         p = self.repo / rel
         p.parent.mkdir(parents=True, exist_ok=True)
@@ -1037,8 +1060,11 @@ class TestAttack9PathDecoding(GitFixture):
     TRACKER = ".clippy/runs/t.md"
 
     def test_unit_commit_non_utf8_byte_path_clean(self):
+        # E-C: the verdict's own byte (ensure_ascii=False) is now the
+        # raw byte, invalid UTF-8 alone — tool_raw/verdict_raw, never
+        # self.tool()/self.verdict() (text=True would crash reading it)
         (self.repo / self.NAME).write_bytes(b"unit output\n")
-        v = self.verdict(self.tool(
+        v = self.verdict_raw(self.tool_raw(
             "unit-commit", "--write-set", self.NAME, "-m", "unit U1"))
         self.assertEqual(v["verdict"], "UNIT_COMMITTED",
                          f"false extras: {v.get('extras')}")
@@ -1048,13 +1074,13 @@ class TestAttack9PathDecoding(GitFixture):
         (self.repo / self.NAME).write_bytes(b"operator staged\n")
         self.git("add", self.NAME)
         self.write(self.TRACKER, "# Run: t\n")
-        v1 = self.verdict(self.tool(
+        v1 = self.verdict_raw(self.tool_raw(
             "lock-check", "--tracker", self.TRACKER,
             "--lock-set", self.NAME))
         self.assertEqual(v1["verdict"], "LOCK_CHECK_DROPS")
         self.assertEqual([d["path"] for d in v1["drops"]], [self.NAME],
                          "porcelain spelling differs from the argv one")
-        v2 = self.verdict(self.tool(
+        v2 = self.verdict_raw(self.tool_raw(
             "lock-commit", "--tracker", self.TRACKER,
             "--lock-set", self.NAME, "--drop", self.NAME, "-m", "lock"))
         self.assertEqual(v2["verdict"], "LOCK_COMMITTED",
@@ -1062,6 +1088,44 @@ class TestAttack9PathDecoding(GitFixture):
         # the staged operator content survives untouched
         status = self.git("status", "--porcelain", "--", self.NAME).stdout
         self.assertTrue(status.startswith("A "), status)
+
+    def test_F4_drop_handshake_verdict_carries_the_raw_byte_literally(self):
+        # begehung tier2-without.md F4: pre-fix, ensure_ascii's default
+        # \udce9 escape is six literal ASCII characters — pasting them
+        # types something that can never equal the real byte, so every
+        # pasteable spelling (the escape, or the evidence line's
+        # errors="replace" '?') halts HALT_DROPS_STALE forever, and the
+        # one spelling that WOULD match (the real argv byte) is "the
+        # one spelling the tool never prints". Post-fix (ensure_ascii=
+        # False + say()'s byte-level write), the raw byte itself sits
+        # in the verdict's JSON text on the wire.
+        (self.repo / self.NAME).write_bytes(b"operator staged\n")
+        self.git("add", self.NAME)
+        self.write(self.TRACKER, "# Run: t\n")
+        p = self.tool_raw("lock-check", "--tracker", self.TRACKER,
+                          "--lock-set", self.NAME)
+        self.assertIn(b"\xe9", p.stdout,
+                      f"the raw byte never reaches stdout: {p.stdout!r}")
+        self.assertNotIn(b"udce9", p.stdout,
+                         "the byte shipped as a literal escape sequence "
+                         "a desk could paste, never equal to the byte "
+                         f"it names: {p.stdout!r}")
+
+    def test_A3_write_set_paste_line_carries_the_raw_byte(self):
+        # begehung tier2-sentence.md SENTENCE-A3: unit-start's printed
+        # record line exists to be pasted into the tracker
+        # (statiker_git.py's own docstring: "prints one paste-ready
+        # record line per write-set path"); pre-fix (print() under
+        # stdout reconfigured errors="replace") the byte reached the
+        # line as a replacement character, a second spelling of the
+        # same path the record tool then treats as disjoint.
+        p = self.tool_raw("unit-start", "--write-set", self.NAME,
+                          "--unit", "U1")
+        text = p.stdout.decode("utf-8", "surrogateescape")
+        printed = next(
+            l for l in split_lines(text)
+            if l.startswith("- F<n> [VERIFIED] unit "))
+        self.assertIn(self.NAME, printed, printed)
 
 
 class TestAttack9SymlinkContainment(GitFixture):
