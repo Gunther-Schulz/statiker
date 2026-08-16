@@ -5724,3 +5724,34 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   for the record: the A1 stop was improvised, not rule-routed —
   0.2.79's provenance, now skill text. Consumer: the trial
   close's grading; P15's executor.
+
+- 2026-08-16 — **First live firing of the 0.2.79 ask clause —
+  worked end to end, including the authority boundary (successor
+  desk cd, seam report on the direct channel).** The
+  "finished"-looking state was the design working: the
+  SWEEP_EXEMPT ask landed as F33 [PENDING] (line 254, sole
+  pending-latest, body naming its gate), work OUTSIDE the gate
+  ran to completion — cycle 5 fully re-derived (all seven A1
+  findings dispositioned; D8 recommitted over SEVEN stores; U1
+  confirmed REVERSIBLE, irreversible_units empty), and only
+  [READY]/lock/U1-dispatch hold. The desk REFUSED the meta
+  session's relayed grant as testimony and awaits the operator's
+  own line — B2's laundering lesson enforced by the desk itself.
+  Version pair recorded (0.2.79 served vs 0.2.77 header, SKILL
+  label line 249; delta read as 28 lines, one addition, F33 the
+  added obligation). Conduct extras, all improvement-classes
+  firing: a mid-cycle correction that would have minted a
+  permanent NINTH hold was caught by sweep and restated same-id
+  (blocking set back to the granted eight — enumeration still
+  exact); F25's zero-hit-search basis REFUTED by a controlled
+  search (F34), substance surviving stronger (F36); a returned
+  discovery lane's claims checked against prod before booking
+  (one moved). Budget 5/7 cycles, 1/4 rounds, 0/3 verifies; C2
+  holding at 25 local commits, HEAD 7dd92a81. CHANNEL-CONVENTION
+  note: the desk's seam reports now ALSO travel the direct peer
+  channel (operator opened the lane; the "finished but no
+  report" gap was the meta session's own start instruction
+  routing reports operator-only, not a corpus gap) — successor
+  start instructions name this channel as a standing seam-report
+  consumer. Consumer: the trial close's grading; the next
+  desk-start instruction.
