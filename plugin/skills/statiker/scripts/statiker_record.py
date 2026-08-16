@@ -1316,9 +1316,15 @@ def net_sweep_exemptions(violations, exemptions):
         if v["code"] in UNEXEMPTIBLE_CODES:
             blocking.append(v)
             continue
+        # M5 (round 3): coverage clamps at the declaring line —
+        # nothing appended after the declaration is ever netted,
+        # whatever <n> says, so no exemption becomes a standing one.
         hit = next((e for e in exemptions if e["code"] == v["code"] and (
-            (e["kind"] == "ceiling" and v["line"] <= e["bound"]) or
-            (e["kind"] == "single" and v["line"] == e["bound"]))), None)
+            (e["kind"] == "ceiling"
+             and v["line"] <= min(e["bound"], e["line"])) or
+            (e["kind"] == "single"
+             and v["line"] == e["bound"] and e["bound"] < e["line"]))),
+            None)
         if hit is None:
             blocking.append(v)
         else:

@@ -5307,3 +5307,51 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   H2(a)/M4/M5 settleable by the batteries) recorded. Consumer:
   the operator's disposition round (in flight); P12's design;
   the trial close's grading.
+
+- 2026-08-16 — **Round-3 dispositions executed in the CHANGED form
+  (0.2.75): deletions and tool-fact alignment only, zero new
+  prose mechanisms — the form the round-3 clean-list evidence
+  licensed.** H1: the raise entry opens `record: ` (the existing
+  bookkeeping scope — voids nothing). H2: the pre-leg pin
+  DELETED; the leg is graded by the two verdicts plus the desk's
+  own `git diff` at the seam where the tracker sits at HEAD (the
+  diff IS the leg's work; any non-append hunk halts); the
+  pinned-S exception sentence deleted with it; the no-commit-yet
+  case routes to desk work by the existing
+  brief-would-rival-the-repair rule. H3: the delta-focus
+  sentence DELETED outright — the standing steering bar governs
+  alone. H4: the unattended unrepairable-unexemptible hold rides
+  the close FAILED, aligned to the exemption clause's own
+  sentence. M1: the locus-decides sentence DELETED — "everything
+  else" is the complete complement (counts-up cases correctly
+  route to narrowing). M2: export carrier named (backlog entry
+  with the successor-run intent — the exit machinery's own
+  admissible class). M3: floor case — a head already at its
+  smallest unit surfaces the series to the operator. M4: prose
+  caught up to the round-2 tool change (--round <A<n>|verify>).
+  M5: coverage clamps at the declaring line (TOOL, red-first:
+  post-declaration content blocks whatever the ceiling says —
+  no standing exemptions). M6: all four dependent sites
+  re-anchored from the disclaimed stats-reader greps to the
+  record tool's own parsing and the closure gate (the round-2
+  dependents miss, now discharged with the sites edited).
+  M7: the dead-round resume case — freeze holds, queue lands at
+  the re-entered round's terminal A-line. Minors: exemption
+  form's first mention carries the basis tail for both variants,
+  "frozen coverage" replaces the referent-less ceiling, Close
+  enumerates repaired-away declarations too, version mismatch
+  reads both directions (older desk stops at the record gate),
+  double UNIT_START_MISMATCH naming dropped. MINOR-5
+  (discharge-sha slot has no lint class) DISPOSITIONED AS
+  ACCEPTED FORM DEBT — fail-safe by the reviewer's own grading;
+  a lint class is a tool design question for the mechanism pass,
+  not a prose patch. Suite 398. INCIDENT, same commit: a
+  leftover `git add -N docs` in a prior compound command had
+  intent-to-added four FOREIGN untracked lane briefs, surfacing
+  as a failed stash — caught because the stash errored loudly,
+  undone by path reset; lesson: a directory argument to add -N
+  registers unowned files invisibly, name files never
+  directories (the corpus directory-pathspec rule's add -N
+  face). Round 4 dispatches on the final form, CAPPED: HIGH on
+  fresh text there → cut-and-park like the head round, ship
+  what survives. Consumer: the release seam; the trial close.

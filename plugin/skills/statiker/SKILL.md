@@ -150,8 +150,10 @@ compares the header's `Skill:` version against the version this desk
 is SERVED (the Skill injection's base-directory line): a release
 reaches a running desk only as a RESTART, never as an upgrade — the
 pin resolves at session start and the already-loaded skill text owns
-a live desk's conduct, so a delta means the record ahead was built
-under rules this desk no longer runs. On a mismatch the desk names
+a live desk's conduct, so a delta means desk and record run
+under different rules — in either direction: an OLDER desk over
+a newer record proceeds no further than the record gate, the
+pair surfaced to the operator. On a mismatch the desk names
 the VERSION PAIR before the next forcing point — and what the
 delta invalidates only where the older text is at hand (the
 source repo's git); a desk without it surfaces the pair at the
@@ -188,10 +190,15 @@ Latest-line [PENDING]s from open legs are LIVE WORK, not repair
 material: they resolve by the ordinary body-read of their
 returns, and clearing one to [AUTO-ACCEPTED] to satisfy a gate
 destroys the evidence the tag holds open. The desk grades the
-leg's return by re-running `sweep`, `closure`, AND `pinned`
-against the pre-leg sha itself, never by the leg's claim — the
-positional pair reads an in-place rewrite as clean, and the pin
-diff is the one check it cannot fool — so the
+leg's return by re-running `sweep` and `closure` itself, never
+by the leg's claim, and — because the positional pair reads an
+in-place rewrite as clean — by its own `git diff` over the
+tracker: at this seam the tracker sits at HEAD, so the diff IS
+the leg's work, and any non-append hunk (a changed or deleted
+existing line) is the halt. A tracker not yet in any commit has
+no diff base — there the record is young and its holds few, so
+the repair is desk work by the brief-would-rival-the-repair rule
+below. So the
 desk's context carries verdicts, not the repair work (a resumed
 desk repairing its own accumulated holds inline spent a session on
 record archaeology before its first design act). A hold set small
@@ -210,7 +217,10 @@ next resume inherits an obligation, never a reassurance (a
 16 commits, one touching the very file that round's HIGH landed
 on). A resume also reads the newest round's QUEUE (`seal-path`
 prints it): an unspent queue is inherited work — land and spend
-it before new appends. A resuming
+it before new appends, except where the newest A-line is
+[DISPATCHED] (a desk died mid-round): the append freeze still
+holds, the round re-enters as its own round, and the inherited
+queue lands and spends at that round's terminal A-line. A resuming
 desk's first reply enumerates the run's standing operator state
 read from the record — the Mode line, every live operator-imposed
 hold, any mid-run INTENT line — shown as INFORMATION, never
@@ -252,7 +262,9 @@ bound, set just above current spend, bound nothing). An operator
 raise LANDS as an ordinary entry quoting the operator's line —
 the header is pinned surface, never rewritten — and every later
 exhaustion check reads the LATEST such entry over the header's
-default.
+default — the raise entry's body opens `record: ` (bookkeeping:
+it voids no closure and re-opens no unit) with the quote after
+the opener.
 Status and Phase sit within the first ~20
 lines (the stats reader's admission window). After the header,
 the requirement head in two
@@ -331,7 +343,8 @@ the one channel verify deliberately never reads.
 the header's Status and Phase fields, updated at each transition
 and at the verify verdict; everything below them is append-only.
 Status writes its enum member verbatim — [READY] keeps its
-brackets (the stats reader admits only the bracketed form).
+brackets (the header parse and the stats reader both admit only
+the bracketed form).
 Run `lint` once the header and head are written: a form defect
 found here costs re-creating a one-screen file before anything
 rests on it; found at the [READY] sweep it holds a full record
@@ -346,15 +359,14 @@ positional gate; the diff against the pin is the one thing it
 cannot fool). Run it at resume and before any re-lock — S is
 the standing lock, recoverable as the newest commit touching
 the tracker (every lock's pathspec carries the tracker, and
-nothing else legitimately commits it); the record gate's leg
-grading is the ONE exception, running `pinned` against its
-stated pre-leg sha instead.
+nothing else legitimately commits it).
 
 Entries are one line each, status tag first, appended never
 rewritten (the templates below wrap only on this page). A status
 change is a NEW tag-first line for the same id
 (`- D<n> [INVALIDATED] <why> — basis: <…>`) — never an edit of the
-old line; the stats reader counts only tag-first lines.
+old line; the record tool parses entry state from tag-first
+lines alone.
 The record's machine tokens are CASE-SENSITIVE LITERALS, not
 phrasing: the entry head `- <C><n> `, the scope openers
 `unit U<k> ` and `record: `, the hold form `unit U<k> held: `
@@ -404,9 +416,9 @@ Write the literal or expect the lint to say so.
   basis: <the checks' own output>`
 - entry tags are BARE enum values; annotations
   live in the line body after the bracket, never inside it, and a
-  bracketed tag literal never appears inside a body — the stats
-  reader counts some tags unanchored, and an annotated tag breaks
-  its literal greps and the closure gate's match
+  bracketed tag literal never appears inside a body — the record
+  tool's tag parsing and the closure gate match the bare
+  bracketed enum, and an annotated tag breaks both
 - a decision still resting on an unverified assumption at [READY]
   gets an appended `[AUTO-ACCEPTED]` line — surfaced to the operator
   by its tag, never silently carried; a reconciliation advanced on
@@ -415,7 +427,7 @@ Write the literal or expect the lint to say so.
   the resolving line.
 
 Each investigation/design round appends under a `## Cycle <n>`
-heading. The heading counts motion for the shared stats reader; it
+heading. The heading marks the round for the record's readers; it
 is not a schedule — a round is whatever investigation the design
 needed. The FIRST `## ` heading is also load-bearing: it closes
 the head region, and above it nothing parses as an entry — a
@@ -543,21 +555,25 @@ under a claimed [READY] is
 the premature-call shape.
 A declared exemption nets a matching hold out of the blocking set
 before SWEEP_HOLDS is decided: a labeled `SWEEP_EXEMPT: <code>
-lines<=<n>` or `SWEEP_EXEMPT: <code> line <n>` line — INTENT:'s and
+lines<=<n> — basis: <citation>` or `SWEEP_EXEMPT: <code> line <n>
+— basis: <citation>` line — INTENT:'s and
 SKILL:'s sibling, same body-region placement, same field-not-gate
 treatment — moves every violation of that CODE at a covered line
 into the verdict's `exempt_holds` field (each carrying the
-exemption's own declaring line), frozen at declaration: a violation
-above the ceiling blocks untouched. An exemption is OPERATOR
-authority, and the declaring line CARRIES its authorization in a
-mandatory tail: `SWEEP_EXEMPT: <code> lines<=<n> — basis:
-<citation>` (the operator's line quoted, or the id of the entry
+exemption's own declaring line), frozen at declaration — the
+coverage clamps at the declaring line itself, so nothing
+appended after the declaration is ever netted, whatever `<n>`
+says: a violation
+above either bound blocks untouched. An exemption is OPERATOR
+authority, carried in the mandatory `— basis:` tail (the
+operator's line quoted, or the id of the entry
 recording their direction) — the tool nets nothing from a
 citation-less declaration. A desk never exempts its own gate's
 holds on its own judgment,
 and an unattended run's unexemptible holds ride the close
 instead. What the guard VERIFIES is the exemption's BOUNDS — the
-code, the frozen ceiling, everything above still firing; the
+code, the frozen coverage, everything outside it still firing;
+the
 legitimacy judgment belongs to the cited authorization.
 Exemptible holds are FORM DEBT only. Defang-class holds
 (`tag-literal-in-body`) are never exemptible —
@@ -655,8 +671,10 @@ field — halts lock-check and lock-commit uncommitted: the record
 never locks over its own blocking state ahead of close. Its route
 is REPAIR, never a verdict on the run: repair or exempt the
 blocking holds, re-sweep, re-lock — the [READY] machinery's
-ordinary path, not the unattended FAILED close, which belongs to
-HALT_STATE-class halts (PASSED is a transient pre-close state
+ordinary path. A hold the desk can neither repair (not form
+debt) nor, unattended, exempt rides the close instead — FAILED
+with the hold enumerated, the ending the exemption clause names
+(PASSED is a transient pre-close state
 this seam never locks over: Close writes COMPLETE before it
 pins). Under
 Status FAILED or COMPLETE (the close path, Close) the gate PASSES
@@ -839,7 +857,7 @@ is a sealed prediction, written before the round dispatches to
 (repo-key as the queue path derives it, then the tracker's
 filename verbatim, `.md`
 included) — a path any successor desk re-derives through the git
-tool's `seal-path --tracker <path> --round A<n>` verdict
+tool's `seal-path --tracker <path> --round <A<n>|verify>` verdict
 (SEAL_PATH: every species' full path — seal, queue, paths,
 artifact (its own `artifacts/` namespace), report, comparison —
 from the pinned derivation; paste,
@@ -916,23 +934,25 @@ rounds behind it there is no series, and the first repeat round
 is the ordinary re-lock path, never graded. CONTRACTING:
 substance
 findings fall round over round AND land mostly on ground the
-previous round already bit. NON-CONTRACTING: everything else —
-the locus half decides a mixed read, since substance findings
-landing mostly on text minted since the previous round, ACROSS
-consecutive repeat rounds, is the
-non-contraction signature whatever the counts do (the loop
-eating its own repairs: nine rounds, none zero-delta, each
+previous round already bit. NON-CONTRACTING: everything else
+(the founding shape: the loop
+eating its own repairs — nine rounds, none zero-delta, each
 round's findings concentrated on the newest cycle's own work).
 A non-contracting grade routes to NARROWING, never to another
 same-form round:
 re-scope the head to the smallest independently shippable unit
 (an R-amendment, the displaced scope EXPORTED per The loop's
-exit machinery — successor runs seeded from this record, the
+exit machinery to a BACKLOG ENTRY carrying the successor-run
+intent — the named carrier with its reference; successor runs
+seed from this record, the
 parent's settled entries citable evidence there, attackable like
 any basis; a narrowing touches INTENT's reach, so it rides the
 close as a reconciliation), drive the narrowed design to its
 zero-delta, land
-it. The budget (the header) backstops this judgment
+it. Where the head already IS that smallest unit, narrowing has
+no move: the series goes to the operator — attended the prompt,
+unattended it rides the close — never another same-form round.
+The budget (the header) backstops this judgment
 mechanically; it is never the route. A round dies two ways, one clause (hypothesis):
 ABORTED in flight when a queued desk finding kills the locked
 design — the round is not left running over an object already
@@ -969,9 +989,10 @@ semicolon in the composed first line `> Superseded — A<n>
 quotes; <names>` (semicolon and list absent when no literal
 occurs; the filter matches the label's opening form) — so the
 defanged forms differ from every counted tag literal in both
-brackets and case: the stats reader's literal greps carry the
-brackets (verified against its source), the brackets the
-load-bearing half, the case change margin. Regraded
+brackets and case: the record tool's tag-literal lint carries
+the brackets (its own greps, battery-pinned — the netting
+battery produces a real violation of the class), the brackets
+the load-bearing half, the case change margin. Regraded
 into F-lines in the same sitting. Any substance finding: the
 round records [BIT] — that record change IS the reopen, and the
 reopen's SCOPE is the entries the findings cite plus their
@@ -981,10 +1002,7 @@ re-read only where a repaired entry's dependency reaches them,
 never restated wholesale — whole-record re-derivation is the
 anti-pattern with a measured signature: every restatement is
 fresh attack surface, and the next round's findings land on the
-newest cycle's own repairs. The re-lock's brief names the
-repaired delta as the round's stated focus; the attacker's
-question stays the whole design — zero-delta means the design,
-never the delta. A
+newest cycle's own repairs. A
 substance-free
 return: execute the record repairs now (desk work), then record
 [ZERO-DELTA] as the last A-line — recordable only with every
@@ -1144,7 +1162,7 @@ commits green; the desk appends its landing as an INDENTED
 annotation line (`  unit U<k> landed: <sha>`, preceded by a
 blank line — markdown otherwise folds it into the entry above) —
 not an entry, so
-invisible to the stats reader's tag-first count and the closure
+invisible to the record tool's tag-first entry parse and the closure
 read by construction — that is what makes resume reliable.
 Unit briefs carry the git tool's invocation lines with the
 script's absolute path (The tools) — desk prose reaches no
@@ -1180,8 +1198,8 @@ COMMIT — `unit-commit --tracker <tracker> --unit U<k>
 --start-sha <the START verdict's start_sha> -m <msg>` — same
 gate consult and halts as START — with the COMMIT-side
 disposition: a halt here leaves the unit's edits in the tree, so
-they are NAMED as poisoning the write-set for the re-dispatch,
-UNIT_START_MISMATCH included — plus UNIT_START_MISMATCH: the
+they are NAMED as poisoning the write-set for the re-dispatch —
+plus UNIT_START_MISMATCH: the
 start sha is no ancestor of HEAD, or a foreign commit touched
 the declared write-set since it.
 Verdicts: UNIT_COMMITTED → landing annotation with its sha.
@@ -1339,8 +1357,10 @@ operator —
 unattended this is the run's one touchpoint: the verdict with
 its evidence pointer; every open reconciliation; every R-line
 amendment (what shipped vs. the letter as asked); every
-[AUTO-ACCEPTED] entry; every SWEEP_EXEMPT declaration with the
-holds it netted (the sweep verdict's `exempt_holds`); every
+[AUTO-ACCEPTED] entry; every SWEEP_EXEMPT declaration, with any
+holds it still nets (the final sweep's `exempt_holds`; a
+declaration whose holds were since repaired is enumerated too);
+every
 entry whose latest line is
 [PENDING] (a FAILED or abandoned run can carry them);
 deviations and gaps; what was NOT verified; candidate

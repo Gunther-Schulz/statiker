@@ -359,6 +359,22 @@ class TestSweepExemption(RecordFixture):
         self.assertEqual({h["line"] for h in exempted["exempt_holds"]},
                          {low_line})
 
+    def test_coverage_clamps_at_the_declaring_line(self):
+        # M5 (release review round 3): `lines<=99999` must not become
+        # a STANDING exemption — content appended after the
+        # declaration blocks untouched, whatever the ceiling says
+        body = "- F1 [VERIFIED] old claim without ground\n"
+        decl = f"SWEEP_EXEMPT: basis-missing lines<=99999{self.CITE}\n"
+        after = "- F2 [VERIFIED] new claim without ground\n"
+        full = body + decl + after
+        f2_line = self.lineno_of(full, "- F2 [VERIFIED]")
+        v = self.sweep(full)
+        self.assertEqual(v["verdict"], "SWEEP_HOLDS", v)
+        self.assertIn(f2_line, {x["line"] for x in v["violations"]})
+        self.assertEqual({h["code"] for h in v["exempt_holds"]},
+                         {"basis-missing"})
+        self.assertEqual(len(v["exempt_holds"]), 1)
+
     def test_single_line_exemption_form(self):
         body = "- F1 [VERIFIED] claim without ground\n"
         f1_line = self.lineno_of(body, "- F1 [VERIFIED]")
