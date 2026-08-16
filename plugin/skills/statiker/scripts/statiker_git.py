@@ -433,9 +433,14 @@ def seal_namespace_paths(key: str, tracker_filename: str, round_: str):
 
 
 def cmd_seal_path(repo, args):
-    if not re.fullmatch(r"A\d+", args.round):
+    # `verify` names Verify's carve-out round (M7, release review
+    # round 2, 2026-08-16): the `.verify.paths` file's re-derivability
+    # is asserted by the skill text, so the printed grammar must be
+    # able to address it.
+    if not re.fullmatch(r"A\d+|verify", args.round):
         raise Halt("USAGE_ERROR",
-                   error=f"--round must match A<n>, got {args.round!r}")
+                   error=f"--round must match A<n> or verify, "
+                         f"got {args.round!r}")
     tracker_rel = repo.rel(args.tracker)
     tracker_filename = os.path.basename(tracker_rel)
     main_top_real = main_toplevel_real(repo)

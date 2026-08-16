@@ -157,16 +157,22 @@ delta invalidates only where the older text is at hand (the
 source repo's git); a desk without it surfaces the pair at the
 run's next operator touchpoint rather than reconstructing the
 delta from memory — and
-records the BARE label line
-`SKILL: statiker <version>` in an entry's body region —
-`INTENT: `'s sibling label (the line stands alone, never inside a
-tag-first entry line), surfaced
+records — on the MISMATCH only, carrying the SERVED version (the
+header keeps the version that wrote it) — the BARE label line
+`SKILL: statiker <version>` in the body region: below the first
+`## ` heading, standing alone, never inside a tag-first entry
+line (above the first heading is the head region, where nothing
+parses as an entry), surfaced
 with the header's version as `skill_versions` in sweep and closure
 verdicts (attribution, never a gate): the `Skill:` line is pinned
 surface — Status and Phase are the only mutable fields — so a header
 rewritten to the new version reads as tampering, not as an update.
 A resume opens with the RECORD GATE, before any design work: run
-`sweep` and `closure` first, whatever the resume's cause. The
+`sweep` and `closure` first, whatever the resume's cause. Their
+verdicts route by KIND at this seam: `closure`'s state verdicts —
+CLOSURE_ABSENT, CLOSURE_LIVE, the mid-design normal — are
+information, never halts, and CLOSURE_VOID bars units, not the
+design work this gate runs ahead of; only FORM holds gate. The
 gate's repair route covers FORM holds only — grammar, lint, and
 dead-basis classes, the ones a stated repair form can close:
 those are repaired through a DISPATCHED mechanical leg on the
@@ -174,6 +180,10 @@ cheapest capable tier (the routing table's execution default; the
 verdict names each violation's class and repair form, so the
 brief is decision-complete by construction, and judgment residue
 the verdict NAMES returns to the desk, never decided in the leg).
+The leg is the tracker's ONE WRITER for its duration: the desk's
+own appends wait for its return — the attack freeze's shape at
+this seam — and a tracker that moved under the leg is the leg's
+halt: report, never repair over a moved file.
 Latest-line [PENDING]s from open legs are LIVE WORK, not repair
 material: they resolve by the ordinary body-read of their
 returns, and clearing one to [AUTO-ACCEPTED] to satisfy a gate
@@ -198,7 +208,9 @@ record's citations, and a discharge NAMES ITS OWN EXPIRY, so the
 next resume inherits an obligation, never a reassurance (a
 "zero commits since" discharge carried across a 7-day resume hid
 16 commits, one touching the very file that round's HIGH landed
-on). A resuming
+on). A resume also reads the newest round's QUEUE (`seal-path`
+prints it): an unspent queue is inherited work — land and spend
+it before new appends. A resuming
 desk's first reply enumerates the run's standing operator state
 read from the record — the Mode line, every live operator-imposed
 hold, any mid-run INTENT line — shown as INFORMATION, never
@@ -236,7 +248,11 @@ The bound is operator-owned from the moment it is recorded: the
 desk SPENDS the budget and never raises it — a mid-run amendment
 is an operator decision, whatever provenance class the bound's
 text carries (fire-born, not hypothesis-class: a desk-amended
-bound, set just above current spend, bound nothing).
+bound, set just above current spend, bound nothing). An operator
+raise LANDS as an ordinary entry quoting the operator's line —
+the header is pinned surface, never rewritten — and every later
+exhaustion check reads the LATEST such entry over the header's
+default.
 Status and Phase sit within the first ~20
 lines (the stats reader's admission window). After the header,
 the requirement head in two
@@ -330,7 +346,9 @@ positional gate; the diff against the pin is the one thing it
 cannot fool). Run it at resume and before any re-lock — S is
 the standing lock, recoverable as the newest commit touching
 the tracker (every lock's pathspec carries the tracker, and
-nothing else legitimately commits it).
+nothing else legitimately commits it); the record gate's leg
+grading is the ONE exception, running `pinned` against its
+stated pre-leg sha instead.
 
 Entries are one line each, status tag first, appended never
 rewritten (the templates below wrap only on this page). A status
@@ -346,7 +364,8 @@ other way holds nothing), the write-set declarator
 `corrects line <n>` repair token,
 the late-instruction label `INTENT: `, and three bare label
 lines: `SKILL: statiker <version>`, `SWEEP_EXEMPT: <code>
-lines<=<n>` / `SWEEP_EXEMPT: <code> line <n>`, and
+lines<=<n> — basis: <citation>` / `SWEEP_EXEMPT: <code> line <n>
+— basis: <citation>`, and
 `unit U<k> irreversible: <effect>`. The two attribution labels
 (`SKILL:`, `unit U<k> irreversible:`) carry NO near-miss class by
 recorded decision (a bare-word scan false-fires; attribution
@@ -499,28 +518,7 @@ head professionally complete — is there a requirement a competent
 shop would have derived that is still missing? A cheap self-check
 before pricing an attack round; the attack's decomposition mandate
 is the load-bearing grader, so nothing rests on this question
-beyond the easy catch. Where the head decomposes into MULTIPLE
-units — subsystem scale, greenfield — that grader does not wait
-for the full design: the FIRST round dispatches EARLY, scoped to
-the requirement head and its decomposition, before deep design
-accumulates on an unattacked direction. A HEAD ROUND is not a
-lock: it pins its artifact at an ordinary tracker commit — the
-lock and its gate belong to [READY] designs, and open legs'
-[PENDING]s legitimately ride a head round — asserts no tree
-claim, and the append freeze still covers the tracker for the
-round's duration. Its A-line body opens `head-scope:`, its
-question carries the attack block's decomposition and
-blast-radius mandates over the head alone, and its return —
-either verdict — closes with the head-grading disposition
-D-line appended AFTER its A-line (scopeless, as design entries
-are), which is what keeps the closure predicate
-(Implementation) unsatisfiable by a head round: the closing
-[ZERO-DELTA] belongs only to a whole-design round on a locked
-[READY] design. A direction defect prices at one early
-round or at every cycle it misdirected (three requirements the
-head never carried, found by a decomposition pass at cycle 13).
-A single-unit head keeps the single-round shape — the [READY]
-round's mandate covers it. [READY] is
+beyond the easy catch. [READY] is
 recordable only when the record sweeps clean: no entry's latest line
 is [PENDING] (an assumption deliberately carried unverified
 gets its [AUTO-ACCEPTED] line, never left [PENDING]), no id appears
@@ -551,17 +549,25 @@ treatment — moves every violation of that CODE at a covered line
 into the verdict's `exempt_holds` field (each carrying the
 exemption's own declaring line), frozen at declaration: a violation
 above the ceiling blocks untouched. An exemption is OPERATOR
-authority: its declaring line cites the authorization (the
-operator's line quoted, or the entry recording their direction) —
-a desk never exempts its own gate's holds on its own judgment,
+authority, and the declaring line CARRIES its authorization in a
+mandatory tail: `SWEEP_EXEMPT: <code> lines<=<n> — basis:
+<citation>` (the operator's line quoted, or the id of the entry
+recording their direction) — the tool nets nothing from a
+citation-less declaration. A desk never exempts its own gate's
+holds on its own judgment,
 and an unattended run's unexemptible holds ride the close
 instead. What the guard VERIFIES is the exemption's BOUNDS — the
 code, the frozen ceiling, everything above still firing; the
 legitimacy judgment belongs to the cited authorization.
-Defang-class holds (`tag-literal-in-body`) are never exemptible —
+Exemptible holds are FORM DEBT only. Defang-class holds
+(`tag-literal-in-body`) are never exemptible —
 the tool refuses the netting — because an undefanged tag literal
 holds every later sweep correctly, for the run's life (The
-record). `exempt_holds` is enumerated in the close beside the
+record); and LIVE-WORK holds (`pending-latest`) are never
+exemptible either: the no-[PENDING] gate holds unread legs open
+mechanically, and a netting that reached it would unlock
+[READY], the closing [ZERO-DELTA], and the Verify dispatch in
+one line. `exempt_holds` is enumerated in the close beside the
 [AUTO-ACCEPTED] entries: netted is never invisible. No new
 verdict name: SWEEP_CLEAN,
 SWEEP_HOLDS, and every downstream gate consult inherit the netted
@@ -576,8 +582,10 @@ classified by the reversibility of its EFFECT, not its diff: one
 whose green state includes something git cannot undo — a schema
 or data migration, an external write, a publish/push/send, a
 deletion outside the write-set — is tagged irreversible in its
-enumeration, as its own record line `unit U<k> irreversible:
-<effect>` (the hold line's sibling); the record tool surfaces the
+enumeration, as the BARE label line `unit U<k> irreversible:
+<effect>` — the label-line class (`SKILL: `'s sibling), standing
+alone at column 0, never an entry and never a body opener, so it
+re-opens nothing under the closure predicate; the record tool surfaces the
 set as `irreversible_units` in sweep and closure verdicts —
 attribution, never a gate: unattended enforcement stays the hold
 entry. Every other bound in this skill limits waste; this
@@ -639,17 +647,18 @@ into the commit — the attack
 round's probes are the backstop, the residue named, not hidden.
 (c) `lock-check --tracker <path> [--lock-set <path> …]`.
 Verdict routes: LOCK_GATE_HOLDS — the consulted sweep verdict's
-blocking set is non-empty AND Status reads [READY] or in-progress,
+blocking set is non-empty AND Status is NOT on the close path
+(FAILED/COMPLETE): [READY], in-progress, PASSED, a missing or
+malformed status — all fail closed,
 the consulted record verdict embedded verbatim as the `gate`
 field — halts lock-check and lock-commit uncommitted: the record
 never locks over its own blocking state ahead of close. Its route
 is REPAIR, never a verdict on the run: repair or exempt the
 blocking holds, re-sweep, re-lock — the [READY] machinery's
 ordinary path, not the unattended FAILED close, which belongs to
-HALT_STATE-class halts. Any status outside the two named buckets —
-PASSED (a transient pre-close state this seam never locks over:
-Close writes COMPLETE before it pins), missing, malformed — stays
-on the blocking side, fail-closed. Under
+HALT_STATE-class halts (PASSED is a transient pre-close state
+this seam never locks over: Close writes COMPLETE before it
+pins). Under
 Status FAILED or COMPLETE (the close path, Close) the gate PASSES
 instead with the same blocking set still carried in `gate` as
 information, never silently dropped — a close-time lock
@@ -769,9 +778,12 @@ written — and append at the round's return, before its A-line,
 then SPEND the queue: append `LANDED <yyyy-mm-dd> — at line <n>`
 (the tracker line the landing opened) as its last line —
 `LANDED <yyyy-mm-dd> — empty` when nothing was queued; a queue
-whose last non-blank line matches the spent form is spent. No
+whose last non-blank line matches the spent form is spent — and
+a [VOID] A-line is a return for this duty: the queue spends at
+any terminal A-line. No
 subcommand reads a queue file (the tool's own documented scope):
-the spent line's reader is the successor desk at resume, and
+the spent line's reader is the successor desk at resume (the
+resume's queue read, The record), and
 that read is what bars re-landing a spent queue. The
 freeze's scope is every surface the brief claims immutable: a
 brief asserting the tree matches the lock commit (the TREE
@@ -802,10 +814,11 @@ clauses):
     probe. Attack the design's fit to the recorded requirement
     and the factual bases it cites; attack the DECOMPOSITION —
     is the derived head a faithful AND professionally complete
-    reading of the INTENT, where a head narrowed by a recorded
-    R-amendment whose displaced scope is EXPORTED is graded
-    against that amended scope, the amendment and its exports
-    themselves attackable — and the design's SIMPLICITY — the
+    reading of the INTENT, where a head carrying a recorded
+    deliberate narrowing — an entry naming the scope moved out
+    and the carrier it moved to — is graded against the narrowed
+    scope, those narrowing entries themselves attackable — and
+    the design's SIMPLICITY — the
     simplest design that meets the head; unjustified structure
     is a finding. Attack the BLAST RADIUS — for each surface the
     design changes (a key's scope, a shared file, a value set, a
@@ -897,11 +910,16 @@ ONE re-lock: per-finding re-locks split the priced unit
 tool's `trend` output as its arithmetic backstop and GRADES the
 series by a BODY-READ of the rounds' findings — `trend` counts
 every F-line and knows nothing of class or locus, so the grade
-never comes from its verdict alone. CONTRACTING: substance
+never comes from its verdict alone. The grade computes only from
+the SECOND repeat round on: with fewer than two completed [BIT]
+rounds behind it there is no series, and the first repeat round
+is the ordinary re-lock path, never graded. CONTRACTING:
+substance
 findings fall round over round AND land mostly on ground the
 previous round already bit. NON-CONTRACTING: everything else —
 the locus half decides a mixed read, since substance findings
-landing mostly on text minted since the previous round is the
+landing mostly on text minted since the previous round, ACROSS
+consecutive repeat rounds, is the
 non-contraction signature whatever the counts do (the loop
 eating its own repairs: nine rounds, none zero-delta, each
 round's findings concentrated on the newest cycle's own work).
@@ -1160,7 +1178,10 @@ HALT_DIRECTORY_PATH, USAGE_ERROR, GIT_ERROR …) halt the
 unit UNBUILT — no edit, no commit, no landing annotation.
 COMMIT — `unit-commit --tracker <tracker> --unit U<k>
 --start-sha <the START verdict's start_sha> -m <msg>` — same
-gate consult and halts as START, plus UNIT_START_MISMATCH: the
+gate consult and halts as START — with the COMMIT-side
+disposition: a halt here leaves the unit's edits in the tree, so
+they are NAMED as poisoning the write-set for the re-dispatch,
+UNIT_START_MISMATCH included — plus UNIT_START_MISMATCH: the
 start sha is no ancestor of HEAD, or a foreign commit touched
 the declared write-set since it.
 Verdicts: UNIT_COMMITTED → landing annotation with its sha.

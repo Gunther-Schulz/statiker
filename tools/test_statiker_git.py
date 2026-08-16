@@ -2070,6 +2070,19 @@ class TestSealPath(GitFixture):
         self.assertFalse(v["artifact"].startswith(seal_dir + os.sep),
                          v["artifact"])
 
+    def test_verify_round_addresses_the_carveout_paths_file(self):
+        # M7 (release review round 2): Verify's `.verify.paths` file
+        # asserts re-derivability through this derivation — `--round
+        # verify` must therefore be addressable, yielding the
+        # documented `<tracker>.verify.paths` stem
+        self.write(".clippy/runs/t.md", self.GATE_CLEAN_TRACKER)
+        p = self.tool("seal-path", "--tracker", ".clippy/runs/t.md",
+                      "--round", "verify")
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "SEAL_PATH", p.stdout + p.stderr)
+        self.assertTrue(v["paths"].endswith("t.md.verify.paths"),
+                        v["paths"])
+
     def test_paths_from_a_linked_worktree_derive_in_main(self):
         # P1: --show-toplevel from INSIDE a linked worktree answers
         # with the worktree's own root — the pinned derivation must

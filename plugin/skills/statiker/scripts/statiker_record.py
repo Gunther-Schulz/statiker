@@ -188,13 +188,22 @@ SKILL_HEADER_VERSION_RE = re.compile(r"^statiker (\S+)$")
 # attribution only). Two forms, both CODE-SPECIFIC and frozen at
 # declaration: `lines<=N` covers every line 1..N, `line N` covers
 # exactly that line — a violation above a ceiling blocks untouched.
-SWEEP_EXEMPT_CEILING_RE = re.compile(r"^SWEEP_EXEMPT: ([a-z-]+) lines<=(\d+)$")
-SWEEP_EXEMPT_LINE_RE = re.compile(r"^SWEEP_EXEMPT: ([a-z-]+) line (\d+)$")
+# M1 (opus release review round 2, 2026-08-16): the authorization
+# citation is a mandatory GRAMMAR slot — an exemption is operator
+# authority, so a declaration that cites nothing nets nothing.
+SWEEP_EXEMPT_CEILING_RE = re.compile(
+    r"^SWEEP_EXEMPT: ([a-z-]+) lines<=(\d+) — basis: \S.*$")
+SWEEP_EXEMPT_LINE_RE = re.compile(
+    r"^SWEEP_EXEMPT: ([a-z-]+) line (\d+) — basis: \S.*$")
 # H6 (opus release review 2026-08-16): the defang class is never
 # exemptible — SKILL.md's standing clause says an undefanged tag
 # literal holds every later sweep for the run's life, and a netting
 # that could silence it would let one declaration void that rule.
-UNEXEMPTIBLE_CODES = {"tag-literal-in-body"}
+# H4 (round 2): live-work classes join defang — the no-[PENDING]
+# gate is load-bearing for [READY], the closing [ZERO-DELTA], and
+# the Verify dispatch; a netting that reached it would unlock all
+# three in one declared line. Exemptible holds are form debt only.
+UNEXEMPTIBLE_CODES = {"tag-literal-in-body", "pending-latest"}
 # the scope openers are CASE-SENSITIVE LITERALS (SKILL.md, The
 # record): a case or spacing variant is entry-INTENDED scope that no
 # predicate can read, so it lints rather than passing as scopeless

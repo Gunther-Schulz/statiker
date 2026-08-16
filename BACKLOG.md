@@ -47,6 +47,33 @@ it is not decision-complete.
   operator's release of the hold. Consumer: the next meta session
   composing the desk brief; rides the run-disposition round.
 
+- **PARKED 2026-08-16 — P12: the early head round (decomposition
+  attacked before deep design) returns to design — cut from the
+  0.2.74 release after drawing blockers in BOTH release-review
+  rounds.** The VALUE stands un-refuted: a direction defect
+  prices at one early round or at every cycle it misdirects
+  (R6–R8 found at cycle 13 = the incident). What failed is the
+  mechanism: reusing the ordinary round machinery. Design
+  constraints, enumerated from the two rounds (OBSERVATIONS
+  2026-08-16, both disposition entries): (a) round-1 H1 — its
+  A-line must be mechanically distinguishable so the closure
+  predicate and Phase flip cannot read it as the closing
+  ZERO-DELTA; (b) round-1 H2 / round-2 H1(b) — it runs
+  pre-[READY] where open-leg PENDINGs legitimately block the
+  lock gate, so it cannot be a lock; (c) round-2 H1(a) — but any
+  NON-lock tracker commit breaks the standing-lock recovery rule
+  ("the newest commit touching the tracker" IS how S is found),
+  so the pin needs either lock-machinery participation or a new
+  commit species the recovery rule knows; (d) round-2 M8 — a
+  substance-free return needs a legal A-line tag that is not the
+  closing ZERO-DELTA, and closure safety must not rest on the
+  desk remembering an inverted append order; (e) round-2 M9 —
+  its budget accounting must be stated. Likely shape: a distinct
+  round species with its own A-line tag and tool support (new
+  verdict/tag names = same-commit tool authorship, the
+  composition rule). Trigger: the trial-close grading, or the
+  first multi-unit greenfield run that misses it.
+
 - **PARKED 2026-08-16 — P11: the cross-skill stats contract is
   half-maintained, and the unmaintained half miscounts silently.**
   Provenance: Begehung R1 (BEGEHUNG-MAP.md round log), executed

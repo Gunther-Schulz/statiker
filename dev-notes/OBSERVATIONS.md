@@ -5210,3 +5210,53 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   repaired final form is the release's binding review, this
   round's object having been replaced under it (final-form lap
   rule). Consumer: the release seam; the trial close's grading.
+
+- 2026-08-16 — **Release review round 2 (opus, fresh context, diff
+  0.2.65→0.2.73): BIT — 4 HIGH, 9 MODERATE, 7 MINOR, all four
+  HIGH on round 1's own repairs. THE SERIES GRADED BY THE SKILL'S
+  OWN NEW RULE: two consecutive rounds, substance findings
+  concentrated on text minted since the previous round =
+  NON-CONTRACTING → the route is NARROWING, applied to the
+  release itself: the head-round clause (both rounds' blocker
+  magnet) is CUT and parked as P12 with five enumerated design
+  constraints; everything else took small isolated repairs
+  (0.2.74, suite 397).** Dispositions: H1 CUT→P12 (with M8, M9,
+  and the head-scope-token minor, all resolved by the cut); H2
+  REPAIRED (grade computes only from the second repeat round on;
+  locus signature requires the pattern ACROSS consecutive
+  rounds — kills the A2 over-fire and the delta-focus
+  circularity); H3 REPAIRED (irreversible line = bare label
+  line, the tool's own regex form; never an entry or body
+  opener); H4+M1 REPAIRED with tool (exemptible holds = form
+  debt only: pending-latest joins tag-literal-in-body in
+  UNEXEMPTIBLE_CODES; the authorization citation is a MANDATORY
+  grammar slot — `— basis: <citation>` — a citation-less
+  declaration nets nothing; battery rewritten around form-debt
+  fixtures, red-proven 4 failures against the pre-fix tool);
+  M2 REPAIRED (closure state verdicts routed at the resume seam:
+  ABSENT/LIVE information, VOID bars units not design); M3
+  REPAIRED (repair leg = the tracker's one writer, desk appends
+  wait, moved-file = leg halt); M4 REPAIRED (operator raise
+  lands as an ordinary entry quoting the operator line; header
+  stays pinned; latest entry wins); M5 REPAIRED (resume reads
+  the newest round's queue; VOID A-lines spend the queue); M6
+  REPAIRED (COMMIT-side halt disposition named,
+  UNIT_START_MISMATCH included); M7 REPAIRED with tool
+  (seal-path accepts --round verify, red-proven); minors: gate
+  definition rewritten to the shipped conjunction's true
+  complement (fail-closed incl. PASSED, duplicate sentence
+  removed), pinned-S definitional exception named, SKILL: label
+  conditions fixed (mismatch only, served version, body region
+  defined), attack-block narrowing clause de-jargoned
+  (self-contained for a fresh attacker), seal-path worktree
+  hazard DISPOSITIONED AS COVERED (the tool derives in main
+  from any worktree — test_paths_from_a_linked_worktree_derive_
+  in_main; the hand-derivation warning stands),
+  tag-literal-in-body restated literal DISPOSITIONED AS
+  BATTERY-PINNED (test_defang_class_is_never_exemptible
+  produces a real violation of that code — a spec rename goes
+  red there). Round-2 method note recorded with approval:
+  absence claims grep-checked with terms named. TREND: round 3
+  reviews a SMALLER object (the cut shrank the diff) — the
+  narrowing route's first self-application. Consumer: the
+  release seam; P12's design; the trial close's grading.

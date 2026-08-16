@@ -270,62 +270,89 @@ class TestSweep(RecordFixture):
 
 
 class TestSweepExemption(RecordFixture):
-    """P6 (BACKLOG READY 2026-08-15): a declared SWEEP_EXEMPT nets a
-    matching hold out of the blocking set before SWEEP_HOLDS is
-    decided — the beat-the-books shape (P2's stated-deviation
-    disposition needs a mechanical carrier or the next lock under the
-    new version halts permanently)."""
+    """P6 + release-review round 2 (H4/M1, 2026-08-16): a declared
+    SWEEP_EXEMPT nets FORM-DEBT holds out of the blocking set. The
+    declaration carries its operator-authorization citation as a
+    MANDATORY grammar slot (M1), and the live-work class
+    (pending-latest) and defang class (tag-literal-in-body) are never
+    netted (H4/H6) — exemptible holds are form debt only."""
 
-    def test_declared_exemption_shrinks_the_blocking_set(self):
-        body = ("- F1 [PENDING] awaiting leg one — basis: dispatched\n"
-                "- F2 [PENDING] awaiting leg two — basis: dispatched\n")
-        ceiling = self.lineno_of(body, "- F2 [PENDING]")
-        v = self.sweep(body + f"SWEEP_EXEMPT: pending-latest lines<={ceiling}\n")
+    CITE = " — basis: operator line quoted in D95"
+
+    def test_cited_exemption_nets_form_debt(self):
+        body = ("- F1 [VERIFIED] claim without ground\n"
+                "- F2 [VERIFIED] second claim without ground\n")
+        ceiling = self.lineno_of(body, "- F2 [VERIFIED]")
+        baseline = self.sweep(body)
+        self.assertEqual(baseline["verdict"], "SWEEP_HOLDS")
+        self.assertIn("basis-missing", self.violation_codes(baseline))
+        v = self.sweep(
+            body + f"SWEEP_EXEMPT: basis-missing lines<={ceiling}{self.CITE}\n")
         self.assertEqual(v["verdict"], "SWEEP_CLEAN", v)
         self.assertEqual({h["code"] for h in v["exempt_holds"]},
-                         {"pending-latest"})
+                         {"basis-missing"})
         self.assertEqual(len(v["exempt_holds"]), 2)
 
-    def test_undeclared_code_leaves_verdict_unchanged(self):
+    def test_citation_less_declaration_nets_nothing(self):
+        # M1: the basis tail is a grammar slot, not decoration — an
+        # exemption is operator authority, so citing nothing nets
+        # nothing (fail-safe: the hold stays blocking)
+        body = "- F1 [VERIFIED] claim without ground\n"
+        v = self.sweep(body + "SWEEP_EXEMPT: basis-missing lines<=99\n")
+        self.assertEqual(v["verdict"], "SWEEP_HOLDS", v)
+        self.assertEqual(v["exempt_holds"], [])
+
+    def test_live_work_class_is_never_exemptible(self):
+        # H4: pending-latest guards [READY], the closing [ZERO-DELTA],
+        # and the Verify dispatch — a CITED declaration is still inert
         body = "- F1 [PENDING] awaiting leg — basis: dispatched\n"
-        baseline = self.sweep(body)
-        v = self.sweep(body + "SWEEP_EXEMPT: killerless-dead lines<=99\n")
-        self.assertEqual(baseline["verdict"], "SWEEP_HOLDS")
+        v = self.sweep(
+            body + f"SWEEP_EXEMPT: pending-latest lines<=99{self.CITE}\n")
         self.assertEqual(v["verdict"], "SWEEP_HOLDS", v)
         self.assertIn("pending-latest", self.violation_codes(v))
         self.assertEqual(v["exempt_holds"], [])
 
     def test_defang_class_is_never_exemptible(self):
-        # H6 (opus release review 2026-08-16): an undefanged tag
-        # literal holds every later sweep for the run's life
-        # (SKILL.md, The record) — a SWEEP_EXEMPT naming the defang
-        # code is inert: the hold stays blocking, exempt_holds empty.
+        # H6 (round 1): an undefanged tag literal holds every later
+        # sweep for the run's life — a cited declaration is inert
         body = ("- F1 [VERIFIED] the guard prints [PENDING] on a miss "
                 "— basis: executed\n")
         baseline = self.sweep(body)
         self.assertEqual(baseline["verdict"], "SWEEP_HOLDS")
         self.assertIn("tag-literal-in-body", self.violation_codes(baseline))
         exempted = self.sweep(
-            body + "SWEEP_EXEMPT: tag-literal-in-body lines<=999\n")
+            body
+            + f"SWEEP_EXEMPT: tag-literal-in-body lines<=999{self.CITE}\n")
         self.assertEqual(exempted["verdict"], "SWEEP_HOLDS", exempted)
         self.assertIn("tag-literal-in-body", self.violation_codes(exempted))
         self.assertEqual(
             [h for h in exempted["exempt_holds"]
              if h["code"] == "tag-literal-in-body"], [])
 
+    def test_undeclared_code_leaves_verdict_unchanged(self):
+        body = "- F1 [VERIFIED] claim without ground\n"
+        baseline = self.sweep(body)
+        v = self.sweep(
+            body + f"SWEEP_EXEMPT: killerless-dead lines<=99{self.CITE}\n")
+        self.assertEqual(baseline["verdict"], "SWEEP_HOLDS")
+        self.assertEqual(v["verdict"], "SWEEP_HOLDS", v)
+        self.assertIn("basis-missing", self.violation_codes(v))
+        self.assertEqual(v["exempt_holds"], [])
+
     def test_violation_above_ceiling_blocks_in_both_arrangements(self):
         # the ceiling is frozen at declaration: a violation on a line
         # the exemption does not cover blocks whether or not an
         # UNRELATED-in-reach exemption for the same code is present
-        body = ("- F1 [PENDING] low line, will be exempt — basis: d\n"
-                "- F2 [PENDING] high line, stays blocking — basis: d\n")
-        low_line = self.lineno_of(body, "- F1 [PENDING]")
-        high_line = self.lineno_of(body, "- F2 [PENDING]")
+        body = ("- F1 [VERIFIED] low line, will be exempt\n"
+                "- F2 [VERIFIED] high line, stays blocking\n")
+        low_line = self.lineno_of(body, "- F1 [VERIFIED]")
+        high_line = self.lineno_of(body, "- F2 [VERIFIED]")
         baseline = self.sweep(body)
         exempted = self.sweep(
-            body + f"SWEEP_EXEMPT: pending-latest lines<={low_line}\n")
+            body
+            + f"SWEEP_EXEMPT: basis-missing lines<={low_line}{self.CITE}\n")
         self.assertEqual(baseline["verdict"], "SWEEP_HOLDS")
-        self.assertIn("pending-latest", self.violation_codes(baseline))
+        self.assertIn("basis-missing", self.violation_codes(baseline))
         self.assertEqual(exempted["verdict"], "SWEEP_HOLDS", exempted)
         self.assertIn(high_line,
                       {v["line"] for v in exempted["violations"]})
@@ -333,21 +360,18 @@ class TestSweepExemption(RecordFixture):
                          {low_line})
 
     def test_single_line_exemption_form(self):
-        body = "- F1 [PENDING] awaiting leg — basis: dispatched\n"
-        f1_line = self.lineno_of(body, "- F1 [PENDING]")
-        full_body = body + f"SWEEP_EXEMPT: pending-latest line {f1_line}\n"
-        exempt_line = self.lineno_of(full_body, "SWEEP_EXEMPT:")
-        v = self.sweep(full_body)
+        body = "- F1 [VERIFIED] claim without ground\n"
+        f1_line = self.lineno_of(body, "- F1 [VERIFIED]")
+        v = self.sweep(
+            body
+            + f"SWEEP_EXEMPT: basis-missing line {f1_line}{self.CITE}\n")
         self.assertEqual(v["verdict"], "SWEEP_CLEAN", v)
-        self.assertEqual(len(v["exempt_holds"]), 1)
-        self.assertEqual(v["exempt_holds"][0]["line"], f1_line)
-        self.assertEqual(v["exempt_holds"][0]["exempt_declared_line"],
-                         exempt_line)
+        self.assertEqual({h["line"] for h in v["exempt_holds"]}, {f1_line})
 
     def test_sweep_exempt_line_parses_no_entry(self):
         # the label line, like INTENT:/SKILL:, must never itself read
         # as an entry-shaped near-miss
-        v = self.sweep("SWEEP_EXEMPT: pending-latest lines<=5\n")
+        v = self.sweep(f"SWEEP_EXEMPT: basis-missing lines<=5{self.CITE}\n")
         self.assertEqual(v["verdict"], "SWEEP_CLEAN", v)
         self.assertEqual(v["exempt_holds"], [])
         self.assertNotIn("entry-near-miss", self.violation_codes(v))
