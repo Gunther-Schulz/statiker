@@ -5515,3 +5515,30 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   entry came back; no operator relay was spent. Consumer: the
   trial close's grading (cross-session protocol evidence);
   closed — nothing further owed either direction.
+
+- 2026-08-16 — **Cycle-1 relay harvested (successor run, operator
+  paste): conduct evidence for the trial close, all of it the
+  shipped improvements firing unprompted.** (1) Adoption path:
+  the run's first act refused to inherit — four parent claims
+  held open under own ids with scoped checks, the desk citing the
+  parent's own stale-diagnosis lesson. (2) Battery rule: ONE
+  grounding trip carrying four questions, each with deciding
+  outcomes pre-named (the pivot — does a re-observed market
+  self-heal — decides the unit's reversibility and hold shape
+  before design). (3) World-check at unit grain: "mechanism last
+  read ten days ago, is it still there at HEAD" as a battery
+  member. (4) Instrument discipline live: absence claim with
+  instrument-positive required; a striking prod result (80,161
+  rows written in one hour — snapshot table, not accumulation)
+  CONTROLLED before belief, and the control REFUTED the desk's
+  own fresh F7; the sweep then held the two new entries citing
+  the invalidated F7 — the dead-basis machinery catching forward
+  contamination within minutes, desk grading it "correct catch"
+  and re-pointing bases. (5) Brief hygiene: line numbers marked
+  unverified, targets symbol-anchored. No stop-call — conduct
+  clean. What the trial still owes before "working as intended":
+  the attack series on a small object (the contraction
+  prediction: zero-delta in 1–2 rounds), the D94 hold, verify,
+  and a LANDED unit — the reform's success metric is still at
+  zero until U1 lands. Consumer: the trial close's grading; the
+  next relay.
