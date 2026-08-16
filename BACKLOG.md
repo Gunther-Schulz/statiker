@@ -107,9 +107,13 @@ it is not decision-complete.
   first real unit needing a space-carrying or absolute path.
 
 - **READY 2026-08-16 — next-run staging: STOP after the record
-  gate (operator-decided, mid-turn line 2026-08-16).** The next
-  desk brief (resume or re-seed over the existing
-  canonical-market-identity record) carries an explicit
+  gate (operator-decided, mid-turn line 2026-08-16; disposition
+  DECIDED same day, "as you recommend": RESUME the existing
+  canonical-market-identity tracker — the gate gets the 696-hold
+  record to perform on — then, after the operator releases the
+  hold, NARROW via the 0.2.68 route: R-amendment to the smallest
+  shippable unit, displaced scope EXPORTED to successor runs).**
+  The next desk brief carries an explicit
   checkpoint: run the record gate (sweep/closure), dispatch the
   repair leg if holds block, re-run the verdicts — then STOP and
   report the before/after verdict pair plus the leg's dispatch
