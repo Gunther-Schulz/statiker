@@ -5260,3 +5260,50 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   reviews a SMALLER object (the cut shrank the diff) — the
   narrowing route's first self-application. Consumer: the
   release seam; P12's design; the trial close's grading.
+
+- 2026-08-16 — **Release review round 3 (opus, fresh context, diff
+  0.2.65→0.2.74): BIT — 4 HIGH, 7 MODERATE, 5 MINOR; the series
+  is now three consecutive rounds with findings concentrated on
+  each round's newest repairs (20 → 20 → 16). REPAIR HELD — the
+  round goes to the operator with the diagnosis, per the trend
+  rule's own bar on a same-form round 4.** The discriminating
+  split inside round 3, which is the diagnosis: every
+  TOOL+BATTERY-BACKED repair came back CLEAN (artifact namespace
+  split, queue spent-form predicate, near-miss reasoning,
+  closure-consult naming, close-path gate semantics — the
+  reviewer's examined-clean list), while every fresh PROSE
+  MECHANISM bit (budget-raise landing form voids the closure it
+  lands after, H1; the pre-leg pin has no legal producer and
+  contradicts S's recovery rule, H2; the delta-focus sentence is
+  the steering note the standing rule bars, H3; the unattended
+  lock-gate hold has no terminal route, H4; locus-decides
+  contradicts its own complement, M1). This is the MEDIUM TENET
+  (PLAN 2026-08-08) firing on this session's own desk mints —
+  "prose could not close the record grammar either …
+  blockers concentrated in each round's newest repairs" is its
+  recorded provenance, byte-for-byte this shape. CORRECTION
+  ENTRY (something shipped, found wrong by the review): the R2
+  base-reference tenet check I recorded for 0.2.68–0.2.70 graded
+  the clauses against the economics, autonomy, and convergence
+  tenets and SKIPPED THE MEDIUM TENET — the one that fails
+  mechanism-dense prose at mint time and would have caught all
+  three rounds' blockers before any review spend. Triage class:
+  incomplete instrument (the check enumerated tenets from
+  memory, not from PLAN's list). Mechanism half: the check is
+  judgment-shaped (stays prose), but its ENUMERATION is not —
+  the recorded check names every tenet in PLAN's tenet list and
+  marks each pass/fail/not-applicable; a check whose tenet set
+  is recalled is the restated-basis class. CLAUDE.md's
+  birth-class bullet already mandates recording the check; the
+  enumeration form is the widening this correction adds (landed
+  with this entry). Also fired this round, mine: M4 — round 2
+  shipped the --round verify TOOL change without its prose
+  sentence (the route-sentence rule, skipped in my own repair
+  commit); M6 — my disclaimer repair named four re-grounded
+  constraints without editing the four sites still arguing from
+  the disclaimed source (the corpus dependents-search rule,
+  skipped). Round-3 report booked verbatim in the session
+  record; reviewer's method note (text-only, no tool probes —
+  H2(a)/M4/M5 settleable by the batteries) recorded. Consumer:
+  the operator's disposition round (in flight); P12's design;
+  the trial close's grading.
