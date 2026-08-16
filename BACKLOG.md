@@ -74,6 +74,23 @@ it is not decision-complete.
   composition rule). Trigger: the trial-close grading, or the
   first multi-unit greenfield run that misses it.
 
+- **PARKED 2026-08-16 — P13: the release-review series' tool-work
+  residue (the mechanism pass's collected items).** Three items,
+  each dispositioned prose-side in 0.2.76 with its mechanism half
+  parked here: (a) r4-H1 — the commit gate's
+  start-sha-predates-the-void carve-out, so clean in-flight
+  siblings land through a premise-kill instead of re-dispatching
+  (prose now states the fail-closed behavior; the carve-out needs
+  gate logic + battery); (b) r4-M4 — the budget-raise entry's
+  machine-findable surfacing in sweep/closure verdicts
+  (late_intent's shape; prose ships a body-read template until
+  then); (c) r3-MINOR-5 — a lint class for a world-facing
+  discharge line missing its read-sha (fail-safe meanwhile).
+  All three are the medium tenet's class: exact semantics →
+  mechanism + red-first battery, then prose. Trigger: the
+  mechanism pass (with P12's design), or the first run a
+  prose-side disposition measurably costs.
+
 - **PARKED 2026-08-16 — P11: the cross-skill stats contract is
   half-maintained, and the unmaintained half miscounts silently.**
   Provenance: Begehung R1 (BEGEHUNG-MAP.md round log), executed

@@ -152,8 +152,10 @@ reaches a running desk only as a RESTART, never as an upgrade — the
 pin resolves at session start and the already-loaded skill text owns
 a live desk's conduct, so a delta means desk and record run
 under different rules — in either direction: an OLDER desk over
-a newer record proceeds no further than the record gate, the
-pair surfaced to the operator. On a mismatch the desk names
+a newer record proceeds no further than the record gate and
+WRITES NO CLOSE — a desk under the wrong rules appends nothing;
+the run stays in-progress for a correctly-versioned successor,
+and the surfacing is the desk's reply, not a record write. On a mismatch the desk names
 the VERSION PAIR before the next forcing point — and what the
 delta invalidates only where the older text is at hand (the
 source repo's git); a desk without it surfaces the pair at the
@@ -190,14 +192,13 @@ Latest-line [PENDING]s from open legs are LIVE WORK, not repair
 material: they resolve by the ordinary body-read of their
 returns, and clearing one to [AUTO-ACCEPTED] to satisfy a gate
 destroys the evidence the tag holds open. The desk grades the
-leg's return by re-running `sweep` and `closure` itself, never
-by the leg's claim, and — because the positional pair reads an
-in-place rewrite as clean — by its own `git diff` over the
-tracker: at this seam the tracker sits at HEAD, so the diff IS
-the leg's work, and any non-append hunk (a changed or deleted
-existing line) is the halt. A tracker not yet in any commit has
-no diff base — there the record is young and its holds few, so
-the repair is desk work by the brief-would-rival-the-repair rule
+leg's return by re-running `sweep`, `closure`, AND `pinned`
+against the standing lock itself, never by the leg's claim — the
+positional pair reads an in-place rewrite as clean, and the pin
+diff is the one check it cannot fool, whether or not the leg
+committed its work. A record with no pin yet is young and its
+holds few — there the repair is desk work by the
+brief-would-rival-the-repair rule
 below. So the
 desk's context carries verdicts, not the repair work (a resumed
 desk repairing its own accumulated holds inline spent a session on
@@ -217,7 +218,10 @@ next resume inherits an obligation, never a reassurance (a
 16 commits, one touching the very file that round's HIGH landed
 on). A resume also reads the newest round's QUEUE (`seal-path`
 prints it): an unspent queue is inherited work — land and spend
-it before new appends, except where the newest A-line is
+it before new appends — the resume's order: version pair →
+record gate (its leg, if one, returning first) → world-facing
+discharges → queue land+spend, then re-run `sweep` if the queue
+landed lines — except where the newest A-line is
 [DISPATCHED] (a desk died mid-round): the append freeze still
 holds, the round re-enters as its own round, and the inherited
 queue lands and spends at that round's terminal A-line. A resuming
@@ -262,9 +266,13 @@ bound, set just above current spend, bound nothing). An operator
 raise LANDS as an ordinary entry quoting the operator's line —
 the header is pinned surface, never rewritten — and every later
 exhaustion check reads the LATEST such entry over the header's
-default — the raise entry's body opens `record: ` (bookkeeping:
-it voids no closure and re-opens no unit) with the quote after
-the opener.
+default. The raise line's template: `- F<n> [VERIFIED] record:
+budget raised to cycles <n> / rounds <n> / verify <n> — "<the
+operator's line verbatim>" — basis: operator` (the `record: `
+opener is what voids no closure and re-opens no unit;
+machine-findable surfacing in the verdicts is parked tool
+work — until it ships, the exhaustion check's read is a
+body-read for this template).
 Status and Phase sit within the first ~20
 lines (the stats reader's admission window). After the header,
 the requirement head in two
@@ -469,7 +477,9 @@ design, so the no-design invariant is untouched.
 A leg is dispatched TO A DECISION: its brief names the recorded
 decision it unblocks and what each possible return would decide —
 a leg whose returns cannot change any recorded decision or any
-entry's tag is not dispatched (the corpus's discriminating-
+entry's tag is not dispatched (the record gate's mechanical
+repair leg is the named carve-out: the decision its return
+settles is the gate's own clear-or-hold) (the corpus's discriminating-
 evidence rule, priced at compose time where it costs a sentence,
 not at review time where it costs a round). The same test closes
 investigation: when no un-dispatched leg would move a decision,
@@ -563,8 +573,8 @@ into the verdict's `exempt_holds` field (each carrying the
 exemption's own declaring line), frozen at declaration — the
 coverage clamps at the declaring line itself, so nothing
 appended after the declaration is ever netted, whatever `<n>`
-says: a violation
-above either bound blocks untouched. An exemption is OPERATOR
+says: a violation at any line GREATER than min(`<n>`, the
+declaring line) blocks untouched. An exemption is OPERATOR
 authority, carried in the mandatory `— basis:` tail (the
 operator's line quoted, or the id of the entry
 recording their direction) — the tool nets nothing from a
@@ -597,8 +607,8 @@ observed as a round's highest finding). Each unit is also
 classified by the reversibility of its EFFECT, not its diff: one
 whose green state includes something git cannot undo — a schema
 or data migration, an external write, a publish/push/send, a
-deletion outside the write-set — is tagged irreversible in its
-enumeration, as the BARE label line `unit U<k> irreversible:
+deletion outside the write-set — is tagged irreversible BESIDE
+its enumeration, as the BARE label line `unit U<k> irreversible:
 <effect>` — the label-line class (`SKILL: `'s sibling), standing
 alone at column 0, never an entry and never a body opener, so it
 re-opens nothing under the closure predicate; the record tool surfaces the
@@ -753,9 +763,10 @@ record tool: `filter --tracker <path> --sha <lock sha> --out
 <artifact path>` serves the sha, never the working tree (a live
 tree serves HEAD) — the artifact path is the `.A<n>.artifact`
 species in its OWN namespace, `artifacts/`, beside — never
-inside — the seal directory (seal-path prints it; the artifact
-path travels to the attacker, so the directory holding the
-round's seal and queue is never a prefix of it), OUTSIDE every
+inside — the seal directory (seal-path prints it; namespace
+hygiene: the path handed to the attacker no longer names the
+seal directory — what bars a read is the brief's scope, not the
+split), OUTSIDE every
 repo like the seals and for the seal rule's reason (an in-repo
 artifact is an untracked file under a brief asserting tree ==
 lock commit; the tool halts ARTIFACT_IN_REPO on any, halts a
@@ -792,10 +803,15 @@ shared store; the tracker's
 filename verbatim with `.md`. XDG state, never `~/.claude/`:
 that path shape draws permission dialogs on every access) —
 existing whether or not a seal was
-written — and append at the round's return, before its A-line,
-then SPEND the queue: append `LANDED <yyyy-mm-dd> — at line <n>`
+written — and at the round's return: LAND the queue's entries,
+SPEND the queue, THEN record the A-line — spend-before-A-line,
+so a desk dying mid-sequence leaves a spent queue and a missing
+A-line (a re-read), never a landed-but-unspent queue (a
+re-land into an append-only record). The spend: append
+`LANDED <yyyy-mm-dd> — at line <n>`
 (the tracker line the landing opened) as its last line —
-`LANDED <yyyy-mm-dd> — empty` when nothing was queued; a queue
+`LANDED <yyyy-mm-dd> — empty` when nothing was queued, and an
+ABSENT queue file reads as empty, legally; a queue
 whose last non-blank line matches the spent form is spent — and
 a [VOID] A-line is a return for this duty: the queue spends at
 any terminal A-line. No
@@ -924,7 +940,8 @@ re-attack is a NEW fresh context (a resumed attacker inherits
 its own prior findings' frame), and a re-derived design is a NEW
 locked design — it gets the attack again, its repairs landing as
 ONE re-lock: per-finding re-locks split the priced unit
-(hypothesis). The reply opening a repeat round cites the record
+(hypothesis). The reply opening a repeat round — from the SECOND repeat round
+on — cites the record
 tool's `trend` output as its arithmetic backstop and GRADES the
 series by a BODY-READ of the rounds' findings — `trend` counts
 every F-line and knows nothing of class or locus, so the grade
@@ -950,8 +967,10 @@ any basis; a narrowing touches INTENT's reach, so it rides the
 close as a reconciliation), drive the narrowed design to its
 zero-delta, land
 it. Where the head already IS that smallest unit, narrowing has
-no move: the series goes to the operator — attended the prompt,
-unattended it rides the close — never another same-form round.
+no move: the series goes to the operator — attended the prompt;
+unattended the run closes FAILED with the series enumerated in
+the close (budget exhaustion's own disposition) — never another
+same-form round.
 The budget (the header) backstops this judgment
 mechanically; it is never the route. A round dies two ways, one clause (hypothesis):
 ABORTED in flight when a queued desk finding kills the locked
@@ -1021,8 +1040,9 @@ mid-implementation is written with body opening `record:`
 entry LIVE at the closure (latest line not [INVALIDATED] when
 the closing A-line landed): that takes the scopeless
 [INVALIDATED] route, voids, and carries the premise-killing
-consequence (Implementation: stop the siblings resting on it,
-let the rest land, re-enter ONCE).
+consequence (Implementation: the commit gate halts every
+in-flight sibling too, fail-closed — the rest re-dispatch after
+re-entry; carve-out parked as tool work).
 The desk refutes a finding only with its own reach-matched evidence
 (the F-line goes [INVALIDATED]); closure still needs the next
 round's [ZERO-DELTA].
@@ -1149,9 +1169,13 @@ entry's SCOPELESS [INVALIDATED] line (The loop) — the body
 never opens `unit U<k>` or `record:` — voiding the closure
 through the predicate above; that invalidation IS the triage
 discriminator: no entry live at the closure dies → unit-local,
-one dies → premise-killing. Stop the siblings resting
-on it, let the rest land, re-enter the loop ONCE with every
-return in hand. Model per
+one dies → premise-killing. Stop the siblings resting on it;
+the commit gate's consult halts EVERY in-flight sibling on the
+voided closure, fail-closed — clean siblings' edits stay in
+their trees, named as the re-dispatch's write-set, and land
+after the ONE re-entry with every return in hand (a
+start-sha-predates-the-void carve-out is parked tool work,
+never improvised at the desk). Model per
 `clippy.config/models` (`impl:` class) when present, else the
 operator corpus routing table, else — no corpus on the stack — a
 cheaper tier than the desk, the same terminal default discovery
@@ -1195,7 +1219,9 @@ other START verdict (HALT_IGNORED_WRITESET,
 HALT_DIRECTORY_PATH, USAGE_ERROR, GIT_ERROR …) halt the
 unit UNBUILT — no edit, no commit, no landing annotation.
 COMMIT — `unit-commit --tracker <tracker> --unit U<k>
---start-sha <the START verdict's start_sha> -m <msg>` — same
+--start-sha <the START verdict's start_sha, PASTED from the
+verdict line, never re-typed (the drop-argument rule's hop)>
+-m <msg>` — same
 gate consult and halts as START — with the COMMIT-side
 disposition: a halt here leaves the unit's edits in the tree, so
 they are NAMED as poisoning the write-set for the re-dispatch —
@@ -1358,7 +1384,8 @@ unattended this is the run's one touchpoint: the verdict with
 its evidence pointer; every open reconciliation; every R-line
 amendment (what shipped vs. the letter as asked); every
 [AUTO-ACCEPTED] entry; every SWEEP_EXEMPT declaration, with any
-holds it still nets (the final sweep's `exempt_holds`; a
+holds it still nets (`exempt_holds` from a `sweep` run at
+close-compose — the close's own read, not a stale seam's; a
 declaration whose holds were since repaired is enumerated too);
 every
 entry whose latest line is

@@ -5355,3 +5355,44 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   face). Round 4 dispatches on the final form, CAPPED: HIGH on
   fresh text there → cut-and-park like the head round, ship
   what survives. Consumer: the release seam; the trial close.
+
+- 2026-08-16 — **Release review round 4 (opus, fresh context, the
+  CAPPED final round, diff 0.2.65→0.2.75): 2 HIGH, 4 MODERATE,
+  7 MINOR — series 20→20→16→13 total, HIGH 8→4→4→2, clean list
+  growing each round. All dispositioned same-session (0.2.76,
+  suite 398); NO round 5 per the cap.** The two HIGHs, graded
+  against the cap: r4-H1 was NOT repair-loop prose — a genuine
+  design collision in Lane D's shipped commit-gate machinery
+  (the gate consult halts every in-flight sibling on a voided
+  closure, against the standing "let the rest land") — disposed
+  by aligning BOTH premise-kill sites to the shipped fail-closed
+  behavior (safe: nothing lands that shouldn't; cost is
+  re-dispatch of clean work) with the sibling carve-out PARKED
+  as tool work (P13a). r4-H2 was fresh round-3 text and took the
+  cap's own medicine: my hand-rolled diff-at-HEAD instrument
+  DELETED — a leg that commits (the dispatch default!) blanks
+  the diff and the failure reads as success — replaced by the
+  standing `pinned` mandate at that very seam, immune because it
+  compares against the lock; the reviewer's observation that the
+  skill already owned the right instrument and my repair
+  displaced it is the medium tenet's sharpest firing yet.
+  MODERATEs: M3 the "above either bound" inversion (the file's
+  own "above" means earlier) → numeric statement; M4 raise
+  template printed, verdict surfacing parked (P13b); M5a
+  narrowing floor closes FAILED unattended (budget exhaustion's
+  disposition), M5b an OLDER desk writes NO close — appending
+  under wrong rules was the worse half of the gap; M6 queue
+  spend REORDERED before the A-line (a crash now leaves a
+  re-read, never a re-land into an append-only record) + absent
+  file reads as empty. MINORs 7–13 all closed one-sentence:
+  enumeration wording, second-round scoping, start-sha paste
+  discipline (the drop-argument rule's hop, one boundary
+  further), close-compose sweep named, repair-leg carve-out in
+  the leg-to-a-decision rule, artifact-split causal claim
+  demoted to hygiene, resume ordering stated once. SERIES
+  VERDICT for the trial record: four rounds, monotone HIGH
+  decline, round 4's HIGHs both resolved by deletion/alignment
+  — the changed form (no fresh prose mechanisms) held; the
+  release ships on round-4 dispositions per the cap, the parked
+  mechanism items carry the residue. Consumer: the release
+  (now); P12/P13's mechanism pass; the trial close's grading.
