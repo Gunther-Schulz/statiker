@@ -16,85 +16,6 @@ it is not decision-complete.
 
 ## Open
 
-- **READY 2026-08-15 — P6: the sweep gets a declared-exemption
-  grammar the gate verifies (P2's necessary companion).**
-  Provenance: (a) relay 3/F155 — twelve holds on the entry whose
-  job is naming dead entries; (b) relay 7, load-bearing: P2's
-  LOCK_GATE_HOLDS tool-enforces the sweep-hold gate at
-  lock-commit, and the stated-deviation disposition (beat-the-books
-  D95, 696 retroactive holds) then has no mechanical carrier — the
-  next lock under the new version would halt permanently. This is
-  the corpus guard rule's declared-exemption-the-guard-verifies
-  (E-K's class), not version-keyed grandfathering. DESIGN SETTLED
-  (meta desk): new label line (SKILL:/INTENT: precedent), exact
-  forms `^SWEEP_EXEMPT: ([a-z-]+) lines<=(\d+)$` and
-  `^SWEEP_EXEMPT: ([a-z-]+) line (\d+)$`, written inside an
-  ordinary entry body (attackable like any entry). Semantics:
-  holds of that code at covered lines move to a sweep verdict
-  field `exempt_holds` (each carrying its declaring line); the
-  BLOCKING calculus nets them out, so ready-gate reads and P2's
-  gate consult inherit through the verdict with no git-tool
-  change. Bounded by construction: code-specific, line-ceiling
-  frozen at declaration — new violations above the ceiling fire
-  untouched. SKILL.md grammar sentence lands in the SAME commit
-  as the parser (route-sentence rule; no new verdict name).
-  Verifier, red-first: the beat-the-books shape as fixture —
-  declared: holds exempt, blocking set shrinks; undeclared:
-  unchanged; a violation ABOVE the ceiling blocks in both.
-  Done: pair flips both directions, ceiling case fires, full
-  suite green. Write boundary:
-  plugin/skills/statiker/scripts/statiker_record.py,
-  plugin/skills/statiker/SKILL.md,
-  tools/test_statiker_record.py, tools/test_contract.py. BUILD
-  as Lane E after Lane D integrates (same-file overlap), before
-  the release (ships WITH P2, never after it).
-- **PARKED 2026-08-15 — P7: `waves`' write-set join is blind to
-  shared LINEAR resources.** Provenance: A9/F217 (relay 6,
-  executed: one alembic head, 111 revisions vs the 109 the record
-  held; two migration units built concurrently under "down_revision
-  = head at implementation time" branch the chain, and the app
-  auto-migrates fail-closed on boot) — a shared linear resource
-  crossing four units' write-sets, invisible to the file-based
-  join. The run repaired locally (down_revisions assigned in the
-  record, like revision ids — D107 amended). Missing design,
-  named: whether the write-set grammar grows a declarable shared
-  RESOURCE token the join serializes on, or the record-assigned
-  ordering stays the standing per-run disposition. Trigger: the
-  next run whose units share a linear resource.
-
-- **READY 2026-08-15 — E-O: LOCK_GATE_HOLDS' predicate repairs to
-  Status-conditioned blocking-set-keyed (P2 defect, dispatcher's
-  own).** Provenance: Lane D booking (OBSERVATIONS 2026-08-15):
-  shipped lock_gate_check halts on `verdict != SWEEP_CLEAN`
-  unconditionally; the T9 arm's must-not-fire case (tier2-with.md
-  B8: a close-time lock under Status FAILED/COMPLETE legitimately
-  carries PENDINGs) fires, so a failed run could never close; and
-  verdict-name keying defeats SWEEP_EXEMPT netting. Design,
-  decided: the gate keys on the sweep verdict's BLOCKING set (net
-  of exemptions once P6 lands) AND is Status-conditioned — under
-  Status [READY]/in-progress a non-empty blocking set halts; under
-  FAILED/COMPLETE (the close path) the gate passes with the holds
-  carried in the verdict as information. Verifier, red-first (from
-  the arm, both halves): must-fire = [READY] + blocking hold;
-  must-not-fire = FAILED + PENDING at the close lock. Done: pair
-  flips both directions, full suite green. Write boundary:
-  plugin/skills/statiker/scripts/statiker_git.py,
-  tools/test_statiker_git.py (+ SKILL.md Edit-C sentence amended
-  in the same commit if its wording binds the old predicate).
-  BUILD in Lane E with P6 — P2 ships with BOTH or not at all.
-
-- **READY (small) 2026-08-15 — E-P: GATE_UNREADABLE goes red on a
-  real defect before it is trusted.** Provenance: Lane D residue
-  (g): the fail-closed branch is frozen in UNDRIVEN_REMAINDER,
-  exercised by inspection only. Design, decided: red-first probe
-  via a substitute record-tool path emitting garbage (no verdict
-  line) and one emitting unparseable JSON — both must yield
-  GATE_UNREADABLE, and a healthy consult must not; drive the
-  battery row out of UNDRIVEN_REMAINDER. Done: pair flips, suite
-  green. Write boundary: tools/test_statiker_git.py (+ the
-  contract battery row), statiker_git.py only if the probe finds
-  the branch defective. Lane E bundle.
-
 - **PARKED 2026-08-15 — P8: write-set paths with whitespace (or
   leading /) are structurally undeclarable since P2.** Provenance:
   Lane D gap (c)(1)-(2): write_set_violations' single-token rule
@@ -148,6 +69,21 @@ it is not decision-complete.
   question answered either way).
 
 ## Done
+
+- 2026-08-16 — **P6/E-O/E-P shipped (Lane E, sonnet, one lane
+  sequential): 4739ed9 (P6 SWEEP_EXEMPT grammar netted from the
+  blocking calculus, 0.2.72), 0c993ea (E-O lock gate keys on the
+  blocking set, Status-conditioned), badf889 (E-P GATE_UNREADABLE
+  driven via substitute record-tool path; the gate's own branch
+  proven healthy, no source change).** Suite 380→393,
+  dispatcher-verified. Gap (c) RATIFIED at booking: unnamed
+  statuses (PASSED, missing, malformed) default to the blocking
+  bucket — fail-closed, documented in the gate's docstring.
+  Deviation (d) ACCEPTED: verdict-parity checker gains the
+  backtick-label exclusion (`GRAMMAR_LABEL_RE`), discriminating
+  pair recorded in the comment, two regression tests. Report
+  booked in full (2 parts, mailbox); brief:
+  docs/directives/2026-08-16-lane-E-brief.md.
 
 - 2026-08-16 — **P9+P10 shipped (desk, fable): 6e211ee — four
   contraction clauses in SKILL.md (0.2.68): budget operator-owned
