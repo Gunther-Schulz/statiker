@@ -817,12 +817,37 @@ def lock_survey(repo, tracker, lock_set):
     return pathspec, drops, adds
 
 
+CLOSE_PATH_STATUSES = ("FAILED", "COMPLETE")
+
+
 def lock_gate_check(repo, args):
     """P2: consult `sweep` BEFORE any of lock-check/lock-commit's own
     work — the record never locks over its own blocking state (closes
-    T9's B8)."""
+    T9's B8).
+
+    E-O (BACKLOG; Lane D booking, dispatcher's own defect against
+    P2): keys on the sweep verdict's BLOCKING set (`violations`, net
+    of P6's SWEEP_EXEMPT netting already applied inside the sweep
+    verdict) rather than the verdict NAME — a verdict-name check
+    cannot express "pass with the holds carried as information",
+    which the close path below needs, and ties this gate to a
+    string spelling the sweep verdict is free to grow past. AND
+    Status-conditioned: under Status [READY] or in-progress a
+    non-empty blocking set halts (the original T9 guarantee); under
+    FAILED or COMPLETE (the close path — SKILL.md, Close: a run's
+    close-time lock legitimately carries PENDINGs, e.g. from an
+    abandoned unit) the gate PASSES, the holds still carried in the
+    returned `gate` field as information, never silently dropped.
+    Every OTHER status (PASSED — a transient pre-close state this
+    seam is not designed to lock over, SKILL.md Verify/Close — or a
+    missing/malformed one) stays on the blocking side: the narrower
+    of the two named buckets is not this rule's to widen, so an
+    unnamed status defaults to the original fail-closed behavior
+    rather than a guessed third bucket."""
     gate = gate_consult(repo, ["sweep", "--tracker", args.tracker])
-    if gate.get("verdict") != "SWEEP_CLEAN":
+    blocking = gate.get("violations") or []
+    close_path = gate.get("status") in CLOSE_PATH_STATUSES
+    if blocking and not close_path:
         raise Halt("LOCK_GATE_HOLDS", gate=gate)
 
 

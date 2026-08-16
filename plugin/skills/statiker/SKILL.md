@@ -586,10 +586,15 @@ points is caught only by this re-read); what it misses rides
 into the commit — the attack
 round's probes are the backstop, the residue named, not hidden.
 (c) `lock-check --tracker <path> [--lock-set <path> …]`.
-Verdict routes: LOCK_GATE_HOLDS — blocking sweep holds in the
-record gate, the consulted record verdict embedded verbatim as
-the `gate` field — halts lock-check and lock-commit uncommitted:
-the record never locks over its own blocking state.
+Verdict routes: LOCK_GATE_HOLDS — the consulted sweep verdict's
+blocking set is non-empty AND Status reads [READY] or in-progress,
+the consulted record verdict embedded verbatim as the `gate`
+field — halts lock-check and lock-commit uncommitted: the record
+never locks over its own blocking state ahead of close. Under
+Status FAILED or COMPLETE (the close path, Close) the gate PASSES
+instead with the same blocking set still carried in `gate` as
+information, never silently dropped — a close-time lock
+legitimately carries PENDINGs (an abandoned unit's own hold).
 HALT_STATE is the operator's half-finished
 operation, the tree untouched — an attended halt re-enters on
 the operator's clearing reply; unattended, a halted LOCK closes

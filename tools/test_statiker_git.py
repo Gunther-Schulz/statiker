@@ -464,6 +464,65 @@ class TestLockCheck(GitFixture):
         self.assertIn("merge", v["ops"])
 
 
+class TestLockGateStatusConditioning(GitFixture):
+    """E-O (BACKLOG; Lane D booking, dispatcher's own defect against
+    P2): lock_gate_check keys on the sweep verdict's BLOCKING set,
+    Status-conditioned — under [READY]/in-progress a non-empty
+    blocking set halts (the original T9 guarantee, unchanged); under
+    FAILED/COMPLETE (the close path) the gate PASSES instead, holds
+    still carried in `gate` as information — the T9 arm's
+    must-not-fire case (a close-time lock legitimately carrying
+    PENDINGs, e.g. from an abandoned unit) no longer halts a failed
+    run's own close forever."""
+
+    TRACKER = ".clippy/runs/t.md"
+
+    def blocking_tracker(self, status):
+        # a [PENDING] latest line is sweep_checks' own pending-latest
+        # violation — a real blocking hold, not a constructed field
+        return (f"# Run: t\nStatus: {status}\nPhase: implement\n\n"
+               f"## Cycle 1\n"
+               f"- F1 [PENDING] awaiting leg — basis: dispatched\n")
+
+    def test_ready_with_blocking_hold_halts(self):
+        # must-fire
+        self.write(self.TRACKER, self.blocking_tracker("[READY]"))
+        p = self.tool("lock-check", "--tracker", self.TRACKER)
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "LOCK_GATE_HOLDS", v)
+        self.assertNotEqual(p.returncode, 0)
+        self.assertIn("pending-latest",
+                      [c["code"] for c in v["gate"].get("violations", [])])
+
+    def test_in_progress_with_blocking_hold_halts(self):
+        self.write(self.TRACKER, self.blocking_tracker("in-progress"))
+        v = self.verdict(self.tool("lock-check", "--tracker", self.TRACKER))
+        self.assertEqual(v["verdict"], "LOCK_GATE_HOLDS", v)
+
+    def test_failed_with_blocking_hold_passes_close_lock(self):
+        # must-not-fire: Status FAILED + a PENDING-class hold at a
+        # close-time lock — the arm's own pairing
+        self.write(self.TRACKER, self.blocking_tracker("FAILED"))
+        p = self.tool("lock-check", "--tracker", self.TRACKER)
+        v = self.verdict(p)
+        self.assertNotEqual(v["verdict"], "LOCK_GATE_HOLDS", v)
+        self.assertEqual(v["verdict"], "LOCK_CHECK_CLEAN", v)
+        self.assertEqual(p.returncode, 0)
+
+    def test_complete_with_blocking_hold_passes_close_lock(self):
+        self.write(self.TRACKER, self.blocking_tracker("COMPLETE"))
+        v = self.verdict(self.tool("lock-check", "--tracker", self.TRACKER))
+        self.assertNotEqual(v["verdict"], "LOCK_GATE_HOLDS", v)
+        self.assertEqual(v["verdict"], "LOCK_CHECK_CLEAN", v)
+
+    def test_gate_clean_tracker_passes_regardless_of_status(self):
+        # control: no blocking hold at all — the gate passes exactly
+        # as before, whatever Status reads
+        self.write(self.TRACKER, "# Run: t\nStatus: [READY]\nPhase: implement\n")
+        v = self.verdict(self.tool("lock-check", "--tracker", self.TRACKER))
+        self.assertEqual(v["verdict"], "LOCK_CHECK_CLEAN", v)
+
+
 # --------------------------------------------------------------- lock commit
 
 class TestLockCommit(GitFixture):
