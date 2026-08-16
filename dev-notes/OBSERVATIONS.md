@@ -5876,3 +5876,38 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   (13) gradeable-form — pass: every terminator is a record- or
   harness-readable state. Consumer: the release record; P16's
   executor (the aligned predicate); the trial close's grading.
+
+- 2026-08-16 — **RUN STOPPED by operator C-line at budget proximity
+  — session close, full persistence entry.** Operator words: "I
+  stoped it we are getting too cliose to teh budget. i feel liek we
+  have still some serious core sisues with our skill. but wrtetrh
+  tahts true tahst to invetsigate but not today." Final desk state
+  (desk's own last report, operator-pasted): cycle 7 of 7 SPENT, 3
+  of 4 attack rounds used, the FIX itself unrefuted through three
+  rounds ("no finding against what it does"), 35 commits local,
+  tree clean, C2 held to the end — nothing ever pushed. The run
+  (canonical-frame-sign-repair, U1 only) closes INCOMPLETE at the
+  operator's hold; the tracker in beat-the-books is the resume
+  carrier by design (record gate at resume covers the mid-state).
+  The reform's success metric stays at ZERO landed units — two
+  runs, neither reached implementation. Operator's suspicion of
+  "serious core issues" booked as P18 (PARKED investigation, next
+  meta-session): the evidence base is this file's 2026-08-16
+  entries end-to-end. Session-close answers (Calibration's three
+  questions, against the record): MISSING — nothing unbooked: all
+  harvests, P15/P16/P17/P18, 0.2.78–0.2.81 mints and dispositions
+  committed and pushed; the one open state is the PIN (installed
+  0.2.79, committed 0.2.81 reviewed-and-dispositioned; no run
+  live, so the seam is open — release state noted in the close
+  report). LEARNED — the day's correction-classed records read as
+  a list, two classes: (a) claims stale against their consumer
+  (R1/R2 class), (b) rules inert at their firing moment under
+  momentum — two desk improvised stops, the meta session's own
+  B3 tenet-check skip and two refused grant relays, all one day;
+  cure shape per class recorded in Begehung R3. ROUTING — two
+  fresh-context opus reviews dispatched (078: 10 findings, 080: 9
+  findings, both fully dispositioned, lanes closed), discovery and
+  interrogation via peer channel; mints and repairs inline with
+  route lines named; no queue held. Consumer: the next
+  meta-session (P18's investigation opens from here); the trial
+  close's grading.

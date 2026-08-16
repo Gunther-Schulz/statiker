@@ -19,6 +19,31 @@ it is not decision-complete.
 
 
 
+
+- **PARKED 2026-08-16 — P18: "serious core issues" investigation
+  (operator-named, at run-2 stop).** The operator stopped run 2
+  (canonical-frame-sign-repair) at cycle 7/7 with 3/4 rounds spent
+  and suspects core skill issues; whether that is true is the
+  investigation, deliberately not run same-day. Evidence base, all
+  2026-08-16: two runs, zero landed units — run 1 died lock-barred
+  (173 defang holds), run 2 stopped at budget on the SMALLEST
+  shippable unit with the fix itself unrefuted through three
+  rounds — the rounds' findings landed on record/account ground,
+  not the change (the cycle-12 pattern at a new altitude); the
+  day's OBSERVATIONS entries carry the full trail (mints
+  0.2.78–0.2.81, review series, Begehung R3 two-class read,
+  P15 repair-mints-violations, P16 stop-hook, P17 waker gap).
+  Candidate questions for the investigation, recorded not
+  answered: is record upkeep consuming the cycle budget the
+  design work needs (bookkeeping-to-substance ratio per cycle,
+  measurable from the two trackers); do attack rounds
+  over-target the record because it is the largest attackable
+  surface; is the budget's unit (cycles) measuring the wrong
+  quantity. Missing evidence, named: the measurement itself — a
+  fresh session reads both run trackers and computes the ratios
+  before any design change. Trigger: next meta-session on this
+  repo (operator: "not today").
+
 - **PARKED 2026-08-16 — P17: the mailbox wait's waker is the
   monitored party (silent-stall exposure; Begehung R3).** A desk
   that legitimately ends its turn with a round in flight (0.2.81's
