@@ -1134,6 +1134,9 @@ class TestPureFunctions(unittest.TestCase):
                     "- a fresh finding queued after the landing\n")
         self.assertFalse(self.m.queue_is_spent(reopened))
         self.assertFalse(self.m.queue_is_spent(""))
+        # M6 (opus release review 2026-08-16): a round with nothing
+        # queued still spends its queue — the `— empty` form is spent
+        self.assertTrue(self.m.queue_is_spent("LANDED 2026-08-16 — empty\n"))
 
 
 class TestAttack8NonAsciiReadback(GitFixture):
@@ -2032,12 +2035,16 @@ def expected_seal_species(main_top_real, tracker_filename, round_, home):
         main_top_real.encode("utf-8", "surrogateescape")).hexdigest()[:8]
     key = f"{os.path.basename(main_top_real)}-{digest}"
     base = os.path.join(home, ".local/state/statiker/seals", key)
+    # H7 (opus release review 2026-08-16): the artifact species lives
+    # in its OWN namespace — the artifact path travels to the
+    # attacker, so the seal directory is never a prefix of it.
+    artifact_base = os.path.join(home, ".local/state/statiker/artifacts", key)
     stem = f"{tracker_filename}.{round_}"
     return key, {
         "seal": os.path.join(base, f"{stem}.seal"),
         "queue": os.path.join(base, f"{stem}.queue"),
         "paths": os.path.join(base, f"{stem}.paths"),
-        "artifact": os.path.join(base, f"{stem}.artifact"),
+        "artifact": os.path.join(artifact_base, f"{stem}.artifact"),
         "report": os.path.join(base, f"{stem}.report"),
         "comparison": os.path.join(base, f"{stem}.comparison"),
     }
@@ -2056,6 +2063,12 @@ class TestSealPath(GitFixture):
         self.assertEqual(v["repo_key"], key)
         for species, path in expected.items():
             self.assertEqual(v[species], path, species)
+        # H7: the attacker-visible artifact path must not reveal the
+        # seal directory — not-a-prefix, asserted directly so a
+        # re-co-location regresses red even if both derivations move
+        seal_dir = os.path.dirname(v["seal"])
+        self.assertFalse(v["artifact"].startswith(seal_dir + os.sep),
+                         v["artifact"])
 
     def test_paths_from_a_linked_worktree_derive_in_main(self):
         # P1: --show-toplevel from INSIDE a linked worktree answers

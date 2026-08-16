@@ -398,7 +398,12 @@ SEAL_SPECIES = ("seal", "queue", "paths", "artifact", "report", "comparison")
 # after a prior landing. No tool enforcement this version — no
 # subcommand reads a queue file; this is the grammar's own certified
 # pure reference.
-QUEUE_SPENT_RE = re.compile(r"^LANDED \d{4}-\d{2}-\d{2} — at line \d+$")
+# The `— empty` alternative is the round-with-nothing-queued spend
+# (opus release review M6, 2026-08-16): a queue is still spent, so a
+# successor desk reads it as closed rather than inheriting a
+# meaningless unspent tail.
+QUEUE_SPENT_RE = re.compile(
+    r"^LANDED \d{4}-\d{2}-\d{2} — (at line \d+|empty)$")
 
 
 def queue_is_spent(text: str) -> bool:
@@ -409,13 +414,22 @@ def queue_is_spent(text: str) -> bool:
 
 
 def seal_namespace_paths(key: str, tracker_filename: str, round_: str):
-    """Every species' full path under the ONE seal namespace (P1,
-    SKILL.md's pinned derivation + the invented-homes pin): XDG state,
-    never `~/.claude/` (that path shape draws permission dialogs on
-    every access)."""
-    base = Path(os.path.expanduser("~/.local/state/statiker/seals")) / key
+    """Every species' full path (P1, SKILL.md's pinned derivation +
+    the invented-homes pin): XDG state, never `~/.claude/` (that path
+    shape draws permission dialogs on every access). The ARTIFACT
+    species lives in its OWN namespace, `artifacts/<key>/`, beside —
+    never inside — `seals/<key>/` (opus release review H7,
+    2026-08-16): the artifact path travels to the attacker in the
+    brief, and a path inside the seal directory hands the attacker
+    that round's seal and queue — the two files the seal rule and the
+    append freeze exist to keep from it."""
+    root = Path(os.path.expanduser("~/.local/state/statiker"))
+    seal_base = root / "seals" / key
+    artifact_base = root / "artifacts" / key
     stem = f"{tracker_filename}.{round_}"
-    return {species: str(base / f"{stem}.{species}") for species in SEAL_SPECIES}
+    return {species: str(
+        (artifact_base if species == "artifact" else seal_base)
+        / f"{stem}.{species}") for species in SEAL_SPECIES}
 
 
 def cmd_seal_path(repo, args):

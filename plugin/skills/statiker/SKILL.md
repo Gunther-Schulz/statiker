@@ -724,8 +724,11 @@ not produce it, before implementation. The attack brief carries the
 tracker PINNED at the locked design's commit — produced by the
 record tool: `filter --tracker <path> --sha <lock sha> --out
 <artifact path>` serves the sha, never the working tree (a live
-tree serves HEAD) — the artifact path is the namespace's
-`.A<n>.artifact` species (seal-path prints it), OUTSIDE every
+tree serves HEAD) — the artifact path is the `.A<n>.artifact`
+species in its OWN namespace, `artifacts/`, beside — never
+inside — the seal directory (seal-path prints it; the artifact
+path travels to the attacker, so the directory holding the
+round's seal and queue is never a prefix of it), OUTSIDE every
 repo like the seals and for the seal rule's reason (an in-repo
 artifact is an untracked file under a brief asserting tree ==
 lock commit; the tool halts ARTIFACT_IN_REPO on any, halts a
@@ -825,8 +828,12 @@ filename verbatim, `.md`
 included) — a path any successor desk re-derives through the git
 tool's `seal-path --tracker <path> --round A<n>` verdict
 (SEAL_PATH: every species' full path — seal, queue, paths,
-artifact, report, comparison — from the pinned derivation; paste,
-never hand-compose); out of
+artifact (its own `artifacts/` namespace), report, comparison —
+from the pinned derivation; paste,
+never hand-compose; the `report` species is the OPTIONAL
+out-of-repo copy of a round's returned report where the desk
+keeps one — never round-mandatory, reports travel by
+message); out of
 the repo because attackers read the repo, and an in-repo seal
 breaks any brief asserting tree == lock commit. At the round's
 return the desk compares seal against bites and writes the
