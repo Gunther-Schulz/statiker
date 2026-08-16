@@ -502,6 +502,18 @@ duplicate-id body-read, restatement adoption checks — is the
 judgment slice, still desk work. An open [PENDING]
 under a claimed [READY] is
 the premature-call shape.
+A declared exemption nets a matching hold out of the blocking set
+before SWEEP_HOLDS is decided: a labeled `SWEEP_EXEMPT: <code>
+lines<=<n>` or `SWEEP_EXEMPT: <code> line <n>` line — INTENT:'s and
+SKILL:'s sibling, same body-region placement, same field-not-gate
+treatment — moves every violation of that CODE at a covered line
+into the verdict's `exempt_holds` field (each carrying the
+exemption's own declaring line), frozen at declaration: a violation
+above the ceiling blocks untouched. No new verdict name: SWEEP_CLEAN,
+SWEEP_HOLDS, and every downstream gate consult inherit the netted set
+with no separate git-tool change (the corpus guard rule's
+declared-exemption-the-guard-verifies shape, not version-keyed
+grandfathering).
 Record `Status: [READY]` with the impl units enumerated, each
 naming its red-first pin — and a pin DISCRIMINATES: red on the
 current state, green only through the fix; a criterion the

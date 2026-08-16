@@ -182,6 +182,14 @@ SKILL_VERSION_EXACT_RE = re.compile(r"^SKILL: statiker (\S+)$")
 # the documented shape (a field never fails to attach on a malformed
 # header, it degrades to the unparsed string).
 SKILL_HEADER_VERSION_RE = re.compile(r"^statiker (\S+)$")
+# P6 (BACKLOG, SKILL.md Stop rule): a declared-exemption label line —
+# INTENT_EXACT_RE/SKILL_VERSION_EXACT_RE's sibling, same body-region
+# placement, same field-not-gate treatment (no near-miss class:
+# attribution only). Two forms, both CODE-SPECIFIC and frozen at
+# declaration: `lines<=N` covers every line 1..N, `line N` covers
+# exactly that line — a violation above a ceiling blocks untouched.
+SWEEP_EXEMPT_CEILING_RE = re.compile(r"^SWEEP_EXEMPT: ([a-z-]+) lines<=(\d+)$")
+SWEEP_EXEMPT_LINE_RE = re.compile(r"^SWEEP_EXEMPT: ([a-z-]+) line (\d+)$")
 # the scope openers are CASE-SENSITIVE LITERALS (SKILL.md, The
 # record): a case or spacing variant is entry-INTENDED scope that no
 # predicate can read, so it lints rather than passing as scopeless
@@ -641,16 +649,20 @@ def parse_tracker(text: str):
     subcommand that parses a tracker prints one), `skill_versions`
     (P3, sweep/closure only: header entry first, then every mid-run
     `SKILL: statiker <version>` line in file order — attribution, never
-    a gate), and `irreversible_units` (P4, sweep/closure only: every
+    a gate), `irreversible_units` (P4, sweep/closure only: every
     `unit U<k> irreversible: <effect>` record-line body in file order
     — attribution, never a gate; unattended enforcement stays the
-    UNIT_HELD hold entry)."""
+    UNIT_HELD hold entry), and `sweep_exempt` (P6, sweep only: every
+    labeled `SWEEP_EXEMPT: <code> lines<=<n>` / `SWEEP_EXEMPT: <code>
+    line <n>` declaration in file order — the netting input, not
+    itself a gate)."""
     entries, violations = [], []
     line_ids = {}          # lineno -> the id the line NAMES, parsed or not
     line_parse = {}        # lineno -> what PARSED there (ES-4's pins)
     late_intent = []       # ES-2: the labeled mid-run INTENT lines
     skill_version_lines = []  # P3: labeled mid-run SKILL: version lines
     irreversible_lines = []   # P4: unit U<k> irreversible: <effect> lines
+    sweep_exempt_lines = []   # P6: labeled SWEEP_EXEMPT declarations
     lines = split_lines(text)
 
     # ES-1: surface 1 begins at the first `## ` heading — E-L: unless
@@ -757,6 +769,19 @@ def parse_tracker(text: str):
             skill_version_lines.append({"line": i, "version": m.group(1)})
             continue
 
+        m = SWEEP_EXEMPT_CEILING_RE.match(line)  # P6
+        if m:
+            sweep_exempt_lines.append({"line": i, "code": m.group(1),
+                                       "kind": "ceiling",
+                                       "bound": int(m.group(2))})
+            continue
+        m = SWEEP_EXEMPT_LINE_RE.match(line)
+        if m:
+            sweep_exempt_lines.append({"line": i, "code": m.group(1),
+                                       "kind": "single",
+                                       "bound": int(m.group(2))})
+            continue
+
         head = ENTRY_HEAD_RE.match(line)
         if not head:
             near = SIGNATURE_RE.match(line)
@@ -845,7 +870,8 @@ def parse_tracker(text: str):
     skill_versions.extend(skill_version_lines)
     reach = {"r_lines": r_lines, "head_region_entries": head_region_entries,
              "skill_versions": skill_versions,
-             "irreversible_units": irreversible_lines}
+             "irreversible_units": irreversible_lines,
+             "sweep_exempt": sweep_exempt_lines}
     return entries, violations, meta, reach
 
 
@@ -1255,14 +1281,42 @@ def sweep_checks(entries):
     return violations, clause_dispositions
 
 
+def net_sweep_exemptions(violations, exemptions):
+    """P6: nets declared SWEEP_EXEMPT holds out of the blocking set —
+    the BLOCKING calculus P2's lock gate and every [READY] read consult
+    through the sweep verdict, no separate git-tool change. A violation
+    matches an exemption when the CODE agrees and the violation's line
+    falls within the exemption's coverage, frozen at declaration:
+    `lines<=N` covers 1..N, `line N` covers exactly N — a violation
+    above the ceiling is untouched, still blocking. The first matching
+    declaration (file order) is the one attributed. Returns
+    (blocking, exempt_holds); each exempt_holds entry carries the
+    netted violation plus the exemption's own declaring line."""
+    blocking, exempt_holds = [], []
+    for v in violations:
+        hit = next((e for e in exemptions if e["code"] == v["code"] and (
+            (e["kind"] == "ceiling" and v["line"] <= e["bound"]) or
+            (e["kind"] == "single" and v["line"] == e["bound"]))), None)
+        if hit is None:
+            blocking.append(v)
+        else:
+            exempt_holds.append({**v, "exempt_declared_line": hit["line"]})
+    return blocking, exempt_holds
+
+
 def cmd_sweep(args):
     entries, violations, meta, reach = parse_tracker(load(args.tracker))
     say_head_region_entries("sweep", reach)
     sweep_viols, clause_dispositions = sweep_checks(entries)
     violations += annotate_repairs(sweep_viols)
     violations += freeze_breach_violations(entries)
+    violations, exempt_holds = net_sweep_exemptions(
+        violations, reach["sweep_exempt"])
     for v in violations:
         say(f"sweep: {v['code']} @ line {v['line']}: {v['text']}")
+    for v in exempt_holds:
+        say(f"sweep: exempt {v['code']} @ line {v['line']}: netted by "
+            f"SWEEP_EXEMPT at line {v['exempt_declared_line']}")
     # E-G' (WITHOUT-F8 + SENTENCE-B4): Budget is a literal header read
     # (like Status/Phase) — the field's OWN grammar is already declared
     # (SKILL.md, The record: `Budget: cycles <n> / rounds <n> / verify
@@ -1284,7 +1338,8 @@ def cmd_sweep(args):
     detail = {"clause_dispositions": clause_dispositions,
              "r_lines": reach["r_lines"],
              "skill_versions": reach["skill_versions"],
-             "irreversible_units": reach["irreversible_units"], **meta}
+             "irreversible_units": reach["irreversible_units"],
+             "exempt_holds": exempt_holds, **meta}
     if violations:
         finish("SWEEP_HOLDS", 2, violations=violations, **detail)
     finish("SWEEP_CLEAN", 0, **detail)

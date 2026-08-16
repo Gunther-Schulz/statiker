@@ -184,8 +184,25 @@ def emitted_verdicts():
     return out
 
 
-def skill_named_verdicts():
-    return set(VERDICT_TOKEN_RE.findall(SKILL.read_text(encoding="utf-8")))
+# P6: a record-line GRAMMAR token can be a compound ALL-CAPS word
+# without being a verdict (SWEEP_EXEMPT's own two literal forms —
+# SKILL.md, Stop rule): a backtick-opened token immediately followed
+# by a colon is the label-declaration shape every record grammar
+# label in this file uses when quoted (INTENT:, SKILL:, Status:,
+# Phase: — the sibling forms). A real verdict name is never written
+# this way here: SEAL_PATH and UNIT_START_MISMATCH each gloss with a
+# trailing colon too, but in bare prose, never inside a backtick —
+# so this excludes only the label shape, never a bare or
+# colon-less backtick-quoted verdict (e.g. `` `HALT_STATE` ``), which
+# stays reachable.
+GRAMMAR_LABEL_RE = re.compile(r"`([A-Z][A-Z0-9]*(?:_[A-Z0-9]+)+): ")
+
+
+def skill_named_verdicts(text=None):
+    if text is None:
+        text = SKILL.read_text(encoding="utf-8")
+    labels = set(GRAMMAR_LABEL_RE.findall(text))
+    return set(VERDICT_TOKEN_RE.findall(text)) - labels
 
 
 # ------------------------------------------------------- runtime battery
@@ -906,6 +923,27 @@ class TestVerdictParity(unittest.TestCase):
         self.assertEqual(
             phantom, set(),
             f"named in SKILL.md, emitted by no script: {sorted(phantom)}")
+
+    def test_backtick_quoted_grammar_token_is_not_a_phantom_verdict(self):
+        # P6: SWEEP_EXEMPT is a record-line grammar label (SKILL.md,
+        # Stop rule), not a verdict — its own two backtick-quoted
+        # literal forms must not read as an unemitted verdict name
+        self.assertNotIn("SWEEP_EXEMPT", skill_named_verdicts())
+
+    def test_grammar_label_exclusion_is_shape_specific(self):
+        # the fix's own red case: only the backtick-opened,
+        # colon-suffixed LABEL shape is excluded — a verdict quoted
+        # bare in backticks, or glossed with a trailing colon OUTSIDE
+        # backticks (SEAL_PATH's and UNIT_START_MISMATCH's own real
+        # shape), stays reachable; a real defect here would either
+        # eat a genuine verdict or let a new grammar label back in as
+        # a phantom
+        named = skill_named_verdicts(
+            "`BARE_VERDICT` stays. GLOSSED_VERDICT: outside "
+            "backticks stays. `LABEL_FORM: <x>` excludes.")
+        self.assertIn("BARE_VERDICT", named)
+        self.assertIn("GLOSSED_VERDICT", named)
+        self.assertNotIn("LABEL_FORM", named)
 
     def test_emit_positions_are_literal_verdicts(self):
         # attack-8 V3/V4b: a name assembled at emit time, or one
