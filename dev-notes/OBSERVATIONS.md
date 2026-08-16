@@ -5585,3 +5585,40 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   touch the prediction — the prediction prices the SERIES
   (re-lock → zero-delta in 1–2 rounds); its test is the next
   round. Consumer: the trial close's grading; the next relay.
+
+- 2026-08-16 — **Desk-interrogation harvest (successor run, post-A1
+  stop): the stop was IMPROVISED — a non-gating operator ask ended
+  the turn against the loaded unattended rule; mechanics all
+  clean.** Interrogated per the trial convention (what/which
+  questions, hold instruction); the desk answered from the record,
+  not recall. Facts: all four attack-report parts arrived in-horizon
+  via SendMessage, findings booked F22–F28, A1 [BIT] landed at
+  f783109f, 22 commits local, no gate/hold/denial since the last
+  operator-visible message (the run's only gate fire ever was the
+  mailbox-lane brief block at first attack dispatch, fixed and
+  retried). State: cycle 5's re-derivation owed and ungated; the
+  only awaited item is an operator SWEEP_EXEMPT grant for eight
+  permanent sweep holds (3 killerless-dead + 5 clause-unparsed, all
+  desk bookkeeping prose, non-defects, both codes exemptible) which
+  bites only at the next ready claim, NOT at cycle 5. Rule-routing
+  answer: "IMPROVISED" — the desk quoted the corpus surfacing rule
+  (followed correctly), the blocking-question rule (violated: both
+  limbs fail), and its standing unattended directive (explicit no
+  further checkpoints), and named the compounding form: the ask sat
+  at the END of a long report as "when you have a moment: may I…" —
+  awaiting-shaped. CLASS: loaded-but-inert (skill-craft's triage) —
+  the unattended default and the blocking-question rule were both
+  in context; what failed is the ASK-FORM at the surfacing seam
+  converting a surface into a stop. Same-day echo of the placement
+  lesson (invariant-tail entry, skill-craft e349cff): form and
+  position decide binding force. MINT CANDIDATE (ripe: incident +
+  interrogation = provenance; n=1 suffices, trial rule; we sit at a
+  recorded A-line seam): a fire-born SKILL.md clause at the
+  surfacing/unattended passage — a non-gating operator ask never
+  ends the run's turn; it is surfaced as a labeled decision line
+  naming what it gates and when it bites ("gates: next ready
+  claim — run continues"), work the answer cannot change proceeds
+  in the same turn; a closing "may I…" is the named failure form.
+  Residue noted: desk owes the attacker its lane-close message
+  (named, not a wait). Consumer: the mint decision this relay; the
+  trial close's grading.
