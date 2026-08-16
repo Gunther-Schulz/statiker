@@ -5475,3 +5475,26 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   owed pass + the corpus retirement trigger), GO relayed to the
   desk before design bookings. Consumer: the trial close's
   grading (0.2.77 first-contact evidence); the operator report.
+
+- 2026-08-16 — **Kämmung relay harvested (desk 28770caf, local):
+  42→39 live entries with reconciled arithmetic; a graded-in-place
+  closure found hiding TWO dispatchable ready items (the
+  accretion rule's decorative-closure failure, measured live); a
+  ready-grade FALSIFIED by executed red-checks against its own
+  named commits (one lane overtaken by shipped tag-enum, one lane
+  correctly kept parked on named missing evidence).** Desk
+  conduct data points for the trial close: first-draft tally
+  caught by its own recount and replaced with carried arithmetic;
+  negative grep with a data-drawn positive control; re-checks
+  desk-verified, not leg-trusted; and a ONE-WRITER REFUSAL —
+  declined to book into dotfiles/BACKLOG.md on observing a
+  live writer (commit 8s prior + modified-uncommitted),
+  pre-formulated the entry instead. SIDE FINDING routed to its
+  owner: session-scan.py's retirement tripwire reads a PROXY
+  (closure markers left in the carrier) for closures, so a
+  correctly-draining carrier reads closed=0 forever — probed both
+  directions by the desk; sent with the paste-ready entry to the
+  dotfiles session (dotfiles-5b) that owns the write boundary,
+  per the peer-channel rule. Successor run cleared to design;
+  next relay expected at the run's own seams. Consumer: the
+  trial close's grading; the next relay.
