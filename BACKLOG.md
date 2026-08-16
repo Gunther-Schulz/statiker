@@ -16,6 +16,23 @@ it is not decision-complete.
 
 ## Open
 
+
+- **READY (small) 2026-08-16 — P15: repair text for settled-prose
+  form-debt lint names the exemption route, not an in-place edit.**
+  The tool's printed repair for `clause-unparsed` and
+  `killerless-dead` prescribes an edit that mints new violations
+  and clears nothing — measured twice live (parent run F147;
+  successor F29 dry-run in a scratch copy: eight holds before,
+  eight after). Design decided: for these codes on settled entries
+  the repair line states the sanctioned route — a SWEEP_EXEMPT
+  declaration on operator grant (the 0.2.79 ask machinery) — and
+  drops the in-place-edit prescription. Verifier: red-first battery
+  case asserting the repair text for both codes names SWEEP_EXEMPT
+  and contains no edit instruction (red against current tool).
+  Done: test green, tool ships it. Write boundary:
+  `plugin/skills/statiker/scripts/statiker_record.py` +
+  `tools/test_statiker_record.py` (+ version bump).
+
 - **PARKED 2026-08-15 — P8: write-set paths with whitespace (or
   leading /) are structurally undeclarable since P2.** Provenance:
   Lane D gap (c)(1)-(2): write_set_violations' single-token rule

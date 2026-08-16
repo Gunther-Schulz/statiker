@@ -5698,3 +5698,29 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   form, label, tag, or gate is medium-tenet class whatever its
   register. Consumer: the release record; the trial close's
   grading.
+
+- 2026-08-16 — **b7 retirement handoff harvested (final peer
+  message, state verified by b7 that turn).** Handoff clean: HEAD
+  f783109f, tree clean, 22 local commits, C2 intact; tracker
+  in-progress at 61 entries, A1 [BIT], cycle 5 owed over seven
+  findings (U1 itself confirmed smallest-shippable by the
+  attacker — the re-derivation is the record's ACCOUNT, not the
+  fix shape); version-pair duty will fire at the successor's
+  resume (0.2.79 served against a 0.2.77 header). Two transfer
+  items: (1) SEAL LESSON (from the A1 comparison, on disk,
+  enters the tracker at close): predicting from CONFIDENCE
+  rather than anxiety hit the CRITICAL; the residual miss class
+  is the changed value's ROLE in each consumer (grouping key,
+  venue index) rather than its value — the next seal asks what
+  the quantity is USED AS per consumer, not only where it flows.
+  Patch candidate at fire-rate review, n=1. (2) TOOL DEFECT,
+  booked to BACKLOG (P15): the record tool's printed repair for
+  clause-unparsed/killerless-dead lint mints new violations and
+  clears nothing — b7's F29 dry-ran it in a scratch copy (eight
+  holds before, eight after), the parent run's F147 measured
+  live a SECOND time; the sanctioned route for settled-prose
+  form debt is the SWEEP_EXEMPT grant (0.2.79's ask machinery),
+  which the repair text never names. b7's conduct coda repeated
+  for the record: the A1 stop was improvised, not rule-routed —
+  0.2.79's provenance, now skill text. Consumer: the trial
+  close's grading; P15's executor.
