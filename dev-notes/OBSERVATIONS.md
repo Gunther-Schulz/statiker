@@ -5622,3 +5622,44 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   Residue noted: desk owes the attacker its lane-close message
   (named, not a wait). Consumer: the mint decision this relay; the
   trial close's grading.
+
+- 2026-08-16 — **MINT 0.2.78 (fire-born): operator-authority asks
+  surface with gate scope and the run continues; the ask-form is a
+  leading labeled decision line, never a closing question.**
+  Provenance: the post-A1 improvised stop (previous entry — the
+  desk's own interrogation answer is the incident record). Clause
+  landed in the surfacing passage beside the
+  advancing-recommendation pattern; placement basis: grep -n -i
+  'unattended|attended|prompt|operator' over SKILL.md — coverage
+  found for advanceable reconciliations (the [READY] prompt
+  pattern), attended-mode WHERE-not-WHO, and exemption-as-
+  operator-authority; NO conduct clause existed for asks the desk
+  cannot advance — classified loaded-but-inert on the corpus rules
+  the desk quoted, gap at the skill grain. Base-reference tenet
+  check, ENUMERATED against PLAN.md's list (the CLAUDE.md
+  discipline): (1) investigation-led design — n/a (conduct clause);
+  (2) loop-until-still — n/a; (3) sufficiency — n/a; (4) anti-skim
+  — pass: targets a momentum/form failure and names the failure
+  shape; (5) five forcing points — pass: touches none, preserves
+  loop continuity; (6) single-home/precipitation — pass: text-only
+  amendment, one home; (7) hypothesis-patch class — n/a: fire-born
+  with incident provenance, unmarked-guess tripwire not triggered;
+  (8) ad-hoc-decision failure mode — pass: no design decision
+  moves; (9) autonomy north star — PASS, directly served: removes
+  a spurious human seat, approval never required; (10) economics —
+  pass: recovers idle elapsed time, no new priced round; (11)
+  convergence circuit — pass with note: the clause is desk-conduct
+  prose by design — the mechanical half already exists (the
+  exemption's gate holds without the grant, mechanically); only
+  the surfacing FORM is governed, and its surface is the report,
+  not the record, so no record obligation is minted; (12) medium
+  tenet — PASS, checked deliberately (the round-3 lesson): no new
+  token, grammar, or predicate — "gate scope" is report prose, not
+  machine-read form; nothing to precipitate; (13) gradeable-form
+  widening — pass: the obligation grades from the transcript (did
+  a turn end on a non-gating ask). Release path: opus fresh-context
+  review before the pin moves (standing convention), then fresh
+  desk from the tracker at the A1 seam with the operator's
+  exemption grant riding the restart relay. Consumer: the release
+  record; the trial close's grading; fire-rate reviews (firing log
+  starts here).
