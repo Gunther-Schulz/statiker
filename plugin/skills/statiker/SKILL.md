@@ -147,7 +147,19 @@ records it as a new APPEND entry carrying the literal line
 with the header's version as `skill_versions` in sweep and closure
 verdicts (attribution, never a gate): the `Skill:` line is pinned
 surface — Status and Phase are the only mutable fields — so a header
-rewritten to the new version reads as tampering, not as an update. A resuming
+rewritten to the new version reads as tampering, not as an update.
+A resume opens with the RECORD GATE, before any design work: run
+`sweep` and `closure` first, whatever the resume's cause — a
+blocking hold set is repaired through a DISPATCHED mechanical leg
+on the cheapest certified tier (the verdict names each violation's
+class and repair form, so the brief is decision-complete by
+construction; judgment residue the verdict NAMES returns to the
+desk, never decided in the leg), and the desk grades the return by
+re-running the verdicts itself, never by the leg's claim — the
+desk's context carries verdicts, not the repair work (a resumed
+desk repairing its own accumulated holds inline spent a session on
+record archaeology before its first design act). A hold set small
+enough that the brief would rival the repair stays desk work. A resuming
 desk's first reply enumerates the run's standing operator state
 read from the record — the Mode line, every live operator-imposed
 hold, any mid-run INTENT line — shown as INFORMATION, never

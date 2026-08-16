@@ -5112,3 +5112,32 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   (with P6/E-O/E-P) behind the standing one-opus skill-edit
   review over the batch diff. Consumer: the release seam; the
   fire-rate review; the paused run's disposition session.
+
+- 2026-08-16 — **Record gate at resume minted into SKILL.md
+  (0.2.69, operator GO — "build this right into statiker instead
+  of the old way"), superseding the same-day meta-session
+  pre-pass convention before it ever fired.** Fire-born; incident:
+  canonical-market-identity cycle 12 — a resumed desk repairing
+  its own accumulated holds inline spent the session on record
+  archaeology (~70 findings, F140's 750 sweep holds) before its
+  first design act. The clause (resume passage): a resume opens
+  with `sweep`/`closure` before any design work; a blocking hold
+  set is repaired through a dispatched mechanical leg on the
+  cheapest certified tier (the verdict's own class+repair-form
+  lines make the brief decision-complete; named judgment residue
+  returns to the desk), graded by the desk re-running the
+  verdicts, never by the leg's claim; a hold set the brief would
+  rival stays desk work. DESIGN CALL, recorded: framed
+  VERSION-NEUTRAL deliberately — fires on holds whatever their
+  cause — so it is a standing hygiene gate, not the
+  version-transition machinery the no-grandfather rule
+  (operator-settled 2026-08-15) bars; that rule stands unamended,
+  and the tension was surfaced to the operator rather than
+  patched around. Seam interaction checked: round-return record
+  repairs (attack section, "desk work") are a different seam —
+  small and fresh; the resume gate covers the accumulated case,
+  and the brief-would-rival-the-repair sentence is the boundary
+  between them. Validation criterion (fire-rate review): the next
+  resume over a holding record dispatches the leg and the desk's
+  first design act postdates a clean gate. Consumer: the release
+  seam (rides 0.2.69 in the same batch); the fire-rate review.

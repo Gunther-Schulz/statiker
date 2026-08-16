@@ -149,30 +149,20 @@
   epoch-scoping direction dropped on this rule. Re-opens when the
   trial phase closes or an external user exists.
 
-- **Record-migration pre-pass before a cross-version resume
-  (operator-proposed 2026-08-16, meta-agreed).** A run resuming
-  under a newer skill version than wrote its record gets a
-  HOUSEKEEPING pre-pass first: a separately briefed segment that
-  brings the tracker to the current grammar (sweep/closure clean,
-  or declared exemptions) and touches NO design substance — so
-  the statiker run proper spends its cycles on project-domain
-  work only. Route (settled 2026-08-16): a SUBAGENT dispatched
-  from the META session, run to completion BEFORE the desk
-  session starts — the desk's context never carries the
-  migration, the pass runs on the cheapest capable tier
-  (mechanical → sonnet), and the meta session grades the result
-  by the record tool's own verdicts (sweep/closure clean, or
-  declared exemptions) before spawning the desk. One writer
-  holds: the desk does not exist while the pass runs. Compatible with the no-grandfather rule: this is desk
-  PROCEDURE (append-only repairs, declarations, stated
-  deviations), never version-transition machinery in skill text
-  or tools. Trial-bounded: grammar churn is the experiment's own
-  cost — when the trial closes and mid-run version jumps stop,
-  the pre-pass retires with them. Provenance:
-  canonical-market-identity cycle 12 — ~70 findings booked, mostly
-  record archaeology (F140's 750 sweep holds, 25 grammar
-  violations), the measured cost of paying migration inside the
-  run itself.
+- **Record gate at resume — SUPERSEDED into SKILL.md
+  (operator-settled 2026-08-16; born same-day as a meta-session
+  pre-pass convention, absorbed before ever firing).** The skill
+  now carries it (0.2.69, the resume passage): a resume opens
+  with `sweep`/`closure` before any design work, blocking holds
+  repaired through a dispatched mechanical leg on the cheapest
+  certified tier, the desk grading by re-running the verdicts
+  itself. Deliberately VERSION-NEUTRAL — it fires on holds
+  whatever their cause (version jump, desk error, operator
+  edits), so it is a standing hygiene gate, not
+  version-transition machinery: the no-grandfather rule stands
+  unamended. Provenance: canonical-market-identity cycle 12 —
+  ~70 findings, mostly record archaeology (F140's 750 sweep
+  holds), the measured cost of paying repair inside the run.
 
 ## Verify
 
