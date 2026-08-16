@@ -658,13 +658,20 @@ prompts, reconciliations surface in the close, the run's one
 touchpoint — but [READY] still opens with the desk's own INTENT
 re-read: a design satisfying its derived requirements but not
 the INTENT is the drift the head exists to catch, and no other
-step forces the look (hypothesis). A report is no terminus: a
-seam report, a round's landing, or a channel answer is delivered
-mid-stride, the same reply carrying the next owed desk work — a
-turn ends only at a gate hold, a mandated stop, an
-operator-imposed hold, or the close; the
-delivered-report-reads-as-done momentum is the named failure
-shape. `Mode: attended` in the
+step forces the look (hypothesis). A report is no terminus — a
+seam report, a round's graded return, an operator reply, or a
+peer-channel answer is delivered mid-stride, in either Mode and
+at every seam, the same reply carrying the next owed desk work;
+under a live dispatch freeze the QUEUE, not an append, is that
+carrier. A turn ends only where the run itself is stopped: a
+dispatched leg or round awaiting return with no un-dispatched
+desk work owed; a hold or halt the desk cannot clear at this
+seam; an operator-owned decision the record cannot answer —
+attended Mode's advance prompt and an operator-authority ask
+included; a version-mismatch abandonment (The record); a
+mandated stop (the operator-authority passage's enumeration); or
+the close. The delivered-report-reads-as-done momentum is the
+named failure shape. `Mode: attended` in the
 header (operator-declared at run start) presents the record and
 recommendation at [READY] instead, ENDING with one advance
 prompt — "(y) advances per the recommendation"; anything else

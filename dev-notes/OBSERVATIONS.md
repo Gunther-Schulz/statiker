@@ -5819,3 +5819,60 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   awaiting return + no operator-authority pending as sole hold →
   turn-end blocked with a nag naming the owed work). Consumer:
   P16's executor; the trial close's grading.
+
+- 2026-08-16 — **0.2.80 review dispositions (opus fresh-context,
+  5-part return: 3 BLOCKING, 4 SUBSTANTIVE, 1 WORDING — all
+  ACCEPTED) → repaired as 0.2.81; the missing tenet check
+  recorded HERE, enumerated.** The clause's failure family: it
+  enumerated legitimate turn-ends and enumerated wrong.
+  Dispositions: B1 (in-flight wait not covered — the run's most
+  common state; P16 predicate and skill sentence disagreed, the
+  parentage defect) → terminators rewritten as run STATES aligned
+  with the P16 predicate: "a dispatched leg or round awaiting
+  return with no un-dispatched desk work owed" leads the list.
+  B2 (attended advance prompt is a turn end the closed
+  mandated-stop list excludes) → "an operator-owned decision the
+  record cannot answer — attended Mode's advance prompt and an
+  operator-authority ask included". B3 (NO enumerated tenet
+  check on the 0.2.80 mint — the repo's own gate, skipped under
+  operator-frustration momentum; the reviewer grepped zero hits)
+  → recorded below, and the miss itself is the second
+  loaded-but-inert instance of the mint discipline in one repo
+  (first: the 0.2.68–70 retro-check). S1 ("gate hold" undefined;
+  the dangerous reading INVERTS unattended — holds ride the
+  close, they do not stop the run) → the term removed; "a hold or
+  halt the desk cannot clear at this seam". S2 (version-mismatch
+  abandonment uncovered) → named. S3 (splice reads
+  unattended-only; section discoverability) → "in either Mode
+  and at every seam" said inline; placement kept with the scope
+  words as mitigation (accepted-partial: re-homing the norm is
+  bigger surgery than the delta warrants — re-open if a desk
+  demonstrably fails to find it). S4 (freeze carrier unnamed) →
+  "under a live dispatch freeze the QUEUE, not an append, is
+  that carrier". W1 → "a round's graded return", "an operator
+  reply, or a peer-channel answer". Reviewer's clean list noted:
+  fire-born tripwire satisfied (two incidents), Close and
+  resume-enumeration compatible, mandated-stop members resolve.
+  TENET CHECK for the 0.2.80/0.2.81 mint, ENUMERATED against
+  PLAN.md's list: (1) investigation-led design — n/a (conduct
+  clause); (2) loop-until-still — n/a; (3) sufficiency — n/a;
+  (4) anti-skim — pass: names the delivery-momentum failure
+  shape; (5) five forcing points — pass: touches none,
+  preserves loop continuity between them; (6) single-home /
+  precipitation — pass: text amendment, one home; (7)
+  hypothesis-patch class — n/a: fire-born, two incidents (b7
+  post-A1, cd post-A2) recorded; (8) ad-hoc-decision failure
+  mode — pass: no design decision moves to implementation; (9)
+  autonomy north star — PASS, directly served: removes spurious
+  stops, the human stays out of the loop; (10) economics — pass:
+  recovers idle elapsed time, no new priced round; (11)
+  convergence circuit — pass with note: conduct prose is the
+  weak lever by the tenet's own words, which is why the
+  mechanical enforcer (P16) is booked and the sentence now
+  matches its predicate — spec and enforcer agree; (12) medium
+  tenet — PASS, the patch's central question answered
+  deliberately: the judgment edge (what counts as owed work)
+  stays prose, the computable core precipitates to the P16 hook;
+  (13) gradeable-form — pass: every terminator is a record- or
+  harness-readable state. Consumer: the release record; P16's
+  executor (the aligned predicate); the trial close's grading.
