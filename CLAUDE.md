@@ -104,16 +104,29 @@
   while conduct was unmeasured; retired once 0.2.49/50
   mechanized the grammar and desk conduct graded clean across
   the trial's first relays.
-- **Skill-edit review at opus (standing; experiment sustained
-  2026-08-15).** Every SKILL.md release gets ONE fresh-context
-  opus review before the pin moves — brief carries the diff, the
-  full skill text, and the question, never the author's
-  reasoning; every finding gets a recorded disposition before
-  release. Provenance: the 2026-08-06 experiment's pre-registered
-  criterion resolved 3-for-3 (grading in dev-notes OBSERVATIONS
-  2026-08-15) — every release window yielded substance-changing
-  findings, the third a release-blocking instrument defect caught
-  before the pin moved.
+- **Skill-edit review at opus — CHECKPOINT-BASED
+  (operator-settled 2026-08-16; supersedes the per-release form
+  of 2026-08-15, which this bullet carried).** A release may move
+  the pin UNREVIEWED while its unreviewed content is small
+  conduct/judgment prose. A fresh-context opus review is owed
+  before the pin moves when ANY of: (1) the cumulative unreviewed
+  SKILL.md delta since the last reviewed state exceeds ~50
+  changed lines; (2) the change touches machine-read semantics —
+  new token, grammar, predicate, or tool behavior (the
+  medium-tenet class); (3) operator call. Review form unchanged:
+  brief carries the diff since the last REVIEWED state, the full
+  skill text, and the question, never the author's reasoning;
+  every finding gets a recorded disposition before release.
+  Provenance for the split: iteration speed during the live trial
+  (operator), priced by the 4-round review series' measured
+  pattern — tool+battery-backed changes survived review while
+  fresh prose mechanisms drew the blockers, so the mechanism
+  class keeps the mandatory review and small prose rides.
+  History: the per-release form's own provenance (3-for-3
+  substance-yield, one release-blocking catch) stands in
+  dev-notes OBSERVATIONS 2026-08-15; re-visit the split if an
+  unreviewed release ships a bite the review class would have
+  caught.
 - **Provenance trace before any operator-routed decision.** When a
   run surfaces a decision or tension to the operator, the meta
   session traces the contested claim to its origin through the
