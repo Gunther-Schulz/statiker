@@ -18,6 +18,26 @@ it is not decision-complete.
 
 
 
+
+- **PARKED 2026-08-16 — P17: the mailbox wait's waker is the
+  monitored party (silent-stall exposure; Begehung R3).** A desk
+  that legitimately ends its turn with a round in flight (0.2.81's
+  first terminator state) is woken only by the attacker's own
+  messages — the horizon rule ("silence past it is a finding") is
+  prose only a WOKEN desk can execute, so a dead attacker produces
+  a permanent stall indistinguishable from a long round; P16's
+  Stop hook cannot cover it (fires at turn-end, cannot wake a
+  sleeper — its design records this boundary). Current backstop,
+  declared: the operator's eye on the terminal (trial posture).
+  Harness note: per-session divergence measured 2026-08-16 (the
+  meta session lost the mailbox lane, the desk kept it — the class
+  is live wherever the mailbox lane is). Missing evidence, named:
+  one observed stall past a stated horizon under a mailbox-lane
+  harness — until then any timer mechanism (cron, systemd,
+  tracker-mtime watch) is machinery without a fire. Re-grade also
+  if the harness goes sync-only everywhere (class moot: a sync
+  dispatch cannot outlive its turn).
+
 - **READY 2026-08-16 — P16: Stop-hook against improvised desk
   turn-ends (the midturn-answer-check pattern aimed at statiker
   desks).** Two incidents, two desks, same seam (b7 post-A1, cd

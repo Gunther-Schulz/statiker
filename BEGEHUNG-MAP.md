@@ -28,6 +28,7 @@ basis, silent degradation) plus the trial's own measured class
 | PLAN.md (design record) vs SKILL.md (shipped text) staleness | prose-covered — append-only supersession discipline exercised (R2 post-plan entry); no mechanical guard is buildable (the diff is judgment-shaped), backstop declared: this map's rotation re-walks the row | 2026-08-16 · R2 | 5 findings | re-walk after the trial-close grading (P11's trigger moment touches the same sections) |
 | Repo carriers (BACKLOG/OBSERVATIONS) vs drain reality (capture-vs-drain ratio) | prose-covered (corpus retirement trigger; banner where deployed) | 2026-08-16 · this session (P9/P10 drained same-day) | low | ratio re-read at next session start |
 | Relay channel (desk report → operator → meta) vs verbatim fidelity | prose-covered (two-session convention: verbatim relay, provenance trace) | 2026-08-15 · relays | med | none owed now |
+| Run continuity vs harness turn/wake machinery (turn-ends, waits, wakers, dispatch lanes) | prose-covered (0.2.81 turn-end states clause; horizon rule) — mechanical half booked unbuilt (P16); stall waker-gap parked (P17) | 2026-08-16 · R3 | 2 (+2 prior mints today) | re-walk after P16 red-fires or P17's trigger |
 
 ## Round log
 
@@ -100,3 +101,38 @@ basis, silent degradation) plus the trial's own measured class
   Next round (rotation): certified-attack register row (darkest
   readable); implement/verify/close stays waiting on the first
   landing run.
+
+- 2026-08-16 · R3 — row: run continuity vs harness turn/wake
+  machinery (NEW row, operator-named lens: the stop/turn-end
+  seam, after two improvised desk stops today; overrides the R2
+  rotation pointer per the skill's operator-lens rule).
+  Registered before first search. CLOSED same day, yield 2
+  beyond the day's prior mints (which the row inherits as
+  covered ground: 0.2.79 ask clause, 0.2.81 turn-end states,
+  P16 booked): (1) dispatch-lane harness binding drifted
+  PER-SESSION — the meta session's Agent tool lost `name`/
+  mailbox mid-session while the desk's kept both (desk
+  counter-probe executed, A3 spawned "via mailbox" in the same
+  window) — a session cannot infer another's lane from its own,
+  and a mailbox channel line composed by a sync-only session
+  strands the report; booked in the owning instrument's repo
+  (dispatch-guards dev-notes, cc31e1e + bf9aea4, pre-formulated
+  fix: per-session schema probe replaces the dated binding).
+  (2) The mailbox wait's waker IS the monitored party: the
+  horizon rule is prose only a woken desk can execute, a dead
+  attacker = permanent stall indistinguishable from a long
+  round, and P16's turn-end hook cannot cover a sleeper —
+  parked as P17 with its missing evidence named (one observed
+  stall past horizon; moot if sync-only becomes universal).
+  Coverage after R3: 3 mechanically-guarded / 8 prose-covered /
+  2 dark of 13 rows. ACROSS-ROWS read: R3's class differs from
+  R1/R2's (claims stale against their consumer) — it is rules
+  INERT AT THEIR FIRING MOMENT under momentum (two desk stops,
+  the meta session's own B3 tenet-check skip and relay-grant
+  miss, same day), and the recurring cure shape is the
+  midturn-answer-check pattern: mechanize the computable core
+  at the seam, leave the judgment edge prose (P16 is that cure
+  for the widest seam; the operator's own hooks are the
+  existence proof). Next round (rotation): certified-attack
+  register row (darkest readable), unless a landing run opens
+  implement/verify/close first.
