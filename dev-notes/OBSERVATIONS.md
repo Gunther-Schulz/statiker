@@ -5396,3 +5396,38 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   release ships on round-4 dispositions per the cap, the parked
   mechanism items carry the residue. Consumer: the release
   (now); P12/P13's mechanism pass; the trial close's grading.
+
+- 2026-08-16 — **Session-10 stop-report harvested (the record
+  gate's isolated evaluation, first run under 0.2.77): the
+  machinery performed AS DESIGNED on every axis, and its sharpest
+  output is the finding prose grandfathering had hidden — the old
+  tracker is terminally LOCK-BARRED under current rules.** Gate
+  conduct graded STRONG: version pair named both-directions
+  correctly (served 0.2.77 vs header 0.2.13, live delta
+  0.2.65→0.2.77 measured 778→788 evidence lines with the
+  mechanism identified — moved head boundary retroactively
+  killing the R1–R5 correcting tokens, desk F225); repair leg
+  correctly NOT dispatched with per-class measured bases (defang
+  repairs only by in-place rewrite = breaks the pin;
+  status-line repairs would invalidate live entries; F147's
+  measured worse-not-better; citing D92's recorded stop — the
+  no-blind-loop intent of the gate held); discharge re-run with
+  a POSITIVE CONTROL (the instrument-pair rule, unprompted);
+  queue read correct; own gate entries minted zero new
+  violations; and the SWEEP_EXEMPT decision SURFACED, not
+  self-authorized — 523 of 696 nettable on an operator line, and
+  the desk correctly declined to read D95's narrower prose
+  affirmation across. THE LOAD-BEARING RESULT: 173
+  tag-literal-in-body holds are unexemptible (H6, by design) and
+  unrepairable append-only, so LOCK_GATE_HOLDS bars every future
+  in-progress lock — the run can design but never again lock,
+  attack, or land. The H6-vs-founding-case tension flagged at
+  mint time resolves in practice: the answer was never exemption
+  but the CLOSE PATH (E-O's FAILED/COMPLETE gate pass carries
+  the holds as information — the close lock is legal) followed
+  by re-seed, which is also exactly the narrowing route's export
+  shape. Desk F228 booked below (comparison-species naming
+  drift). Recommendation to operator (in flight): release the
+  hold as close-FAILED-then-reseed-narrowed. Consumer: the
+  operator round; the trial close's grading (checkpoint conduct
+  = a strong data point for 0.2.77 desk conduct).

@@ -74,6 +74,22 @@ it is not decision-complete.
   composition rule). Trigger: the trial-close grading, or the
   first multi-unit greenfield run that misses it.
 
+- **READY (small) 2026-08-16 — P14: seal-namespace comparison
+  species naming drift.** Provenance: session-10 stop-report
+  (desk F228): on-disk comparison files from the pre-P1 era are
+  named `…seal-comparison` while 0.2.77's seal-path prints the
+  `comparison` species (`<tracker>.A<n>.comparison`) — a
+  successor desk pasting the printed path finds nothing where a
+  comparison exists. Design settled: the tool's name is the
+  contract (paste-never-hand-compose); disposition is a one-time
+  rename of existing on-disk files to the printed form (operator
+  machine, `~/.local/state/statiker/seals/`), no tool change, no
+  skill change. Verifier: seal-path's printed comparison path
+  exists for A8/A9 after the rename. Done-criterion: the rename
+  executed and the desk's F228 answerable with the printed path.
+  Trigger: before the next session that reads a comparison (the
+  trial close's grading).
+
 - **PARKED 2026-08-16 — P13: the release-review series' tool-work
   residue (the mechanism pass's collected items).** Three items,
   each dispositioned prose-side in 0.2.76 with its mechanism half
