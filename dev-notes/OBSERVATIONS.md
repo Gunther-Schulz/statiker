@@ -5780,3 +5780,42 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   window discharges F33). Paper hold: surfaced-and-not-adopted at
   F48, blocks nothing, rides the close. Consumer: the trial
   close's grading; the next desk-start instruction.
+
+- 2026-08-16 — **cd seam report post-A2 harvested + MINT 0.2.80
+  (fire-born, two-incident provenance): report-is-no-terminus
+  clause; Stop-hook booked as the mechanical fix (P16).** Facts
+  from cd: grant ACCEPTED under its path (b) — F49 line 285
+  records the operator's verbatim line with provenance stated as
+  relayed; F33 cleared line 295; seven per-line declarations
+  (287–293); SWEEP_CLEAN, eight exempt_holds. Ready claimed, lock
+  349901d0, A2 dispatched (opus, worktree at lock sha), returned
+  IN horizon, A2 [BIT] line 318, entries 104, HEAD 93cf315c, 29
+  local, C2 holding. Substance: both HIGH findings on cycle-5's
+  own work; F34 refuted the desk's published headline — it cited
+  an architecture review for a mechanism unified and DEPLOYED
+  2026-08-01 (document-about-artifact instead of artifact — the
+  corpus definitions rule, loaded-but-inert at the desk, caught
+  by the round as designed); the derived backlog entry dropped at
+  D9; the paper-hold recommendation WITHDRAWN (wrong-side basis
+  does not reach the live venue) — the operator's decline stands
+  vindicated. Sweep freeze-breach verdicts (10) correctly refused
+  the landing until the terminal A-line existed — caught a real
+  ordering slip. TURN-END: improvised AGAIN — second incident of
+  the class, second desk (b7 post-A1 report; cd post-A2 report),
+  same seam: report delivered → turn ended with desk work owed
+  and no rule behind it; cd's own attribution: "my error, not the
+  skill's." The 0.2.79 ask clause WORKED when it fired (F33 held
+  gate-only through cycle 5). DIAGNOSIS (form-level, the trend
+  rule applied to conduct): old clippy's rigid ritual always
+  named the next step; statiker's free loop leaves the
+  post-report moment to judgment, where the chat-trained
+  turn-over default wins — prose demonstrably under-binds here
+  (unattended directive loaded both times). FIX, two parts:
+  (1) 0.2.80 prose clause at the unattended passage (the norm,
+  named); (2) P16 booked — a statiker-plugin Stop hook, the
+  operator's own midturn-answer-check pattern aimed at desks:
+  predicate computable from the record (live tracker Status
+  in-progress + Mode unattended + last A-line not [DISPATCHED]
+  awaiting return + no operator-authority pending as sole hold →
+  turn-end blocked with a nag naming the owed work). Consumer:
+  P16's executor; the trial close's grading.

@@ -17,6 +17,29 @@ it is not decision-complete.
 ## Open
 
 
+
+- **READY 2026-08-16 — P16: Stop-hook against improvised desk
+  turn-ends (the midturn-answer-check pattern aimed at statiker
+  desks).** Two incidents, two desks, same seam (b7 post-A1, cd
+  post-A2): report delivered, turn ended, desk work owed, no rule
+  behind the stop; prose under-binds at this seam (unattended
+  directive loaded both times). Design decided: a statiker-plugin
+  Stop hook that fires only in sessions whose cwd repo carries a
+  live statiker tracker (`.clippy/runs/*-statiker.md` with
+  `Status: in-progress`); predicate read from the record — Mode
+  unattended AND last A-line terminal (not [DISPATCHED] awaiting
+  return) AND the blocking set is not solely an operator-authority
+  [PENDING] — then the stop is blocked with a message naming the
+  owed work (cycle re-derivation, landing, close); all legitimate
+  waits (attended prompt, round in flight, authority-gated close)
+  pass. Guard-infrastructure work: build lane per routing (not the
+  fable desk inline). Verifier: red-first fixture battery — a
+  tracker in each state, hook fires on the two incident shapes,
+  silent on the four legitimate-wait shapes. Done: battery green
+  with both reds demonstrated, hook ships in plugin hooks config,
+  one live firing or one clean live pass logged. Write boundary:
+  statiker plugin `hooks/` + tools/ battery + plugin.json bump.
+
 - **READY (small) 2026-08-16 — P15: repair text for settled-prose
   form-debt lint names the exemption route, not an in-place edit.**
   The tool's printed repair for `clause-unparsed` and

@@ -658,7 +658,13 @@ prompts, reconciliations surface in the close, the run's one
 touchpoint — but [READY] still opens with the desk's own INTENT
 re-read: a design satisfying its derived requirements but not
 the INTENT is the drift the head exists to catch, and no other
-step forces the look (hypothesis). `Mode: attended` in the
+step forces the look (hypothesis). A report is no terminus: a
+seam report, a round's landing, or a channel answer is delivered
+mid-stride, the same reply carrying the next owed desk work — a
+turn ends only at a gate hold, a mandated stop, an
+operator-imposed hold, or the close; the
+delivered-report-reads-as-done momentum is the named failure
+shape. `Mode: attended` in the
 header (operator-declared at run start) presents the record and
 recommendation at [READY] instead, ENDING with one advance
 prompt — "(y) advances per the recommendation"; anything else
