@@ -25,7 +25,7 @@ basis, silent degradation) plus the trial's own measured class
 | Certified-attack register (defaults/models) vs tier resolution at a real desk | dark — resolution order prose-only, never incident-fired | never | — | candidate lens R2+ |
 | Implement/verify/close sections vs real execution | dark BY CONSTRUCTION — zero units have ever landed under statiker; forcing points 4–5 are near-unfired text | never (no run reached them) | — | not walkable by reading: the first landing run is the instrument; note in round reports until then |
 | Plugin/version pin vs served conduct | mechanically-guarded (plugin-drift-scan banner; payload-bump pre-commit hook — both fired this session) | 2026-08-16 · this session | med | none owed now |
-| PLAN.md (design record) vs SKILL.md (shipped text) staleness | dark — no pass has diffed settled PLAN decisions against current text since the 0.2.x churn | never | — | candidate lens R2+ |
+| PLAN.md (design record) vs SKILL.md (shipped text) staleness | prose-covered — append-only supersession discipline exercised (R2 post-plan entry); no mechanical guard is buildable (the diff is judgment-shaped), backstop declared: this map's rotation re-walks the row | 2026-08-16 · R2 | 5 findings | re-walk after the trial-close grading (P11's trigger moment touches the same sections) |
 | Repo carriers (BACKLOG/OBSERVATIONS) vs drain reality (capture-vs-drain ratio) | prose-covered (corpus retirement trigger; banner where deployed) | 2026-08-16 · this session (P9/P10 drained same-day) | low | ratio re-read at next session start |
 | Relay channel (desk report → operator → meta) vs verbatim fidelity | prose-covered (two-session convention: verbatim relay, provenance trace) | 2026-08-15 · relays | med | none owed now |
 
@@ -60,3 +60,43 @@ basis, silent degradation) plus the trial's own measured class
   close row — walkable only by the first landing run; until
   then the darkest READABLE row is PLAN.md-vs-SKILL.md
   staleness.
+
+- 2026-08-16 · R2 — row: PLAN.md (design record) vs SKILL.md
+  (shipped text) staleness. Why: rotation rule — darkest
+  readable row (implement/verify stays unwalkable until a run
+  lands; the register row is lower-stakes); PLAN.md is the
+  re-derivation source CLAUDE.md names ("settled decisions are
+  not re-opened without new evidence"), so a stale settled
+  decision there misdirects any future session that reads it as
+  current. Both directions walked: PLAN decisions the shipped
+  text dropped or contradicts, and PLAN sections the shipped
+  reality has overtaken. Registered before first search.
+  CLOSED same day, yield 5, all dispositioned structurally:
+  (1) Record-compatibility section's metric half refuted by R1's
+  measurement — post-plan supersession entry appended (the
+  append-only precedent: the GitHub-remote entry); (2) Settled
+  bullet "attack tier: fable-first" contradicted by the section's
+  own 2026-08-06 certification four lines up — named in the same
+  entry; (3) Size-target hard reading superseded by the
+  target-not-gate birth-class posture, previously recorded only
+  outside PLAN — named in the same entry; (4) the clippy-side R1
+  booking lacked the clippy-frozen trial constraint — freeze
+  clause appended in coding-clippy BACKLOG (ebb9cb0); (5)
+  process gap: releases 0.2.68–0.2.70 minted without the
+  base-reference tenet-list check the 2026-08-05 tenet entry
+  requires — check executed retroactively (all pass: early head
+  round opens at the head's own stopped-moving seam; narrowing
+  and scoped reopening keep the zero-delta circuit; no new human
+  seat), and the mint discipline widened in CLAUDE.md so the
+  check is recorded at mint time. Coverage after R2: 3
+  mechanically-guarded / 7 prose-covered / 2 dark of 12 rows.
+  ACROSS-ROWS read: both rounds' findings are one class —
+  assurances written at a design moment and never re-executed
+  against their consumer (R1: a cross-skill claim; R2: a design
+  record's settled sections) — the structure minting it is
+  churn outpacing its own record carriers, which the trial's
+  release cadence guarantees; the standing cure is exactly this
+  map's rotation until the cadence slows at stabilization.
+  Next round (rotation): certified-attack register row (darkest
+  readable); implement/verify/close stays waiting on the first
+  landing run.

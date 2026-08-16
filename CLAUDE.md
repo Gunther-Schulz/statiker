@@ -9,7 +9,12 @@
 - **Birth-class discipline.** The payload is enforcement structure +
   bindings only; every future addition is a fire-born patch carrying
   incident provenance, logged in `dev-notes/OBSERVATIONS.md`. No
-  provenance, no patch.
+  provenance, no patch. The mint's OBSERVATIONS entry also records
+  its check against PLAN.md's base-reference tenet list (the
+  2026-08-05 tenet entry: changes build on it and are checked
+  against it) — an unrecorded check is a skipped check (Begehung
+  R2: three releases minted without one; the retroactive check
+  passed, the gap is what this sentence closes).
 - **PLAN.md is the design record** — settled decisions are not
   re-opened without new evidence.
 - **`dev-notes/clippy-lineage.md` is the lineage evidence register**

@@ -354,6 +354,34 @@ provenance.
   itself produced (over-escalation, two incidents) is what forced
   the question. Released as 0.2.51.
 
+- 2026-08-16, Begehung R2 (BEGEHUNG-MAP.md round log): **the
+  Record-compatibility section's metric half is SUPERSEDED by
+  measurement.** "/clippy-stats reads both" held for admission
+  only: the executed pair (Begehung R1) measured its cycle count
+  and decision-family greps silently divergent on statiker-era
+  trackers. Shared home and admission contract STAND (`.clippy/
+  runs/`, Status/Phase enums pinned); series metrics for a
+  statiker run come from the record tool's `trend`/`waves`
+  (SKILL.md 0.2.70). Whether cross-skill comparison via
+  /clippy-stats remains a trial deliverable is the open decision
+  at BACKLOG P11 — the control-arm-comparison promise in that
+  section rides on it. Two same-pass staleness notes, recorded so
+  the Settled list stops misdirecting: the Settled bullet "attack
+  tier: fable-first" is superseded by this file's own 2026-08-06
+  certification (opus is the attack tier; fable's attack seat
+  closed); the Size-target section's hard reading is superseded
+  by the birth-class declaration's target-not-gate posture
+  (SKILL.md Birth-class declaration; compression pass booked in
+  dev-notes). And the base-reference check the tenet-list entry
+  requires was executed retroactively for the 0.2.68–0.2.70
+  mints (contraction clauses, record gate): all pass — the early
+  head round opens at the head's own stopped-moving seam (the
+  economics tenet's rule), the narrowing route and scoped
+  reopening keep the zero-delta circuit intact, and no new
+  human seat enters (autonomy tenet). Going forward the check is
+  recorded at mint time (CLAUDE.md, birth-class bullet, widened
+  this date).
+
 ## Horizon consideration — NOT a decision (operator, 2026-08-05)
 
 When statiker is validated, CONSIDER lifting its framework from it
