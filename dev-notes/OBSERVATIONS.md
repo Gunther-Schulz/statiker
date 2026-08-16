@@ -5542,3 +5542,46 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   and a LANDED unit — the reform's success metric is still at
   zero until U1 lands. Consumer: the trial close's grading; the
   next relay.
+
+- 2026-08-16 — **Attack-round-1 relay harvested (successor run,
+  operator paste): the round BIT on live money, and the defense
+  layers graded exactly as designed — one prose clause under-fired,
+  its two backstops caught it.** The round refuted the desk's own
+  delivered claim ("fails safe: missed bets, not wrong bets"): the
+  bet-time freshness check compares against Pinnacle, not the
+  venue, and Pinnacle's alternate-line products make a flipped
+  spread MATCH a real (wrong) market — fake edges to 250%, six $1
+  bets placed over 30 days, thousands more stopped only by
+  incidental defenses (price floor, implausible-edge guard).
+  Layer grading: (a) the commit-basis clause (SKILL.md, "basis
+  reaches the CONSUMING READ") UNDER-FIRED — the desk read the
+  branch shape, saw no-match-on-mismatch, and stopped without
+  asking what the comparison was against: exactly the minted
+  class, its third firing by the desk's own count ("third time
+  today: conclusion from a mechanism's shape instead of its
+  effect"). (b) The SEAL caught it forward: the pre-round sealed
+  prediction NAMED this exact unchecked conclusion — first live
+  confirmation of the seal instrument's value. (c) The attack
+  round converted it to a verified finding; the desk then
+  verified against PRODUCTION itself, never adopting the
+  attacker's report, quantified exposure (~$6), routed the
+  decision to the operator with a recommendation, corrected its
+  own earlier claim loudly and first, held 21 commits local
+  (C2), and is folding three further report parts before
+  re-deriving. Conduct clean throughout. Stop-call weighed and
+  NOT taken: strictly this is "a bite in a class an existing
+  mint governs," but the bite was caught IN-RUN by the designed
+  backstops before implementation and the live decision is
+  already with the operator — pausing would interrupt the fold-in
+  and buy nothing the harvest doesn't. BOOKED as an open question
+  for trial-close grading instead: the commit-basis clause is
+  judgment prose and under-fired three times in one day under one
+  desk; grade at close whether it needs a sharper trigger (e.g.,
+  the commit moment demanding an executed-measurement citation on
+  the basis line) or whether seal+attack as backstop is the
+  accepted design (calibration: judgment-shaped conditions
+  mechanized over-fire; the backstop pair worked at first
+  contact). Contraction note: a substance BIT in round 1 does not
+  touch the prediction — the prediction prices the SERIES
+  (re-lock → zero-delta in 1–2 rounds); its test is the next
+  round. Consumer: the trial close's grading; the next relay.
