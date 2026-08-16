@@ -190,6 +190,11 @@ SKILL_HEADER_VERSION_RE = re.compile(r"^statiker (\S+)$")
 # exactly that line — a violation above a ceiling blocks untouched.
 SWEEP_EXEMPT_CEILING_RE = re.compile(r"^SWEEP_EXEMPT: ([a-z-]+) lines<=(\d+)$")
 SWEEP_EXEMPT_LINE_RE = re.compile(r"^SWEEP_EXEMPT: ([a-z-]+) line (\d+)$")
+# H6 (opus release review 2026-08-16): the defang class is never
+# exemptible — SKILL.md's standing clause says an undefanged tag
+# literal holds every later sweep for the run's life, and a netting
+# that could silence it would let one declaration void that rule.
+UNEXEMPTIBLE_CODES = {"tag-literal-in-body"}
 # the scope openers are CASE-SENSITIVE LITERALS (SKILL.md, The
 # record): a case or spacing variant is entry-INTENDED scope that no
 # predicate can read, so it lints rather than passing as scopeless
@@ -1291,9 +1296,17 @@ def net_sweep_exemptions(violations, exemptions):
     above the ceiling is untouched, still blocking. The first matching
     declaration (file order) is the one attributed. Returns
     (blocking, exempt_holds); each exempt_holds entry carries the
-    netted violation plus the exemption's own declaring line."""
+    netted violation plus the exemption's own declaring line.
+    UNEXEMPTIBLE codes (opus release review H6, 2026-08-16): the
+    defang class — SKILL.md, The record: an undefanged bracketed tag
+    literal holds every later sweep correctly, for the run's life —
+    is never netted, whatever a declaration says; the declaration is
+    simply inert for those codes and the hold stays blocking."""
     blocking, exempt_holds = [], []
     for v in violations:
+        if v["code"] in UNEXEMPTIBLE_CODES:
+            blocking.append(v)
+            continue
         hit = next((e for e in exemptions if e["code"] == v["code"] and (
             (e["kind"] == "ceiling" and v["line"] <= e["bound"]) or
             (e["kind"] == "single" and v["line"] == e["bound"]))), None)

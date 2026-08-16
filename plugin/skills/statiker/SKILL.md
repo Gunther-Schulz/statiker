@@ -550,11 +550,22 @@ SKILL:'s sibling, same body-region placement, same field-not-gate
 treatment — moves every violation of that CODE at a covered line
 into the verdict's `exempt_holds` field (each carrying the
 exemption's own declaring line), frozen at declaration: a violation
-above the ceiling blocks untouched. No new verdict name: SWEEP_CLEAN,
-SWEEP_HOLDS, and every downstream gate consult inherit the netted set
-with no separate git-tool change (the corpus guard rule's
-declared-exemption-the-guard-verifies shape, not version-keyed
-grandfathering).
+above the ceiling blocks untouched. An exemption is OPERATOR
+authority: its declaring line cites the authorization (the
+operator's line quoted, or the entry recording their direction) —
+a desk never exempts its own gate's holds on its own judgment,
+and an unattended run's unexemptible holds ride the close
+instead. What the guard VERIFIES is the exemption's BOUNDS — the
+code, the frozen ceiling, everything above still firing; the
+legitimacy judgment belongs to the cited authorization.
+Defang-class holds (`tag-literal-in-body`) are never exemptible —
+the tool refuses the netting — because an undefanged tag literal
+holds every later sweep correctly, for the run's life (The
+record). `exempt_holds` is enumerated in the close beside the
+[AUTO-ACCEPTED] entries: netted is never invisible. No new
+verdict name: SWEEP_CLEAN,
+SWEEP_HOLDS, and every downstream gate consult inherit the netted
+set with no separate git-tool change.
 Record `Status: [READY]` with the impl units enumerated, each
 naming its red-first pin — and a pin DISCRIMINATES: red on the
 current state, green only through the fix; a criterion the
@@ -1300,7 +1311,9 @@ operator —
 unattended this is the run's one touchpoint: the verdict with
 its evidence pointer; every open reconciliation; every R-line
 amendment (what shipped vs. the letter as asked); every
-[AUTO-ACCEPTED] entry; every entry whose latest line is
+[AUTO-ACCEPTED] entry; every SWEEP_EXEMPT declaration with the
+holds it netted (the sweep verdict's `exempt_holds`); every
+entry whose latest line is
 [PENDING] (a FAILED or abandoned run can carry them);
 deviations and gaps; what was NOT verified; candidate
 lessons. The close ENUMERATES BY REFERENCE — id plus a prose

@@ -295,6 +295,24 @@ class TestSweepExemption(RecordFixture):
         self.assertIn("pending-latest", self.violation_codes(v))
         self.assertEqual(v["exempt_holds"], [])
 
+    def test_defang_class_is_never_exemptible(self):
+        # H6 (opus release review 2026-08-16): an undefanged tag
+        # literal holds every later sweep for the run's life
+        # (SKILL.md, The record) — a SWEEP_EXEMPT naming the defang
+        # code is inert: the hold stays blocking, exempt_holds empty.
+        body = ("- F1 [VERIFIED] the guard prints [PENDING] on a miss "
+                "— basis: executed\n")
+        baseline = self.sweep(body)
+        self.assertEqual(baseline["verdict"], "SWEEP_HOLDS")
+        self.assertIn("tag-literal-in-body", self.violation_codes(baseline))
+        exempted = self.sweep(
+            body + "SWEEP_EXEMPT: tag-literal-in-body lines<=999\n")
+        self.assertEqual(exempted["verdict"], "SWEEP_HOLDS", exempted)
+        self.assertIn("tag-literal-in-body", self.violation_codes(exempted))
+        self.assertEqual(
+            [h for h in exempted["exempt_holds"]
+             if h["code"] == "tag-literal-in-body"], [])
+
     def test_violation_above_ceiling_blocks_in_both_arrangements(self):
         # the ceiling is frozen at declaration: a violation on a line
         # the exemption does not cover blocks whether or not an
