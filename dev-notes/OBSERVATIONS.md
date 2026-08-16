@@ -5498,3 +5498,20 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   per the peer-channel rule. Successor run cleared to design;
   next relay expected at the run's own seams. Consumer: the
   trial close's grading; the next relay.
+
+- 2026-08-16 — **Coda to the kämmung harvest: the session-scan
+  finding is BOOKED at its owner (dotfiles origin eb1552f) —
+  reproduced there with the instrument-positive before booking,
+  MERGED into an existing `_retire_counts` entry as a second
+  axis of one root (axis 1, wan2gp session: bullet hardcoded as
+  entry unit, over-counts open; axis 2, ours: marker-in-file as
+  closure, under-counts closed — both read a leftover marker
+  instead of the thing), graded PARKED not READY (fix direction
+  undecided = not decision-complete; the grade correction is
+  right and is the receiving session's catch), a third candidate
+  direction added (measure the departure from git history — no
+  foreign-repo declaration needed), verifier spanning three
+  carriers. The peer channel carried a finding out and a better
+  entry came back; no operator relay was spent. Consumer: the
+  trial close's grading (cross-session protocol evidence);
+  closed — nothing further owed either direction.
