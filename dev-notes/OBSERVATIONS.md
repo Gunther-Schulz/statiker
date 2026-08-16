@@ -5154,3 +5154,22 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   label-vs-body class firing on the skill's own sentence; full
   dispositions in BACKLOG P11 + coding-clippy BACKLOG. Consumer:
   the release seam (rides 0.2.70); the next Begehung round.
+
+- 2026-08-16 — **Resume world-check clause minted (SKILL.md
+  0.2.71, the F213/F220 mint queued since relay 6, operator GO
+  on the batch).** Fire-born; incident: F213 — a dated staleness
+  discharge ("zero commits since", F121) carried across a 7-day
+  resume; re-executed at the lock it showed 16 commits, one
+  touching the design-cited file the round's HIGH (F212) landed
+  on; the resume path verified the RECORD and said nothing about
+  the WORLD. Clause (resume passage, beside the record gate):
+  dated world-facing discharges expire with every commit since —
+  re-run the bounded diff over design-cited paths before work
+  rests on the citations; a discharge names its own expiry
+  (F220's form). Base-reference tenet check, recorded per the R2
+  discipline: passes — extends the convergence circuit's record
+  obligations (an expiry is a gradeable obligation the sweep and
+  attack re-read), adds no human seat, opens no priced round
+  (the diff is an unpriced check). Consumer: the release seam
+  (rides 0.2.71); the next resume, which is the validation
+  criterion's firing moment.

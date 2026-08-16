@@ -165,7 +165,16 @@ re-running the verdicts itself, never by the leg's claim — the
 desk's context carries verdicts, not the repair work (a resumed
 desk repairing its own accumulated holds inline spent a session on
 record archaeology before its first design act). A hold set small
-enough that the brief would rival the repair stays desk work. A resuming
+enough that the brief would rival the repair stays desk work.
+The gate covers the record's FORM; a resume also re-runs the
+record's dated, WORLD-FACING discharges: a staleness check
+measured at its date expires with every commit since — re-run the
+bounded diff over design-cited paths before any work rests on the
+record's citations, and a discharge NAMES ITS OWN EXPIRY, so the
+next resume inherits an obligation, never a reassurance (a
+"zero commits since" discharge carried across a 7-day resume hid
+16 commits, one touching the very file that round's HIGH landed
+on). A resuming
 desk's first reply enumerates the run's standing operator state
 read from the record — the Mode line, every live operator-imposed
 hold, any mid-run INTENT line — shown as INFORMATION, never
