@@ -61,7 +61,8 @@ resolution, a must-be-outside path (artifact, seals, attack
 worktrees) is outside
 only when named and real form agree — any realpath
 acceptance noted per path in the verdict as `resolved_from`,
-and a path problem halts at a CHECK, never a commit. Byte policy runs both
+and a path problem halts at a CHECK, never a commit. Byte policy
+runs both
 directions: git byte output decodes the way the OS decodes argv,
 and verdict and quote output emit at the byte level over the
 input's own bytes — a tool that re-spells a byte on output mints
@@ -86,7 +87,8 @@ groups are mutually parallel-eligible; a unit whose record lines
 declare no live write-set comes back UNPLANNABLE, never placed
 (the line form: Implementation; a unit with no `unit U<k>`-bodied
 entry at all appears in neither list), and the partition is no
-dispatchability read: the per-unit gate stays `closure --unit`. `trend` returns TREND_COMPUTED /
+dispatchability read: the per-unit gate stays `closure --unit`.
+`trend` returns TREND_COMPUTED /
 TREND_NO_ROUNDS — per-round F-LINE counts (every F-line in a
 round's span, not attacker findings alone) with an arithmetic
 trajectory verdict. Both halt WAVES_RECORD_MALFORMED /
@@ -97,7 +99,8 @@ section names is a halt for
 the seam that ran it — booked as a `record:` F-line from the
 verdict line, the seam's halt route applying (TRACKER_UNREADABLE,
 PIN_UNREADABLE, NOT_A_REPO, PATH_OUTSIDE_REPO, PATH_INSIDE_REPO,
-USAGE_ERROR, GIT_ERROR, INTERNAL_ERROR, and any future member). One override
+USAGE_ERROR, GIT_ERROR, INTERNAL_ERROR, and any future member).
+One override
 on every route: a halt verdict carrying a `shas` or `sha` field
 has LANDED commits — routed like HALT_RESIDUE_PERSISTS, never as
 uncommitted. Unit briefs carry the git tool's
@@ -155,7 +158,8 @@ under different rules — in either direction: an OLDER desk over
 a newer record proceeds no further than the record gate and
 WRITES NO CLOSE — a desk under the wrong rules appends nothing;
 the run stays in-progress for a correctly-versioned successor,
-and the surfacing is the desk's reply, not a record write. On a mismatch the desk names
+and the surfacing is the desk's reply, not a record write. On a
+mismatch the desk names
 the VERSION PAIR before the next forcing point — and what the
 delta invalidates only where the older text is at hand (the
 source repo's git); a desk without it surfaces the pair at the
@@ -611,7 +615,8 @@ deletion outside the write-set — is tagged irreversible BESIDE
 its enumeration, as the BARE label line `unit U<k> irreversible:
 <effect>` — the label-line class (`SKILL: `'s sibling), standing
 alone at column 0, never an entry and never a body opener, so it
-re-opens nothing under the closure predicate; the record tool surfaces the
+re-opens nothing under the closure predicate; the record tool
+surfaces the
 set as `irreversible_units` in sweep and closure verdicts —
 attribution, never a gate: unattended enforcement stays the hold
 entry. Every other bound in this skill limits waste; this
@@ -940,7 +945,8 @@ re-attack is a NEW fresh context (a resumed attacker inherits
 its own prior findings' frame), and a re-derived design is a NEW
 locked design — it gets the attack again, its repairs landing as
 ONE re-lock: per-finding re-locks split the priced unit
-(hypothesis). The reply opening a repeat round — from the SECOND repeat round
+(hypothesis). The reply opening a repeat round — from the SECOND
+repeat round
 on — cites the record
 tool's `trend` output as its arithmetic backstop and GRADES the
 series by a BODY-READ of the rounds' findings — `trend` counts
@@ -972,7 +978,8 @@ unattended the run closes FAILED with the series enumerated in
 the close (budget exhaustion's own disposition) — never another
 same-form round.
 The budget (the header) backstops this judgment
-mechanically; it is never the route. A round dies two ways, one clause (hypothesis):
+mechanically; it is never the route. A round dies two ways, one
+clause (hypothesis):
 ABORTED in flight when a queued desk finding kills the locked
 design — the round is not left running over an object already
 scheduled for replacement; its A-line lands `[VOID]` with body
