@@ -132,8 +132,14 @@ verified by it before the halted procedure re-runs.
 ## The record (forcing point 1)
 
 Append-only tracker at `.clippy/runs/<yyyy-mm-dd>-<slug>.md` —
-clippy's ledger convention, shared so `/clippy-stats` and cross-skill
-comparison read both. Never overwrite another run's tracker; resume
+clippy's ledger convention. Of the stats reader's contract, the
+ADMISSION half (Status/Phase enums in the header window) is
+maintained and pinned; its per-metric greps are NOT maintained
+against this grammar — series metrics for a statiker run come from
+the record tool's `trend` and `waves` verdicts, never from the
+stats reader's literals (its cycle count and decision-family
+collapse both diverge silently here, measured). Never overwrite
+another run's tracker; resume
 an in-progress run from its tracker, not from memory. That resume
 compares the header's `Skill:` version against the version this desk
 is SERVED (the Skill injection's base-directory line): a release

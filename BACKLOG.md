@@ -106,6 +106,43 @@ it is not decision-complete.
   quoting/escaping grammar for the write-set field. Trigger: the
   first real unit needing a space-carrying or absolute path.
 
+- **READY 2026-08-16 — next-run staging: STOP after the record
+  gate (operator-decided, mid-turn line 2026-08-16).** The next
+  desk brief (resume or re-seed over the existing
+  canonical-market-identity record) carries an explicit
+  checkpoint: run the record gate (sweep/closure), dispatch the
+  repair leg if holds block, re-run the verdicts — then STOP and
+  report the before/after verdict pair plus the leg's dispatch
+  record, holding for operator review BEFORE any design work.
+  Purpose: grade the housekeeping machinery (0.2.69's record
+  gate) in isolation before trialing the rest of the loop.
+  Verifier: the desk's stop-report carries both verdict outputs
+  verbatim. Done-criterion: the checkpoint clause appears in the
+  next desk brief, and the desk's first design act postdates the
+  operator's release of the hold. Consumer: the next meta session
+  composing the desk brief; rides the run-disposition round.
+
+- **PARKED 2026-08-16 — P11: the cross-skill stats contract is
+  half-maintained, and the unmaintained half miscounts silently.**
+  Provenance: Begehung R1 (BEGEHUNG-MAP.md round log), executed
+  pair with clippy-era control — cycle count 15-for-13 (cycle 3's
+  heading unanchored; repair/correction/cont. headings counted as
+  cycles), decision-family collapse to one family (numeric IDs vs
+  the reader's digit-stripping sed), falls-per-entry 56/1
+  presented as a measurement. Emission-side claim narrowed in
+  SKILL.md (0.2.70): admission maintained, metrics disclaimed,
+  series metrics route to `trend`/`waves`. Reader-side repair
+  booked in coding-clippy BACKLOG (statiker-era branch, absent-
+  not-zero). What stays PARKED here, with its named decision: is
+  cross-skill clippy-vs-statiker comparison via /clippy-stats a
+  trial deliverable at all? If yes, the statiker half is a
+  cycle-heading FORM mandate (grammar+lint = new machinery — not
+  justified by a metrics nicety alone, and the version-neutral
+  record gate would surface its retroactive holds); if no, the
+  clippy-side absent-not-zero branch closes the class. Trigger:
+  the trial-close grading design (which will need the comparison
+  question answered either way).
+
 ## Done
 
 - 2026-08-16 — **P9+P10 shipped (desk, fable): 6e211ee — four

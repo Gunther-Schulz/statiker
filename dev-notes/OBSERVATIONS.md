@@ -5141,3 +5141,16 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   resume over a holding record dispatches the leg and the desk's
   first design act postdates a clean gate. Consumer: the release
   seam (rides 0.2.69 in the same batch); the fire-rate review.
+
+- 2026-08-16 — **Shared-ledger claim narrowed (SKILL.md 0.2.70,
+  Begehung R1 provenance — first Begehung of this repo,
+  BEGEHUNG-MAP.md created, round log there).** The tracker
+  passage asserted /clippy-stats "reads both" eras; the executed
+  pair (statiker tracker vs clippy-era control) measured the
+  metric greps divergent — cycle count 15-for-13, decision
+  families collapsed to one — while the admission half is pinned
+  and held. Claim rewritten to the maintained predicate: admission
+  yes, metrics no, series metrics from `trend`/`waves`. The
+  label-vs-body class firing on the skill's own sentence; full
+  dispositions in BACKLOG P11 + coding-clippy BACKLOG. Consumer:
+  the release seam (rides 0.2.70); the next Begehung round.
