@@ -5431,3 +5431,47 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   hold as close-FAILED-then-reseed-narrowed. Consumer: the
   operator round; the trial close's grading (checkpoint conduct
   = a strong data point for 0.2.77 desk conduct).
+
+- 2026-08-16 — **Close-and-reseed harvested (desk session 11,
+  beat-the-books-b7): both milestones landed, 0.2.77's whole
+  resume→close→seed path CLEAN on first production contact.**
+  What the release's machinery did live: `trend` computed the
+  9-round series (FLAT, concentration true) and independently
+  forced the narrowing route — the contraction instrument's
+  first live firing, agreeing with the hand-read that minted it;
+  the close-path lock (E-O) passed over 788 holds under FAILED
+  as designed, first live use; SWEEP_EXEMPT enumerated and NOT
+  netted (authority honored); close prose minted zero new
+  violations, record stayed pinned. Close 8351c054: everything
+  enumerated (lock-bar mechanism, A9 reopen, four operator
+  items, eight R-amendments, six carried entries, five lessons,
+  both seals+comparisons landed). Successor seeded b072ebba:
+  `.clippy/runs/2026-08-16-canonical-frame-sign-repair-statiker
+  .md` — U1 only, nine derived R-lines, served defaults budget
+  in the header (the P10 clause's first live header), SWEEP_CLEAN
+  at birth. Five parked exports each citing the parent by id
+  with the evidence-not-adopted-ground caveat. CORRECTION,
+  MINE (desk-caught, weighed as testimony and recorded in the
+  seed's head): my directive wrote "D93's five units, R1–R8" as
+  the decomposition — D93 is the parent's REVERSIBILITY grading
+  (five irreversible units), D112 the nine-unit decomposition,
+  and the parent's R-lines were superseded by the seed's own
+  R1–R9. Triage class: recalled-label-over-body — I asserted a
+  record fact from memory of the close-state block instead of
+  checking the tracker (the transcript-altitude rule's record
+  face; seconds-cheap grep, skipped). Mechanism half:
+  judgment-shaped (no computable guard on directive prose);
+  the existing rule covers it — record claims carry a record
+  read — so no new mint, this line is the incident log. The
+  desk's handling is itself a trial data point: operator-channel
+  testimony graded and contradicted with basis, decision
+  executed unchanged — the source-blind rule working desk-side.
+  D94/D108 TIMING, corrected framing for the operator: not ripe
+  now — U1 is in the irreversible subset, so unattended it can
+  never dispatch; the authorization re-presents WITH U1's locked
+  design at the successor's implementation hold, which is the
+  "once, after repair verified" moment D94's parking named.
+  Kämmung on beat-the-books BACKLOG: rule-mandated (the banner's
+  owed pass + the corpus retirement trigger), GO relayed to the
+  desk before design bookings. Consumer: the trial close's
+  grading (0.2.77 first-contact evidence); the operator report.
