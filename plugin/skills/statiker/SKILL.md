@@ -180,7 +180,12 @@ it (an unattended loop without a declared bound terminates on
 context death, the one ending that produces no readable verdict).
 Exhaustion never continues silently: attended it forces the
 operator prompt, unattended it closes the run FAILED with the
-unexhausted question enumerated in the close. (hypothesis) —
+unexhausted question enumerated in the close. (hypothesis)
+The bound is operator-owned from the moment it is recorded: the
+desk SPENDS the budget and never raises it — a mid-run amendment
+is an operator decision, whatever provenance class the bound's
+text carries (a desk-amended bound, set just above current
+spend, bound nothing). —
 Status and Phase within the first ~20
 lines (the stats reader's admission window). After the header,
 the requirement head in two
@@ -436,7 +441,18 @@ head professionally complete — is there a requirement a competent
 shop would have derived that is still missing? A cheap self-check
 before pricing an attack round; the attack's decomposition mandate
 is the load-bearing grader, so nothing rests on this question
-beyond the easy catch. [READY] is
+beyond the easy catch. Where the head decomposes into MULTIPLE
+units — subsystem scale, greenfield — that grader does not wait
+for the full design: the FIRST round dispatches EARLY, scoped to
+the requirement head and its decomposition (the same machinery —
+sweep, lock, artifact, A-line — with the brief's question
+carrying the attack block's decomposition and blast-radius
+mandates over the head alone), before deep design accumulates on
+an unattacked direction. A direction defect prices at one early
+round or at every cycle it misdirected (three requirements the
+head never carried, found by a decomposition pass at cycle 13).
+A single-unit head keeps the single-round shape — the [READY]
+round's mandate covers it. [READY] is
 recordable only when the record sweeps clean: no entry's latest line
 is [PENDING] (an assumption deliberately carried unverified
 gets its [AUTO-ACCEPTED] line, never left [PENDING]), no id appears
@@ -762,7 +778,21 @@ its own prior findings' frame), and a re-derived design is a NEW
 locked design — it gets the attack again, its repairs landing as
 ONE re-lock: per-finding re-locks split the priced unit
 (hypothesis). The reply opening a repeat round cites the record
-tool's `trend` output as its series read. A round dies two ways, one clause (hypothesis):
+tool's `trend` output as its series read — and GRADES it: the
+series is CONTRACTING when substance findings fall round over
+round and land mostly on ground the previous round already bit;
+NON-CONTRACTING when consecutive rounds bite mostly on text
+minted since each previous round — the loop eating its own
+repairs (nine rounds, none zero-delta, each round's findings
+concentrated on the newest cycle's own work). A non-contracting
+grade routes to NARROWING, never to another same-form round:
+re-scope the head to the smallest independently shippable unit
+(an R-amendment, the displaced scope EXPORTED per The loop's
+exit machinery — successor runs seeded from this record, the
+parent's settled entries citable evidence there, attackable like
+any basis), drive the narrowed design to its zero-delta, land
+it. The budget (the header) backstops this judgment
+mechanically; it is never the route. A round dies two ways, one clause (hypothesis):
 ABORTED in flight when a queued desk finding kills the locked
 design — the round is not left running over an object already
 scheduled for replacement; its A-line lands `[VOID]` with body
@@ -802,7 +832,18 @@ brackets and case: the stats reader's literal greps carry the
 brackets (verified against its source), the brackets the
 load-bearing half, the case change margin. Regraded
 into F-lines in the same sitting. Any substance finding: the
-round records [BIT] — that record change IS the reopen. A
+round records [BIT] — that record change IS the reopen, and the
+reopen's SCOPE is the entries the findings cite plus their
+dependents through the invalidation machinery (The loop's
+dependency rule): entries no finding reaches stay SETTLED,
+re-read only where a repaired entry's dependency reaches them,
+never restated wholesale — whole-record re-derivation is the
+anti-pattern with a measured signature: every restatement is
+fresh attack surface, and the next round's findings land on the
+newest cycle's own repairs. The re-lock's brief names the
+repaired delta as the round's stated focus; the attacker's
+question stays the whole design — zero-delta means the design,
+never the delta. A
 substance-free
 return: execute the record repairs now (desk work), then record
 [ZERO-DELTA] as the last A-line — recordable only with every

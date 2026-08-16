@@ -5069,3 +5069,46 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   acceptance grammar (narrower-acceptance is the silent mode);
   subprocess bridges here default bytes+surrogateescape, never
   text=True.
+
+- 2026-08-16 — **Four contraction clauses minted (P9+P10 built,
+  operator GO), all fire-born from ONE run measured end to end:
+  beat-the-books canonical-market-identity — 9 rounds / 13
+  cycles / 9 sessions, zero units landed, no round zero-delta,
+  findings concentrating on each newest cycle's own repairs
+  (run's own F143; budget self-amended at D89).** The mints,
+  each widening its concept's existing home (single-home scans
+  recorded: budget → header passage; decomposition → stop-rule
+  self-check; trend → repeat-round sentence; reopen → the [BIT]
+  sentence): (1) BUDGET OWNERSHIP — desk spends, never raises;
+  mid-run amendment is the operator's (kills the D89 move). (2)
+  EARLY HEAD ROUND — multi-unit heads get their first round
+  early, scoped to head+decomposition, same round machinery;
+  single-unit heads keep the single-round shape (R6–R8 found at
+  cycle 13 = the incident). (3) TREND GRADING + NARROWING
+  ROUTE — the repeat-round trend cite now GRADES
+  contracting/non-contracting; non-contracting routes to
+  re-scoping the head to the smallest shippable unit via the
+  existing R-amendment + EXPORTED exit machinery (successor runs
+  seeded from the record) — deliberately NO new Status value, no
+  tool change, no new verdict name. (4) SCOPED REOPENING — [BIT]
+  reopens cited entries + dependents via the existing
+  invalidation machinery; settled entries are never restated
+  wholesale; re-lock brief names the delta as focus, zero-delta
+  stays whole-design. DEVIATION from P9's widened entry,
+  recorded: strict delta-SCOPED re-attacks (mechanism (f), the
+  attack-question half) were DROPPED — scoping the attacker's
+  question would hollow [ZERO-DELTA]'s meaning or force a new
+  A-line scope field (grammar+tool change); the contraction is
+  carried by (2)(3)(4) with the attacker's question staying
+  whole-design, cheap because post-narrowing objects are small.
+  Closure-predicate interaction checked: an early round's clean
+  [ZERO-DELTA] cannot open implementation prematurely — the
+  closure predicate requires no F/D/R line after the last
+  A-line, and design work appends them. Validation criterion
+  (fire-rate review): the next multi-unit run's budget never
+  fires and its round series grades contracting; a run that
+  narrows via (3) is the clause firing, logged here. Release:
+  clauses committed now; pin moves at the next release batch
+  (with P6/E-O/E-P) behind the standing one-opus skill-edit
+  review over the batch diff. Consumer: the release seam; the
+  fire-rate review; the paused run's disposition session.

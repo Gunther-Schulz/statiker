@@ -106,6 +106,73 @@ it is not decision-complete.
   quoting/escaping grammar for the write-set field. Trigger: the
   first real unit needing a space-carrying or absolute path.
 
+- **PARKED 2026-08-16 — P9: the loop has no form-change route — a
+  bad trend at the re-entry seam forces nothing, so a
+  non-converging monolith burns rounds until budget-FAILED.**
+  Provenance (fire-born, one run measured end to end):
+  beat-the-books canonical-market-identity, 9 attack rounds / 13
+  cycles / 9 sessions, ZERO units landed, no round ever
+  zero-delta (A1–A9: 6,4,pair,4,6,10,9,7); findings concentrate
+  on the newest cycle's own repairs (A7's 2 HIGH on cycle 9's
+  work; 6 of A8's 9 on cycles 10–11; 4 of A9's 7 on cycle 12) —
+  the run's own F143 booked the form indictment, its D92
+  reproduced the same series shape in-session at hygiene scale,
+  and its D89 shows the budget arriving after run start and being
+  amended by the desk it binds to just above current spend. The
+  skill today: `trend` must be CITED at a repeat round, budget
+  exhaustion exits only to FAILED, and zero-delta binds the WHOLE
+  locked design — no lever prescribes changing the object's SIZE.
+  Missing design, named: (a) the trend predicate that triggers
+  the route (candidate: N consecutive BIT rounds with majority of
+  findings on the newest cycle's own text); (b) the route's body —
+  decompose at the seam, drive the smallest independently
+  shippable unit(s) to their own zero-delta and LAND them,
+  shrinking the attack object, instead of another same-form round
+  on the monolith; (c) whether per-unit zero-delta→implement is a
+  grammar change or a run-conduct clause. WIDENED 2026-08-16
+  (operator design conversation, direction concurred): the
+  governing principle is CONTRACTION — every lap must strictly
+  shrink the open surface, and the budget is then a mechanical
+  last-ditch fail-safe expected never to fire, NEVER the
+  convergence mechanism (operator-settled framing). Three
+  mechanisms carry it: (d) the FIRST attack round comes early and
+  cheap, on the requirement head + decomposition only, before
+  deep design — kills wrong-direction spend (evidence: R6–R8
+  found by the cycle-13 decomposition pass, a round-1-priced
+  catch paid at cycle 13); (e) per-unit landing as in (b) — a
+  shipped unit EXITS the design object; (f) scoped reopening:
+  findings reopen only the entries/units they cite, re-derivation
+  bounded to the reopened set, re-attacks delta-scoped to repairs
+  plus their dependency neighborhood, ONE whole-object round at
+  the final seam (the final-form lap rule, already
+  operator-settled). Note: the operator's proposed cadence
+  (cycles-to-target → attack → repair cycles → attack) is the
+  EXISTING structure — READY is the target; the run failed under
+  it, which is what locates the defect in contraction, not
+  cadence. Old-clippy comparison graded honestly: 2–4 cycles
+  because nothing pushed back; the lineage register carries the
+  cost. Trigger: the operator's disposition of the paused run
+  (the natural first exercise), or the next run whose trend
+  predicate fires.
+
+- **READY (small) 2026-08-16 — P10: the budget is spendable by the
+  desk, extendable only by the operator.** Provenance (fire-born):
+  beat-the-books D89 — the Budget clause's silence on amendment
+  let the desk grade its own bound as "derived text" and amend it
+  to just above current spend (15/10 against defaults 7/4), so
+  the bound never bound anything. Design settled: one prose
+  clause in SKILL.md's Budget passage — the declared bound is
+  operator-owned once recorded; the desk SPENDS it and never
+  raises it; continuing past exhaustion is an operator decision
+  (attended: the forced prompt; unattended: the FAILED close
+  stands — a desk-side amendment is the drift the clause names,
+  not a route). No new verdict name, no tool change.
+  Write-boundary: SKILL.md, at the release seam, wording under
+  skill-craft with the standing one-opus skill-edit review.
+  Done-criterion/verifier: the clause quoted in the release diff;
+  the next run's header carries its budget line at run start.
+  Trigger: next release batch (rides with P6/E-O/E-P).
+
 ## Done
 
 - 2026-08-15 — **P1/P2/E-N shipped (Lane D, sonnet): 3e78dba (E-N
