@@ -5173,3 +5173,40 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   (the diff is an unpriced check). Consumer: the release seam
   (rides 0.2.71); the next resume, which is the validation
   criterion's firing moment.
+
+- 2026-08-16 — **Release review round 1 (opus, fresh context, diff
+  0.2.65→0.2.72 + full text): BIT — 8 HIGH (2 blockers), 8
+  MODERATE, 4 MINOR — every finding repaired or dispositioned
+  same-session (8c138bb prose set, 45c7e5d H5+H6, 12439c2
+  H7+M6-tool; 0.2.73).** The blockers were both in the desk's own
+  0.2.68 early-round clause: H1 the head round's clean A-line
+  could satisfy the closure predicate (repair: `head-scope:`
+  A-line body + mandated post-A-line disposition D-line + closing
+  ZERO-DELTA defined as whole-design-round-only); H2 the head
+  round could never lock under LOCK_GATE_HOLDS with open-leg
+  PENDINGs (repair: a head round pins at an ordinary tracker
+  commit, is not a lock, asserts no tree claim). H3/H4 record
+  gate scoped to FORM holds + `pinned` added to the leg grading
+  set (the positional-pair blindness the skill itself documents).
+  H5/H6 SWEEP_EXEMPT: operator authority, bounds-verified,
+  close-enumerated; defang class tool-refused
+  (UNEXEMPTIBLE_CODES, red-first proven). H7 artifact species out
+  of the seal namespace (tool + not-a-prefix assertion,
+  red-first) — the leak was co-location with the seal and queue.
+  H8 trend grade re-grounded: body-read for class+locus, `trend`
+  arithmetic backstop only, locus decides mixed reads (closes the
+  undefined middle). M1–M8/m1–m4 repaired as committed; M6's
+  prose extension forced QUEUE_SPENT_RE's `— empty` alternative
+  in the same commit (route-sentence rule). The reviewer's
+  deliberate-disposition note (re-lock delta-focus vs the
+  steering bar): STANDS AS WRITTEN — the delta pointer is factual
+  state, the whole-design hedge is the binding half; recorded
+  here as the asked-for deliberate pass. Reviewer's full text:
+  session scratchpad (transient); the substance is this entry +
+  the three commit diffs. TREND NOTE (the convention's 5th
+  consecutive substance-yielding release review — 4 of the 8 HIGH
+  on clauses minted THIS session by this desk): the release
+  window keeps out-yielding its price; the re-review of the
+  repaired final form is the release's binding review, this
+  round's object having been replaced under it (final-form lap
+  rule). Consumer: the release seam; the trial close's grading.
