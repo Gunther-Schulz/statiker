@@ -45,6 +45,7 @@ Run: python3 tools/test_contract.py
 import ast
 import os
 import re
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -317,13 +318,12 @@ UNDRIVEN_REMAINDER = {
                              "produce extras (function-level red)",
     "UNIT_COMMITTED_EXTRAS": "same as the lock seam's extras: no git "
                              "state is known to produce them",
-    "GATE_UNREADABLE": "the record tool always emits its own verdict "
-                       "line by design, even for malformed input — "
-                       "reaching a missing or unparseable line needs "
-                       "breaking the subprocess itself, which the "
-                       "battery does not corrupt (function-level red "
-                       "instead)",
 }
+# E-P: GATE_UNREADABLE retired from the remainder above — driven by
+# run_battery's own substitute-record-tool rows (gate_unreadable_row),
+# since a normal record-tool subprocess never produces it (the
+# retired reason still holds for THAT path; the substitute path is
+# what makes the verdict reachable at all).
 
 TRACKER_REL = ".clippy/runs/t.md"
 # the `## ` heading is load-bearing from 0.2.49 (ES-1): the
@@ -800,6 +800,51 @@ def run_battery(git_script, record_script, root):
         rows.append({"tool": tool, "sub": sub, "argv": argv,
                      "verdicts": verdicts, "returncode": p.returncode,
                      "stdout": p.stdout, "stderr": p.stderr})
+
+    # E-P: GATE_UNREADABLE is real only when gate_consult's own
+    # subprocess path breaks — the record tool always emits a
+    # well-formed verdict line by design (this file's own
+    # UNDRIVEN_REMAINDER reason, now retired), so driving this route
+    # needs a SUBSTITUTE record-tool path: `_RECORD_SCRIPT`
+    # (statiker_git.py) resolves relative to the running git script's
+    # OWN directory, so a scratch copy of the git tool beside a
+    # stand-in statiker_record.py redirects it with no source change —
+    # one stand-in prints garbage (no verdict line), the other an
+    # unparseable verdict line; both drive lock-check's own sweep
+    # consult, the only gate_consult call site.
+    def gate_unreadable_row(name, stub_body):
+        d = root / name
+        d.mkdir()
+        shutil.copy(git_script, d / "statiker_git.py")
+        # statiker_git.py imports its sibling statiker_emit at
+        # _SCRIPTS_DIR too — omitted, the scratch copy dies
+        # ModuleNotFoundError before ever reaching gate_consult
+        shutil.copy(git_script.parent / "statiker_emit.py",
+                    d / "statiker_emit.py")
+        (d / "statiker_record.py").write_text(stub_body)
+        r = scratch_repo(f"{name}_repo")
+        argv = ["lock-check", "--tracker", TRACKER_REL]
+        p = subprocess.run(
+            [sys.executable, str(d / "statiker_git.py"), *argv],
+            cwd=str(r), env=env, capture_output=True, text=True, timeout=60)
+        verdicts = []
+        for line in split_lines(p.stdout):
+            m = VERDICT_LINE_RE.match(line)
+            if m:
+                verdicts.append(re.search(r'"verdict":\s*"([^"]+)"',
+                                          m.group(1)).group(1))
+        rows.append({"tool": "git", "sub": "lock-check", "argv": argv,
+                     "verdicts": verdicts, "returncode": p.returncode,
+                     "stdout": p.stdout, "stderr": p.stderr})
+
+    gate_unreadable_row(
+        "gu_garbage",
+        "#!/usr/bin/env python3\nprint('garbage, no verdict line here')\n")
+    gate_unreadable_row(
+        "gu_badjson",
+        "#!/usr/bin/env python3\n"
+        "print('STATIKER-RECORD VERDICT: {not valid json')\n")
+
     return rows
 
 
@@ -907,6 +952,23 @@ class TestRuntimeVerdictBattery(unittest.TestCase):
                          "TRACKER_UNREADABLE", "PIN_UNREADABLE",
                          "ARTIFACT_IN_REPO", "CLOSURE_RECORD_MALFORMED"):
             self.assertIn(expected, observed)
+
+    def test_gate_unreadable_drives_on_the_substitute_rows_only(self):
+        # E-P: both garbage-output and unparseable-JSON stand-ins
+        # must fire GATE_UNREADABLE; every OTHER row in the battery —
+        # every ordinary lock-check/lock-commit against the real
+        # record tool, "a healthy consult" — must not, including the
+        # r_gate row that already halts LOCK_GATE_HOLDS on a
+        # malformed tracker (a different, non-GATE_UNREADABLE defect)
+        firing = [r for r in self.rows if "GATE_UNREADABLE" in r["verdicts"]]
+        self.assertEqual(len(firing), 2, firing)
+        for r in firing:
+            self.assertEqual(r["tool"], "git")
+            self.assertEqual(r["sub"], "lock-check")
+        others = [r for r in self.rows if r not in firing]
+        self.assertTrue(others)  # instrument check: the control set is real
+        for r in others:
+            self.assertNotIn("GATE_UNREADABLE", r["verdicts"], r)
 
 
 class TestVerdictParity(unittest.TestCase):
