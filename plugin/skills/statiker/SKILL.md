@@ -325,16 +325,24 @@ operator: evidence and recommendation surfaced when found, the
 recorded recommendation advancing an unattended run (the [READY]
 prompt's pattern); one advanced unattended stays OPEN —
 re-surfaced at each operator prompt and at the run's close —
-until the operator answers. An ask on OPERATOR-AUTHORITY ground
-(an exemption grant, a bound raise) cannot advance on a
-recommendation — and stops nothing either: it is surfaced naming
-its GATE SCOPE — the entry or gate where it bites, and that the
-run continues — and every entry outside that scope proceeds in
-the same turn; still unanswered when its gate arrives, it is
-that gate's ordinary hold. The ask travels as a labeled decision
-line leading the report, never as a closing question — an
-awaiting-shaped ask ("may I…" at a report's end) converts a
-surfacing into a stop. Escalation is PROVENANCE-GATED:
+until the operator answers. An ask on OPERATOR-AUTHORITY ground —
+one only an operator line can satisfy: an exemption grant, a
+bound raise — cannot advance on a recommendation. It lands as an
+ordinary [PENDING] entry under its own id, its body naming the
+gate where it bites (gate names written defanged — the
+tag-literal rule), and it holds exactly what a live [PENDING]
+holds: work outside those gates continues, and the entry is what
+a resume read and the close find. The skill's mandated stops
+keep their own rules — budget exhaustion, preflight surfacing,
+an attended halt's clearing, the non-contracting prompt, the
+irreversible-unit hold; this class is none of them. Attended,
+the ask leads the next prompt as a labeled decision line;
+unattended it rides the close with the open reconciliations. An
+advance prompt's "y" answers loop advance only — a grant enters
+as the operator's line quoted in the clearing entry (`— basis:
+operator`), never inferred from an advance. An authority ask
+contests no text and skips the provenance trace. Escalation is
+PROVENANCE-GATED:
 before a question routes to the operator, trace the contested
 text to its origin. Operator words escalate as reconciliation;
 derived text — R-lines, inherited constraints, a run

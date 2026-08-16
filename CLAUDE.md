@@ -112,8 +112,12 @@
   before the pin moves when ANY of: (1) the cumulative unreviewed
   SKILL.md delta since the last reviewed state exceeds ~50
   changed lines; (2) the change touches machine-read semantics —
-  new token, grammar, predicate, or tool behavior (the
-  medium-tenet class); (3) operator call. Review form unchanged:
+  new token, grammar, predicate, or tool behavior, AND read
+  broadly: any clause that NAMES a record form, label, tag, or
+  gate is this class, whatever register it is written in (the
+  0.2.78 review's lesson, same day the split was settled: a
+  "conduct prose" clause drew 2 BLOCKING findings, both in the
+  record forms it implied); (3) operator call. Review form unchanged:
   brief carries the diff since the last REVIEWED state, the full
   skill text, and the question, never the author's reasoning;
   every finding gets a recorded disposition before release.

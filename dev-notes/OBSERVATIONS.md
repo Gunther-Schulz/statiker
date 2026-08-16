@@ -5663,3 +5663,38 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   exemption grant riding the restart relay. Consumer: the release
   record; the trial close's grading; fire-rate reviews (firing log
   starts here).
+
+- 2026-08-16 — **0.2.78 review dispositions (opus fresh-context,
+  4-part return, all findings executed against the record tool)
+  → repaired as 0.2.79.** Verdict: 2 BLOCKING, 6 SUBSTANTIVE, 2
+  WORDING — every finding ACCEPTED, the clause rebuilt in place.
+  Dispositions: B1 (no recording form; every available form broke
+  a rule) → the ask lands as an ordinary [PENDING] entry under its
+  own id, reusing the adoption path — no new tag minted; "stops
+  nothing" retracted for "holds exactly what a live [PENDING]
+  holds: work outside those gates continues". B2 (advance-prompt
+  "y" launders a grant past the authority guard) → "y" answers
+  loop advance only; a grant enters as the operator's line quoted
+  in the clearing entry. S1 (gate names are tag literals) →
+  defang duty named inline. S2 (attended register stated
+  unconditionally) → explicit attended/unattended split; the
+  unattended ask rides the close with the reconciliations. S3
+  ("stops nothing" vs the mandated stops) → mandated stops
+  excluded by name (exhaustion, preflight, halt clearing,
+  non-contracting prompt, irreversible-unit hold). S4 (class
+  boundary undefined, irreversible the dangerous member) → the
+  class test stated ("one only an operator line can satisfy") and
+  the irreversible-unit hold named out of scope. S5 (ask survives
+  no resume, misses the close) → cured by the [PENDING] form:
+  latest-line PENDINGs are what the sweep, resume read, and close
+  already find. S6 (provenance gate cannot sort the class) →
+  "contests no text, skips the provenance trace". W1/W2 ("turn",
+  "report", "entries proceed" — non-terms) → rewritten in the
+  skill's own vocabulary (next prompt, the close, work
+  continues). CONVENTION FEEDBACK, same day the checkpoint split
+  was settled: this change read as small conduct prose and drew
+  both BLOCKING findings in the record forms it IMPLIED —
+  criterion (2) clarified in CLAUDE.md: a clause naming a record
+  form, label, tag, or gate is medium-tenet class whatever its
+  register. Consumer: the release record; the trial close's
+  grading.
