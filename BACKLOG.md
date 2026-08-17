@@ -660,27 +660,41 @@ it is not decision-complete.
   pre-formulated §4 text. Park evidence unchanged: still no
   observed stall past a stated horizon.
 
-- **READY 2026-08-16 — P16: Stop-hook against improvised desk
-  turn-ends (the midturn-answer-check pattern aimed at statiker
-  desks).** Two incidents, two desks, same seam (b7 post-A1, cd
-  post-A2): report delivered, turn ended, desk work owed, no rule
-  behind the stop; prose under-binds at this seam (unattended
-  directive loaded both times). Design decided: a statiker-plugin
-  Stop hook that fires only in sessions whose cwd repo carries a
-  live statiker tracker (`.clippy/runs/*-statiker.md` with
-  `Status: in-progress`); predicate read from the record — Mode
-  unattended AND last A-line terminal (not [DISPATCHED] awaiting
-  return) AND the blocking set is not solely an operator-authority
-  [PENDING] — then the stop is blocked with a message naming the
-  owed work (cycle re-derivation, landing, close); all legitimate
-  waits (attended prompt, round in flight, authority-gated close)
-  pass. Guard-infrastructure work: build lane per routing (not the
-  fable desk inline). Verifier: red-first fixture battery — a
-  tracker in each state, hook fires on the two incident shapes,
-  silent on the four legitimate-wait shapes. Done: battery green
-  with both reds demonstrated, hook ships in plugin hooks config,
-  one live firing or one clean live pass logged. Write boundary:
-  statiker plugin `hooks/` + tools/ battery + plugin.json bump.
+- **RE-OPENED 2026-08-17 — P16: Stop-hook HELD OUT of 0.2.82 on
+  checkpoint-review findings (4 executed false-fire classes);
+  design INVERTED for the next build.** The 0.2.82 build (script
+  + 16-test battery, commits 6e1e668/80e4c47) stays in-tree as
+  groundwork, unregistered (hooks.json hold, lane C R11). Review
+  findings, all executed: (1) fires on any in-progress tracker in
+  the repo — but the skill MANUFACTURES permanently in-progress
+  trackers (version-mismatch abandons, release-during-run
+  abandons), so a week-old abandoned tracker blocks every
+  session's every turn-end; (2) fires on a dispatched discovery
+  leg ([PENDING] leg is a legitimate wait it doesn't model); (3)
+  fires on the budget stop-and-report minted in the same release
+  (mandated stops are invisible to it); (4) its hand-rolled parse
+  diverges from the record tool day-one (no head-region
+  exclusion, no supersession — the shared-coordinate class).
+  Redesign constraints, settled by the review: INVERT the fire
+  condition — fire only where a NAMED owed-work signal is
+  present, default silence; read the record tool's sweep verdict
+  instead of re-parsing (one coordinate); session-bind the
+  tracker (desk-written live marker, session id, or recency
+  bound — an abandoned tracker is silent); the authority
+  detection moves to the `authority:` opener class (see the
+  review's Q2 recommendation — one mechanism with P23) instead
+  of phrase search. Also owed: the multi-tracker fixture and the
+  ordinary many-historical-one-live fixture. Verifier: the
+  existing battery re-pointed at the inverted predicate, red
+  demonstrated on the four false-fire classes above (each a
+  fixture), silent on all of them post-fix, still firing on the
+  two incident shapes. Done: inverted hook registered, battery
+  green with the four new reds demonstrated, one live firing or
+  clean live pass logged. Write boundary: `plugin/hooks/**` +
+  tools/test_statiker_stop_hook.py + bump. Original design for
+  provenance: the midturn-answer-check pattern aimed at statiker
+  desks (b7 post-A1, cd post-A2 incidents; the superseded
+  original design is in this entry's git history).
 
 - **READY (small) 2026-08-16 — P15: repair text for settled-prose
   form-debt lint names the exemption route, not an in-place edit.**
