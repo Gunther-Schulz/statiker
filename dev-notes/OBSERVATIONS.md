@@ -6545,3 +6545,155 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   tools/test_statiker_record.py + tools/test_contract.py (deviation,
   same class as P30/P25/P20). Consumer: the release record; the
   checkpoint opus review; BACKLOG P19's closure.
+
+- 2026-08-17 — **P21 shipped: intake scope gate — an architecture-scale
+  item never seeds an implementation run whole (fire-born, three
+  incidents: run 1 spent nine sessions on the full
+  canonical-market-identity item for zero landed units, narrowing
+  taken only at close on operator prompt; the WIDENING incident — run
+  1's five find-time-composed exports named a live lead, the upsert
+  self-healing property, that may delete one of them, structure
+  written before the evidence that shapes it; the THIRD incident —
+  run 2's bound-firing cause report, F100, named item scope as the
+  run's root pathology: a complete persistence enumeration across a
+  60-table database demanded for a one-deletion change, the count
+  walking 7→9→11→12-plus across five rounds).** Design (prose,
+  judgment-shaped — no mechanized predicate, per the entry's own
+  scoping): at requirement-head composition the desk gauges the
+  item's write-set span, BIDIRECTIONAL and entry-boundary-skeptical
+  — find-time entry boundaries are claims the seed RE-DERIVES, never
+  adopted unit boundaries; intake re-derives the unit set from the
+  entries' write boundaries and the current world, slicing an
+  oversized entry AND batching under-sized siblings whose write-sets
+  overlap (the corpus's mechanical join over write-boundary slots is
+  the instrument, cited rather than restated). A migration-bearing,
+  multi-consumer, or architecture-wide item seeds as a DECOMPOSITION
+  run whose done-criterion is exported unit-sized backlog entries;
+  implementation runs seed per unit, never the item whole. Placed in
+  SKILL.md's requirement-head derivation passage (The record),
+  immediately before the existing "(hypothesis) The head derives
+  from INTENT..." sentence — the gate fires at the SAME seam the
+  head itself gets composed, before any cycle spends; explicitly
+  distinguished from P12 (the in-run early decomposition round,
+  The attack's narrowing route), which fires mid-run rather than at
+  seed. Verifier: prose clause, no battery — the enumerated tenet
+  check below plus the checkpoint review class this change draws;
+  behavioral proof is the FIRST LIVE FIRING, to be recorded here
+  when it lands (the entry's own deferred-verification form). Full
+  suite unaffected (`python3 -m pytest tools/ -q`, 452 passed) — no
+  tool or verdict-name change, prose only. Tenet check, PLAN.md's
+  base-reference list: (1) investigation-led design — n/a; (2)
+  loop-until-still — n/a; (3) sufficiency — n/a; (4) anti-skim —
+  pass: directly answers three incidents of full-loop price paid on
+  architecture-scale scope; (5) five forcing points — pass: adds a
+  gauge AT the requirement-head forcing point, weakens none; (6)
+  single-home/precipitation — pass: SKILL.md prose only, no second
+  text layer; (7) hypothesis-patch class — n/a: fire-born, three
+  named incidents; (8) ad-hoc-decision failure mode — pass: the gate
+  moves a scoping decision to SEED time, before implementation
+  detail exists, the opposite of ad-hoc; (9) autonomy north star —
+  pass: an unattended run stops seeding architecture-scale work it
+  cannot land, no new human seat — the gauge is desk judgment, not
+  an operator question; (10) economics — pass: the gauge is a
+  cheap intake-time read of the entries' own write boundaries
+  (the mechanical join, already available), never a new priced
+  round; (11) convergence circuit — pass with a named limit: this is
+  the CLASS of rule the tenet's own gradeable-form widening flags as
+  hardest to mechanize — the entry itself grades it judgment-shaped
+  and mints no predicate; the surfacing point (the head) is what
+  keeps it from riding as unaccountable desk prose; (12) medium
+  tenet — pass: correctly kept as prose — the WIDTH of an item's
+  write-set span against migration/multi-consumer/architecture-wide
+  criteria is not machine-read semantics, it is professional
+  judgment the medium tenet reserves for prose; (13) gradeable-form —
+  PARTIAL, named: the widening's re-derivation (slicing oversized
+  entries, batching undersized ones via the write-boundary join) IS
+  mechanically groundable in principle — flagged as a candidate
+  future mint if find-time entry-boundary drift recurs, not built
+  here since the entry itself specifies no predicate. Version bump
+  is the dispatcher's at release. Write boundary: SKILL.md
+  intake/head passage + this OBSERVATIONS entry. Consumer: the
+  release record; the checkpoint opus review; the first live firing
+  (recorded here when it lands); BACKLOG P21's closure.
+
+- 2026-08-17 — **P24 shipped: instrument-seal widened — the seal
+  cannot cover an omission whose subject has no entry to seal
+  (desk-derived, run-2 A4/A5/A6, three consecutive seal-comparison
+  data points).** Incident: F76 was the FOURTH instrument in one run
+  to declare the persisted population of the corrected quantity
+  complete and be wrong (two stores never enumerated, 3.9M and 2.29M
+  rows), and no seal caught any of the four — the seal grades
+  entries that EXIST, and an enumeration gap has no entry; the
+  desk's own reading (operator-confirmed, the serialized-discovery
+  challenge): the four misses were not four discoveries but ONE weak
+  basis (search/recall) re-asserted four times, each repair
+  answering the found INSTANCE and re-claiming completeness on the
+  same KIND of basis — the class-repair (instrument-derived
+  enumeration) ended the series in one cycle when it finally ran
+  (cycle 8: nine claimed by search → eleven established by
+  instrument). Design, GRADED on the A5 datum (instrument-seal
+  comparison scored 4 of 9, the run's best) and confirmed by a THIRD
+  comparison (A6, the same axis winning twice running over guessing
+  the instance): "a seal over CONCLUSIONS cannot reach an omission,
+  a seal over INSTRUMENTS can" is the mint's structural sentence,
+  the AXIS. A successor's seal carries, per instrument touching a
+  completeness or population claim: (i) a per-instrument REACH
+  statement (what it structurally CAN return); (ii) a DEFEAT-MODE
+  enumeration (what would return the same output as a true negative
+  — F95's own defeat mode: a zero-row table reads exactly like a
+  column carrying nothing); (iii) the recorded IRREDUCIBLE BLIND SET
+  (what no available instrument reaches, named rather than silently
+  absent); (iv) CENSUS-IMMUNE members dispositioned by reading their
+  WRITER — the write path, never content absence (the desk's own
+  F95 phrasing: an empty store's content is silent, its writer is
+  not — the general cure for the non-event class in population
+  work). The mint's form sentence: a successor seals what each
+  instrument cannot return, what each fixture cannot express, and
+  which repairs shipped unexercised. SCOPED per the brief: the
+  entry's earlier design sketch also carried a "repair-side twin"
+  (a refuted claim re-enters the design only on a basis of a
+  DIFFERENT KIND than the refuted one) — the brief's own instruction
+  names only "the instrument-seal part with slots (i)-(iv) and the
+  axis sentence" as this mint's scope, and the entry's own
+  "Completed form for the mint" section (the A5-graded, final text)
+  elaborates only the seal/instrument axis, never restating the
+  repair-side twin — read as superseded by the graded form, not
+  silently dropped; flagged here as the naming basis for the
+  narrower build. Placed in SKILL.md's Attack section, immediately
+  after the existing "A seal is calibration, never evidence" sentence
+  — the seal-and-comparison machinery's own home. Verifier: prose/form
+  clause, no battery — the enumerated tenet check below plus the
+  checkpoint review class; behavioral proof is the NEXT RUN's seal
+  carrying the part, graded at that run's rounds, recorded here when
+  it lands. Full suite unaffected (`python3 -m pytest tools/ -q`,
+  452 passed) — no tool or verdict-name change, prose only. Tenet
+  check, PLAN.md's base-reference list: (1) investigation-led design
+  — n/a; (2) loop-until-still — n/a; (3) sufficiency — n/a; (4)
+  anti-skim — pass: directly answers a FOUR-TIME-REPEATED miss no
+  prior seal caught, the same basis re-asserted each time; (5) five
+  forcing points — pass: strengthens the attack's own seal-comparison
+  instrument, weakens nothing; (6) single-home/precipitation — pass:
+  SKILL.md prose only; (7) hypothesis-patch class — n/a: fire-born,
+  F76/F95 plus three consecutive seal-comparison data points (A4,
+  A5, A6) as provenance; (8) ad-hoc-decision failure mode — pass: no
+  design decision moves into implementation, the seal is a
+  PRE-ROUND prediction (calibration, never evidence, unchanged by
+  this widening); (9) autonomy north star — pass: an unattended run
+  catches its own instruments' shared blind spot without a new
+  operator seat; (10) economics — pass: the seal is written once per
+  round regardless, this widens its CONTENT not its cadence — no new
+  priced round; (11) convergence circuit — pass: the seal enters the
+  tracker at close (The attack) and is comparable against bites,
+  never desk-remembered prose that evaporates between rounds; (12)
+  medium tenet — pass: correctly kept as prose — WHAT an instrument
+  can structurally return is a per-instrument judgment call the desk
+  makes fresh each seal, not a fixed machine-read predicate; the
+  form's four SLOTS are the gradeable scaffold around that judgment;
+  (13) gradeable-form — pass with the same scaffold note as (12):
+  each of the four slots is a NAMED, checkable presence requirement
+  (a seal missing slot (iii), say, is a legible omission), even
+  though the slot's CONTENT stays judgment. Version bump is the
+  dispatcher's at release. Write boundary: SKILL.md seal passage +
+  this OBSERVATIONS entry (F76/F95 incidents, A5/A6 comparisons).
+  Consumer: the release record; the checkpoint opus review; the next
+  run's seal (recorded here when it lands); BACKLOG P24's closure.

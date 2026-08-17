@@ -332,6 +332,31 @@ and the derived requirements, as long as it needs to be, numbered
 `R<n>.` — never dash-led `- R<n>`, the record grammar's amendment
 form; verify
 reads this head plus its R-lines, not the conversation.
+At requirement-head composition the desk gauges the item's
+WRITE-SET SPAN, bidirectional and entry-boundary-skeptical (P21:
+find-time entry boundaries are claims the seed RE-DERIVES, never
+adopted unit boundaries) — intake re-derives the unit set from the
+entries' write boundaries and the current world, slicing an
+oversized entry AND batching under-sized siblings whose write-sets
+overlap (the corpus's mechanical join over write-boundary slots is
+the instrument). An item that is migration-bearing, multi-consumer,
+or architecture-wide seeds as a DECOMPOSITION run whose
+done-criterion is exported unit-sized backlog entries —
+implementation runs seed per unit, never the architecture-scale item
+whole. Three incidents: run 1 spent nine sessions on the full
+canonical-market-identity item for zero landed units, the narrowing
+route taken only at close on operator prompt; its own five
+find-time-composed exports named a live lead (the upsert
+self-healing property) that may delete one of them — structure
+written before the evidence that shapes it, the reason the gauge
+re-derives rather than adopts; run 2's bound-firing cause report
+named item scope as the run's root pathology — a complete
+persistence enumeration across a 60-table database demanded for a
+one-deletion change, the count walking 7→9→11→12-plus across five
+rounds, each closure attacked on the ground the requirement's width
+created. Distinct from the in-run early decomposition round (The
+attack's narrowing route, P12): this gate fires AT SEED, before any
+cycle spends.
 (hypothesis) The head derives from INTENT + the PROFESSIONAL
 STANDARD, never INTENT alone: the customer is owed
 professional-grade results they never asked for, so an
@@ -983,6 +1008,26 @@ attackers read the repo, so seals and comparisons enter the
 tracker only in the close, where no further round follows. A
 seal is calibration, never evidence: it steers no verdict, and a
 missing or late one voids its comparison, not the round.
+Instrument-seal, widened (P24: the seal grades entries that EXIST,
+and an enumeration gap has no entry to seal — F76 was the fourth
+instrument in one run to declare a persisted population complete
+and be wrong, and no seal caught any of the four): a seal over
+CONCLUSIONS cannot reach an omission, a seal over INSTRUMENTS
+can — the AXIS three consecutive seal comparisons converged on,
+naming it beating guessing the instance twice running. A
+successor's seal therefore carries, per instrument touching a
+completeness or population claim: (i) a per-instrument REACH
+statement — what it structurally CAN return; (ii) a DEFEAT-MODE
+enumeration — what would return the same output as a true negative
+(F95's own defeat mode: a zero-row table reads exactly like a
+column carrying nothing); (iii) the recorded IRREDUCIBLE BLIND
+SET — what no available instrument reaches, named rather than
+silently absent; (iv) CENSUS-IMMUNE members dispositioned by
+reading their WRITER — the write path, never content absence (an
+empty store's content is silent; its writer is not). The mint's
+form sentence: a successor seals what each instrument cannot
+return, what each fixture cannot express, and which repairs shipped
+unexercised.
 Attack tier: a ROLE, resolved in order — `clippy.config/models`
 (`attack:` class) when present, else the first entry of the
 skill's shipped `defaults/models` (under this skill's base
