@@ -7006,3 +7006,35 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   read-start-sha sentence) + this OBSERVATIONS entry. Consumer: the
   release record; any verify-leg dispatch composing the read-start
   record line; a resuming desk locating it.
+
+- 2026-08-17 — **R10 shipped: the reviewer's by-hand RULE_MINT_
+  VERSION-coverage check GRADUATED into `tools/test_contract.py`
+  (checkpoint review, restated-mint-table finding).** Incident: the
+  0.2.82 checkpoint review found by hand that every violation `code`
+  the record tool can emit (from `viol()` calls, the hold_violations/
+  write_set_violations return-lists, and apply_supersession's inline
+  `{"code": ...}` complaint dicts) carried a `RULE_MINT_VERSION`
+  entry, and every `FORM_CODES_MINT_GATED` member was among them —
+  clean TODAY, but a manual check run once ages instantly: a future
+  code minted with no version entry would either silently never
+  RETRO-net (a FORM code) or ride the tool unrecorded in the
+  version-attribution table (Fixing's manual-investigation-is-
+  unfinished-until-mechanized rule). Fix: `all_emitted_violation_
+  codes()`, an AST-derived extractor mirroring the existing
+  `lint_stage_codes()` discipline (never restated — a restated list
+  cannot go stale loudly), plus `TestP5RuleMintVersionCoverage`
+  asserting emitted-codes-minus-RULE_MINT_VERSION is empty and
+  FORM_CODES_MINT_GATED-minus-RULE_MINT_VERSION is empty. Proof the
+  instrument is live (the corpus's red-on-a-real-defect rule for a
+  freshly built check): planted a removed `"hold-form":
+  "0.2.43"` entry in a scratch copy of the tool and ran the new test
+  against it — fired red naming exactly `['hold-form']`; restored,
+  green again against the real tool. Both assertions currently
+  green (26 emitted codes, 26 RULE_MINT_VERSION entries, set-exact —
+  no drift to report today), the check's value being what it now
+  catches GOING FORWARD. Full suite: `python3 -m pytest tools/ -q`,
+  468 passed. Version bump is the dispatcher's at release. Write
+  boundary: `tools/test_contract.py` (all_emitted_violation_codes,
+  TestP5RuleMintVersionCoverage) + this OBSERVATIONS entry.
+  Consumer: the release record; every future violation-code mint in
+  `statiker_record.py`.

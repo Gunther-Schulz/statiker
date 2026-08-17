@@ -1112,6 +1112,87 @@ class TestVerdictParity(unittest.TestCase):
         self.assertIn("HALT_STATE", skill_named_verdicts())
 
 
+def all_emitted_violation_codes(source_text):
+    """Every violation `code` string the record tool's parser can
+    produce — from `viol(code, ...)` calls, `return [...]` code lists
+    (hold_violations/write_set_violations), and inline
+    `{"code": ...}` dict literals (apply_supersession's own
+    complaints: repair-tag-change, repair-scope-change,
+    multi-corrects-token, corrects-nothing). Derived via AST rather
+    than restated (the same discipline as `lint_stage_codes` above),
+    so a code minted anywhere in the file and left out of
+    RULE_MINT_VERSION fails loudly instead of riding either
+    silently-forgiven-forever (a FORM code with no mint version never
+    retro-nets) or silently unrecorded."""
+    tree = ast.parse(source_text)
+    codes = set()
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Call):
+            name = _call_name(node)
+            if name == "viol" and node.args and \
+                    isinstance(node.args[0], ast.Constant) and \
+                    isinstance(node.args[0].value, str):
+                codes.add(node.args[0].value)
+        elif isinstance(node, ast.Return) and isinstance(node.value, ast.List):
+            for elt in node.value.elts:
+                if isinstance(elt, ast.Constant) and \
+                        isinstance(elt.value, str):
+                    codes.add(elt.value)
+        elif isinstance(node, ast.Dict):
+            for k, v in zip(node.keys, node.values):
+                if isinstance(k, ast.Constant) and k.value == "code" and \
+                        isinstance(v, ast.Constant) and \
+                        isinstance(v.value, str):
+                    codes.add(v.value)
+    return codes
+
+
+class TestP5RuleMintVersionCoverage(unittest.TestCase):
+    """R10 (checkpoint review 2026-08-17): the reviewer's by-hand
+    derivation check, graduated — every violation code the record
+    tool can emit carries a RULE_MINT_VERSION entry, and every
+    FORM_CODES_MINT_GATED member is among them, so a new code minted
+    without its entry ages loudly (this test fails) instead of either
+    over-forgiving (a FORM code with no mint version never grades
+    RETRO, so P5's epoch-scoped sweep silently never applies to it)
+    or riding the tool unrecorded in the version-attribution table."""
+
+    @classmethod
+    def setUpClass(cls):
+        sys.path.insert(0, str(SCRIPTS[1].parent))
+        import statiker_record
+        cls.record = statiker_record
+
+    def test_every_emitted_code_carries_a_mint_version(self):
+        emitted = all_emitted_violation_codes(
+            SCRIPTS[1].read_text(encoding="utf-8"))
+        missing = sorted(emitted - set(self.record.RULE_MINT_VERSION))
+        self.assertEqual(
+            missing, [],
+            f"violation code(s) the tool can emit with no "
+            f"RULE_MINT_VERSION entry: {missing}")
+
+    def test_every_form_code_carries_a_mint_version(self):
+        missing = sorted(self.record.FORM_CODES_MINT_GATED -
+                         set(self.record.RULE_MINT_VERSION))
+        self.assertEqual(
+            missing, [],
+            f"FORM_CODES_MINT_GATED member(s) with no RULE_MINT_VERSION "
+            f"entry — retro-netting silently never applies to them: "
+            f"{missing}")
+
+    def test_instrument_is_live(self):
+        # instrument check on the pair: a code the derivation really
+        # carries is present, and a sentinel it never emitted is
+        # absent — a set derived from neither would satisfy the
+        # coverage assertions whatever the tool offers
+        emitted = all_emitted_violation_codes(
+            SCRIPTS[1].read_text(encoding="utf-8"))
+        self.assertIn("hold-form", emitted)
+        self.assertIn("multi-corrects-token", emitted)
+        self.assertNotIn("__no_such_code__", emitted)
+
+
 class TestRepairFormReachability(unittest.TestCase):
     """E-M (BACKLOG; dev-notes/OBSERVATIONS.md 271a6bf): a
     REPAIR_FORMS entry that prints the `corrects line {n}` token
