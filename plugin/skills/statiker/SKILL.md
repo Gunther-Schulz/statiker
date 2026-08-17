@@ -269,9 +269,13 @@ defaults 7 / 4 / 3, declared at run start where a successor reads
 it (an unattended loop without a declared bound terminates on
 context death, the one ending that produces no readable verdict).
 The line takes an optional trailing `/ tripwire <n>` field — the
-zero-landed tripwire's own arming carrier, written at seed (or by an
-operator amendment F-line for a live run); a Budget line with no
-`tripwire` field leaves the breaker unarmed (below).
+zero-landed tripwire's own arming carrier, written at seed; arming
+a LIVE run means editing the Budget header line in place (header
+fields are mutable state, not entries — the tool reads only the
+first `Budget:` line, so an amendment F-line records the operator's
+authority but never arms), or passing `--threshold` at the seam. A
+Budget line with no `tripwire` field leaves the breaker unarmed
+(below).
 Exhaustion never continues silently: attended it forces the
 operator prompt; unattended, the cap is a SAFETY ESCAPE only (P19 —
 every cap firing to date, across two runs, was operator-overridden:
@@ -1188,8 +1192,8 @@ seam (F143: the prose held IN FORCE while UNAPPLIED — A8's four
 record/instrument-class findings sustained a ninth round this
 clause forbids): before a design's next round dispatches,
 `sustain --tracker <path>` re-derives the PRIOR round's finding
-classes from the record itself, independent of the desk's own
-classification of the findings — SUSTAIN_OK when at least one
+classes from each finding's own scope opener, independent of the
+round's A-line summary — SUSTAIN_OK when at least one
 finding is design-substance (never `record:`-scoped),
 SUSTAIN_DENIED when every finding is record/instrument-class,
 SUSTAIN_NOT_APPLICABLE outside a [BIT] round. `sustain` reads only
@@ -1201,8 +1205,7 @@ dispatched over SUSTAIN_DENIED is exactly the class this gate
 exists to catch. The same round-open seam also runs
 `tripwire --tracker <path>` (The record, Budget) beside `sustain` —
 its verdict quoted the same way; an armed TRIPWIRE_FIRES routes to
-the 0.68 NARROWING route (below) exactly as the budget check's own
-tripwire call does (The record), never blocking round-open on its
+the 0.68 NARROWING route (below), never blocking round-open on its
 own tag, and TRIPWIRE_SILENT with reason "unarmed" is silently
 informational, never a hold — the breaker fires only where the
 header names its threshold.

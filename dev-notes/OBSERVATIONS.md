@@ -7073,3 +7073,30 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   BACKLOG P16's re-opened redesign (the un-hold is P16's own done
   criterion); the plugin release pipeline (no Stop hook ships in
   0.2.82).
+
+## 2026-08-17 — 0.2.82 re-review dispositions (fresh-opus discharge review, 2 cycles total)
+
+Re-review over the 11-repair lane (executed fixtures, pre-repair
+tools reconstructed per commit): 10/12 findings DISCHARGED with
+red-first arms (R1 deadlock reproduced old/fixed new; R8 both
+directions; R10 planted-removal + planted-code both red), 2 PARTIAL
+— in both the TOOL half was correct and a repair-added SKILL.md
+SENTENCE was false. Sentence repairs applied at the meta desk on
+the reviewer's own prescribed phrasings (this commit): N1 the
+tripwire live-arming path (F-line claim removed — the tool reads
+only the first Budget: line; in-place header edit or --threshold
+named as the working paths), N2 sustain independence re-worded
+(independent of the A-line SUMMARY, dependent on each finding's
+scope opener — the desk-classification claim was false in the
+executed discriminating pair), plus the phantom "budget check" seam
+name deleted (appeared exactly once, in its own new sentence).
+Non-blocking residue booked as P31 (post-release polish). Loader
+question answered by execution (claude plugin validate proven live
+on three planted defects; _hold-beside-hooks passes; wild
+corroboration: 6/71 installed hooks.json carry top-level extras).
+Class note for the fire-rate review: BOTH partial findings are the
+label-over-body class at the sentence grain — prose describing a
+capability the tool structurally lacks — caught only by executing
+the prose's claim against the tool; the checkpoint rule's
+"clauses naming record forms are machine-read semantics whatever
+their register" is re-confirmed at n+2.

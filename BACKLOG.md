@@ -660,6 +660,38 @@ it is not decision-complete.
   pre-formulated §4 text. Park evidence unchanged: still no
   observed stall past a stated horizon.
 
+- **READY (small) 2026-08-17 — P31: post-release polish batch
+  from the 0.2.82 re-review (all fixes reviewer-prescribed,
+  none release-blocking).** Design: decided per item. (1)
+  `filter`'s staleness field emits the raw `--sha` beside a
+  resolved newest_commit (statiker_record.py:2280-2281) — an
+  abbreviated sha reads as a mismatch-that-is-not-one; resolve
+  once via `rev-parse --verify <sha>^{commit}` and emit the
+  resolved value (mirror of the R8 fix; the reviewer's 7a sweep
+  found exactly this one further site, positive control shown).
+  (2) R10 harvester narrowing: the AST branch collects ANY
+  returned string-list; narrow to the two code-returning
+  functions so a future unrelated `return ["a","b"]` cannot
+  false-fire the coverage assertion. (3) leavings prose: the
+  void sentence claims unconditionality but the void is
+  post-closure-only — an em-dash disposition BEFORE the closing
+  A-line passes; qualify the sentence (off the sanctioned path,
+  prose-only). (4) one-line pointer from the re-lock passage
+  (~:1088) to P24's clause (b) (~:1224) — the clause targets
+  re-lock momentum but sits 135 lines off the reader's path.
+  (5) `tripwire --threshold` usage guard: reject < 1 (zero arms
+  a fires-always breaker; pre-existing, easier to reach now the
+  arg is optional). (6) trim cmd_sustain docstring's over-claim
+  ("a new round opens only if" → "the verdict reads SUSTAIN_OK
+  only if" — the tool cannot stop a dispatch). Verifier:
+  battery cases for (1) and (5), red-first per the standard
+  arrangement; (2) keeps R10's planted-defect pair green; (3),
+  (4), (6) prose/docstring with the suite green. Done: all six
+  landed, suite green, rides the NEXT version bump (never its
+  own release). Write boundary: statiker_record.py +
+  tools/test_statiker_record.py + tools/test_contract.py +
+  SKILL.md (items 3-4) + OBSERVATIONS + bump rider.
+
 - **RE-OPENED 2026-08-17 — P16: Stop-hook HELD OUT of 0.2.82 on
   checkpoint-review findings (4 executed false-fire classes);
   design INVERTED for the next build.** The 0.2.82 build (script
