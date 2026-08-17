@@ -437,7 +437,11 @@ it is not decision-complete.
   instrument-seal part carries (i) per-instrument reach
   statement, (ii) DEFEAT-MODE enumeration (what would return
   the same output as a true negative), (iii) the recorded
-  irreducible blind set. Verifier: the mint's enumerated tenet
+  irreducible blind set, (iv) census-immune members
+  dispositioned by reading their WRITER (the write path),
+  never by content absence — the desk's own F95 phrasing, and
+  the general cure for the non-event class in population work
+  (an empty store's content is silent; its writer is not). Verifier: the mint's enumerated tenet
   check plus the checkpoint review class the change draws;
   behavioral proof is the next run's seal carrying the part,
   graded at that run's rounds (prose/form clause — no battery).
