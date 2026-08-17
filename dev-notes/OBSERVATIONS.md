@@ -6335,3 +6335,98 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   tools/test_statiker_record.py + tools/test_contract.py (deviation,
   same class as P30/P25). Consumer: the release record; the
   checkpoint opus review; BACKLOG P20's closure.
+
+- 2026-08-17 — **P27 shipped: round sustain reads design CONSEQUENCE,
+  not finding PRESENCE — completes P20 (fire-born, incident: run-2
+  A6/F118 — a round BIT with five findings, none above MODERATE, and
+  its full disposition set changed NO design entry (a family account
+  corrected in the SAFE direction, an exclusion rationale repaired,
+  an enumeration extended, a metric sentence bounded) while the
+  unit's code went unfaulted a sixth time and execution-verified a
+  third; the presence-reading gate returned CLOSURE_ABSENT over that
+  state with all bounds spent, forcing an operator deviation (route
+  2, F118) to ship a thrice-verified unit).** Design: `closure`'s own
+  CLOSURE_ABSENT predicate widens — the gate is not open only when
+  the last A-line is NEITHER [ZERO-DELTA] NOR a [BIT] whose
+  disposition set amends no design entry: a terminal [BIT] round is
+  now ALSO closing-eligible when no D-class entry lands after its
+  A-line (`design_amending`, a new field on the verdict, empty when
+  satisfied); one design-amending disposition — any D-class line
+  after the [BIT] A-line — keeps it genuinely SHUT (the
+  over-correction case). This is a BACKSTOP independent of what the
+  desk labeled the round: it re-derives from what actually landed in
+  the record after the round, not from the A-line's own tag or the
+  findings' own count/severity — self-serving-proof, per the entry's
+  own framing. Completes P20: that gate reads FINDING CLASS at
+  round-OPEN (should a new round dispatch); this one reads
+  DISPOSITION CONSEQUENCE at CLOSURE (is the design done) — two
+  different seams, the same underlying signal, matching the entry's
+  "widens P20 to its completion" framing. DEVIATION (naming
+  ambiguity, per the corpus's own caution): the entry's design sketch
+  says "a changed D/U line" — read here as any D-class entry (the
+  record's only class representing DECISIONS, i.e. the locked
+  design); "U" is not a separate entry class in this grammar
+  (unit-scoped decisions, e.g. `unit U<k> gap:` lines, are already
+  D-class, so they're covered by the same check) — flagged rather
+  than inventing a second classification axis. Verifier: red-first
+  battery (`TestP27DesignConsequenceClosure`,
+  tools/test_statiker_record.py) — five cases: a terminal [BIT] round
+  with no design-amending disposition reads CLOSURE_LIVE, one with a
+  design-amending D-line stays CLOSURE_ABSENT (naming the amending
+  id), a round STILL [DISPATCHED] (no A-line resolution at all —
+  untouched by P27, the pre-existing branch) stays ABSENT; a
+  ZERO-DELTA round is unaffected;
+  a [BIT]-satisfied round is dispatchable for a `--unit` query too.
+  Red demonstrated by reverting to the pre-P27 predicate (any
+  non-ZERO-DELTA terminal A-line is unconditionally ABSENT) — three
+  of five cases failed (the two design-consequence cases plus the
+  `--unit` case), reverted change restored, battery green (5/5).
+  REGRESSION REPAIR (two pre-existing tests + one contract fixture,
+  all the same shape — a bare [BIT] round with no findings and no
+  D-line change, previously asserting CLOSURE_ABSENT, now correctly
+  SATISFIED under the new rule): `TestClosure.test_no_zero_delta_is_
+  absent` and `TestAttack8Findings.test_closure_malformed_disarmed_
+  by_corrects_line_token` updated to either add a trailing
+  design-amending D-line (preserving the original "still open"
+  intent) or accept the new correct verdict (CLOSURE_LIVE, with an
+  updated comment); `tools/test_contract.py`'s `absent.md` fixture
+  gained the same trailing D-line, restoring CLOSURE_ABSENT battery
+  coverage the contract's own `test_every_emitted_verdict_is_driven_
+  or_frozen` caught going undriven. Full suite green after all three
+  repairs (`python3 -m pytest tools/ -q`, 446 passed) — no new
+  verdict name minted (CLOSURE_ABSENT/CLOSURE_LIVE already existed),
+  so no additional battery rows were needed beyond the fixture
+  repair. Machine-read semantics → checkpoint opus review owed at
+  mint, GRADED AGAINST P24's seal at the same mint window per the
+  entry's own interaction note (P24 not yet built in this batch;
+  flagged for the dispatcher's grading pass once it lands). Tenet
+  check, PLAN.md's base-reference list: (1) investigation-led design
+  — n/a; (2) loop-until-still — n/a; (3) sufficiency — n/a; (4)
+  anti-skim — pass: directly answers F118, an operator forced into a
+  manual deviation by a gate that read presence instead of
+  consequence; (5) five forcing points — pass: widens closure's
+  OPENING condition without weakening what "closed" means — a
+  design-amending disposition still shuts it; (6)
+  single-home/precipitation — pass: one shipped script, SKILL.md
+  keeps principles; (7) hypothesis-patch class — n/a: fire-born, A6
+  is the incident; (8) ad-hoc-decision failure mode — pass: no
+  design decision moves into implementation, the gate only widens
+  WHEN a settled state may proceed, never substitutes desk judgment
+  about what a finding means; (9) autonomy north star — pass: an
+  unattended run stops needing an operator deviation to ship a
+  thrice-verified unit; (10) economics — pass: one extra list
+  comprehension over already-loaded entries at closure time, no new
+  priced round — the opposite, it prevents an unjustified one and
+  the operator-deviation cost it forced; (11) convergence circuit —
+  pass: SATISFIED/SHUT is a closure-verdict field the desk reads,
+  never desk-remembered prose; (12) medium tenet — pass: exact
+  machine-read semantics (the D-class-after-BIT check) built as
+  mechanism with a red-first battery; (13) gradeable-form — pass:
+  design_amending is a computed list of real entry ids, never a
+  judgment call standing alone. Version bump is the dispatcher's at
+  release. Write boundary: SKILL.md Implementation passage +
+  plugin/skills/statiker/scripts/statiker_record.py +
+  tools/test_statiker_record.py + tools/test_contract.py (fixture
+  repair, not the new-verdict deviation class — CLOSURE_ABSENT was
+  already routed). Consumer: the release record; the checkpoint opus
+  review; P24's grading pass; BACKLOG P27's closure.

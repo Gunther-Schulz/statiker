@@ -490,8 +490,13 @@ class TestClosure(RecordFixture):
         self.assertEqual(v["verdict"], "CLOSURE_LIVE")
 
     def test_no_zero_delta_is_absent(self):
+        # P27: a [BIT] round alone is ABSENT only while its
+        # disposition set still amends the design — a D-line change
+        # follows here, keeping the design genuinely open
         v = self.closure("- A1 [DISPATCHED] round 1 — basis: brief\n"
-                         "- A1 [BIT] two findings — basis: report\n")
+                         "- A1 [BIT] two findings — basis: report\n"
+                         "- D1 [INVALIDATED] the design changes — "
+                         "basis: F1\n")
         self.assertEqual(v["verdict"], "CLOSURE_ABSENT")
 
     def test_scopeless_post_closure_line_voids(self):
@@ -628,6 +633,59 @@ class TestP25LeavingsGate(RecordFixture):
     def test_no_out_of_scope_grade_is_unaffected(self):
         v = self.closure(CLOSED)
         self.assertEqual(v["verdict"], "CLOSURE_LIVE", v)
+
+
+class TestP27DesignConsequenceClosure(RecordFixture):
+    """BACKLOG P27 (run-2 A6, F118): round sustain reads design
+    CONSEQUENCE, not finding PRESENCE — a terminal [BIT] round whose
+    disposition set amends no design entry (no D-class line follows
+    it) grades the closure SATISFIED, same predicate as ZERO-DELTA
+    from there; one design-amending disposition keeps it SHUT."""
+
+    def test_bit_round_with_no_design_amending_disposition_satisfies(self):
+        body = (
+            "- D1 [COMMITTED] the design — basis: probe\n"
+            "- A1 [DISPATCHED] round 1 — basis: brief\n"
+            "- F1 [VERIFIED] a family account corrected — basis: report\n"
+            "- F2 [INVALIDATED] an exclusion rationale repaired — "
+            "basis: report\n"
+            "- A1 [BIT] two findings, none design-amending — "
+            "basis: report\n")
+        v = self.closure(body)
+        self.assertEqual(v["verdict"], "CLOSURE_LIVE", v)
+
+    def test_bit_round_with_design_amending_disposition_stays_shut(self):
+        # the over-correction case
+        body = (
+            "- D1 [COMMITTED] the design — basis: probe\n"
+            "- A1 [DISPATCHED] round 1 — basis: brief\n"
+            "- F1 [VERIFIED] a real design defect — basis: report\n"
+            "- A1 [BIT] one finding — basis: report\n"
+            "- D1 [INVALIDATED] the design must change — basis: F1\n")
+        v = self.closure(body)
+        self.assertEqual(v["verdict"], "CLOSURE_ABSENT", v)
+        self.assertEqual(v["design_amending"], ["D1"])
+
+    def test_bit_round_still_in_flight_stays_absent(self):
+        body = (
+            "- A1 [DISPATCHED] round 1 — basis: brief\n"
+            "- F1 [VERIFIED] a finding — basis: probe\n")
+        v = self.closure(body)
+        self.assertEqual(v["verdict"], "CLOSURE_ABSENT", v)
+
+    def test_zero_delta_round_unaffected(self):
+        v = self.closure(CLOSED)
+        self.assertEqual(v["verdict"], "CLOSURE_LIVE", v)
+
+    def test_bit_round_dispatchable_for_unit_query_too(self):
+        body = (
+            "- D1 [COMMITTED] the design — basis: probe\n"
+            "- A1 [DISPATCHED] round 1 — basis: brief\n"
+            "- F1 [VERIFIED] a family account corrected — basis: report\n"
+            "- A1 [BIT] one finding, not design-amending — basis: report\n"
+            "- F2 [VERIFIED] unit U1 write-set: a.txt — basis: design\n")
+        v = self.closure(body, unit="U1")
+        self.assertEqual(v["verdict"], "UNIT_DISPATCHABLE", v)
 
 
 # --------------------------------------------------------------------- waves
@@ -1200,7 +1258,9 @@ class TestAttack8Findings(RecordFixture):
                 f"- A2 [BIT] round 2 found the wrong mechanism (corrects "
                 f"line {n}) — basis: report\n")
         v = self.closure(body)
-        self.assertEqual(v["verdict"], "CLOSURE_ABSENT")  # A2 [BIT] governs
+        # A2 [BIT] governs and carries no design-amending disposition
+        # after it — P27 grades that SATISFIED, same as ZERO-DELTA
+        self.assertEqual(v["verdict"], "CLOSURE_LIVE")
 
     def test_closure_ignores_nonentry_violation_classes(self):
         # boundary: a stray quoted line is lint's business at its own

@@ -581,9 +581,13 @@ def run_battery(git_script, record_script, root):
 
     # -- record-side trackers, read-only rows over the main repo -------
     (repo / "absent.md").write_text(
+        # P27: a bare [BIT] round with no design-amending disposition
+        # grades SATISFIED — a trailing D-line change keeps this
+        # fixture a genuine CLOSURE_ABSENT case
         "# Run: a\nStatus: in-progress\nPhase: implement\n\n## Cycle 1\n"
         "- A1 [DISPATCHED] round 1 — basis: brief\n"
-        "- A1 [BIT] two findings — basis: report\n")
+        "- A1 [BIT] two findings — basis: report\n"
+        "- D1 [INVALIDATED] the design changes — basis: F1\n")
     (repo / "void.md").write_text(
         CLOSED_TRACKER +
         "- F9 [INVALIDATED] the premise died — basis: probe\n")

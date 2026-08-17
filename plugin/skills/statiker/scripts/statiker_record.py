@@ -1601,12 +1601,36 @@ def cmd_closure(args):
                 f"{v['text']}")
         finish("CLOSURE_RECORD_MALFORMED", 2, violations=blocking, **late)
     a_lines = [e for e in entries if e.cls == "A"]
-    if not a_lines or a_lines[-1].tag != "ZERO-DELTA":
-        finish("CLOSURE_ABSENT", 2,
-               last_a=(f"{a_lines[-1].id} [{a_lines[-1].tag}]"
-                       if a_lines else None), **late)
+    if not a_lines:
+        finish("CLOSURE_ABSENT", 2, last_a=None, **late)
     closing = a_lines[-1]
-    say(f"closure: {closing.id} [ZERO-DELTA] at line {closing.lineno}")
+    if closing.tag not in ("ZERO-DELTA", "BIT"):
+        finish("CLOSURE_ABSENT", 2,
+               last_a=f"{closing.id} [{closing.tag}]", **late)
+    design_amending = []
+    if closing.tag == "BIT":
+        # P27 (BACKLOG; run-2 A6, F118): design CONSEQUENCE, not
+        # finding PRESENCE — a terminal [BIT] round whose disposition
+        # set amends NO design entry (no D-class line follows it,
+        # whatever the findings' own count or severity) grades the
+        # closure SATISFIED, the same predicate as ZERO-DELTA from
+        # here; one design-amending disposition (any D-class line
+        # after this A-line) keeps it SHUT — the over-correction case.
+        # Completes P20's record-class half (that gate reads FINDING
+        # class at round-open; this one reads DISPOSITION consequence
+        # at closure) — the presence-reading gate forced an operator
+        # deviation (route 2, F118) to ship a thrice-verified unit
+        # whose round's five findings none amended the design.
+        design_amending = [e for e in entries
+                          if e.lineno > closing.lineno and e.cls == "D"]
+        if design_amending:
+            finish("CLOSURE_ABSENT", 2,
+                   last_a=f"{closing.id} [{closing.tag}]",
+                   design_amending=[e.id for e in design_amending], **late)
+        say(f"closure: {closing.id} [BIT] SATISFIED — disposition set "
+            f"amends no design entry (P27)")
+    else:
+        say(f"closure: {closing.id} [ZERO-DELTA] at line {closing.lineno}")
 
     latest = latest_by_id(entries)
     post = [e for e in entries

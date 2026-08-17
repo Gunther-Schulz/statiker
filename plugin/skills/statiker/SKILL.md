@@ -1168,9 +1168,18 @@ Flagged text still sits in the file for foreign readers (the
 stats reader's unanchored greps) — the compose-time rules are
 the only cleanse. Then
 re-run;
-CLOSURE_ABSENT means the gate is not open (the last A-line is
-not [ZERO-DELTA] — the normal state during a reopened design;
-dispatch waits); UNIT_HELD bars that unit on its
+CLOSURE_ABSENT means the gate is not open — the last A-line is
+neither [ZERO-DELTA] nor a [BIT] whose disposition set amends no
+design entry (P27: design CONSEQUENCE, not finding PRESENCE — a
+terminal [BIT] round's own findings may all discharge without
+touching a single D-line, and the gate reads that as SATISFIED, the
+same predicate as ZERO-DELTA from there; one design-amending
+disposition — any D-class line landing after the [BIT] A-line —
+keeps it SHUT, the over-correction case; F118: the presence-reading
+gate forced an operator deviation to ship a unit whose round's five
+findings none amended the design). Absent either, this is the
+normal state during a reopened design; dispatch waits. UNIT_HELD
+bars that unit on its
 unresolved hold entry; UNIT_UNKNOWN halts on an id no live
 record line scopes — re-run with the id read from the record,
 never a guess (a typo'd digit otherwise clears a hold
