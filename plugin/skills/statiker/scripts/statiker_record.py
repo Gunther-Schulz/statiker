@@ -219,6 +219,115 @@ SWEEP_EXEMPT_LINE_RE = re.compile(
 # the Verify dispatch; a netting that reached it would unlock all
 # three in one declared line. Exemptible holds are form debt only.
 UNEXEMPTIBLE_CODES = {"tag-literal-in-body", "pending-latest"}
+# P5 (BACKLOG, re-opened; CLAUDE.md's narrowed no-grandfather bullet,
+# 2026-08-17): epoch-scoped sweep — a rule never grades a line that
+# predates its own mint. Backfilled ONCE from this repo's git history
+# (each code's introducing commit's `plugin/.claude-plugin/plugin.json`
+# version — the SKILL version served when the rule first shipped);
+# re-derive rather than hand-edit if the repo's history is ever
+# rewritten. FORM codes (SKILL.md: "superseded-block-form,
+# basis-missing, tag-literal-in-body, clause-unparsed") are the only
+# ones this mint gates — F148's measured live/retro distribution, not
+# invented; every other code (SUBSTANCE, by omission from this set)
+# grades every line whatever its age, the safe default this entry
+# never widens. `tag-literal-in-body` also sits in UNEXEMPTIBLE_CODES
+# above — a DIFFERENT mechanism (H6: no OPERATOR declaration may
+# silence it) that RETRO grading does not touch: RETRO is a computed
+# historical fact, never an operator decision, so the two coexist.
+RULE_MINT_VERSION = {
+    "admission-window": "0.2.33",
+    "basis-cites-invalidated": "0.2.33",
+    "basis-missing": "0.2.33",
+    "clause-unparsed": "0.2.43",
+    "corrects-nothing": "0.2.45",
+    "corrects-token-out-of-body": "0.2.67",
+    "entry-form": "0.2.33",
+    "entry-near-miss": "0.2.39",
+    "freeze-breach": "0.2.63",
+    "hold-form": "0.2.43",
+    "intent-near-miss": "0.2.49",
+    "killerless-dead": "0.2.33",
+    "landing-blank": "0.2.36",
+    "landing-indent": "0.2.33",
+    "multi-corrects-token": "0.2.49",
+    "pending-latest": "0.2.33",
+    "phase-enum": "0.2.33",
+    "repair-scope-change": "0.2.49",
+    "repair-tag-change": "0.2.49",
+    "scope-near-miss": "0.2.43",
+    "status-enum": "0.2.33",
+    "superseded-block-form": "0.2.33",
+    "tag-enum": "0.2.33",
+    "tag-literal-in-body": "0.2.33",
+    "write-set-near-miss": "0.2.59",
+    "write-set-path-near-miss": "0.2.62",
+}
+FORM_CODES_MINT_GATED = {"superseded-block-form", "basis-missing",
+                         "tag-literal-in-body", "clause-unparsed"}
+
+
+def _version_tuple(v):
+    try:
+        return tuple(int(x) for x in v.split("."))
+    except (ValueError, AttributeError, TypeError):
+        return None
+
+
+def effective_version_at_line(lineno, skill_versions):
+    """The SKILL version active when `lineno` was WRITTEN — the latest
+    `skill_versions` entry (header first, then file-order `SKILL: `
+    markers, P3) whose own line is <= lineno; lines between two
+    markers were written under the earlier one (SKILL.md, The
+    record). None when `skill_versions` carries nothing at all
+    (marker-less record, pre-P3): no per-line attribution is possible,
+    so no forgiveness is ever computed there — the declaration route
+    (SWEEP_EXEMPT) stands in its place. `skill_versions` is already in
+    file order (parse_tracker appends header then body markers as
+    parsed top-to-bottom), so the last qualifying entry is current."""
+    active = None
+    for sv in skill_versions:
+        if sv["line"] <= lineno:
+            active = sv["version"]
+        else:
+            break
+    return active
+
+
+def is_retro(code, lineno, skill_versions):
+    """P5: True when a FORM-code violation's line predates the code's
+    own mint version — grades RETRO, surfaced but never blocking.
+    SUBSTANCE codes (not in FORM_CODES_MINT_GATED) are never retro,
+    whatever their line's version — the over-forgiveness case this
+    entry's own verifier names."""
+    if code not in FORM_CODES_MINT_GATED:
+        return False
+    mint = RULE_MINT_VERSION.get(code)
+    if mint is None:
+        return False
+    active = effective_version_at_line(lineno, skill_versions)
+    if active is None:
+        return False
+    av, mv = _version_tuple(active), _version_tuple(mint)
+    if av is None or mv is None:
+        return False
+    return av < mv
+
+
+def net_retro_holds(violations, skill_versions):
+    """Splits (blocking, retro) — retro holds are surfaced in the
+    verdict's own field, never in the blocking set, and never consult
+    or interact with the SWEEP_EXEMPT declaration route (net_sweep_
+    exemptions), which runs independently on whatever remains
+    blocking after this pass."""
+    blocking, retro = [], []
+    for v in violations:
+        if is_retro(v["code"], v["line"], skill_versions):
+            retro.append(v)
+        else:
+            blocking.append(v)
+    return blocking, retro
+
+
 # the scope openers are CASE-SENSITIVE LITERALS (SKILL.md, The
 # record): a case or spacing variant is entry-INTENDED scope that no
 # predicate can read, so it lints rather than passing as scopeless
@@ -1372,10 +1481,15 @@ def cmd_sweep(args):
     sweep_viols, clause_dispositions = sweep_checks(entries)
     violations += annotate_repairs(sweep_viols)
     violations += freeze_breach_violations(entries)
+    violations, retro_holds = net_retro_holds(violations,
+                                              reach["skill_versions"])
     violations, exempt_holds = net_sweep_exemptions(
         violations, reach["sweep_exempt"])
     for v in violations:
         say(f"sweep: {v['code']} @ line {v['line']}: {v['text']}")
+    for v in retro_holds:
+        say(f"sweep: retro {v['code']} @ line {v['line']}: netted — line "
+            f"predates the code's mint ({RULE_MINT_VERSION.get(v['code'])})")
     for v in exempt_holds:
         say(f"sweep: exempt {v['code']} @ line {v['line']}: netted by "
             f"SWEEP_EXEMPT at line {v['exempt_declared_line']}")
@@ -1401,7 +1515,8 @@ def cmd_sweep(args):
              "r_lines": reach["r_lines"],
              "skill_versions": reach["skill_versions"],
              "irreversible_units": reach["irreversible_units"],
-             "exempt_holds": exempt_holds, **meta}
+             "exempt_holds": exempt_holds,
+             "retro_holds": retro_holds, **meta}
     if violations:
         finish("SWEEP_HOLDS", 2, violations=violations, **detail)
     finish("SWEEP_CLEAN", 0, **detail)

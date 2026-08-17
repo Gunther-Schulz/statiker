@@ -36,6 +36,13 @@ INTENT — do the thing.
 ## Cycle 1
 """
 
+# P5: a header version at/after clause-unparsed's RULE_MINT_VERSION
+# (0.2.43) — for fixtures that test the code's own detection/repair
+# mechanics and must NOT be confounded by RETRO netting (a violation
+# whose line predates its code's mint grades RETRO, never blocking).
+HEADER_POST_CLAUSE_UNPARSED_MINT = HEADER.replace(
+    "Skill: statiker 0.2.33", "Skill: statiker 0.2.43")
+
 
 def tool(args, cwd=None, stdin_text=None):
     return subprocess.run(
@@ -391,6 +398,76 @@ class TestSweepExemption(RecordFixture):
         self.assertEqual(v["verdict"], "SWEEP_CLEAN", v)
         self.assertEqual(v["exempt_holds"], [])
         self.assertNotIn("entry-near-miss", self.violation_codes(v))
+
+
+# --------------------------------------------------------- P5 (epoch sweep)
+
+HEADER_PRE_ALL_FORM_MINTS = HEADER.replace(
+    "Skill: statiker 0.2.33", "Skill: statiker 0.2.10")
+
+
+class TestP5EpochScopedSweep(RecordFixture):
+    """BACKLOG P5 (re-opened): a FORM-code hold whose line predates
+    its own code's mint (RULE_MINT_VERSION, backfilled from this
+    repo's git history) grades RETRO — surfaced, never blocking; the
+    same code above the mint's marker still blocks. SUBSTANCE codes
+    (everything outside FORM_CODES_MINT_GATED) grade every line
+    whatever its age — the over-forgiveness control. A marker-less
+    record (no `Skill:` header line at all) gets no forgiveness."""
+
+    def _two_epoch_body(self):
+        return (
+            "- F3 [PENDING] an old-epoch pending finding — "
+            "basis: dispatched\n"
+            "- F1 [VERIFIED] an old-epoch fact with no basis slot\n"
+            "SKILL: statiker 0.2.50\n"
+            "- F2 [VERIFIED] a new-epoch fact with no basis slot\n")
+
+    def test_form_hold_below_the_marker_grades_retro(self):
+        body = self._two_epoch_body()
+        f1_line = self.lineno_of(body, "F1 [VERIFIED]",
+                                 header=HEADER_PRE_ALL_FORM_MINTS)
+        v = self.sweep(body, header=HEADER_PRE_ALL_FORM_MINTS)
+        self.assertTrue(any(r["code"] == "basis-missing"
+                            and r["line"] == f1_line
+                            for r in v["retro_holds"]), v)
+        self.assertFalse(any(x["code"] == "basis-missing"
+                             and x["line"] == f1_line
+                             for x in v["violations"]))
+
+    def test_form_hold_above_the_marker_still_blocks(self):
+        body = self._two_epoch_body()
+        f2_line = self.lineno_of(body, "F2 [VERIFIED]",
+                                 header=HEADER_PRE_ALL_FORM_MINTS)
+        v = self.sweep(body, header=HEADER_PRE_ALL_FORM_MINTS)
+        self.assertTrue(any(x["code"] == "basis-missing"
+                            and x["line"] == f2_line
+                            for x in v["violations"]), v)
+        self.assertFalse(any(r["line"] == f2_line for r in v["retro_holds"]))
+        self.assertEqual(v["verdict"], "SWEEP_HOLDS")
+
+    def test_substance_hold_below_the_marker_still_blocks(self):
+        # the over-forgiveness case: pending-latest is NOT a form code
+        v = self.sweep(self._two_epoch_body(),
+                       header=HEADER_PRE_ALL_FORM_MINTS)
+        self.assertIn("pending-latest", self.violation_codes(v))
+        self.assertFalse(any(r["code"] == "pending-latest"
+                             for r in v["retro_holds"]))
+
+    def test_marker_less_record_gets_no_forgiveness(self):
+        header = ("# Run: t\nStatus: in-progress\nPhase: implement\n\n"
+                  "## Cycle 1\n")
+        v = self.sweep("- F1 [VERIFIED] a fact with no basis slot\n",
+                       header=header)
+        self.assertIn("basis-missing", self.violation_codes(v))
+        self.assertEqual(v["retro_holds"], [])
+
+    def test_exact_mint_version_line_still_blocks(self):
+        # not-less-than is the boundary: a line under the code's own
+        # mint version (never older) is never retro
+        v = self.sweep("- F1 [VERIFIED] claim without ground\n")
+        self.assertIn("basis-missing", self.violation_codes(v))
+        self.assertEqual(v["retro_holds"], [])
 
 
 # ------------------------------------------------------------------- closure
@@ -1692,7 +1769,9 @@ class TestAttack10ClauseGrammar(RecordFixture):
             "— basis: F6\n")
 
     def test_no_clause_token_vanishes_silently(self):
-        v = self.sweep(self.LINE)
+        # P5: post-mint header — this test grades the detection
+        # mechanics, not the age gate
+        v = self.sweep(self.LINE, header=HEADER_POST_CLAUSE_UNPARSED_MINT)
         self.assertEqual(v["verdict"], "SWEEP_HOLDS")
         agg = v["clause_dispositions"].get("F5", {})
         self.assertIn("clause-unparsed", self.violation_codes(v),
@@ -1738,7 +1817,9 @@ class TestEMRepairFormGating(RecordFixture):
         line = ("- F5 [INVALIDATED] clause a restated-at-D7; clause b "
                 "dead (killed by F9); clause c restated at D8; clause d "
                 "dead — basis: F6\n")
-        v = self.sweep(line)
+        # P5: post-mint header — this test grades the repair-text
+        # mechanics, not the age gate
+        v = self.sweep(line, header=HEADER_POST_CLAUSE_UNPARSED_MINT)
         unparsed = [x for x in v["violations"]
                     if x["code"] == "clause-unparsed"]
         self.assertTrue(unparsed)
@@ -1793,7 +1874,9 @@ class TestP15SweepExemptRoute(RecordFixture):
         body = ("- F5 [INVALIDATED] clause a restated-at-D7; clause b "
                 "dead (killed by F9); clause c restated at D8 — "
                 "basis: F6\n")
-        v = self.sweep(body)
+        # P5: post-mint header — this test grades the repair-text
+        # mechanics, not the age gate
+        v = self.sweep(body, header=HEADER_POST_CLAUSE_UNPARSED_MINT)
         hits = [x for x in v["violations"] if x["code"] == "clause-unparsed"]
         self.assertTrue(hits)
         for x in hits:

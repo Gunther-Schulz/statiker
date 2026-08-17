@@ -6155,3 +6155,115 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   tools/test_statiker_record.py + tools/test_contract.py (deviation,
   same class as P30's). Consumer: the release record; the checkpoint
   opus review; BACKLOG P25's closure.
+
+- 2026-08-17 — **P5 shipped (re-opened): epoch-scoped sweep — form
+  codes never grade a line that predates their own mint (fire-born,
+  re-open basis: the 2026-08-15 drop's "firing population empty"
+  premise was refuted the next day when run 1's ready gate was
+  barred by 696 retroactive holds and the run closed FAILED, P18
+  measurement).** Design: (a) a rule→version table
+  (`RULE_MINT_VERSION`), backfilled ONCE from this repo's own git
+  history — for each code, the earliest commit introducing it
+  (`git log --reverse -S'"<code>"' -- statiker_record.py`) and that
+  commit's own `plugin/.claude-plugin/plugin.json` version (the
+  SKILL version served when the rule first shipped); (b) FORM codes
+  — `superseded-block-form`, `basis-missing`, `tag-literal-in-body`,
+  `clause-unparsed` — are the ONLY codes this mint gates
+  (`FORM_CODES_MINT_GATED`, exactly the entry's own list, all four
+  verified real codes in the current tool); a hold whose line's
+  EFFECTIVE version (`effective_version_at_line` — the latest P3
+  `skill_versions` entry, header or mid-run `SKILL:` marker, at or
+  before the hold's own line; lines between two markers read under
+  the earlier one) is strictly less than the code's mint grades
+  RETRO — netted into the verdict's new `retro_holds` field, never
+  the blocking set, and enumerated in the close the same way
+  `exempt_holds` is; (c) every other code (SUBSTANCE, by omission
+  from the form set) is untouched — grades every line whatever its
+  age, the safe default; (d) a marker-less record (`skill_versions`
+  empty — no `Skill:` header line at all, pre-P3) earns no
+  forgiveness anywhere — `effective_version_at_line` returns None,
+  the declaration route (SWEEP_EXEMPT) stands in its place, matching
+  the entry's own scoping. RETRO netting runs independently of and
+  before SWEEP_EXEMPT's own netting (`net_retro_holds` then
+  `net_sweep_exemptions` in `cmd_sweep`) — the two mechanisms never
+  interact, and `tag-literal-in-body` is RETRO-eligible even though
+  H6 keeps it SWEEP_EXEMPT-ineligible (a computed historical fact is
+  not an operator declaration). DEVIATION (naming mismatch, per the
+  corpus's own caution — "treat exact spelling as unverified"): the
+  entry names a fourth SUBSTANCE code, `clause-disposition`, which
+  does not exist in this repo's current `statiker_record.py` (the
+  derived code list has no such member — closest candidates are
+  `clause-unparsed`, itself a FORM code, or the `clause_dispositions`
+  FIELD, not a violation code). Since the design's SUBSTANCE
+  treatment is the DEFAULT for every code outside the four-member
+  FORM set, this mismatch changes nothing functionally — no
+  SUBSTANCE-code list needed minting, only the FORM set, which is
+  fully verified. Flagged rather than silently corrected or
+  invented. REGRESSION REPAIR: three pre-existing test sites
+  (`TestAttack10ClauseGrammar.test_no_clause_token_vanishes_
+  silently`, `TestEMRepairFormGating.test_sweep_stage_hold_repair_
+  carries_no_resolvable_token`, this batch's own P15 test) asserted
+  `clause-unparsed` presence in `violations` using the suite's
+  default header (`Skill: statiker 0.2.33`), which predates
+  `clause-unparsed`'s own mint (0.2.43) — under the new mechanism
+  those holds correctly moved to `retro_holds`, breaking the
+  assertions. Not a defect: those tests were never meant to exercise
+  the age gate, so their fixtures now carry a
+  post-mint header (`HEADER_POST_CLAUSE_UNPARSED_MINT`, 0.2.43)
+  instead, preserving their original intent. Verifier: red-first
+  battery (`TestP5EpochScopedSweep`, tools/test_statiker_record.py)
+  — a two-epoch fixture (header 0.2.10, a mid-run `SKILL: statiker
+  0.2.50` marker) with a `basis-missing` hold on each side of the
+  marker plus a `pending-latest` hold before it: red demonstrated by
+  stubbing `net_retro_holds` to net nothing — the below-marker case
+  failed (line 10 stayed blocking instead of retro), stub reverted,
+  battery green (5/5): below-marker form hold retro, above-marker
+  form hold still blocks, below-marker substance hold still blocks
+  (the over-forgiveness case), a marker-less record earns no
+  forgiveness, and a line under the code's own exact mint version
+  (not older) still blocks (the boundary case). Full suite green
+  after the regression repair (`python3 -m pytest tools/ -q`, 434
+  passed). LIVE SWEEP of the real run-2 tracker under the new tool
+  (`.clippy/runs/2026-08-16-canonical-frame-sign-repair-statiker.md`,
+  beat-the-books repo — a genuine cross-repo read, no write):
+  `SWEEP_CLEAN`, `retro_holds: []` — the tracker's own
+  `skill_versions` span 0.2.77-0.2.81, all well past every form
+  code's mint, so nothing retro-fires on it; the eight existing
+  `exempt_holds` (killerless-dead/clause-unparsed, SWEEP_EXEMPT-
+  netted) are unaffected and print unchanged, confirming the two
+  mechanisms coexist cleanly on real production data as designed.
+  No SKILL.md write boundary conflict found: CLAUDE.md's
+  no-grandfather bullet was ALREADY amended (2026-08-17, "re-opened
+  P5" cited by name) to admit exactly this mechanical-retroactivity
+  class before this entry's build began — verified by reading the
+  live file; no CLAUDE.md edit was needed or made, honoring the
+  brief's "NOT yours: CLAUDE.md" boundary despite the entry's own
+  (now-stale) write-boundary line naming it. Machine-read semantics
+  → checkpoint opus review owed at mint. Tenet check, PLAN.md's
+  base-reference list: (1) investigation-led design — n/a; (2)
+  loop-until-still — n/a; (3) sufficiency — n/a; (4) anti-skim —
+  pass: directly answers the measured P18 failure (696 retroactive
+  holds barring a ready gate); (5) five forcing points — pass:
+  narrows [READY]'s blocking set without weakening what it checks;
+  (6) single-home/precipitation — pass: one shipped script, SKILL.md
+  keeps principles; (7) hypothesis-patch class — n/a: fire-born,
+  the P18 measurement is the incident; (8) ad-hoc-decision failure
+  mode — pass: no design decision moves into implementation, the
+  per-code FORM/SUBSTANCE split is the mint's own confirmable
+  decision, recorded here; (9) autonomy north star — pass: an
+  unattended run stops drowning in retroactive form debt it never
+  chose to accrue; (10) economics — pass: one dict lookup and one
+  version-tuple comparison per FORM-code violation, no new priced
+  round; (11) convergence circuit — pass: RETRO status is a
+  record-tool verdict field the desk reads, never desk-remembered
+  prose; (12) medium tenet — pass: the exact machine-read semantics
+  (mint-version table, effective-version-at-line, the FORM/SUBSTANCE
+  split) built as mechanism with a red-first battery; (13)
+  gradeable-form — pass: RETRO is a computed met/not-met from the
+  record's own P3 attribution, never a judgment call. Version bump
+  is the dispatcher's at release. Write boundary:
+  plugin/skills/statiker/scripts/statiker_record.py +
+  tools/test_statiker_record.py + SKILL.md Stop rule + Close passages
+  (CLAUDE.md needed no edit, already amended; no version bump).
+  Consumer: the release record; the checkpoint opus review; BACKLOG
+  P5's closure.

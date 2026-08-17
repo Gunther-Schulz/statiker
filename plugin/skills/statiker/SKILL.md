@@ -616,7 +616,28 @@ exemptible either: the no-[PENDING] gate holds unread legs open
 mechanically, and a netting that reached it would unlock
 [READY], the closing [ZERO-DELTA], and the Verify dispatch in
 one line. `exempt_holds` is enumerated in the close beside the
-[AUTO-ACCEPTED] entries: netted is never invisible. No new
+[AUTO-ACCEPTED] entries: netted is never invisible.
+A FORM-code hold — `superseded-block-form`, `basis-missing`,
+`tag-literal-in-body`, `clause-unparsed` — additionally nets against
+its own code's MINT VERSION: each carries a rule→version entry in a
+table backfilled once from the tool's git history (the SKILL version
+served when the code first shipped), and a hold whose LINE was
+written under an EARLIER version — the P3 `skill_versions`
+attribution, lines between two markers read under the earlier one —
+grades RETRO in the verdict's `retro_holds` field, surfaced but never
+blocking; the same code at or above the mint's marker still blocks.
+Every other code (SUBSTANCE, by omission from the form set) grades
+every line whatever its age — the over-forgiveness class this split
+never widens, the mint's one confirmable per-code decision. A
+marker-less record (no `Skill:` header line at all — pre-P3, out of
+this mechanism's scope) earns no forgiveness: the declaration route
+(SWEEP_EXEMPT, above) stands there instead. RETRO netting runs
+independently of SWEEP_EXEMPT's own netting and the two never
+interact — a defang-class hold (`tag-literal-in-body`) is still
+RETRO-eligible even though it is never SWEEP_EXEMPT-eligible (H6
+binds an OPERATOR declaration, never a computed historical fact).
+`retro_holds` is enumerated in the close the same way `exempt_holds`
+is. No new
 verdict name: SWEEP_CLEAN,
 SWEEP_HOLDS, and every downstream gate consult inherit the netted
 set with no separate git-tool change.
@@ -1439,6 +1460,8 @@ amendment (what shipped vs. the letter as asked); every
 holds it still nets (`exempt_holds` from a `sweep` run at
 close-compose — the close's own read, not a stale seam's; a
 declaration whose holds were since repaired is enumerated too);
+every RETRO-graded hold (`retro_holds`, the same close-compose
+`sweep` read — P5, Stop rule);
 every
 entry whose latest line is
 [PENDING] (a FAILED or abandoned run can carry them);
