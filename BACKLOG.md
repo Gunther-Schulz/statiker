@@ -248,6 +248,24 @@ it is not decision-complete.
   measure loop iterations, not landed value — a design question
   now, not further measurement).
 
+- **PARKED 2026-08-17 — P24: the seal cannot cover an omission
+  whose subject has no entry to seal (desk-derived lesson, run-2
+  A4).** Incident: F76 was the FOURTH instrument in one run to
+  declare the persisted population of the corrected quantity
+  complete and be wrong (two stores never enumerated, 3.9M and
+  2.29M rows), and no seal caught any of the four — the seal
+  grades entries that EXIST, and an enumeration gap has no
+  entry; the desk's A4 seal-comparison records the lesson and
+  self-directs an A5 seal item over the INSTRUMENTS themselves
+  (their shared blind spot is the corpus's
+  instruments-sharing-an-author class). Candidate mint: a
+  standing seal part over enumeration/instrument completeness —
+  what populations were declared complete this cycle and on
+  what derived basis. Missing evidence, named: the A5 seal's
+  own result — whether the desk's self-directed item catches a
+  fifth miss or reports the class closed; mint grades on that.
+  Trigger: run-2 close grading.
+
 - **PARKED 2026-08-17 — P23: an open operator question has no
   non-blocking carrier in the record (desk workaround observed,
   run-2 resume).** Incident: the resumed desk had a live
