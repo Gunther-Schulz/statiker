@@ -122,11 +122,11 @@ class RecordFixture(unittest.TestCase):
             ["sustain", "--tracker", str(self.write_tracker(body, header))],
             cwd=self.dir))
 
-    def tripwire(self, body, threshold, header=HEADER):
-        return self.verdict(tool(
-            ["tripwire", "--tracker", str(self.write_tracker(body, header)),
-             "--threshold", str(threshold)],
-            cwd=self.dir))
+    def tripwire(self, body, threshold=None, header=HEADER):
+        args = ["tripwire", "--tracker", str(self.write_tracker(body, header))]
+        if threshold is not None:
+            args += ["--threshold", str(threshold)]
+        return self.verdict(tool(args, cwd=self.dir))
 
     def violation_codes(self, v):
         return {viol["code"] for viol in v.get("violations", [])}
@@ -1117,6 +1117,86 @@ class TestP19ZeroLandedTripwire(RecordFixture):
     def test_malformed_record_blocks(self):
         v = self.tripwire("- F1 (VERIFIED) x — basis: y\n", threshold=1)
         self.assertEqual(v["verdict"], "TRIPWIRE_RECORD_MALFORMED", v)
+
+
+HEADER_WITH_TRIPWIRE_BUDGET = """# Run: test
+Status: in-progress
+Phase: investigate-design
+Skill: statiker 0.2.33
+Budget: cycles 7 / rounds 4 / verify 3 / tripwire 5
+
+INTENT — do the thing.
+
+## Cycle 1
+"""
+
+HEADER_WITH_BUDGET_NO_TRIPWIRE = """# Run: test
+Status: in-progress
+Phase: investigate-design
+Skill: statiker 0.2.33
+Budget: cycles 7 / rounds 4 / verify 3
+
+INTENT — do the thing.
+
+## Cycle 1
+"""
+
+
+class TestR3TripwireArmingFromBudget(RecordFixture):
+    """Checkpoint review R3: --threshold is now OPTIONAL — omitted, the
+    tool reads the header Budget line's `/ tripwire <n>` field;
+    --threshold still overrides; neither present is UNARMED, never a
+    guessed default. The verdict's `reason` field distinguishes
+    unarmed/silent/fires."""
+
+    def _n_bit_rounds(self, n):
+        body = ""
+        for i in range(1, n + 1):
+            body += (f"- A{i} [DISPATCHED] round {i} — basis: brief\n"
+                     f"- F{i} [VERIFIED] a finding — basis: probe\n"
+                     f"- A{i} [BIT] one finding — basis: report\n")
+        return body
+
+    def test_armed_from_budget_line_and_quiet(self):
+        # rounds < the header's threshold (5): silent, reason "silent"
+        v = self.tripwire(self._n_bit_rounds(2),
+                          header=HEADER_WITH_TRIPWIRE_BUDGET)
+        self.assertEqual(v["verdict"], "TRIPWIRE_SILENT", v)
+        self.assertEqual(v["reason"], "silent", v)
+        self.assertEqual(v["threshold"], 5, v)
+
+    def test_armed_from_budget_line_and_fires(self):
+        v = self.tripwire(self._n_bit_rounds(8),
+                          header=HEADER_WITH_TRIPWIRE_BUDGET)
+        self.assertEqual(v["verdict"], "TRIPWIRE_FIRES", v)
+        self.assertEqual(v["reason"], "fires", v)
+        self.assertEqual(v["threshold"], 5, v)
+
+    def test_unarmed_with_no_threshold_and_no_budget_field(self):
+        # neither --threshold nor a Budget line at all: unarmed
+        v = self.tripwire(self._n_bit_rounds(8))
+        self.assertEqual(v["verdict"], "TRIPWIRE_SILENT", v)
+        self.assertEqual(v["reason"], "unarmed", v)
+        self.assertIsNone(v["threshold"])
+
+    def test_unarmed_with_budget_line_lacking_the_tripwire_field(self):
+        v = self.tripwire(self._n_bit_rounds(8),
+                          header=HEADER_WITH_BUDGET_NO_TRIPWIRE)
+        self.assertEqual(v["verdict"], "TRIPWIRE_SILENT", v)
+        self.assertEqual(v["reason"], "unarmed", v)
+
+    def test_explicit_threshold_overrides_the_budget_line(self):
+        # the header names 5; an explicit --threshold of 2 still fires
+        # on the same 8-round record
+        v = self.tripwire(self._n_bit_rounds(8), threshold=2,
+                          header=HEADER_WITH_TRIPWIRE_BUDGET)
+        self.assertEqual(v["verdict"], "TRIPWIRE_FIRES", v)
+        self.assertEqual(v["threshold"], 2, v)
+
+    def test_fires_reason_on_the_ordinary_explicit_path(self):
+        v = self.tripwire(self._n_bit_rounds(8), threshold=5)
+        self.assertEqual(v["verdict"], "TRIPWIRE_FIRES", v)
+        self.assertEqual(v["reason"], "fires", v)
 
 
 # -------------------------------------------------------------------- filter

@@ -56,15 +56,26 @@ Subcommands (each prints evidence lines, then exactly one final line
                                       member, else SUSTAIN_DENIED;
                                       SUSTAIN_NOT_APPLICABLE outside a
                                       [BIT] round
-  tripwire --tracker P --threshold N  read-only: the ZERO-LANDED
+  tripwire --tracker P [--threshold N]
+                                      read-only: the ZERO-LANDED
                                       progress tripwire (P19) —
                                       TRIPWIRE_FIRES when at least N
                                       resolved attack rounds exist yet
                                       neither a landing annotation nor
                                       a V-line does, else
                                       TRIPWIRE_SILENT; N is named by
-                                      the caller at arming time, never
-                                      hardcoded
+                                      the caller at arming time via
+                                      --threshold, or read from the
+                                      header Budget line's
+                                      `/ tripwire <N>` field when
+                                      --threshold is omitted —
+                                      --threshold always overrides;
+                                      an unarmed tracker (neither
+                                      given) is TRIPWIRE_SILENT with
+                                      reason "unarmed", never a
+                                      guessed default. The verdict's
+                                      `reason` field distinguishes
+                                      unarmed/silent/fires
   filter  --tracker P --sha S --out F pinned attack artifact (reads
                                       the sha, drops the two
                                       Superseded species)
@@ -139,6 +150,10 @@ ADMISSION_WINDOW = 20
 # compound `cycles <n> / rounds <n> / verify <n>` — trend counts
 # ROUNDS, so that is the component sweep's evidence line reads.
 BUDGET_ROUNDS_RE = re.compile(r"\brounds\s+(\d+)\b")
+# R3 (checkpoint review): the header Budget line's OPTIONAL
+# `/ tripwire <n>` field — the arming carrier when `tripwire` is
+# invoked with no --threshold (SKILL.md, The record).
+TRIPWIRE_BUDGET_RE = re.compile(r"\btripwire\s+(\d+)\b")
 
 CLASS_TAGS = {
     "F": {"VERIFIED", "PENDING", "INVALIDATED", "AUTO-ACCEPTED"},
@@ -2054,7 +2069,13 @@ def cmd_tripwire(args):
     same count `trend` computes) — either one silences it. The
     threshold is NAMED by the caller at arming time (SKILL.md's Stop
     rule design: a breaker's discriminating evidence is pre-registered
-    when armed, never composed at firing time), never hardcoded here."""
+    when armed, never composed at firing time) via --threshold, or
+    read from the tracker's own header `Budget:` line's optional
+    `/ tripwire <N>` field when --threshold is omitted — --threshold
+    always overrides the header when both are given (the caller-named
+    principle stands); neither present is UNARMED, never a guessed
+    default (checkpoint review R3). The verdict's `reason` field
+    distinguishes unarmed/silent/fires."""
     text = load(args.tracker)
     entries, violations, meta, reach = parse_tracker(text)
     say_head_region_entries("tripwire", reach)
@@ -2064,6 +2085,17 @@ def cmd_tripwire(args):
             say(f"tripwire blocked: {v['code']} @ line {v['line']}: "
                 f"{v['text']}")
         finish("TRIPWIRE_RECORD_MALFORMED", 2, violations=blocking, **meta)
+    threshold = args.threshold
+    if threshold is None:
+        m = TRIPWIRE_BUDGET_RE.search(meta["budget"] or "")
+        if not m:
+            say("tripwire: unarmed — no --threshold given and the "
+                "Budget line carries no `tripwire <n>` field")
+            finish("TRIPWIRE_SILENT", 0, reason="unarmed", rounds=None,
+                   threshold=None, landed=None, v_lines=None, **meta)
+        threshold = int(m.group(1))
+        say(f"tripwire: armed from the Budget line's `tripwire "
+            f"{threshold}` field")
     bounds, _, _, _, _ = trend_over_rounds(entries)
     rounds = len(bounds)
     # any landing mention counts, indented (the sanctioned form) or
@@ -2072,22 +2104,22 @@ def cmd_tripwire(args):
     landed = any(LANDING_RE.match(l) or LANDING_INDENTED_RE.match(l)
                 for l in split_lines(text))
     v_lines = [e for e in entries if e.cls == "V"]
-    if rounds < args.threshold:
+    if rounds < threshold:
         say(f"tripwire: {rounds} resolved round(s) < threshold "
-            f"({args.threshold}) — not yet armed")
-        finish("TRIPWIRE_SILENT", 0, rounds=rounds,
-               threshold=args.threshold, landed=landed,
+            f"({threshold}) — not yet armed")
+        finish("TRIPWIRE_SILENT", 0, reason="silent", rounds=rounds,
+               threshold=threshold, landed=landed,
                v_lines=len(v_lines), **meta)
     if landed or v_lines:
         say(f"tripwire: silenced — landed={landed}, "
             f"v_lines={len(v_lines)}")
-        finish("TRIPWIRE_SILENT", 0, rounds=rounds,
-               threshold=args.threshold, landed=landed,
+        finish("TRIPWIRE_SILENT", 0, reason="silent", rounds=rounds,
+               threshold=threshold, landed=landed,
                v_lines=len(v_lines), **meta)
     say(f"tripwire: FIRES — {rounds} resolved round(s), zero landing "
         f"annotations, zero V-lines")
-    finish("TRIPWIRE_FIRES", 2, rounds=rounds, threshold=args.threshold,
-           landed=landed, v_lines=len(v_lines), **meta)
+    finish("TRIPWIRE_FIRES", 2, reason="fires", rounds=rounds,
+           threshold=threshold, landed=landed, v_lines=len(v_lines), **meta)
 
 
 # -------------------------------------------------------------------- filter
@@ -2451,7 +2483,7 @@ def main():
     p.add_argument("--sha", required=True)
     p = sub.add_parser("tripwire")
     p.add_argument("--tracker", required=True)
-    p.add_argument("--threshold", required=True, type=int)
+    p.add_argument("--threshold", type=int)
     p = sub.add_parser("quote")
     p.add_argument("--label", required=True)
 

@@ -6769,3 +6769,45 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   (Close, the leavings passage), `tools/test_statiker_record.py` +
   this OBSERVATIONS entry. Consumer: the release record; BACKLOG
   P25's closure; any desk composing a leavings disposition line.
+
+- 2026-08-17 — **R3 shipped: the tripwire runs at round-open beside
+  `sustain`, and arms from the header Budget line by default
+  (checkpoint review, P19 tripwire seam + arming finding).**
+  Incident: `tripwire` was wired only at the budget-cap check, never
+  at round-open where `sustain` already runs, so a design could
+  sustain zero-landed rounds past the tripwire's own threshold
+  without the round-open seam ever consulting it; separately,
+  `--threshold` was mandatory with no arming carrier in the record
+  itself, so a resuming desk had no way to discover what threshold a
+  prior desk armed the breaker at. Fix, three parts: (a) SKILL.md's
+  round-open passage (the sustain gate) now runs `tripwire` beside
+  `sustain`, quoting its verdict the same way, TRIPWIRE_FIRES routing
+  to the 0.68 NARROWING route exactly as the budget-cap check's own
+  call does; (b) the header `Budget:` line gains an optional
+  `/ tripwire <n>` trailing field (`TRIPWIRE_BUDGET_RE`), the arming
+  carrier written at seed or by an operator amendment F-line; (c)
+  `statiker_record.py`'s `tripwire` subcommand makes `--threshold`
+  OPTIONAL — when omitted, reads the header Budget line's field;
+  `--threshold` always overrides when given (the caller-named
+  principle stands); neither present is TRIPWIRE_SILENT with reason
+  "unarmed" — the breaker never guesses a default. A new `reason`
+  verdict field (unarmed/silent/fires) makes the three states
+  distinguishable without re-deriving them from `rounds`/`threshold`.
+  Battery (red-first against the pre-fix tool,
+  `TestR3TripwireArmingFromBudget`): armed-from-Budget-and-quiet,
+  armed-from-Budget-and-fires, unarmed-no-threshold-no-Budget-field,
+  unarmed-Budget-line-lacking-the-field, explicit-threshold-overrides
+  -the-Budget-line, and the ordinary explicit path now carrying
+  reason "fires" — all six confirmed red (five USAGE_ERROR on the
+  now-required-then-optional flag, one KeyError on the new field)
+  against the pre-fix script, confirmed green post-fix; the six
+  pre-existing tripwire tests (`TestP19ZeroLandedTripwire`) pass
+  unchanged, backward-compatible since every existing call site still
+  passes `--threshold` explicitly. Full suite: `python3 -m pytest
+  tools/ -q`, 462 passed. Version bump is the dispatcher's at
+  release. Write boundary: `plugin/skills/statiker/scripts/
+  statiker_record.py` (cmd_tripwire, TRIPWIRE_BUDGET_RE, argparse),
+  SKILL.md (The record — Budget line, the round-open/cap tripwire
+  passages), `tools/test_statiker_record.py` + this OBSERVATIONS
+  entry. Consumer: the release record; BACKLOG P19's closure; the
+  next run's round-open seam.

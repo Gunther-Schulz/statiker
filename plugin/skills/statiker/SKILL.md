@@ -268,6 +268,10 @@ verify <n>` — the run's declared bound over every repeating seam,
 defaults 7 / 4 / 3, declared at run start where a successor reads
 it (an unattended loop without a declared bound terminates on
 context death, the one ending that produces no readable verdict).
+The line takes an optional trailing `/ tripwire <n>` field — the
+zero-landed tripwire's own arming carrier, written at seed (or by an
+operator amendment F-line for a live run); a Budget line with no
+`tripwire` field leaves the breaker unarmed (below).
 Exhaustion never continues silently: attended it forces the
 operator prompt; unattended, the cap is a SAFETY ESCAPE only (P19 —
 every cap firing to date, across two runs, was operator-overridden:
@@ -276,10 +280,14 @@ trains the override reflex) — hitting it STOPS-AND-REPORTS for the
 operator, never grades FAILED by itself. The DRIVING stop signals
 are progress-shaped and record-computable, checked well before the
 cap: the ZERO-LANDED tripwire (`tripwire --tracker <path>
---threshold <n>`, TRIPWIRE_FIRES when at least `<n>` resolved attack
-rounds exist yet neither a landing annotation nor a V-line does
-anywhere in the record — the threshold NAMED by the caller at
-arming, never hardcoded in the tool) and the existing NON-CONTRACTING
+[--threshold <n>]`, TRIPWIRE_FIRES when at least `<n>` resolved
+attack rounds exist yet neither a landing annotation nor a V-line
+does anywhere in the record — `<n>` NAMED by the caller at arming
+via `--threshold`, or read from the header Budget line's own
+`/ tripwire <n>` field when `--threshold` is omitted, `--threshold`
+always overriding the header; never hardcoded in the tool, and
+never guessed — neither present is TRIPWIRE_SILENT with reason
+"unarmed") and the existing NON-CONTRACTING
 trend grade (The attack) — BOTH route to the 0.68 NARROWING route
 (The attack), never to another same-form round. Housekeeping never
 bills the run's budget: record-repair legs (The record, the resume's
@@ -1181,7 +1189,14 @@ tag — SUSTAIN_OK when at least one finding is design-substance
 record/instrument-class, SUSTAIN_NOT_APPLICABLE outside a [BIT]
 round. The verdict is quoted in the round-open line; a round
 dispatched over SUSTAIN_DENIED is exactly the class this gate
-exists to catch.
+exists to catch. The same round-open seam also runs
+`tripwire --tracker <path>` (The record, Budget) beside `sustain` —
+its verdict quoted the same way; an armed TRIPWIRE_FIRES routes to
+the 0.68 NARROWING route (below) exactly as the budget check's own
+tripwire call does (The record), never blocking round-open on its
+own tag, and TRIPWIRE_SILENT with reason "unarmed" is silently
+informational, never a hold — the breaker fires only where the
+header names its threshold.
 A reopen bars the design's UNITS only: investigation, record
 repair, and the run's own instruments stay open desk work — their
 lines land before the closing A-line (this return's
