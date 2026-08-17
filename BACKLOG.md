@@ -72,7 +72,15 @@ it is not decision-complete.
   the diagnostic layer absorbs failure modes — the designed
   end-state is a backstop that never fires, not a bound that
   gets argued with (both runs' evidence: every firing to date
-  was overridden). Write boundary: SKILL.md budget
+  was overridden). DESIGN INPUT from the live injection (run 2,
+  F75): the desk PRE-REGISTERED the cause-classification
+  evidence at arming time — the trend verdict for arithmetic,
+  named locus body-reads for repair-versus-account, each
+  terminal entry's class split — rather than composing it at
+  firing time; the mint adopts this: the breaker clause names
+  its discriminating evidence sources when armed, so a firing's
+  cause report is a read, not a composition. Write boundary:
+  SKILL.md budget
   passage + statiker_record.py tripwire/trend support
   (same-commit authorship per the composition rule) + tools/
   battery + version bump.
