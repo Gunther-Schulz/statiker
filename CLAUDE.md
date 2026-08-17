@@ -47,7 +47,15 @@
   relays desk output to the meta session verbatim and carries back
   its paste-ready reply — decisions travel no other way
   (carrier-on-read-path: the desk reads its tracker and the
-  operator's replies, never this repo's ledger). On each relay the
+  operator's replies, never this repo's ledger). UPDATED
+  2026-08-17 (operator): the meta session may drive the desk
+  DIRECTLY over the live peer channel (SendMessage) — procedure,
+  facts, and desk reports travel meta↔desk without the operator
+  as carrier; operator-AUTHORITY lines (C-line stops and lifts,
+  budget amendments, grants) still travel only operator→desk,
+  per the grants-never-peer-channel convention (held twice
+  2026-08-16, ledger 1b8df98). The four per-relay obligations
+  below bind per desk REPORT, however it arrives. On each relay the
   meta session owes four things: the harvest (ledger what the
   report taught), the mint decision (evidence-complete → release at
   the seam), the STOP-CALL — pause the run when a minted rule fails
@@ -164,17 +172,24 @@
   the seam. Prefer what/which-shaped questions; post-hoc
   why-shaped answers decay into rationalization.
 
-- **No grandfather clauses during the trial (operator-settled
-  2026-08-15).** While statiker is experimental, no
-  version-transition or grandfathering machinery is minted — in
-  skill text, tool behavior, or record grammar. The affected
-  population is at most this repo's own runs, and a live case is
-  handled at the desk as a declaration or stated deviation on
-  record (the pre-Budget run declared its budget at resume;
-  retroactive sweep holds ride a stated deviation). Provenance:
-  the budget-grandfather clause reverted same-day (f5471ac), P5's
-  epoch-scoping direction dropped on this rule. Re-opens when the
-  trial phase closes or an external user exists.
+- **No grandfather clauses during the trial — NARROWED 2026-08-17
+  (operator re-opened; supersedes the blanket form of
+  2026-08-15).** What stays out during the trial: run-state
+  migration and version-transition machinery (converting old
+  records, dual-grammar readers). What is IN-bounds since
+  2026-08-17: mechanical retroactivity grading — the sweep
+  scoping FORM rules by the P3 `SKILL:` version markers so a rule
+  never grades lines that predate its mint (re-opened P5,
+  BACKLOG). Basis for the narrowing: the blanket rule's recorded
+  premise — "firing population empty" — was refuted the next day
+  when run 1's ready gate was barred by 696 retroactive holds and
+  the run closed FAILED (P18 measurement); the operator states
+  the terminal-unrepairability consequence was never the rule's
+  intent. A live case in a marker-less record is still handled as
+  a declaration or stated deviation on record; judgment-shaped
+  exemptions keep the SWEEP_EXEMPT route. History: the
+  budget-grandfather clause reverted same-day (f5471ac), P5
+  dropped under the blanket rule (both 2026-08-15).
 
 - **Record gate at resume — SUPERSEDED into SKILL.md
   (operator-settled 2026-08-16; born same-day as a meta-session

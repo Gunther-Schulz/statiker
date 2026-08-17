@@ -20,6 +20,140 @@ it is not decision-complete.
 
 
 
+- **READY 2026-08-17 — P19: budget demoted to SAFETY ESCAPE;
+  progress-shaped stop signals (operator direction this date:
+  "if anything it should only be a safety escape"; unit verdict
+  "needs to be fixed").** Incident, the P18 measurement: run 1
+  ran twelve cycles with NO budget (D89 invented one mid-run)
+  and diverged to zero landed units; run 2 converged (READY,
+  fix unrefuted through three rounds) and was stopped at a
+  cycle-denominated cap — the cap indicted the healthy run and
+  never fired on the sick one. Design: (a) the hard cap stays,
+  generous, as unattended-runaway protection only — hitting it
+  stops-and-reports for the operator, never grades FAILED by
+  itself; (b) the driving stop signals become progress-shaped
+  and record-computable: a zero-landed tripwire (no landing
+  annotation/V-line by a named cycle count) and the existing
+  non-contraction trend grade, BOTH routing to the 0.2.68
+  narrowing route, never to another same-form round; (c)
+  housekeeping never bills the run's budget — record-repair
+  legs (0.2.69) and sweep/closure passes are meta-owned,
+  outside cycle accounting. Verifier: record-tool battery,
+  red-first — the tripwire fires on the run-1 fixture (eight
+  rounds, zero V-lines) and stays silent on a fixture carrying
+  a landing annotation. Machine-read semantics → checkpoint
+  opus review owed at mint. Done: battery green with the
+  tripwire red demonstrated per its recorded arrangement, the
+  SKILL.md budget passage states cap-as-escape plus both
+  progress signals routing to narrowing, review findings
+  dispositioned, version bumped. Write boundary: SKILL.md budget
+  passage + statiker_record.py tripwire/trend support
+  (same-commit authorship per the composition rule) + tools/
+  battery + version bump.
+
+- **READY 2026-08-17 — P20: the never-sustain clause gets a
+  mechanical round-open gate (F143: clause in force at round 8,
+  not applied).** Incident: A8's four record/instrument-class
+  findings sustained a ninth round the 0.2.48 clause says they
+  cannot; prose under-binds at the re-entry seam (same class as
+  P16's turn-end seam). Design: round-open computes sustain
+  eligibility from the record — a new attack round opens only
+  if the sustaining set holds at least one design-substance
+  finding; record/instrument-class findings land as desk work
+  and never buy a round; the predicate reads the entry class
+  prefix (the `record:` marker) tool-side, and the verdict is
+  quoted in the round-open line. Verifier: red-first battery —
+  an all-record-class fixture returns SUSTAIN_DENIED (the red
+  proven at build per the standard arrangement, new expectations
+  against the pre-change tool), a mixed fixture passes.
+  Machine-read semantics → checkpoint review. Done: battery
+  green with the red demonstrated, the round-open clause ships
+  in SKILL.md quoting the verdict token, review findings
+  dispositioned, version bumped. Write boundary:
+  SKILL.md round-open clause + statiker_record.py + battery +
+  bump.
+
+- **READY 2026-08-17 — P21: intake scope gate — an
+  architecture-scale item never seeds an implementation run
+  whole.** Incident: run 1 seeded on the full
+  canonical-market-identity item (widened 2026-07-31, "every
+  stored signature changes"), spent nine sessions producing a
+  decomposition and zero landed units; the decomposition plus
+  five exported entries was the only durable yield, bought at
+  full-loop price, and the narrowing route was taken only at
+  close on operator prompt. Design (prose clause, fire-born):
+  at requirement-head composition the desk gauges the item's
+  write-set span; an item that is migration-bearing,
+  multi-consumer, or architecture-wide seeds as a
+  DECOMPOSITION run whose done-criterion is exported unit-sized
+  backlog entries — implementation runs seed per unit.
+  WIDENED same day (operator question, 2026-08-17): the gauge is
+  BIDIRECTIONAL and entry-boundary-skeptical — find-time entry
+  boundaries are claims the seed re-derives, never adopted unit
+  boundaries: intake re-derives the unit set from the entries'
+  write boundaries and the current world, slicing an oversized
+  entry AND batching under-sized siblings whose write-sets
+  overlap (the corpus's mechanical join over write-boundary
+  slots is the instrument). Incident for the widening: run 1's
+  five exported entries were composed at find-time under close
+  pressure, and the run's own closure already names a live lead
+  (the upsert self-healing property) that may delete one of
+  them — structure written before the evidence that shapes it.
+  Judgment-shaped condition, so prose with the head as its
+  surfacing point — no mechanized predicate minted. Verifier:
+  the mint's enumerated tenet check in OBSERVATIONS plus the
+  release-review class the change draws under the checkpoint
+  split; behavioral proof is the first live firing, recorded in
+  OBSERVATIONS when it lands (prose clause — no battery).
+  Done: the clause ships in the SKILL.md intake/head passage
+  with its OBSERVATIONS provenance entry, version bumped.
+  Distinct from P12 (in-run early decomposition round). Write
+  boundary: SKILL.md intake/head passage + OBSERVATIONS
+  provenance entry + bump.
+
+- **READY 2026-08-17 — P5 RE-OPENED: epoch-scoped sweep — form
+  rules never grade lines that predate their mint (operator GO
+  this date; supersedes same-day P22 park, which briefly held
+  this ground on the declaration route).** Re-open basis: the
+  2026-08-15 drop's recorded premise — "firing population
+  empty" — was refuted the NEXT DAY when run 1's ready gate was
+  barred by 696 retroactive holds and the run closed FAILED
+  (P18 measurement). Prerequisite SHIPPED: P3's `SKILL:
+  statiker <version>` line class + skill_versions field
+  (58b224b) provides per-line version attribution — lines
+  between two markers were written under the earlier one.
+  Design: (a) each sweep code carries a mint version in a
+  rule→version table, backfilled once from the tool's git
+  history; (b) FORM codes (superseded-block-form,
+  basis-missing, tag-literal-in-body, clause-unparsed) are
+  grandfathered by default — a hold whose line predates its
+  code's mint grades RETRO, surfaced in the verdict but never
+  blocking; (c) SUBSTANCE codes (basis-cites-invalidated,
+  killerless-dead, pending-latest, clause-disposition) are
+  flagged retroactive and grade every line whatever its age —
+  the per-code bit is the mint's one confirmable decision, and
+  the split above is F148's measured live/retro distribution,
+  not invented; (d) marker-less records (pre-P3) are out of
+  scope — the declaration route stands there (three
+  SWEEP_EXEMPT lines against run 1's closed record if its gate
+  is ever exercised). SWEEP_EXEMPT itself remains for
+  judgment-shaped exemptions (the P15 class); this entry
+  removes only the mechanical retroactivity class from it.
+  Verifier: red-first battery on a two-epoch fixture — a form
+  hold below its code's mint marker grades RETRO (the red
+  proven at build per the standard arrangement: new expectations
+  against the pre-change tool, baseline stated), the same hold
+  above the marker still blocks, and a substance hold below the
+  marker still blocks (the over-forgiveness case). Machine-read
+  semantics → checkpoint opus review at mint. Done: battery
+  green including the over-forgiveness case, a live sweep of the
+  run-2 tracker under the new tool logged as the clean pass,
+  review findings dispositioned, version bumped. Write boundary:
+  plugin/skills/statiker/scripts/statiker_record.py +
+  tools/test_statiker_record.py + SKILL.md sweep passage +
+  statiker CLAUDE.md no-grandfather bullet (amended this date)
+  + version bump.
+
 - **PARKED 2026-08-16 — P18: "serious core issues" investigation
   (operator-named, at run-2 stop).** The operator stopped run 2
   (canonical-frame-sign-repair) at cycle 7/7 with 3/4 rounds spent
@@ -43,6 +177,32 @@ it is not decision-complete.
   fresh session reads both run trackers and computes the ratios
   before any design change. Trigger: next meta-session on this
   repo (operator: "not today").
+  PARTIAL DISCHARGE 2026-08-17 (operator-prompted "why is this
+  item taking so long" analysis, this session): the coarse
+  ratios are answered from the trackers' own executed
+  measurements, not a fresh body-read. Run 1: 8 attack rounds
+  all BIT, zero zero-delta ever, zero landed units and zero
+  V-lines over 46 tracker commits / 8,665 lines (F143's executed
+  greps); sweep 750 holds of which 696 retroactive form debt
+  from grammar rules post-dating the lines they grade — 275
+  superseded-block-form, 248 basis-missing, 173 tag-literal —
+  vs 22–24 substantive (F148/D95 executed distributions); A8:
+  4/9 findings record/instrument-class, reopening nothing under
+  the 0.2.48 never-sustain clause, which was in force at round 8
+  and not applied (F143/F144); the run crossed skill versions
+  0.2.4→0.2.65+ in one record's lifetime. Run 2 (narrowed to
+  U1): READY in one day, fix unrefuted through 3 rounds, bites
+  on record ground. Counterfactual answered too: the same item
+  killed a clippy run at cycle 2 (2026-08-05), and its parent
+  line-matching family ran clippy cycles to 21 and 47
+  pre-statiker — the item's scope (widened 2026-07-31 into an
+  architecture-wide identity refactor) is a co-cause, not
+  statiker alone. STILL OPEN of the named measurement: the
+  per-cycle bookkeeping-to-substance ratio (needs a body-read
+  classification of ~230 findings — dispatchable); the
+  budget-unit redesign (zero V-lines across 12 days says cycles
+  measure loop iterations, not landed value — a design question
+  now, not further measurement).
 
 - **PARKED 2026-08-16 — P17: the mailbox wait's waker is the
   monitored party (silent-stall exposure; Begehung R3).** A desk
