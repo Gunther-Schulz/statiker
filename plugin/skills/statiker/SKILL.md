@@ -1252,10 +1252,14 @@ design entry (P27: design CONSEQUENCE, not finding PRESENCE — a
 terminal [BIT] round's own findings may all discharge without
 touching a single D-line, and the gate reads that as SATISFIED, the
 same predicate as ZERO-DELTA from there; one design-amending
-disposition — any D-class line landing after the [BIT] A-line —
-keeps it SHUT, the over-correction case; F118: the presence-reading
-gate forced an operator deviation to ship a unit whose round's five
-findings none amended the design). Absent either, this is the
+disposition — a SCOPELESS D-class line landing after the [BIT]
+A-line (a `record:`-opened D-line is bookkeeping, never amending; a
+`unit U<k>`-scoped D-line, the `held:` form included, is a PER-UNIT
+concern the ordinary unit-held machinery below already reads,
+identically to ZERO-DELTA) — keeps it SHUT, the over-correction
+case; F118: the presence-reading gate forced an operator deviation
+to ship a unit whose round's five findings none amended the
+design). Absent either, this is the
 normal state during a reopened design; dispatch waits. UNIT_HELD
 bars that unit on its
 unresolved hold entry; UNIT_UNKNOWN halts on an id no live

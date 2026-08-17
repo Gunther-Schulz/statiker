@@ -6697,3 +6697,44 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   this OBSERVATIONS entry (F76/F95 incidents, A5/A6 comparisons).
   Consumer: the release record; the checkpoint opus review; the next
   run's seal (recorded here when it lands); BACKLOG P24's closure.
+
+- 2026-08-17 — **R1 shipped: the P20xP27 closure deadlock —
+  `design_amending` now reads the D-line's SCOPE, not mere
+  presence (checkpoint review, 2026-08-17 opus fresh-context read of
+  0.2.82).** Incident: `cmd_closure`'s terminal-[BIT] branch barred
+  closure on ANY D-class line appended after the [BIT] A-line,
+  whatever its scope — a `record:`-opened bookkeeping disposition or
+  a `unit U<k> held:` per-unit hold both read as "design-amending"
+  and deadlocked the WHOLE closure, contradicting the very P27
+  passage this code implements ("the terminal-BIT branch grades by
+  the SAME predicate as ZERO-DELTA"), under which a `record:`-scoped
+  or unit-scoped post-closure line never bars anything. Fix: the
+  BIT-branch's `design_amending` list now excludes D-lines whose
+  `classify_scope` reads `record` or `unit`, leaving only SCOPELESS
+  D-lines (the genuine over-correction case) to bar closure — a
+  `unit U<k> held:` D-line instead flows into the general
+  unit_lines/UNIT_HELD machinery the ZERO-DELTA path already used,
+  producing UNIT_HELD for that unit alone while siblings stay
+  dispatchable. Battery (red-first against the pre-fix tool,
+  `tools/test_statiker_record.py::TestP27DesignConsequenceClosure`):
+  (a) a `record:`-opened AUTO-ACCEPTED D-line after [BIT] — red
+  CLOSURE_ABSENT, green CLOSURE_LIVE; (b) a SCOPELESS D-line after
+  [BIT] — CLOSURE_ABSENT unaffected, the over-correction guard
+  reconfirmed (already green, the regression pin); (c) a
+  `unit U1 held:` D-line after [BIT] — red CLOSURE_ABSENT for the
+  whole record and every unit query, green CLOSURE_LIVE overall with
+  UNIT_HELD for U1 only and UNIT_DISPATCHABLE for sibling U2. All
+  three cases exercised both pre-fix (confirmed red for (a)/(c),
+  confirmed already-passing for (b)) and post-fix (confirmed green
+  for all three) by running the battery against a stashed copy of
+  the pre-fix script, output pasted in the closing report. SKILL.md's
+  own P27 prose (Implementation, the closure predicate passage)
+  named the OLD over-broad scan ("any D-class line landing after the
+  [BIT] A-line" bars) — aligned to the fixed predicate in the same
+  commit. Full suite: `python3 -m pytest tools/ -q`, 455 passed.
+  Version bump is the dispatcher's at release. Write boundary:
+  `plugin/skills/statiker/scripts/statiker_record.py` (cmd_closure),
+  SKILL.md (Implementation, the closure predicate passage),
+  `tools/test_statiker_record.py` + this OBSERVATIONS entry.
+  Consumer: the release record; BACKLOG P20/P27's closure; the next
+  run's closure predicate (the deadlock this un-blocks).

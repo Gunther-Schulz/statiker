@@ -693,6 +693,57 @@ class TestP27DesignConsequenceClosure(RecordFixture):
         v = self.closure(body, unit="U1")
         self.assertEqual(v["verdict"], "UNIT_DISPATCHABLE", v)
 
+    # ------------------------------------------------- R1 (checkpoint
+    # review, P20xP27 deadlock): design_amending reads the D-line's
+    # SCOPE, not mere presence.
+
+    def test_bit_round_record_scoped_disposition_satisfies(self):
+        # (a) a record:-opened D-line is bookkeeping — never bars
+        # closure (red today: CLOSURE_ABSENT)
+        body = (
+            "- D1 [COMMITTED] the design — basis: probe\n"
+            "- A1 [DISPATCHED] round 1 — basis: brief\n"
+            "- F1 [VERIFIED] record: a bookkeeping finding — "
+            "basis: report\n"
+            "- A1 [BIT] one finding — basis: report\n"
+            "- D2 [AUTO-ACCEPTED] record: disposition note — basis: F1\n")
+        v = self.closure(body)
+        self.assertEqual(v["verdict"], "CLOSURE_LIVE", v)
+
+    def test_bit_round_scopeless_disposition_still_bars(self):
+        # (b) the over-correction guard: a SCOPELESS D-line still
+        # keeps closure shut (unaffected by the scope fix)
+        body = (
+            "- D1 [COMMITTED] the design — basis: probe\n"
+            "- A1 [DISPATCHED] round 1 — basis: brief\n"
+            "- F1 [VERIFIED] record: a bookkeeping finding — "
+            "basis: report\n"
+            "- A1 [BIT] one finding — basis: report\n"
+            "- D2 [INVALIDATED] the design must change — basis: F1\n")
+        v = self.closure(body)
+        self.assertEqual(v["verdict"], "CLOSURE_ABSENT", v)
+        self.assertEqual(v["design_amending"], ["D2"])
+
+    def test_bit_round_unit_held_disposition_yields_unit_held_only(self):
+        # (c) `unit U1 held:` yields UNIT_HELD for U1 only, siblings
+        # dispatchable (red today: all barred — CLOSURE_ABSENT)
+        body = (
+            "- D1 [COMMITTED] the design — basis: probe\n"
+            "- A1 [DISPATCHED] round 1 — basis: brief\n"
+            "- F1 [VERIFIED] record: a bookkeeping finding — "
+            "basis: report\n"
+            "- A1 [BIT] one finding — basis: report\n"
+            "- D2 [AUTO-ACCEPTED] unit U1 held: pending operator call "
+            "— basis: F1\n"
+            "- F2 [VERIFIED] unit U1 write-set: a.txt — basis: design\n"
+            "- F3 [VERIFIED] unit U2 write-set: b.txt — basis: design\n")
+        v_whole = self.closure(body)
+        self.assertEqual(v_whole["verdict"], "CLOSURE_LIVE", v_whole)
+        v_u1 = self.closure(body, unit="U1")
+        self.assertEqual(v_u1["verdict"], "UNIT_HELD", v_u1)
+        v_u2 = self.closure(body, unit="U2")
+        self.assertEqual(v_u2["verdict"], "UNIT_DISPATCHABLE", v_u2)
+
 
 # --------------------------------------------------------------------- waves
 

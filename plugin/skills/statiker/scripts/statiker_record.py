@@ -1630,14 +1630,28 @@ def cmd_closure(args):
         # at closure) — the presence-reading gate forced an operator
         # deviation (route 2, F118) to ship a thrice-verified unit
         # whose round's five findings none amended the design.
+        #
+        # P20xP27 (checkpoint review R1): "amends" reads the D-line's
+        # SCOPE, not mere presence — a `record:`-opened D-line is desk
+        # bookkeeping (never a design amendment, so it never bars
+        # closure) and a `unit U<k>`-scoped D-line (the `held:` form
+        # included) is a PER-UNIT concern the general unit_lines/
+        # UNIT_HELD machinery below already reads, identically to
+        # ZERO-DELTA — only a SCOPELESS D-line is a genuine
+        # over-correction that keeps the whole closure shut. Net
+        # effect: the terminal-BIT branch grades by the SAME predicate
+        # as ZERO-DELTA, which is what this page's own prose already
+        # promised.
         design_amending = [e for e in entries
-                          if e.lineno > closing.lineno and e.cls == "D"]
+                          if e.lineno > closing.lineno and e.cls == "D"
+                          and classify_scope(e.body)[0] not in
+                          ("record", "unit")]
         if design_amending:
             finish("CLOSURE_ABSENT", 2,
                    last_a=f"{closing.id} [{closing.tag}]",
                    design_amending=[e.id for e in design_amending], **late)
         say(f"closure: {closing.id} [BIT] SATISFIED — disposition set "
-            f"amends no design entry (P27)")
+            f"amends no design entry outside record/unit scope (P27)")
     else:
         say(f"closure: {closing.id} [ZERO-DELTA] at line {closing.lineno}")
 
