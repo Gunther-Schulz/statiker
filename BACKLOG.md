@@ -407,6 +407,26 @@ it is not decision-complete.
   unit-draft shape run 1's five exports already used, seedable
   by a successor run — or a one-line recorded drop; (c) the
   printed closure verdict names the unexported set.
+  WIDENED 2026-08-17 (operator: will U2 profit from U1's
+  learnings — the tracker is a run's RECORD, not the repo's
+  MEMORY): the close carries a GRADUATION checklist of three
+  classes, enumerated in the close report — (1) out-of-scope
+  findings → export or drop (the mechanical gate above); (2)
+  instruments/probes used twice → graduate to the target
+  repo's tools/ or die (the repo trigger F116 already applied
+  from the corpus — skill-owned per the self-containment
+  criterion); (3) durable world-facts a successor run would
+  otherwise re-derive (population maps, prod overrides,
+  frame-stability) → the target repo's own fact carrier
+  (CLAUDE.md verify section or ledger), each with its executed
+  basis. Classes (2) and (3) are judgment-answered checklist
+  items at a SEAM (rule-shaped per the mint-timing
+  convention's placement half); only class (1) gets the
+  mechanical closure predicate. Provenance for the widening:
+  U1's population instrument cost four rounds to derive and
+  would be silently re-derived by the successor if it stays
+  tracker-buried; carrier-on-read-path is the operative corpus
+  rule, made skill-owned.
   Machine-read semantics (new grade + closure predicate) →
   same-commit tool authorship, checkpoint opus review at mint.
   Verifier: red-first battery — closure holds on a tracker
