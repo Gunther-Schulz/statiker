@@ -408,6 +408,26 @@ it is not decision-complete.
   carrier if the current session dies).** Design: decided —
   the checklist below IS the design, four item groups executed
   in order at the close relay. Items, each owed a
+  named disposition in the close relay reply. HANDOFF BOUNDARY
+  (operator-delegated call, 2026-08-17): the deep meta session
+  executes through item 3's checkpoint-review DISPOSITION; a
+  FRESH session takes the release mechanics and item 4 (U2
+  seeding), reading this entry plus the two lane directives
+  (docs/directives/2026-08-17-lane-*.md) as its brief.
+  Progress at booking: item 1 partially discharged (spread-CLV
+  export + successor entries verified in the artifact; F116
+  metric graduation still open — now folded into lane A's P25
+  leavings machinery); item 2 done except P18-ratio drop
+  (recorded here: DROPPED, no decision hangs on it); item 3 in
+  flight (lane B P16 done+booked, commits 6e1e668/80e4c47;
+  lane A at P30 of its nine, bump landed b897ce4, boundary
+  extension granted for test_contract.py battery rows); U1
+  DEPLOYED to prod (origin 5c691cea, R4 discharged, R8 waits
+  on crosswise population). Checkpoint-review question queue:
+  the batch's cumulative SKILL.md diff; lane B's
+  operator-authority-marker gap (link P23 — an authority: line
+  class would solve both); lane B's untested multi-tracker
+  glob path. Items, each owed a
   named disposition in the close relay reply: (1) LEAVINGS
   check over the desk's close report — out-of-scope findings
   exported to beat-the-books BACKLOG.md or recorded-dropped
