@@ -41,6 +41,21 @@
 
 ## Trial working conventions (operator-settled, 2026-08-06)
 
+- **Disposition executability (operator-settled 2026-08-17, from
+  the point-3 deadlock).** A paste-ready disposition or
+  authority block the meta session composes is a BRIEF: before
+  delivery, each step naming an action is checked against the
+  RUN RECORD'S OWN STATE — gate predicates, budget counters,
+  phase — read from the tracker on disk, not recalled from
+  relays. Incident: a disposition instructed "proceed to
+  implementation" while the closure gate was structurally
+  unopenable (last round BIT, rounds 5/5 spent) — the
+  unexecutable step cost the operator round-trip it existed to
+  save, and only the desk's refusal to improvise past the gate
+  surfaced it. The machinery half (the breaker's missing
+  CONTINUE ending) is P19's; this convention is the
+  composition half.
+
 - **Mint timing: the bite bar is on the PROBLEM, the field test
   is on the DESIGN — and the pin makes the test free
   (operator-settled 2026-08-17).** Fire-born's "actually bites"
