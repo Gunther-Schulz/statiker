@@ -5911,3 +5911,35 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   route lines named; no queue held. Consumer: the next
   meta-session (P18's investigation opens from here); the trial
   close's grading.
+
+- 2026-08-17 — **P15 shipped: sweep's printed repair for
+  `clause-unparsed` and `killerless-dead` now names the SWEEP_EXEMPT
+  route and drops the edit prescription (fire-born, incident: b7's
+  F29 dry-run in a scratch copy — eight holds before, eight after —
+  plus the parent run's F147, both live-measuring the prior repair
+  text minting a new violation of the same class and clearing
+  nothing).** Design: `REPAIR_SWEEP_EXEMPT_ROUTE` replaces
+  `REPAIR_SWEEP_BOOKKEEPING` (clause-unparsed) and killerless-dead's
+  former slot on `REPAIR_STATUS_LINE` — both codes are
+  resolver-unreachable by construction (E-M: no `corrects line <n>`
+  token can ever resolve against them), so the printed repair now
+  states the sanctioned route directly: a `SWEEP_EXEMPT: <code>
+  lines<=<n> — basis: <citation>` declaration on operator grant,
+  never an edit. `pending-latest` and `basis-cites-invalidated` keep
+  the append-a-new-line form — only the two settled-prose form-debt
+  codes move; `SWEEP_STAGE_BOOKKEEPING_CODES` retired as dead
+  machinery (`repair_class`'s generic "unreachable" branch already
+  covers any non-bookkeeping form, so no dedicated set was needed to
+  keep the property). Verifier: red-first battery
+  (`TestP15SweepExemptRoute`, tools/test_statiker_record.py) — red
+  confirmed against the pre-change tool (repair text carried
+  "restate a clean clause disposition" / "append a new tag-first
+  line", no `SWEEP_EXEMPT` mention), green after the fix; full suite
+  green (`python3 -m pytest tools/ -q`, 401 passed). No SKILL.md
+  patch — this is a tool-only fix, the repair text was never quoted
+  in SKILL.md prose — so the birth-class tenet check does not apply;
+  version bump is the dispatcher's at release (batch-release slot,
+  the P29 mint window). Write boundary:
+  plugin/skills/statiker/scripts/statiker_record.py +
+  tools/test_statiker_record.py. Consumer: the release record;
+  BACKLOG P15's closure.

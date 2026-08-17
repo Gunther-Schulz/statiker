@@ -295,24 +295,25 @@ REPAIR_STATUS_LINE = ("status line: append a new tag-first line under "
 REPAIR_INTENT_HOLD = ("hold: an undefanged tag literal here holds the "
                       "sweep for the run's life — write the defanged "
                       "literal in place; no repair token reaches it")
-# E-M (BACKLOG; dev-notes/OBSERVATIONS.md, "the sweep prescribes a
-# repair its own token resolver refuses", commit 271a6bf):
-# `apply_supersession` builds its `violated` map ONCE, from the
-# LINT-stage violations `parse_tracker` itself accumulates —
-# `clause-unparsed` is computed later, at the SWEEP stage
-# (sweep_checks), so it can never be a member of that map and a
-# `corrects line <n>` token naming it can never resolve. Printing
-# REPAIR_BOOKKEEPING's corrects-token form on it prescribed a repair
-# the record's own resolver structurally refuses; a desk that pasted
-# the verdict's own form verbatim (as the tools section directs)
-# appended two permanent corrects-nothing holds to a live,
-# append-only tracker. This form carries no token at all.
-REPAIR_SWEEP_BOOKKEEPING = ("bookkeeping (sweep-stage code): no "
-                            "`corrects line` token resolves against "
-                            "this code — restate a clean clause "
-                            "disposition on the entry's own next line; "
-                            "the record is append-only, the flagged "
-                            "line stands as written")
+# P15 (BACKLOG; b7's F29 dry-run in a scratch copy — eight holds
+# before, eight after — and the parent run's F147, both live
+# measurements): the prior repair text for `clause-unparsed` and
+# `killerless-dead` prescribed an in-place edit that mints a NEW
+# violation of the same class and clears nothing on settled-prose
+# form debt. E-M already established both codes are RESOLVER-
+# UNREACHABLE — no `corrects line <n>` token can ever resolve against
+# them (clause-unparsed is a SWEEP-stage code, never a member of
+# apply_supersession's LINT-stage `violated` map; killerless-dead's
+# "append a new tag-first line" restates the same dead disposition
+# under the same id and re-fires unchanged) — so both share ONE
+# repair form now: the sanctioned route is a `SWEEP_EXEMPT: <code>
+# lines<=<n> — basis: <citation>` declaration on operator grant
+# (the 0.2.79 ask machinery), never an edit or a repair token.
+REPAIR_SWEEP_EXEMPT_ROUTE = (
+    "settled form debt: no in-place edit clears this and no repair "
+    "token resolves against it — the sanctioned route is a "
+    "`SWEEP_EXEMPT: <code> lines<=<n> — basis: <citation>` "
+    "declaration on operator grant")
 # E-M, widened (halted mid-build, decision recorded here): building
 # the assertion below surfaced FOUR MORE codes with clause-unparsed's
 # exact defect, for a DIFFERENT structural reason — `corrects-nothing`,
@@ -370,11 +371,11 @@ BODY_CONTENT_CODES = {
     "superseded-block-form", "landing-indent", "landing-blank",
     "intent-near-miss",
 }
-# SWEEP-stage-only codes whose REPAIR_FORMS entry must never carry the
-# `corrects line <n>` token (E-M): resolver-unreachable by
-# construction, named individually rather than folded into
-# BODY_CONTENT_CODES's blanket REPAIR_BOOKKEEPING mapping above.
-SWEEP_STAGE_BOOKKEEPING_CODES = {"clause-unparsed"}
+# P15: clause-unparsed and killerless-dead share REPAIR_SWEEP_EXEMPT_ROUTE
+# (defined above) rather than a set-driven comprehension here — both are
+# resolver-unreachable by construction (E-M), and repair_class's generic
+# "unreachable" branch fires on any form that is not REPAIR_BOOKKEEPING,
+# so no dedicated set is needed to keep that property.
 # apply_supersession's own complaint codes (E-M, widened): a defective
 # corrects-token is a machine-token defect too, but on the CORRECTING
 # line, not a target — REPAIR_SUPERSEDE's "restate under the same id
@@ -386,13 +387,14 @@ SELF_TARGET_UNREACHABLE_CODES = {
 REPAIR_FORMS = dict(
     [(c, REPAIR_SUPERSEDE) for c in MACHINE_TOKEN_CODES]
     + [(c, REPAIR_BOOKKEEPING) for c in BODY_CONTENT_CODES]
-    + [(c, REPAIR_SWEEP_BOOKKEEPING) for c in SWEEP_STAGE_BOOKKEEPING_CODES]
+    + [(c, REPAIR_SWEEP_EXEMPT_ROUTE) for c in
+       ("clause-unparsed", "killerless-dead")]
     + [("corrects-nothing", REPAIR_CORRECTS_NOTHING)]
     + [(c, REPAIR_TOKEN_RETRY) for c in SELF_TARGET_UNREACHABLE_CODES]
     + [(c, REPAIR_HEADER) for c in
        ("status-enum", "phase-enum", "admission-window")]
     + [(c, REPAIR_STATUS_LINE) for c in
-       ("pending-latest", "killerless-dead", "basis-cites-invalidated")]
+       ("pending-latest", "basis-cites-invalidated")]
     + [("corrects-token-out-of-body", REPAIR_CORRECTS_OUT_OF_BODY)])
 
 

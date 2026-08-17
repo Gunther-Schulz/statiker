@@ -1657,6 +1657,50 @@ class TestEMRepairFormGating(RecordFixture):
         self.assertIn("never itself a corrects target", hits[0]["repair"])
 
 
+class TestP15SweepExemptRoute(RecordFixture):
+    """BACKLOG P15: the printed repair for `clause-unparsed` and
+    `killerless-dead` previously prescribed an in-place edit that
+    mints a NEW violation of the same class and clears nothing on
+    settled-prose form debt — measured twice live (parent run F147;
+    successor run's F29 dry-run in a scratch copy: eight holds
+    before, eight after). The sanctioned route for these two codes
+    is a SWEEP_EXEMPT declaration on operator grant (the 0.2.79 ask
+    machinery); the repair text names it and prescribes no edit."""
+
+    def test_clause_unparsed_repair_names_sweep_exempt_and_no_edit(self):
+        body = ("- F5 [INVALIDATED] clause a restated-at-D7; clause b "
+                "dead (killed by F9); clause c restated at D8 — "
+                "basis: F6\n")
+        v = self.sweep(body)
+        hits = [x for x in v["violations"] if x["code"] == "clause-unparsed"]
+        self.assertTrue(hits)
+        for x in hits:
+            self.assertIn("SWEEP_EXEMPT", x["repair"])
+            self.assertNotIn("restate a clean clause disposition",
+                             x["repair"])
+            self.assertNotRegex(x["repair"], r"corrects line \d")
+
+    def test_killerless_dead_repair_names_sweep_exempt_and_no_edit(self):
+        body = "- F2 [INVALIDATED] clause a dead — basis: F2\n"
+        v = self.sweep(body)
+        hits = [x for x in v["violations"] if x["code"] == "killerless-dead"]
+        self.assertTrue(hits)
+        for x in hits:
+            self.assertIn("SWEEP_EXEMPT", x["repair"])
+            self.assertNotIn("append a new tag-first line", x["repair"])
+            self.assertNotRegex(x["repair"], r"corrects line \d")
+
+    def test_pending_latest_and_basis_cites_invalidated_unchanged(self):
+        # the sibling codes sharing REPAIR_STATUS_LINE keep the
+        # append-a-new-line form — only clause-unparsed and
+        # killerless-dead move to the exemption route
+        v = self.sweep("- F1 [PENDING] awaiting leg — basis: dispatched\n")
+        hits = [x for x in v["violations"] if x["code"] == "pending-latest"]
+        self.assertTrue(hits)
+        for x in hits:
+            self.assertIn("append a new tag-first line", x["repair"])
+
+
 class TestENCorrectsTokenOutOfBody(RecordFixture):
     """BACKLOG E-N (F205, relay 5, beat-the-books desk): a `corrects
     line <n>` token placed in an entry's BASIS clause is invisible to
