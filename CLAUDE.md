@@ -103,7 +103,16 @@
   work targets causes (round-sustain class, record attack
   surface, item scope), and a bound's firing is a diagnostic
   event owing a named cause. Resource arithmetic alone grades
-  nothing.
+  nothing. Sharpened same day (operator): ROUND COUNT IS AN
+  OUTPUT, NOT A KNOB — better cycle work needs fewer rounds
+  (sealed instruments, repairs carrying their executed checks,
+  right-sized requirements), so rounds-per-landed-unit trending
+  down is the trial's efficiency read, and it moves ONLY
+  through cycle quality. Floor, never economized: one honest
+  fresh-context round before code ships — self-blindness is the
+  lineage's one never-solved class, only re-homed into the
+  attack; a "saved" closing round moves defect discovery to
+  prod, which here is real money.
 
 - **Two-session layout — the relay loop IS the procedure.** The
   meta/grading session runs in THIS repo (grades comparisons,
