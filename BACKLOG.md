@@ -61,7 +61,18 @@ it is not decision-complete.
   tripwire red demonstrated per its recorded arrangement, the
   SKILL.md budget passage states cap-as-escape plus both
   progress signals routing to narrowing, review findings
-  dispositioned, version bumped. Write boundary: SKILL.md budget
+  dispositioned, version bumped. DESIGN ADDITION (operator
+  discussion 2026-08-17, "there is always another reason"):
+  excess iteration is a SYMPTOM — every cause is diagnosable,
+  so the breaker's firing is a MINT SOURCE, never a verdict:
+  each trip owes a named cause at close-out, and a computable
+  cause becomes a named tripwire so the next run stops on the
+  pathology itself; a breaker tripping twice for one cause
+  indicts the missing tripwire. The breaker thereby withers as
+  the diagnostic layer absorbs failure modes — the designed
+  end-state is a backstop that never fires, not a bound that
+  gets argued with (both runs' evidence: every firing to date
+  was overridden). Write boundary: SKILL.md budget
   passage + statiker_record.py tripwire/trend support
   (same-commit authorship per the composition rule) + tools/
   battery + version bump.
