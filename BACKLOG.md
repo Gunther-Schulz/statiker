@@ -214,6 +214,23 @@ it is not decision-complete.
   measure loop iterations, not landed value — a design question
   now, not further measurement).
 
+- **PARKED 2026-08-17 — P23: an open operator question has no
+  non-blocking carrier in the record (desk workaround observed,
+  run-2 resume).** Incident: the resumed desk had a live
+  operator question (rounds bound vs the cycle raise) and
+  deliberately did NOT record it, stating that a [PENDING] entry
+  would block the very re-lock the running round needs — so the
+  question survives only in conversation, the carrier that
+  evaporates (run 1's F138 shows the blocking species working as
+  designed; this is the complement: a question that must not
+  gate). Missing design, named: a surfaced-not-gating question
+  line class — enumerated at close and at resume like
+  SWEEP_EXEMPT declarations, invisible to lock/ready/closure
+  gates; new line class = machine-read semantics, same-commit
+  tool authorship, checkpoint review. Trigger: the next mint
+  window touching record grammar, or a second incident of a
+  question held in chat.
+
 - **PARKED 2026-08-16 — P17: the mailbox wait's waker is the
   monitored party (silent-stall exposure; Begehung R3).** A desk
   that legitimately ends its turn with a round in flight (0.2.81's
