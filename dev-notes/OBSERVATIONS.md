@@ -6738,3 +6738,34 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   `tools/test_statiker_record.py` + this OBSERVATIONS entry.
   Consumer: the release record; BACKLOG P20/P27's closure; the next
   run's closure predicate (the deadlock this un-blocks).
+
+- 2026-08-17 — **R2 shipped: the Close/leavings passage now warns
+  that a disposition line must RE-CARRY its `out-of-scope: ` opener
+  (checkpoint review, P25 disposition opener finding).** Incident:
+  the leavings passage told the desk to compose a disposition as
+  "an ordinary new tag-first line for the same id" carrying
+  `— exported: <ref>` or `— dropped: <reason>`, without warning that
+  the NATURAL phrasing (opening the body straight with the export/
+  drop clause, dropping the `out-of-scope: ` prefix that made the id
+  out-of-scope-graded in the first place) reads scopeless under
+  `classify_scope` and VOIDS THE WHOLE CLOSURE — not merely
+  re-holding the leavings gate — exactly the trap the cleared-hold
+  line's own warning already names for a different seam
+  (Implementation: "opening `unit U<k>` (the natural scopeless
+  phrasing voids the whole closure)"). Fix: one sentence added
+  naming the re-carry requirement (or a `record: `-opened
+  bookkeeping disposition) in the same warning form. No code change
+  — `classify_scope`/the post-closure scopeless check already
+  produce this behavior; the existing test suite
+  (TestP25LeavingsGate) already demonstrated the correct spelling in
+  its passing fixtures. Battery: one new case,
+  `test_natural_scopeless_disposition_spelling_voids_the_closure`,
+  pins the trap (a disposition body opening `exported to <ref>`
+  with no `out-of-scope: `/`record: ` opener) — CLOSURE_VOID,
+  confirmed passing pre- and post-edit since this is a
+  presence-of-warning + behavior-pin change, not a behavior change.
+  Full suite: `python3 -m pytest tools/ -q`, 455 passed. Version
+  bump is the dispatcher's at release. Write boundary: SKILL.md
+  (Close, the leavings passage), `tools/test_statiker_record.py` +
+  this OBSERVATIONS entry. Consumer: the release record; BACKLOG
+  P25's closure; any desk composing a leavings disposition line.

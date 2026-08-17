@@ -1619,7 +1619,12 @@ successor run — or a one-line recorded drop — `— dropped: <reason>`.
 The printed closure verdict names the undispositioned set; the desk
 composes the disposition as an ordinary new tag-first line for the
 same id (append-only, latest-line-wins), never an edit of the
-booking line.
+booking line. The disposition line RE-CARRIES its `out-of-scope: `
+opener (or opens `record: ` where the disposition is itself desk
+bookkeeping) — the natural phrasing that drops it (a bare
+`— exported: <ref>` or `— dropped: <reason>` opening the body) reads
+scopeless and voids the WHOLE closure, the same trap the cleared-hold
+line's own warning names (Implementation).
 The close REPORT itself carries a LEAVINGS section enumerating three
 classes: (1) out-of-scope findings — the mechanical gate above, the
 one class that is a run artifact proper; (2) instruments and probes

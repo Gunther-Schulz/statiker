@@ -640,6 +640,21 @@ class TestP25LeavingsGate(RecordFixture):
         v = self.closure(CLOSED)
         self.assertEqual(v["verdict"], "CLOSURE_LIVE", v)
 
+    def test_natural_scopeless_disposition_spelling_voids_the_closure(self):
+        # R2 (checkpoint review): the trap SKILL.md's Close/leavings
+        # passage now warns about — a disposition line that drops the
+        # out-of-scope: opener (the natural phrasing) reads scopeless
+        # and voids the WHOLE closure, never just re-holding the
+        # leavings gate. Presence-of-warning + behavior pin: no code
+        # change, this is existing (already correct) behavior.
+        body = (CLOSED +
+                "- F9 [VERIFIED] out-of-scope: spread CLV has never "
+                "computed — basis: probe\n"
+                "- F9 [VERIFIED] exported to target-repo "
+                "BACKLOG.md#spread-clv — basis: probe\n")
+        v = self.closure(body)
+        self.assertEqual(v["verdict"], "CLOSURE_VOID", v)
+
 
 class TestP27DesignConsequenceClosure(RecordFixture):
     """BACKLOG P27 (run-2 A6, F118): round sustain reads design
