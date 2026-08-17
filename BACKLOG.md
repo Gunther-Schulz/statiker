@@ -291,7 +291,16 @@ it is not decision-complete.
   rather than composed prose — a disposition carrying a command
   and its output offers an attacker nothing to bite except
   reality; overlaps P24's basis-upgrade twin, which may absorb
-  the completeness slice of the class. Missing evidence, named:
+  the completeness slice of the class. EXEMPLAR for the design
+  (run-2 implementation leg, 2026-08-17): the executor stashed
+  only the fix while keeping the new test, so its baseline
+  suite run contained the new check in its RED state — counts
+  reconciling exactly (3,030 + 4 new − 2 pre-fix-red = 3,032)
+  rather than approximately; a baseline that includes the new
+  expectations failing is strictly more informative than one
+  taken before they exist. Candidate corpus widening (operator
+  call — corpus edits are GO-gated): the Fixing module's
+  baseline sentence could name this arrangement. Missing evidence, named:
   the run-2 close grading — enumerate the five incidents and
   answer whether P24 covers them or a distinct mechanism is
   owed; a sixth incident post-P24-mint would settle it the
