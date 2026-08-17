@@ -252,6 +252,18 @@ it is not decision-complete.
   CONSEQUENCE, not finding PRESENCE (operator hypothesis: binary
   verdicts were a core clippy flaw; register check found the
   class UNRECORDED, so the basis is testimony plus analysis).**
+  Basis SHARPENED same day — the operator's concrete
+  recollection: clippy falsification rounds hung on small doc
+  inconsistencies, each buying a whole new cycle and a fresh
+  round that found the next one, where batch-fix-cheaply or
+  note-and-continue was available because none were
+  load-bearing. That maps exactly onto the two mechanisms: the
+  doc-inconsistency half is P20's record-class (measured
+  statiker-internally as run-1 F143/F144 — A8's record findings
+  would have reopened nothing), the not-load-bearing half is
+  THIS entry's consequence rule. The clippy memory thus has a
+  statiker-internal measured echo even though the lineage
+  ledger never named the class.
   The decision a round feeds is inherently binary (re-derive and
   re-attack, or close); the candidate flaw is computing it from
   finding presence — a round with findings whose dispositions
@@ -341,11 +353,28 @@ it is not decision-complete.
   entry; the desk's A4 seal-comparison records the lesson and
   self-directs an A5 seal item over the INSTRUMENTS themselves
   (their shared blind spot is the corpus's
-  instruments-sharing-an-author class). Candidate mint: a
-  standing seal part over enumeration/instrument completeness —
-  what populations were declared complete this cycle and on
-  what derived basis. Missing evidence, named: the A5 seal's
-  own result — whether the desk's self-directed item catches a
+  instruments-sharing-an-author class). WIDENED 2026-08-17
+  (operator: the serialized-discovery reading — "each attacker
+  finds one new thing, we design on that one thing, the next
+  finds the next"): the four misses were not four discoveries
+  but ONE weak basis re-asserted four times — each repair
+  answered the found INSTANCE and re-claimed completeness on
+  the same KIND of basis (search/recall), so each lap invited
+  the next instance-refutation; the class-repair
+  (instrument-derived enumeration) ended the series in one
+  cycle when it finally ran (cycle 8: nine claimed by search →
+  eleven established by instrument). Candidate mint now carries
+  BOTH halves, graded together on the same field test: (a) the
+  seal part — what populations were declared complete this
+  cycle and on what derived basis, plus per-instrument what it
+  structurally cannot return (the desk's A5 form); (b) the
+  repair-side twin — a claim REFUTED by a round re-enters the
+  design only on a basis of a DIFFERENT KIND than the refuted
+  one, the entry naming why the new kind is immune to the
+  prior failure mode (the corpus's derive-the-basis rule,
+  applied at the re-derivation seam where momentum re-asserts
+  the cheap basis). Missing evidence, named: the A5 seal's own
+  result — whether the desk's self-directed item catches a
   fifth miss or reports the class closed; mint grades on that.
   Trigger: run-2 close grading.
 
