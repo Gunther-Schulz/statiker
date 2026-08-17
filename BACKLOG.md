@@ -412,8 +412,19 @@ it is not decision-complete.
   (operator-delegated call, 2026-08-17): the deep meta session
   executes through item 3's checkpoint-review DISPOSITION; a
   FRESH session takes the release mechanics and item 4 (U2
-  seeding), reading this entry plus the two lane directives
+  seeding), reading this entry plus the three lane directives
   (docs/directives/2026-08-17-lane-*.md) as its brief.
+  CUT REACHED 2026-08-17 (deep session's span complete): mint
+  batch built, twice-reviewed (2 cycles), repaired, verified
+  (suite 468 green at c19c829), integration-recorded, PUSHED to
+  origin at 88de6b7. Successor's remainder: (i) the release —
+  /release-plugin or the repo's release lane over the already-
+  bumped 0.2.82 (bump b897ce4 already in history; pin moves at
+  the release seam per CLAUDE.md); (ii) U2 seeding per item 4
+  below, on the released version, carrying F128's crosswise
+  standing instruction and the crosswise base rate as named
+  missing evidence; (iii) P31 polish batch rides the NEXT bump,
+  never its own release.
   INTEGRATION RECORD (2026-08-17, the batch push's booking —
   every subagent commit verified in the artifact and its lane
   report booked before this line was written): lane A
