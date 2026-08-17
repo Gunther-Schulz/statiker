@@ -117,6 +117,11 @@ class RecordFixture(unittest.TestCase):
             ["trend", "--tracker", str(self.write_tracker(body, header))],
             cwd=self.dir))
 
+    def sustain(self, body, header=HEADER):
+        return self.verdict(tool(
+            ["sustain", "--tracker", str(self.write_tracker(body, header))],
+            cwd=self.dir))
+
     def violation_codes(self, v):
         return {viol["code"] for viol in v.get("violations", [])}
 
@@ -866,6 +871,66 @@ class TestP26ConcentrationReadsEntryClass(RecordFixture):
         self.assertTrue(v["concentration"], v)
         cited = {h["finding"] for h in v["concentration_detail"]}
         self.assertEqual(cited, {"F5"})
+
+
+class TestP20SustainGate(RecordFixture):
+    """BACKLOG P20 (F143): round-open's mechanical never-sustain
+    gate — a new attack round opens only if the latest [BIT] round's
+    own findings hold at least one design-substance (non-`record:`)
+    member; record/instrument-class findings are desk work and never
+    buy a round."""
+
+    def test_all_record_class_round_denies_sustain(self):
+        # the F143 shape: A8's four record/instrument-class findings
+        body = (
+            "- A1 [DISPATCHED] round 1 — basis: brief\n"
+            "- F1 [VERIFIED] record: a bookkeeping note — basis: probe\n"
+            "- F2 [VERIFIED] record: another bookkeeping note — "
+            "basis: probe\n"
+            "- A1 [BIT] two record-class findings — basis: report\n")
+        v = self.sustain(body)
+        self.assertEqual(v["verdict"], "SUSTAIN_DENIED", v)
+        self.assertEqual(v["round"], "A1")
+        self.assertEqual(set(v["record_class"]), {"F1", "F2"})
+
+    def test_mixed_round_sustains(self):
+        body = (
+            "- A1 [DISPATCHED] round 1 — basis: brief\n"
+            "- F1 [VERIFIED] record: a bookkeeping note — basis: probe\n"
+            "- F2 [VERIFIED] a genuine design finding — basis: probe\n"
+            "- A1 [BIT] two findings — basis: report\n")
+        v = self.sustain(body)
+        self.assertEqual(v["verdict"], "SUSTAIN_OK", v)
+        self.assertEqual(v["substance"], ["F2"])
+        self.assertEqual(v["record_class"], ["F1"])
+
+    def test_all_substance_round_sustains(self):
+        body = (
+            "- A1 [DISPATCHED] round 1 — basis: brief\n"
+            "- F1 [VERIFIED] a genuine design finding — basis: probe\n"
+            "- A1 [BIT] one finding — basis: report\n")
+        v = self.sustain(body)
+        self.assertEqual(v["verdict"], "SUSTAIN_OK", v)
+
+    def test_zero_delta_round_not_applicable(self):
+        body = (
+            "- A1 [DISPATCHED] round 1 — basis: brief\n"
+            "- A1 [ZERO-DELTA] clean return — basis: report\n")
+        v = self.sustain(body)
+        self.assertEqual(v["verdict"], "SUSTAIN_NOT_APPLICABLE", v)
+
+    def test_no_rounds_not_applicable(self):
+        v = self.sustain("- D1 [COMMITTED] a decision — basis: probe\n")
+        self.assertEqual(v["verdict"], "SUSTAIN_NOT_APPLICABLE", v)
+
+    def test_still_dispatched_round_not_applicable(self):
+        body = "- A1 [DISPATCHED] round 1 — basis: brief\n"
+        v = self.sustain(body)
+        self.assertEqual(v["verdict"], "SUSTAIN_NOT_APPLICABLE", v)
+
+    def test_malformed_record_blocks(self):
+        v = self.sustain("- F1 (VERIFIED) x — basis: y\n")
+        self.assertEqual(v["verdict"], "SUSTAIN_RECORD_MALFORMED", v)
 
 
 # -------------------------------------------------------------------- filter

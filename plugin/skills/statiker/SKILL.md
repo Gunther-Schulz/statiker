@@ -47,8 +47,9 @@ run-start preflight, the LOCK commit, unit START and COMMIT — and
 `scripts/statiker_record.py` — record grammar: tracker lint, the
 [READY] sweep's computable slice, the closure predicate, the
 pinned attack artifact, the append-only check against the pin
-(`pinned`), the verify-leg copy-freeze check (`verify-gate`),
-defanged quote blocks. The two scripts
+(`pinned`), the verify-leg copy-freeze check (`verify-gate`), the
+never-sustain round-open gate (`sustain`), defanged quote blocks.
+The two scripts
 plus their red-first battery (the source repo's tools/ suites —
 the attack rounds' probes and record findings mechanized) are the
 EXECUTABLE SPEC of the record grammar and the transaction
@@ -92,8 +93,11 @@ dispatchability read: the per-unit gate stays `closure --unit`.
 `trend` returns TREND_COMPUTED /
 TREND_NO_ROUNDS — per-round F-LINE counts (every F-line in a
 round's span, not attacker findings alone) with an arithmetic
-trajectory verdict. Both halt WAVES_RECORD_MALFORMED /
-TREND_RECORD_MALFORMED where an entry-shaped line broke the
+trajectory verdict. `sustain` returns SUSTAIN_OK / SUSTAIN_DENIED /
+SUSTAIN_NOT_APPLICABLE — the never-sustain round-open gate (Stop
+rule, "That closes design"). All three halt WAVES_RECORD_MALFORMED /
+TREND_RECORD_MALFORMED / SUSTAIN_RECORD_MALFORMED where an
+entry-shaped line broke the
 grammar, repaired like any lint hold (`corrects line <n>`
 composed from the verdict's violation lines). ANY verdict no
 section names is a halt for
@@ -1088,7 +1092,18 @@ verdict reach-matched, measured by the attacker or completed by
 the desk, and no [PENDING] tag riding the round's own appends.
 That closes design; record findings never sustain a
 next round (declining max-severity is convergence; observed
-sustaining rounds past it).
+sustaining rounds past it). Mechanically enforced at the RE-ENTRY
+seam (F143: the prose held IN FORCE while UNAPPLIED — A8's four
+record/instrument-class findings sustained a ninth round this
+clause forbids): before a design's next round dispatches,
+`sustain --tracker <path>` re-derives the PRIOR round's finding
+classes from the record itself, independent of the A-line's own
+tag — SUSTAIN_OK when at least one finding is design-substance
+(never `record:`-scoped), SUSTAIN_DENIED when every finding is
+record/instrument-class, SUSTAIN_NOT_APPLICABLE outside a [BIT]
+round. The verdict is quoted in the round-open line; a round
+dispatched over SUSTAIN_DENIED is exactly the class this gate
+exists to catch.
 A reopen bars the design's UNITS only: investigation, record
 repair, and the run's own instruments stay open desk work — their
 lines land before the closing A-line (this return's

@@ -47,6 +47,15 @@ Subcommands (each prints evidence lines, then exactly one final line
                                       the immediately prior round
                                       (that prior round's own
                                       repair set)
+  sustain --tracker P                 read-only: round-open's
+                                      mechanical never-sustain gate
+                                      (P20) — SUSTAIN_OK when the
+                                      latest [BIT] round's own
+                                      findings hold at least one
+                                      design-substance (non-`record:`)
+                                      member, else SUSTAIN_DENIED;
+                                      SUSTAIN_NOT_APPLICABLE outside a
+                                      [BIT] round
   filter  --tracker P --sha S --out F pinned attack artifact (reads
                                       the sha, drops the two
                                       Superseded species)
@@ -1931,6 +1940,57 @@ def cmd_trend(args):
           concentration_detail=hits, **meta)
 
 
+# ------------------------------------------------------------------- sustain
+
+def cmd_sustain(args):
+    """P20 (BACKLOG; F143: A8's four record/instrument-class findings
+    sustained a ninth round the 0.2.48 never-sustain clause says they
+    cannot — prose under-binds at the re-entry seam, the same class
+    as P16's turn-end seam). round-open's mechanical gate: the
+    SUSTAINING SET is the LATEST resolved round's own findings (the
+    same round-boundary windowing `trend_over_rounds` computes,
+    reused rather than reimplemented) — a new round opens only if
+    that set holds at least one DESIGN-SUBSTANCE finding, an F-line
+    whose entry-class prefix (`classify_scope`, tool-side) is NOT
+    `record:`; a record/instrument-class finding is desk work and
+    never buys a round. Only meaningful over a [BIT] round — a
+    ZERO-DELTA, VOID, still-DISPATCHED, or absent round answers
+    SUSTAIN_NOT_APPLICABLE, the sustain question not being theirs to
+    answer."""
+    entries, violations, meta, reach = parse_tracker(load(args.tracker))
+    say_head_region_entries("sustain", reach)
+    blocking = closure_blocking_violations(violations)
+    if blocking:
+        for v in blocking:
+            say(f"sustain blocked: {v['code']} @ line {v['line']}: {v['text']}")
+        finish("SUSTAIN_RECORD_MALFORMED", 2, violations=blocking, **meta)
+    bounds, _, _, _, _ = trend_over_rounds(entries)
+    if not bounds or bounds[-1][2].tag != "BIT":
+        latest = f"{bounds[-1][2].id} [{bounds[-1][2].tag}]" if bounds else None
+        say(f"sustain: latest resolved round is {latest} — the sustain "
+            f"question applies only over a [BIT] round")
+        finish("SUSTAIN_NOT_APPLICABLE", 0, latest=latest, **meta)
+    start, end, closing = bounds[-1]
+    findings = [e for e in entries
+               if e.cls == "F" and start < e.lineno <= end]
+    substance = [e for e in findings if classify_scope(e.body)[0] != "record"]
+    record_class = [e for e in findings if classify_scope(e.body)[0] == "record"]
+    for e in record_class:
+        say(f"sustain: record/instrument-class finding {e.id} @ line "
+            f"{e.lineno} — desk work, never buys a round")
+    if substance:
+        say(f"sustain: {closing.id} [BIT] carries {len(substance)} "
+            f"design-substance finding(s) — SUSTAIN_OK")
+        finish("SUSTAIN_OK", 0, round=closing.id,
+               substance=[e.id for e in substance],
+               record_class=[e.id for e in record_class], **meta)
+    say(f"sustain: {closing.id} [BIT] carries no design-substance "
+        f"finding among its {len(record_class)} finding(s) — "
+        f"SUSTAIN_DENIED")
+    finish("SUSTAIN_DENIED", 2, round=closing.id,
+           record_class=[e.id for e in record_class], **meta)
+
+
 # -------------------------------------------------------------------- filter
 
 def cmd_filter(args):
@@ -2274,7 +2334,7 @@ def main():
     ap = Parser(prog="statiker-record")
     sub = ap.add_subparsers(dest="cmd", required=True,
                             parser_class=Parser)
-    for name in ("lint", "sweep", "waves", "trend"):
+    for name in ("lint", "sweep", "waves", "trend", "sustain"):
         p = sub.add_parser(name)
         p.add_argument("--tracker", required=True)
     p = sub.add_parser("closure")
@@ -2295,7 +2355,7 @@ def main():
 
     args = ap.parse_args()
     handlers = {"lint": cmd_lint, "sweep": cmd_sweep, "closure": cmd_closure,
-                "waves": cmd_waves, "trend": cmd_trend,
+                "waves": cmd_waves, "trend": cmd_trend, "sustain": cmd_sustain,
                 "filter": cmd_filter, "pinned": cmd_pinned,
                 "verify-gate": cmd_verify_gate,
                 "quote": cmd_quote}

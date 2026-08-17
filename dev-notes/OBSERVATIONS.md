@@ -6267,3 +6267,71 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   (CLAUDE.md needed no edit, already amended; no version bump).
   Consumer: the release record; the checkpoint opus review; BACKLOG
   P5's closure.
+
+- 2026-08-17 — **P20 shipped: the never-sustain clause gets a
+  mechanical round-open gate, `sustain` (fire-born, incident F143:
+  A8's four record/instrument-class findings sustained a ninth round
+  the 0.2.48 never-sustain clause forbids — the clause was in force
+  at round 8 and not applied; prose under-binds at the re-entry seam,
+  the same class as P16's turn-end seam).** Design: a new subcommand,
+  `sustain --tracker P`, re-derives the SUSTAINING SET — the LATEST
+  resolved round's own findings — using the same round-boundary
+  windowing `trend_over_rounds` already computes (reused, not
+  reimplemented); SUSTAIN_OK when that set holds at least one
+  design-substance finding (an F-line whose `classify_scope` reads
+  anything but `record:`); SUSTAIN_DENIED when every finding is
+  record/instrument-class; SUSTAIN_NOT_APPLICABLE outside a [BIT]
+  round (ZERO-DELTA, VOID, still-DISPATCHED, or no round at all — the
+  sustain question is not theirs to answer); SUSTAIN_RECORD_MALFORMED
+  on the same grammar-soundness precondition `waves`/`trend`/`closure`
+  already share. The gate is a BACKSTOP independent of the prior
+  round's own A-line tag — it re-derives from the F-line classes
+  directly, so a round mislabeled [BIT] when it should have been
+  ZERO-DELTA (the exact F143 shape) is still caught. SKILL.md's Stop
+  rule gains the mechanical clause right after the existing prose
+  ("record findings never sustain a next round") it makes checkable,
+  quoting all three live verdict tokens; "The tools" section gains
+  the one-line subcommand summary plus the RECORD_MALFORMED three-way
+  list. Verifier: red-first battery (`TestP20SustainGate`,
+  tools/test_statiker_record.py) — seven cases: an all-record-class
+  [BIT] round denies sustain, a mixed round sustains, an
+  all-substance round sustains, a ZERO-DELTA round is not applicable,
+  no rounds at all is not applicable, a still-DISPATCHED round is not
+  applicable, a malformed record halts. Red demonstrated by stubbing
+  `cmd_sustain` to always answer SUSTAIN_OK — six of seven cases
+  failed (every case that should NOT have been plain OK), stub
+  reverted, battery green (7/7). Full suite green after adding the
+  contract battery's four sustain rows (`python3 -m pytest tools/ -q`,
+  441 passed) — the SUSTAIN_RECORD_MALFORMED verdict initially failed
+  the routing-parity check until named in SKILL.md's RECORD_MALFORMED
+  list, same composition dependency as P30/P25. Machine-read semantics
+  → checkpoint opus review owed at mint. Tenet check, PLAN.md's
+  base-reference list: (1) investigation-led design — n/a; (2)
+  loop-until-still — n/a; (3) sufficiency — n/a; (4) anti-skim —
+  pass: directly answers F143, a prose rule in force but silently
+  unapplied at the exact seam it governs; (5) five forcing points —
+  pass: strengthens the attack's own re-entry gate, weakens nothing;
+  (6) single-home/precipitation — pass: one shipped script, SKILL.md
+  keeps principles; (7) hypothesis-patch class — n/a: fire-born, F143
+  is the incident; (8) ad-hoc-decision failure mode — pass: no design
+  decision moves into implementation, the gate only prevents an
+  UNJUSTIFIED round, never substitutes for the desk's own judgment
+  about what counts as design-substance (that classification is the
+  attacker's, recorded in the entry's own scope); (9) autonomy north
+  star — pass: an unattended run stops burning rounds on its own
+  record bookkeeping, no new human seat; (10) economics — pass: one
+  read-only tool call at round-open, reusing trend's own windowing —
+  no new priced round, the opposite (prevents an unjustified one);
+  (11) convergence circuit — pass: SUSTAIN is a record-tool verdict
+  the desk reads and quotes, never desk-remembered prose (the exact
+  gap this entry closes); (12) medium tenet — pass: exact machine-read
+  semantics (the sustaining-set derivation, the three-way verdict)
+  built as mechanism with a red-first battery, prose stays "declining
+  max-severity is convergence"; (13) gradeable-form — pass: every
+  verdict is tool-computed from the record's own entry classes, never
+  a judgment call standing alone. Version bump is the dispatcher's at
+  release. Write boundary: SKILL.md Stop rule + "The tools" section +
+  plugin/skills/statiker/scripts/statiker_record.py +
+  tools/test_statiker_record.py + tools/test_contract.py (deviation,
+  same class as P30/P25). Consumer: the release record; the
+  checkpoint opus review; BACKLOG P20's closure.

@@ -594,6 +594,18 @@ def run_battery(git_script, record_script, root):
         CLOSED_TRACKER +
         "- F9 [VERIFIED] out-of-scope: spread CLV has never computed — "
         "basis: probe\n")
+    (repo / "sustain_denied.md").write_text(
+        "# Run: sd\nStatus: in-progress\nPhase: investigate-design\n\n"
+        "## Cycle 1\n"
+        "- A1 [DISPATCHED] round 1 — basis: brief\n"
+        "- F1 [VERIFIED] record: a bookkeeping note — basis: probe\n"
+        "- A1 [BIT] one record-class finding — basis: report\n")
+    (repo / "sustain_ok.md").write_text(
+        "# Run: so\nStatus: in-progress\nPhase: investigate-design\n\n"
+        "## Cycle 1\n"
+        "- A1 [DISPATCHED] round 1 — basis: brief\n"
+        "- F1 [VERIFIED] a genuine design finding — basis: probe\n"
+        "- A1 [BIT] one finding — basis: report\n")
 
     # -- P2 gate-seam fixtures: the record's declared write-set is now
     # the unit-seam source, consulted through the record-tool gate ----
@@ -806,6 +818,15 @@ def run_battery(git_script, record_script, root):
          repo, None, None),
         ("record", "trend", ["trend", "--tracker",
                              str(repo / "malformed.md")], repo, None, None),
+        ("record", "sustain", ["sustain", "--tracker", tracker_abs],
+         repo, None, None),
+        ("record", "sustain", ["sustain", "--tracker",
+                               str(repo / "sustain_denied.md")],
+         repo, None, None),
+        ("record", "sustain", ["sustain", "--tracker",
+                               str(repo / "sustain_ok.md")], repo, None, None),
+        ("record", "sustain", ["sustain", "--tracker",
+                               str(repo / "malformed.md")], repo, None, None),
     ]
 
     rows = []
