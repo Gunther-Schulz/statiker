@@ -41,6 +41,20 @@
 
 ## Trial working conventions (operator-settled, 2026-08-06)
 
+- **Self-containment criterion (operator-settled 2026-08-17).**
+  Statiker must be runnable anywhere. Any mechanism whose
+  ABSENCE silently loses value or ships unverified work —
+  finding exports, verify isolation, record integrity — belongs
+  in the skill itself; overlays that raise efficiency or quality
+  around the loop (the operator corpus, dispatch-guards
+  machinery) may stay external and degrade GRACEFULLY, meaning
+  their absence is loud or merely slower, never silently lossy.
+  Trial reviews and deliberations ask the portability question
+  per dependency: on a bare machine without the corpus, what
+  breaks — and is the break silent? Silent break → skill-owned.
+  (Provenance: run-2 F77's export rode the corpus plus a meta
+  nudge; discussion this date.)
+
 - **Efficiency reviews lead with causes, never arithmetic
   (operator-settled 2026-08-17).** When grading a trial run or
   deliberating statiker changes, the first question over any

@@ -248,6 +248,38 @@ it is not decision-complete.
   measure loop iterations, not landed value — a design question
   now, not further measurement).
 
+- **READY 2026-08-17 — P25: out-of-scope findings get a
+  skill-owned export disposition at close (portability: the
+  found-in-passing path must not depend on the operator
+  corpus).** Provenance: run-2 F77 carries an exonerating half
+  (in-run evidence) and a prod-defect half (spread CLV has
+  never computed — out of the unit's scope); its export to the
+  target repo's backlog currently rides the operator corpus's
+  do-or-book rule PLUS a meta-session nudge — a desk without
+  that corpus books the finding as evidence and the bug
+  evaporates as buried record archaeology, and the corpus
+  itself names recording-in-a-sibling-carrier as non-discharge.
+  Operator direction this date: statiker's core is
+  self-contained wherever absence silently loses value.
+  Design: (a) a finding entry may carry an out-of-scope grade
+  at booking; (b) closure enumerates out-of-scope findings and
+  holds unless each carries an export ref — a decision-graded
+  backlog entry in the target repo citing the run record, the
+  unit-draft shape run 1's five exports already used, seedable
+  by a successor run — or a one-line recorded drop; (c) the
+  printed closure verdict names the unexported set.
+  Machine-read semantics (new grade + closure predicate) →
+  same-commit tool authorship, checkpoint opus review at mint.
+  Verifier: red-first battery — closure holds on a tracker
+  with an undispositioned out-of-scope finding (red proven at
+  build per the standard arrangement: new expectations against
+  the pre-change tool, baseline stated), passes with an export
+  ref, passes with a recorded drop. Done: battery green with
+  the red demonstrated, clause and tool ship together, version
+  bumped. Write boundary: SKILL.md close passage +
+  plugin/skills/statiker/scripts/statiker_record.py +
+  tools/test_statiker_record.py + bump.
+
 - **PARKED 2026-08-17 — P24: the seal cannot cover an omission
   whose subject has no entry to seal (desk-derived lesson, run-2
   A4).** Incident: F76 was the FOURTH instrument in one run to
