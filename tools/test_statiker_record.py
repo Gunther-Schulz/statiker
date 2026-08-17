@@ -2717,6 +2717,55 @@ class TestEIPinned(PinnedFixture):
         self.assertIn("left its line", v["evidence"])
 
 
+# -------------------------------------------------------------- P30 (verify)
+
+class TestP30VerifyGate(PinnedFixture):
+    """BACKLOG P30 (incident F121/F124, run-2 close): the desk is an
+    unfrozen concurrent writer during a verify leg — nothing caught it
+    committing INTO the same copy the leg was isolated-reading (F121's
+    deviation replaced the unit transaction's collision check with the
+    condition "this desk is the only writer in this copy", then broke
+    exactly that). `verify-gate` is the repo-HEAD sibling of `pinned`'s
+    tracker-text check: it compares the copy's current HEAD against a
+    read-start sha the desk recorded at verify-leg dispatch."""
+
+    def verify_gate(self, sha):
+        return self.verdict(tool(
+            ["verify-gate", "--tracker", str(self.dir / "t.md"), "--sha", sha],
+            cwd=self.dir))
+
+    def test_unmoved_head_is_clean(self):
+        sha = self.committed_repo(HEADER)
+        v = self.verify_gate(sha)
+        self.assertEqual(v["verdict"], "VERIFY_COPY_CLEAN", v)
+        self.assertEqual(v["read_sha"], sha)
+        self.assertEqual(v["head_sha"], sha)
+
+    def test_commit_landing_during_the_leg_grades_stale(self):
+        # the F121 shape: the desk commits into the copy while the
+        # isolated verify leg is reading it
+        sha = self.committed_repo(HEADER)
+        env = {**os.environ, "GIT_CONFIG_GLOBAL": "/dev/null",
+               "GIT_AUTHOR_NAME": "t", "GIT_AUTHOR_EMAIL": "t@t",
+               "GIT_COMMITTER_NAME": "t", "GIT_COMMITTER_EMAIL": "t@t"}
+        (self.dir / "booking.txt").write_text("a mid-leg desk booking\n")
+        for a in (["add", "booking.txt"], ["commit", "-m", "mid-leg booking"]):
+            subprocess.run(["git", *a], cwd=self.dir, env=env,
+                           capture_output=True, check=True)
+        v = self.verify_gate(sha)
+        self.assertEqual(v["verdict"], "VERIFY_COPY_STALE", v)
+        self.assertEqual(v["read_sha"], sha)
+        self.assertNotEqual(v["head_sha"], sha)
+        self.assertEqual(len(v["commits"]), 1)
+        self.assertIn("mid-leg booking", v["commits"][0]["subject"])
+        self.assertIn("booking.txt", v["touched_paths"])
+
+    def test_unresolvable_sha_is_a_git_error(self):
+        self.committed_repo(HEADER)
+        v = self.verify_gate("0" * 40)
+        self.assertEqual(v["verdict"], "GIT_ERROR", v)
+
+
 # ------------------------------------------------------------------- ES-4
 
 class TestES4RepairPinsTagAndScope(RecordFixture):

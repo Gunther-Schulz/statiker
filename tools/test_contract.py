@@ -493,6 +493,19 @@ def run_battery(git_script, record_script, root):
 
     r_repin = scratch_repo("r_repin")
 
+    # P30: verify-gate's CLEAN/STALE pair — a fixed final state so
+    # both rows are order-independent (neither row itself commits).
+    r_verify_gate = scratch_repo("r_verify_gate")
+    verify_gate_sha1 = subprocess.run(
+        ["git", "rev-parse", "HEAD"], cwd=r_verify_gate, env=env,
+        capture_output=True, text=True, check=True).stdout.strip()
+    (r_verify_gate / "extra.txt").write_text("landed during a verify leg\n")
+    git("add", "extra.txt", cwd=r_verify_gate)
+    git("commit", "-m", "landed during leg", cwd=r_verify_gate)
+    verify_gate_sha2 = subprocess.run(
+        ["git", "rev-parse", "HEAD"], cwd=r_verify_gate, env=env,
+        capture_output=True, text=True, check=True).stdout.strip()
+
     r_unit = scratch_repo("r_unit", tracker=False)
     (r_unit / ".gitignore").write_text("build/\n")
     (r_unit / "settled.txt").write_text("settled\n")
@@ -681,6 +694,12 @@ def run_battery(git_script, record_script, root):
          repo, None, None),
         ("record", "quote", ["quote", "--label", "A1 quotes"], repo,
          "a report line holding [VERIFIED]\n", None),
+        ("record", "verify-gate", ["verify-gate", "--tracker", TRACKER_REL,
+                                   "--sha", verify_gate_sha2],
+         r_verify_gate, None, None),
+        ("record", "verify-gate", ["verify-gate", "--tracker", TRACKER_REL,
+                                   "--sha", verify_gate_sha1],
+         r_verify_gate, None, None),
 
         # -- the halt/collision routes, each in its own repo ----------
         ("git", "state-gate", ["state-gate"], r_state, None, None),

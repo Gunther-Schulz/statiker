@@ -60,6 +60,17 @@ Subcommands (each prints evidence lines, then exactly one final line
                                       status rewrite reads clean to
                                       every positional gate, this is
                                       the one check it cannot fool
+  verify-gate --tracker P --sha S     read-only: compares the repo's
+                                      current HEAD against the copy's
+                                      HEAD sha recorded at a verify
+                                      leg's read-start (P30, F121/F124)
+                                      — VERIFY_COPY_CLEAN when unmoved,
+                                      VERIFY_COPY_STALE names every
+                                      commit and touched path landed
+                                      during the leg; the desk is an
+                                      unfrozen writer during verify, so
+                                      this is the repo-HEAD sibling of
+                                      `pinned`'s tracker-text check
   quote   --label "A<n> quotes"       stdin -> defanged quoted block
 
 The tag contract is anchored on the stats reader's own greps
@@ -2004,6 +2015,64 @@ def cmd_pinned(args):
            first_divergent_line=divergent_line, evidence=divergent_text)
 
 
+# ---------------------------------------------------------------- verify-gate
+
+def cmd_verify_gate(args):
+    """P30 (BACKLOG; incident F124/F121, run-2 close): `pinned` catches
+    a REWRITE of the tracker text; nothing caught the desk itself
+    committing DURING an isolated verify leg — the unit transaction's
+    collision check was replaced by the CONDITION "this desk is the
+    only writer in this copy" (F121's deviation), and the desk then
+    broke exactly that condition, undetected, while the leg read the
+    same copy. This is the repo-HEAD sibling of `pinned`'s tracker-text
+    check: the desk records the copy's HEAD sha at verify-leg
+    read-start (SKILL.md, Verify) and this command compares it against
+    HEAD at the leg's return — VERIFY_COPY_CLEAN when unmoved,
+    VERIFY_COPY_STALE when not, naming every commit and every touched
+    path landed in between so the desk's disposition (harmless vs.
+    re-run) is a body-read of real evidence, never the leg's own
+    claim. Computable; the disposition itself stays desk judgment."""
+    fs, rel, top, resolved = repo_paths(args.tracker)
+    check_tracker_dir(args.tracker, fs)
+    if rel is None:
+        unpinnable_tracker(args.tracker, rel, top, resolved)
+    verify = subprocess.run(["git", "rev-parse", "--verify", f"{args.sha}^{{commit}}"],
+                            cwd=top, capture_output=True, text=True)
+    if verify.returncode != 0:
+        finish("GIT_ERROR", 2, sha=args.sha, tracker=args.tracker,
+               error=f"--sha does not resolve to a commit in this repo: "
+                     f"{verify.stderr.strip()}")
+    head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=top,
+                          capture_output=True, text=True)
+    if head.returncode != 0:
+        finish("GIT_ERROR", 2, tracker=args.tracker,
+               error=f"HEAD unreadable: {head.stderr.strip()}")
+    head_sha = head.stdout.strip()
+    if head_sha == args.sha:
+        say(f"verify-gate: clean — HEAD unmoved since read-start ({args.sha})")
+        finish("VERIFY_COPY_CLEAN", 0, read_sha=args.sha, head_sha=head_sha)
+    log = subprocess.run(
+        ["git", "log", "--format=%H %s", f"{args.sha}..HEAD"],
+        cwd=top, capture_output=True, text=True)
+    commits = []
+    if log.returncode == 0:
+        for line in log.stdout.splitlines():
+            if not line.strip():
+                continue
+            sha, _, subject = line.partition(" ")
+            commits.append({"sha": sha, "subject": subject})
+    diff = subprocess.run(
+        ["git", "diff", "--name-only", f"{args.sha}..HEAD"],
+        cwd=top, capture_output=True, text=True)
+    touched = ([ln for ln in diff.stdout.splitlines() if ln.strip()]
+               if diff.returncode == 0 else [])
+    say(f"verify-gate: STALE-COPY — HEAD moved {args.sha} -> {head_sha}, "
+        f"{len(commits)} commit(s) landed, touched paths: "
+        + (", ".join(touched) if touched else "(none)"))
+    finish("VERIFY_COPY_STALE", 2, read_sha=args.sha, head_sha=head_sha,
+           commits=commits, touched_paths=touched)
+
+
 # --------------------------------------------------------------------- quote
 
 def cmd_quote(args):
@@ -2056,6 +2125,9 @@ def main():
     p = sub.add_parser("pinned")
     p.add_argument("--tracker", required=True)
     p.add_argument("--sha", required=True)
+    p = sub.add_parser("verify-gate")
+    p.add_argument("--tracker", required=True)
+    p.add_argument("--sha", required=True)
     p = sub.add_parser("quote")
     p.add_argument("--label", required=True)
 
@@ -2063,6 +2135,7 @@ def main():
     handlers = {"lint": cmd_lint, "sweep": cmd_sweep, "closure": cmd_closure,
                 "waves": cmd_waves, "trend": cmd_trend,
                 "filter": cmd_filter, "pinned": cmd_pinned,
+                "verify-gate": cmd_verify_gate,
                 "quote": cmd_quote}
     try:
         handlers[args.cmd](args)

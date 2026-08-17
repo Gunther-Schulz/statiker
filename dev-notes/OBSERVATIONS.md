@@ -5983,3 +5983,87 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   plugin/skills/statiker/scripts/statiker_record.py +
   tools/test_statiker_record.py. Consumer: the release record;
   BACKLOG P26's closure.
+
+- 2026-08-17 — **P30 shipped: verify-leg copy freeze — the desk is an
+  unfrozen concurrent writer during verify, now caught by a sha-pinned
+  copy check (fire-born, incident F121/F124, run-2 close: the desk
+  committed a booking into the copy while the isolated verify leg was
+  reading it — harmless by content luck, not by design; F121's own
+  deviation had replaced the unit transaction's collision check with
+  the CONDITION "this desk is the only writer in this copy," which the
+  desk then broke undetected).** Design: a new subcommand,
+  `verify-gate --tracker P --sha S`, the repo-HEAD sibling of
+  `pinned`'s tracker-TEXT check — the desk records the copy's HEAD sha
+  at verify-leg dispatch (SKILL.md, Verify) and runs the gate before
+  booking the V-line at return: unmoved HEAD → VERIFY_COPY_CLEAN;
+  moved → VERIFY_COPY_STALE, naming every commit (sha + subject) and
+  every touched path landed in between (`git log`/`git diff
+  --name-only S..HEAD`), so the desk's disposition — harmless (named
+  delta, none of the touched paths graded by the leg) or a re-run
+  isolated against the new HEAD — is a body-read of real evidence,
+  never the leg's own claim. The check itself is computable (a sha
+  comparison); the disposition stays desk judgment, matching the
+  entry's own "Computable, no judgment slice" scoping. A third
+  verdict, GIT_ERROR, covers an unresolvable `--sha` (reused from the
+  existing shared halt-route class, SKILL.md "The tools" — not a new
+  name). SKILL.md gains two clauses in the Verify passage: the
+  dispatch-time HEAD-sha recording (beside the existing `.paths`
+  carve-out sentence) and the return-time gate check before "Append
+  the V-line," plus a one-line mention in "The tools" overview
+  alongside `pinned`. Verifier: red-first battery
+  (`TestP30VerifyGate`, tools/test_statiker_record.py) — three cases:
+  unmoved HEAD grades clean, a commit landing between the recorded
+  read-sha and the booking grades STALE naming the commit and touched
+  path, an unresolvable sha grades GIT_ERROR. Built the real
+  implementation before the tests (execution-order slip, not a
+  deviation from the design), so red was demonstrated the P16-lane
+  pattern already established this batch: the real `cmd_verify_gate`
+  temporarily swapped for a never-fires stub (always VERIFY_COPY_CLEAN)
+  — battery run, both discriminating cases red (STALE misread as
+  CLEAN, the GIT_ERROR case too) — stub reverted, battery re-run
+  green (3/3). DEVIATION (composition dependency, CLAUDE.md's own
+  callout — "an entry minting a NEW verdict name carries a
+  SKILL.md-authorship dependency, the parity battery is set-exact
+  BOTH ways"): `tools/test_contract.py` is NOT in the brief's listed
+  write boundary, but its `TestRuntimeVerdictBattery` class enforces
+  exactly this parity (every subcommand driven, every emitted verdict
+  either battery-driven or in the frozen undriven remainder, every
+  emitted verdict named in SKILL.md) — mechanically required to keep
+  `python3 -m pytest tools/ -q` green, which the brief's own verifier
+  mandates. Added two battery rows (a dedicated `r_verify_gate`
+  scratch repo with a fixed two-commit history, order-independent —
+  neither row itself commits) driving both new verdicts; touched no
+  other test_contract.py content. Flagged for the dispatcher's
+  awareness — the same dependency recurs for every remaining entry
+  that mints a new verdict name (P25, P19, P20, P27). Full suite green
+  (`python3 -m pytest tools/ -q`, 423 passed) including
+  `test_contract.py`'s full 16-test class. Machine-read semantics
+  (new verdict names, new subcommand) → checkpoint opus review owed
+  at mint per the entry. Tenet check, PLAN.md's base-reference list
+  (CLAUDE.md birth-class rule): (1) investigation-led design — n/a
+  (mechanism precipitated from a recorded incident, not a fresh
+  investigation); (2) loop-until-still — n/a; (3) sufficiency — n/a;
+  (4) anti-skim — pass: closes a concurrent-writer blind spot the
+  desk's own conduct created; (5) five forcing points — pass: touches
+  only Verify's internal mechanics, no forcing point removed or
+  weakened; (6) single-home/precipitation — pass: one shipped script,
+  SKILL.md keeps principles, the battery is the executable spec;
+  (7) hypothesis-patch class — n/a: fire-born, single incident
+  (F121/F124) named; (8) ad-hoc-decision failure mode — pass: no
+  design decision moves into implementation, the disposition itself
+  stays explicit desk judgment named as such; (9) autonomy north
+  star — pass: an unattended desk now catches its own isolation
+  breach instead of relying on content luck; (10) economics — pass:
+  one cheap sha comparison at leg return, no new priced round;
+  (11) convergence circuit — pass: the check enters as a record-tool
+  verdict the desk reads and books, never desk-remembered prose;
+  (12) medium tenet — pass: exact machine-read semantics (the sha
+  comparison, the verdict names) built as mechanism with a red-first
+  battery, prose stays principles; (13) gradeable-form — pass: both
+  verdicts are tool-computed, never a judgment call standing alone.
+  Version bump is the dispatcher's at release. Write boundary:
+  plugin/skills/statiker/SKILL.md +
+  plugin/skills/statiker/scripts/statiker_record.py +
+  tools/test_statiker_record.py + tools/test_contract.py (deviation,
+  named above). Consumer: the release record; the checkpoint opus
+  review; BACKLOG P30's closure.

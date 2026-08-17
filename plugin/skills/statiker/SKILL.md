@@ -47,7 +47,8 @@ run-start preflight, the LOCK commit, unit START and COMMIT — and
 `scripts/statiker_record.py` — record grammar: tracker lint, the
 [READY] sweep's computable slice, the closure predicate, the
 pinned attack artifact, the append-only check against the pin
-(`pinned`), defanged quote blocks. The two scripts
+(`pinned`), the verify-leg copy-freeze check (`verify-gate`),
+defanged quote blocks. The two scripts
 plus their red-first battery (the source repo's tools/ suites —
 the attack rounds' probes and record findings mechanized) are the
 EXECUTABLE SPEC of the record grammar and the transaction
@@ -1374,7 +1375,13 @@ namespace —
 writes `.verify.paths`, REWRITTEN at each verify dispatch —
 at most one is in flight, so no count is derived),
 re-derivable by any successor desk (The attack's derivation)
-— never carried only in the brief or in memory. At the
+— never carried only in the brief or in memory. The dispatch also
+records the copy's HEAD sha at leg read-start: the desk is an
+UNFROZEN concurrent writer during verify, unlike the attack rounds'
+append freeze (P30, F121/F124 — the unit transaction's own collision
+check was once replaced by exactly the condition this breaks, "this
+desk is the only writer in this copy", then broken by a mid-leg desk
+commit). At the
 return, after any queued appends (attack
 rounds, The attack) and record repairs land and before the
 outcome line, the desk removes exactly the declared paths the
@@ -1390,8 +1397,16 @@ belongs in its
 scratchpad (the read-only tail's provision), never the repo. Model per
 `clippy.config/models` (`verify:` class) when present, else the
 parent model; an unreadable models file halts the dispatch, the
-parse error recorded as a finding. Append the V-line (The record)
-with the evidence and set the header
+parse error recorded as a finding. Before the V-line,
+`verify-gate --tracker <path> --sha <the recorded read-start sha>`
+checks the copy against that recorded sha: VERIFY_COPY_CLEAN
+proceeds; VERIFY_COPY_STALE names every commit and touched path
+landed during the leg — the desk's read, never the leg's claim — and
+the V-line's basis states STALE-COPY plus the desk's disposition:
+harmless (none of the touched paths graded by the leg) carries the
+named delta, or the leg re-runs isolated against the new HEAD. The
+check is computable; the disposition stays desk judgment. Append the
+V-line (The record) with the evidence and set the header
 Status to match (PASSED, or FAILED on an abandoned run; after
 [ISSUES FOUND] it stays in-progress). Each [ISSUES FOUND]
 finding is CLASSIFIED before any repair, with basis, and the
