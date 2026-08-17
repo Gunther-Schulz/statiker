@@ -407,26 +407,27 @@ it is not decision-complete.
   unit-draft shape run 1's five exports already used, seedable
   by a successor run — or a one-line recorded drop; (c) the
   printed closure verdict names the unexported set.
-  WIDENED 2026-08-17 (operator: will U2 profit from U1's
-  learnings — the tracker is a run's RECORD, not the repo's
-  MEMORY): the close carries a GRADUATION checklist of three
-  classes, enumerated in the close report — (1) out-of-scope
-  findings → export or drop (the mechanical gate above); (2)
-  instruments/probes used twice → graduate to the target
-  repo's tools/ or die (the repo trigger F116 already applied
-  from the corpus — skill-owned per the self-containment
-  criterion); (3) durable world-facts a successor run would
-  otherwise re-derive (population maps, prod overrides,
-  frame-stability) → the target repo's own fact carrier
-  (CLAUDE.md verify section or ledger), each with its executed
-  basis. Classes (2) and (3) are judgment-answered checklist
-  items at a SEAM (rule-shaped per the mint-timing
-  convention's placement half); only class (1) gets the
-  mechanical closure predicate. Provenance for the widening:
-  U1's population instrument cost four rounds to derive and
-  would be silently re-derived by the successor if it stays
-  tracker-buried; carrier-on-read-path is the operative corpus
-  rule, made skill-owned.
+  WIDENED 2026-08-17, then RE-SCOPED same day on the
+  operator's mission challenge (PLAN.md: "thin" — the first
+  widening prescribed corpus file-role destinations, and its
+  self-containment argument proved too much, absorbing
+  accretion wholesale; boundary settled: statiker owns the run
+  and its record, SURFACING is run-conduct, FILING is the
+  environment's): the close REPORT carries a LEAVINGS section
+  enumerating three classes — (1) out-of-scope findings (the
+  mechanical export-or-drop gate above stands, the one class
+  that is a run artifact proper); (2) instruments/probes built
+  in-run and used more than once; (3) world-facts a successor
+  would otherwise re-derive (population maps, environment
+  overrides, frame-anchoring), each with its executed basis —
+  every enumerated item carrying a DISPOSITION slot the desk
+  fills per the HOST repo's own conventions (corpus-governed
+  where present, operator-decided otherwise); the skill
+  mandates the enumeration and the filled slot, never the
+  destination. Provenance: U1's population instrument cost
+  four rounds to derive and would be silently re-derived if
+  tracker-buried; the enumeration puts it in the one document
+  every consumer reads — the close report.
   Machine-read semantics (new grade + closure predicate) →
   same-commit tool authorship, checkpoint opus review at mint.
   Verifier: red-first battery — closure holds on a tracker
