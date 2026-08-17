@@ -6950,3 +6950,35 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   (the intake passage) + this OBSERVATIONS entry. Consumer: the
   release record; BACKLOG P21's closure; any desk running intake on
   a stack without the operator corpus.
+
+- 2026-08-17 — **R8 shipped: `verify-gate` now compares against the
+  RESOLVED full sha, not the raw --sha argument (checkpoint review,
+  verify-gate-sha finding).** Incident: `cmd_verify_gate` ran
+  `git rev-parse --verify {args.sha}^{commit}` to validate --sha
+  resolves to a real commit, then discarded the RESOLVED sha
+  (`verify.stdout`) and compared HEAD against the raw `args.sha`
+  argument instead — an abbreviated sha (the ordinary git shorthand,
+  and SKILL.md's own Verify passage never mandates a full 40-char
+  form for "the recorded read-start sha") never byte-equals HEAD's
+  own full rev-parse output, so every abbreviated-sha call misgraded
+  VERIFY_COPY_STALE with EMPTY evidence (`commits: []`,
+  `touched_paths: []`) even on a genuinely unmoved HEAD — the false
+  alarm carrying no diagnostic content, worse than a bare wrong
+  verdict since the desk's disposition (harmless vs. re-run) reads
+  the evidence lists as its basis. Fix: capture `read_sha =
+  verify.stdout.strip()` right after the resolve check, use it for
+  every subsequent comparison and git range (the CLEAN equality
+  check, the `log`/`diff` ranges, all three `finish()` calls' own
+  `read_sha` field) — `args.sha` no longer read past the resolve
+  call. Battery (red-first against the pre-fix tool,
+  `test_abbreviated_sha_on_unmoved_head_is_clean`): a 7-char
+  abbreviated sha on an unmoved HEAD — red VERIFY_COPY_STALE with
+  empty commits/touched_paths (confirmed, exact predicted shape),
+  green VERIFY_COPY_CLEAN with `read_sha`/`head_sha` both the full
+  40-char form. The three pre-existing verify-gate tests pass
+  unchanged. Full suite: `python3 -m pytest tools/ -q`, 465 passed.
+  Version bump is the dispatcher's at release. Write boundary:
+  `plugin/skills/statiker/scripts/statiker_record.py`
+  (cmd_verify_gate), `tools/test_statiker_record.py` + this
+  OBSERVATIONS entry. Consumer: the release record; any desk running
+  `verify-gate` with an abbreviated sha (the ordinary git shorthand).

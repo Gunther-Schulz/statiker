@@ -2410,17 +2410,25 @@ def cmd_verify_gate(args):
         finish("GIT_ERROR", 2, sha=args.sha, tracker=args.tracker,
                error=f"--sha does not resolve to a commit in this repo: "
                      f"{verify.stderr.strip()}")
+    # R8 (checkpoint review): compare against the RESOLVED full sha
+    # (verify.stdout), never the raw --sha argument — an abbreviated
+    # sha never equals HEAD's full 40-char form, so the raw-argument
+    # comparison misgraded every abbreviated-sha call STALE with no
+    # evidence (an empty commit/touched-paths list, since the log/diff
+    # range itself resolves fine on an abbreviated endpoint — only the
+    # equality check was wrong).
+    read_sha = verify.stdout.strip()
     head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=top,
                           capture_output=True, text=True)
     if head.returncode != 0:
         finish("GIT_ERROR", 2, tracker=args.tracker,
                error=f"HEAD unreadable: {head.stderr.strip()}")
     head_sha = head.stdout.strip()
-    if head_sha == args.sha:
-        say(f"verify-gate: clean — HEAD unmoved since read-start ({args.sha})")
-        finish("VERIFY_COPY_CLEAN", 0, read_sha=args.sha, head_sha=head_sha)
+    if head_sha == read_sha:
+        say(f"verify-gate: clean — HEAD unmoved since read-start ({read_sha})")
+        finish("VERIFY_COPY_CLEAN", 0, read_sha=read_sha, head_sha=head_sha)
     log = subprocess.run(
-        ["git", "log", "--format=%H %s", f"{args.sha}..HEAD"],
+        ["git", "log", "--format=%H %s", f"{read_sha}..HEAD"],
         cwd=top, capture_output=True, text=True)
     commits = []
     if log.returncode == 0:
@@ -2430,14 +2438,14 @@ def cmd_verify_gate(args):
             sha, _, subject = line.partition(" ")
             commits.append({"sha": sha, "subject": subject})
     diff = subprocess.run(
-        ["git", "diff", "--name-only", f"{args.sha}..HEAD"],
+        ["git", "diff", "--name-only", f"{read_sha}..HEAD"],
         cwd=top, capture_output=True, text=True)
     touched = ([ln for ln in diff.stdout.splitlines() if ln.strip()]
                if diff.returncode == 0 else [])
-    say(f"verify-gate: STALE-COPY — HEAD moved {args.sha} -> {head_sha}, "
+    say(f"verify-gate: STALE-COPY — HEAD moved {read_sha} -> {head_sha}, "
         f"{len(commits)} commit(s) landed, touched paths: "
         + (", ".join(touched) if touched else "(none)"))
-    finish("VERIFY_COPY_STALE", 2, read_sha=args.sha, head_sha=head_sha,
+    finish("VERIFY_COPY_STALE", 2, read_sha=read_sha, head_sha=head_sha,
            commits=commits, touched_paths=touched)
 
 

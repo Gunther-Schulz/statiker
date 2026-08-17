@@ -3265,6 +3265,20 @@ class TestP30VerifyGate(PinnedFixture):
         v = self.verify_gate("0" * 40)
         self.assertEqual(v["verdict"], "GIT_ERROR", v)
 
+    def test_abbreviated_sha_on_unmoved_head_is_clean(self):
+        # R8 (checkpoint review): the CLEAN comparison must resolve
+        # --sha to its full form (verify.stdout) before comparing
+        # against HEAD — an abbreviated sha never byte-equals HEAD's
+        # own 40-char rev-parse output, so the raw-argument comparison
+        # misgraded every abbreviated call STALE with empty evidence
+        # (red today)
+        sha = self.committed_repo(HEADER)
+        short = sha[:7]
+        v = self.verify_gate(short)
+        self.assertEqual(v["verdict"], "VERIFY_COPY_CLEAN", v)
+        self.assertEqual(v["read_sha"], sha, v)
+        self.assertEqual(v["head_sha"], sha, v)
+
 
 # ------------------------------------------------------------------- ES-4
 
