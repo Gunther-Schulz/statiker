@@ -41,8 +41,23 @@ it is not decision-complete.
   outside cycle accounting. Verifier: record-tool battery,
   red-first — the tripwire fires on the run-1 fixture (eight
   rounds, zero V-lines) and stays silent on a fixture carrying
-  a landing annotation. Machine-read semantics → checkpoint
-  opus review owed at mint. Done: battery green with the
+  a landing annotation. SECOND FIRE, same day (run-2 resume,
+  rounds-bound incident): the terminal-at-bound semantics
+  forced PRE-EMPTIVE authority spending — the operator had to
+  raise rounds AHEAD of evidence, because a fourth-round bite
+  would close the run FAILED unattended before anyone could
+  grade the bite; the bound also generated a desk workaround
+  (the chat-held question, P23) and a wrong meta recommendation
+  premised on stop-and-ask semantics that do not exist. Across
+  both runs the budget has NEVER fired as designed — every
+  contact produced an operator override (D89's mid-run-1
+  invention-and-amendment; run 2's stop, cycle raise, round
+  raise) — the corpus's guard-overridden-on-every-fire pattern:
+  a bound whose every firing is overridden carries no
+  information and trains the override reflex. Priority raised:
+  mint at the NEXT release seam, before another run opens under
+  terminal-at-bound semantics. Machine-read semantics →
+  checkpoint opus review owed at mint. Done: battery green with the
   tripwire red demonstrated per its recorded arrangement, the
   SKILL.md budget passage states cap-as-escape plus both
   progress signals routing to narrowing, review findings
