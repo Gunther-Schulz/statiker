@@ -6927,3 +6927,26 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   round-open sustain passage), `tools/test_statiker_record.py` +
   this OBSERVATIONS entry. Consumer: the release record; the next
   desk grading a repeat-round series or querying sustain mid-round.
+
+- 2026-08-17 — **R7 shipped: the intake write-boundary join stated
+  INLINE instead of citing the corpus (checkpoint review, P21
+  dependency finding).** Incident: the intake passage's
+  batching/slicing sentence closed on "(the corpus's mechanical join
+  over write-boundary slots is the instrument)" — a citation to the
+  operator corpus's own boundary-slot mechanism (Per-project
+  accretion, the boundary slot), which is absent on a bare-machine
+  stack per the self-containment criterion (CLAUDE.md, Trial working
+  conventions): the passage described WHAT decides a merge without
+  saying WHAT THE JOIN ACTUALLY DOES, leaving the sentence
+  unreadable standalone. Fix: one clause stated inline — each
+  candidate unit names the files realizing it, and units naming an
+  overlapping file merge or serialize — replacing the citation with
+  the mechanism itself; "a mechanical join over each candidate's
+  declared write-set" now names the instrument without depending on
+  the corpus being loaded. Prose only, no code change, no battery
+  (a self-containment clarity fix, not new machine-read semantics).
+  Full suite: `python3 -m pytest tools/ -q`, 464 passed. Version
+  bump is the dispatcher's at release. Write boundary: SKILL.md
+  (the intake passage) + this OBSERVATIONS entry. Consumer: the
+  release record; BACKLOG P21's closure; any desk running intake on
+  a stack without the operator corpus.

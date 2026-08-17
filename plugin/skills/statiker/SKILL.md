@@ -346,8 +346,10 @@ find-time entry boundaries are claims the seed RE-DERIVES, never
 adopted unit boundaries) — intake re-derives the unit set from the
 entries' write boundaries and the current world, slicing an
 oversized entry AND batching under-sized siblings whose write-sets
-overlap (the corpus's mechanical join over write-boundary slots is
-the instrument). An item that is migration-bearing, multi-consumer,
+overlap: each candidate unit names the files realizing it, and units
+naming an overlapping file merge or serialize — a mechanical join
+over each candidate's declared write-set, the instrument. An item
+that is migration-bearing, multi-consumer,
 or architecture-wide seeds as a DECOMPOSITION run whose
 done-criterion is exported unit-sized backlog entries —
 implementation runs seed per unit, never the architecture-scale item
