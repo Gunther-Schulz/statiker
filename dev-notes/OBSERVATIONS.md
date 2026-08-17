@@ -6811,3 +6811,72 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   passages), `tools/test_statiker_record.py` + this OBSERVATIONS
   entry. Consumer: the release record; BACKLOG P19's closure; the
   next run's round-open seam.
+
+- 2026-08-17 — **R4 shipped: P24 clause (b), the repair-side twin —
+  a claim a round REFUTED re-enters the design only on a basis of a
+  DIFFERENT KIND than the refuted one (desk-derived, run-2 A4, the
+  serialized-discovery challenge).** Incident: BACKLOG P24's own
+  entry names this half explicitly — F76 was the FOURTH instrument
+  in one run to declare a persisted population complete and be
+  wrong, and the operator's reading (the serialized-discovery
+  challenge) established the four misses were not four independent
+  discoveries but ONE weak basis (search/recall) re-asserted four
+  times: each repair answered the found INSTANCE and re-claimed
+  completeness on the SAME KIND of basis, so each lap invited the
+  next instance-refutation — the class-repair (instrument-derived
+  enumeration) ended the series in one cycle only when the desk
+  finally reached for a basis of a genuinely different kind. P24's
+  own mint (the instrument-seal widening, shipped 098bda4) SCOPED
+  itself to only the seal/instrument half and explicitly deferred
+  this repair-side twin (recorded in that same OBSERVATIONS entry:
+  "the entry's own instruction names only the instrument-seal part
+  ... as this mint's scope"); this entry completes it. Fix: one
+  sentence in The attack's refutation passage (immediately after "the
+  desk refutes a finding only with its own reach-matched evidence
+  ... closure still needs the next round's [ZERO-DELTA]") — a design
+  claim a round refuted re-enters only on a basis of a DIFFERENT
+  KIND, the re-entering entry naming the new kind and why it is
+  immune to the prior failure mode. Prose mint, no battery (a
+  judgment-shaped re-derivation-seam rule — Calibration's mint-timing
+  clause: the presence of the naming requirement is checkable, the
+  KIND-difference judgment is not, the same split P24's own
+  instrument-reach slots already use). Tenet check, PLAN.md's
+  base-reference list: (1) investigation-led design — pass: bars a
+  refuted claim's cheap re-assertion without genuinely new
+  investigation, the exact discipline the tenet names; (2)
+  loop-until-still — pass: targets the re-entry seam directly, so a
+  design cannot cycle on a rephrased identical basis and call that
+  "still moving"; (3) sufficiency — n/a: about basis KIND, not
+  implementation detail; (4) anti-skim — pass: directly answers the
+  founding-disease shape this incident IS (one weak basis re-asserted
+  under momentum, the P24 entry's own diagnosis); (5) five forcing
+  points — pass: preserves the attack's authority — a refutation that
+  can be shrugged off with the same basis next round is an attack
+  with no teeth; (6) single-home/precipitation — pass: SKILL.md prose
+  only; (7) hypothesis-patch class — n/a: fire-born, F76/F95 plus the
+  A4 serialized-discovery finding as provenance, same incident set
+  P24 cites; (8) ad-hoc-decision failure mode — pass: operates
+  entirely within investigate-design, no decision moves silently into
+  implementation; (9) autonomy north star — pass: the desk
+  self-names the new kind and the immunity reasoning, no new operator
+  seat; (10) economics — pass, and load-bearing: the rule PREVENTS
+  waste rather than costing it — cheap same-kind re-assertion is
+  exactly the wasted-round shape this entry's own incident measured
+  (nine claimed by search before the class-repair landed in cycle
+  8); (11) convergence circuit — pass: strengthens the zero-delta
+  criterion's own teeth — without this, "the loop eating its own
+  repairs" (the founding non-contracting shape, The attack) can
+  present as motion while re-treading one refuted basis; (12) medium
+  tenet — pass: correctly kept as prose — whether a new basis is
+  genuinely a DIFFERENT KIND (not merely a rephrasing) is a judgment
+  call no fixed predicate can safely make, the same reasoning P24's
+  own instrument-reach slots (12) already applied; (13) gradeable-form
+  — pass with the same scaffold as P24's (13): the NAMING requirement
+  (kind + immunity reasoning) is a checkable presence — an entry that
+  re-enters a refuted claim with no such naming is a legible omission
+  — even though the KIND judgment itself stays judgment. Version bump
+  is the dispatcher's at release. Write boundary: SKILL.md (The
+  attack, the refutation passage) + this OBSERVATIONS entry. Consumer:
+  the release record; the checkpoint opus review; BACKLOG P24's full
+  closure (both halves now shipped); the next round-re-entry decision
+  a desk makes over a previously-refuted claim.

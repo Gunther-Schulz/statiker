@@ -1212,7 +1212,13 @@ in-flight sibling too, fail-closed — the rest re-dispatch after
 re-entry; carve-out parked as tool work).
 The desk refutes a finding only with its own reach-matched evidence
 (the F-line goes [INVALIDATED]); closure still needs the next
-round's [ZERO-DELTA].
+round's [ZERO-DELTA]. A design claim a round REFUTED (its D-line
+[INVALIDATED] under that finding) re-enters the design only on a
+basis of a DIFFERENT KIND than the refuted one — the re-entering
+entry names the new kind and why it is immune to the prior failure
+mode (P24 clause (b): the corpus's derive-the-basis rule, applied at
+the re-derivation seam where momentum re-asserts the cheap basis
+that already failed once).
 A run instrument the desk builds is unproven until it has gone
 RED on a real defect; until then its clean verdict closes no
 gate. An instrument's REACH enters the record as its own
