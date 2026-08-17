@@ -360,6 +360,40 @@ it is not decision-complete.
   completes P20 (record-class half already in force as prose);
   grade against P24's seal at the same mint window.
 
+- **READY 2026-08-17 — P29: run-2 close-seam checklist (the
+  U1→U2 inheritance, executed by hand this once; consumer: the
+  meta session at the close relay — THIS entry is its read-path
+  carrier if the current session dies).** Design: decided —
+  the checklist below IS the design, four item groups executed
+  in order at the close relay. Items, each owed a
+  named disposition in the close relay reply: (1) LEAVINGS
+  check over the desk's close report — out-of-scope findings
+  exported to beat-the-books BACKLOG.md or recorded-dropped
+  (the spread-CLV defect, F77, is the named chase item);
+  in-run instruments used twice graduated to beat-the-books
+  tools/ (the existence probe; the metric F116 already
+  flagged); durable world-facts (Pinnacle frame-anchoring
+  F112, prod retention overrides F79, the eleven-store
+  population map) landed in beat-the-books' own carrier per
+  its conventions, each with executed basis. (2) CLOSE
+  GRADING: P24 graded on the A5/A6 seal record (done —
+  READY); P28's five-incident enumeration answered
+  (P24-absorbed or distinct mechanism); P18's remaining ratio
+  formally dropped or run. (3) MINT BATCH at the seam: P5,
+  P15, P16, P19, P20, P24, P25 (re-scoped form), P26, P27 —
+  built with batteries, checkpoint opus review, ONE release;
+  the stale next-run staging entry re-graded in the same
+  pass. (4) U2 SEEDING: successor entries re-read against the
+  close's corrected diagnoses (F119 discipline), fresh desk
+  on the new version, rounds-per-landed-unit recorded as the
+  baseline number U2 is predicted to beat. Verifier: the
+  close relay reply enumerates every item with its
+  disposition — an unnamed item is the miss shape. Done: all
+  four groups dispositioned, release shipped, U2 seeded.
+  Write boundary: statiker SKILL.md/tools (mints) +
+  beat-the-books carriers (desk-side dispositions) + plugin
+  release + this BACKLOG.
+
 - **READY 2026-08-17 — P26: the trend tool's concentration
   flag cannot tell a confirmation from a hit (false fire
   measured, run-2 cycle 8).** Incident: with four flat rounds
