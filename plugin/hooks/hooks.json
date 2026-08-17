@@ -1,14 +1,4 @@
 {
-  "hooks": {
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "\"${CLAUDE_PLUGIN_ROOT}\"/hooks/statiker_stop_guard.py"
-          }
-        ]
-      }
-    ]
-  }
+  "_hold": "R11 (checkpoint review, 2026-08-17): the Stop-hook registration is HELD OUT of this release — BACKLOG P16 (re-opened) redesigns it (inverted: fire only on a named owed-work signal, read the sweep verdict, session-bind the tracker) rather than the improvised-turn-end shape this registration would ship. statiker_stop_guard.py and tools/test_statiker_stop_hook.py stay in place as groundwork, unregistered here until P16 ships.",
+  "hooks": {}
 }

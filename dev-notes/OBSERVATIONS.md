@@ -7038,3 +7038,38 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   TestP5RuleMintVersionCoverage) + this OBSERVATIONS entry.
   Consumer: the release record; every future violation-code mint in
   `statiker_record.py`.
+
+- 2026-08-17 — **R11 shipped: the Stop-hook registration HELD OUT of
+  0.2.82 (checkpoint review, BLOCKING finding).** Incident: the
+  checkpoint review found the Stop hook (`statiker_stop_guard.py`,
+  registered in `plugin/hooks/hooks.json`) ships the improvised-
+  turn-end shape BACKLOG P16 explicitly re-opened as wrong (the
+  P16-re-opened commit, b771bfd, same date: "hook held out of 0.2.82,
+  design inverted — fire only on a named owed-work signal, read
+  sweep verdict, session-bind the tracker") — shipping the hook
+  registration in this release would activate the very design the
+  operator just re-opened as defective. This lane's brief explicitly
+  scopes it as HELD, NOT the inversion redesign (P16's own work).
+  Fix: removed the `Stop` hook registration from `hooks.json` —
+  `"hooks": {}`, no lane fires — leaving `statiker_stop_guard.py`
+  (the script) and `tools/test_statiker_stop_hook.py` (its test
+  suite) in place, untouched, as groundwork for P16's redesign to
+  build on; a `_hold` field at the top of the file names the hold
+  and cites BACKLOG P16 (JSON has no comment syntax — an
+  underscore-prefixed key is the file's own convention for
+  non-consumed metadata, matching how unknown top-level keys are
+  otherwise ignored by the harness's hook loader). Verified valid
+  JSON (`python3 -c "import json; json.load(open(...))"`) and that
+  the groundwork files remain present and untouched. No battery (a
+  registration removal, not a behavior change to test — the tool and
+  test suite it holds out are unmodified). Full suite: `python3 -m
+  pytest tools/ -q`, 468 passed (the stop-hook script's own test
+  suite is untouched and still green, exercising the script
+  directly rather than through hook registration). Version bump is
+  the dispatcher's at release. Write boundary: `plugin/hooks/
+  hooks.json` only + this OBSERVATIONS entry — `statiker_stop_guard.py`
+  and `tools/test_statiker_stop_hook.py` explicitly NOT touched (out
+  of this lane's write boundary). Consumer: the release record;
+  BACKLOG P16's re-opened redesign (the un-hold is P16's own done
+  criterion); the plugin release pipeline (no Stop hook ships in
+  0.2.82).
