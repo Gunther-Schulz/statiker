@@ -248,6 +248,33 @@ it is not decision-complete.
   measure loop iterations, not landed value — a design question
   now, not further measurement).
 
+- **READY 2026-08-17 — P26: the trend tool's concentration
+  flag cannot tell a confirmation from a hit (false fire
+  measured, run-2 cycle 8).** Incident: with four flat rounds
+  on record, `trend` raised its concentration flag naming A4's
+  POSITIVE result — the executed-verification entry (F82) —
+  because that entry cites the repair it executed; the flag
+  counts citing lines and reads no entry class, so a
+  verification citing the newest work is indistinguishable
+  from a finding landing on it. The desk overrode with
+  recorded reasoning — the corpus's override-reflex cost, paid
+  once and booked here so it is not paid again. Design: the
+  concentration signal reads the CLASS of the citing entry —
+  findings and holds concentrate, verifications and
+  confirmations do not — computed from the entry grammar the
+  tool already parses; the flag's printed text names the
+  counted set. Verifier: red-first battery — a fixture whose
+  newest-cycle citations come from a verification entry must
+  NOT raise the flag (red proven at build per the standard
+  arrangement, new expectations against the pre-change tool,
+  baseline stated), and a fixture whose newest-cycle citations
+  come from findings must still raise it (the over-correction
+  case). Done: battery green with both cases demonstrated,
+  flag ships, version bumped. Write boundary:
+  plugin/skills/statiker/scripts/statiker_record.py +
+  tools/test_statiker_record.py (+ SKILL.md trend passage only
+  if it states the flag's semantics — checked at build) + bump.
+
 - **READY 2026-08-17 — P25: out-of-scope findings get a
   skill-owned export disposition at close (portability: the
   found-in-passing path must not depend on the operator
