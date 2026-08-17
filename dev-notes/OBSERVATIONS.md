@@ -6982,3 +6982,27 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   (cmd_verify_gate), `tools/test_statiker_record.py` + this
   OBSERVATIONS entry. Consumer: the release record; any desk running
   `verify-gate` with an abbreviated sha (the ordinary git shorthand).
+
+- 2026-08-17 — **R9 shipped: the verify-leg read-start sha is now
+  named a `record:` F-line carrier (checkpoint review, verify-sha-
+  carrier finding).** Incident: the Verify passage said the dispatch
+  "records the copy's HEAD sha at leg read-start" without naming
+  WHERE — leaving `verify-gate --tracker <path> --sha <the recorded
+  read-start sha>` (quoted three sentences later) referring to a
+  value with no stated home in the record, so a resuming desk
+  (mid-run context loss, the ordinary resume case) had no
+  record-grammar-legible place to find it and re-run the gate. Fix:
+  one clause naming the carrier — a `record:` F-line
+  ("verify leg reads at <sha>") at leg dispatch, the ordinary
+  bookkeeping-scope form (Implementation) already used for every
+  other desk-executed note. No tool change — the sha was already
+  being recorded somewhere ad hoc; this names the SANCTIONED form so
+  future dispatches and future SKILL.md readers agree on where it
+  lives. Prose only, no battery (a naming clarity fix over an
+  existing desk practice, not new machine-read semantics — the
+  `record:` opener already parses under the existing grammar). Full
+  suite: `python3 -m pytest tools/ -q`, 465 passed. Version bump is
+  the dispatcher's at release. Write boundary: SKILL.md (Verify, the
+  read-start-sha sentence) + this OBSERVATIONS entry. Consumer: the
+  release record; any verify-leg dispatch composing the read-start
+  record line; a resuming desk locating it.

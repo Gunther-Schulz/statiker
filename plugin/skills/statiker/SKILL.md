@@ -1533,7 +1533,9 @@ writes `.verify.paths`, REWRITTEN at each verify dispatch —
 at most one is in flight, so no count is derived),
 re-derivable by any successor desk (The attack's derivation)
 — never carried only in the brief or in memory. The dispatch also
-records the copy's HEAD sha at leg read-start: the desk is an
+records the copy's HEAD sha at leg read-start — a `record:` F-line
+("verify leg reads at <sha>"), so a resume can re-run the gate
+against it: the desk is an
 UNFROZEN concurrent writer during verify, unlike the attack rounds'
 append freeze (P30, F121/F124 — the unit transaction's own collision
 check was once replaced by exactly the condition this breaks, "this
