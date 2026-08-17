@@ -221,7 +221,17 @@ it is not decision-complete.
   harness — until then any timer mechanism (cron, systemd,
   tracker-mtime watch) is machinery without a fire. Re-grade also
   if the harness goes sync-only everywhere (class moot: a sync
-  dispatch cannot outlive its turn).
+  dispatch cannot outlive its turn). 2026-08-17: candidate
+  mechanism NARROWED — an in-harness background timer (`sleep
+  <horizon>` as a background Bash task; its exit re-invokes the
+  session) replaces the external machinery list at near-zero
+  build cost; applied by hand at the meta desk over the run-2
+  peer handoff, and the generalized class (horizon stated, waker
+  is the monitored party — every peer wait, not just statiker
+  desks) is booked in dispatch-guards
+  dev-notes/dispatch-OBSERVATIONS.md 2026-08-17 with
+  pre-formulated §4 text. Park evidence unchanged: still no
+  observed stall past a stated horizon.
 
 - **READY 2026-08-16 — P16: Stop-hook against improvised desk
   turn-ends (the midturn-answer-check pattern aimed at statiker
