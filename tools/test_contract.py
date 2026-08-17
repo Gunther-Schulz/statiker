@@ -610,6 +610,15 @@ def run_battery(git_script, record_script, root):
         "- A1 [DISPATCHED] round 1 — basis: brief\n"
         "- F1 [VERIFIED] a genuine design finding — basis: probe\n"
         "- A1 [BIT] one finding — basis: report\n")
+    (repo / "tripwire.md").write_text(
+        "# Run: tw\nStatus: in-progress\nPhase: investigate-design\n\n"
+        "## Cycle 1\n"
+        "- A1 [DISPATCHED] round 1 — basis: brief\n"
+        "- A1 [BIT] one finding — basis: report\n"
+        "- A2 [DISPATCHED] round 2 — basis: brief\n"
+        "- A2 [BIT] one finding — basis: report\n"
+        "- A3 [DISPATCHED] round 3 — basis: brief\n"
+        "- A3 [BIT] one finding — basis: report\n")
 
     # -- P2 gate-seam fixtures: the record's declared write-set is now
     # the unit-seam source, consulted through the record-tool gate ----
@@ -831,6 +840,15 @@ def run_battery(git_script, record_script, root):
                                str(repo / "sustain_ok.md")], repo, None, None),
         ("record", "sustain", ["sustain", "--tracker",
                                str(repo / "malformed.md")], repo, None, None),
+        ("record", "tripwire", ["tripwire", "--tracker",
+                                str(repo / "tripwire.md"),
+                                "--threshold", "2"], repo, None, None),
+        ("record", "tripwire", ["tripwire", "--tracker",
+                                str(repo / "tripwire.md"),
+                                "--threshold", "20"], repo, None, None),
+        ("record", "tripwire", ["tripwire", "--tracker",
+                                str(repo / "malformed.md"),
+                                "--threshold", "1"], repo, None, None),
     ]
 
     rows = []

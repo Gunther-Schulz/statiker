@@ -122,6 +122,12 @@ class RecordFixture(unittest.TestCase):
             ["sustain", "--tracker", str(self.write_tracker(body, header))],
             cwd=self.dir))
 
+    def tripwire(self, body, threshold, header=HEADER):
+        return self.verdict(tool(
+            ["tripwire", "--tracker", str(self.write_tracker(body, header)),
+             "--threshold", str(threshold)],
+            cwd=self.dir))
+
     def violation_codes(self, v):
         return {viol["code"] for viol in v.get("violations", [])}
 
@@ -989,6 +995,62 @@ class TestP20SustainGate(RecordFixture):
     def test_malformed_record_blocks(self):
         v = self.sustain("- F1 (VERIFIED) x — basis: y\n")
         self.assertEqual(v["verdict"], "SUSTAIN_RECORD_MALFORMED", v)
+
+
+class TestP19ZeroLandedTripwire(RecordFixture):
+    """BACKLOG P19 (P18 measurement): the zero-landed progress
+    tripwire — one of the two progress-shaped stop signals the
+    budget's hard cap demotes to. Fires when at least `--threshold`
+    resolved attack rounds exist yet neither a landing annotation nor
+    a V-line does anywhere in the record; either one silences it."""
+
+    def _n_bit_rounds(self, n):
+        body = ""
+        for i in range(1, n + 1):
+            body += (f"- A{i} [DISPATCHED] round {i} — basis: brief\n"
+                     f"- F{i} [VERIFIED] a finding — basis: probe\n"
+                     f"- A{i} [BIT] one finding — basis: report\n")
+        return body
+
+    def test_run_1_shape_fires(self):
+        # the run-1 fixture: eight rounds, zero V-lines, zero landings
+        v = self.tripwire(self._n_bit_rounds(8), threshold=5)
+        self.assertEqual(v["verdict"], "TRIPWIRE_FIRES", v)
+        self.assertEqual(v["rounds"], 8)
+        self.assertFalse(v["landed"])
+        self.assertEqual(v["v_lines"], 0)
+
+    def test_landing_annotation_silences_it(self):
+        body = self._n_bit_rounds(8) + "\n  unit U1 landed: abc1234\n"
+        v = self.tripwire(body, threshold=5)
+        self.assertEqual(v["verdict"], "TRIPWIRE_SILENT", v)
+        self.assertTrue(v["landed"])
+
+    def test_v_line_silences_it_without_a_landing(self):
+        body = (self._n_bit_rounds(8) +
+                "- V1 [ISSUES FOUND] a verify attempt — basis: checks\n")
+        v = self.tripwire(body, threshold=5)
+        self.assertEqual(v["verdict"], "TRIPWIRE_SILENT", v)
+        self.assertFalse(v["landed"])
+        self.assertEqual(v["v_lines"], 1)
+
+    def test_below_threshold_is_silent_regardless(self):
+        v = self.tripwire(self._n_bit_rounds(2), threshold=5)
+        self.assertEqual(v["verdict"], "TRIPWIRE_SILENT", v)
+        self.assertEqual(v["rounds"], 2)
+
+    def test_threshold_is_named_by_the_caller_not_hardcoded(self):
+        # the same 8-round, zero-landed record reads differently under
+        # two different named thresholds
+        body = self._n_bit_rounds(8)
+        low = self.tripwire(body, threshold=3)
+        high = self.tripwire(body, threshold=20)
+        self.assertEqual(low["verdict"], "TRIPWIRE_FIRES", low)
+        self.assertEqual(high["verdict"], "TRIPWIRE_SILENT", high)
+
+    def test_malformed_record_blocks(self):
+        v = self.tripwire("- F1 (VERIFIED) x — basis: y\n", threshold=1)
+        self.assertEqual(v["verdict"], "TRIPWIRE_RECORD_MALFORMED", v)
 
 
 # -------------------------------------------------------------------- filter

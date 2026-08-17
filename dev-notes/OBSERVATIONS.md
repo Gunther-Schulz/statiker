@@ -6430,3 +6430,118 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   repair, not the new-verdict deviation class — CLOSURE_ABSENT was
   already routed). Consumer: the release record; the checkpoint opus
   review; P24's grading pass; BACKLOG P27's closure.
+
+- 2026-08-17 — **P19 shipped: budget demoted to a safety escape;
+  progress-shaped stop signals become the driving mechanism
+  (fire-born, incident: the P18 measurement — run 1 ran twelve
+  cycles with NO budget and diverged to zero landed units while run
+  2 converged and was stopped at a cycle-denominated cap that
+  indicted the healthy run and never fired on the sick one; across
+  both runs the budget NEVER fired as designed — every contact
+  produced an operator override, the corpus's
+  guard-overridden-on-every-fire pattern).** Design: (a) the hard
+  cap stays, generous, as unattended-runaway protection only — SKILL
+  prose now states plainly that hitting it STOPS-AND-REPORTS for the
+  operator and never grades FAILED by itself; (b) a new subcommand,
+  `tripwire --tracker P --threshold N`, is the ZERO-LANDED driving
+  signal — TRIPWIRE_FIRES when at least N resolved attack rounds
+  (the same round count `trend`/`sustain` already compute) exist yet
+  neither a landing annotation (indented or not — a lint defect on
+  the indentation is never a reason to miss a real landing) nor a
+  V-line does anywhere in the record, TRIPWIRE_SILENT otherwise; N
+  is NAMED BY THE CALLER at arming time, never hardcoded in the
+  tool — this and the EXISTING non-contracting trend grade (already
+  in force as desk judgment, The attack) both route to the 0.68
+  narrowing route, never another same-form round; (c) housekeeping
+  (record-repair legs, sweep/closure passes) is stated explicitly as
+  meta-owned, outside cycle accounting. THE MINT-SOURCE REFRAME
+  (operator discussion, "there is always another reason"): a
+  stop-and-report fires as a MINT SOURCE, never a verdict — it owes
+  a named cause at close-out, read from discriminating evidence
+  PRE-REGISTERED when the check was armed (never composed at firing
+  time — the run-2 F75 injection's own pattern, adopted directly);
+  a computable cause becomes a named tripwire so the next run stops
+  on the pathology itself, and a breaker tripping twice for one
+  cause indicts the missing tripwire — the designed end-state is a
+  backstop that never fires. THE THREE ENDINGS (from the
+  post-disposition deadlock the run-2 F118 firing exposed —
+  stop-and-report displaced FAILED but defined no CONTINUE path, so
+  an operator "proceed" disposition still hit a hand-crafted-grant
+  wall): FAILED (operator refuses), EXPORT (operator re-scopes, the
+  displaced scope exits via The loop's existing narrowing/export
+  machinery), CONTINUE (an ordinary budget-raise entry grants the
+  closing round as part of the same authority line — machinery, not
+  improvisation). Removed the passage's stale `(hypothesis)` marker:
+  the design is now field-validated end to end (P18's zero-landed
+  measurement, the F75 pre-registration pattern, the F100-F103 first
+  diagnosed firing, the F118 deadlock) — fire-born, not a proactive
+  universal calibration. Verifier: red-first battery
+  (`TestP19ZeroLandedTripwire`, tools/test_statiker_record.py) — six
+  cases: the run-1 shape (eight resolved rounds, zero landings, zero
+  V-lines) fires at threshold 5, a landing annotation silences it, a
+  V-line silences it even without a landing, a below-threshold round
+  count stays silent regardless, the SAME 8-round zero-landed record
+  reads FIRES at threshold 3 and SILENT at threshold 20 (proving the
+  threshold is genuinely caller-named, not baked in), a malformed
+  record halts. Red demonstrated by stubbing `cmd_tripwire` to always
+  answer SILENT — five of six cases failed (every case that should
+  NOT have been plain silent), stub reverted, battery green (6/6).
+  Full suite green after adding the contract battery's three
+  tripwire rows and naming the four new verdicts
+  (TRIPWIRE_FIRES/TRIPWIRE_SILENT/TRIPWIRE_RECORD_MALFORMED, plus
+  SUSTAIN_RECORD_MALFORMED's sibling list widened) in SKILL.md
+  (`python3 -m pytest tools/ -q`, 452 passed) — the same composition
+  dependency as P30/P25/P20. DEVIATION (terminology, flagged rather
+  than silently resolved): the entry's design prose says "a named
+  CYCLE count," but its own verifier fixture is described in ROUNDS
+  ("the run-1 fixture: eight rounds, zero V-lines") and the real
+  run-1 measurement cited elsewhere in this journal is "8 attack
+  rounds ... over 46 tracker commits / 8,665 lines" across 12
+  cycles — rounds and cycles are DIFFERENT counters in this record
+  grammar (a cycle can hold zero or many rounds). Built against
+  ROUNDS (matching the verifier's literal fixture and reusing
+  `trend`'s own round-boundary counting rather than inventing a
+  cycle-counting mechanism the entry never specifies the grammar
+  for); the threshold itself is left entirely to the caller (no
+  hardcoded default), which sidesteps needing to resolve "cycles vs.
+  rounds" as a magic number question at all — the desk names
+  whichever count and threshold it arms the check with. Machine-read
+  semantics → checkpoint opus review owed at mint. Tenet check,
+  PLAN.md's base-reference list: (1) investigation-led design —
+  n/a; (2) loop-until-still — n/a; (3) sufficiency — n/a; (4)
+  anti-skim — pass: directly answers the P18 measurement, a bound
+  that fired on the healthy run and never on the sick one; (5) five
+  forcing points — pass: the cap still exists as a backstop, the
+  driving signals route through the SAME narrowing machinery the
+  attack forcing point already defines; (6)
+  single-home/precipitation — pass: one shipped script, SKILL.md
+  keeps principles; (7) hypothesis-patch class — n/a: fire-born,
+  P18/F75/F100-F103/F118 are the incidents, field-validated per the
+  entry's own text; (8) ad-hoc-decision failure mode — pass: no
+  design decision moves into implementation, the three endings are
+  explicit operator authority lines, never desk improvisation — the
+  exact gap (an undefined CONTINUE path) this entry closes; (9)
+  autonomy north star — pass: an unattended run stops on the
+  pathology itself instead of an arbitrary cap that fires on the
+  wrong run; (10) economics — pass: the tripwire is one cheap
+  read-only call, and demoting the cap to a backstop removes the
+  false-positive cost (a healthy run stopped mid-convergence) the
+  P18 measurement priced; (11) convergence circuit — pass: FIRES/
+  SILENT and the pre-registered discriminating evidence are
+  record-tool reads the desk quotes, never desk-remembered prose —
+  the mint-source reframe's whole point; (12) medium tenet — pass:
+  exact machine-read semantics (the round-threshold comparison, the
+  landing/V-line detection) built as mechanism with a red-first
+  battery; the cause-diagnosis and the three-endings routing stay
+  prose (judgment: which cause, which ending) matching the tenet's
+  mechanism/prose split; (13) gradeable-form — pass: TRIPWIRE_FIRES
+  is a computed met/not-met from the record's own entries, never a
+  judgment call standing alone — the ending chosen in response to a
+  firing is explicitly operator judgment, surfaced as three named
+  options rather than mechanized (correctly, since that choice is
+  the operator's alone). Version bump is the dispatcher's at release.
+  Write boundary: SKILL.md budget passage + "The tools" overview +
+  plugin/skills/statiker/scripts/statiker_record.py +
+  tools/test_statiker_record.py + tools/test_contract.py (deviation,
+  same class as P30/P25/P20). Consumer: the release record; the
+  checkpoint opus review; BACKLOG P19's closure.

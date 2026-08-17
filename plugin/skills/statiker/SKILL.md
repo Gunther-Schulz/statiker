@@ -48,7 +48,8 @@ run-start preflight, the LOCK commit, unit START and COMMIT — and
 [READY] sweep's computable slice, the closure predicate, the
 pinned attack artifact, the append-only check against the pin
 (`pinned`), the verify-leg copy-freeze check (`verify-gate`), the
-never-sustain round-open gate (`sustain`), defanged quote blocks.
+never-sustain round-open gate (`sustain`), the zero-landed progress
+tripwire (`tripwire`), defanged quote blocks.
 The two scripts
 plus their red-first battery (the source repo's tools/ suites —
 the attack rounds' probes and record findings mechanized) are the
@@ -95,8 +96,11 @@ TREND_NO_ROUNDS — per-round F-LINE counts (every F-line in a
 round's span, not attacker findings alone) with an arithmetic
 trajectory verdict. `sustain` returns SUSTAIN_OK / SUSTAIN_DENIED /
 SUSTAIN_NOT_APPLICABLE — the never-sustain round-open gate (Stop
-rule, "That closes design"). All three halt WAVES_RECORD_MALFORMED /
-TREND_RECORD_MALFORMED / SUSTAIN_RECORD_MALFORMED where an
+rule, "That closes design"). `tripwire` returns TRIPWIRE_FIRES /
+TRIPWIRE_SILENT — the zero-landed progress tripwire (The record,
+Budget). All four halt WAVES_RECORD_MALFORMED /
+TREND_RECORD_MALFORMED / SUSTAIN_RECORD_MALFORMED /
+TRIPWIRE_RECORD_MALFORMED where an
 entry-shaped line broke the
 grammar, repaired like any lint hold (`corrects line <n>`
 composed from the verdict's violation lines). ANY verdict no
@@ -265,8 +269,37 @@ defaults 7 / 4 / 3, declared at run start where a successor reads
 it (an unattended loop without a declared bound terminates on
 context death, the one ending that produces no readable verdict).
 Exhaustion never continues silently: attended it forces the
-operator prompt, unattended it closes the run FAILED with the
-unexhausted question enumerated in the close. (hypothesis)
+operator prompt; unattended, the cap is a SAFETY ESCAPE only (P19 —
+every cap firing to date, across two runs, was operator-overridden:
+a bound whose every firing is overridden carries no information and
+trains the override reflex) — hitting it STOPS-AND-REPORTS for the
+operator, never grades FAILED by itself. The DRIVING stop signals
+are progress-shaped and record-computable, checked well before the
+cap: the ZERO-LANDED tripwire (`tripwire --tracker <path>
+--threshold <n>`, TRIPWIRE_FIRES when at least `<n>` resolved attack
+rounds exist yet neither a landing annotation nor a V-line does
+anywhere in the record — the threshold NAMED by the caller at
+arming, never hardcoded in the tool) and the existing NON-CONTRACTING
+trend grade (The attack) — BOTH route to the 0.68 NARROWING route
+(The attack), never to another same-form round. Housekeeping never
+bills the run's budget: record-repair legs (The record, the resume's
+mechanical leg) and sweep/closure passes are meta-owned, outside
+cycle accounting. Excess iteration is a SYMPTOM, never a verdict —
+every cause is diagnosable, so a stop-and-report fires as a MINT
+SOURCE: it owes a named cause at close-out, read from the
+DISCRIMINATING EVIDENCE pre-registered when the check was armed (the
+trend verdict for arithmetic, named locus body-reads for
+repair-versus-account, each terminal entry's class split) — a
+firing's cause report is a READ, not a composition — and a
+computable cause becomes a named tripwire so the next run stops on
+the pathology itself; a breaker tripping twice for one cause
+indicts the missing tripwire. The stop-and-report has THREE
+ENDINGS, all operator-owned: FAILED (the operator refuses the run);
+EXPORT (the operator re-scopes — the displaced scope exits per The
+loop's exit machinery to a backlog entry); or CONTINUE — a
+disposition that GRANTS the closing round as an ordinary budget-raise
+entry (above), so the route back to the gate is machinery, never
+improvisation.
 The bound is operator-owned from the moment it is recorded: the
 desk SPENDS the budget and never raises it — a mid-run amendment
 is an operator decision, whatever provenance class the bound's

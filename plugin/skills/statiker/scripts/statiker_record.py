@@ -56,6 +56,15 @@ Subcommands (each prints evidence lines, then exactly one final line
                                       member, else SUSTAIN_DENIED;
                                       SUSTAIN_NOT_APPLICABLE outside a
                                       [BIT] round
+  tripwire --tracker P --threshold N  read-only: the ZERO-LANDED
+                                      progress tripwire (P19) —
+                                      TRIPWIRE_FIRES when at least N
+                                      resolved attack rounds exist yet
+                                      neither a landing annotation nor
+                                      a V-line does, else
+                                      TRIPWIRE_SILENT; N is named by
+                                      the caller at arming time, never
+                                      hardcoded
   filter  --tracker P --sha S --out F pinned attack artifact (reads
                                       the sha, drops the two
                                       Superseded species)
@@ -2015,6 +2024,58 @@ def cmd_sustain(args):
            record_class=[e.id for e in record_class], **meta)
 
 
+# ------------------------------------------------------------------ tripwire
+
+def cmd_tripwire(args):
+    """P19 (BACKLOG; P18 measurement — run 1 ran twelve cycles with NO
+    budget and diverged to zero landed units, eight attack rounds all
+    BIT, zero V-lines, zero landing annotations over 46 tracker
+    commits): the ZERO-LANDED tripwire, one of the two progress-shaped
+    stop signals the budget's hard cap demotes to (SKILL.md, The
+    record — cap as unattended-runaway protection only, never the
+    driving stop signal). Fires when the record shows NEITHER a
+    landing annotation (`  unit U<k> landed: <sha>`, any unit, ever)
+    NOR a V-line (any verify verdict, ever) despite at least
+    `--threshold` RESOLVED attack rounds (BIT/ZERO-DELTA A-lines, the
+    same count `trend` computes) — either one silences it. The
+    threshold is NAMED by the caller at arming time (SKILL.md's Stop
+    rule design: a breaker's discriminating evidence is pre-registered
+    when armed, never composed at firing time), never hardcoded here."""
+    text = load(args.tracker)
+    entries, violations, meta, reach = parse_tracker(text)
+    say_head_region_entries("tripwire", reach)
+    blocking = closure_blocking_violations(violations)
+    if blocking:
+        for v in blocking:
+            say(f"tripwire blocked: {v['code']} @ line {v['line']}: "
+                f"{v['text']}")
+        finish("TRIPWIRE_RECORD_MALFORMED", 2, violations=blocking, **meta)
+    bounds, _, _, _, _ = trend_over_rounds(entries)
+    rounds = len(bounds)
+    # any landing mention counts, indented (the sanctioned form) or
+    # not (a landing-indent lint defect is a form issue, never a
+    # reason to miss a real landing here)
+    landed = any(LANDING_RE.match(l) or LANDING_INDENTED_RE.match(l)
+                for l in split_lines(text))
+    v_lines = [e for e in entries if e.cls == "V"]
+    if rounds < args.threshold:
+        say(f"tripwire: {rounds} resolved round(s) < threshold "
+            f"({args.threshold}) — not yet armed")
+        finish("TRIPWIRE_SILENT", 0, rounds=rounds,
+               threshold=args.threshold, landed=landed,
+               v_lines=len(v_lines), **meta)
+    if landed or v_lines:
+        say(f"tripwire: silenced — landed={landed}, "
+            f"v_lines={len(v_lines)}")
+        finish("TRIPWIRE_SILENT", 0, rounds=rounds,
+               threshold=args.threshold, landed=landed,
+               v_lines=len(v_lines), **meta)
+    say(f"tripwire: FIRES — {rounds} resolved round(s), zero landing "
+        f"annotations, zero V-lines")
+    finish("TRIPWIRE_FIRES", 2, rounds=rounds, threshold=args.threshold,
+           landed=landed, v_lines=len(v_lines), **meta)
+
+
 # -------------------------------------------------------------------- filter
 
 def cmd_filter(args):
@@ -2374,6 +2435,9 @@ def main():
     p = sub.add_parser("verify-gate")
     p.add_argument("--tracker", required=True)
     p.add_argument("--sha", required=True)
+    p = sub.add_parser("tripwire")
+    p.add_argument("--tracker", required=True)
+    p.add_argument("--threshold", required=True, type=int)
     p = sub.add_parser("quote")
     p.add_argument("--label", required=True)
 
@@ -2381,7 +2445,7 @@ def main():
     handlers = {"lint": cmd_lint, "sweep": cmd_sweep, "closure": cmd_closure,
                 "waves": cmd_waves, "trend": cmd_trend, "sustain": cmd_sustain,
                 "filter": cmd_filter, "pinned": cmd_pinned,
-                "verify-gate": cmd_verify_gate,
+                "verify-gate": cmd_verify_gate, "tripwire": cmd_tripwire,
                 "quote": cmd_quote}
     try:
         handlers[args.cmd](args)
