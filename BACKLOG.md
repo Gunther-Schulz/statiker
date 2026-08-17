@@ -300,7 +300,20 @@ it is not decision-complete.
   expectations failing is strictly more informative than one
   taken before they exist. Candidate corpus widening (operator
   call — corpus edits are GO-gated): the Fixing module's
-  baseline sentence could name this arrangement. Missing evidence, named:
+  baseline sentence could name this arrangement. CLOSE GRADING
+  2026-08-17 (P29 item 2, the named trigger): the five
+  incidents SPLIT — the completeness lineage (F24/F63/F76/F95)
+  is ABSORBED by P24's basis-upgrade + instrument seal; the
+  rationale/account lineage (A6's F113 false exclusion
+  rationale; F110's restated-figures brief) is NOT absorbed —
+  no basis-kind upgrade catches a false justification for a
+  correct boundary. The distinct executed-evidence-closure
+  mechanism therefore stays a live candidate, with the stash
+  exemplar as its form; still PARKED pending its design
+  question (which closure classes must carry executed evidence
+  — the judgment/mechanization boundary). Trigger refined: the
+  close-seam mint window (P29 item 3), decided beside P24 so
+  the split of labor is settled in one pass. Missing evidence, named:
   the run-2 close grading — enumerate the five incidents and
   answer whether P24 covers them or a distinct mechanism is
   owed; a sixth incident post-P24-mint would settle it the
@@ -359,6 +372,35 @@ it is not decision-complete.
   tools/test_statiker_record.py + bump. Interaction note:
   completes P20 (record-class half already in force as prose);
   grade against P24's seal at the same mint window.
+
+- **READY 2026-08-17 — P30: the desk is an unfrozen concurrent
+  writer during a VERIFY leg (incident F124, run-2 close; the
+  desk's own flag: "mechanizable, same shape as the round
+  freeze").** Incident: F121's deviation replaced the unit
+  transaction's collision check with the CONDITION "this desk
+  is the only writer in this copy" — and the desk then
+  committed a booking into that copy while the isolated verify
+  leg was reading it; harmless by luck of content (tracker
+  only, no R-line amendment), not by judgment. The append
+  freeze binds attack rounds; nothing freezes the desk during
+  verify, and the verify brief asserts an isolation the desk
+  is free to break. Design: the verify dispatch records the
+  copy's HEAD sha at leg read-start; the V-line booking gate
+  compares it against HEAD at return — identical: clean;
+  moved: the verdict books as STALE-COPY and the leg re-runs
+  or the delta is shown harmless in the record (commit list
+  named, none touching graded surfaces). Computable, no
+  judgment slice. Verifier: red-first battery — a fixture with
+  a commit landing between the recorded read-sha and booking
+  must grade STALE-COPY (red proven at build per the standard
+  arrangement against the pre-change tool, baseline stated); an
+  unmoved fixture books clean. Done: battery green with the red
+  demonstrated, freeze clause ships in the SKILL.md verify
+  passage, checkpoint review dispositioned, version bumped —
+  joins the close-seam mint batch (P29 item 3). Write
+  boundary: SKILL.md verify passage +
+  plugin/skills/statiker/scripts/statiker_record.py +
+  tools/test_statiker_record.py + bump.
 
 - **READY 2026-08-17 — P29: run-2 close-seam checklist (the
   U1→U2 inheritance, executed by hand this once; consumer: the
@@ -458,7 +500,19 @@ it is not decision-complete.
   fills per the HOST repo's own conventions (corpus-governed
   where present, operator-decided otherwise); the skill
   mandates the enumeration and the filled slot, never the
-  destination. Provenance: U1's population instrument cost
+  destination. STANDALONE-INHERITANCE clause (operator
+  question 2026-08-17, "how does a fresh U2 session inherit
+  U1's knowledge without the corpus"): each exported successor
+  entry CITES the parent close report's leavings section by
+  anchor, and the skill's seed passage has a fresh run read
+  its task source's cited leavings section before the head is
+  composed — so the inheritance interface is one digest
+  section, not the full record; the adoption path remains the
+  trust protocol for anything the new run rests on. This makes
+  the record chain (close-report digest → seed entries →
+  adoption path) statiker's complete built-in inheritance for
+  a standalone user; skill-evolution and repo-memory channels
+  are deliberately environmental. Provenance: U1's population instrument cost
   four rounds to derive and would be silently re-derived if
   tracker-buried; the enumeration puts it in the one document
   every consumer reads — the close report.
