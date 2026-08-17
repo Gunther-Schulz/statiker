@@ -38,10 +38,14 @@ Subcommands (each prints evidence lines, then exactly one final line
                                       arithmetic FLAT/IMPROVING/
                                       WORSENING trajectory, and a
                                       concentration flag when the
-                                      newest round's findings cite a
-                                      D-id whose latest revision
-                                      landed in the immediately prior
-                                      round (that prior round's own
+                                      newest round's FINDINGS (scope
+                                      != record: — a record-scoped
+                                      F-line is desk bookkeeping, a
+                                      verification or confirmation,
+                                      and never counts) cite a D-id
+                                      whose latest revision landed in
+                                      the immediately prior round
+                                      (that prior round's own
                                       repair set)
   filter  --tracker P --sha S --out F pinned attack artifact (reads
                                       the sha, drops the two
@@ -1663,7 +1667,18 @@ def trend_over_rounds(entries):
     prior round's own span. Only defined with >=2 rounds; the D-ids
     counted are exactly those whose latest-overall occurrence falls
     inside the window (a later revision, elsewhere, means that D-id
-    was not what the re-lock repaired as it now stands)."""
+    was not what the re-lock repaired as it now stands).
+
+    P26 (run-2 F82, live): "the newest round's findings" reads the
+    citing F-line's CLASS via the existing scope-opener grammar
+    (classify_scope) — a `record: `-scoped F-line is desk bookkeeping
+    (a verification or confirmation the desk executed, citing the
+    repair it confirmed), never a finding landing on the repaired
+    ground, and is excluded; a scopeless or unit-scoped F-line is an
+    ordinary attacker finding and still counts. Without the filter, a
+    positive executed-verification entry citing the repair it
+    executed reads identically to a finding landing on it — measured
+    live at cycle 8 with four flat rounds on record."""
     latest = latest_by_id(entries)
     a_latest = sorted([e for e in latest.values() if e.cls == "A"],
                       key=lambda e: e.lineno)
@@ -1702,7 +1717,16 @@ def trend_over_rounds(entries):
         d_entries = [e for e in entries if e.cls == "D"
                     and prev_end < e.lineno <= window_end]
         repair_ids = {e.id for e in d_entries if latest.get(e.id) is e}
-        cur_findings = [f for f in f_entries if cur_start < f.lineno <= cur_end]
+        # P26 (run-2 F82, live): a `record: `-scoped F-line is desk
+        # bookkeeping — a verification or confirmation of a repair the
+        # desk itself executed — never a finding landing on it; the
+        # existing scope-opener grammar (classify_scope) already
+        # distinguishes it from an ordinary (scopeless or unit-scoped)
+        # attacker finding, so concentration reads that class instead
+        # of counting every citing F-line alike.
+        cur_findings = [f for f in f_entries
+                        if cur_start < f.lineno <= cur_end
+                        and classify_scope(f.body)[0] != "record"]
         for f in cur_findings:
             hit = set(cited_ids(f.basis or "")) & repair_ids
             if hit:
@@ -1725,8 +1749,10 @@ def cmd_trend(args):
         finish("TREND_NO_ROUNDS", 0, rounds=0, **meta)
     say(f"trend: {len(bounds)} round(s), findings {counts}, "
         f"trajectory {trajectory}"
-        + (", CONCENTRATION in the previous re-lock's repairs" if concentration
-           else ""))
+        + (", CONCENTRATION in the previous re-lock's repairs — counted "
+           "(non-record-scoped) finding(s): "
+           + ", ".join(h["finding"] for h in hits)
+           if concentration else ""))
     finish("TREND_COMPUTED", 0, rounds=len(bounds), counts=counts,
           trajectory=trajectory, concentration=concentration,
           concentration_detail=hits, **meta)

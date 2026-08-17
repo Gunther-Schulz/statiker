@@ -5943,3 +5943,43 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   plugin/skills/statiker/scripts/statiker_record.py +
   tools/test_statiker_record.py. Consumer: the release record;
   BACKLOG P15's closure.
+
+- 2026-08-17 — **P26 shipped: `trend`'s concentration flag now reads
+  the citing entry's CLASS via the existing scope-opener grammar
+  (fire-born, incident: run-2 cycle 8, four flat rounds on record —
+  the flag raised on A4's POSITIVE result, F82, an executed-
+  verification entry citing the repair it executed, because the old
+  computation counted every citing F-line alike and read no entry
+  class).** Design: `trend_over_rounds`'s concentration window now
+  filters the newest round's citing F-lines through `classify_scope`
+  — a `record: `-scoped F-line is desk bookkeeping (a verification
+  or confirmation of a repair the desk itself executed) and is
+  EXCLUDED; a scopeless or unit-scoped F-line is an ordinary
+  attacker finding and still counts. No new grammar minted — the
+  scope-opener classification the tool already parses for every
+  other consult (hold/write-set violations, closure's unit-scoping)
+  is reused here for a new consumer. The printed `trend` evidence
+  line now names the counted (non-record-scoped) finding ids
+  wherever concentration fires, per the entry's own requirement.
+  Verifier: red-first battery (`TestP26ConcentrationReadsEntryClass`,
+  tools/test_statiker_record.py) — three cases: a record-scoped
+  verification citing the re-lock repair must NOT raise the flag
+  (red confirmed against the pre-fix tool: `concentration` was
+  `True`), a scopeless finding citing the same repair must still
+  raise it (the over-correction control, already green — the
+  existing behavior this fix must not regress), and a mixed round
+  (one verification + one genuine finding on the same repair) must
+  concentrate on the finding alone, naming only it in
+  `concentration_detail`. All three green after the fix; full
+  `TestTrend` class (the pre-existing concentration/trajectory
+  tests) unchanged and green — the filter narrows only the
+  record-scoped case. Full suite green
+  (`python3 -m pytest tools/ -q`). No SKILL.md patch: SKILL.md
+  never states the concentration flag's semantics at all (grepped,
+  zero hits) — the entry's own "only if it states the flag's
+  semantics" condition is unmet, so the birth-class tenet check does
+  not apply here either; version bump is the dispatcher's at
+  release. Write boundary:
+  plugin/skills/statiker/scripts/statiker_record.py +
+  tools/test_statiker_record.py. Consumer: the release record;
+  BACKLOG P26's closure.

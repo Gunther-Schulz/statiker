@@ -669,6 +669,72 @@ class TestTrend(RecordFixture):
         self.assertEqual(v["verdict"], "TREND_NO_ROUNDS")
 
 
+class TestP26ConcentrationReadsEntryClass(RecordFixture):
+    """BACKLOG P26: the concentration flag previously counted ANY
+    citing F-line — findings and record-scoped verification/
+    confirmation entries alike — so a positive executed-verification
+    entry citing the repair it executed (run-2 F82) raised the same
+    flag as a genuine finding landing on it. The signal now reads the
+    citing entry's CLASS via the record grammar's own scope opener
+    (classify_scope): a `record: `-scoped F-line is desk bookkeeping
+    — a verification or confirmation — and never concentrates; a
+    scopeless (or unit-scoped) F-line is an ordinary finding and
+    still does."""
+
+    def _worsening_body(self, citing_line):
+        return (
+            "- D1 [COMMITTED] first design — basis: probe\n"
+            "- A1 [DISPATCHED] round 1 — basis: brief\n"
+            "- F1 [VERIFIED] one finding — basis: probe\n"
+            "- A1 [BIT] one finding — basis: report\n"
+            "- D2 [COMMITTED] repair for round 1's finding — basis: F1\n"
+            "- A2 [DISPATCHED] round 2 — basis: brief\n"
+            "- F2 [VERIFIED] finding one — basis: probe\n"
+            "- F3 [VERIFIED] finding two — basis: probe\n"
+            "- A2 [BIT] two findings — basis: report\n"
+            "- D3 [COMMITTED] re-lock repair for round 2's findings — "
+            "basis: F2\n"
+            "- A3 [DISPATCHED] round 3 — basis: brief\n"
+            + citing_line +
+            "- A3 [BIT] one entry — basis: report\n")
+
+    def test_verification_entry_citing_the_repair_does_not_concentrate(self):
+        # the F82 shape: a record-scoped executed-verification entry
+        # citing the re-lock repair it executed — a POSITIVE result,
+        # never a finding landing on the repaired ground
+        body = self._worsening_body(
+            "- F4 [VERIFIED] record: executed the repair from D3 and "
+            "confirmed it holds — basis: D3\n")
+        v = self.trend(body)
+        self.assertEqual(v["verdict"], "TREND_COMPUTED")
+        self.assertFalse(v["concentration"], v)
+        self.assertEqual(v["concentration_detail"], [])
+
+    def test_scopeless_finding_citing_the_repair_still_concentrates(self):
+        # the over-correction control: an ordinary (scopeless) finding
+        # citing the same repair must still raise the flag
+        body = self._worsening_body(
+            "- F4 [VERIFIED] hits the re-lock repair again — basis: D3\n")
+        v = self.trend(body)
+        self.assertTrue(v["concentration"], v)
+        self.assertTrue(any("D3" in h["repair_ids"] for h in
+                            v["concentration_detail"]))
+
+    def test_mixed_round_concentrates_on_the_finding_alone(self):
+        # a round carrying BOTH a verification and a genuine finding:
+        # concentration fires (the finding), and the detail names only
+        # the finding, never the verification entry
+        body = self._worsening_body(
+            "- F4 [VERIFIED] record: executed the repair from D3 and "
+            "confirmed it holds — basis: D3\n"
+            "- F5 [VERIFIED] a genuine finding on the same repair — "
+            "basis: D3\n")
+        v = self.trend(body)
+        self.assertTrue(v["concentration"], v)
+        cited = {h["finding"] for h in v["concentration_detail"]}
+        self.assertEqual(cited, {"F5"})
+
+
 # -------------------------------------------------------------------- filter
 
 class TestFilter(RecordFixture):
