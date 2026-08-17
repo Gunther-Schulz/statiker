@@ -91,8 +91,17 @@
   Trial reviews and deliberations ask the portability question
   per dependency: on a bare machine without the corpus, what
   breaks — and is the break silent? Silent break → skill-owned.
+  BOUNDED same day (operator mission challenge, PLAN.md
+  "thin"): the criterion reaches only mechanisms of THE RUN AND
+  ITS RECORD — applied unboundedly it absorbs the accretion
+  module wholesale (file roles, booking discipline), turning a
+  run-conduct skill into workspace management. Operative split:
+  SURFACING is run-conduct and skill-owned (the close report
+  enumerates, nothing ships quietly); FILING — destinations,
+  carriers, repo conventions — is the environment's, however
+  silently a bare environment then loses what was surfaced.
   (Provenance: run-2 F77's export rode the corpus plus a meta
-  nudge; discussion this date.)
+  nudge; the P25 over-widening and re-scope, this date.)
 
 - **Efficiency reviews lead with causes, never arithmetic
   (operator-settled 2026-08-17).** When grading a trial run or
