@@ -41,6 +41,17 @@
 
 ## Trial working conventions (operator-settled, 2026-08-06)
 
+- **Efficiency reviews lead with causes, never arithmetic
+  (operator-settled 2026-08-17).** When grading a trial run or
+  deliberating statiker changes, the first question over any
+  observed excess (rounds, cycles, record volume) is WHICH
+  diagnosable cause produced it — the P18/P19 finding: caps
+  truncate divergence and never cause convergence, so efficiency
+  work targets causes (round-sustain class, record attack
+  surface, item scope), and a bound's firing is a diagnostic
+  event owing a named cause. Resource arithmetic alone grades
+  nothing.
+
 - **Two-session layout — the relay loop IS the procedure.** The
   meta/grading session runs in THIS repo (grades comparisons,
   mints, releases); the desk runs in the target repo. The operator
