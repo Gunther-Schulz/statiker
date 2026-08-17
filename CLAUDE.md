@@ -41,6 +41,30 @@
 
 ## Trial working conventions (operator-settled, 2026-08-06)
 
+- **Mint timing: the bite bar is on the PROBLEM, the field test
+  is on the DESIGN — and the pin makes the test free
+  (operator-settled 2026-08-17).** Fire-born's "actually bites"
+  clears at the incident; waiting past it is never more
+  tolerance for the problem, and is legitimate for exactly one
+  purpose: when the candidate fix can operate once on a live
+  run before the next release seam — a desk hand-running the
+  mechanism (P24's A5 seal item), an injected run-scoped
+  deviation (P19's F75 stop-and-report semantics) — the mint
+  waits for that datum and grades the DESIGN on it, because a
+  wrongly-shaped rule reads as coverage, which is worse than no
+  rule. The wait is priced by the release mechanics: the pin
+  resolves at desk start and moves only at seams, so mint-now
+  and mint-at-seam reach the same run at the same moment; a
+  wait that would cross the seam WITHOUT a field datum buys
+  nothing and the mint proceeds. Placement half, measured both
+  ways this week: JUDGMENT stays prose and flexible inside
+  cycles (a mechanized judgment condition misfires and trains
+  the override reflex); SEAMS get rules — turn-end, round-open,
+  seal, close — because momentum beat in-force prose there
+  twice (run-1 round 8's unapplied never-sustain clause; P16's
+  improvised turn-ends). A seam-time checklist question with
+  near-zero false-fire cost is rule-shaped by default.
+
 - **Self-containment criterion (operator-settled 2026-08-17).**
   Statiker must be runnable anywhere. Any mechanism whose
   ABSENCE silently loses value or ships unverified work —
