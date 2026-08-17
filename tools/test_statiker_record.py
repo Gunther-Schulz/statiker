@@ -492,6 +492,62 @@ class TestClosure(RecordFixture):
         self.assertEqual(v["declared_write_set"], ["x.txt"])
 
 
+class TestP25LeavingsGate(RecordFixture):
+    """BACKLOG P25 (run-2 F77): an out-of-scope-graded finding blocks
+    closure until dispositioned — a decision-graded export ref or a
+    one-line recorded drop, either clears it; undispositioned it
+    holds (CLOSURE_LEAVINGS_HOLD), never voids (the scopeless-VOID
+    rule's exemption for the grade)."""
+
+    def test_undispositioned_out_of_scope_finding_holds_closure(self):
+        body = (CLOSED +
+                "- F9 [VERIFIED] out-of-scope: spread CLV has never "
+                "computed — basis: probe\n")
+        v = self.closure(body)
+        self.assertEqual(v["verdict"], "CLOSURE_LEAVINGS_HOLD", v)
+        self.assertEqual(len(v["undispositioned"]), 1)
+        self.assertEqual(v["undispositioned"][0]["id"], "F9")
+
+    def test_export_ref_clears_the_hold(self):
+        body = (CLOSED +
+                "- F9 [VERIFIED] out-of-scope: spread CLV has never "
+                "computed — basis: probe\n"
+                "- F9 [VERIFIED] out-of-scope: spread CLV has never "
+                "computed — exported: target-repo BACKLOG.md#spread-clv "
+                "— basis: probe\n")
+        v = self.closure(body)
+        self.assertEqual(v["verdict"], "CLOSURE_LIVE", v)
+
+    def test_recorded_drop_clears_the_hold(self):
+        body = (CLOSED +
+                "- F9 [VERIFIED] out-of-scope: spread CLV has never "
+                "computed — basis: probe\n"
+                "- F9 [VERIFIED] record: out-of-scope F9 — dropped: not "
+                "actionable this cycle — basis: operator\n")
+        v = self.closure(body)
+        self.assertEqual(v["verdict"], "CLOSURE_LIVE", v)
+
+    def test_out_of_scope_line_post_closure_does_not_void(self):
+        # exempt from the ordinary scopeless-VOID rule
+        body = (CLOSED +
+                "- F9 [VERIFIED] out-of-scope: found in passing — "
+                "exported: target-repo BACKLOG.md#x — basis: probe\n")
+        v = self.closure(body)
+        self.assertEqual(v["verdict"], "CLOSURE_LIVE", v)
+
+    def test_unit_query_also_holds_on_undispositioned_leavings(self):
+        body = (CLOSED +
+                "- F9 [VERIFIED] out-of-scope: found in passing — "
+                "basis: probe\n"
+                "- F2 [VERIFIED] unit U1 write-set: a.txt — basis: design\n")
+        v = self.closure(body, unit="U1")
+        self.assertEqual(v["verdict"], "CLOSURE_LEAVINGS_HOLD", v)
+
+    def test_no_out_of_scope_grade_is_unaffected(self):
+        v = self.closure(CLOSED)
+        self.assertEqual(v["verdict"], "CLOSURE_LIVE", v)
+
+
 # --------------------------------------------------------------------- waves
 
 class TestWaves(RecordFixture):

@@ -590,6 +590,10 @@ def run_battery(git_script, record_script, root):
     (repo / "held.md").write_text(
         CLOSED_TRACKER +
         "- D9 [AUTO-ACCEPTED] unit U2 held: x.txt — basis: F9\n")
+    (repo / "leavings.md").write_text(
+        CLOSED_TRACKER +
+        "- F9 [VERIFIED] out-of-scope: spread CLV has never computed — "
+        "basis: probe\n")
 
     # -- P2 gate-seam fixtures: the record's declared write-set is now
     # the unit-seam source, consulted through the record-tool gate ----
@@ -675,6 +679,8 @@ def run_battery(git_script, record_script, root):
          repo, None, None),
         ("record", "closure", ["closure", "--tracker", tracker_abs,
                                "--unit", "3"], repo, None, None),
+        ("record", "closure", ["closure", "--tracker",
+                               str(repo / "leavings.md")], repo, None, None),
         ("record", "filter", ["filter", "--tracker", tracker_abs,
                               "--sha", sha, "--out", str(repo / "art.md")],
          repo, None, None),

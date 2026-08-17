@@ -1474,6 +1474,45 @@ arriving later appends its resolving line to the closed tracker —
 append-only has no expiry, and the close's enumeration is what
 makes the late landing findable.
 
+A finding entry may carry an OUT-OF-SCOPE grade at booking — the
+body opens `out-of-scope: <claim>` (classify_scope's third scope
+class, sibling to `unit U<k> `/`record:`: exempt from the
+post-closure scopeless-VOID rule, Implementation, since the grade is
+a leavings concern, never a design re-derivation trigger) — for a
+true finding outside the run's requirement head, found in passing.
+`closure` enumerates every out-of-scope-graded id and HOLDS
+(CLOSURE_LEAVINGS_HOLD, blocking both the whole-record query and any
+`--unit` query) until each carries a DISPOSITION on its latest
+line: an export ref — `— exported: <ref>`, citing a decision-graded
+backlog entry in the target repo that cites this run's record, the
+unit-draft shape run 1's five exports already used, seedable by a
+successor run — or a one-line recorded drop — `— dropped: <reason>`.
+The printed closure verdict names the undispositioned set; the desk
+composes the disposition as an ordinary new tag-first line for the
+same id (append-only, latest-line-wins), never an edit of the
+booking line.
+The close REPORT itself carries a LEAVINGS section enumerating three
+classes: (1) out-of-scope findings — the mechanical gate above, the
+one class that is a run artifact proper; (2) instruments and probes
+built in-run and used more than once; (3) world-facts a successor
+would otherwise re-derive (population maps, environment overrides,
+frame-anchoring) — each with its executed basis. Every enumerated
+item carries a DISPOSITION slot the desk fills per the HOST repo's
+own conventions (corpus-governed where present, operator-decided
+otherwise); the skill mandates the enumeration and the filled slot,
+never the destination — statiker owns the run and its record,
+SURFACING is run-conduct, FILING is the environment's. Each exported
+successor entry CITES the parent close report's leavings section by
+anchor, and at requirement-head composition a fresh run reads its
+task source's cited leavings section — where the task source is such
+an exported entry — before the head is composed: the inheritance
+interface is one digest section, not the full record, and the
+adoption path (The record) remains the trust protocol for anything
+the new run rests on. Skill-evolution and repo-memory channels are
+deliberately environmental — this record chain (close-report digest
+→ seed entries → adoption path) is statiker's complete built-in
+inheritance for a standalone user.
+
 ## Fire-born and hypothesis clauses
 
 No lens list, no lens pass. When a real blind spot fires in

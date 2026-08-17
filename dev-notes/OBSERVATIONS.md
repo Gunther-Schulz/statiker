@@ -6067,3 +6067,91 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   tools/test_statiker_record.py + tools/test_contract.py (deviation,
   named above). Consumer: the release record; the checkpoint opus
   review; BACKLOG P30's closure.
+
+- 2026-08-17 — **P25 shipped (re-scoped form): out-of-scope finding
+  grade + closure export gate + close-report LEAVINGS enumeration +
+  standalone-inheritance seed-read clause (fire-born, incident: run-2
+  F77 — a finding with an exonerating half and a prod-defect half
+  whose export to the target repo's backlog currently rides the
+  operator corpus's do-or-book rule plus a meta-session nudge; a desk
+  without that corpus books the finding as evidence and the bug
+  evaporates as buried record archaeology).** Design (the RE-SCOPED
+  form per the brief: surfacing mandated, destinations never
+  prescribed): (a) mechanical — a finding entry may carry an
+  out-of-scope grade at booking via a new body opener, `out-of-scope:
+  <claim>` — a THIRD `classify_scope()` category (sibling to `unit
+  U<k> `/`record:`), exempt from the post-closure scopeless-VOID rule
+  the same way `record:` bookkeeping already is, since the grade is a
+  leavings concern, never a design re-derivation trigger; `closure`
+  enumerates every out-of-scope-graded id (append-only sticky — any
+  historical line grading it counts, not only the latest) and HOLDS
+  (new verdict CLOSURE_LEAVINGS_HOLD, blocking both the whole-record
+  query and any `--unit` query) until the id's LATEST line carries a
+  disposition clause, `— exported: <ref>` or `— dropped: <reason>`,
+  composed as an ordinary new tag-first line, never an edit of the
+  booking line; the printed verdict names the undispositioned set.
+  (b) prose (SKILL.md Close passage) — the close REPORT carries a
+  LEAVINGS section enumerating three classes: out-of-scope findings
+  (the mechanical gate), in-run instruments/probes used more than
+  once, and world-facts a successor would otherwise re-derive, each
+  with executed basis and a DISPOSITION slot the desk fills per the
+  host repo's own conventions — the skill mandates the enumeration
+  and the filled slot, never the destination (statiker owns the run
+  and its record; surfacing is run-conduct, filing is the
+  environment's, per the operator's mission-challenge boundary).
+  Standalone-inheritance: an exported successor entry cites the
+  parent close report's leavings section by anchor, and at
+  requirement-head composition a fresh run reads its task source's
+  cited leavings section before the head is composed — the
+  inheritance interface is one digest section, not the full record;
+  the adoption path (The record) stays the trust protocol for
+  anything the new run rests on. Verifier: red-first battery
+  (`TestP25LeavingsGate`, tools/test_statiker_record.py) — six cases:
+  an undispositioned out-of-scope finding holds closure
+  (CLOSURE_LEAVINGS_HOLD, red demonstrated by stubbing the gate to an
+  always-empty leavings list — both the whole-record and the
+  `--unit` cases misread as LIVE/DISPATCHABLE), an export ref clears
+  it, a recorded drop clears it, an out-of-scope line post-closure
+  does not VOID (the scope-exemption case), a `--unit` query holds
+  the same as the whole-record query, and a tracker with no
+  out-of-scope grade is unaffected (the negative control). Stub
+  reverted, battery green (6/6). Composition dependency (recurring
+  from P30, flagged to the dispatcher at P30's landing):
+  `tools/test_contract.py` — added one fixture tracker
+  (`leavings.md`) and one battery row driving CLOSURE_LEAVINGS_HOLD;
+  SKILL.md's new prose already names the token literally, satisfying
+  the routing-parity check without a separate edit there. Full suite
+  green (`python3 -m pytest tools/ -q`, 429 passed) including
+  `test_contract.py`'s full 16-test class. Machine-read semantics
+  (new grade + closure predicate) → same-commit tool authorship
+  (done) + checkpoint opus review owed at mint. Tenet check, PLAN.md's
+  base-reference list: (1) investigation-led design — n/a; (2)
+  loop-until-still — n/a; (3) sufficiency — n/a; (4) anti-skim —
+  pass: closes the buried-record-archaeology failure mode named in
+  the incident; (5) five forcing points — pass: touches Close's
+  internal mechanics only, no forcing point removed; (6)
+  single-home/precipitation — pass: one shipped script, SKILL.md
+  keeps principles; (7) hypothesis-patch class — n/a: fire-born,
+  single incident (F77) named; (8) ad-hoc-decision failure mode —
+  pass: the disposition (export vs. drop) is explicit desk judgment
+  recorded as such, never silently decided; (9) autonomy north star —
+  pass: the gate fires unattended with no new human seat, the
+  disposition-filling stays the desk's; (10) economics — pass: one
+  cheap regex check at closure time, no new priced round; (11)
+  convergence circuit — pass: the obligation is a record-tool verdict
+  the desk reads and books, never desk-remembered prose; (12) medium
+  tenet — pass: exact machine-read semantics (the grade, the
+  disposition clause, the closure predicate) built as mechanism with
+  a red-first battery; the LEAVINGS report section and the
+  standalone-inheritance clause stay prose (judgment: what to
+  enumerate, how to disposition), matching the tenet's own
+  mechanism/prose split; (13) gradeable-form — pass: the mechanical
+  half returns a computable met/not-met (dispositioned or not); the
+  LEAVINGS enumeration's content is judgment by design, surfaced
+  rather than mechanized (the entry's own re-scoping: surfacing
+  mandated, destinations never prescribed). Version bump is the
+  dispatcher's at release. Write boundary: SKILL.md close passage +
+  plugin/skills/statiker/scripts/statiker_record.py +
+  tools/test_statiker_record.py + tools/test_contract.py (deviation,
+  same class as P30's). Consumer: the release record; the checkpoint
+  opus review; BACKLOG P25's closure.

@@ -227,6 +227,21 @@ UNEXEMPTIBLE_CODES = {"tag-literal-in-body", "pending-latest"}
 SCOPE_NEAR_RE = re.compile(r"(?i)^(units?\s+U\d|record\s*:)")
 SCOPE_EXACT_RE = re.compile(r"^(unit U\d+ |record: )")
 UNIT_SCOPE_RE = re.compile(r"^unit U\d+ ")
+# P25 (BACKLOG; run-2 F77): the out-of-scope grade a finding entry may
+# carry at booking — a THIRD classify_scope() category, sibling to
+# `unit U<k> `/`record:`, so an out-of-scope-graded F-line is exempt
+# from the post-closure scopeless-VOID rule (Implementation) the same
+# way a `record:`-scoped bookkeeping line already is: the grade is a
+# leavings-gate concern (below), never a design re-derivation trigger.
+# No near-miss lint class — SCOPE_NEAR_RE stays as-is; this token is
+# body content, not a machine-token gate.
+OUT_OF_SCOPE_RE = re.compile(r"^out-of-scope: \S")
+# the disposition clause an out-of-scope grade's LATEST line must
+# carry to clear the leavings gate — an export ref (a decision-graded
+# backlog entry in the target repo) or a one-line recorded drop; a
+# separate em-dash clause preceding `— basis:`, same packing shape as
+# a clause disposition's `dead (<killer>)` parenthetical.
+OUT_OF_SCOPE_DISPOSITION_RE = re.compile(r"— (exported|dropped): \S")
 # the hold form is the literal `unit U<k> held: ` opening under
 # [AUTO-ACCEPTED] — "a hold written any other way holds nothing"
 # (SKILL.md, The record). attack-10: the substring read MISSED every
@@ -555,6 +570,8 @@ def classify_scope(body: str):
         return ("unit", m.group(1))
     if body.startswith("record:"):
         return ("record", None)
+    if OUT_OF_SCOPE_RE.match(body):
+        return ("out-of-scope", None)
     return ("scopeless", None)
 
 
@@ -1411,6 +1428,29 @@ def closure_blocking_violations(violations):
     return [v for v in violations if v["code"] in CLOSURE_BLOCKING_CODES]
 
 
+def out_of_scope_undispositioned(entries):
+    """P25 (BACKLOG; run-2 F77): the leavings gate's blocking set — an
+    F-id GRADED out-of-scope by ANY historical line (the grade is
+    append-only sticky, so a later status line need not repeat the
+    `out-of-scope: ` opener to keep the id tracked) whose LATEST line
+    carries no disposition clause (`— exported: ` or `— dropped: `,
+    OUT_OF_SCOPE_DISPOSITION_RE — a decision-graded export ref or a
+    one-line recorded drop, either satisfies it, wherever in the
+    latest line's body it sits). Sorted by id number for a stable
+    printed order."""
+    latest = latest_by_id(entries)
+    graded = {e.id for e in entries
+             if e.cls == "F" and OUT_OF_SCOPE_RE.match(e.body)}
+    out = []
+    for id_ in sorted(graded, key=lambda i: int(i[1:])):
+        e = latest[id_]
+        if OUT_OF_SCOPE_DISPOSITION_RE.search(e.body):
+            continue
+        out.append({"id": id_, "line": e.lineno,
+                    "text": f"{e.id} [{e.tag}] {e.body}"})
+    return out
+
+
 def cmd_closure(args):
     if args.unit is not None and not re.fullmatch(r"U\d+", args.unit):
         # attack-8 N3: a mistyped id ("3", "u3") matched no scope line
@@ -1477,6 +1517,13 @@ def cmd_closure(args):
             why = s.get("why", "scopeless post-closure line")
             say(f"closure VOID: {why}: {s['line']}")
         finish("CLOSURE_VOID", 2, scopeless=scopeless, **late)
+
+    leavings = out_of_scope_undispositioned(entries)
+    if leavings:
+        for l in leavings:
+            say(f"closure LEAVINGS HOLD: undispositioned out-of-scope "
+                f"finding: {l['text']}")
+        finish("CLOSURE_LEAVINGS_HOLD", 2, undispositioned=leavings, **late)
 
     if not args.unit:
         finish("CLOSURE_LIVE", 0,
