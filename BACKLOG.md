@@ -79,7 +79,19 @@ it is not decision-complete.
   terminal entry's class split — rather than composing it at
   firing time; the mint adopts this: the breaker clause names
   its discriminating evidence sources when armed, so a firing's
-  cause report is a read, not a composition. Write boundary:
+  cause report is a read, not a composition. FIRST DIAGNOSED
+  FIRING (2026-08-17, run 2, rounds bound): the injected
+  stop-and-report semantics executed exactly as designed — run
+  stopped at the bound, cause report F100-F103 computed from
+  the pre-registered discriminators, verdict "record-ground
+  findings rooted in ITEM SCOPE, not founding-sense
+  non-contraction" (zero of twenty-seven attacker findings
+  across five rounds landed on the unit's code; the repair
+  never ate its own tail and is execution-verified twice
+  independently), and the report carried a disposition
+  recommendation the operator could act on (F101). The design
+  is field-validated end to end; this firing is the mint's
+  primary provenance. Write boundary:
   SKILL.md budget
   passage + statiker_record.py tripwire/trend support
   (same-commit authorship per the composition rule) + tools/
@@ -133,6 +145,14 @@ it is not decision-complete.
   pressure, and the run's own closure already names a live lead
   (the upsert self-healing property) that may delete one of
   them — structure written before the evidence that shapes it.
+  THIRD INCIDENT (2026-08-17): run 2's bound-firing cause
+  report (F100) names item scope as the run's root pathology —
+  R3 demanded a complete persistence enumeration across a
+  60-table database while the code change was one deletion; the
+  count walked 7→9→11→12-plus-text-axis across five rounds,
+  each closure attacked on the ground the requirement's width
+  created. The gate this entry mints would have narrowed R3 at
+  seed.
   Judgment-shaped condition, so prose with the head as its
   surfacing point — no mechanized predicate minted. Verifier:
   the mint's enumerated tenet check in OBSERVATIONS plus the
@@ -343,7 +363,7 @@ it is not decision-complete.
   plugin/skills/statiker/scripts/statiker_record.py +
   tools/test_statiker_record.py + bump.
 
-- **PARKED 2026-08-17 — P24: the seal cannot cover an omission
+- **READY 2026-08-17 — P24: the seal cannot cover an omission
   whose subject has no entry to seal (desk-derived lesson, run-2
   A4).** Incident: F76 was the FOURTH instrument in one run to
   declare the persisted population of the corrected quantity
@@ -373,10 +393,29 @@ it is not decision-complete.
   one, the entry naming why the new kind is immune to the
   prior failure mode (the corpus's derive-the-basis rule,
   applied at the re-derivation seam where momentum re-asserts
-  the cheap basis). Missing evidence, named: the A5 seal's own
-  result — whether the desk's self-directed item catches a
-  fifth miss or reports the class closed; mint grades on that.
-  Trigger: run-2 close grading.
+  the cheap basis). A5 DATUM IN (2026-08-17, run stopped at
+  rounds bound) — design GRADED, upgrading this entry to READY:
+  the instrument-seal comparison scored 4 of 9, the run's best,
+  and the desk's structural sentence is the mint's core — "a
+  seal over CONCLUSIONS cannot reach an omission, a seal over
+  INSTRUMENTS can." The refinement the datum adds: F95's
+  twelfth store beat the census through a defeat mode the reach
+  statement did not name (a zero-row table reads exactly like a
+  column carrying nothing), and the desk then closed the CLASS
+  — an existence probe over all 47 JSON columns returning the
+  three census-immune columns plus one irreducible blind spot,
+  recorded as such. Completed form for the mint: the
+  instrument-seal part carries (i) per-instrument reach
+  statement, (ii) DEFEAT-MODE enumeration (what would return
+  the same output as a true negative), (iii) the recorded
+  irreducible blind set. Verifier: the mint's enumerated tenet
+  check plus the checkpoint review class the change draws;
+  behavioral proof is the next run's seal carrying the part,
+  graded at that run's rounds (prose/form clause — no battery).
+  Done: clause ships in the SKILL.md seal passage with its
+  OBSERVATIONS provenance entry (F76/F95 incidents, A5
+  comparison), version bumped. Write boundary: SKILL.md seal
+  passage + OBSERVATIONS + bump.
 
 - **PARKED 2026-08-17 — P23: an open operator question has no
   non-blocking carrier in the record (desk workaround observed,
