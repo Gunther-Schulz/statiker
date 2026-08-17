@@ -192,7 +192,17 @@ it is not decision-complete.
   and not applied (F143/F144); the run crossed skill versions
   0.2.4→0.2.65+ in one record's lifetime. Run 2 (narrowed to
   U1): READY in one day, fix unrefuted through 3 rounds, bites
-  on record ground. Counterfactual answered too: the same item
+  on record ground. CORRECTED 2026-08-17 by the resumed desk's
+  gate report (record-governs read): all three run-2 rounds BIT —
+  A3 carried five findings, among them a broken stated code edit
+  in the design (D5 restated twice for it) — the header [READY]
+  is the FOURTH ready-gate claim over the cycle-7 re-derivation,
+  and the owed work at resume was ROUND 4, not implementation.
+  "Fix unrefuted through 3 rounds" was this entry's label read
+  over the record's body (paraphrase-drift class; mechanism:
+  none — the desk's record-governs discipline was the backstop
+  that caught it, prose, no guard fired). Counterfactual
+  answered too: the same item
   killed a clippy run at cycle 2 (2026-08-05), and its parent
   line-matching family ran clippy cycles to 21 and 47
   pre-statiker — the item's scope (widened 2026-07-31 into an
