@@ -414,6 +414,20 @@ it is not decision-complete.
   FRESH session takes the release mechanics and item 4 (U2
   seeding), reading this entry plus the two lane directives
   (docs/directives/2026-08-17-lane-*.md) as its brief.
+  INTEGRATION RECORD (2026-08-17, the batch push's booking —
+  every subagent commit verified in the artifact and its lane
+  report booked before this line was written): lane A
+  (sonnet-mint-batch) 67e1774 P15 · 5cc7884 P26 · 4df7dbd P30 ·
+  50615eb P25 · db5fe57 P5 · 4538d9a P20 · 522e8d2 P27 ·
+  8d018f2 P19 · 098bda4 P21+P24; lane B (sonnet-p16-stop-hook)
+  6e1e668 hook · 80e4c47 battery; lane C (sonnet-review-repair)
+  4b17d2d R1 · eed25d6 R2 · c85a218 R3 · 2ac74ac R4 · 540b03b
+  R5+R6 · 6e15876 R7 · 8774465 R8 · 38a5b39 R9 · a9d591d R10 ·
+  8ec0c75 R11. Dispatcher commits: b897ce4 bump · 9a4f4b9 P29 ·
+  b771bfd P16 re-open · c19c829 re-review repairs. Suite 468
+  green at c19c829; two review cycles (9-part checkpoint, 5-part
+  discharge re-review), dispositions in OBSERVATIONS 2026-08-17
+  and docs/directives/2026-08-17-lane-C-review-repair-brief.md.
   Progress at booking: item 1 partially discharged (spread-CLV
   export + successor entries verified in the artifact; F116
   metric graduation still open — now folded into lane A's P25
