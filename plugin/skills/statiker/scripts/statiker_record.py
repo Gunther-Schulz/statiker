@@ -2009,16 +2009,22 @@ def cmd_sustain(args):
     sustained a ninth round the 0.2.48 never-sustain clause says they
     cannot — prose under-binds at the re-entry seam, the same class
     as P16's turn-end seam). round-open's mechanical gate: the
-    SUSTAINING SET is the LATEST resolved round's own findings (the
-    same round-boundary windowing `trend_over_rounds` computes,
-    reused rather than reimplemented) — a new round opens only if
-    that set holds at least one DESIGN-SUBSTANCE finding, an F-line
-    whose entry-class prefix (`classify_scope`, tool-side) is NOT
+    SUSTAINING SET is the LATEST RESOLVED round's own findings — a
+    round whose A-line is [BIT] or [ZERO-DELTA] (the same
+    round-boundary windowing `trend_over_rounds` computes, reused
+    rather than reimplemented) — a new round opens only if that set
+    holds at least one DESIGN-SUBSTANCE finding, an F-line whose
+    entry-class prefix (`classify_scope`, tool-side) is NOT
     `record:`; a record/instrument-class finding is desk work and
     never buys a round. Only meaningful over a [BIT] round — a
     ZERO-DELTA, VOID, still-DISPATCHED, or absent round answers
     SUSTAIN_NOT_APPLICABLE, the sustain question not being theirs to
-    answer."""
+    answer. A live [DISPATCHED] round is NEVER consulted — it is
+    simply absent from the resolved windowing `trend_over_rounds`
+    builds — so its id (when the latest A-line overall is one)
+    surfaces separately as the verdict's own `live_round` field,
+    keeping that state visible rather than silently skipped
+    (checkpoint review R6)."""
     entries, violations, meta, reach = parse_tracker(load(args.tracker))
     say_head_region_entries("sustain", reach)
     blocking = closure_blocking_violations(violations)
@@ -2026,12 +2032,19 @@ def cmd_sustain(args):
         for v in blocking:
             say(f"sustain blocked: {v['code']} @ line {v['line']}: {v['text']}")
         finish("SUSTAIN_RECORD_MALFORMED", 2, violations=blocking, **meta)
+    latest = latest_by_id(entries)
+    a_latest = sorted([e for e in latest.values() if e.cls == "A"],
+                      key=lambda e: e.lineno)
+    live_round = (a_latest[-1].id if a_latest
+                 and a_latest[-1].tag == "DISPATCHED" else None)
     bounds, _, _, _, _ = trend_over_rounds(entries)
     if not bounds or bounds[-1][2].tag != "BIT":
-        latest = f"{bounds[-1][2].id} [{bounds[-1][2].tag}]" if bounds else None
-        say(f"sustain: latest resolved round is {latest} — the sustain "
-            f"question applies only over a [BIT] round")
-        finish("SUSTAIN_NOT_APPLICABLE", 0, latest=latest, **meta)
+        latest_resolved = (f"{bounds[-1][2].id} [{bounds[-1][2].tag}]"
+                           if bounds else None)
+        say(f"sustain: latest resolved round is {latest_resolved} — the "
+            f"sustain question applies only over a [BIT] round")
+        finish("SUSTAIN_NOT_APPLICABLE", 0, latest=latest_resolved,
+               live_round=live_round, **meta)
     start, end, closing = bounds[-1]
     findings = [e for e in entries
                if e.cls == "F" and start < e.lineno <= end]
@@ -2045,12 +2058,14 @@ def cmd_sustain(args):
             f"design-substance finding(s) — SUSTAIN_OK")
         finish("SUSTAIN_OK", 0, round=closing.id,
                substance=[e.id for e in substance],
-               record_class=[e.id for e in record_class], **meta)
+               record_class=[e.id for e in record_class],
+               live_round=live_round, **meta)
     say(f"sustain: {closing.id} [BIT] carries no design-substance "
         f"finding among its {len(record_class)} finding(s) — "
         f"SUSTAIN_DENIED")
     finish("SUSTAIN_DENIED", 2, round=closing.id,
-           record_class=[e.id for e in record_class], **meta)
+           record_class=[e.id for e in record_class],
+           live_round=live_round, **meta)
 
 
 # ------------------------------------------------------------------ tripwire

@@ -6880,3 +6880,50 @@ and/or review-2 report; then pin move and the cycle-10 desk.
   the release record; the checkpoint opus review; BACKLOG P24's full
   closure (both halves now shipped); the next round-re-entry decision
   a desk makes over a previously-refuted claim.
+
+- 2026-08-17 — **R5+R6 shipped: two stale/imprecise sentences
+  corrected — the `trend` concentration flag's class-reading (P26),
+  and `sustain`'s round-consultation semantics (checkpoint review,
+  R5 P26-stale-prose finding + R6 sustain-prose-and-docstring
+  finding, one commit — same prose class, same file).** R5:
+  SKILL.md's repeat-round grading passage claimed "`trend` counts
+  every F-line and knows nothing of class or locus" as the reason
+  the desk still needs a body-read rather than trusting the verdict
+  alone — stale since the P26 fix (already shipped, 522e8d2 era)
+  gave the CONCENTRATION flag its own class-read (a `record:`-scoped
+  citation never concentrates, `classify_scope` consulted). Corrected
+  to state the TRUE split: the raw per-round COUNTS (the trajectory
+  arithmetic) stay class-blind — every F-line counted regardless —
+  while the concentration flag DOES read the citing entry's class;
+  the body-read is still owed because the counts half stays
+  class-blind, not because the tool "knows nothing" full stop. Prose
+  only, no code change (P26 already shipped correctly; this fixes
+  only the DESCRIPTION lagging its own fix). R6: the round-open
+  sustain passage said `sustain` reads "independent of the A-line's
+  own tag" — correct but imprecise: the re-derivation is independent
+  of the DESK's classification of the findings (what the desk wrote
+  when composing each F-line's `record:`/non-`record:` opener),
+  corrected to that wording. Separately, `cmd_sustain`'s docstring
+  did not state that a live [DISPATCHED] round is silently absent
+  from `trend_over_rounds`'s resolved-round windowing and therefore
+  never consulted — restricted the docstring to state this
+  precisely, and added a `live_round` verdict field (the latest
+  A-line's id when it is itself [DISPATCHED], else null) so a desk
+  querying sustain mid-round sees that state rather than it being
+  invisibly skipped. Battery (red-first against the pre-fix tool,
+  `TestP20SustainGate`): `test_still_dispatched_round_not_applicable`
+  extended to assert `live_round == "A1"`; two new cases,
+  `test_no_live_round_field_is_none` (a resolved-only record: null)
+  and `test_live_round_surfaces_while_grading_the_prior_resolved_round`
+  (a resolved [BIT] round graded normally — SUSTAIN_DENIED on `round:
+  "A1"` — with a live re-dispatched A2 surfacing separately as
+  `live_round: "A2"`) — all three confirmed KeyError red against the
+  pre-fix script, confirmed green post-fix; the six pre-existing
+  sustain tests pass unchanged (no field asserted, so the addition
+  is backward-compatible). Full suite: `python3 -m pytest tools/ -q`,
+  464 passed. Version bump is the dispatcher's at release. Write
+  boundary: `plugin/skills/statiker/scripts/statiker_record.py`
+  (cmd_sustain), SKILL.md (the repeat-round grading passage; the
+  round-open sustain passage), `tools/test_statiker_record.py` +
+  this OBSERVATIONS entry. Consumer: the release record; the next
+  desk grading a repeat-round series or querying sustain mid-round.

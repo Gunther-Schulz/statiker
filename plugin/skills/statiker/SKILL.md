@@ -1091,9 +1091,12 @@ ONE re-lock: per-finding re-locks split the priced unit
 repeat round
 on — cites the record
 tool's `trend` output as its arithmetic backstop and GRADES the
-series by a BODY-READ of the rounds' findings — `trend` counts
-every F-line and knows nothing of class or locus, so the grade
-never comes from its verdict alone. The grade computes only from
+series by a BODY-READ of the rounds' findings — `trend`'s raw
+per-round counts (the trajectory arithmetic) read every F-line
+regardless of class or locus, while its concentration flag DOES
+read the citing entry's class (a `record:`-scoped citation never
+concentrates); the grade still never comes from the verdict alone,
+since the counts half stays class-blind. The grade computes only from
 the SECOND repeat round on: with fewer than two completed [BIT]
 rounds behind it there is no series, and the first repeat round
 is the ordinary re-lock path, never graded. CONTRACTING:
@@ -1183,11 +1186,15 @@ seam (F143: the prose held IN FORCE while UNAPPLIED — A8's four
 record/instrument-class findings sustained a ninth round this
 clause forbids): before a design's next round dispatches,
 `sustain --tracker <path>` re-derives the PRIOR round's finding
-classes from the record itself, independent of the A-line's own
-tag — SUSTAIN_OK when at least one finding is design-substance
-(never `record:`-scoped), SUSTAIN_DENIED when every finding is
-record/instrument-class, SUSTAIN_NOT_APPLICABLE outside a [BIT]
-round. The verdict is quoted in the round-open line; a round
+classes from the record itself, independent of the desk's own
+classification of the findings — SUSTAIN_OK when at least one
+finding is design-substance (never `record:`-scoped),
+SUSTAIN_DENIED when every finding is record/instrument-class,
+SUSTAIN_NOT_APPLICABLE outside a [BIT] round. `sustain` reads only
+the LATEST RESOLVED round (BIT/ZERO-DELTA); a live [DISPATCHED]
+round is not consulted — its id surfaces as the verdict's own
+`live_round` field so the state stays visible rather than silently
+skipped. The verdict is quoted in the round-open line; a round
 dispatched over SUSTAIN_DENIED is exactly the class this gate
 exists to catch. The same round-open seam also runs
 `tripwire --tracker <path>` (The record, Budget) beside `sustain` —

@@ -1057,10 +1057,38 @@ class TestP20SustainGate(RecordFixture):
         body = "- A1 [DISPATCHED] round 1 — basis: brief\n"
         v = self.sustain(body)
         self.assertEqual(v["verdict"], "SUSTAIN_NOT_APPLICABLE", v)
+        self.assertEqual(v["live_round"], "A1", v)
 
     def test_malformed_record_blocks(self):
         v = self.sustain("- F1 (VERIFIED) x — basis: y\n")
         self.assertEqual(v["verdict"], "SUSTAIN_RECORD_MALFORMED", v)
+
+    # ------------------------------------------------------ R6 (checkpoint
+    # review): a live [DISPATCHED] round is never consulted — it
+    # surfaces separately as the verdict's `live_round` field.
+
+    def test_no_live_round_field_is_none(self):
+        body = (
+            "- A1 [DISPATCHED] round 1 — basis: brief\n"
+            "- F1 [VERIFIED] a genuine design finding — basis: probe\n"
+            "- A1 [BIT] one finding — basis: report\n")
+        v = self.sustain(body)
+        self.assertEqual(v["verdict"], "SUSTAIN_OK", v)
+        self.assertIsNone(v["live_round"], v)
+
+    def test_live_round_surfaces_while_grading_the_prior_resolved_round(self):
+        # A1 resolved [BIT] (all record-class, would deny); A2 is a
+        # live re-dispatch on top — sustain still grades A1 (the only
+        # resolved round) but surfaces A2 as the live round separately
+        body = (
+            "- A1 [DISPATCHED] round 1 — basis: brief\n"
+            "- F1 [VERIFIED] record: a bookkeeping note — basis: probe\n"
+            "- A1 [BIT] one record-class finding — basis: report\n"
+            "- A2 [DISPATCHED] round 2 — basis: brief\n")
+        v = self.sustain(body)
+        self.assertEqual(v["verdict"], "SUSTAIN_DENIED", v)
+        self.assertEqual(v["round"], "A1", v)
+        self.assertEqual(v["live_round"], "A2", v)
 
 
 class TestP19ZeroLandedTripwire(RecordFixture):
