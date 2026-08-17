@@ -248,6 +248,30 @@ it is not decision-complete.
   measure loop iterations, not landed value — a design question
   now, not further measurement).
 
+- **PARKED 2026-08-17 — P27: round sustain reads design
+  CONSEQUENCE, not finding PRESENCE (operator hypothesis: binary
+  verdicts were a core clippy flaw; register check found the
+  class UNRECORDED, so the basis is testimony plus analysis).**
+  The decision a round feeds is inherently binary (re-derive and
+  re-attack, or close); the candidate flaw is computing it from
+  finding presence — a round with findings whose dispositions
+  all discharge WITHOUT touching the locked design (verified
+  bounds, exonerations, instrument fixes) sustains a next round
+  it arguably should not. Design sketch: a round sustains only
+  if its disposition set amends the locked design — a changed
+  D/U line, computable from the record; widens P20 (the same
+  rule for record-class findings) to its completion, and is
+  self-serving-proof because it reads what the re-derivation
+  DID, not what the desk labeled the findings. Missing
+  evidence, named: one real round where presence- and
+  consequence-rules disagree — every BIT round in both runs so
+  far carried at least one genuine design-changer, so the flaw
+  is hypothetical in statiker and unrecorded in the clippy
+  ledger. Trigger: the first round that BITs while its full
+  disposition set leaves the locked design unchanged (run-2
+  round 5, in flight, is a live candidate); grade P24/P20
+  interaction at the same seam.
+
 - **READY 2026-08-17 — P26: the trend tool's concentration
   flag cannot tell a confirmation from a hit (false fire
   measured, run-2 cycle 8).** Incident: with four flat rounds
