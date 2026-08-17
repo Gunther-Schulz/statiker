@@ -91,7 +91,19 @@ it is not decision-complete.
   independently), and the report carried a disposition
   recommendation the operator could act on (F101). The design
   is field-validated end to end; this firing is the mint's
-  primary provenance. Write boundary:
+  primary provenance. SECOND DESIGN INPUT from the same firing
+  (the post-disposition deadlock): stop-and-report displaced
+  FAILED but defined no CONTINUE path — the operator disposed
+  "proceed," the desk landed the disposition's repairs, and the
+  unit gate then held on CLOSURE_ABSENT with rounds spent,
+  resolvable only by a hand-crafted budget grant (rounds 5→6)
+  or a gate bypass that forfeits collision checks and landing
+  provenance. The mint therefore defines the breaker's THREE
+  endings: FAILED (operator refuses), EXPORT (operator
+  re-scopes), and CONTINUE — a disposition that grants the
+  closing round as part of the same authority line, so the
+  route back to the gate is machinery, not improvisation.
+  Write boundary:
   SKILL.md budget
   passage + statiker_record.py tripwire/trend support
   (same-commit authorship per the composition rule) + tools/
