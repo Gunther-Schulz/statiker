@@ -268,6 +268,23 @@ it is not decision-complete.
   measure loop iterations, not landed value — a design question
   now, not further measurement).
 
+- **PARKED 2026-08-17 — P28: repairs mint defects — closure
+  prose is fresh attack surface (FIVE recorded incidents across
+  the trial).** Incident series: run-1 rounds 7-8 (findings on
+  the desk's own newest cycles), run-2 A4 (two findings on
+  "settled" dispositions), run-2 A5 (BOTH substance findings on
+  entries cycle 8 wrote to close round 4); the class is the
+  trial's most-recorded single pattern. Candidate direction,
+  deliberately not designed here: closures as EXECUTED EVIDENCE
+  rather than composed prose — a disposition carrying a command
+  and its output offers an attacker nothing to bite except
+  reality; overlaps P24's basis-upgrade twin, which may absorb
+  the completeness slice of the class. Missing evidence, named:
+  the run-2 close grading — enumerate the five incidents and
+  answer whether P24 covers them or a distinct mechanism is
+  owed; a sixth incident post-P24-mint would settle it the
+  other way. Trigger: run-2 close grading.
+
 - **PARKED 2026-08-17 — P27: round sustain reads design
   CONSEQUENCE, not finding PRESENCE (operator hypothesis: binary
   verdicts were a core clippy flaw; register check found the
