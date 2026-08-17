@@ -297,7 +297,7 @@ it is not decision-complete.
   owed; a sixth incident post-P24-mint would settle it the
   other way. Trigger: run-2 close grading.
 
-- **PARKED 2026-08-17 — P27: round sustain reads design
+- **READY 2026-08-17 — P27: round sustain reads design
   CONSEQUENCE, not finding PRESENCE (operator hypothesis: binary
   verdicts were a core clippy flaw; register check found the
   class UNRECORDED, so the basis is testimony plus analysis).**
@@ -323,15 +323,33 @@ it is not decision-complete.
   D/U line, computable from the record; widens P20 (the same
   rule for record-class findings) to its completion, and is
   self-serving-proof because it reads what the re-derivation
-  DID, not what the desk labeled the findings. Missing
-  evidence, named: one real round where presence- and
-  consequence-rules disagree — every BIT round in both runs so
-  far carried at least one genuine design-changer, so the flaw
-  is hypothetical in statiker and unrecorded in the clippy
-  ledger. Trigger: the first round that BITs while its full
-  disposition set leaves the locked design unchanged (run-2
-  round 5, in flight, is a live candidate); grade P24/P20
-  interaction at the same seam.
+  DID, not what the desk labeled the findings. INCIDENT
+  ARRIVED — upgraded to READY (2026-08-17, run-2 A6): the
+  round BIT with five findings, none above MODERATE, and its
+  full disposition set changed NO design entry — a family
+  account corrected (F112, in the SAFE direction: residue
+  smaller than claimed), an exclusion rationale repaired, an
+  enumeration extended, a metric sentence bounded — while the
+  unit's code went unfaulted a sixth time and
+  execution-verified a third. The presence-reading gate
+  returned CLOSURE_ABSENT over that state with all bounds
+  spent, forcing an operator deviation (route 2, F118) to ship
+  a thrice-verified unit: the presence- and consequence-rules
+  disagreed on a real round, and the presence rule was wrong.
+  Verifier: red-first battery — a fixture whose terminal
+  round's findings all carry no-design-change dispositions
+  grades the closure SATISFIED under the new rule (red proven
+  at build per the standard arrangement: new expectations
+  against the pre-change tool, baseline stated), and a fixture
+  with one design-amending disposition stays SHUT (the
+  over-correction case). Done: battery green with both reds
+  demonstrated, sustain clause ships in SKILL.md quoting the
+  verdict token, checkpoint opus review dispositioned, version
+  bumped. Write boundary: SKILL.md round-open/closure passage
+  + plugin/skills/statiker/scripts/statiker_record.py +
+  tools/test_statiker_record.py + bump. Interaction note:
+  completes P20 (record-class half already in force as prose);
+  grade against P24's seal at the same mint window.
 
 - **READY 2026-08-17 — P26: the trend tool's concentration
   flag cannot tell a confirmation from a hit (false fire
@@ -441,7 +459,15 @@ it is not decision-complete.
   dispositioned by reading their WRITER (the write path),
   never by content absence — the desk's own F95 phrasing, and
   the general cure for the non-event class in population work
-  (an empty store's content is silent; its writer is not). Verifier: the mint's enumerated tenet
+  (an empty store's content is silent; its writer is not).
+  THIRD COMPARISON DATUM (A6): the lesson is now measured
+  across three consecutive seal comparisons — seals over
+  CONCLUSIONS score poorly, seals over INSTRUMENTS and
+  FIXTURES score well, and naming the AXIS beat guessing the
+  instance twice running. The mint's form sentence,
+  desk-derived: a successor seals what each instrument cannot
+  return, what each fixture cannot express, and which repairs
+  shipped unexercised. Verifier: the mint's enumerated tenet
   check plus the checkpoint review class the change draws;
   behavioral proof is the next run's seal carrying the part,
   graded at that run's rounds (prose/form clause — no battery).
