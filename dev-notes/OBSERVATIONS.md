@@ -7100,3 +7100,26 @@ capability the tool structurally lacks — caught only by executing
 the prose's claim against the tool; the checkpoint rule's
 "clauses naming record forms are machine-read semantics whatever
 their register" is re-confirmed at n+2.
+
+- 2026-08-23 — **0.2.82 RELEASE RECORD (booked late) + close-seam
+  housekeeping.** PIN AT 0.2.82: the installed plugin moved to
+  0.2.82 at d05b074 on 2026-08-18 (basis:
+  `~/.claude/plugins/installed_plugins.json`, statiker@statiker
+  lastUpdated 2026-08-18T14:09Z, gitCommitSha d05b074…) — P29
+  remainder (i) done; no ledger line recorded it until now (the
+  session that moved the pin left no record here — the release
+  record is the named consumer of every lane entry above, so the
+  gap was legible). Housekeeping this date: the ten batch items
+  (P5 P15 P19 P20 P21 P24 P25 P26 P27 P30) still graded READY in
+  BACKLOG Open five days after shipping → moved to Done with SHAs;
+  P16's undeclared "RE-OPENED" grade (the banner's unknown-grade
+  hit) → READY (re-opened), body unchanged; the next-run staging
+  entry DROPPED as overtaken (reason in Done); the four 2026-08-15
+  lane briefs (D-P12EN, EJL, EK, P34EM) found untracked in
+  docs/directives and committed — persisted-brief role, their
+  lanes long shipped (Lane D booked 2026-08-15). Open remainder of
+  P29: U2 seeding, gated on the operator's five-unit authorization
+  (beat-the-books BACKLOG, eight-units entry; D94/D108 OPEN at the
+  U1 close). Consumer: the next meta session at the U2 seed; the
+  fire-rate review (the release-record gap is one data point for
+  a release-lane step that books the pin move at the seam).

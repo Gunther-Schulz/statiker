@@ -20,206 +20,6 @@ it is not decision-complete.
 
 
 
-- **READY 2026-08-17 — P19: budget demoted to SAFETY ESCAPE;
-  progress-shaped stop signals (operator direction this date:
-  "if anything it should only be a safety escape"; unit verdict
-  "needs to be fixed").** Incident, the P18 measurement: run 1
-  ran twelve cycles with NO budget (D89 invented one mid-run)
-  and diverged to zero landed units; run 2 converged (READY,
-  fix unrefuted through three rounds) and was stopped at a
-  cycle-denominated cap — the cap indicted the healthy run and
-  never fired on the sick one. Design: (a) the hard cap stays,
-  generous, as unattended-runaway protection only — hitting it
-  stops-and-reports for the operator, never grades FAILED by
-  itself; (b) the driving stop signals become progress-shaped
-  and record-computable: a zero-landed tripwire (no landing
-  annotation/V-line by a named cycle count) and the existing
-  non-contraction trend grade, BOTH routing to the 0.2.68
-  narrowing route, never to another same-form round; (c)
-  housekeeping never bills the run's budget — record-repair
-  legs (0.2.69) and sweep/closure passes are meta-owned,
-  outside cycle accounting. Verifier: record-tool battery,
-  red-first — the tripwire fires on the run-1 fixture (eight
-  rounds, zero V-lines) and stays silent on a fixture carrying
-  a landing annotation. SECOND FIRE, same day (run-2 resume,
-  rounds-bound incident): the terminal-at-bound semantics
-  forced PRE-EMPTIVE authority spending — the operator had to
-  raise rounds AHEAD of evidence, because a fourth-round bite
-  would close the run FAILED unattended before anyone could
-  grade the bite; the bound also generated a desk workaround
-  (the chat-held question, P23) and a wrong meta recommendation
-  premised on stop-and-ask semantics that do not exist. Across
-  both runs the budget has NEVER fired as designed — every
-  contact produced an operator override (D89's mid-run-1
-  invention-and-amendment; run 2's stop, cycle raise, round
-  raise) — the corpus's guard-overridden-on-every-fire pattern:
-  a bound whose every firing is overridden carries no
-  information and trains the override reflex. Priority raised:
-  mint at the NEXT release seam, before another run opens under
-  terminal-at-bound semantics. Machine-read semantics →
-  checkpoint opus review owed at mint. Done: battery green with the
-  tripwire red demonstrated per its recorded arrangement, the
-  SKILL.md budget passage states cap-as-escape plus both
-  progress signals routing to narrowing, review findings
-  dispositioned, version bumped. DESIGN ADDITION (operator
-  discussion 2026-08-17, "there is always another reason"):
-  excess iteration is a SYMPTOM — every cause is diagnosable,
-  so the breaker's firing is a MINT SOURCE, never a verdict:
-  each trip owes a named cause at close-out, and a computable
-  cause becomes a named tripwire so the next run stops on the
-  pathology itself; a breaker tripping twice for one cause
-  indicts the missing tripwire. The breaker thereby withers as
-  the diagnostic layer absorbs failure modes — the designed
-  end-state is a backstop that never fires, not a bound that
-  gets argued with (both runs' evidence: every firing to date
-  was overridden). DESIGN INPUT from the live injection (run 2,
-  F75): the desk PRE-REGISTERED the cause-classification
-  evidence at arming time — the trend verdict for arithmetic,
-  named locus body-reads for repair-versus-account, each
-  terminal entry's class split — rather than composing it at
-  firing time; the mint adopts this: the breaker clause names
-  its discriminating evidence sources when armed, so a firing's
-  cause report is a read, not a composition. FIRST DIAGNOSED
-  FIRING (2026-08-17, run 2, rounds bound): the injected
-  stop-and-report semantics executed exactly as designed — run
-  stopped at the bound, cause report F100-F103 computed from
-  the pre-registered discriminators, verdict "record-ground
-  findings rooted in ITEM SCOPE, not founding-sense
-  non-contraction" (zero of twenty-seven attacker findings
-  across five rounds landed on the unit's code; the repair
-  never ate its own tail and is execution-verified twice
-  independently), and the report carried a disposition
-  recommendation the operator could act on (F101). The design
-  is field-validated end to end; this firing is the mint's
-  primary provenance. SECOND DESIGN INPUT from the same firing
-  (the post-disposition deadlock): stop-and-report displaced
-  FAILED but defined no CONTINUE path — the operator disposed
-  "proceed," the desk landed the disposition's repairs, and the
-  unit gate then held on CLOSURE_ABSENT with rounds spent,
-  resolvable only by a hand-crafted budget grant (rounds 5→6)
-  or a gate bypass that forfeits collision checks and landing
-  provenance. The mint therefore defines the breaker's THREE
-  endings: FAILED (operator refuses), EXPORT (operator
-  re-scopes), and CONTINUE — a disposition that grants the
-  closing round as part of the same authority line, so the
-  route back to the gate is machinery, not improvisation.
-  Write boundary:
-  SKILL.md budget
-  passage + statiker_record.py tripwire/trend support
-  (same-commit authorship per the composition rule) + tools/
-  battery + version bump.
-
-- **READY 2026-08-17 — P20: the never-sustain clause gets a
-  mechanical round-open gate (F143: clause in force at round 8,
-  not applied).** Incident: A8's four record/instrument-class
-  findings sustained a ninth round the 0.2.48 clause says they
-  cannot; prose under-binds at the re-entry seam (same class as
-  P16's turn-end seam). Design: round-open computes sustain
-  eligibility from the record — a new attack round opens only
-  if the sustaining set holds at least one design-substance
-  finding; record/instrument-class findings land as desk work
-  and never buy a round; the predicate reads the entry class
-  prefix (the `record:` marker) tool-side, and the verdict is
-  quoted in the round-open line. Verifier: red-first battery —
-  an all-record-class fixture returns SUSTAIN_DENIED (the red
-  proven at build per the standard arrangement, new expectations
-  against the pre-change tool), a mixed fixture passes.
-  Machine-read semantics → checkpoint review. Done: battery
-  green with the red demonstrated, the round-open clause ships
-  in SKILL.md quoting the verdict token, review findings
-  dispositioned, version bumped. Write boundary:
-  SKILL.md round-open clause + statiker_record.py + battery +
-  bump.
-
-- **READY 2026-08-17 — P21: intake scope gate — an
-  architecture-scale item never seeds an implementation run
-  whole.** Incident: run 1 seeded on the full
-  canonical-market-identity item (widened 2026-07-31, "every
-  stored signature changes"), spent nine sessions producing a
-  decomposition and zero landed units; the decomposition plus
-  five exported entries was the only durable yield, bought at
-  full-loop price, and the narrowing route was taken only at
-  close on operator prompt. Design (prose clause, fire-born):
-  at requirement-head composition the desk gauges the item's
-  write-set span; an item that is migration-bearing,
-  multi-consumer, or architecture-wide seeds as a
-  DECOMPOSITION run whose done-criterion is exported unit-sized
-  backlog entries — implementation runs seed per unit.
-  WIDENED same day (operator question, 2026-08-17): the gauge is
-  BIDIRECTIONAL and entry-boundary-skeptical — find-time entry
-  boundaries are claims the seed re-derives, never adopted unit
-  boundaries: intake re-derives the unit set from the entries'
-  write boundaries and the current world, slicing an oversized
-  entry AND batching under-sized siblings whose write-sets
-  overlap (the corpus's mechanical join over write-boundary
-  slots is the instrument). Incident for the widening: run 1's
-  five exported entries were composed at find-time under close
-  pressure, and the run's own closure already names a live lead
-  (the upsert self-healing property) that may delete one of
-  them — structure written before the evidence that shapes it.
-  THIRD INCIDENT (2026-08-17): run 2's bound-firing cause
-  report (F100) names item scope as the run's root pathology —
-  R3 demanded a complete persistence enumeration across a
-  60-table database while the code change was one deletion; the
-  count walked 7→9→11→12-plus-text-axis across five rounds,
-  each closure attacked on the ground the requirement's width
-  created. The gate this entry mints would have narrowed R3 at
-  seed.
-  Judgment-shaped condition, so prose with the head as its
-  surfacing point — no mechanized predicate minted. Verifier:
-  the mint's enumerated tenet check in OBSERVATIONS plus the
-  release-review class the change draws under the checkpoint
-  split; behavioral proof is the first live firing, recorded in
-  OBSERVATIONS when it lands (prose clause — no battery).
-  Done: the clause ships in the SKILL.md intake/head passage
-  with its OBSERVATIONS provenance entry, version bumped.
-  Distinct from P12 (in-run early decomposition round). Write
-  boundary: SKILL.md intake/head passage + OBSERVATIONS
-  provenance entry + bump.
-
-- **READY 2026-08-17 — P5 RE-OPENED: epoch-scoped sweep — form
-  rules never grade lines that predate their mint (operator GO
-  this date; supersedes same-day P22 park, which briefly held
-  this ground on the declaration route).** Re-open basis: the
-  2026-08-15 drop's recorded premise — "firing population
-  empty" — was refuted the NEXT DAY when run 1's ready gate was
-  barred by 696 retroactive holds and the run closed FAILED
-  (P18 measurement). Prerequisite SHIPPED: P3's `SKILL:
-  statiker <version>` line class + skill_versions field
-  (58b224b) provides per-line version attribution — lines
-  between two markers were written under the earlier one.
-  Design: (a) each sweep code carries a mint version in a
-  rule→version table, backfilled once from the tool's git
-  history; (b) FORM codes (superseded-block-form,
-  basis-missing, tag-literal-in-body, clause-unparsed) are
-  grandfathered by default — a hold whose line predates its
-  code's mint grades RETRO, surfaced in the verdict but never
-  blocking; (c) SUBSTANCE codes (basis-cites-invalidated,
-  killerless-dead, pending-latest, clause-disposition) are
-  flagged retroactive and grade every line whatever its age —
-  the per-code bit is the mint's one confirmable decision, and
-  the split above is F148's measured live/retro distribution,
-  not invented; (d) marker-less records (pre-P3) are out of
-  scope — the declaration route stands there (three
-  SWEEP_EXEMPT lines against run 1's closed record if its gate
-  is ever exercised). SWEEP_EXEMPT itself remains for
-  judgment-shaped exemptions (the P15 class); this entry
-  removes only the mechanical retroactivity class from it.
-  Verifier: red-first battery on a two-epoch fixture — a form
-  hold below its code's mint marker grades RETRO (the red
-  proven at build per the standard arrangement: new expectations
-  against the pre-change tool, baseline stated), the same hold
-  above the marker still blocks, and a substance hold below the
-  marker still blocks (the over-forgiveness case). Machine-read
-  semantics → checkpoint opus review at mint. Done: battery
-  green including the over-forgiveness case, a live sweep of the
-  run-2 tracker under the new tool logged as the clean pass,
-  review findings dispositioned, version bumped. Write boundary:
-  plugin/skills/statiker/scripts/statiker_record.py +
-  tools/test_statiker_record.py + SKILL.md sweep passage +
-  statiker CLAUDE.md no-grandfather bullet (amended this date)
-  + version bump.
-
 - **PARKED 2026-08-16 — P18: "serious core issues" investigation
   (operator-named, at run-2 stop).** The operator stopped run 2
   (canonical-frame-sign-repair) at cycle 7/7 with 3/4 rounds spent
@@ -319,89 +119,6 @@ it is not decision-complete.
   owed; a sixth incident post-P24-mint would settle it the
   other way. Trigger: run-2 close grading.
 
-- **READY 2026-08-17 — P27: round sustain reads design
-  CONSEQUENCE, not finding PRESENCE (operator hypothesis: binary
-  verdicts were a core clippy flaw; register check found the
-  class UNRECORDED, so the basis is testimony plus analysis).**
-  Basis SHARPENED same day — the operator's concrete
-  recollection: clippy falsification rounds hung on small doc
-  inconsistencies, each buying a whole new cycle and a fresh
-  round that found the next one, where batch-fix-cheaply or
-  note-and-continue was available because none were
-  load-bearing. That maps exactly onto the two mechanisms: the
-  doc-inconsistency half is P20's record-class (measured
-  statiker-internally as run-1 F143/F144 — A8's record findings
-  would have reopened nothing), the not-load-bearing half is
-  THIS entry's consequence rule. The clippy memory thus has a
-  statiker-internal measured echo even though the lineage
-  ledger never named the class.
-  The decision a round feeds is inherently binary (re-derive and
-  re-attack, or close); the candidate flaw is computing it from
-  finding presence — a round with findings whose dispositions
-  all discharge WITHOUT touching the locked design (verified
-  bounds, exonerations, instrument fixes) sustains a next round
-  it arguably should not. Design sketch: a round sustains only
-  if its disposition set amends the locked design — a changed
-  D/U line, computable from the record; widens P20 (the same
-  rule for record-class findings) to its completion, and is
-  self-serving-proof because it reads what the re-derivation
-  DID, not what the desk labeled the findings. INCIDENT
-  ARRIVED — upgraded to READY (2026-08-17, run-2 A6): the
-  round BIT with five findings, none above MODERATE, and its
-  full disposition set changed NO design entry — a family
-  account corrected (F112, in the SAFE direction: residue
-  smaller than claimed), an exclusion rationale repaired, an
-  enumeration extended, a metric sentence bounded — while the
-  unit's code went unfaulted a sixth time and
-  execution-verified a third. The presence-reading gate
-  returned CLOSURE_ABSENT over that state with all bounds
-  spent, forcing an operator deviation (route 2, F118) to ship
-  a thrice-verified unit: the presence- and consequence-rules
-  disagreed on a real round, and the presence rule was wrong.
-  Verifier: red-first battery — a fixture whose terminal
-  round's findings all carry no-design-change dispositions
-  grades the closure SATISFIED under the new rule (red proven
-  at build per the standard arrangement: new expectations
-  against the pre-change tool, baseline stated), and a fixture
-  with one design-amending disposition stays SHUT (the
-  over-correction case). Done: battery green with both reds
-  demonstrated, sustain clause ships in SKILL.md quoting the
-  verdict token, checkpoint opus review dispositioned, version
-  bumped. Write boundary: SKILL.md round-open/closure passage
-  + plugin/skills/statiker/scripts/statiker_record.py +
-  tools/test_statiker_record.py + bump. Interaction note:
-  completes P20 (record-class half already in force as prose);
-  grade against P24's seal at the same mint window.
-
-- **READY 2026-08-17 — P30: the desk is an unfrozen concurrent
-  writer during a VERIFY leg (incident F124, run-2 close; the
-  desk's own flag: "mechanizable, same shape as the round
-  freeze").** Incident: F121's deviation replaced the unit
-  transaction's collision check with the CONDITION "this desk
-  is the only writer in this copy" — and the desk then
-  committed a booking into that copy while the isolated verify
-  leg was reading it; harmless by luck of content (tracker
-  only, no R-line amendment), not by judgment. The append
-  freeze binds attack rounds; nothing freezes the desk during
-  verify, and the verify brief asserts an isolation the desk
-  is free to break. Design: the verify dispatch records the
-  copy's HEAD sha at leg read-start; the V-line booking gate
-  compares it against HEAD at return — identical: clean;
-  moved: the verdict books as STALE-COPY and the leg re-runs
-  or the delta is shown harmless in the record (commit list
-  named, none touching graded surfaces). Computable, no
-  judgment slice. Verifier: red-first battery — a fixture with
-  a commit landing between the recorded read-sha and booking
-  must grade STALE-COPY (red proven at build per the standard
-  arrangement against the pre-change tool, baseline stated); an
-  unmoved fixture books clean. Done: battery green with the red
-  demonstrated, freeze clause ships in the SKILL.md verify
-  passage, checkpoint review dispositioned, version bumped —
-  joins the close-seam mint batch (P29 item 3). Write
-  boundary: SKILL.md verify passage +
-  plugin/skills/statiker/scripts/statiker_record.py +
-  tools/test_statiker_record.py + bump.
-
 - **READY 2026-08-17 — P29: run-2 close-seam checklist (the
   U1→U2 inheritance, executed by hand this once; consumer: the
   meta session at the close relay — THIS entry is its read-path
@@ -425,6 +142,13 @@ it is not decision-complete.
   standing instruction and the crosswise base rate as named
   missing evidence; (iii) P31 polish batch rides the NEXT bump,
   never its own release.
+  RELEASE LANDED 2026-08-18: the pin sits on 0.2.82 at d05b074
+  (installed_plugins.json lastUpdated 2026-08-18T14:09Z,
+  gitCommitSha d05b074) — remainder (i) done; (ii) U2 seeding is
+  the open remainder, gated on the operator's five-unit
+  authorization (beat-the-books BACKLOG, the eight-units entry);
+  (iii) P31 rides the next bump. Shipped batch items moved to
+  Done 2026-08-23 (P5 P15 P19 P20 P21 P24 P25 P26 P27 P30).
   INTEGRATION RECORD (2026-08-17, the batch push's booking —
   every subagent commit verified in the artifact and its lane
   report booked before this line was written): lane A
@@ -480,164 +204,6 @@ it is not decision-complete.
   Write boundary: statiker SKILL.md/tools (mints) +
   beat-the-books carriers (desk-side dispositions) + plugin
   release + this BACKLOG.
-
-- **READY 2026-08-17 — P26: the trend tool's concentration
-  flag cannot tell a confirmation from a hit (false fire
-  measured, run-2 cycle 8).** Incident: with four flat rounds
-  on record, `trend` raised its concentration flag naming A4's
-  POSITIVE result — the executed-verification entry (F82) —
-  because that entry cites the repair it executed; the flag
-  counts citing lines and reads no entry class, so a
-  verification citing the newest work is indistinguishable
-  from a finding landing on it. The desk overrode with
-  recorded reasoning — the corpus's override-reflex cost, paid
-  once and booked here so it is not paid again. Design: the
-  concentration signal reads the CLASS of the citing entry —
-  findings and holds concentrate, verifications and
-  confirmations do not — computed from the entry grammar the
-  tool already parses; the flag's printed text names the
-  counted set. Verifier: red-first battery — a fixture whose
-  newest-cycle citations come from a verification entry must
-  NOT raise the flag (red proven at build per the standard
-  arrangement, new expectations against the pre-change tool,
-  baseline stated), and a fixture whose newest-cycle citations
-  come from findings must still raise it (the over-correction
-  case). Done: battery green with both cases demonstrated,
-  flag ships, version bumped. Write boundary:
-  plugin/skills/statiker/scripts/statiker_record.py +
-  tools/test_statiker_record.py (+ SKILL.md trend passage only
-  if it states the flag's semantics — checked at build) + bump.
-
-- **READY 2026-08-17 — P25: out-of-scope findings get a
-  skill-owned export disposition at close (portability: the
-  found-in-passing path must not depend on the operator
-  corpus).** Provenance: run-2 F77 carries an exonerating half
-  (in-run evidence) and a prod-defect half (spread CLV has
-  never computed — out of the unit's scope); its export to the
-  target repo's backlog currently rides the operator corpus's
-  do-or-book rule PLUS a meta-session nudge — a desk without
-  that corpus books the finding as evidence and the bug
-  evaporates as buried record archaeology, and the corpus
-  itself names recording-in-a-sibling-carrier as non-discharge.
-  Operator direction this date: statiker's core is
-  self-contained wherever absence silently loses value.
-  Design: (a) a finding entry may carry an out-of-scope grade
-  at booking; (b) closure enumerates out-of-scope findings and
-  holds unless each carries an export ref — a decision-graded
-  backlog entry in the target repo citing the run record, the
-  unit-draft shape run 1's five exports already used, seedable
-  by a successor run — or a one-line recorded drop; (c) the
-  printed closure verdict names the unexported set.
-  WIDENED 2026-08-17, then RE-SCOPED same day on the
-  operator's mission challenge (PLAN.md: "thin" — the first
-  widening prescribed corpus file-role destinations, and its
-  self-containment argument proved too much, absorbing
-  accretion wholesale; boundary settled: statiker owns the run
-  and its record, SURFACING is run-conduct, FILING is the
-  environment's): the close REPORT carries a LEAVINGS section
-  enumerating three classes — (1) out-of-scope findings (the
-  mechanical export-or-drop gate above stands, the one class
-  that is a run artifact proper); (2) instruments/probes built
-  in-run and used more than once; (3) world-facts a successor
-  would otherwise re-derive (population maps, environment
-  overrides, frame-anchoring), each with its executed basis —
-  every enumerated item carrying a DISPOSITION slot the desk
-  fills per the HOST repo's own conventions (corpus-governed
-  where present, operator-decided otherwise); the skill
-  mandates the enumeration and the filled slot, never the
-  destination. STANDALONE-INHERITANCE clause (operator
-  question 2026-08-17, "how does a fresh U2 session inherit
-  U1's knowledge without the corpus"): each exported successor
-  entry CITES the parent close report's leavings section by
-  anchor, and the skill's seed passage has a fresh run read
-  its task source's cited leavings section before the head is
-  composed — so the inheritance interface is one digest
-  section, not the full record; the adoption path remains the
-  trust protocol for anything the new run rests on. This makes
-  the record chain (close-report digest → seed entries →
-  adoption path) statiker's complete built-in inheritance for
-  a standalone user; skill-evolution and repo-memory channels
-  are deliberately environmental. Provenance: U1's population instrument cost
-  four rounds to derive and would be silently re-derived if
-  tracker-buried; the enumeration puts it in the one document
-  every consumer reads — the close report.
-  Machine-read semantics (new grade + closure predicate) →
-  same-commit tool authorship, checkpoint opus review at mint.
-  Verifier: red-first battery — closure holds on a tracker
-  with an undispositioned out-of-scope finding (red proven at
-  build per the standard arrangement: new expectations against
-  the pre-change tool, baseline stated), passes with an export
-  ref, passes with a recorded drop. Done: battery green with
-  the red demonstrated, clause and tool ship together, version
-  bumped. Write boundary: SKILL.md close passage +
-  plugin/skills/statiker/scripts/statiker_record.py +
-  tools/test_statiker_record.py + bump.
-
-- **READY 2026-08-17 — P24: the seal cannot cover an omission
-  whose subject has no entry to seal (desk-derived lesson, run-2
-  A4).** Incident: F76 was the FOURTH instrument in one run to
-  declare the persisted population of the corrected quantity
-  complete and be wrong (two stores never enumerated, 3.9M and
-  2.29M rows), and no seal caught any of the four — the seal
-  grades entries that EXIST, and an enumeration gap has no
-  entry; the desk's A4 seal-comparison records the lesson and
-  self-directs an A5 seal item over the INSTRUMENTS themselves
-  (their shared blind spot is the corpus's
-  instruments-sharing-an-author class). WIDENED 2026-08-17
-  (operator: the serialized-discovery reading — "each attacker
-  finds one new thing, we design on that one thing, the next
-  finds the next"): the four misses were not four discoveries
-  but ONE weak basis re-asserted four times — each repair
-  answered the found INSTANCE and re-claimed completeness on
-  the same KIND of basis (search/recall), so each lap invited
-  the next instance-refutation; the class-repair
-  (instrument-derived enumeration) ended the series in one
-  cycle when it finally ran (cycle 8: nine claimed by search →
-  eleven established by instrument). Candidate mint now carries
-  BOTH halves, graded together on the same field test: (a) the
-  seal part — what populations were declared complete this
-  cycle and on what derived basis, plus per-instrument what it
-  structurally cannot return (the desk's A5 form); (b) the
-  repair-side twin — a claim REFUTED by a round re-enters the
-  design only on a basis of a DIFFERENT KIND than the refuted
-  one, the entry naming why the new kind is immune to the
-  prior failure mode (the corpus's derive-the-basis rule,
-  applied at the re-derivation seam where momentum re-asserts
-  the cheap basis). A5 DATUM IN (2026-08-17, run stopped at
-  rounds bound) — design GRADED, upgrading this entry to READY:
-  the instrument-seal comparison scored 4 of 9, the run's best,
-  and the desk's structural sentence is the mint's core — "a
-  seal over CONCLUSIONS cannot reach an omission, a seal over
-  INSTRUMENTS can." The refinement the datum adds: F95's
-  twelfth store beat the census through a defeat mode the reach
-  statement did not name (a zero-row table reads exactly like a
-  column carrying nothing), and the desk then closed the CLASS
-  — an existence probe over all 47 JSON columns returning the
-  three census-immune columns plus one irreducible blind spot,
-  recorded as such. Completed form for the mint: the
-  instrument-seal part carries (i) per-instrument reach
-  statement, (ii) DEFEAT-MODE enumeration (what would return
-  the same output as a true negative), (iii) the recorded
-  irreducible blind set, (iv) census-immune members
-  dispositioned by reading their WRITER (the write path),
-  never by content absence — the desk's own F95 phrasing, and
-  the general cure for the non-event class in population work
-  (an empty store's content is silent; its writer is not).
-  THIRD COMPARISON DATUM (A6): the lesson is now measured
-  across three consecutive seal comparisons — seals over
-  CONCLUSIONS score poorly, seals over INSTRUMENTS and
-  FIXTURES score well, and naming the AXIS beat guessing the
-  instance twice running. The mint's form sentence,
-  desk-derived: a successor seals what each instrument cannot
-  return, what each fixture cannot express, and which repairs
-  shipped unexercised. Verifier: the mint's enumerated tenet
-  check plus the checkpoint review class the change draws;
-  behavioral proof is the next run's seal carrying the part,
-  graded at that run's rounds (prose/form clause — no battery).
-  Done: clause ships in the SKILL.md seal passage with its
-  OBSERVATIONS provenance entry (F76/F95 incidents, A5
-  comparison), version bumped. Write boundary: SKILL.md seal
-  passage + OBSERVATIONS + bump.
 
 - **PARKED 2026-08-17 — P23: an open operator question has no
   non-blocking carrier in the record (desk workaround observed,
@@ -717,7 +283,7 @@ it is not decision-complete.
   tools/test_statiker_record.py + tools/test_contract.py +
   SKILL.md (items 3-4) + OBSERVATIONS + bump rider.
 
-- **RE-OPENED 2026-08-17 — P16: Stop-hook HELD OUT of 0.2.82 on
+- **READY 2026-08-17 — P16 (re-opened): Stop-hook HELD OUT of 0.2.82 on
   checkpoint-review findings (4 executed false-fire classes);
   design INVERTED for the next build.** The 0.2.82 build (script
   + 16-test battery, commits 6e1e668/80e4c47) stays in-tree as
@@ -753,22 +319,6 @@ it is not decision-complete.
   desks (b7 post-A1, cd post-A2 incidents; the superseded
   original design is in this entry's git history).
 
-- **READY (small) 2026-08-16 — P15: repair text for settled-prose
-  form-debt lint names the exemption route, not an in-place edit.**
-  The tool's printed repair for `clause-unparsed` and
-  `killerless-dead` prescribes an edit that mints new violations
-  and clears nothing — measured twice live (parent run F147;
-  successor F29 dry-run in a scratch copy: eight holds before,
-  eight after). Design decided: for these codes on settled entries
-  the repair line states the sanctioned route — a SWEEP_EXEMPT
-  declaration on operator grant (the 0.2.79 ask machinery) — and
-  drops the in-place-edit prescription. Verifier: red-first battery
-  case asserting the repair text for both codes names SWEEP_EXEMPT
-  and contains no edit instruction (red against current tool).
-  Done: test green, tool ships it. Write boundary:
-  `plugin/skills/statiker/scripts/statiker_record.py` +
-  `tools/test_statiker_record.py` (+ version bump).
-
 - **PARKED 2026-08-15 — P8: write-set paths with whitespace (or
   leading /) are structurally undeclarable since P2.** Provenance:
   Lane D gap (c)(1)-(2): write_set_violations' single-token rule
@@ -779,26 +329,6 @@ it is not decision-complete.
   outranks the speculative capability). Missing design, named: a
   quoting/escaping grammar for the write-set field. Trigger: the
   first real unit needing a space-carrying or absolute path.
-
-- **READY 2026-08-16 — next-run staging: STOP after the record
-  gate (operator-decided, mid-turn line 2026-08-16; disposition
-  DECIDED same day, "as you recommend": RESUME the existing
-  canonical-market-identity tracker — the gate gets the 696-hold
-  record to perform on — then, after the operator releases the
-  hold, NARROW via the 0.2.68 route: R-amendment to the smallest
-  shippable unit, displaced scope EXPORTED to successor runs).**
-  The next desk brief carries an explicit
-  checkpoint: run the record gate (sweep/closure), dispatch the
-  repair leg if holds block, re-run the verdicts — then STOP and
-  report the before/after verdict pair plus the leg's dispatch
-  record, holding for operator review BEFORE any design work.
-  Purpose: grade the housekeeping machinery (0.2.69's record
-  gate) in isolation before trialing the rest of the loop.
-  Verifier: the desk's stop-report carries both verdict outputs
-  verbatim. Done-criterion: the checkpoint clause appears in the
-  next desk brief, and the desk's first design act postdates the
-  operator's release of the hold. Consumer: the next meta session
-  composing the desk brief; rides the run-disposition round.
 
 - **PARKED 2026-08-16 — P12: the early head round (decomposition
   attacked before deep design) returns to design — cut from the
@@ -882,6 +412,30 @@ it is not decision-complete.
   question answered either way).
 
 ## Done
+
+- 2026-08-23 — **next-run staging (STOP after the record gate)
+  DROPPED, overtaken:** its premise was resuming the
+  canonical-market-identity tracker, which closed FAILED on
+  operator call 2026-08-16 and is terminally lock-barred
+  (beat-the-books BACKLOG, parent record); the U1 successor ran on
+  a fresh tracker and closed PASSED (5c691cea), and P5's
+  epoch-scoped sweep (db5fe57, 0.2.82) removes the retroactive-hold
+  class the checkpoint was staged to grade. The resume gate runs
+  as the skill's ordinary resume passage (0.2.69); no isolated
+  stop is owed at the U2 seed.
+
+- 2026-08-17 — **0.2.82 mint batch shipped (lane A sonnet, nine
+  items + lane C review repairs; pin moved 2026-08-18):** 67e1774
+  P15 · 5cc7884 P26 · 4df7dbd P30 · 50615eb P25 (re-scoped form) ·
+  db5fe57 P5 (epoch-scoped sweep) · 4538d9a P20 · 522e8d2 P27 ·
+  8d018f2 P19 (budget as safety escape) · 098bda4 P21+P24; bump
+  b897ce4; review repairs R1–R11 (4b17d2d…8ec0c75), re-review
+  repairs c19c829. Suite 468 green at c19c829; two opus review
+  cycles, dispositions in OBSERVATIONS 2026-08-17 and
+  docs/directives/2026-08-17-lane-C-review-repair-brief.md;
+  integration record by SHA in P29 (Open). P16 shipped as
+  groundwork only and RE-OPENED (Open, READY) — hook unregistered.
+  P31 polish residue rides the next bump.
 
 - 2026-08-16 — **P6/E-O/E-P shipped (Lane E, sonnet, one lane
   sequential): 4739ed9 (P6 SWEEP_EXEMPT grammar netted from the
