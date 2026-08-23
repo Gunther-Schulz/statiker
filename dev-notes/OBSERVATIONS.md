@@ -7222,3 +7222,39 @@ their register" is re-confirmed at n+2.
   the desk (suspicion → command → refuted), not as prevention of
   the partial read. No mint. Fire-rate datum for that Grounding
   bullet: n+1, caught before the record, cost one command.
+
+- 2026-08-23 — **U2 run — join digest + F42 blocker, operator
+  decision.** JOIN DIGEST: D1 U2 RUNS ALONE — declared write-sets
+  disjoint at every path (U2: models/core.py, domain/entities.py,
+  domain/types.py, domain/constants.py, new alembic migration, two
+  new tests; U4: repositories/core.py, market_broker/broker.py,
+  cleanup.py, normal_resolver.py, two tests; D111 rides U4) —
+  the P21 seed gate's first live join, mechanical and decisive.
+  Desk SELF-CORRECTED its interim "U2-i contradicted by the world"
+  (F15 invalidated, F38 restated): D55 commissions market-level
+  typed columns on provider_markets DELIBERATELY, the parent's F69
+  records their absence as the PREMISE — the withheld verdict is
+  what caught the paraphrase-vs-world drift; task entry faithful
+  on every element, no carrier correction owed. 601 derived from
+  column definitions (F40); U1-before-U2 precondition satisfied
+  (F43). BLOCKER F42: U2's pin (parent D99) requires the pg17
+  integration harness, which does not exist (parked entry, design
+  D110, F212 retargeting bar); docker unreachable from the desk
+  shell, sudo operator-gated; project rule "never trust green mocks
+  for SQL" rules out route 2 as stated. Desk routes: widen / re-pin
+  / park / SPLIT (harness-free half now). F47: D110(e) no-silent-
+  skip makes route 1 a red suite until the daemon runs — the split
+  falls on the same seam as the reversibility derivation and the
+  docker dependency. Meta recommendation to the operator: 1 if
+  docker is started now, else 2. OPERATOR: "docker started" → route
+  1 relayed: harness as PREREQUISITE UNIT (H before U2, parked
+  entry's own bar as done-criterion, reversible-by-effect to be
+  derived), U2 unchanged and whole, join re-run with H's write-set.
+  Desk told to verify `docker ps` from its own shell first and to
+  refuse the relayed widening in one line if its delegation-scope
+  reading requires the operator's first-hand word. Mint decision:
+  none yet. Stop-call: no. Note for the close grading: two
+  operator-routed decisions so far (delegation line, F42), both
+  genuine (one a corpus construction, one scope + sudo act); the
+  desk's hold discipline at both was exact — no improvised middle
+  path, the corrected-interim class caught by its own withholding.
