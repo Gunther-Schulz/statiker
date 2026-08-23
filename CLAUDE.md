@@ -136,7 +136,20 @@
   as carrier; operator-AUTHORITY lines (C-line stops and lifts,
   budget amendments, grants) still travel only operator→desk,
   per the grants-never-peer-channel convention (held twice
-  2026-08-16, ledger 1b8df98). The four per-relay obligations
+  2026-08-16, ledger 1b8df98). UPDATED 2026-08-23 (operator: "you
+  fully drive it"): the meta session drives the desk END TO END
+  over the peer channel — seed brief, intent, AND the operator's
+  authority lines, relayed marked as the operator's words with the
+  decision's date and the meta session named as relay; the
+  operator states decisions in the META session and pastes nothing
+  into the desk. What makes the relayed grant binding at the desk
+  is the desk's own corpus construction (a standing delegation the
+  operator has stated first-hand in the receiver's session) — the
+  U2 run (2026-08-23, desk beat-the-books-3d) is where the
+  construction is measured: whether the desk accepts the relayed
+  authority block outright or requires one first-hand delegation
+  line per desk; the outcome is recorded in OBSERVATIONS and this
+  sentence is amended to the measured form. The four per-relay obligations
   below bind per desk REPORT, however it arrives. On each relay the
   meta session owes four things: the harvest (ledger what the
   report taught), the mint decision (evidence-complete → release at
