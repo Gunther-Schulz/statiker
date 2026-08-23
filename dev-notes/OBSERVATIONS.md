@@ -7143,3 +7143,33 @@ their register" is re-confirmed at n+2.
   Paste-ready line handed to the operator this turn. Consumer: the
   next desk kickoff; the fire-rate review (grants-never-peer-channel
   held a third time, this time by the receiver unprompted).
+
+- 2026-08-23 — **U2 run (run 3) — seed relay harvested.** Delegation
+  line landed first-hand in the desk session (verbatim on its
+  record); desk reported the injection base-directory line →
+  0.2.82 served. Tracker
+  `.clippy/runs/2026-08-23-canonical-market-identity-u2-statiker.md`
+  seeded: PREFLIGHT_OK, INTENT verbatim (plain text, no tag
+  literals), LINT_CLEAN, Budget `cycles 7 / rounds 4 / verify 3 /
+  tripwire 3`. P19 FIRST LIVE ARMING: tripwire 3 named by the desk
+  with reasoning (fires before the rounds bound; parents died
+  zero-landed at 6 and 9; ≥4 would be cap-simultaneous, carrying
+  no information) — graded sound; the skill's "named by the caller,
+  never guessed" held. Desk raised the unattended-irreversible
+  conflict unprompted (skill: unattended irreversible unit never
+  dispatches, rides the close; operator authorized U2 through
+  implement+verify) and proposed: hold fires, operator's standing
+  authorization is its clearing basis, recorded live at seed. Meta
+  ruling: ACCEPTED with boundary — clearing cites the delegation
+  verbatim + the lock's named effect, valid only for U2 as the
+  BACKLOG entry describes it with C2 intact; anything beyond (D111,
+  U4, prod/shared-DB reach, other schema) rides to the operator via
+  meta BEFORE acting. Desk routing: three sonnet discovery lanes
+  (parent units, U1 leavings/refuted-diagnosis comparison, executed
+  write-set survey = the P21 join input), 15-min armed horizon.
+  Mint decision: none yet. Stop-call: no. Open grading points:
+  P21 seed-gate join outcome (next digest); the hold-clearing shape
+  is a CANDIDATE skill clause if it holds through dispatch
+  (unattended + pre-authorized unit: the clearing basis may predate
+  the hold when the authorization names the unit and the lock's
+  effect sits inside it) — provenance accrues this run.
