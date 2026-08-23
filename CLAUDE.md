@@ -144,12 +144,16 @@
   operator states decisions in the META session and pastes nothing
   into the desk. What makes the relayed grant binding at the desk
   is the desk's own corpus construction (a standing delegation the
-  operator has stated first-hand in the receiver's session) — the
-  U2 run (2026-08-23, desk beat-the-books-3d) is where the
-  construction is measured: whether the desk accepts the relayed
-  authority block outright or requires one first-hand delegation
-  line per desk; the outcome is recorded in OBSERVATIONS and this
-  sentence is amended to the measured form. The four per-relay obligations
+  operator has stated first-hand in the receiver's session) —
+  MEASURED on the U2 run (2026-08-23, desk beat-the-books-3d): the
+  desk refused the relayed authority block outright and stopped
+  clean (no seed, no write) until ONE operator-typed delegation
+  line landed in its session, naming the meta session, the scope
+  (which units authorized, C2), and that its directives bind. So
+  the procedure is: one first-hand delegation line per desk
+  session, pasted by the operator at desk start (the meta session
+  hands the paste-ready line with the kickoff); every later
+  authority line travels meta→desk under it. The four per-relay obligations
   below bind per desk REPORT, however it arrives. On each relay the
   meta session owes four things: the harvest (ledger what the
   report taught), the mint decision (evidence-complete → release at

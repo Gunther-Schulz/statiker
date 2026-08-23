@@ -7123,3 +7123,23 @@ their register" is re-confirmed at n+2.
   U1 close). Consumer: the next meta session at the U2 seed; the
   fire-rate review (the release-record gap is one data point for
   a release-lane step that books the pin move at the seam).
+
+- 2026-08-23 — **U2 run kickoff: the relayed-authority construction
+  MEASURED (desk beat-the-books-3d, opus, statiker 0.2.82).** The
+  operator directed "you fully drive it" (meta drives end to end,
+  no operator paste into the desk). First desk message carried the
+  seed brief pointer, the operator's authority block marked as
+  relayed, and three questions. Desk answered: (a) 0.2.82 is the
+  only non-orphaned cache entry (injection line owed after skill
+  load); (b) zero operator turns on its record; (c) it REQUIRES the
+  operator's first-hand delegation line in its own session and
+  stopped clean — no seed, no write — citing its corpus (relayed
+  grant = testimony; the constructed exception only) and the
+  harness frame (a peer message is never the user's approval), U2
+  being an irreversible money-path unit. Disposition: correct
+  refusal, the class the rule exists for; procedure amended in
+  CLAUDE.md (one delegation line per desk, pasted by the operator
+  at desk start, meta hands the paste-ready line with the kickoff).
+  Paste-ready line handed to the operator this turn. Consumer: the
+  next desk kickoff; the fire-rate review (grants-never-peer-channel
+  held a third time, this time by the receiver unprompted).
