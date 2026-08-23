@@ -142,6 +142,26 @@ it is not decision-complete.
   standing instruction and the crosswise base rate as named
   missing evidence; (iii) P31 polish batch rides the NEXT bump,
   never its own release.
+  RUN 3 (U2) PAUSED 2026-08-23 at SEED, operator call (docker needed
+  elsewhere). State: desk beat-the-books-3d (opus, 0.2.82), tracker
+  `.clippy/runs/2026-08-23-canonical-market-identity-u2-statiker.md`
+  ~60 entries, HELD at F52 — awaiting the operator's FIRST-HAND line
+  in the desk session for F42 route 1 (pg17 harness as prerequisite
+  unit before U2, own pg17 container, U2 unchanged, U10/U11/U5 out,
+  C2 stands); no head composed, no harness work started. RESUME
+  BRIEF: (1) operator starts docker; (2) if the desk session is
+  alive, operator pastes the F42 route-1 line there (text in
+  OBSERVATIONS 2026-08-23, the pause entry) and the desk proceeds;
+  if gone, a fresh opus desk in beat-the-books gets the delegation
+  line first, then the route-1 line, and resumes from the tracker
+  (skill resume passage: sweep/closure first); (3) meta session
+  re-opens the peer channel, re-arms the ~30-min horizon, grades
+  from the seeded two-unit digest onward. Decisions settled this
+  run so far (OBSERVATIONS 2026-08-23): delegation construction =
+  one first-hand line per desk; hold-clearing ruling with
+  boundary (conditional on U2's own reversibility derivation);
+  INTENT letter amended (leavings → U1's three headings); route 1
+  chosen on F42. Baseline to beat: 6 rounds/landed unit.
   RELEASE LANDED 2026-08-18: the pin sits on 0.2.82 at d05b074
   (installed_plugins.json lastUpdated 2026-08-18T14:09Z,
   gitCommitSha d05b074) — remainder (i) done; (ii) U2 seeding is

@@ -7258,3 +7258,24 @@ their register" is re-confirmed at n+2.
   genuine (one a corpus construction, one scope + sudo act); the
   desk's hold discipline at both was exact — no improvised middle
   path, the corrected-interim class caught by its own withholding.
+
+- 2026-08-23 — **U2 run PAUSED at seed (operator: docker needed in
+  another session).** Desk verified `docker ps` reachable (user in
+  docker group); F50/F51: local stack is postgres:16 with a live
+  auto-migrating app writer → the harness spins its OWN pg17
+  container and the F212 retargeting target is now concrete. Desk
+  read the route-1 widening as outside the delegation's scope
+  clause (F52, held not refused — "docker started" is an act
+  report, not a stated route); meta agreed and handed the operator
+  the paste-ready line; the operator paused before pasting it.
+  THE LINE, for resume (operator types it first-hand in the desk
+  session): "F42 route 1: the pg17 integration harness enters run 3
+  as a prerequisite unit before U2 — authorized, its own pg17
+  container, never the local pg16 stack. U2 unchanged. U10/U11/U5
+  still not authorized. C2 stands." Desk instructed: book the
+  pause, commit the tracker locally (C2), end turn, disarm timers.
+  Meta horizon timer disarmed. Resume brief in BACKLOG P29. Trial
+  read at pause: three operator-routed decisions, all genuine; the
+  desk's scope discipline held at every seam; zero improvised
+  middle paths; the seed gate's first live join decisive; one meta
+  composition miss (cross-version section name) corrected in-run.
