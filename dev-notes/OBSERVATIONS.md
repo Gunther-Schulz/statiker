@@ -7279,3 +7279,12 @@ their register" is re-confirmed at n+2.
   desk's scope discipline held at every seam; zero improvised
   middle paths; the seed gate's first live join decisive; one meta
   composition miss (cross-version section name) corrected in-run.
+  PAUSE PINNED (desk report, verified in the artifact: `git log
+  origin/main..main` in beat-the-books shows 955010da over ed68faf0,
+  tree clean): tracker 62 entries, sweep holds F49/F52 only (live
+  work, not form debt), durability commit F54 (not a lock/close
+  pin — append-only now mechanically enforceable), pause state F53,
+  no timers, no lanes. Desk self-correction worth the line: a
+  `pgrep -f "sleep 900"` hit was the pgrep shell itself — the
+  self-matching-process check (Fixing's instrument-discrimination
+  class), caught before reporting.

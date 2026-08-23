@@ -145,7 +145,9 @@ it is not decision-complete.
   RUN 3 (U2) PAUSED 2026-08-23 at SEED, operator call (docker needed
   elsewhere). State: desk beat-the-books-3d (opus, 0.2.82), tracker
   `.clippy/runs/2026-08-23-canonical-market-identity-u2-statiker.md`
-  ~60 entries, HELD at F52 — awaiting the operator's FIRST-HAND line
+  62 entries, pinned locally at beat-the-books 955010da (durability
+  commit, not a lock/close pin; unpushed with ed68faf0, C2), HELD at
+  F52 — awaiting the operator's FIRST-HAND line
   in the desk session for F42 route 1 (pg17 harness as prerequisite
   unit before U2, own pg17 container, U2 unchanged, U10/U11/U5 out,
   C2 stands); no head composed, no harness work started. RESUME
