@@ -7211,3 +7211,14 @@ their register" is re-confirmed at n+2.
   brief that names a record section by the CURRENT skill's
   mandate when the record predates it — the cross-version
   section-name class; one incident.
+
+- 2026-08-23 — **U2 run — desk self-review data point (operator
+  relayed the desk's turn-end text).** Two desk suspicions refuted
+  by one command each before entering the record: the
+  placeholder-looking migration hash (real file) and an "asymmetric
+  rollback" read off 80 lines of an 88-line file (whole file: fine).
+  Class: Grounding's partial-view paraphrase drift (a slice reads
+  exactly like the whole) — corpus-covered; it fired as a CHECK at
+  the desk (suspicion → command → refuted), not as prevention of
+  the partial read. No mint. Fire-rate datum for that Grounding
+  bullet: n+1, caught before the record, cost one command.
