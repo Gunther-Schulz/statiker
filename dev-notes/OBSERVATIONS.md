@@ -7173,3 +7173,41 @@ their register" is re-confirmed at n+2.
   (unattended + pre-authorized unit: the clearing basis may predate
   the hold when the authorization names the unit and the lock's
   effect sits inside it) — provenance accrues this run.
+
+- 2026-08-23 — **U2 run — two interims harvested (lanes writeset +
+  U1-leavings in; parent-units lane out).** (1) WORLD CONTRADICTS
+  THE TASK ENTRY: typed handicap/total already live on
+  current_odds (core.py 472–475), provider_markets carries neither
+  (core.py:361 NOTE), moved by alembic 2025_11_22 — predating the
+  parent design. Desk booked from the lane's FILE, re-executed
+  every load-bearing claim, positive control on the zero (0
+  LineColumn vs 264 MarketType hits), and WITHHELD the boundary
+  verdict until D55's own body is read (a paraphrase graded
+  against the world is the drift the seed exists to catch) —
+  graded correct; meta pre-cleared a SHRINKING U2, batching with
+  anything outside the authorized unit stays a scope change.
+  Join: D111↔U4 inseparable at cleanup.py:2574 /
+  normal_resolver.py:546; U2-i/ii/iv co-located (core.py + alembic
+  chain); iii and broker-block disjoint. (2) META MISS, own: the
+  INTENT cited "the U1 close report's leavings section" — the
+  0.2.82 name; U1 (0.2.77) carries the three classes as THE
+  RESIDUE A SUCCESSOR INHERITS / EXPORTS / CANDIDATE LESSONS.
+  Desk proved the cause from both cached skill texts (0 vs 5
+  occurrences) and proposed the reading; meta AMENDED its own
+  INTENT letter under the delegation (naming correction,
+  derivable), no operator round trip. Class: label-over-body at
+  the brief-composition site — the meta desk had grepped the
+  record for "LEAVINGS" (zero) and still wrote the name. (3) F25:
+  "five irreversible units" is D93 testimony; U1 derived
+  REVERSIBLE thrice; U2 derives its own — meta's hold-clearing
+  ruling is conditional; pointer sent: the skill's classification
+  sentence names schema/data migration, so a REVERSIBLE verdict
+  must argue past that example explicitly. Live constraints
+  carried: F29 (15-min closing-odds job matching on handicap
+  equality, 1,131/4,176 spread bets), F30 (39/269 rows at 0.00 —
+  discrimination hole), F28 (Pinnacle-anchored, frame-stable
+  110/110), F31 (twice-executed probe graduates). Mint decision:
+  none. Stop-call: no. Candidate for the corpus (not minted): a
+  brief that names a record section by the CURRENT skill's
+  mandate when the record predates it — the cross-version
+  section-name class; one incident.
