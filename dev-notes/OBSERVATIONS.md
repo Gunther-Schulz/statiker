@@ -7615,3 +7615,38 @@ their register" is re-confirmed at n+2.
   the verify-leg digest; P39; the compression pass (which altitude
   caught what: round → design; desk artifact-read → implementation;
   verify leg → pending).
+
+- 2026-08-26 — **U2 run — VERIFY LEG RETURNED: BLOCKING (F154), deploy
+  NO. The isolated verify forcing point caught what the lane, the
+  desk's artifact read, and two attack rounds did not.** The generic
+  bulk upsert introspects the ORM table for its column list; adding
+  the two typed columns to the market ORM enrolled them in the
+  conflict clause; the domain entity lacks the fields (a comment
+  says they moved to outcome level), so ingestion's next poll writes
+  None into every backfilled row — minutes after the migration's
+  own unfilled-count emits a healthy zero. Silent fail-open on the
+  money path; the near-miss sibling (a hand-written explicit-values
+  upsert) preserves them but is not the live path (ingestion.py:598).
+  Confirmed at the desk link by link plus the leg's effect-site
+  execution (−1.50 → None through the real method). F155: the
+  parentage class now FOUR instances in one unit — nothing pins the
+  ORM/entity side (the leg reverted, remapped and retyped with the
+  suite green), and the unfilled count is unpinned in its VALUE
+  (both hardcoded to 0 stayed green). The desk's own comment at
+  entities.py:203-204 claiming both sides pinned is FALSE — the
+  durable assurance-wider-than-predicate. RULINGS: design ACCEPTED
+  (declarative preserve-set, default empty; COALESCE rejected —
+  silent-start); scope = U2's own completion (persisting backfill
+  is the done-criterion), write-set widened by design entry with
+  the precedent line, RE-LOCK; a fourth pin (other repositories'
+  SET clause byte-identical); the round for the added surface is
+  an invariant-keyed search (call sites of the introspecting
+  upsert; every ORM column its entity lacks — the same mechanism
+  may already be NULLing columns elsewhere) then the verify leg
+  re-run before any deploy. VALUE READING by altitude, now
+  complete: round → design defect (D16); desk artifact read →
+  implementation defect (F152); ISOLATED VERIFY → the blocker
+  (F154), which no other instrument reached. The verify forcing
+  point is the skill's own and it just earned its place. Consumer:
+  P39 (implement/verify row — the first real datum); the
+  compression pass; the re-lock digest.
