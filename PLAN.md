@@ -482,10 +482,22 @@ provenance.
   (special cases, translation layers, "we cannot change X so we do
   Y"), the unit's real scope is the precedent, and the design says
   so before code. Judgment-shaped, cheap, no round — but only asked
-  if it is on the list. Arm A's sharpened line, with this: a design
-  moment when there is no precedent OR the precedent is the
-  problem; a round when the step cannot be undone; otherwise let
-  the session run.
+  if it is on the list. The mechanism that makes it a CLASS
+  (operator, on the market-naming case): the symptom arrives
+  NARROW, so the fix gets sized narrow — "this market is not shown
+  as unique" was what prod showed, so that piece got hotfixed on
+  the broken base, and the next session hotfixed the next symptom;
+  nobody ever saw "the base is broken" because no single symptom
+  looks like the base, each looks like itself (the corpus's
+  symptom-locates-not-sizes rule, firing here BEFORE code rather
+  than after the third patch). When the answer is FIX: the
+  precedent becomes its OWN unit, sequenced FIRST — never a silent
+  widening of the current unit (today's shape: the harness became
+  a prerequisite unit before U2 rather than U2 absorbing it), with
+  its own reversibility judgment and scope decision. Arm A's
+  sharpened line, with this: a design moment when there is no
+  precedent OR the precedent is the problem; a round when the step
+  cannot be undone; otherwise let the session run.
   (4b) THE PRECEDENT LINE (operator, same day, agreed): whichever
   way (4) resolves, the outcome is WRITTEN in the design record and
   travels into the brief verbatim — "follows <path>, judged sound"
