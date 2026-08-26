@@ -20,6 +20,30 @@ it is not decision-complete.
 
 
 
+- **READY 2026-08-26 — P39: Begehung R4 at the run-3 close seam
+  (operator call, same day).** The map's own interval (one round
+  per meta-session week) is overrun: R3 was 2026-08-16 — a finding
+  by the map's rule. Row: "Implement/verify/close sections vs real
+  execution" — dark BY CONSTRUCTION until today; U20 landed
+  2026-08-26 (7b757524, prod-verified F151), U2 landing next, so
+  the row is walkable for the first time on real data. Design
+  settled: one round, the begehung skill invoked, row and lens
+  fixed here before the walk. LENS (pre-registered here, per the
+  begehung skill's per-round lens rule): the 2026-08-26 direction — for each mechanism the row
+  touches, which of grounding / attackability / resumability it
+  serves, or only the record's own consistency (PLAN.md, the core
+  value + compression cut line); plus the economics currencies
+  (turns, corpus lines) per mechanism. The round's yield is the
+  compression pass's INPUT. Timing: after U2 lands AND the close
+  report is in, BEFORE the compression pass — walking the row on
+  one landed unit reads half the instrument. Verifier: the round
+  report in BEGEHUNG-MAP.md's round log, the row's status moved
+  off "dark", an across-rows read. Write-set: `BEGEHUNG-MAP.md`,
+  `dev-notes/OBSERVATIONS.md` (findings), BACKLOG entries the
+  round mints. Done-criterion: R4 logged with lens, yield, next
+  step; darkest-corner rotation named for R5. Trigger: run-3
+  close report received at the meta desk.
+
 - **READY (small) 2026-08-26 — P38: a bookkeeping correction under
   a declarator id un-declares under latest-line-wins.** Provenance:
   U2 run (run 3), desk F147: the pin file's declaration id carried
