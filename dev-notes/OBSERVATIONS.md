@@ -7288,3 +7288,25 @@ their register" is re-confirmed at n+2.
   `pgrep -f "sleep 900"` hit was the pgrep shell itself — the
   self-matching-process check (Fixing's instrument-discrimination
   class), caught before reporting.
+
+- 2026-08-26 — **U2 run RESUMED (fresh desk beat-the-books-3f, opus;
+  meta statiker-c4).** Docker up (observed). Old desk gone → P29's
+  fresh-desk branch: kickoff sent over the peer channel with the
+  hold instruction; desk held clean (zero writes, no skill load —
+  "the load is the seed"), reported 0.2.82 as a DERIVED disk fact
+  with basis and marked it as such, and surfaced two facts of its
+  own: 37 foreign commits since the pause pin (confirmed), and
+  three unpushed commits — which refuted the meta's stale
+  "955010da unpushed-by-design" (it is pushed; the trio is the
+  other session's docs-only work, left alone). Both operator lines
+  landed first-hand (state token with verbatim scope, sent on
+  landing — the desk-pair convention held unprompted). Delegation
+  construction re-measured n=2: the desk holds until the first-hand
+  line, then binds. Directive on resume: sweep/closure, then
+  premise re-read (D55, F50/F51, writeset survey) against the
+  current tree, file:line per premise, before any head — the
+  stale-premise class over a paused run. Mint decision: none.
+  Stop-call: no. Horizon: 28-min recurring, armed. Consumer: the
+  next digest's grading; the fire-rate review (relayed-authority
+  construction, n=2; a meta stale claim caught by the receiver's
+  own artifact read).
