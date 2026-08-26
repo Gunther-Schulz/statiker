@@ -7650,3 +7650,28 @@ their register" is re-confirmed at n+2.
   point is the skill's own and it just earned its place. Consumer:
   P39 (implement/verify row — the first real datum); the
   compression pass; the re-lock digest.
+
+- 2026-08-26 — **U2 run — the invariant-keyed search found the same
+  defect LIVE IN PROD on another column (F156): teams.team_grade,
+  added by an earlier migration with its own backfill (U2's exact
+  shape), wiped on every re-observation since 2026-05-14 — 21,303
+  rows NULL after that date, 7,702 with a grade before it, a perfect
+  split.** Third instance of write-then-silently-erase in the repo's
+  history, first caught while running. The sweep computed
+  update_fields exactly as base_repository does against each domain
+  model's fields; reach stated (name-match only, over-reports
+  updated_at_utc, blind to indirection; positive control
+  handicap/total, zero on game_markets); every candidate confirmed
+  by reading its own domain_to_orm. Booked in beat-the-books as a
+  decision-complete entry consuming U2's preserve-set, restoration
+  EVIDENCE-open, anti-triage line carried, ordered after U2.
+  READING FOR THE DIRECTION: this is refinement 4 + the precedent
+  search proving their value at the highest rate available — a
+  round asked "what else does this mechanism do?" and the answer
+  was three and a half months of data loss nobody had seen; the
+  symptom (a grade column mostly NULL) never looked like the base.
+  Also the transfer test (Grounding) applied forward: the mechanism
+  restated, the neighbour shown inside it. Operator told. U2 build
+  proceeding, fourth pin load-bearing. Consumer: the operator
+  (restoration decision once evidence returns); P39; the
+  compression pass (the search's cost: one desk-run sweep, minutes).
