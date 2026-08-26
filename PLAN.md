@@ -411,7 +411,18 @@ provenance.
   lens); the compression pass is the realization and takes the
   control arm as its input. Not a re-opening of the forcing-point
   tenet ("thin in ceremony, never in forcing points") — a
-  sharpening of what "ceremony" has grown to include.
+  sharpening of what "ceremony" has grown to include. LINEAGE
+  (operator, same day): clippy was born when the write/fix/write
+  loop was DIVERGENT (sonnet 3.5 era — each fix round created new
+  problems, ran itself into a corner, left a mess), so spending
+  BEFORE was the only way to land anything. With current models the
+  loop is CONVERGENT (the bare arc self-corrected in minutes, never
+  dug a hole), so "spend before" has weakened into a specific
+  insurance: the irreversible step, where no "after" exists to
+  correct in — as unforgiving today as then. Statiker as the
+  "modern clippy" is therefore legitimately SMALLER than clippy:
+  the model absorbed most of the discipline; the compression pass
+  is the skill catching up with the models.
 
 ## Horizon consideration — NOT a decision (operator, 2026-08-05)
 
