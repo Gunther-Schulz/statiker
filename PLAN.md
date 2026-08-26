@@ -486,6 +486,18 @@ provenance.
   moment when there is no precedent OR the precedent is the
   problem; a round when the step cannot be undone; otherwise let
   the session run.
+  (4b) THE PRECEDENT LINE (operator, same day, agreed): whichever
+  way (4) resolves, the outcome is WRITTEN in the design record and
+  travels into the brief verbatim — "follows <path>, judged sound"
+  or "<path> is the problem, this unit's scope" — never left
+  implicit. "Do it like the precedent" is a decision, not the
+  absence of one: unstated, a dispatched implementer or a successor
+  cannot find it (arm A's three harnesses — nobody wrote "like
+  verify_deployed_sha.py", so nobody did); stated, it is a claim a
+  fresh reader can check (does the precedent actually fit) and the
+  record of a judgment taken rather than skipped. One line per
+  unit; the difference between designed and happened-to-come-out-
+  right.
 
 ## Horizon consideration — NOT a decision (operator, 2026-08-05)
 
