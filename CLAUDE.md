@@ -161,7 +161,16 @@
   its own falsifier (a bite in a class an existing mint governs) or
   when impl/verify surfaces what the attack rounds should have
   caught (succession-negative evidence); otherwise let it run — and
-  the next relay line.
+  the next relay line. The harvest is also the skill's FIRE-BORN
+  CHANNEL (operator-settled 2026-08-26): a tool or page defect the
+  desk hits while running is booked HERE by the meta session — the
+  claim verified against this repo's source at the meta desk, never
+  taken on the desk's word — with the run's own finding id as
+  provenance; the desk records the finding in its tracker and
+  never learns this repo exists (carrier-on-read-path). Measured
+  the day it was settled: five silent-form defects (P32–P36), each
+  arriving with file:line and both sides read, none bookable by
+  the desk itself.
 - **Mid-run tuning at seams.** Between cycles is an upgrade point,
   not a wait: grade what is evidence-complete (field-tested in-run
   with provenance = ripe; needs the run's remainder = defer), mint,
