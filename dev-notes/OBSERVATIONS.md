@@ -7417,3 +7417,17 @@ their register" is re-confirmed at n+2.
   (3) corpus fire-rate datum — the reach rule fired 3× in-arc.
   Consumer: the operator (decision 1, this reply); the trial close's
   grading (the bare baseline beside the 6-round figure).
+
+- 2026-08-26 — **Control arm, operator ruling: the re-entry line is
+  DECLINED.** The 36 post-outage commits were intent ("more issues
+  that I felt like fixing while we are at it… fix the root causes
+  right then and there"), not momentum — the "re-entry gap" reading
+  in the control-arm file is amended to operator-chosen posture;
+  residue (1) closed, nothing lands in beat-the-books. The
+  attack-round-floor verdict stands unchanged. Operator's question
+  "how well did it do with no machinery" answered: altitude 11/14,
+  record 10/10 basis-bearing, all corrections self-caught within the
+  window (5–76 min, one a day); cost concentrated in one unit whose
+  pin proved configuration not effect. The machinery's marginal
+  value read from this arm: the fresh-context floor before an
+  irreversible ship, narrowly — nothing wider.
