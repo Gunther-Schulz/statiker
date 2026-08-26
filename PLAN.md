@@ -498,6 +498,25 @@ provenance.
   sharpened line, with this: a design moment when there is no
   precedent OR the precedent is the problem; a round when the step
   cannot be undone; otherwise let the session run.
+  A2 DATUM for attack timing (same day, run 3): the second round
+  was NOT zero-delta — four substance findings, the top one
+  (MEDIUM-HIGH) on NEW surface the repair lap added (a two-decimal
+  column beside a one-decimal signature, with a shipped resolver
+  guard as the consumer nobody enumerated); three of four on the
+  repair lap's own work. Reading, and it sharpens "every round
+  after the first owes a reason": a repair lap that ADDS design
+  surface makes the re-lock a new design — the round over it is
+  the FIRST round over that surface, not a second round over the
+  old one; rounds count per design surface, never per unit. The
+  cheap alternative the desk's own seal named and did not run: an
+  invariant-keyed search over the repair lap's own additions
+  before dispatch — which is the precedent line (4b) applied to
+  the repair, and would have caught the top finding for the price
+  of a grep. Seal qualifier for P24: an instrument seal pays only
+  when the gap it names is CLOSED before dispatch — a named-but-
+  open gap is a prediction, not an instrument. No A3: closure live,
+  dispositions unit-scoped, implementation surfaces the
+  repair-lap class faster than a third round.
   (4b) THE PRECEDENT LINE (operator, same day, agreed): whichever
   way (4) resolves, the outcome is WRITTEN in the design record and
   travels into the brief verbatim — "follows <path>, judged sound"

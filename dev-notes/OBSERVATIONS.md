@@ -7557,3 +7557,31 @@ their register" is re-confirmed at n+2.
   datum). Turn cost so far: 13 desk commits, tracker 207 KB, 3
   operator interactions, 1 unit landed. Consumer: U2 landing
   grading; P38; the A2 reading; dispatch-guards residue.
+
+- 2026-08-26 — **U2 run — A2 digest harvested late (delivery miss:
+  the desk booked A2 to the record and commit message and went
+  straight to implement — carrier-is-not-delivery, its own
+  diagnosis).** A2 [BIT]: 4 substance (2 MEDIUM-HIGH: the
+  one-decimal signature vs two-decimal columns with the resolver's
+  2/8-discard guard as the unenumerated consumer — blast radius had
+  been discharged on the identifier's FKs, a different surface; R18
+  with no verifier and a silent default channel, measured 0/113
+  migrations log), 2 MEDIUM on the repair lap re-creating A1's
+  write-set defect for U2 and an ungraded cross-unit dependency; 1
+  low-medium (map values undecided, 15% of rows); 1 record (three
+  supports were two). Delta vs A1: 6→4, contracting by the letter,
+  but 3/4 on the repair lap's own work — the loop-eating-its-
+  repairs signature, read from the body not the tool's arithmetic.
+  SEAL: axis predicted correctly (own contributions), instance
+  missed; the seal NAMED the instrument gap that produced S1 and
+  the round ran without closing it — "naming a gap is not closing
+  it"; P24 qualifier minted. Conclusion-predictions 0/2 top
+  findings across both rounds, reach 2/2. No A3 (closure live,
+  unit-scoped dispositions, tripwire at 3). PROD VERIFIED for U20
+  (F151: pushed tip running, boot-clean, schema head equal).
+  Timing-lens reading recorded in PLAN: rounds count per design
+  SURFACE — the repair lap added surface, so A2 was the first round
+  over it; the grep-priced alternative was the precedent search
+  over the repair's own additions. U2 hold + clearing composed
+  (D36/D37) against F134/F135; UNIT_DISPATCHABLE; dispatching.
+  Consumer: P24; the compression pass (timing rule); U2 landing.
