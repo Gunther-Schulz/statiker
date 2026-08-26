@@ -7431,3 +7431,37 @@ their register" is re-confirmed at n+2.
   pin proved configuration not effect. The machinery's marginal
   value read from this arm: the fresh-context floor before an
   irreversible ship, narrowly — nothing wider.
+
+- 2026-08-26 — **U2 run — post-attack digest harvested (desk
+  a13fb55d, A1 [BIT]: 6 design-substance, 1 HIGH).** THE HIGH
+  (F106/S1): D16 confined the decoy, not the AMBIENT environment —
+  in the red arm the omitted stamp lets whatever URL variable is
+  already set win, and BTB_DATABASE__URL is ambient BY CONSTRUCTION
+  (checked-in env file → the local pg16 stack, the very database
+  route 1 forbids); the pin could not detect the accident (asserts
+  only that the throwaway was NOT migrated). The run's own
+  contribution, refuted one level up — my ACCEPTED ruling on D16
+  shared the blind spot (I graded the decoy's confinement, never
+  asked what confines the arm). Also: F110 the reach-test class
+  (two working pg17 harnesses already under tools/, missed because
+  F58 searched for the expected FORM); F109 the two units cancel
+  each other's coverage; F108 the desk's own booked instrument could
+  not settle what it was booked for (empty DB) — the attacker ran
+  the real probe (metadata-only, 25,312 rows). Design CORE survives
+  with executed bases. LIVE HAZARD outside the units (F111/S6): a
+  shipped tools/ script asserts "no env override, verified
+  2026-08-11" — false at HEAD; it repoints via ini rewrite without
+  the stamp = the attacker's wrong-database arm; the sibling recipe
+  exports BTB_DATABASE__URL. Routed: desk books it as its own
+  BACKLOG item in beat-the-books, no fix in-run; operator told.
+  F120/S9 two read-only prod counts (the last open U2 safety line)
+  → operator asked, recommendation authorize. SEAL: 0/6 ranked
+  predictions hit the top two; reach predictions 3/3; misses
+  cluster on SEAMS and OWN CONTRIBUTIONS — P24 datum n=4. Rulings:
+  repair lap GO (six-part scope), stay on desk, re-lock then A2.
+  Mint decision: none new; stop-call: no (A1 catching the design is
+  succession-POSITIVE). Consumer: post-repair digest; P24; the
+  fire-rate review (meta's own D16 grade as a same-blind-spot
+  datum for "verdict at tier ≥ producer" — the attacker, opus,
+  out-read the fable grade on a design question, the third such
+  measurement).
