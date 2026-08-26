@@ -498,6 +498,20 @@ provenance.
   record of a judgment taken rather than skipped. One line per
   unit; the difference between designed and happened-to-come-out-
   right.
+  THE STANDARD IT RESOLVES TO (operator, same day): DECISION-
+  COMPLETENESS — the bar the corpus already holds for dispatch
+  briefs (dispatch skill §1: a fresh context executes it without
+  making any design or placement decision; placement is a decision,
+  pre-filled) and for READY backlog entries (accretion doctrine).
+  The precedent line is placement made explicit — "where the work
+  belongs" includes which existing shape it follows. So the
+  candidate line restated in the corpus's own terms: the design
+  moment produces a decision-complete brief with bases; the round
+  attacks it where the step is irreversible; a decision-complete
+  brief with a sound precedent in the tree needs nothing more.
+  Compression target in one sentence: whatever it takes to get
+  from a task to a decision-complete brief with bases — and no
+  more.
 
 ## Horizon consideration — NOT a decision (operator, 2026-08-05)
 
