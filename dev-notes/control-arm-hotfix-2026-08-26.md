@@ -158,3 +158,50 @@ auto-summary plus record commits. Reading for the trial: the
 forcing point and the round carry the value; the rest of the grammar
 is on trial and this arm counts AGAINST its volume — the ≤150-line
 stabilization exit is the acknowledgement. n=1.
+
+## Part 2 — code SHAPE (pre-registered 2026-08-26, operator GO, before any diff is read)
+
+The question Part 1 did not measure: does the convergent fix loop
+leave patch-shaped code? Operator's premise: "design first, implement
+once" may still be the better default for reversible work because of
+MANAGEABILITY, not immediate failures. Two arms, same reading:
+(A) the bare arc's code diffs (`955010da..b80c288e`, non-docs
+commits); (B) the statiker unit's code diffs once U2/U20 land
+(the run's implementation commits). Arm B is read only after it
+ships; arm A is read now. n=1 each, arms not blind, unit shapes
+differ — the yield is the SHAPE reading, not a verdict.
+
+Criteria, per shipped mechanism (a thing that exists at the end —
+a guard, a check, a registry, a breaker, a fixture):
+1. **Placement.** Does the final code sit where its definition says
+   (root cause / owning module) or at the symptom site? Basis:
+   file path + the mechanism's own docstring or the record's stated
+   cause.
+2. **Arrival path.** How many commits shaped it, and was the final
+   shape CHOSEN (present in the first commit or a stated design) or
+   ARRIVED AT (moved, renamed, re-homed, promoted-to-config by
+   later corrections)? Count moves.
+3. **Duplication / bolt-on.** Did it duplicate an existing sibling
+   (a second harness, a second threshold home, a second alarm path)
+   or extend one? Basis: the sibling named, or "none found" with
+   the search stated.
+4. **Coupling left behind.** Hardcoded values, restated counts,
+   comments asserting state ("verified <date>"), one-off scripts
+   under tools/ that a later reader must know about. Count, with
+   file:line.
+5. **Test shape.** Do the tests pin the MECHANISM (would go red on
+   the defect class) or the fixture (a count, a literal)? Basis:
+   the assertion quoted.
+
+Decision reading: if arm A's mechanisms mostly score ARRIVED AT with
+moves and coupling, the design moment (not the round) is what
+reversible work needs — the "every unit gets a design, only the
+irreversible gets the round" line. If arm A scores CHOSEN and clean,
+the convergent loop leaves good shape too and the design moment is
+optional below the irreversible line.
+
+### Arm A result
+(pending — sonnet discovery lane, dispatched 2026-08-26)
+
+### Arm B result
+(pending — read after U2/U20 ship)
