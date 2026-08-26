@@ -22,24 +22,74 @@ it is not decision-complete.
 
 - **READY (small) 2026-08-26 — P34: the irreversible tag's page
   form and tool form disagree.** Provenance: U2 run (run 3), desk
-  finding: SKILL.md:729-733 says the tag is a BARE label line at
+  F90: SKILL.md:729-733 says the tag is a BARE label line at
   column 0, "never an entry"; the tool reads it only from an
   entry's body (`statiker_record.py:1020`, inside the entry loop;
-  `irreversible_tag()` :778) — a page-form line is invisible to
-  sweep/closure, so `irreversible_units` reads empty on a unit
-  tagged exactly as the page says. Verified at the meta desk on
-  both sources. The desk applied SKILL.md:56 (executable spec is
-  the contract) and wrote the tool form. Design settled: the page
-  states the entry-body form (`unit U<k> irreversible: <effect>`
-  as a record line's body), the label-line sibling sentence
-  removed; tool unchanged. Verifier: a suite case feeding a
-  page-form bare line and asserting `irreversible_units` is EMPTY
-  (documents the tool's actual reach) beside the existing
-  body-form positive. Write-set: `plugin/skills/statiker/SKILL.md`,
-  `tools/test_statiker_record.py`. Done-criterion: page and tool
-  name one form; skill-craft invoked for the edit; releases at
-  the next seam with P32. Checkpoint review: touches a record
-  form → rides the P32 opus review.
+  `irreversible_tag()` :778). MEASURED by the desk both ways: the
+  page form left `irreversible_units` EMPTY while matching the
+  tool's own pattern when tested directly; the entry form
+  registers. Verified at the meta desk on both sources. The desk
+  applied SKILL.md:56 (executable spec is the contract) and wrote
+  the entry form for the run. Design settled (amended same day,
+  after the desk's second report): the PAGE's reason is real — an
+  entry body opening with a unit scope re-opens that unit under
+  the closure predicate — so the fix WIDENS THE TOOL to read the
+  bare label line at column 0 (the `SKILL:` sibling, same scan
+  that finds `SKILL:` lines), keeping entry-body parsing for
+  records already written that way; the page's form stands
+  unchanged. Verifier: red-first — a fixture with the page-form
+  bare line asserts the unit in `irreversible_units` (red today
+  per the desk's measurement; green after), beside the existing
+  body-form positive; and a closure fixture proving the bare line
+  re-opens nothing. Write-set:
+  `plugin/skills/statiker/scripts/statiker_record.py`,
+  `tools/test_statiker_record.py` (page untouched unless the
+  widened scan needs a sentence). Done-criterion: both fixtures
+  green, tool and page name one form; releases at the next seam
+  with P32. Checkpoint review: machine-read semantics → rides the
+  P32 opus review.
+
+- **READY (small) 2026-08-26 — P35: the basis-missing verdict's
+  prescribed repair is itself basis-missing.** Provenance: U2 run
+  (run 3), desk F91, MEASURED: pasting the verdict's repair text
+  for a basis-missing hold shed the target's violation and moved
+  the hold one line DOWN — the bookkeeping repair line carries no
+  basis field, so it violates the rule it repairs; pasted again it
+  would move again, indefinitely. Bites any desk following
+  "compose repairs from the verdict, never from memory" literally.
+  Design settled: the repair prescription carries a basis slot
+  filled with the terminating form (the repair line's own basis
+  is the verdict that prescribed it, named). Verifier: red-first
+  in the suite — apply the prescribed repair to a basis-missing
+  fixture and re-run sweep: hold count must drop to ZERO (today it
+  holds at one, moved); then green. Write-set:
+  `plugin/skills/statiker/scripts/statiker_record.py` (verdict
+  repair text), `tools/test_statiker_record.py`. Done-criterion:
+  the fixpoint proof — a repaired record re-sweeps clean in one
+  application. Releases at the next seam. Checkpoint review:
+  verdict text is machine-read semantics → rides the P32 review.
+
+- **READY (small) 2026-08-26 — P36: the write-set partition's
+  "disjoint — parallel-eligible" reads as a scheduling verdict.**
+  Provenance: U2 run (run 3), desk F98: the partition returned
+  both units disjoint, correct as a write-set answer, wrong as a
+  dispatch instruction — U2's pin file lives INSIDE the tree U20
+  creates, so parallel dispatch gives U2 a pin with no tree; the
+  desk booked the ordering by hand so a successor reading the
+  partition alone would not schedule them together. Design
+  settled: the partition's output line states its predicate —
+  "disjoint write-sets; ordering constraints (a unit's write-set
+  inside another's created tree, a pin needing a prerequisite
+  substrate) are the desk's, read from the D-lines" — and the
+  page's waves passage says the same in one sentence. Verifier:
+  the suite asserts the caveat sentence is present in the
+  partition output (presence) and the old bare label absent
+  (must-not-appear). Write-set:
+  `plugin/skills/statiker/scripts/statiker_record.py` (partition
+  output), `plugin/skills/statiker/SKILL.md` (waves passage),
+  `tools/test_statiker_record.py`. Done-criterion: output and
+  page carry the predicate statement; releases at the next seam.
+  Checkpoint review: rides the P32 review.
 
 - **READY 2026-08-26 — P32: foreign-record ids in a basis field
   collide with this run's namespace.** Provenance: U2 run

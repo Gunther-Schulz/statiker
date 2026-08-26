@@ -7362,3 +7362,35 @@ their register" is re-confirmed at n+2.
   seam datum). Mint decision: defer both to the next seam (P32's
   design settled; the pin never moves mid-run). Stop-call: no.
   GO to D-lines. Consumer: design-lock grading; P32/P33.
+
+- 2026-08-26 — **U2 run — design digest harvested (desk 55e1f618,
+  status [READY], not locked).** Leg two returned the backfill's
+  letter from the parent's own text (two branches keyed on which
+  column bears the type; no sign transform, stated twice; "any
+  outcome row" measured 21,109/21,109) — the paraphrase in the
+  record had been a summary of a pointer. F84 re-verified the four
+  601-width sites itself; F86 caught a blanket sourcing list read
+  distributively. Design: U20 harness D14–D18 (D16: the decoy
+  names a disposable DB inside the harness's own container — the
+  run's own decision, a pin whose failing arm is the hazard is not
+  a pin), U2 D19–D26 (D25 irreversible on the run's own
+  derivation; hold entry under F1/F10). RULINGS: lock authorized,
+  tracker-only; ONE opus attack round over both units, F98's
+  ordering in the brief; STAY on this desk through attack + repair
+  (warm judgment on a self-composed design beats a cold start plus
+  an operator interaction), re-ask at the implementation seam.
+  THREE MORE silent-form defects booked: P34 amended (tool widens
+  to the page's bare-label form — the page's post-closure re-open
+  reason is real), P35 (basis-missing repair text regresses:
+  moved the hold one line down, measured), P36 (partition
+  "parallel-eligible" reads as scheduling). Desk's class read,
+  five silent-form defects this session all passing a clean
+  sweep: a documented label form the tool does not read where
+  the page says — the lint is a tripwire, never the guarantee,
+  as the page itself says. Mint decision: all ride the next seam
+  under one opus review (P32 bundle). Stop-call: no — none is a
+  minted rule failing its own falsifier; each is a grammar gap
+  first seen. Consumer: post-attack digest grading; the P32
+  release bundle; the fire-rate review (silent-form class,
+  n=5 in one session — a candidate for a page-vs-tool contract
+  test, see P36's must-not-appear shape).
