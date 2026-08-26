@@ -7527,3 +7527,33 @@ their register" is re-confirmed at n+2.
   the comparison is graded then. Turn cost: one sonnet lane, ~45
   min, ten parts. Consumer: the compression pass; the candidate
   line's settlement.
+
+- 2026-08-26 — **U2 run — U20 LANDED (7b757524, verified at the desk,
+  pushed 74c1f6f8 at the operator's named push point; 19 commits
+  claimed, the foreign three named).** First code of run 3: the
+  pg17 harness with its containment pin, 5 files, 569 lines,
+  `pytest tests/integration` 4 passed at the desk. The operator's
+  C2 clarification rode inside U20's CLAUDE.md edit (quoted,
+  dated). NEAR-MISS OF THE RUN (F147): a bookkeeping corrects-line
+  under the pin file's declarator id un-declared it under
+  latest-line-wins — resolved write-set 4 of 5, the unit about to
+  land without its containment test with every gate clean; caught
+  by a sonnet lane reporting a listing it could not explain.
+  Booked P38 (tool refuses a corrects-token under a declaring id
+  aimed at an older line). Third time this run a lane's refusal to
+  smooth an anomaly caught the desk — RESIDUE for dispatch-guards'
+  OBSERVATIONS: the value is the lane reporting what it cannot
+  explain, not explaining it. F149: brief-verifier omitted the
+  ritual's type check (dispatcher defect); a four-hit type-check
+  read nearly re-dispatched a lane over non-issues, stopped by
+  reading what the repo's own gate runs. Deviations graded in the
+  code, not on their description (the pin pops both resolver
+  variables itself; single-step round trip because the chain
+  refuses downgrade by design; changed assertions verified strictly
+  stronger). NEXT: U2 is irreversible (D25), unattended → hold
+  entry; F10's scope parenthetical stale in the permissive
+  direction after F134/F135 — reading CONFIRMED, restate against
+  both grants. POST-A2 DIGEST NEVER ARRIVED — demanded (timing-lens
+  datum). Turn cost so far: 13 desk commits, tracker 207 KB, 3
+  operator interactions, 1 unit landed. Consumer: U2 landing
+  grading; P38; the A2 reading; dispatch-guards residue.

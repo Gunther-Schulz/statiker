@@ -20,6 +20,33 @@ it is not decision-complete.
 
 
 
+- **READY (small) 2026-08-26 — P38: a bookkeeping correction under
+  a declarator id un-declares under latest-line-wins.** Provenance:
+  U2 run (run 3), desk F147: the pin file's declaration id carried
+  a later corrects-line aimed at an OLDER malformed declarator; the
+  resolver's latest-line-wins took the bookkeeping line as the id's
+  current body, the resolved write-set fell from five paths to
+  four, and the unit would have landed WITHOUT its containment test
+  — every gate reading clean, because a write-set is what the
+  record says. Caught only by a lane refusing to explain an anomaly
+  it saw (two untracked entries where five were expected).
+  ECONOMICS: class = silent scope loss at the unit seam (the
+  highest-cost class the run has: a shipped unit missing its
+  point); cost of the fix = tool-only, zero page lines. Design
+  settled (the desk's own rule): a declarator id must not carry
+  bookkeeping corrections — the tool REFUSES a corrects-token
+  appended under an id whose latest line is a declaration when
+  the token's target is an older line (hold: `declarator-
+  bookkeeping`, repair = a fresh id for the correction). Verifier:
+  red-first fixture reproducing F147's sequence (declare → malformed
+  redeclare → good redeclare → corrects aimed at the malformed one):
+  today the resolved write-set drops a path; after, the append is
+  refused and the write-set holds five. Write-set:
+  `plugin/skills/statiker/scripts/statiker_record.py`,
+  `tools/test_statiker_record.py`. Done-criterion: fixture red then
+  green; releases at the next seam in the P32 bundle. Checkpoint
+  review: resolver semantics → rides the P32 opus review.
+
 - **READY (small) 2026-08-26 — P37: a defective correcting line's
   own violation is unsheddable, and costs an operator round trip.**
   Provenance: U2 run (run 3), desk F130: a correcting line opened
