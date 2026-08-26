@@ -7310,3 +7310,36 @@ their register" is re-confirmed at n+2.
   next digest's grading; the fire-rate review (relayed-authority
   construction, n=2; a meta stale claim caught by the receiver's
   own artifact read).
+
+- 2026-08-26 — **U2 run — resume digest harvested (desk d7cd7a3f,
+  0.2.82 served, observed from the injection).** Gate: two live
+  holds (F49/F52 — my handoff had misnamed F53) resolved,
+  SWEEP_CLEAN, PINNED_APPEND_ONLY against 955010da byte-exact.
+  Premises across the 37 foreign commits: U2 write-set untouched
+  (empty diff-stat over the four files), harness-absent half
+  intact (instrument-proven zero), F51 SPLIT — pg16 clause
+  confirmed, live-writer clause REFUTED (app container in a
+  restart loop, F62: stale env with Unit-18-retired vars, a
+  leaving), alembic head moved to ops_alerts_audit_20260825 (F60;
+  desk discarded its own mis-parsing head counter for alembic's
+  answer — the self-built-view rule held). THE FINDING (F49/F61):
+  the F212 guard exists and is wired, but its predicate is the
+  BOOT path only — on the CLI path it INSTALLS the env URL by
+  design (docstring names the developer-redirect case; its own
+  incident record is the pg16-holds-pg17's-port shape). A pytest
+  harness is a CLI-path caller, so the parked entry's
+  done-criterion ("existing guard goes red on retargeting") was an
+  assurance wider than the predicate. Meta verified on its own
+  read of alembic_url.py. RULINGS: (1) containment is INSIDE the
+  harness unit — derivable from the operator's route-1 wording
+  ("never the local pg16 stack"): its own R-line with a red-first
+  pin, the 2026-08-11 repair recorded as not discharging it; not a
+  re-scope. (2) Mode stays unattended (operator intermittent; the
+  2026-08-23 hold-clearing ruling made under it stands). GO to
+  compose the two-unit head. Mint decision: none — but a
+  CANDIDATE datum for Grounding's reach test (a true repair claim
+  read as covering a caller class it never named) accrues; Fixing's
+  "instrument reach settled at arming" is the existing rule, no
+  new mint. Stop-call: no. Consumer: design-lock digest grading;
+  beat-the-books BACKLOG (the parked F212 entry's criterion
+  restatement lands there at the desk's close).
