@@ -437,6 +437,20 @@ provenance.
   and coupling" supports the design-moment half; A2's zero-delta
   reading prices the round half. Re-open at the compression pass
   with both in hand.
+  THE CORE VALUE, stated as value rather than boundary (operator,
+  same day, agreed): enough grounding and decisions, recorded with
+  their bases, that the implementation lands ONCE and CLEAN — and
+  that anyone later can check WHY it is shaped so by following a
+  citation instead of re-deriving it. Grounding+decisions before
+  code make implementation transcription, not exploration (kills
+  the fix loop at its source; shape chosen, not arrived at). Bases
+  and citations make the design ATTACKABLE (a fresh reader can find
+  where it is wrong — A1 today) and RESUMABLE (a successor picks it
+  up from the record — the pause today). The compression cut line
+  that follows: machinery serving those two is core; machinery
+  serving only the record's own consistency (today's silent-form
+  defects, the unsheddable violation, the exemption round trip) is
+  the record protecting itself, not the implementation.
 
 ## Horizon consideration — NOT a decision (operator, 2026-08-05)
 
