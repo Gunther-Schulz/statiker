@@ -7506,3 +7506,24 @@ their register" is re-confirmed at n+2.
   where the operator's history (11/14 prod-verified commits in the
   bare arc) had already derived the preference; datum for the
   derivability reading.
+
+- 2026-08-26 — **Control arm part 2, arm A graded (code shape of the
+  bare arc).** 8 mechanisms: 5 CHOSEN in src/ where a repo
+  convention existed to land in (audit pattern, thresholds-in-
+  config, exhaustive-test pattern, owning router); 3 arrived-at by
+  cheap moves — the M6→M7 pair (same author, an hour apart,
+  arrived then chosen once the lesson existed) is the cleanest
+  datum. Patch shape concentrates where NO convention existed: the
+  tools/ harnesses — three independent Postgres-reach patterns in
+  two days, no shared helper, a stale dated "FAILS on prod"
+  comment, six hardcoded values, the real verifier outside CI. Tests
+  6/8 pin the mechanism; 2/8 none (a prod query once), the
+  route-order class still unguarded. Reading for the candidate
+  line: supports the design-moment half NARROWLY — the loop leaves
+  good shape where the design already exists as convention, patch
+  shape where the unit is first of its kind, which is where the
+  premise re-read ("what already does this?") pays (today's F110,
+  same class, caught before code). Arm B (U2/U20 diffs) pending;
+  the comparison is graded then. Turn cost: one sonnet lane, ~45
+  min, ten parts. Consumer: the compression pass; the candidate
+  line's settlement.

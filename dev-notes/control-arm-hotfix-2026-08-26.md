@@ -200,8 +200,51 @@ irreversible gets the round" line. If arm A scores CHOSEN and clean,
 the convergent loop leaves good shape too and the design moment is
 optional below the irreversible line.
 
-### Arm A result
-(pending — sonnet discovery lane, dispatched 2026-08-26)
+### Arm A result (graded 2026-08-26 at the meta desk; lane
+`sonnet-control-arm-shape`, 10 parts, 16 non-docs commits' diffs
+and 12 final-state files read; 3172+/53− over 19 files, code:test
+≈ 1:1 by lines)
+
+Per mechanism (8 found; enumeration rule: persistent artifact at
+range end):
+
+| # | mechanism | placement | arrival | duplication | coupling | tests |
+|---|---|---|---|---|---|---|
+| M1 | DISTINCT alarm count | owning repos, in place | 1 commit, chosen | n/a | none | NONE (prod query once) |
+| M2 | retention registry+verifier | owning module, docstring = root cause | 2 commits, 1 in-place predicate fix | extends a named sibling (exhaustive-test pattern) | one restated ceiling, self-defended | pins mechanism, derived basis |
+| M3 | write-on-change CTE | owning insert path, fixed in place | 4 commits; CTE in place | — | — | no unit test (asyncpg encoder); real-pg verifier NOT in CI |
+| M3t | its tools/ checks | tools/ | ARRIVED: 3 layered extensions, 2 parallel arms coexist, one bundled in an unrelated commit | THREE independently built pg harness patterns in 2 days, no shared helper | dated "FAILS on prod" comment never updated; 6 hardcoded values | manual-run verifier |
+| M4 | fired-alarm persistence | ops ORM module, existing audit pattern | 1 commit, chosen | extends sibling | none | pins mechanism + control |
+| M5 | on-demand job endpoint | owning router | ARRIVED: shipped broken (route order), reordered 5 min later | generalizes an existing trigger | none | NONE; route-order class unguarded |
+| M6 | blocked-address detection | service + config | ARRIVED: thresholds as module constants (lane write boundary) → promoted to config 7 min later | folded into the sibling home | none after promotion | pins mechanism, discrimination pairs |
+| M7 | circuit breaker | service + config from the start | 1 commit, chosen | reuses M6 helpers | one DECLARED vendor-text coupling | pins mechanism, red-first pair |
+| M8 | underfunded wallet guard | the owning dry-run fn (already multiply patched) | 2 commits: branch appended beside the first, explained in code | none; undisclosed bundling of an M3t change | explained two-threshold overlap | pins mechanism, discrimination pair; fixed restated counts |
+
+Reading. In src/, shape is CHOSEN where the repo already carried a
+convention to land in — the audit-table pattern (M4), thresholds-in-
+config (M7), the exhaustive-test pattern (M2), the owning router
+(M5) — 5 of 8 chosen; the 3 arrived-at are cheap moves (a route
+reorder, a 7-minute config promotion, a branch appended with its
+reason), and M6→M7 is the cleanest pair: the same author, an hour
+apart, arrived-at then chosen once the lesson existed. Shape is
+ARRIVED where NO convention existed: the tools/ harnesses — three
+independent Postgres-reach patterns in two days, none sharing a
+helper, a stale dated comment, six hardcoded values, the real
+verifier outside CI. Tests: 6/8 pin the mechanism with
+discrimination pairs; 2/8 (M1, M5) have none and rest on a
+one-time prod exercise — the route-order class that bit M5 is
+still unguarded.
+
+Verdict for the candidate line: SUPPORTS THE DESIGN-MOMENT HALF,
+NARROWLY. The convergent loop leaves good shape where the design
+already exists as repo convention; it leaves patch shape exactly
+where the unit is the first of its kind — which is where a design
+moment's premise re-read ("what already does this?") pays: today's
+F110 (two harnesses existed; a third was about to be built) is the
+same class caught before code. The bare arc's cost is not in the
+production code, it is in the instruments around it — the corpus's
+"probe used twice graduates to tools or dies" rule fired, but into
+three graduates that do not know each other. n=1; arm B pending.
 
 ### Arm B result
 (pending — read after U2/U20 ship)
