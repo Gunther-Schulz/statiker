@@ -7585,3 +7585,33 @@ their register" is re-confirmed at n+2.
   over the repair's own additions. U2 hold + clearing composed
   (D36/D37) against F134/F135; UNIT_DISPATCHABLE; dispatching.
   Consumer: P24; the compression pass (timing rule); U2 landing.
+
+- 2026-08-26 — **U2 run — U2 LANDED LOCALLY with a HIGH caught at the
+  desk (4b821dbd lane commit; 823f727c repair; NOT deployed).** The
+  lane returned six green verifier steps; desk verification in the
+  artifact found both backfill branches reading
+  `current_odds.odds_value` (the PRICE, 8,4) where the LINES live in
+  `handicap`/`total` (10,2) — 38,671 prod rows would have carried a
+  rounded price where a line belongs, in the same 1.5–2.5 band as
+  real lines, invisible downstream; the migration's own docstring
+  cited the very pair it misread. THE FINDING UNDER IT (F153): the
+  parentage class twice in one sitting — the plant helper wrote each
+  class's line into the price column (expectation derived from the
+  artifact), and a structural test PINNED `SET handicap =
+  co.odds_value` as correct (the fix made it red — the one
+  arrangement that exposes it). The lane's red-first proved
+  reachability, not which column the SQL reads; its lessons slot
+  read "none". Repair red-first at both altitudes (baseline green,
+  the corrected pin red with the mechanism's predicted 2.46,
+  structural 2/11 → 13/13, ritual green), prod preview read-only
+  (ranges unambiguously lines). VALUE READING for the direction:
+  this was caught by verify-in-the-artifact — a dispatcher duty the
+  corpus already holds and the bare arc also performed (M6) — NOT by
+  a round; the isolated verify forcing point is next and is the
+  skill's own instrument for this altitude. Tag-enum repeat (R19
+  mirror of F110): one class. Deploy waits on the opus verify leg.
+  Desk recommends the Begehung after close, fresh context — matches
+  P39; F152/F153 its third instrument-parentage datum. Consumer:
+  the verify-leg digest; P39; the compression pass (which altitude
+  caught what: round → design; desk artifact-read → implementation;
+  verify leg → pending).
