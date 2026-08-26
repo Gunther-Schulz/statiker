@@ -134,3 +134,27 @@ Learnings, routed:
   4c13d9c8, 0d166689) — fire-rate data for the corpus review, no
   new mint.
 
+
+## Devil's advocate (operator, same day) — recorded as findings
+
+**Guidance check.** 48 operator turns across both transcripts
+(subagent-report turns excluded). None steer rigor — no "thorough",
+"deep", "verify", "prove". All steering is SCOPE ("dig into this and
+fix anything", "check the whole betting system", "getting the DB in
+order is a good time now"). The rigor was the session's under the
+corpus, unprompted; the widening was the operator's intent.
+
+**What this arm can and cannot show.** It cannot show statiker value
+above (a) the attack round and (b) a resumable record — and it does
+not. What it shows about the rest, honestly: the corpus alone
+reached the altitude and record form; the bare session with the
+fresh-context rule LOADED ran zero rounds over 37 commits, so the
+FORCING POINT that turns the rule into an event is the load-bearing
+mechanism beyond the round itself; the irreversible hold never fired
+(unknowable whether it should have); the seal's prediction half
+missed everything and its instrument half caught a real defect; the
+tracker's structural resumability was matched, for this arc, by an
+auto-summary plus record commits. Reading for the trial: the
+forcing point and the round carry the value; the rest of the grammar
+is on trial and this arm counts AGAINST its volume — the ≤150-line
+stabilization exit is the acknowledgement. n=1.
