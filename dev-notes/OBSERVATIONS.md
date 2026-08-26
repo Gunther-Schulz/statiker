@@ -7394,3 +7394,26 @@ their register" is re-confirmed at n+2.
   release bundle; the fire-rate review (silent-form class,
   n=5 in one session — a candidate for a page-vs-tool contract
   test, see P36's must-not-appear shape).
+
+- 2026-08-26 — **Control arm graded: the bare-session hotfix arc
+  (beat-the-books 955010da..b80c288e, 37 commits, no statiker).**
+  Pre-registered five questions (dev-notes/control-arm-hotfix-
+  2026-08-26.md), one sonnet discovery lane, graded here. Headline:
+  the corpus alone bought verification ALTITUDE (11/14 effect-site)
+  and RECORD FORM (10/10 docs(record) basis-bearing, unforced); it
+  did not buy a second reader — zero fresh-context rounds in the
+  arc, and the 2 corrected money-path/schema commits (of 7 shipped
+  without a round) are exactly the attack-round classes: a pin that
+  proved configuration not effect (write-on-change, four
+  corrections, "cost roughly a day") and a guard whose basis closed
+  a narrower question (unfunded wallet → reach). Verdict: the
+  attack-round floor evidenced from the bare side, n=1. Second
+  finding: the emergency was ONE commit; 36 followed ad hoc on the
+  day-opening "no clippy" call — a re-entry seam missing, not a
+  hotfix mode (thin). RESIDUE (outside this repo's write boundary):
+  (1) beat-the-books CLAUDE.md re-entry line — operator decision,
+  desk 3f holds the copy; (2) begehung repo OBSERVATIONS — the
+  round-2 walk reproduced its own class finding (read, never ran);
+  (3) corpus fire-rate datum — the reach rule fired 3× in-arc.
+  Consumer: the operator (decision 1, this reply); the trial close's
+  grading (the bare baseline beside the 6-round figure).
