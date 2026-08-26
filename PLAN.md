@@ -511,7 +511,20 @@ provenance.
   brief with a sound precedent in the tree needs nothing more.
   Compression target in one sentence: whatever it takes to get
   from a task to a decision-complete brief with bases — and no
-  more.
+  more. NOT A COPY OF THE DISPATCH BAR (operator asked, same day):
+  decision-complete is NECESSARY, NOT SUFFICIENT — it bounds the
+  output's FORM ("nothing left to decide"), not its truth: the bare
+  arc's blocked-address booking was decision-complete and broke
+  three premises on re-read (49607913); today's HIGH landed on a
+  decision that was complete, grounded, and wrong. Statiker's own
+  value is the PROCESS that makes the content true, upstream of
+  any brief: GROUNDED (every decision's basis opened; premises
+  re-read against the world before code — dispatch §1 grades what
+  is cited, statiker produces the citations from investigation),
+  and where the step is irreversible, ATTACKED (one fresh reader
+  turns "no decision open" into "no decision wrong that a fresh
+  reader could see"). Dispatch-guards' bar is the form the output
+  must reach; statiker is the process that reaches it truthfully.
 
 ## Horizon consideration — NOT a decision (operator, 2026-08-05)
 
