@@ -246,5 +246,23 @@ production code, it is in the instruments around it — the corpus's
 "probe used twice graduates to tools or dies" rule fired, but into
 three graduates that do not know each other. n=1; arm B pending.
 
+**Parallel implementation (operator asked; the pre-clippy class).**
+Still occurring, relocated: in src/ the model found siblings (M7
+reused M6's helpers, M4 extended the audit pattern, M5 generalized
+an existing trigger, M2 mirrored an existing test idiom); in the
+instrument layer it happened three times in two days (M3t re-
+implemented verify_deployed_sha.py's ssh/scp/docker-exec pattern,
+SSH_HOST re-declared; the dedup verifier used a third pattern) and
+a fourth time today at the statiker desk (F110: about to build a
+harness while two existed — its search keyed on the expected FORM).
+Mechanism, sharpened: not distance in the tree but ABSENCE OF A
+STRUCTURAL LINK — code reached by imports, tests, or config gets
+found; standalone scripts and anything tests do not reference are
+invisible, so no search keyed on the work in hand lands there (the
+dependents-search rule from the other side). What catches it: the
+precedent line with its search keyed on the INVARIANT ("what here
+already reaches Postgres / starts a container"), never the expected
+form — the one question that would have prevented all four.
+
 ### Arm B result
 (pending — read after U2/U20 ship)
