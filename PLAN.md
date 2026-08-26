@@ -525,6 +525,27 @@ provenance.
   turns "no decision open" into "no decision wrong that a fresh
   reader could see"). Dispatch-guards' bar is the form the output
   must reach; statiker is the process that reaches it truthfully.
+  DESIGN CYCLES under the line (operator asked, same day): central
+  — the cycle is where grounding and decisions are PRODUCED, the
+  round where they are tested at the irreversible step, the tracker
+  where they are kept. Two things change. (i) A cycle ends on a
+  PREDICATE, not a phase: decision-complete AND grounded — nothing
+  left to decide, every basis opened, premises re-read, precedent
+  line written, reversibility derived — self-terminating rather
+  than budget-terminated (caps truncate divergence, never cause
+  convergence: the standing efficiency convention). (ii) A second
+  cycle is entered only on a REFUTATION — the round bit, a premise
+  broke on re-read, implementation surfaced what design missed —
+  never by schedule; a second cycle without one is design in
+  installments, the fix loop moved earlier. Today's run is the
+  shape: lock → A1 refuted D16 → repair lap = cycle 2 in all but
+  name. Cycles-per-unit is the design-quality measure the way
+  rounds-per-unit is the record's: three cycles means cycle one
+  had a grounding problem — investigate that, do not cap it. Where
+  cycles get CHEAPER: a sound precedent makes the precedent line
+  most of the design, a short cycle — which is where the bare
+  session's speed came from and where statiker legitimately
+  matches it; the first-of-its-kind unit takes the full cycle.
 
 ## Horizon consideration — NOT a decision (operator, 2026-08-05)
 
