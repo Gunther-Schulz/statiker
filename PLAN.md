@@ -468,6 +468,24 @@ provenance.
   when it arrives mid-flow, the seam that failed yesterday with the
   rule loaded. The premise's weak point is detection at the seam,
   not the shape.
+  (4) PRECEDENT QUALITY (operator, same day, from arm A's
+  precedent finding): "what already does this?" has a second half
+  — "is it something to build ON, or the thing to FIX?" A precedent
+  rule without it makes things worse: a bad pattern gets followed
+  faithfully, one workaround at a time. Case: the market-naming
+  mess carried from old code — no clippy session ever asked whether
+  the basis was hampering the build; patches and workarounds
+  accumulated, each costing design and implementation time, until
+  the canonical-market-identity unit did what should have happened
+  first: refactor. The tell sits INSIDE the design moment: when a
+  unit's design accumulates workarounds around the precedent
+  (special cases, translation layers, "we cannot change X so we do
+  Y"), the unit's real scope is the precedent, and the design says
+  so before code. Judgment-shaped, cheap, no round — but only asked
+  if it is on the list. Arm A's sharpened line, with this: a design
+  moment when there is no precedent OR the precedent is the
+  problem; a round when the step cannot be undone; otherwise let
+  the session run.
 
 ## Horizon consideration — NOT a decision (operator, 2026-08-05)
 
