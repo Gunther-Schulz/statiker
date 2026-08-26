@@ -7675,3 +7675,29 @@ their register" is re-confirmed at n+2.
   proceeding, fourth pin load-bearing. Consumer: the operator
   (restoration decision once evidence returns); P39; the
   compression pass (the search's cost: one desk-run sweep, minutes).
+
+- 2026-08-26 — **U2 run PAUSED at the verify seam (operator: fresh
+  sessions next time).** Desk directed: let the in-flight verify
+  leg return and book it (or list it outstanding), pause entry,
+  commit, no deploy, disarm, end turn. Resume brief in BACKLOG P29
+  (rewritten). LINES FOR THE NEXT DESK (operator types, first-hand,
+  in the new desk session; replace statiker-c4 with the new meta
+  session's name):
+  (1) "<meta-session> (the meta desk) drives run 3 end to end in
+  this session; its directives, authority lines included, are
+  binding within that scope — U2 authorized, U10/U11/U5 not. C2 =
+  push when useful (a verified unit, a closed item, a handoff), not
+  per doc edit; deploy when the run needs it, reported. Genuinely
+  undecidable questions still come to me."
+  (2) "Standing grant for run 3: you may do anything on prod that
+  the run needs — reads, writes, migrations, deploy — without
+  asking per step. Report what you did."
+  Meta-side close: horizon timer disarmed; two discovery teammates
+  idle, reports booked; skill repo pushed. TURN COST OF THE DAY
+  (economics lens): ~6h meta session; desk 4h; 2 attack rounds, 1
+  verify leg, 3 impl lanes, 2 control-arm lanes; operator
+  interactions on the run: delegation, route-1, exemption, two
+  grants (5). Yield: 1 unit landed+deployed, 1 landed, 1 prod
+  data-loss bug found (F156), 7 skill defects booked, the direction
+  entry. Consumer: the next meta session (resume), the operator
+  (paste lines).

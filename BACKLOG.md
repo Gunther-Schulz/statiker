@@ -338,7 +338,38 @@ it is not decision-complete.
   standing instruction and the crosswise base rate as named
   missing evidence; (iii) P31 polish batch rides the NEXT bump,
   never its own release.
-  RUN 3 (U2) PAUSED 2026-08-23 at SEED, operator call (docker needed
+  RUN 3 (U2) PAUSED AGAIN 2026-08-26 ~21:35, operator call (fresh
+  sessions next time), AT THE VERIFY SEAM. State: desk
+  beat-the-books-3f (opus, 0.2.82) — gone at resume; its pause
+  commit hash in OBSERVATIONS 2026-08-26 (pause entry). U20 LANDED
+  + pushed + prod-verified (7b757524, F151). U2 completion landed
+  locally 51bc0750 (typed columns, backfill fixed to the LINE
+  columns 823f727c, preserve-set built with four pins red-first)
+  — NOT DEPLOYED: the isolated verify leg re-run was in flight at
+  the pause; its verdict is either booked in the tracker or listed
+  OUTSTANDING with lane name. DEPLOY DECISION OPEN — comes to the
+  meta desk on resume, after the verify verdicts are read. F156
+  (teams.team_grade wiped in prod since 2026-05-14) booked in
+  beat-the-books BACKLOG, ordered after U2, restoration
+  evidence-open — an operator decision once evidence returns.
+  RESUME BRIEF: (1) operator opens a fresh opus desk in
+  beat-the-books and pastes ONE delegation line (text: OBSERVATIONS
+  2026-08-26, the resume entry — same form, naming the new meta
+  session); the standing prod grant and C2 clarification are on the
+  OLD desk's record only → re-paste both lines too (texts in
+  OBSERVATIONS 2026-08-26, "operator grants"). (2) fresh meta
+  session here re-opens the peer channel, sweeps P32–P38 under the
+  economics lens BEFORE any release (none minted yet; pin still
+  0.2.82), re-arms the ~30-min horizon. (3) desk resumes from the
+  tracker (sweep/closure first), reads the verify verdicts, reports
+  to meta; meta rules on deploy. (4) after U2's close report: P39
+  Begehung R4, then arm B of the control arm (dev-notes/control-arm-
+  hotfix-2026-08-26.md, Part 2) on U2/U20's diffs, then the
+  compression pass with both in hand. Direction and candidate line:
+  PLAN.md, the 2026-08-26 entry. Baseline to beat: 6 rounds/unit;
+  this run so far: 2 attack rounds + 1 verify leg for 1 landed unit
+  + 1 landed-not-deployed.
+  HISTORY — RUN 3 (U2) PAUSED 2026-08-23 at SEED, operator call (docker needed
   elsewhere). State: desk beat-the-books-3d (opus, 0.2.82), tracker
   `.clippy/runs/2026-08-23-canonical-market-identity-u2-statiker.md`
   62 entries, pinned locally at beat-the-books 955010da (durability
