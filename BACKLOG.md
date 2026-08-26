@@ -20,6 +20,32 @@ it is not decision-complete.
 
 
 
+- **READY (small) 2026-08-26 — P37: a defective correcting line's
+  own violation is unsheddable, and costs an operator round trip.**
+  Provenance: U2 run (run 3), desk F130: a correcting line opened
+  bookkeeping scope where its target parsed unit scope; the tool
+  classes it SELF-TARGET-UNREACHABLE and prescribes a fresh
+  correcting line (issued, worked) — but the defective line's own
+  `repair-scope-change` violation sits in neither repair family, no
+  token clears it, append-only forbids removal, and the lock gate
+  fails closed on it. The only exit is an operator-granted
+  SWEEP_EXEMPT — one operator interaction per slip, for a slip the
+  desk already repaired. ECONOMICS (the lens): class = self-inflicted
+  form debt with no repair path; cost today = one operator round
+  trip + a held re-lock; corpus cost of the fix = zero page lines
+  (tool-only). Design settled: when a later correcting line
+  succeeds against the target the defective line named, the tool
+  sheds the defective predecessor's violation (the successful retry
+  IS its repair; the record keeps both lines, append-only intact).
+  Verifier: red-first fixture — defective correcting line + successful
+  retry → today one blocking hold; after, zero; and a defective line
+  with NO successful retry still holds (the shed keys on the retry's
+  success, never on time). Write-set:
+  `plugin/skills/statiker/scripts/statiker_record.py`,
+  `tools/test_statiker_record.py`. Done-criterion: both fixtures
+  green; releases at the next seam in the P32 bundle. Checkpoint
+  review: verdict semantics → rides the P32 opus review.
+
 - **READY (small) 2026-08-26 — P34: the irreversible tag's page
   form and tool form disagree.** Provenance: U2 run (run 3), desk
   F90: SKILL.md:729-733 says the tag is a BARE label line at

@@ -7465,3 +7465,25 @@ their register" is re-confirmed at n+2.
   datum for "verdict at tier ≥ producer" — the attacker, opus,
   out-read the fable grade on a design question, the third such
   measurement).
+
+- 2026-08-26 — **U2 run — post-repair digest harvested (desk
+  93966d5c; six closures, blocked at re-lock on two operator
+  lines).** R16 carries both halves of S1 (the attacker's
+  post-report correction: every plant failure satisfies "not
+  migrated", so the red arm is indistinguishable from an accident
+  even in a clean environment); reversibility now CONDITIONAL on
+  R16 landing, written into the entry. S5's transferable form:
+  a positive control proves the pattern is live, never that the
+  SCOPE is right — the second search keys on the invariant ("what
+  already starts a Postgres container"), not the expected form.
+  U20 reconciles with the found harness by IMPORTING three earned
+  mechanisms and refusing its repointing one (S6). Cascade: six
+  entries re-pointed after invalidations — the sweep found each,
+  the desk did not. BLOCKER F130: a self-inflicted form violation
+  no repair family clears → operator SWEEP_EXEMPT; booked P37
+  under the economics lens (one operator round trip per slip;
+  tool-only fix). TURN COST of the run so far (the lens): resume
+  → A1 → repair: 9 desk commits, tracker ~150 KB, 3 operator
+  interactions (delegation, route-1, now exemption + counts), 0
+  lines of code. Consumer: A2 digest; P37; the compression pass
+  (this run's cost line).
