@@ -171,6 +171,26 @@
   the day it was settled: five silent-form defects (P32–P36), each
   arriving with file:line and both sides read, none bookable by
   the desk itself.
+- **Economics lens — where the line is (operator-settled
+  2026-08-26).** Every harvest, mint decision, release, and review
+  in this repo asks, beside the evidence question, the ECONOMICS
+  question in two currencies: turns (desk rounds, relay round
+  trips, tracker volume) and corpus lines (SKILL.md operational
+  text, now 11× its target). A mint names the defect CLASS it
+  catches, its cost in both currencies, and whether judgment-in-
+  prose or an existing clause could carry it instead — a patch
+  that only ratifies the last incident's shape is the rigidity
+  the operator named (fire-born accretion until the skill prevents
+  the judgment the next incident needs). The line the trial is
+  drawing: the forcing point that makes the fresh-context round
+  happen, the round itself, and a record sufficient for the round
+  to read and a successor to resume are the VALUE; the rest is
+  machinery on trial against its cost. Basis: the control arm
+  (dev-notes/control-arm-hotfix-2026-08-26.md) and PLAN.md's
+  2026-08-26 direction entry. The compression pass consumes this;
+  so does every run digest — the meta session's harvest reports
+  the run's turn cost beside its findings.
+
 - **Mid-run tuning at seams.** Between cycles is an upgrade point,
   not a wait: grade what is evidence-complete (field-tested in-run
   with provenance = ripe; needs the run's remainder = defer), mint,

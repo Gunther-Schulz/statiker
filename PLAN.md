@@ -382,6 +382,37 @@ provenance.
   recorded at mint time (CLAUDE.md, birth-class bullet, widened
   this date).
 
+- 2026-08-26, operator: **WHERE THE LINE IS — the trial's standing
+  question from here on.** Control arm (dev-notes/control-arm-
+  hotfix-2026-08-26.md): a bare opus session under the corpus alone
+  reached statiker-grade altitude (11/14 effect-site) and record
+  form (10/10 basis-bearing), unprompted — operator steering was
+  scope, never rigor. What it lacked was ONE thing: a fresh-context
+  read before an irreversible step (zero rounds in 37 commits with
+  the rule loaded), and the two money-path commits later found
+  wrong are exactly that class — a true check closing a narrower
+  question than it appears to (configured-not-effect; the guard's
+  reach). Operator's own history: bare runs vary between clean and
+  "insufficient, issues surfacing later", cause unclear; the
+  control arm's mechanism for the variance is that prose rules fire
+  on momentum, not need — the SEAM is what varies. Direction
+  (operator): the value is (1) the forcing point that makes the
+  round happen and (2) the round; a record sufficient for the round
+  to read and a successor to resume. Everything else is machinery
+  that keeps those honest and is ON TRIAL against its cost —
+  measured the same day: five silent-form defects in the grammar,
+  ~150 KB of tracker before any code, and SKILL.md at 1673
+  operational lines against the 80–150 target (11×). Rigidity
+  risk named by the operator: fire-born accretion carries every
+  past incident's shape until the skill prevents the judgment the
+  next incident needs. Standing rule from here: economics — turns
+  AND corpus lines — is a first-class question at every harvest,
+  mint, and review (CLAUDE.md, trial conventions, the economics
+  lens); the compression pass is the realization and takes the
+  control arm as its input. Not a re-opening of the forcing-point
+  tenet ("thin in ceremony, never in forcing points") — a
+  sharpening of what "ceremony" has grown to include.
+
 ## Horizon consideration — NOT a decision (operator, 2026-08-05)
 
 When statiker is validated, CONSIDER lifting its framework from it
