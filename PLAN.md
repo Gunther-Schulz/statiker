@@ -451,6 +451,23 @@ provenance.
   serving only the record's own consistency (today's silent-form
   defects, the unsheddable violation, the exemption round trip) is
   the record protecting itself, not the implementation.
+  Refinements to the premise (meta session, operator asked;
+  agreed as refinements, not changes): (1) "irreversible" is a
+  judgment PRODUCED by the design moment — reversibility derived
+  from the unit's EFFECT with a basis, inside the record, never a
+  gut call at intake (today: U20 graded reversible, A1 showed its
+  failure arm could migrate the forbidden DB, re-graded
+  conditional) — and a reversible change whose wrongness nobody
+  would notice is irreversible for this purpose. (2) The design
+  moment carries ONE cheap check: its premises re-read against the
+  world before code (stale-premise class; caught yesterday's
+  three-broken-premises booking and today's two existing harnesses
+  at zero dispatch cost). (3) Caveat: the line sorts UNITS, not
+  sessions — most units are reversible and a bare session is the
+  right vehicle; the weight sits on noticing the irreversible unit
+  when it arrives mid-flow, the seam that failed yesterday with the
+  rule loaded. The premise's weak point is detection at the seam,
+  not the shape.
 
 ## Horizon consideration — NOT a decision (operator, 2026-08-05)
 
