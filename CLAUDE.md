@@ -189,7 +189,18 @@
   (dev-notes/control-arm-hotfix-2026-08-26.md) and PLAN.md's
   2026-08-26 direction entry. The compression pass consumes this;
   so does every run digest — the meta session's harvest reports
-  the run's turn cost beside its findings.
+  the run's turn cost beside its findings. ATTACK TIMING is the
+  sharp edge of the lens (operator, same day): if the round is the
+  value, WHEN it runs is the whole economics — too early grades an
+  object a decided change will replace, too late follows the
+  irreversible act, too often is the cost the operator is split
+  over. The one right moment: nothing decided-but-unbuilt remains,
+  and the first irreversible act has not happened. Every round
+  after the first owes a stated reason at dispatch and a
+  zero-delta reading at return — a second round returning zero
+  delta is evidence that one round plus a desk-side repair
+  suffices at that unit size, recorded as such, not as
+  confirmation.
 
 - **Mid-run tuning at seams.** Between cycles is an upgrade point,
   not a wait: grade what is evidence-complete (field-tested in-run
