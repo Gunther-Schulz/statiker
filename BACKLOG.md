@@ -345,10 +345,25 @@ it is not decision-complete.
   + pushed + prod-verified (7b757524, F151). U2 completion landed
   locally 51bc0750 (typed columns, backfill fixed to the LINE
   columns 823f727c, preserve-set built with four pins red-first)
-  — NOT DEPLOYED: the isolated verify leg re-run was in flight at
-  the pause; its verdict is either booked in the tracker or listed
-  OUTSTANDING with lane name. DEPLOY DECISION OPEN — comes to the
-  meta desk on resume, after the verify verdicts are read. F156
+  — NOT DEPLOYED. The isolated verify leg re-run RETURNED before
+  the pause: ALL ELEVEN requirements PASS (R9 cannot-verify on
+  carrier only), three instrument findings repaired red-first at
+  0cd15068. Desk pause commit df61dde4 (F164 = full state), tree
+  clean, single alembic head drop_destination_chat_20260826.
+  DEPLOY = PUSH in this repo (origin/main auto-deploys, no path
+  filter; boot auto-migrates fail-closed), so the desk correctly
+  did NOT push. THE DEPLOY DECISION IS THE OPERATOR'S and it is
+  NOT "ship U2": 15 unpushed commits ride the branch — U2's seven
+  (4b821dbd…0cd15068) PLUS two schema DROPS the operator directed
+  outside the run while it was live (teams.team_grade c54d6ee9;
+  ops_alerts.destination_chat b47d574b, each read by nothing,
+  each pinned by a real pg17 round trip, booked 3e2b8c60/8683b328)
+  plus records. A successor reading only the U2 record would
+  deploy more than it thinks. F156's ingestion-wipe entry is
+  superseded by the team_grade drop; the preserve-set stands for
+  the class. Recommendation: deploy as the FIRST act of the fresh
+  desk on resume (post-deploy verification needs a live desk
+  watching), never at a pause. F156
   (teams.team_grade wiped in prod since 2026-05-14) booked in
   beat-the-books BACKLOG, ordered after U2, restoration
   evidence-open — an operator decision once evidence returns.

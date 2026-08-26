@@ -7701,3 +7701,15 @@ their register" is re-confirmed at n+2.
   data-loss bug found (F156), 7 skill defects booked, the direction
   entry. Consumer: the next meta session (resume), the operator
   (paste lines).
+  PAUSE CONFIRMED by the desk (df61dde4, F164): verify leg had
+  RETURNED — all eleven PASS, three instrument findings repaired
+  at 0cd15068 before my directive arrived (divergence reported,
+  not absorbed). Desk did NOT push: my directive said "commit and
+  push, do not deploy" and in beat-the-books push IS deploy — a
+  contradiction in my brief, resolved by the desk toward safety;
+  correction of the meta's own composition (the disposition-
+  executability convention: a step checked against the RUN's
+  state — here the repo's deploy mechanics — before delivery).
+  Deploy payload = 15 commits incl. two operator-directed schema
+  drops outside the run; the decision is the operator's, resume
+  brief P29 carries it. Six lanes idle, no timers, no holds.
