@@ -423,6 +423,20 @@ provenance.
   "modern clippy" is therefore legitimately SMALLER than clippy:
   the model absorbed most of the discipline; the compression pass
   is the skill catching up with the models.
+  CANDIDATE LINE (operator: "hold this thought — it MAY be the
+  line I have been looking for"; NOT a decision): every unit gets
+  a DESIGN MOMENT with a record — what, why, where it lands —
+  before code, because the alternative is paying the design in
+  installments as fixes (manageability, not immediate failure);
+  only the IRREVERSIBLE unit gets the expensive machinery — the
+  forcing point and the fresh-context round. Cleaner than
+  "irreversible or not" because it splits the cheap half (a design
+  record) from the priced half (the round). What settles it: the
+  control arm's Part 2 (code shape, two arms — dev-notes/control-
+  arm-hotfix-2026-08-26.md): arm A scoring "arrived at, with moves
+  and coupling" supports the design-moment half; A2's zero-delta
+  reading prices the round half. Re-open at the compression pass
+  with both in hand.
 
 ## Horizon consideration — NOT a decision (operator, 2026-08-05)
 
