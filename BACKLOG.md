@@ -20,6 +20,54 @@ it is not decision-complete.
 
 
 
+- **READY 2026-08-26 — P32: foreign-record ids in a basis field
+  collide with this run's namespace.** Provenance: U2 run
+  (run 3), desk F66: the seed's F25 cites the U1 record's
+  entries as bare ids; the live-basis check
+  (`statiker_record.py` ~1449, `latest.get(cited)`) resolves every
+  cited id in THIS run's namespace, so once this run minted its
+  own D3/F20 the seed entry read as resting on them — silently,
+  until one were invalidated. Verified at the meta desk on the
+  source. Design settled: (1) SKILL.md basis rule — a basis citing
+  another record names the record (tracker path or run name)
+  before its ids, never a bare id; (2) tool half — the live-basis
+  scan ignores ids that follow a record-name token, and the sweep
+  surfaces a bare id whose number exceeds this run's own max as
+  FOREIGN-ID-SUSPECT (an id below the max is undetectable by
+  count, hence the prose rule is the primary carrier). Verifier:
+  red-first over a planted seed entry citing a bare F20 with the
+  run's F20 INVALIDATED (the defect's live fire is the desk's
+  own F66 on the real tracker; the suite fixture reproduces that
+  shape) → clean once the record is named; the suspect hold fires
+  on a planted over-max id.
+  Write-set: `plugin/skills/statiker/SKILL.md` (basis rule),
+  `plugin/skills/statiker/scripts/statiker_record.py`,
+  `tools/test_statiker_record.py`. Done-criterion: both proofs red
+  then green in the suite; released at the next seam (never
+  mid-run). Checkpoint review: machine-read semantics → opus
+  review owed before the pin moves.
+
+- **PARKED 2026-08-26 — P33: a tracker pinned before its head is
+  composed can never carry head R-lines.** Provenance: U2 run
+  (run 3), desk F65/D4: `r_lines` counts head-region lines only
+  (`statiker_record.py:885`, `i < head_end`); the pause-durability
+  commit pinned the tracker at seed, the skill bars insertion
+  under the head, so the run's R1–R15 live as ENTRIES — where no
+  gate or sweep surfaces them, and the entry tag set has no
+  member meaning DECLARED (a first declaration wears a new-letter
+  tag). The desk carries them by hand into the verify brief.
+  Missing evidence (named): the run's own verify seam — does the
+  hand-carry lose an R-line, and does the attack round see the
+  entry-form R-lines at all? Two design candidates, undecided on
+  that datum: (a) a `DECLARED` entry tag counted by `r_lines`
+  alongside head lines; (b) the durability pin is a plain commit
+  that leaves the head region unpinned until the head is
+  composed. Trigger: U2 run's verify digest; lift into READY with
+  the datum. Write-set (either design):
+  `plugin/skills/statiker/SKILL.md`,
+  `plugin/skills/statiker/scripts/statiker_record.py`,
+  `tools/test_statiker_record.py`.
+
 - **PARKED 2026-08-16 — P18: "serious core issues" investigation
   (operator-named, at run-2 stop).** The operator stopped run 2
   (canonical-frame-sign-repair) at cycle 7/7 with 3/4 rounds spent

@@ -7343,3 +7343,22 @@ their register" is re-confirmed at n+2.
   new mint. Stop-call: no. Consumer: design-lock digest grading;
   beat-the-books BACKLOG (the parked F212 entry's criterion
   restatement lands there at the desk's close).
+
+- 2026-08-26 — **U2 run — leg-return digest harvested (desk
+  4066accb).** Head R1–R15 composed; D110 (parent) is LIVE, 15
+  clauses, "designed and never built" — the desk corrected my
+  item-1 ruling's cost: the harness BUILDS D110(f) (mandatory
+  PROGRAMMATIC stamp) and (o) (the decoy pin), it invents nothing;
+  F61 upgraded to corroborated (resolver read and caller-duty read
+  agree). R8 refuses the parent's red as evidence. Catches before
+  brief: F70 (clause (b) forbids a new dependency — a sketched
+  testcontainers add withdrawn), F72 (no done-criterion in the
+  parent for the harness itself → R15, four executed conditions,
+  the fourth a correct FAILURE), F73/F74 (dead logging, sync
+  tree) as head constraints. Two record-tool defects, both
+  verified at this desk on the source and BOOKED: P32 (foreign-id
+  collision in a basis field — READY), P33 (pinned-before-head ⇒
+  R-lines as entries with no DECLARED tag — PARKED on the verify
+  seam datum). Mint decision: defer both to the next seam (P32's
+  design settled; the pin never moves mid-run). Stop-call: no.
+  GO to D-lines. Consumer: design-lock grading; P32/P33.
