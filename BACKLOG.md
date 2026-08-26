@@ -20,6 +20,27 @@ it is not decision-complete.
 
 
 
+- **READY (small) 2026-08-26 — P34: the irreversible tag's page
+  form and tool form disagree.** Provenance: U2 run (run 3), desk
+  finding: SKILL.md:729-733 says the tag is a BARE label line at
+  column 0, "never an entry"; the tool reads it only from an
+  entry's body (`statiker_record.py:1020`, inside the entry loop;
+  `irreversible_tag()` :778) — a page-form line is invisible to
+  sweep/closure, so `irreversible_units` reads empty on a unit
+  tagged exactly as the page says. Verified at the meta desk on
+  both sources. The desk applied SKILL.md:56 (executable spec is
+  the contract) and wrote the tool form. Design settled: the page
+  states the entry-body form (`unit U<k> irreversible: <effect>`
+  as a record line's body), the label-line sibling sentence
+  removed; tool unchanged. Verifier: a suite case feeding a
+  page-form bare line and asserting `irreversible_units` is EMPTY
+  (documents the tool's actual reach) beside the existing
+  body-form positive. Write-set: `plugin/skills/statiker/SKILL.md`,
+  `tools/test_statiker_record.py`. Done-criterion: page and tool
+  name one form; skill-craft invoked for the edit; releases at
+  the next seam with P32. Checkpoint review: touches a record
+  form → rides the P32 opus review.
+
 - **READY 2026-08-26 — P32: foreign-record ids in a basis field
   collide with this run's namespace.** Provenance: U2 run
   (run 3), desk F66: the seed's F25 cites the U1 record's
