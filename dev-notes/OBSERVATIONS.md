@@ -7487,3 +7487,22 @@ their register" is re-confirmed at n+2.
   interactions (delegation, route-1, now exemption + counts), 0
   lines of code. Consumer: A2 digest; P37; the compression pass
   (this run's cost line).
+
+- 2026-08-26 — **Operator grants at the re-lock hold (typed
+  first-hand in the desk session, per the operator's report here):**
+  (1) prod reach for run 3 unrestricted — "the other session can do
+  anything on prod it needs to do, no need to ask for every tiny
+  bit"; the F120 counts question dissolves into it. (2) C2's intent
+  clarified: "push when useful, nothing else" — the rule exists so
+  doc-only churn is not pushed, not to hold verified work; deploy
+  whenever the run needs it. Desk directed to persist (2) in
+  beat-the-books CLAUDE.md, amending the existing rule in place.
+  Meta-side consequence: my seed ruling's "prod/shared-DB reach
+  rides to the operator via meta" is superseded for this run by the
+  operator's own grant; the irreversible-unit hold's clearing basis
+  is unchanged (the standing authorization). Economics: two
+  operator interactions spent on reach questions the grant now
+  covers wholesale — the carve-out floor read prod as reserved
+  where the operator's history (11/14 prod-verified commits in the
+  bare arc) had already derived the preference; datum for the
+  derivability reading.
