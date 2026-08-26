@@ -256,10 +256,17 @@ SSH_HOST re-declared; the dedup verifier used a third pattern) and
 a fourth time today at the statiker desk (F110: about to build a
 harness while two existed — its search keyed on the expected FORM).
 Mechanism, sharpened: not distance in the tree but ABSENCE OF A
-STRUCTURAL LINK — code reached by imports, tests, or config gets
-found; standalone scripts and anything tests do not reference are
-invisible, so no search keyed on the work in hand lands there (the
-dependents-search rule from the other side). What catches it: the
+STRUCTURAL LINK — code reached by imports, tests, or config is far
+MORE LIKELY to be found (n=1, not a guarantee — the operator: "I
+wouldn't trust this 100%"; the failure is silent either way, so a
+probability is not a basis to skip the search); standalone scripts
+and anything tests do not reference are the likeliest misses, since
+no search keyed on the work in hand lands there (the
+dependents-search rule from the other side). This observation
+locates where the precedent search most often pays; it never
+exempts a unit from it — the precedent line (PLAN 4b) is per unit,
+unconditional, and requires the invariant-keyed search to have
+been RUN before it can be written either way. What catches it: the
 precedent line with its search keyed on the INVARIANT ("what here
 already reaches Postgres / starts a container"), never the expected
 form — the one question that would have prevented all four.
