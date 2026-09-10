@@ -4652,6 +4652,56 @@ class TestP24LandingMissingHold(RecordFixture):
         self.assertNotIn("landing-missing", self.violation_codes(v))
 
 
+# ---------- 0.2.84 checkpoint review N2: landing-missing reach
+
+class TestN2LandingMissingReachExtension(RecordFixture):
+    """0.2.84 checkpoint review, finding N2: landing-missing was blind
+    to two live shapes. First, `\\bUNIT_COMMITTED\\b` never matched
+    `UNIT_COMMITTED_EXTRAS`/`UNIT_COMMITTED_RESIDUE` — `_` is a word
+    character, so no boundary exists between `D` and `_`. Second, it
+    ignored the `record:`-scoped F-line form SKILL.md:1481-1483
+    itself prescribes for a non-landed unit's return (`record: unit
+    U<k> returned UNIT_COMMITTED ...`), since the check required
+    scope == "unit". Fixed: the token regex now takes the optional
+    suffix on a surviving boundary, and evidence is accepted from a
+    unit-scoped entry OR a record-scoped entry whose body names `unit
+    U<k>`."""
+
+    def test_unit_scoped_extras_evidence_holds(self):
+        body = ("- F9 [VERIFIED] unit U2 committed clean "
+                "(UNIT_COMMITTED_EXTRAS, sha 3f2a1c) — basis: unit-commit\n")
+        v = self.sweep(body)
+        hits = [x for x in v.get("violations", []) if x["code"] == "landing-missing"]
+        self.assertEqual(len(hits), 1, v)
+        self.assertIn("U2", hits[0]["text"])
+
+    def test_unit_scoped_residue_evidence_holds(self):
+        body = ("- F9 [VERIFIED] unit U2 committed clean "
+                "(UNIT_COMMITTED_RESIDUE, sha 3f2a1c) — basis: unit-commit\n")
+        v = self.sweep(body)
+        hits = [x for x in v.get("violations", []) if x["code"] == "landing-missing"]
+        self.assertEqual(len(hits), 1, v)
+        self.assertIn("U2", hits[0]["text"])
+
+    def test_record_scoped_evidence_naming_the_unit_holds(self):
+        body = ("- F9 [VERIFIED] record: unit U2 returned UNIT_COMMITTED "
+                "sha 3f2a1c — basis: the pasted verdict line\n")
+        v = self.sweep(body)
+        hits = [x for x in v.get("violations", []) if x["code"] == "landing-missing"]
+        self.assertEqual(len(hits), 1, v)
+        self.assertIn("U2", hits[0]["text"])
+
+    def test_record_scoped_evidence_with_a_landing_line_is_clean(self):
+        # control: the with-landing-line case must stay clean under
+        # the extended reach too
+        body = ("- F9 [VERIFIED] record: unit U2 returned UNIT_COMMITTED "
+                "sha 3f2a1c — basis: the pasted verdict line\n"
+                "\n"
+                "  unit U2 landed: 3f2a1c\n")
+        v = self.sweep(body)
+        self.assertNotIn("landing-missing", self.violation_codes(v))
+
+
 # --------------------------------------------- E-F: the append freeze
 
 class TestEFFreezeBreach(RecordFixture):

@@ -426,7 +426,12 @@ LANDING_INDENTED_RE = re.compile(r"^\s+unit (U\d+) landed:")
 # `record:` F-line from the pasted verdict") — the shape a
 # UNIT_COMMITTED-evidence line takes whether or not the desk also
 # appended the landing annotation.
-UNIT_COMMITTED_EVIDENCE_RE = re.compile(r"\bUNIT_COMMITTED\b")
+# 0.2.84 N2: `\b` sits between two word characters at the boundary
+# after "D" in "UNIT_COMMITTED_EXTRAS"/"UNIT_COMMITTED_RESIDUE" (`_`
+# is a word char) — never fired, so the bare form is the required
+# ANCHOR and the suffix is optional on a boundary that survives it.
+UNIT_COMMITTED_EVIDENCE_RE = re.compile(
+    r"\bUNIT_COMMITTED(?:_EXTRAS|_RESIDUE)?\b")
 SUPERSEDED_OPEN_RE = re.compile(r"^> Superseded — ")
 HEADING_RE = re.compile(r"^#{1,6} ")
 # `\S+` swallowed the separator that ended the clause, gluing a `;`
@@ -1610,6 +1615,13 @@ def sweep_checks(entries, landed_units=frozenset()):
     committed_without_landing = {}
     for e in entries:
         scope, unit = classify_scope(e.body)
+        # 0.2.84 N2: the desk's own prescribed non-landed-unit return
+        # (SKILL.md:1481-1483) is a `record:`-scoped F-line naming the
+        # unit in prose — scope=="unit" alone missed every one of them.
+        if scope == "record" and UNIT_COMMITTED_EVIDENCE_RE.search(e.body):
+            m = re.search(r"\bunit (U\d+)\b", e.body)
+            if m:
+                scope, unit = "unit", m.group(1)
         if (scope == "unit" and unit not in landed_units
                 and UNIT_COMMITTED_EVIDENCE_RE.search(e.body)
                 and unit not in committed_without_landing):
