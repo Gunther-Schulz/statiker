@@ -1350,7 +1350,12 @@ parallel decision cites the record tool's `waves` partition,
 whose comparison is lexical over that grammar (the verdict
 reports raw spellings beside the normalized paths; an alias
 outside the grammar — an absolute or symlinked spelling — is a
-declaration defect, the desk's to catch at composition). A missing
+declaration defect, the desk's to catch at composition). Disjoint
+is a write-set answer, never a scheduling verdict: ordering
+constraints (a unit's write-set inside another's created tree, a
+pin needing a prerequisite substrate) and execute-set collisions
+(shared harness ports, a conftest one lane mutates while another
+executes it) are the desk's, read from the D-lines. A missing
 decision, file, or value is reported as a gap, never bridged —
 and triaged on arrival: a unit-local gap decision is a design
 decision made without an attack round, and it is recorded as

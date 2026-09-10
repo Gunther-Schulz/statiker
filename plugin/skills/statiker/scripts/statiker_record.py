@@ -1958,6 +1958,23 @@ def waves_over_units(entries):
     return write_sets, unplannable, waves, spellings
 
 
+# P36 (BACKLOG.md:149, F98; widened R4/D39): "disjoint" is a
+# write-set answer, never a scheduling verdict — U2's pin lived
+# inside the tree U20 creates, and disjoint write-sets alone said
+# nothing about that. The caveat names both axes a bare label hides:
+# ORDERING (a unit's write-set inside another's created tree, a pin
+# needing a prerequisite substrate) and EXECUTE-SET collisions
+# (shared harness ports, a conftest one lane mutates while another
+# executes it) — neither is write-set-derivable, both are the desk's,
+# read from the D-lines.
+WAVES_DISJOINT_CAVEAT = (
+    " (disjoint write-sets only — ordering constraints (a unit's "
+    "write-set inside another's created tree, a pin needing a "
+    "prerequisite substrate) and execute-set collisions (shared "
+    "harness ports, a conftest one lane mutates while another "
+    "executes it) are the desk's, read from the D-lines)")
+
+
 def cmd_waves(args):
     entries, violations, meta, reach = parse_tracker(load(args.tracker))
     say_head_region_entries("waves", reach)
@@ -1971,7 +1988,7 @@ def cmd_waves(args):
         overlap = len(members) > 1
         say(f"wave {i}: {{{', '.join(members)}}}"
             + (" (overlap — serialize within wave)" if overlap
-               else " (disjoint — parallel-eligible)"))
+               else WAVES_DISJOINT_CAVEAT))
     for u in unplannable:
         say(f"UNPLANNABLE: {u} — no live write-set declared")
     finish("WAVES_COMPUTED", 0,

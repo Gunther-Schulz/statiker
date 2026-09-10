@@ -807,6 +807,23 @@ class TestWaves(RecordFixture):
         self.assertFalse(parallel["serialize"])
         self.assertEqual(v["unplannable"], [])
 
+    def test_disjoint_wave_prints_the_caveat_not_a_scheduling_verdict(self):
+        # P36 (BACKLOG.md:149, F98; widened R4/D39): "disjoint" is a
+        # write-set answer, never a scheduling verdict — U2's pin
+        # lived inside U20's created tree though the two were disjoint
+        # write-sets. The printed line states the predicate and hands
+        # ordering/execute-set collisions to the desk, reading the
+        # D-lines; the old bare "parallel-eligible" label must not
+        # appear at all.
+        body = "- F1 [VERIFIED] unit U1 write-set: src/a.py — basis: d\n"
+        p = tool(["waves", "--tracker", str(self.write_tracker(body))],
+                cwd=self.dir)
+        self.assertIn("disjoint write-sets only", p.stdout)
+        self.assertIn("ordering constraints", p.stdout)
+        self.assertIn("execute-set collisions", p.stdout)
+        self.assertIn("the desk's, read from the D-lines", p.stdout)
+        self.assertNotIn("parallel-eligible", p.stdout)
+
     def test_unit_missing_write_set_is_unplannable(self):
         body = (
             "- F1 [VERIFIED] unit U1 write-set: src/a.py — basis: design\n"
