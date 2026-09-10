@@ -4347,6 +4347,30 @@ class TestP4IrreversibleTag(RecordFixture):
         self.assertEqual([e["unit"] for e in v["irreversible_units"]],
                          ["U3", "U5"])
 
+    def test_page_form_bare_label_line_surfaces_too(self):
+        # P34 (BACKLOG.md:100, F90): SKILL.md:729-733 says the tag is a
+        # BARE label line at column 0 ("never an entry"), the `SKILL:
+        # `'s sibling — beside the existing entry-body positive above,
+        # which the tool has always read.
+        body = "unit U3 irreversible: deletes prod rows\n"
+        v = self.sweep(body)
+        self.assertEqual(v["verdict"], "SWEEP_CLEAN")
+        line = self.lineno_of(body, "irreversible: deletes prod rows")
+        self.assertEqual(v["irreversible_units"],
+                         [{"unit": "U3", "line": line,
+                           "effect": "deletes prod rows"}])
+
+    def test_page_form_bare_label_line_reopens_nothing_in_closure(self):
+        # the page's own claim: "never an entry and never a body
+        # opener, so it re-opens nothing under the closure predicate"
+        body = CLOSED + "unit U3 irreversible: deletes prod rows\n"
+        v = self.closure(body)
+        self.assertEqual(v["verdict"], "CLOSURE_LIVE")
+        line = self.lineno_of(body, "irreversible: deletes prod rows")
+        self.assertEqual(v["irreversible_units"],
+                         [{"unit": "U3", "line": line,
+                           "effect": "deletes prod rows"}])
+
 
 # --------------------------------------------- E-F: the append freeze
 

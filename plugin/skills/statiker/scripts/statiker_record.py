@@ -967,6 +967,13 @@ def parse_tracker(text: str):
             skill_version_lines.append({"line": i, "version": m.group(1)})
             continue
 
+        m = IRREVERSIBLE_EXACT_RE.match(line)  # P34: the SKILL:'s sibling
+        if m:                                  # label-line form (SKILL.md
+            irreversible_lines.append(          # :730-731): a bare line at
+                {"unit": f"U{m.group(1)}", "line": i,  # column 0, never an
+                 "effect": m.group(2).strip()})  # entry, re-opens nothing
+            continue
+
         m = SWEEP_EXEMPT_CEILING_RE.match(line)  # P6
         if m:
             sweep_exempt_lines.append({"line": i, "code": m.group(1),
