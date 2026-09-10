@@ -7771,3 +7771,41 @@ their register" is re-confirmed at n+2.
   discharges into the migration by construction: every old READY
   returned to the desk as a decision-blocked re-grade, old PARKED
   kept its evidence blocker typed.
+
+- 2026-09-10 — **U2 DEPLOYED AND VERIFIED LIVE; lc-72 shipped; lc-73
+  found and booked.** Run 3: desk pushed the merged branch
+  (d8d8bde1..689a0ba7, 25-commit claim; five unlisted 2026-08-27
+  collaborator commits claimed on an executed Dockerfile-COPY-set
+  basis, F170 — deviation ACCEPTED, the enumeration defect was the
+  meta desk's stale P29-derived payload list). Boot chain ran all
+  four migrations; R18 backfill 0/0 over its 49k positive control;
+  R1 value checks 0 mismatches (19,281-row control). D38
+  preserve-set's FIRST LIVE exercise: full sync on deployed code,
+  0 wiped of 49,097, instrument proven (pre∩pre / pre∩empty);
+  residues dispositioned with controls (389 deleted rows, 316
+  post-migration nulls per D38's declared semantics). Desk
+  dispatched the closing isolated verify leg (opus-u2-verify,
+  object 689a0ba7, read-only tail, F173 reads-at 54907bb9) —
+  approved on the record's own gate (no V-line) AND the final-form
+  rule. PRECEDENT-LINE field datum (placement mint): neither
+  U20's nor U2's design carries the checkable form; three PROSE
+  precedent judgments exist (R6/D24/D38), search
+  case-insensitive with positive control — the mint's evidence
+  that the judgment happens but is ungradeable without the form.
+  Desk-side out-of-scope leavings noted for its close: the app's
+  "0 migration(s) applied" summary vs three applied (cause
+  unverified); spent-queue .paths litter (statiker tool candidate,
+  still unverified at source here). Ruling count this run: meta 1
+  issued-and-reversed-on-measurement, desk 0.
+  LC-72 ARC (sonnet lane, dispatched from this desk): recognizer
+  widened for date-led bullets in closure sections only, red-first
+  stash-proof, suite 286 with the two known pre-existing import
+  errors, verified at the artifact here; halted correctly once on
+  the plugin.json version guard (my brief's "no bump flow" premise
+  wrong; bump 0.3.24 same commit); dd81507 + amend + close pushed
+  (a732fff). Integration then hit the SECOND gap: merge refuses
+  WHOLE on duplicate bodies with no desk-disposition mechanism, so
+  the re-migration (20 open entries already st-1..20 block the 25
+  closures) is structurally uncompletable — booked lifecycle lc-73
+  (489a8d5), st-22 re-pointed to it. ITEMS-DONE still 0/25;
+  BACKLOG.md stays unretired, jointly gated st-21+st-22.
