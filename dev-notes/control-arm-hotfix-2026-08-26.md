@@ -271,5 +271,47 @@ precedent line with its search keyed on the INVARIANT ("what here
 already reaches Postgres / starts a container"), never the expected
 form — the one question that would have prevented all four.
 
-### Arm B result
-(pending — read after U2/U20 ship)
+### Arm B result (graded 2026-09-10 at the meta desk; lane
+`sonnet-arm-b-shape`, read-only at bc5f4727; raw report:
+the lane's message plus its findings file — 8 non-docs
+implementation commits enumerated from the record's own lines
+and confirmed in git, 5 mechanisms, every criteria cell with a
+quoted basis; lane deviation noted: full findings landed as a
+scratch file despite the no-report-file tail — content graded
+usable, form miss logged)
+
+Per mechanism (5; enumeration rule as pre-registered):
+
+| # | mechanism | placement | arrival | duplication | coupling | tests |
+|---|---|---|---|---|---|---|
+| B1 | typed-line migration | owning migration, docstring = substrate cause; 601 DERIVED not chosen | 2 commits: CHOSEN first-commit shape + 1 same-shape bug fix | none; the one precedent migration distinguished in its docstring | 601 restated across 3 files + the migration, each with the derivation comment; test DERIVES the sum (parentage-compliant); dated measured values embedded in docstring | MIXED: 2 source-TEXT substring asserts (fixture-shaped); width-sum and anchored-regex asserts mechanism-shaped, the anchor red-first per F176 |
+| B2 | line-column registry | beside the enums it maps | 1 commit, CHOSEN | none (search stated); the sibling constants home deliberately not used | none | exhaustiveness check mechanism-shaped + literal value pins |
+| B3 | upsert preserve guard | owning base class + per-table declaration, root-cause precedent named in docstring (teams.team_grade) | ARRIVED AT: absent from the design commit entirely; added after the in-run re-lock found the silent overwrite, split 2 commits + 1 pin-visibility repair (F163) | none; extends the existing ABC | 2 comments coupled to test NAMES | strongest form: planted values survive a real re-observation on real pg17 |
+| B4 | pg17 harness | new tests/integration, cause = the no-green-mocks rule with no harness enforcing it | 1 commit, CHOSEN, unmodified after | MIRRORS a 251-line tools/ script (declared in docstring, prior art named, one hazard explicitly not mirrored) — duplication-by-mirroring, acknowledged, not extracted | PORT hardcoded, single home | n/a (fixtures) |
+| B5 | containment pin | co-located with the harness it proves | ARRIVED AT: initial form's decoy assertion insufficient (F175, V1); red arm added in repair 8c267ad8 | sole file of its kind | none | mechanism-shaped, discrimination proven red-first per the record |
+
+Reading (this desk's, per the pre-registration: shape reading,
+not a verdict). 3 of 5 CHOSEN clean; the 2 ARRIVED AT are not
+drift-shaped moves — each is the loop's own instrument firing:
+B3 is a mechanism the LOCKED DESIGN missed, caught in-run by the
+re-lock before prod (the second-cycle-on-refutation shape, PLAN
+2026-08-26); B5 is an instrument weakness caught by the isolated
+verify leg. So the design moment did NOT buy chosen-clean by
+itself — what closed both gaps was the record's re-lock plus the
+verify leg, which is the composition the trial claims, and a
+datum AGAINST reading the design moment as sufficient. Against
+arm A's pattern: arm B's coupling is lighter and self-defending
+(derivation comments, parentage-compliant restatement); the
+instrument-layer disease recurs in BOTH arms — arm A built three
+unshared pg harnesses, arm B built the fourth as a DECLARED
+mirror with prior art named, better hygiene, same non-extraction
+(the precedent line, PLAN 4b / st-25, existed in neither arm;
+this is its motivating class, now with n=4). The dated
+measured-values-in-docstring class also recurs in both arms
+(arm A M3t's stale "FAILS on prod" comment; arm B's row-count
+stamps — benign today, the same aging shape). Residue-hypothesis
+note: the two fixture-shaped source-text asserts (B1) are
+letter-class residue that shipped and stayed — consistent with
+the hypothesis, nothing design-class. Caveats as pre-registered:
+n=1 each, arms not blind, unit shapes differ, and the statiker
+arm ran under the full corpus (the confound stands).
