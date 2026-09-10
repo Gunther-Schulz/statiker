@@ -624,6 +624,19 @@ provenance.
   competent — which is the very trade the trial exists to
   measure; importing it would beg the trial's question, not
   answer it.
+  CONFOUND CAVEAT (operator, this date): the trial has NO
+  bare-model arm and cannot have one here — the control arm ran
+  under the operator's extensive global corpus (its own doc says
+  so: "under the corpus alone"), so every "the model already
+  does this" reading credits model + corpus, never the model.
+  Consequence for the pass: a cut justified by control-arm
+  conduct is valid only corpus-present; per cut, ask whether the
+  conduct is corpus-carried and whether references/evidence.md
+  (70 lines, the bare-stack substitute) carries enough of it —
+  a corpus-leaning cut breaks SILENTLY on a bare machine, the
+  self-containment criterion's disqualifier. The portability
+  question (CLAUDE.md, self-containment) is re-asked per cut,
+  not per release.
 
 ## Horizon consideration — NOT a decision (operator, 2026-08-05)
 
