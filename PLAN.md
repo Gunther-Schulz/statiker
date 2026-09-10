@@ -659,6 +659,21 @@ provenance.
   the injection), mint at the compression seam with that datum.
   Names a record form → the checkpoint-based opus review binds
   the release that carries it.
+  COMPRESSION OBJECTIVE, NAMED (operator + meta, this date, from
+  the pstack deliberation): the pass's cut criterion in one
+  line — cut anything whose absence does not bill HUMAN minutes,
+  where a defect reaching prod bills them at the highest rate
+  (incident duty), so a cheap agent-side round purchased against
+  that invoice is keepable and ceremony billing only agent
+  tokens is not. Underneath it the KIND SPLIT (candidate corpus
+  mint, reporting module — operator GO pending): work divides by
+  kind, never leftover quantity — the derivable/checkable/
+  mechanizable is the desk's whatever it costs in tokens; the
+  operator gets only what is constitutively theirs (intent,
+  preference, authority over the irreversible) — a role, never a
+  remainder. Mechanism: operator attention neither scales,
+  parallelizes, nor gets cheaper, so the optimum drifts
+  agent-ward every model generation.
 
 ## Horizon consideration — NOT a decision (operator, 2026-08-05)
 
