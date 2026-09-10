@@ -1573,7 +1573,12 @@ met (with it), or NOT EXERCISED — because coverage failure is a
 non-event only the isolated verifier can name: a requirement
 nobody checked returns exactly what one that passed returns, and
 the desk cannot know what a fresh context declined to exercise
-unless the brief demanded the statement. The V-line's evidence
+unless the brief demanded the statement. The brief demands the same
+statement PER FINDING repaired in-round: whether its red state
+exists RE-EXECUTABLY — a committed red arm (a commit the fix's own
+diff reverts) or the red run's pasted output — NOT EXERCISED
+otherwise, since a docstring-only red run is formally compliant and
+unattackable short of this leg (F175). The V-line's evidence
 carries the per-R table; PASSED is recordable only with every
 R-line met or its non-exercise carried as a named
 [AUTO-ACCEPTED]. (hypothesis) The verify brief
