@@ -444,9 +444,16 @@ CORRECTS_RE = re.compile(r"corrects line (\d+)")
 REPAIR_SUPERSEDE = ("supersede-whole: restate under the same id with "
                     "`corrects line {n}`; tag and scope re-carried "
                     "where they parsed")
+# P35 (BACKLOG.md:129, F91): the prescribed line carries its OWN
+# basis clause — the verdict that prescribed the repair, named,
+# terminating rather than citing anything further — so pasting it
+# does not itself draw a fresh basis-missing hold and move the hold
+# one line down; the ORIGINAL literal (no basis clause) was not a
+# fixpoint, F91's measured bite.
 REPAIR_BOOKKEEPING = ("bookkeeping: append `- <id> [<tag>] record: "
-                      "corrects line {n}` — sheds violations only, "
-                      "status untouched")
+                      "corrects line {n} — basis: the {code} verdict "
+                      "at line {n}` — sheds violations only, status "
+                      "untouched")
 # Two classes the settle does not reach, and neither repair form fits
 # (surfaced as a build gap; the strings state what SKILL.md's own
 # rules already say rather than inventing a third mechanism): the
@@ -588,7 +595,7 @@ def annotate_repairs(violations, line_ids=None):
             form = REPAIR_FORMS.get(
                 v["code"],
                 "unclassified: this violation's repair form is not settled")
-        v["repair"] = form.format(n=v["line"])
+        v["repair"] = form.format(n=v["line"], code=v["code"])
     return violations
 
 

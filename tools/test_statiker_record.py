@@ -481,6 +481,33 @@ class TestP5EpochScopedSweep(RecordFixture):
         self.assertEqual(v["retro_holds"], [])
 
 
+class TestP35BasisMissingRepairIsAFixpoint(RecordFixture):
+    """P35 (BACKLOG.md:129, F91): pasting a basis-missing hold's own
+    PRESCRIBED repair text must terminate the hold, not move it one
+    line down forever. REPAIR_BOOKKEEPING's literal form is `- <id>
+    [<tag>] record: corrects line {n}` — no basis clause of its own —
+    so the correcting line it prescribes was itself basis-missing,
+    and pasted again would move the hold again, indefinitely."""
+
+    def test_repair_text_applied_once_clears_the_hold(self):
+        body = "- F2 [VERIFIED] a finding with no basis clause\n"
+        v = self.sweep(body)
+        self.assertEqual(v["verdict"], "SWEEP_HOLDS")
+        hits = [x for x in v["violations"] if x["code"] == "basis-missing"]
+        self.assertEqual(len(hits), 1, v)
+        n = hits[0]["line"]
+        template = hits[0]["repair"].split("`")[1]
+        repaired_line = (template.replace("<id>", "F2")
+                                 .replace("<tag>", "VERIFIED"))
+        body2 = body + repaired_line + "\n"
+        v2 = self.sweep(body2)
+        holds = [x for x in v2.get("violations", [])
+                if x["code"] == "basis-missing"]
+        self.assertEqual(holds, [],
+                         "the prescribed repair, applied once, still left "
+                         f"a basis-missing hold: {v2}")
+
+
 # ------------------------------------------------------------------- closure
 
 CLOSED = (
