@@ -4372,6 +4372,39 @@ class TestP4IrreversibleTag(RecordFixture):
                            "effect": "deletes prod rows"}])
 
 
+# ----------------------------- P24: the unforced landing annotation
+
+class TestP24LandingMissingHold(RecordFixture):
+    """begehung R4 finding (BACKLOG.md:279 P24 lineage): nothing FORCES
+    the landing annotation at landing time — U2's original landing
+    shipped without one and the close composed it by hand from the
+    F164 chain. A unit whose record carries UNIT_COMMITTED evidence
+    (a body quoting the git tool's verdict) with no landing annotation
+    anywhere in the tracker now surfaces as a sweep hold."""
+
+    def test_committed_evidence_with_no_landing_line_holds(self):
+        body = ("- F9 [VERIFIED] unit U2 committed clean (UNIT_COMMITTED, "
+                "sha 3f2a1c) — basis: unit-commit\n")
+        v = self.sweep(body)
+        self.assertEqual(v["verdict"], "SWEEP_HOLDS")
+        hits = [x for x in v["violations"] if x["code"] == "landing-missing"]
+        self.assertEqual(len(hits), 1, v)
+        self.assertIn("U2", hits[0]["text"])
+
+    def test_committed_evidence_with_a_landing_line_is_clean(self):
+        body = ("- F9 [VERIFIED] unit U2 committed clean (UNIT_COMMITTED, "
+                "sha 3f2a1c) — basis: unit-commit\n"
+                "\n"
+                "  unit U2 landed: 3f2a1c\n")
+        v = self.sweep(body)
+        self.assertNotIn("landing-missing", self.violation_codes(v))
+
+    def test_no_committed_evidence_holds_nothing(self):
+        body = "- F9 [VERIFIED] unit U2 in progress — basis: probe\n"
+        v = self.sweep(body)
+        self.assertNotIn("landing-missing", self.violation_codes(v))
+
+
 # --------------------------------------------- E-F: the append freeze
 
 class TestEFFreezeBreach(RecordFixture):

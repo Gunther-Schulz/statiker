@@ -274,7 +274,7 @@ RULE_MINT_VERSION = {
     "clause-unparsed": "0.2.43",
     "corrects-nothing": "0.2.45",
     "corrects-token-out-of-body": "0.2.67",
-    "declarator-bookkeeping": "0.2.83",
+    "declarator-bookkeeping": "0.2.84",
     "entry-form": "0.2.33",
     "entry-near-miss": "0.2.39",
     "freeze-breach": "0.2.63",
@@ -283,6 +283,7 @@ RULE_MINT_VERSION = {
     "killerless-dead": "0.2.33",
     "landing-blank": "0.2.36",
     "landing-indent": "0.2.33",
+    "landing-missing": "0.2.84",
     "multi-corrects-token": "0.2.49",
     "pending-latest": "0.2.33",
     "phase-enum": "0.2.33",
@@ -416,8 +417,15 @@ BACKTICK_RE = re.compile(r"`[^`]*`")
 # EXACT `unit U<k> ` prefix, never a body-wide search.
 WRITE_SET_NEAR_RE = re.compile(r"(?i)^write[\s-]*set\s*:?\s*")
 WRITE_SET_EXACT_RE = re.compile(r"^write-set: \S")
-LANDING_RE = re.compile(r"^unit U\d+ landed:")
-LANDING_INDENTED_RE = re.compile(r"^\s+unit U\d+ landed:")
+LANDING_RE = re.compile(r"^unit (U\d+) landed:")
+LANDING_INDENTED_RE = re.compile(r"^\s+unit (U\d+) landed:")
+# P24 (begehung R4): a body-content line reporting the git tool's
+# UNIT_COMMITTED verdict for a unit, quoted the way EXTRAS/RESIDUE
+# already ask the desk to (SKILL.md, Implementation: "book as a
+# `record:` F-line from the pasted verdict") — the shape a
+# UNIT_COMMITTED-evidence line takes whether or not the desk also
+# appended the landing annotation.
+UNIT_COMMITTED_EVIDENCE_RE = re.compile(r"\bUNIT_COMMITTED\b")
 SUPERSEDED_OPEN_RE = re.compile(r"^> Superseded — ")
 HEADING_RE = re.compile(r"^#{1,6} ")
 # `\S+` swallowed the separator that ended the clause, gluing a `;`
@@ -861,6 +869,9 @@ def parse_tracker(text: str):
     skill_version_lines = []  # P3: labeled mid-run SKILL: version lines
     irreversible_lines = []   # P4: unit U<k> irreversible: <effect> lines
     sweep_exempt_lines = []   # P6: labeled SWEEP_EXEMPT declarations
+    landed_units = set()      # P24: units carrying ANY landing line,
+                              # indented (sanctioned) or not (still a
+                              # landing statement, separately lint-held)
     lines = split_lines(text)
 
     # ES-1: surface 1 begins at the first `## ` heading — E-L: unless
@@ -944,6 +955,9 @@ def parse_tracker(text: str):
                  "(a blank inside a block must be a bare '>')")
 
     for i, line in enumerate(lines, 1):
+        m_land = LANDING_RE.match(line) or LANDING_INDENTED_RE.match(line)
+        if m_land:
+            landed_units.add(m_land.group(1))
         if LANDING_RE.match(line):
             viol("landing-indent", i, line)
         elif LANDING_INDENTED_RE.match(line) and (
@@ -1076,7 +1090,8 @@ def parse_tracker(text: str):
     reach = {"r_lines": r_lines, "head_region_entries": head_region_entries,
              "skill_versions": skill_versions,
              "irreversible_units": irreversible_lines,
-             "sweep_exempt": sweep_exempt_lines}
+             "sweep_exempt": sweep_exempt_lines,
+             "landed_units": landed_units}
     return entries, violations, meta, reach
 
 
@@ -1496,7 +1511,7 @@ def cmd_lint(args):
     finish("LINT_CLEAN", 0, **meta)
 
 
-def sweep_checks(entries):
+def sweep_checks(entries, landed_units=frozenset()):
     violations = []
     latest = latest_by_id(entries)
 
@@ -1504,6 +1519,28 @@ def sweep_checks(entries):
         if e.tag == "PENDING":
             violations.append({"code": "pending-latest", "line": e.lineno,
                                "text": f"{id_} latest line is [PENDING]"})
+
+    # P24 (begehung R4): nothing FORCES the landing annotation at
+    # landing time — U2's original landing shipped without one and the
+    # close composed it by hand from the F164 chain. A unit whose
+    # record shows UNIT_COMMITTED evidence (a body quoting the git
+    # tool's verdict, the same shape EXTRAS/RESIDUE already ask the
+    # desk to book) but carries no landing line anywhere in the
+    # tracker holds — attribution surfaced, never silently lost.
+    committed_without_landing = {}
+    for e in entries:
+        scope, unit = classify_scope(e.body)
+        if (scope == "unit" and unit not in landed_units
+                and UNIT_COMMITTED_EVIDENCE_RE.search(e.body)
+                and unit not in committed_without_landing):
+            committed_without_landing[unit] = e
+    for unit in sorted(committed_without_landing,
+                       key=lambda u: int(u[1:])):
+        e = committed_without_landing[unit]
+        violations.append(
+            {"code": "landing-missing", "line": e.lineno,
+             "text": f"{unit}: UNIT_COMMITTED evidence at {e.id} with no "
+                     "landing annotation anywhere in the tracker"})
 
     for e in entries:
         # clause-scoped: the rule is "a dead CLAUSE without its named
@@ -1584,7 +1621,8 @@ def net_sweep_exemptions(violations, exemptions):
 def cmd_sweep(args):
     entries, violations, meta, reach = parse_tracker(load(args.tracker))
     say_head_region_entries("sweep", reach)
-    sweep_viols, clause_dispositions = sweep_checks(entries)
+    sweep_viols, clause_dispositions = sweep_checks(
+        entries, reach["landed_units"])
     violations += annotate_repairs(sweep_viols)
     violations += freeze_breach_violations(entries)
     violations, retro_holds = net_retro_holds(violations,

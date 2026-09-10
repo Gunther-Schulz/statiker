@@ -1385,7 +1385,11 @@ annotation line (`  unit U<k> landed: <sha>`, preceded by a
 blank line — markdown otherwise folds it into the entry above) —
 not an entry, so
 invisible to the record tool's tag-first entry parse and the closure
-read by construction — that is what makes resume reliable.
+read by construction — that is what makes resume reliable. Nothing
+forces the append at landing time: a unit whose record cites the
+git tool's UNIT_COMMITTED verdict with no landing line anywhere in
+the tracker surfaces as a sweep hold (`landing-missing`), attribution
+never left to a later reconstruction.
 Unit briefs carry the git tool's invocation lines with the
 script's absolute path (The tools) — desk prose reaches no
 unit, and no procedure text is expanded into a brief.
