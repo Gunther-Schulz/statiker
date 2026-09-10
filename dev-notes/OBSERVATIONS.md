@@ -7895,3 +7895,103 @@ their register" is re-confirmed at n+2.
   then the compression pass. Desk session beat-the-books-6e
   reported CLOSABLE (no lanes, timers, worktrees, unpushed) —
   operator holds the close.
+
+## 2026-09-10 — 0.2.84 checkpoint-review dispositions (fresh-opus, lane opus-review-0284; verdict: pin does NOT move — 6 blocking, 4 notable, 3 nits, all with executed red/green pairs)
+
+Recorded BEFORE implementation; the repair lane's brief quotes
+these verbatim. Each repair's red-first arm reproduces the
+reviewer's measured pair as a committed fixture — a fixture that
+does not go red as the finding predicts refutes the finding and
+halts that item.
+
+- **B1 (blocking, repair now).** `basis_id_citations` strips only
+  `,;` so `(F20)`, `F20)`, `F20.` went invisible to
+  `basis-cites-invalidated` (silent reach loss vs c19c829,
+  measured pair). FIX at statiker_record.py:851-866: token
+  cleaning strips `()[].,;:` quotes before the fullmatch. Red arm:
+  the reviewer's `(F20)` pair — red (0 violations) today, fires
+  after; bare-F20 positive control both ways.
+- **B2+B6 (blocking, one repair).** `RECORD_NAME_TOKEN_RE = (/|:$)`
+  over-matches the skill's own canonical basis (`tools/x.py:40`,
+  any `label:`), and the exemption resets after one id so the
+  page-mandated plural citation draws `foreign-id-suspect`.
+  DESIGN (settled here): record-name token := a token containing
+  `/` AND ending `.md` or `.md:`, OR the two-token label `run
+  <name>:`; the exemption persists across a contiguous
+  comma-separated id list and dies at the first non-id token.
+  Page clause :527-531 re-worded to state exactly that (page and
+  tool one commit). Red arms, all from the reviewer's measured
+  set: `tools/x.py:40 F20` FIRES after (silent today);
+  `the probe: F20` FIRES after; `canonical/run-2/tracker.md F20,
+  F21` exempt both ids (F21 flags today); bare `F20` control.
+- **B3 (blocking, repair now).** Three new codes emit the
+  unclassified-repair fallback against SKILL.md:498-501 and ES-10.
+  FIX: REPAIR_FORMS entries for all three; `declarator-bookkeeping`'s
+  text is B4's supersede-whole form; `foreign-id-suspect`: "name the
+  record before the id (tracker path or run label), or, for a
+  genuine same-run id, correct the citing line"; `landing-missing`:
+  "append the landing annotation line for the committed sha".
+  Red arm: assert no new-code verdict carries "unclassified".
+- **B4 (blocking, repair now).** The hold fires on the tool's own
+  prescribed supersede-whole repair and prescribes a repair the
+  corrects-grammar refuses. FIX at :1256-1266: fire only when the
+  correcting entry is NOT itself a write-set declaration; repair
+  text = "restate the full write-set under the same id with
+  (corrects line n)". Red arms: the reviewer's three-way fixture —
+  supersede-whole re-declaration clean after (fires today);
+  bookkeeping-only correction under the declarator id still holds
+  (control); the P37-parity check: no operator-SWEEP_EXEMPT dead
+  end remains (repair reachable by the grammar).
+- **B5 (blocking, repair now).** `declarator-bookkeeping` has no
+  page form. FIX: one clause in the record-grammar section beside
+  the write-set declarator (:480): the refusal, the hold code, the
+  supersede-whole repair. Checker: the suite's page/tool token
+  cross-check if one exists, else the re-review reads it.
+- **N1 (notable, repair now).** :88-89 still prints the abolished
+  "parallel-eligible" label in the verdict reference while the tool
+  no longer prints it. FIX: reword :88-89 to the new predicate
+  ("groups serialize on shared paths; scheduling is the desk's, read
+  from the D-lines"). The must-not-appear test already guards the
+  tool side; the page side rides the re-review.
+- **N2 (notable, repair now).** `landing-missing` blind to
+  UNIT_COMMITTED_EXTRAS/RESIDUE (the `\b`-vs-underscore defect) and
+  to the `record:`-scoped F-line form SKILL.md:1481-1483 itself
+  prescribes. FIX at :429 + :1567: token regex
+  `UNIT_COMMITTED(?:_EXTRAS|_RESIDUE)?\b` on a word-char boundary
+  that survives underscores, and evidence accepted from unit-scoped
+  entries OR record-scoped entries whose body names `unit U<k>`.
+  Red arms: the reviewer's three measured zero-cases each hold
+  after; the with-landing-line control stays clean.
+- **N3 (notable, partial repair + booked residue).** The precedent
+  line lacks a third case and any recorded form. REPAIR NOW: third
+  verbatim form `no precedent, first of its kind` added; the clause
+  names its home (a clause of the unit's design D-line) and the
+  three literals enter the machine-token inventory (:476-490).
+  BOOKED RESIDUE (st-26, this session): whether the line earns a
+  mechanized reader (near-miss lint, close enumeration) — trigger:
+  tenet 9's field test on the next run; mechanizing before one
+  field datum is the wrongly-shaped-rule risk the mint-timing
+  convention names.
+- **N4 (notable, partial repair + booked residue).** The
+  red-recording mandate names no reader earlier than verify leg 1.
+  REPAIR NOW: the verify-leg brief's demand list (:1516-1523 region)
+  gains the red-record question — per finding repaired in-round, the
+  leg reports whether its red state exists re-executably (committed
+  arm or pasted output), NOT EXERCISED otherwise. That makes the
+  existing leg the tasked consumer at zero new grammar. BOOKED
+  RESIDUE (with st-26): a gate-legible red-record token, same
+  field-test trigger.
+- **T1 (nit, repair now).** The waves-caveat test pins rendered
+  prose. FIX: export the caveat constant; the test imports it and
+  asserts presence, keeping only must-not-appear as a literal.
+- **T2 (nit, repaired by construction).** The named battery gaps ARE
+  the B1/B2/B4/B6/N2 red arms above; TestP38 additionally routed
+  through the command verdict so the repair field is graded.
+- **T3 (nit, no change).** The three RULE_MINT_VERSION rows are
+  substance codes, correctly never retro (SKILL.md:714-716); the
+  table doubles as the mint registry. One comment line at the table
+  head saying so; nothing else consulted them before either.
+
+Re-review: owed after the lap (criterion 2 — every repair is
+machine-read semantics; stated reason for the second round). Pin
+holds at 0.2.82 throughout.
