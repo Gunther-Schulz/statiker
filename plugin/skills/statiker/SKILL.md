@@ -505,6 +505,17 @@ DEFANG lint is separate and scans the WHOLE file: an undefanged
 bracketed tag literal holds the sweep wherever it sits — in
 INTENT it is the enforcement of the hand-defang duty.
 Write the literal or expect the lint to say so.
+Beside the write-set declarator: a correction appended under a
+write-set declarator's own id, whose latest EARLIER line for that id
+is a live `unit U<k> write-set: <path>` declaration, is refused
+(hold: `declarator-bookkeeping`) UNLESS the correcting line is itself
+a fresh `unit U<k> write-set: <path>` redeclaration — under
+latest-line-wins, an ordinary bookkeeping correction there would
+become the id's resolved body and un-declare the path though a live
+declaration for it still stands. The repair is the supersede-whole
+form: restate the full write-set under the same id, with `corrects
+line <n>` naming the ORIGINAL target, never this line's own number —
+the repair the grammar makes reachable there, and there alone.
 
 - findings: `- F<n> [VERIFIED|PENDING|INVALIDATED|AUTO-ACCEPTED]
   <claim> — basis:
