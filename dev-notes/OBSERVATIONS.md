@@ -7995,3 +7995,73 @@ halts that item.
 Re-review: owed after the lap (criterion 2 — every repair is
 machine-read semantics; stated reason for the second round). Pin
 holds at 0.2.82 throughout.
+
+## 2026-09-10 — 0.2.84 re-review dispositions (fresh-opus, lane opus-rereview-0284; verdict: pin does NOT move — 13/13 prior findings discharged with executed pairs, 2 new blocking + 6 notable + 2 nits on the repair lap's own surface)
+
+Session closed by operator after this verdict; dispositions
+recorded now, the NEXT session's repair lap builds from them
+(disposition-briefed, red arms = the reviewer's executed pairs).
+Pin holds at 0.2.82. Commit inventory this arc, all verified at
+this desk and pushed with this entry: mint batch 0772cbf 307dd4c
+622d3b6 1bfbb46 a09d800 d5ef7c4 01f2f4b 0bca5e9 c214b30 63a3508
+2baa349; repair lap 4c8716d a20a4ac 2613115 7265a9e 1329012
+af2ea09 32d8f86 99bc32d 9cde580 2e56291 f9d1610 83588cd 1fbd4d2;
+desk 77521a5 aac3256 6749091 77a6c77 65fa32e 34b33ec 27d7ed6.
+
+- **RB1 (blocking).** WRITE_SET_CORRECTS_SUFFIX_RE stripped only at
+  the near-miss check (:828); waves_over_units (:2055) consumes the
+  raw path, so the tool's own printed repair makes a real collision
+  read disjoint (reviewer's pair: two units on a.txt, sanctioned
+  repair, waves split them parallel; control serializes). FIX: strip
+  once in a shared path resolver both call sites use
+  (_normalize_write_set_path is the consuming-site home; the
+  near-miss site reuses it). Red arm: the reviewer's pair — after
+  the sanctioned repair the two units still serialize; spellings
+  stays empty.
+- **RB2 (blocking).** The B4 exemption tests shape only, not unit:
+  a DIFFERENT unit's redeclaration under the declarator id
+  un-declares the live write-set, everything clean — P38's own
+  docstring sentence reproduced. FIX at :1324-1326: the exemption
+  requires the correcting line's unit (UNIT_WRITE_SET_RE group 1)
+  to equal latest_same_id's. Red arms: the reviewer's U9 fixture
+  draws declarator-bookkeeping again; the same-unit repair stays
+  clean.
+- **RN-a (notable).** declarator-bookkeeping over-fires when the
+  latest earlier same-id declaration is [INVALIDATED] (page says
+  "live", tool never checks the tag; waves already excludes it).
+  FIX: tag test in the condition. Red arm: reviewer's pair.
+- **RN-b (notable, design decided now).** Any doc path (.md)
+  before a same-run id exempts it from basis-cites-invalidated —
+  a live hole, page and tool agreeing. DECISION: a record-named id
+  that ALSO resolves in this run's namespace is ambiguous — mint
+  hold `ambiguous-citation` (repair: name the record for a foreign
+  id, or drop the record name for the same-run id), REPAIR_FORMS
+  entry mandatory (RN-f's check will enforce). Red arm: reviewer's
+  pair (doc-path + same-run invalidated id holds; doc-path "and"
+  separated control stays the existing hold).
+- **RN-c (notable).** Punctuation asymmetry: ID tokens strip
+  quoting/bracketing punctuation (B1) but RECORD_NAME_TOKEN_RE
+  does not, so "tracker.md, F20" false-holds while
+  "(tracker.md F20)" is clean. FIX: strip the same set before the
+  record-name match. Red arm: reviewer's comma pair.
+- **RN-d (notable, no action).** The red-record demand's
+  NOT EXERCISED answer blocks nothing and has no V-line slot —
+  confirmed st-26 residue, already parked on the field-test
+  trigger; the reviewer's read is the evidence the field test
+  needs, carried to st-26.
+- **RN-e (notable).** The delta-scoped clause contradicts the
+  coverage-failure rationale where a reconciliation WIDENS an
+  R-line (the widened demand was never exercised). FIX: one
+  carve-out sentence — a widening amendment re-classes the repair
+  as WORK.
+- **RN-f (notable).** B3's class has no detector: add the
+  repair-coverage twin of the mint-registry contract check (every
+  emitted code composable), with the freeze-breach inline-repair
+  allowance read at source (:1589).
+- **RT-a (nit).** The precedent line's inventory mention reads as
+  a fourth bare label line; its home is a D-line clause. FIX:
+  reword :492-493 to say clause-of-D-line, pointing at :762.
+- **RT-b (nit, no change).** T1's presence half is same-parentage
+  by recorded trade; discrimination rests on the must-not-appear
+  literal, mutation-proven red. Residual (a caveat dropping an
+  axis passes) accepted, stands recorded here.
