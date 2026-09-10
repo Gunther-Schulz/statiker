@@ -56,6 +56,8 @@ write-set: UNKNOWN
 done-criterion: UNKNOWN
 evidence: BACKLOG.md:149-170
 blocked-by: decision regrade: was READY under the old carrier: READY is judged, never inherited
+amend-reason: 2026-09-10 begehung R4: P36 class second incident on a new axis
+amended-evidence: 2026-09-10 BACKLOG.md:149 (P36 body, first incident F98 pin-inside-created-tree); SECOND incident 2026-09-10 run-3 D39: two lanes with disjoint WRITE-sets collide on EXECUTE-set (fixed harness port 55433, conftest.py mutated by one red-first proof while the other executes it) and the waves verdict still returned parallel-eligible, quoted in D39. Design widens: the partition caveat names the execute-set axis beside created-tree ordering
 
 ## st-7
 grade: NEW
