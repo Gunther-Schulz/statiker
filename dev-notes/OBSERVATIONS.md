@@ -7809,3 +7809,27 @@ their register" is re-confirmed at n+2.
   closures) is structurally uncompletable — booked lifecycle lc-73
   (489a8d5), st-22 re-pointed to it. ITEMS-DONE still 0/25;
   BACKLOG.md stays unretired, jointly gated st-21+st-22.
+
+- 2026-09-10 — **Run 3 verify return 1 of 3: V1 [ISSUES FOUND],
+  17 MET / 4 NOT MET, none shipped-behavior; NO-STOP ruled.**
+  Desk booking 005f3582 (self-corrected from a placeholder
+  "6d-series" label — the hash was read but never substituted;
+  small paraphrase-drift instance, self-caught). The four: F179
+  crosswise reading owed (taken: 10/10 crosswise pairs agreeing,
+  900/900 straight control, discrimination control pending); R1
+  and R14 requirement letters AMENDED at the desk (post-backfill
+  NULLs are D38 semantics; async allowed only for effect-site pins
+  on async repo methods) — desk calls by provenance, source reads
+  attached; F175 U20 containment pin's only decoy assertion green
+  and ordered after the target, red run existing only as docstring
+  prose; F176 U2 R17 count assertion an unanchored substring ('0
+  …' passes inside '10 …' — the corpus rendered-text assertion
+  class firing LIVE, mint candidate at the close seam). F177
+  type-list deviation carried (frozen-snapshot semantics), F178
+  mypy rests on F169. STOP-CALL: no stop — D38 and the pins landed
+  AFTER the closing attack round, and the isolated leg is the
+  designed backstop for exactly that surface; the D38-post-round
+  seam is booked as P28-class evidence for close grading. ROUTE
+  approved: phase back to implement, F175+F176 parallel sonnet
+  lanes (disjoint write-sets), verify leg 2 fresh opus, close,
+  push batched at close.
