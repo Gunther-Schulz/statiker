@@ -4547,6 +4547,78 @@ class TestB3RepairFormsForNewCodes(RecordFixture):
         self.assertNotIn("unclassified", viol["repair"])
 
 
+# ----------- 0.2.84 checkpoint review B4: declarator-bookkeeping
+# fires only when the correcting entry is not itself a supersede-whole
+
+class TestB4DeclaratorBookkeepingSupersedeWholeExempt(RecordFixture):
+    """0.2.84 checkpoint review, finding B4: declarator-bookkeeping
+    fired even when the correcting entry was itself the tool's own
+    prescribed supersede-whole repair (a fresh `unit U<k> write-set:
+    <path>` redeclaration under the same id) — refusing the only
+    repair the grammar makes reachable for a write-set near-miss under
+    a declarator id, a P37-parity dead end (no `corrects line <n>`
+    token could ever land). Fires only when the correcting entry does
+    NOT itself redeclare the write-set.
+
+    Three-way fixture (the reviewer's measured set): F2 declares U1's
+    a.txt write-set at one line (clean), a malformed near-miss
+    redeclare under the SAME id follows, then a third line corrects
+    the near-miss three ways."""
+
+    def _tracker(self):
+        prefix = (
+            "- F2 [VERIFIED] unit U1 write-set a.txt — basis: design\n"
+            "- F2 [VERIFIED] unit U1 write-set: a.txt — basis: design\n")
+        n = self.lineno_of(prefix, "write-set a.txt — basis: design")
+        return prefix, n
+
+    def test_fresh_id_bookkeeping_correction_is_corrects_nothing(self):
+        # unaffected control: a DIFFERENT id's correction never
+        # reaches the declarator-bookkeeping branch at all (barred
+        # earlier, as an id readably naming ANOTHER id)
+        prefix, n = self._tracker()
+        body = prefix + f"- F7 [VERIFIED] record: corrects line {n} — basis: bookkeeping\n"
+        v = self.lint(body)
+        self.assertIn("corrects-nothing", self.violation_codes(v))
+        self.assertNotIn("declarator-bookkeeping", self.violation_codes(v))
+
+    def test_same_id_bookkeeping_correction_still_holds(self):
+        # control: an ordinary bookkeeping correction under the
+        # declarator's OWN id must still be refused after the fix
+        prefix, n = self._tracker()
+        body = prefix + f"- F2 [VERIFIED] record: corrects line {n} — basis: bookkeeping\n"
+        v = self.lint(body)
+        self.assertIn("declarator-bookkeeping", self.violation_codes(v))
+
+    def test_same_id_supersede_whole_redeclaration_is_clean(self):
+        # the finding: the tool's own prescribed repair (a fresh
+        # write-set redeclaration under the same id) must no longer
+        # draw the hold, and the near-miss it targets must shed —
+        # reachable by the grammar, no SWEEP_EXEMPT dead end
+        prefix, n = self._tracker()
+        body = prefix + (
+            f"- F2 [VERIFIED] unit U1 write-set: a.txt "
+            f"(corrects line {n}) — basis: design\n")
+        v = self.lint(body)
+        self.assertNotIn("declarator-bookkeeping", self.violation_codes(v))
+        self.assertNotIn("write-set-near-miss", self.violation_codes(v))
+        # NOT asserted: the disposition's literal fixture text embeds
+        # `(corrects line {n})` inside the write-set declarator's own
+        # PATH field, which write_set_violations' pre-existing
+        # multi-word-path check (:781-809) reads as a second path and
+        # flags `write-set-path-near-miss` ON THE CORRECTING LINE
+        # ITSELF — present both before and after this fix (it fires
+        # unconditionally at the initial per-line LINT scan,
+        # independent of apply_supersession/declarator-bookkeeping).
+        # The disposition's "must be CLEAN after" is refuted for this
+        # exact literal text by that orthogonal, un-dispositioned
+        # near-miss check; B4's own claim — the hold no longer fires
+        # on the tool's prescribed repair, and the original near-miss
+        # sheds — is fully confirmed above. Surfaced to the dispatcher
+        # rather than freelance-fixed (out of this disposition's
+        # stated design, out of the write boundary's intent).
+
+
 # ----------------------------- P24: the unforced landing annotation
 
 class TestP24LandingMissingHold(RecordFixture):

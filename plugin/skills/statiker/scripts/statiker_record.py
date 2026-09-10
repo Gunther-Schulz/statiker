@@ -1293,8 +1293,14 @@ def apply_supersession(entries, violations, line_ids, line_parse):
                              if e2.lineno < e.lineno]
             latest_same_id = (max(prior_same_id, key=lambda e2: e2.lineno)
                               if prior_same_id else None)
+            # 0.2.84 B4: fire only when the CORRECTING entry is not
+            # itself a fresh write-set redeclaration — the tool's own
+            # prescribed supersede-whole repair for this shape (B3's
+            # REPAIR_DECLARATOR_BOOKKEEPING text); firing on it too
+            # refused the only repair the grammar makes reachable.
             if (latest_same_id is not None and n < latest_same_id.lineno
-                    and UNIT_WRITE_SET_RE.match(latest_same_id.body)):
+                    and UNIT_WRITE_SET_RE.match(latest_same_id.body)
+                    and not UNIT_WRITE_SET_RE.match(e.body)):
                 complaints.append(
                     {"code": "declarator-bookkeeping", "line": e.lineno,
                      "text": f"{e.id}: `corrects line {n}` reuses "
