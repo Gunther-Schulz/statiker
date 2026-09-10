@@ -1,3 +1,4 @@
 schema: 2
 decision: regrade: was READY under the old carrier: READY is judged, never inherited → moot (closed by st-1)
 decision: does the 0.2.83 manifest bump publish before the checkpoint review → yes: lane commit 0772cbf (version field only, verified by git show at this desk) rides this push; CLAUDE.md governs (commits land anytime, the pin is the release); installed holds 0.2.82 at the pin hold; the bundle's item commits wait for grading
+decision: does the SKILL.md size problem get a references/ split → operator-settled 2026-09-10: compression pass decides with evidence, ordered delete/tighten (R4 table), precipitate to tool checks (medium tenet), disclosure only for branch-gated content; a split moves load timing not line count, and any references/ move is an explicit single-home amendment
