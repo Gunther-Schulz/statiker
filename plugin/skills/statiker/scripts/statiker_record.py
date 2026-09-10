@@ -277,6 +277,7 @@ RULE_MINT_VERSION = {
     "declarator-bookkeeping": "0.2.84",
     "entry-form": "0.2.33",
     "entry-near-miss": "0.2.39",
+    "foreign-id-suspect": "0.2.84",
     "freeze-breach": "0.2.63",
     "hold-form": "0.2.43",
     "intent-near-miss": "0.2.49",
@@ -828,6 +829,40 @@ def latest_by_id(entries):
 
 def cited_ids(basis: str):
     return re.findall(r"\b([FDRAV]\d+)\b", basis or "")
+
+
+# P32 (BACKLOG.md:171, F66): the seed's F25 cited the U1 record's
+# entries as bare ids; the live-basis check resolves every cited id
+# in THIS run's namespace, so once this run minted its own
+# same-numbered id, a foreign citation silently rested on it. The
+# basis rule (SKILL.md, The record): a basis citing another record
+# names the record (tracker path or run name) BEFORE its ids. A
+# record-name token is whatever the whitespace-split token
+# immediately preceding an id is, when that token is not itself an
+# id and looks like a name — a path (contains "/") or a label (ends
+# ":") — never a bare English word, so ordinary prose ("rests on
+# F20") is untouched. Scoped to the LIVE-BASIS check alone
+# (sweep_checks) — trend's concentration read (cited_ids, above)
+# is unaffected by design, since it grades THIS run's own repair ids
+# regardless of any record-name prose beside them.
+RECORD_NAME_TOKEN_RE = re.compile(r"(/|:$)")
+
+
+def basis_id_citations(basis: str):
+    """Yields (id, foreign) for every id-shaped token in `basis` — the
+    id-scoped read the live-basis check consumes. `foreign` is True
+    when the immediately preceding whitespace-split token is a
+    record-name token (RECORD_NAME_TOKEN_RE)."""
+    out = []
+    prev_is_record_name = False
+    for tok in (basis or "").split():
+        bare = tok.strip(",;")
+        if re.fullmatch(r"[FDRAV]\d+", bare):
+            out.append((bare, prev_is_record_name))
+            prev_is_record_name = False
+        else:
+            prev_is_record_name = bool(RECORD_NAME_TOKEN_RE.search(tok))
+    return out
 
 
 # ------------------------------------------------------------------- parsing
@@ -1553,16 +1588,38 @@ def sweep_checks(entries, landed_units=frozenset()):
                                "text": f"{e.id}: dead disposition without "
                                        "its named killer"})
 
+    # P32: this run's own per-class max — a bare (unmarked) citation
+    # whose number exceeds it could never be one of this run's own
+    # ids (the backstop for the under-max case, which count alone
+    # cannot catch — the SKILL.md basis-naming rule is the primary
+    # carrier there).
+    run_max_by_cls = {}
+    for e in entries:
+        n = int(e.id[1:])
+        if n > run_max_by_cls.get(e.cls, 0):
+            run_max_by_cls[e.cls] = n
+
     for id_, e in latest.items():
         if e.tag == "INVALIDATED":
             continue
-        for cited in cited_ids(e.basis or ""):
+        for cited, foreign in basis_id_citations(e.basis or ""):
+            if foreign:
+                continue
             c = latest.get(cited)
             if c is not None and c.tag == "INVALIDATED":
                 violations.append(
                     {"code": "basis-cites-invalidated", "line": e.lineno,
                      "text": f"{id_} (live) rests on {cited}, whose latest "
                              "line is [INVALIDATED]"})
+            cls, num = cited[0], int(cited[1:])
+            if num > run_max_by_cls.get(cls, 0):
+                violations.append(
+                    {"code": "foreign-id-suspect", "line": e.lineno,
+                     "text": f"{id_}: basis cites {cited}, which exceeds "
+                             f"this run's own {cls}-class max "
+                             f"({run_max_by_cls.get(cls, 0)}) — likely a "
+                             "foreign-record id missing its record-name "
+                             "prefix"})
 
     clause_dispositions = {}
     for e in entries:

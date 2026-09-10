@@ -520,6 +520,15 @@ Write the literal or expect the lint to say so.
   attack — an aborted or premise-broken round)
 - verify verdicts: `- V<n> [PASSED|ISSUES FOUND] <summary> —
   basis: <the checks' own output>`
+- a basis citing ANOTHER record's entries names the record (tracker
+  path or run name) before its ids, never a bare id — a bare id
+  always resolves in THIS run's namespace, so once this run mints
+  its own same-numbered id a foreign citation silently rests on it
+  (P32, F66); the live-basis scan ignores an id immediately
+  preceded by a record-name token (a path or a label ending `:`),
+  and flags a bare id whose number exceeds this run's own class max
+  as `foreign-id-suspect` — the backstop for the id-below-max case,
+  which count alone cannot catch.
 - entry tags are BARE enum values; annotations
   live in the line body after the bracket, never inside it, and a
   bracketed tag literal never appears inside a body — the record

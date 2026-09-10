@@ -4389,6 +4389,55 @@ class TestP4IrreversibleTag(RecordFixture):
                            "effect": "deletes prod rows"}])
 
 
+class TestP32ForeignRecordIdCollision(RecordFixture):
+    """P32 (BACKLOG.md:171, F66): a basis citing ANOTHER record's ids
+    resolves every cited id in THIS run's namespace by construction —
+    once this run mints its own same-numbered id, a foreign citation
+    silently rests on it. The basis rule names the record before its
+    ids; the tool's live-basis scan ignores ids following a
+    record-name token, and flags a bare (unmarked) id whose number
+    exceeds this run's own max as FOREIGN-ID-SUSPECT — the backstop
+    for an id below the max, which is undetectable by count alone."""
+
+    def test_record_named_citation_is_excluded_from_live_basis(self):
+        # this run's OWN F20 is invalidated; a bare "F20" citation
+        # would (correctly, for a same-run citation) hold — but this
+        # basis NAMES a foreign record before its id, so it must not.
+        body = ("- F20 [INVALIDATED] this run's own claim died — "
+                "basis: probe\n"
+                "- D1 [COMMITTED] rests on an earlier run's finding — "
+                "basis: canonical-market-identity/run-2/tracker.md F20\n")
+        v = self.sweep(body)
+        self.assertNotIn("basis-cites-invalidated", self.violation_codes(v))
+
+    def test_bare_citation_with_no_record_name_still_resolves_same_run(self):
+        # the unmarked default is unchanged: a bare id with nothing
+        # naming a foreign record still resolves in THIS run's
+        # namespace (the class this fix must not over-widen)
+        body = ("- F20 [INVALIDATED] this run's own claim died — "
+                "basis: probe\n"
+                "- D1 [COMMITTED] rests on dead ground — basis: F20\n")
+        v = self.sweep(body)
+        self.assertIn("basis-cites-invalidated", self.violation_codes(v))
+
+    def test_over_max_bare_id_flags_foreign_id_suspect(self):
+        # this run's own F-class max is F5; a bare (unmarked) citation
+        # of F99 could never be one of this run's own ids
+        body = ("- F5 [VERIFIED] the latest genuine finding — basis: e\n"
+                "- D1 [COMMITTED] rests on — basis: F99\n")
+        v = self.sweep(body)
+        hits = [x for x in v["violations"]
+               if x["code"] == "foreign-id-suspect"]
+        self.assertEqual(len(hits), 1, v)
+        self.assertIn("F99", hits[0]["text"])
+
+    def test_under_max_bare_id_does_not_flag_suspect(self):
+        body = ("- F5 [VERIFIED] the latest genuine finding — basis: e\n"
+                "- D1 [COMMITTED] rests on — basis: F3\n")
+        v = self.sweep(body)
+        self.assertNotIn("foreign-id-suspect", self.violation_codes(v))
+
+
 # ----------------------------- P24: the unforced landing annotation
 
 class TestP24LandingMissingHold(RecordFixture):
