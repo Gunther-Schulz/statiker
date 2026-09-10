@@ -489,7 +489,12 @@ lines<=<n> — basis: <citation>` / `SWEEP_EXEMPT: <code> line <n>
 `unit U<k> irreversible: <effect>`. The two attribution labels
 (`SKILL:`, `unit U<k> irreversible:`) carry NO near-miss class by
 recorded decision (a bare-word scan false-fires; attribution
-fields fail soft), and a mistyped `SWEEP_EXEMPT:` fails safe —
+fields fail soft). A fourth literal set — the unit design's
+PRECEDENT LINE (Stop rule), verbatim `follows <path>, judged
+sound`, `<path> is the problem, this unit's scope`, or `no
+precedent, first of its kind` — carries no lint class yet either:
+unread by any mechanized check, the design record and the brief are
+its only enforcement. A mistyped `SWEEP_EXEMPT:` fails safe —
 the hold it meant to net still blocks. DETECTION is wider
 than validity by design: the lint detects would-be machine
 tokens positionally — never by word-search — and anything
@@ -752,9 +757,10 @@ current state, green only through the fix; a criterion the
 defective state already satisfies verifies nothing, and a
 renumbering that drops a unit's pin clause is a silent unpin (both
 observed as a round's highest finding). Each unit design also
-carries the PRECEDENT LINE, one per unit, verbatim form `follows
-<path>, judged sound` or `<path> is the problem, this unit's
-scope`, written in the design record and traveling into the brief
+carries the PRECEDENT LINE, one clause of the unit's design D-line,
+one per unit, verbatim form `follows <path>, judged sound`, `<path>
+is the problem, this unit's scope`, or `no precedent, first of its
+kind`, written in the design record and traveling into the brief
 unchanged — never left implicit: unstated, a dispatched
 implementer or a successor cannot find it (arm A's three
 harnesses — nobody wrote "like verify_deployed_sha.py", so nobody
