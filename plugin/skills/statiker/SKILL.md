@@ -85,8 +85,10 @@ sections; `lint` alone answers ad-hoc grammar questions
 (LINT_CLEAN / LINT_VIOLATIONS; `sweep` includes it), and `quote`
 and `filter` return QUOTE_BLOCK and ARTIFACT_WRITTEN with their
 production counts. `waves` returns WAVES_COMPUTED — units sharing
-a declared write-set path grouped, members of a group SERIALIZE,
-groups are mutually parallel-eligible; a unit whose record lines
+a declared write-set path grouped, members of a group SERIALIZE;
+scheduling across groups is the desk's, read from the D-lines — the
+disjoint-write-sets answer names no scheduling verdict (ordering
+constraints, execute-set collisions). A unit whose record lines
 declare no live write-set comes back UNPLANNABLE, never placed
 (the line form: Implementation; a unit with no `unit U<k>`-bodied
 entry at all appears in neither list), and the partition is no
