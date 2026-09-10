@@ -18,6 +18,65 @@ works as intended AND opus is validated on it, statiker BECOMES the
 new clippy and clippy retires — not the first radical shift as
 models improved; clippy was born in Sonnet times.
 
+## Mission and tenets — consolidated index (2026-09-10, operator GO)
+
+An INDEX, nothing more: one-line handles with pointers — each
+tenet's authoritative body stays its minting section or entry (a
+restated body is the paraphrase-drift class). Supersession marks
+were added in place the same day wherever a head section's letter
+had been overtaken by an appended entry (the
+reader-stops-at-first-version failure; Begehung R2 recorded the
+supersessions without marking the sections). The birth-class
+check's "PLAN's tenet list" enumerates THIS list.
+
+MISSION (distilled with the operator 2026-09-10; the 2026-08-26
+lineage entry is the evidence): the model does not need statiker
+to work well — it needs statiker to be CHECKED. No author, human
+or model, reviews their own work; capability growth absorbed most
+of the conduct discipline and none of the self-blindness. Confound
+caveat rides: "works well" is measured model+corpus, never bare
+model. Value form: enough grounding and decisions, recorded with
+bases, that implementation lands once and clean — attackable by a
+fresh reader, resumable by a successor (2026-08-26, THE CORE
+VALUE).
+
+The live tenet list:
+1. Investigation-led design; the loop is free and ends when the
+   design stops moving (The core loop, 2026-08-05).
+2. Sufficiency = dispatchable: a decision-complete brief with
+   bases, and no more (forcing point 2; sharpened 2026-08-26, THE
+   STANDARD IT RESOLVES TO — necessary-not-sufficient qualifier
+   there).
+3. Anti-skim: the five forcing points are inviolable — thin in
+   ceremony, never in forcing points (THE core mitigation,
+   2026-08-05; what "ceremony" has grown to include: 2026-08-26).
+4. Cost asymmetry: design decisions lock before implementation,
+   where changing one costs a sentence, not a rewrite
+   (2026-08-08, founding failure mode).
+5. Autonomy north star: human out of the loop by default; each
+   forcing point replaces a human seat (2026-08-08; the corpus's
+   kind-split principle, minted 2026-09-10, is the same split
+   stated corpus-wide).
+6. Economics: rounds are priced and open at seams; turns AND
+   corpus lines are first-class currencies (2026-08-08;
+   2026-08-26 standing question; compression objective
+   2026-09-10).
+7. Convergence circuit: quality and correctness axes converge
+   only inside record → attack → verify, admitted in gradeable
+   form (2026-08-08, circuit + widening entries).
+8. Medium tenet: whatever must hold exactly is designed as
+   mechanism with a red-first battery; prose holds judgment
+   (2026-08-08, generalizing the 2026-08-07 precipitation
+   decision).
+9. Placement: each unit's design carries the precedent line —
+   "follows <path>, judged sound" or "<path> is the problem,
+   this unit's scope" (2026-08-26 (4)/(4b); decided as skill
+   work 2026-09-10, field test riding run 3).
+
+Standing question over everything outside the list: WHERE THE
+LINE IS — machinery beyond the forcing points, the record, and
+the round is on trial against its cost (2026-08-26).
+
 ## The core loop (free, not rigid)
 
 Investigation is made; a design is built; further investigation
@@ -109,6 +168,12 @@ The record lives in **`.clippy/runs/`, same decision-line format**
 as clippy: `/clippy-stats` reads both, the control-arm comparison
 is direct, and a run under either skill is gradeable by the same
 machinery. Different skill, shared ledger convention.
+[Metric half SUPERSEDED by measurement (Begehung R2, 2026-08-16):
+the stats reader's admission contract stands, its per-metric
+greps silently diverge on statiker-era trackers — series metrics
+come from the record tool's `trend`/`waves`. Cross-skill
+comparison via /clippy-stats is the open decision at BACKLOG
+P11.]
 
 ## Ecosystem composition (deliberate context-dependence)
 
@@ -135,6 +200,11 @@ evidence there.
 80–150 lines of operational text. If it grows past that, something
 is being restated that should be cited, or a patch landed without
 provenance.
+[Hard reading SUPERSEDED — the count is a stabilization TARGET,
+not a live gate: trial-phase fire-born accretion above it is
+deliberate, the booked compression pass brings it back down
+(SKILL.md Birth-class declaration; Begehung R2 staleness note,
+2026-08-16).]
 
 ## Birth process
 
@@ -143,6 +213,8 @@ provenance.
 2. Repo: this one (`~/dev/Gunther-Schulz/statiker`), plugin layout
    per skill-craft canon; released via `/release-plugin` when
    ready; NO GitHub remote until the operator says so.
+   [Remote clause SUPERSEDED same day — the operator said so:
+   repo durable and public, first post-plan entry.]
 3. The draft gets **one fresh-context attack** before first use —
    the skill's own discipline applied to its own birth (attack per
    forcing point 3; skill-craft review checklist as the reviewer's
@@ -159,6 +231,9 @@ provenance.
 
 - Working title: statiker (operator-accepted).
 - Attack tier: fable-first, then opus graded against the ceiling.
+  [SUPERSEDED 2026-08-06 — opus certified as the attack tier,
+  fable's attack seat closed; the certification sits in Tier
+  architecture and dev-notes/OBSERVATIONS.md.]
 - Record home: shared `.clippy/runs/`.
 - Clippy: frozen, not co-evolved; no further clippy adjustments
   while statiker is trialed (operator decision).
@@ -665,8 +740,9 @@ provenance.
   where a defect reaching prod bills them at the highest rate
   (incident duty), so a cheap agent-side round purchased against
   that invoice is keepable and ceremony billing only agent
-  tokens is not. Underneath it the KIND SPLIT (candidate corpus
-  mint, reporting module — operator GO pending): work divides by
+  tokens is not. Underneath it the KIND SPLIT (minted on operator
+  GO the same day — dotfiles reporting module, decisions-bullet,
+  commit a8d90eb): work divides by
   kind, never leftover quantity — the derivable/checkable/
   mechanizable is the desk's whatever it costs in tokens; the
   operator gets only what is constitutively theirs (intent,
