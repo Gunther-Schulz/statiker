@@ -287,10 +287,15 @@ evidence: opus-review-0284 findings N3/N4 (verbatim in the dispositions record);
 blocked-by: evidence false  # the next statiker run's field data on both forms
 
 ## st-27
-grade: PARKED
+grade: READY
 requirement: V2 (post-repair verify leg) re-runs the FULL R-line set even when repairs touched a fraction of it: run 3's V2 re-ran all 21 and returned zero new findings, which the economics convention records as evidence for a cheaper form at this unit size, not as confirmation — record: run-3 close (V2 PASSED 21/21, d1b8ce85); operator question 2026-09-10
 goal: tend
 write-set: plugin/skills/statiker/SKILL.md (Verify section), plugin/skills/statiker/scripts/statiker_record.py + tools/test_statiker_record.py if the scoping needs a verdict field
 done-criterion: design sketch to grade: V2 defaults to DELTA scope: re-verify the R-lines the repairs touched plus the repairs own instruments; untouched R-lines carry V1 verdicts under the verify-gate stale-copy disposition (touched-paths overlap check, which already exists); FULL re-run stays mandatory when any repair classifies DESIGN (safety floor, outside the n=1 rule per the 2026-08-10 boundary). Graded on the next run with a V1-issues-repair-V2 cycle: cost delta and whether the scoped leg misses anything the full leg would have caught
 evidence: run-3 V2 zero-delta (the convention's own named datum shape); A2 rounds-per-design-surface reading (PLAN 2026-08-26) as the counter-argument the design must answer; verify-gate VERIFY_COPY_STALE disposition machinery at SKILL.md:1563-1570
 blocked-by: evidence false  # the next run with a V1-issues, repair, V2 cycle
+amend-reason: 2026-09-10 2026-09-10 operator challenge (why wait): the parking failed the mint-timing convention's own test: no live run exists, so the wait crosses the 0.2.84 seam buying no datum, and run-3's zero-delta V2 already IS the convention's named datum shape, decision-grade at n=1; design decided now with the execute-reach sharpening
+amended-done-criterion: 2026-09-10 the Verify section carries the delta-scoped V2 rule: after a repair lap, the V2 brief lists the repairs (sites and diffs); the leg re-runs every R-line whose check's reach touches any repaired surface (reach judged by the leg, which knows what its checks execute, never by a lexical path join at the desk: the D39 lesson), and carries a V1 verdict forward only with the per-line reason stated; any DESIGN-classified repair forces the full re-run (safety floor, outside the n=1 rule). Machine-read semantics: rides the same opus re-review as the 0.2.84 repair lap, so the review round runs once over the final form
+amended-blocked-by: 2026-09-10 NONE
+promote-reason: 2026-09-10 2026-09-10 design decided at the desk on the in-hand datum; builds after the repair lap lands and BEFORE the re-review dispatches (verification runs on the final form: a decided-but-unbuilt change would make the round's object stale)
+promoted-by: 2026-09-10 statiker-cc meta desk (fable)
