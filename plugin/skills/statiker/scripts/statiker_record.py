@@ -274,6 +274,7 @@ RULE_MINT_VERSION = {
     "clause-unparsed": "0.2.43",
     "corrects-nothing": "0.2.45",
     "corrects-token-out-of-body": "0.2.67",
+    "declarator-bookkeeping": "0.2.83",
     "entry-form": "0.2.33",
     "entry-near-miss": "0.2.39",
     "freeze-breach": "0.2.63",
@@ -1130,11 +1131,28 @@ def apply_supersession(entries, violations, line_ids, line_parse):
     One pass over the ORIGINAL entry set, so a token is read whether
     or not the line carrying it is itself superseded (ES-5: no
     re-carry — the restatement of a superseded correcting line carries
-    exactly ONE token, the one naming the line it corrects)."""
+    exactly ONE token, the one naming the line it corrects).
+
+    P38 (BACKLOG.md:47, F147): a `corrects line <n>` token whose OWN id
+    is a DECLARATOR — the same id's most recent EARLIER line is a
+    `unit U<k> write-set: <path>` declaration — and whose target `n`
+    is older than that declaration is refused before dispatch: under
+    plain latest-line-wins the correcting line would become the id's
+    resolved body, un-declaring the path though a live declaration for
+    it still stands. Neither superseded nor shed; the correcting
+    line's own lineno is excluded from the returned entries too (as if
+    the append never happened), so it can never become the id's latest
+    line in a downstream `latest_by_id` read. The repair is a fresh id
+    for the correction, never a reused declarator."""
     violated = {}
     for v in violations:
         violated.setdefault(v["line"], []).append(v["code"])
-    superseded, shed, bookkeeping, complaints = set(), set(), set(), []
+    by_id = {}
+    for e2 in entries:
+        by_id.setdefault(e2.id, []).append(e2)
+    superseded, shed, bookkeeping, declarator_refused = (
+        set(), set(), set(), set())
+    complaints = []
     for e in entries:
         tokens = list(CORRECTS_RE.finditer(e.body))
         if len(tokens) > 1:
@@ -1153,6 +1171,22 @@ def apply_supersession(entries, violations, line_ids, line_parse):
                              + _corrects_nothing_reason(n, e, violated,
                                                         line_ids)})
                 continue
+            prior_same_id = [e2 for e2 in by_id.get(e.id, [])
+                             if e2.lineno < e.lineno]
+            latest_same_id = (max(prior_same_id, key=lambda e2: e2.lineno)
+                              if prior_same_id else None)
+            if (latest_same_id is not None and n < latest_same_id.lineno
+                    and UNIT_WRITE_SET_RE.match(latest_same_id.body)):
+                complaints.append(
+                    {"code": "declarator-bookkeeping", "line": e.lineno,
+                     "text": f"{e.id}: `corrects line {n}` reuses "
+                             f"declarator id {e.id} — its latest line "
+                             f"({latest_same_id.lineno}) is a write-set "
+                             "declaration, and a correction appended "
+                             "under the same id un-declares it under "
+                             "latest-line-wins; repair with a fresh id"})
+                declarator_refused.add(e.lineno)
+                continue
             site, declared = repair_class(violated[n], owner)
             if site == "supersede":
                 superseded.add(n)
@@ -1167,7 +1201,8 @@ def apply_supersession(entries, violations, line_ids, line_parse):
                              f"violation no repair token reaches — "
                              f"{declared}"})
     return ([e for e in entries
-             if e.lineno not in superseded and e.lineno not in bookkeeping],
+             if e.lineno not in superseded and e.lineno not in bookkeeping
+             and e.lineno not in declarator_refused],
             [v for v in violations
              if v["line"] not in superseded and v["line"] not in shed]
             + complaints)

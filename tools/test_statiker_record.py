@@ -4394,6 +4394,35 @@ class TestPureFunctions(unittest.TestCase):
         self.assertEqual(latest["F1"].tag, "VERIFIED")
         self.assertEqual(latest["D1"].tag, "COMMITTED")
 
+    def test_declarator_bookkeeping_correction_undeclares_under_latest_line_wins(self):
+        # P38 (BACKLOG.md:47, F147): F2 declares U1's a.txt write-set
+        # path, a malformed redeclare under the SAME id follows (a
+        # near-miss machine-token violation), then a clean redeclare
+        # restates it — and then a bookkeeping-style `corrects line`
+        # entry, ALSO under id F2, targets the malformed line. Under
+        # plain latest-line-wins the correcting line becomes "the" F2
+        # body, which is not a write-set line at all — a.txt drops out
+        # of U1's resolved write-set though a live declaration for it
+        # still stands. The refusal (hold: declarator-bookkeeping)
+        # keeps the correcting line from ever becoming F2's latest.
+        prefix = (HEADER +
+                  "- F2 [VERIFIED] unit U1 write-set: a.txt — basis: design\n"
+                  "- F2 [VERIFIED] unit U1 write-set a.txt — basis: design\n")
+        n2 = next(i for i, l in enumerate(prefix.split("\n"), 1)
+                  if l == "- F2 [VERIFIED] unit U1 write-set a.txt — basis: design")
+        text = (prefix +
+                "- F2 [VERIFIED] unit U1 write-set: a.txt — basis: design\n"
+                "- F3 [VERIFIED] unit U1 write-set: b.txt — basis: design\n"
+                "- F4 [VERIFIED] unit U1 write-set: c.txt — basis: design\n"
+                "- F5 [VERIFIED] unit U1 write-set: d.txt — basis: design\n"
+                "- F6 [VERIFIED] unit U1 write-set: e.txt — basis: design\n"
+                f"- F2 [VERIFIED] record: corrects line {n2} — basis: y\n")
+        entries, violations, meta, reach = self.m.parse_tracker(text)
+        self.assertIn("declarator-bookkeeping", {v["code"] for v in violations})
+        write_sets, unplannable, waves, spellings = self.m.waves_over_units(entries)
+        self.assertEqual(write_sets["U1"],
+                         {"a.txt", "b.txt", "c.txt", "d.txt", "e.txt"})
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=1)
