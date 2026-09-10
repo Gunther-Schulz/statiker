@@ -4848,6 +4848,27 @@ class TestPureFunctions(unittest.TestCase):
         self.assertEqual(write_sets["U1"],
                          {"a.txt", "b.txt", "c.txt", "d.txt", "e.txt"})
 
+        # 0.2.84 T2: the pure-function call above never touches
+        # annotate_repairs's actual output through the command
+        # verdict — route the same scenario through `lint` so the
+        # repair FIELD (B3) is graded, not just the code.
+        with tempfile.TemporaryDirectory() as tmp:
+            tmpdir = Path(tmp)
+            subprocess.run(["git", "init", "-q", "-b", "main"], cwd=tmpdir,
+                           env={**os.environ, "GIT_CONFIG_GLOBAL": "/dev/null"},
+                           capture_output=True, check=True)
+            p = tmpdir / "t.md"
+            p.write_text(text)
+            result = tool(["lint", "--tracker", str(p)], cwd=tmpdir)
+            lines = [l for l in result.stdout.split("\n")
+                    if l.startswith(VERDICT_PREFIX)]
+            v = json.loads(lines[0][len(VERDICT_PREFIX):])
+            viol = next(x for x in v["violations"]
+                       if x["code"] == "declarator-bookkeeping")
+            self.assertNotIn("unclassified", viol["repair"])
+            self.assertTrue(viol["repair"].startswith("supersede-whole:"),
+                            viol["repair"])
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=1)
