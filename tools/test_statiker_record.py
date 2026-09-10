@@ -4609,21 +4609,36 @@ class TestB4DeclaratorBookkeepingSupersedeWholeExempt(RecordFixture):
         v = self.lint(body)
         self.assertNotIn("declarator-bookkeeping", self.violation_codes(v))
         self.assertNotIn("write-set-near-miss", self.violation_codes(v))
-        # NOT asserted: the disposition's literal fixture text embeds
-        # `(corrects line {n})` inside the write-set declarator's own
-        # PATH field, which write_set_violations' pre-existing
-        # multi-word-path check (:781-809) reads as a second path and
-        # flags `write-set-path-near-miss` ON THE CORRECTING LINE
-        # ITSELF — present both before and after this fix (it fires
-        # unconditionally at the initial per-line LINT scan,
-        # independent of apply_supersession/declarator-bookkeeping).
-        # The disposition's "must be CLEAN after" is refuted for this
-        # exact literal text by that orthogonal, un-dispositioned
-        # near-miss check; B4's own claim — the hold no longer fires
-        # on the tool's prescribed repair, and the original near-miss
-        # sheds — is fully confirmed above. Surfaced to the dispatcher
-        # rather than freelance-fixed (out of this disposition's
-        # stated design, out of the write boundary's intent).
+        # 0.2.85 B4 residue: the disposition's literal fixture text
+        # embeds `(corrects line {n})` inside the write-set
+        # declarator's own PATH field. write_set_violations' own
+        # multi-word-path check (:781-809+) now exempts exactly this
+        # trailing form (the grammar's one legal slot for the
+        # redeclaration's resolving token) before checking for a
+        # second path — the disposition's "must be CLEAN after" now
+        # holds in full.
+        self.assertNotIn("write-set-path-near-miss", self.violation_codes(v))
+        self.assertEqual(v["verdict"], "LINT_CLEAN", v)
+
+    def test_corrects_suffix_does_not_mask_a_genuinely_multi_word_path(self):
+        # control: the exemption is a NAMED slot for the resolving
+        # token, never a general softening of the path-field check —
+        # a real second path ahead of the suffix must still fire
+        prefix, n = self._tracker()
+        body = prefix + (
+            f"- F2 [VERIFIED] unit U1 write-set: a.txt b.txt "
+            f"(corrects line {n}) — basis: design\n")
+        v = self.lint(body)
+        self.assertIn("write-set-path-near-miss", self.violation_codes(v))
+
+    def test_corrects_suffix_does_not_mask_a_leading_slash_path(self):
+        # control, same reach question for the other path defect
+        prefix, n = self._tracker()
+        body = prefix + (
+            f"- F2 [VERIFIED] unit U1 write-set: /abs/a.txt "
+            f"(corrects line {n}) — basis: design\n")
+        v = self.lint(body)
+        self.assertIn("write-set-path-near-miss", self.violation_codes(v))
 
 
 # ----------------------------- P24: the unforced landing annotation

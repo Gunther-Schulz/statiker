@@ -422,6 +422,11 @@ BACKTICK_RE = re.compile(r"`[^`]*`")
 # EXACT `unit U<k> ` prefix, never a body-wide search.
 WRITE_SET_NEAR_RE = re.compile(r"(?i)^write[\s-]*set\s*:?\s*")
 WRITE_SET_EXACT_RE = re.compile(r"^write-set: \S")
+# 0.2.85 (B4 residue): the grammar's one legal slot for a
+# supersede-whole write-set redeclaration's own resolving token — a
+# trailing parenthetical on the declarator line, stripped before the
+# path-field near-miss check (write_set_violations).
+WRITE_SET_CORRECTS_SUFFIX_RE = re.compile(r"\s*\(corrects line \d+\)$")
 LANDING_RE = re.compile(r"^unit (U\d+) landed:")
 LANDING_INDENTED_RE = re.compile(r"^\s+unit (U\d+) landed:")
 # P24 (begehung R4): a body-content line reporting the git tool's
@@ -570,8 +575,9 @@ REPAIR_CORRECTS_OUT_OF_BODY = (
 # (that `n` would resolve to this defective line's own number).
 REPAIR_DECLARATOR_BOOKKEEPING = (
     "supersede-whole: restate the full write-set under the same id, "
-    "naming the ORIGINAL target with `corrects line <n>` — never this "
-    "line's own number")
+    "with a trailing `(corrects line <n>)` naming the ORIGINAL "
+    "target — never this line's own number; the one legal slot for "
+    "the token on a write-set declarator line")
 REPAIR_FOREIGN_ID_SUSPECT = (
     "name the record before the id (tracker path or run label), or, "
     "for a genuine same-run id, correct the citing line")
@@ -805,14 +811,22 @@ def write_set_violations(body: str, tag: str):
     An INVALIDATED line is exempt: its trailing prose (the standing
     `dead (mis-scoped)`-style annotation) is disposal commentary, not
     a second declared path, and the line is already excluded from
-    every collision computation by tag alone (waves_over_units)."""
+    every collision computation by tag alone (waves_over_units). A
+    trailing `(corrects line <n>)` is exempt the same way (0.2.85,
+    the B4 residue): it is the grammar's one legal slot for a
+    supersede-whole redeclaration's own resolving token — the SAME
+    id's declarator line, restated whole and marked as the
+    correction (declarator-bookkeeping, SKILL.md, Stop rule) — never
+    a second declared path, and stripped before the check so any
+    OTHER multi-token content still fires."""
     scrubbed = BACKTICK_RE.sub(" ", body)   # quoting a literal is legal
     m = UNIT_SCOPE_RE.match(scrubbed)
     if not m:
         return []
     rest = scrubbed[m.end():]
     if WRITE_SET_EXACT_RE.match(rest):
-        path = rest[len("write-set: "):]
+        path = WRITE_SET_CORRECTS_SUFFIX_RE.sub(
+            "", rest[len("write-set: "):])
         if tag != "INVALIDATED" and (
                 len(path.split()) > 1 or path.lstrip().startswith("/")):
             return ["write-set-path-near-miss"]

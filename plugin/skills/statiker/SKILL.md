@@ -520,9 +520,12 @@ a fresh `unit U<k> write-set: <path>` redeclaration — under
 latest-line-wins, an ordinary bookkeeping correction there would
 become the id's resolved body and un-declare the path though a live
 declaration for it still stands. The repair is the supersede-whole
-form: restate the full write-set under the same id, with `corrects
-line <n>` naming the ORIGINAL target, never this line's own number —
-the repair the grammar makes reachable there, and there alone.
+form: restate the full write-set under the same id, with a trailing
+`(corrects line <n>)` naming the ORIGINAL target, never this line's
+own number — the ONE legal slot for the token on a write-set
+declarator line (the path-field near-miss check exempts exactly this
+trailing form, nothing wider) — the repair the grammar makes
+reachable there, and there alone.
 
 - findings: `- F<n> [VERIFIED|PENDING|INVALIDATED|AUTO-ACCEPTED]
   <claim> — basis:
