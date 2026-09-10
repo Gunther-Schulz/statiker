@@ -1577,7 +1577,13 @@ belongs in its
 scratchpad (the read-only tail's provision), never the repo. Model per
 `clippy.config/models` (`verify:` class) when present, else the
 parent model; an unreadable models file halts the dispatch, the
-parse error recorded as a finding. Before the V-line,
+parse error recorded as a finding. The leg-return seam: receiving a
+verify leg's report, the desk runs verify-gate and appends the
+V-line in the SAME TURN — a per-R verdict has no gate-legible form
+until the V-line lands, and a pause between the leg's return and
+that append leaves them as hand-carried F-lines a resumed close
+cannot consume (P33, run 3: eleven PASS verdicts, both legs
+re-ran). Before the V-line,
 `verify-gate --tracker <path> --sha <the recorded read-start sha>`
 checks the copy against that recorded sha: VERIFY_COPY_CLEAN
 proceeds; VERIFY_COPY_STALE names every commit and touched path
