@@ -22,6 +22,16 @@
   unchecked on mechanism-dense prose mints).
 - **PLAN.md is the design record** — settled decisions are not
   re-opened without new evidence.
+- **Carrier transition (2026-09-10, operator GO).** Work items live
+  in `ITEMS.md` under the lifecycle plugin's tool
+  (`.claude/lifecycle.json`; bookings via `lifecycle item add`,
+  never hand-edited). `BACKLOG.md` is NOT retired: it remains the
+  body store the migrated entries point into (blob `a115998c`) and
+  stays writable only for arcs still recorded there (P29's run
+  bookkeeping). Retirement is decidable only when st-21 (consumer
+  migration) and st-22 (`## Done` ingestion, blocked on lifecycle
+  lc-72's recognizer fix) both close. Migration report:
+  `docs/audits/migration-report-2026-09-10.md`.
 - **`dev-notes/clippy-lineage.md` is the lineage evidence register**
   — clippy-history Stichproben and the weakness ledger, loosely
   informing (never a design-against list); load it at opus-ladder

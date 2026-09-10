@@ -7713,3 +7713,61 @@ their register" is re-confirmed at n+2.
   Deploy payload = 15 commits incl. two operator-directed schema
   drops outside the run; the decision is the operator's, resume
   brief P29 carries it. Six lanes idle, no timers, no holds.
+
+- 2026-09-10 — **Run 3 RESUMED (fresh desk beat-the-books-6e, opus,
+  0.2.82; meta statiker-cc drives per operator delegation, desk
+  records F165/F167 — both operator lines stated first-hand in the
+  desk session).** Desk resume: SWEEP_CLEAN, CLOSURE_LIVE (A2),
+  PINNED_APPEND_ONLY against lock e9260a95, served version 0.2.82
+  confirmed from the injection. DIVERGENCE found at fetch (desk,
+  executed): origin/main carried 17 foreign commits (gemfroot,
+  2026-08-11..30, autobet/ev_plus/Telegram; NO migrations, proven
+  with a positive control), and prod runs d8d8bde1 = origin tip,
+  up 11 days (ssh + docker ps, executed) — U2 was never deployed;
+  F164/P29's unpushed-count premise was stale. Meta ruling
+  REVERSED on measurement (count this run: 1): the deploy-first
+  directive died at the desk's fetch. Standing rulings issued:
+  MERGE origin/main into main, never rebase (the run record pins
+  local SHAs everywhere; a rebase orphans every pin); CHANGELOG
+  keep-both after the desk confirmed newest-first from each ref's
+  own headings; merged-tree verify BEFORE deploy (final-form
+  rule — the pre-merge verify leg graded an object the merge
+  replaced); then deploy + post-deploy verification against
+  baseline d8d8bde1. Merge landed ebd8d5a7 (parents c4a44932,
+  d8d8bde1). Verify scope graded APPROVED on executed zero/control
+  pairs (origin diff over U2's write-set: empty, control 8 files;
+  U2-surface grep over gemfroot's src diff: 0 lines, control 31);
+  F163 mutation proofs excluded with basis (pins re-executed by
+  the suites). Deploy pending suite output (digest 2). Candidate
+  statiker tool finding, UNVERIFIED at source: spent attack-queue
+  `.paths` files remain as litter after queue-spent (desk F168
+  note) — verify at statiker_record.py before booking. Pre-desk
+  P32–P38 sweep verdict (owed by P29 resume step 2): all six ripe
+  by provenance, DEFERRED — pin holds 0.2.82 for the run's
+  remainder (deploy + close only; the defects they fix were
+  hand-worked-around in-run); the bundle mints at the run-3 close
+  seam batched with P39's yield. Economics: operator interactions
+  this stretch: 3 (desk open + line pastes; docker + grant
+  re-paste; migration GO rode the first).
+
+- 2026-09-10 — **Carrier migrated to lifecycle (operator GO, "go
+  on all").** `lifecycle init` (declaration `.claude/lifecycle.json`,
+  id-prefix st) + dry-run `migrate --from-done NONE`: 20/20 open
+  entries → ITEMS.md st-1..st-20 (all NEW per write-rules; typed
+  blockers 11 decision / 9 evidence), residue st-21 (20 tracked
+  consumers of BACKLOG.md, PARKED), report
+  docs/audits/migration-report-2026-09-10.md, source blob
+  a115998c, both identities HOLD (45 = 20+25+0; 20 = 20+0+0).
+  TOOL FINDING at the owning repo: the entry recognizer (bold-led
+  or grade-word-led) misses DATE-LED closure bullets — statiker's
+  25 `## Done` bodies all classed "non-entry prose" and excluded
+  from the archive, contradicting the report's own closure-shape
+  rule table; booked as lifecycle lc-72 (be97be9, READY) at the
+  lifecycle desk, verified against the report and source carrier
+  here. Statiker-side ingestion residue booked st-22
+  (evidence-blocked on lc-72; BACKLOG.md must not retire before
+  ingestion). BACKLOG.md NOT retired; CLAUDE.md carries the
+  transition declaration. The banner's retirement-pass obligation
+  discharges into the migration by construction: every old READY
+  returned to the desk as a decision-blocked re-grade, old PARKED
+  kept its evidence blocker typed.
