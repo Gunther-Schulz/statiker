@@ -1,16 +1,7 @@
 schema: 2
 baseline: 21
-added: 3
+added: 4
 compacted: 0
-
-## st-1
-grade: NEW
-requirement: READY 2026-08-26 — P39: Begehung R4 at the run-3 close seam (operator call, same day) — record: BACKLOG.md:23
-goal: UNKNOWN
-write-set: UNKNOWN
-done-criterion: UNKNOWN
-evidence: BACKLOG.md:23-46
-blocked-by: decision regrade: was READY under the old carrier: READY is judged, never inherited
 
 ## st-2
 grade: READY
@@ -275,4 +266,13 @@ goal: tend
 write-set: plugin/skills/statiker/scripts/statiker_record.py, tools/test_statiker_record.py, plugin/skills/statiker/SKILL.md (one sentence if the hold is named)
 done-criterion: red-first fixture: a tracker with UNIT_COMMITTED evidence and no landing annotation holds in sweep (red today by absence of the check), annotated tracker clean; rides the P32-bundle review
 evidence: run-3 F183 with its basis (merge-base ancestor proof, control a27c4403 fails); the run's own hand-repair is the incident
+blocked-by: NONE
+
+## st-25
+grade: READY
+requirement: tenet 9 (placement) is decided but SKILL.md does not yet carry it: each unit's design carries the precedent line, verbatim form 'follows <path>, judged sound' or '<path> is the problem, this unit's scope', written in the design record and traveling into the brief verbatim, never left implicit — record: PLAN.md tenet list item 9 + the 2026-08-26 (4)/(4b) entry (PLAN.md:595-617)
+goal: tend
+write-set: plugin/skills/statiker/SKILL.md (design/lock passage: one clause), tools/test_statiker_record.py only if the clause names a record token
+done-criterion: the design/lock passage mandates the precedent line per unit design with the two verbatim outcomes quoted; one line per unit, a claim a fresh reader can check; names a record form so machine-read semantics ride the P32-bundle opus checkpoint review; field datum riding run 3 (arm A: nobody wrote 'like verify_deployed_sha.py', so nobody did)
+evidence: PLAN.md:595-617 (4b operator-agreed 2026-08-26) + tenet list item 9 (decided as skill work 2026-09-10); arm A three-harness incident is the motivating fire
 blocked-by: NONE
