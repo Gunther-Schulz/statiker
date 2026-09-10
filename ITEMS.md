@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 4
+added: 5
 compacted: 0
 
 ## st-2
@@ -276,3 +276,12 @@ write-set: plugin/skills/statiker/SKILL.md (design/lock passage: one clause), to
 done-criterion: the design/lock passage mandates the precedent line per unit design with the two verbatim outcomes quoted; one line per unit, a claim a fresh reader can check; names a record form so machine-read semantics ride the P32-bundle opus checkpoint review; field datum riding run 3 (arm A: nobody wrote 'like verify_deployed_sha.py', so nobody did)
 evidence: PLAN.md:595-617 (4b operator-agreed 2026-08-26) + tenet list item 9 (decided as skill work 2026-09-10); arm A three-harness incident is the motivating fire
 blocked-by: NONE
+
+## st-26
+grade: PARKED
+requirement: precedent line and red-recording mandate: mechanized readers deferred pending a field datum. N3: does the precedent line earn a near-miss lint or close enumeration; N4: does the red-record earn a gate-legible token. Both were minted 0.2.84 as prose with a named consumer (the verify-leg brief demand; the D-line home) — record: dev-notes/OBSERVATIONS.md 2026-09-10 checkpoint-review dispositions, N3/N4
+goal: tend
+write-set: plugin/skills/statiker/SKILL.md, plugin/skills/statiker/scripts/statiker_record.py, tools/test_statiker_record.py
+done-criterion: graded on the next run's field data: if a run shows a missing or mistyped precedent line or an unrecorded red that the prose form failed to force, the mechanized reader mints with that incident as provenance; a clean run records the prose form as sufficient and this item drops
+evidence: opus-review-0284 findings N3/N4 (verbatim in the dispositions record); mint-timing convention (bite bar on the problem, field test on the design)
+blocked-by: evidence false  # the next statiker run's field data on both forms
