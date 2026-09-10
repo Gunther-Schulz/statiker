@@ -550,6 +550,24 @@ REPAIR_CORRECTS_OUT_OF_BODY = (
     "restated in the BODY where the resolver searches; a FRESH id "
     "re-declares any content the basis clause was actually naming, "
     "never a repair token")
+# 0.2.84 B3: three sweep-stage codes minted this version had no
+# REPAIR_FORMS entry, so annotate_repairs fell through to the
+# "unclassified" placeholder for every hold they raised.
+# E-M's own rule binds this one too: declarator-bookkeeping is raised
+# on the CORRECTING line (apply_supersession's own complaint, like
+# corrects-nothing/multi-corrects-token), never on a `violated`-map
+# target — so its printed repair names the form in prose, never a
+# literal `corrects line {n}` token the resolver could never target
+# (that `n` would resolve to this defective line's own number).
+REPAIR_DECLARATOR_BOOKKEEPING = (
+    "supersede-whole: restate the full write-set under the same id, "
+    "naming the ORIGINAL target with `corrects line <n>` — never this "
+    "line's own number")
+REPAIR_FOREIGN_ID_SUSPECT = (
+    "name the record before the id (tracker path or run label), or, "
+    "for a genuine same-run id, correct the citing line")
+REPAIR_LANDING_MISSING = (
+    "append the landing annotation line for the committed sha")
 
 MACHINE_TOKEN_CODES = {
     "entry-form", "tag-enum", "entry-near-miss", "scope-near-miss",
@@ -584,7 +602,10 @@ REPAIR_FORMS = dict(
        ("status-enum", "phase-enum", "admission-window")]
     + [(c, REPAIR_STATUS_LINE) for c in
        ("pending-latest", "basis-cites-invalidated")]
-    + [("corrects-token-out-of-body", REPAIR_CORRECTS_OUT_OF_BODY)])
+    + [("corrects-token-out-of-body", REPAIR_CORRECTS_OUT_OF_BODY)]
+    + [("declarator-bookkeeping", REPAIR_DECLARATOR_BOOKKEEPING)]
+    + [("foreign-id-suspect", REPAIR_FOREIGN_ID_SUSPECT)]
+    + [("landing-missing", REPAIR_LANDING_MISSING)])
 
 
 def annotate_repairs(violations, line_ids=None):

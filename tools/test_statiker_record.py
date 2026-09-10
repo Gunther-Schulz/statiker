@@ -4510,6 +4510,43 @@ class TestB2B6RecordNameTokenRedesign(RecordFixture):
         self.assertNotIn("foreign-id-suspect", self.violation_codes(v))
 
 
+# -------- 0.2.84 checkpoint review B3: repair forms for new codes
+
+class TestB3RepairFormsForNewCodes(RecordFixture):
+    """0.2.84 checkpoint review, finding B3: three codes minted this
+    version (`declarator-bookkeeping`, `foreign-id-suspect`,
+    `landing-missing`) had no REPAIR_FORMS entry, so annotate_repairs
+    fell through to the "unclassified: this violation's repair form
+    is not settled" placeholder (SKILL.md:498-501, ES-10) — the desk
+    reads no composable repair for any of them."""
+
+    def test_declarator_bookkeeping_repair_is_classified(self):
+        prefix = ("- F2 [VERIFIED] unit U1 write-set a.txt — basis: design\n"
+                  "- F2 [VERIFIED] unit U1 write-set: a.txt — basis: design\n")
+        n10 = self.lineno_of(prefix, "write-set a.txt — basis: design")
+        body = prefix + f"- F2 [VERIFIED] record: corrects line {n10} — basis: y\n"
+        v = self.lint(body)
+        viol = next(x for x in v["violations"]
+                   if x["code"] == "declarator-bookkeeping")
+        self.assertNotIn("unclassified", viol["repair"])
+
+    def test_foreign_id_suspect_repair_is_classified(self):
+        body = ("- F5 [VERIFIED] the latest genuine finding — basis: e\n"
+                "- D1 [COMMITTED] rests on — basis: F99\n")
+        v = self.sweep(body)
+        viol = next(x for x in v["violations"]
+                   if x["code"] == "foreign-id-suspect")
+        self.assertNotIn("unclassified", viol["repair"])
+
+    def test_landing_missing_repair_is_classified(self):
+        body = ("- F9 [VERIFIED] unit U2 committed clean (UNIT_COMMITTED, "
+                "sha 3f2a1c) — basis: unit-commit\n")
+        v = self.sweep(body)
+        viol = next(x for x in v["violations"]
+                   if x["code"] == "landing-missing")
+        self.assertNotIn("unclassified", viol["repair"])
+
+
 # ----------------------------- P24: the unforced landing annotation
 
 class TestP24LandingMissingHold(RecordFixture):
