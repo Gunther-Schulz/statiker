@@ -267,6 +267,10 @@ UNEXEMPTIBLE_CODES = {"tag-literal-in-body", "pending-latest"}
 # above — a DIFFERENT mechanism (H6: no OPERATOR declaration may
 # silence it) that RETRO grading does not touch: RETRO is a computed
 # historical fact, never an operator decision, so the two coexist.
+# T3 (0.2.84 checkpoint review): declarator-bookkeeping,
+# foreign-id-suspect, and landing-missing are SUBSTANCE codes,
+# correctly never retro (SKILL.md, Stop rule) — this table doubles
+# as the mint REGISTRY for every code, not only the FORM-gated ones.
 RULE_MINT_VERSION = {
     "admission-window": "0.2.33",
     "basis-cites-invalidated": "0.2.33",
