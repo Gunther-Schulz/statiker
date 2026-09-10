@@ -815,13 +815,20 @@ class TestWaves(RecordFixture):
         # ordering/execute-set collisions to the desk, reading the
         # D-lines; the old bare "parallel-eligible" label must not
         # appear at all.
+        #
+        # 0.2.84 T1: the assertions below pinned the caveat's rendered
+        # PROSE as separate literal substrings — brittle to any
+        # meaning-preserving reword. The caveat text is exported as
+        # WAVES_DISJOINT_CAVEAT; this test imports it and asserts
+        # presence, keeping only the must-not-appear check as a
+        # literal (a prose change can never silently defeat that half).
+        sys.path.insert(0, str(SCRIPT.parent))
+        import statiker_record
+        sys.path.remove(str(SCRIPT.parent))
         body = "- F1 [VERIFIED] unit U1 write-set: src/a.py — basis: d\n"
         p = tool(["waves", "--tracker", str(self.write_tracker(body))],
                 cwd=self.dir)
-        self.assertIn("disjoint write-sets only", p.stdout)
-        self.assertIn("ordering constraints", p.stdout)
-        self.assertIn("execute-set collisions", p.stdout)
-        self.assertIn("the desk's, read from the D-lines", p.stdout)
+        self.assertIn(statiker_record.WAVES_DISJOINT_CAVEAT, p.stdout)
         self.assertNotIn("parallel-eligible", p.stdout)
 
     def test_unit_missing_write_set_is_unplannable(self):
