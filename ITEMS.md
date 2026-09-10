@@ -206,6 +206,8 @@ evidence: docs/audits/migration-report-2026-09-10.md — 25 'non-entry prose', a
 blocked-by: evidence lifecycle lc-72 fix landed (a migrate build whose closure pass routes date-led bullets)
 amend-reason: 2026-09-10 re-pointed: the recognizer fix (lc-72, dd81507) is in and proven at unit level, but the merge's whole-run duplicate refusal (lc-73) now blocks the ingestion; BACKLOG.md retirement unchanged, still jointly gated with st-21
 amended-blocked-by: 2026-09-10 evidence lifecycle lc-73 duplicate-disposition landed (a merge build that routes the 25 closure bodies past the 20 declared same-work duplicates)
+amend-reason: 2026-09-10 blocker predicate made EXECUTABLE: item ready runs the predicate as a command and my prose form exited 2 (trigger_broken); the grep goes green when lc-73's closed body moves to lifecycle's done home
+amended-blocked-by: 2026-09-10 evidence grep -q '^## lc-73' /home/g/dev/Gunther-Schulz/lifecycle/ITEMS-DONE.md
 
 ## st-23
 grade: READY
