@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 6
+added: 7
 compacted: 0
 
 ## st-2
@@ -299,3 +299,14 @@ amended-done-criterion: 2026-09-10 the Verify section carries the delta-scoped V
 amended-blocked-by: 2026-09-10 NONE
 promote-reason: 2026-09-10 2026-09-10 design decided at the desk on the in-hand datum; builds after the repair lap lands and BEFORE the re-review dispatches (verification runs on the final form: a decided-but-unbuilt change would make the round's object stale)
 promoted-by: 2026-09-10 statiker-cc meta desk (fable)
+amend-reason: 2026-09-10 2026-09-10 operator discussion (evidence fixes carry a different risk class, not a smaller amount): the re-check form follows the repair class, completing the scoping design with the class-to-form table
+amended-done-criterion: 2026-09-10 the Verify section carries the delta-scoped V2 rule with the re-check FORM matched to each repair's class: REQUIREMENT repairs take a fresh read of the reconciled line against the work (no checks re-run); INSTRUMENT repairs re-execute their own red pair (the discrimination proof) and nothing else; WORK repairs re-run the R-lines whose checks' reach touches the repaired surface (reach judged by the leg, never a lexical path join: the D39 lesson); any DESIGN-classified repair forces the full re-run (safety floor, outside the n=1 rule). Carried-forward V1 verdicts state their per-line reason. Machine-read semantics: rides the same opus re-review as the 0.2.84 repair lap
+
+## st-28
+grade: READY
+requirement: the record tool's checks can silently NARROW across versions and no per-feature test catches it: the 0.2.84 review's B1/B2 (live-basis check went green on citation shapes it fired on at c19c829) slipped a 482-green battery because the batch's tests were derived from the new helper's intent (same-parentage expectations move with the mutant) — record: dev-notes/OBSERVATIONS.md 2026-09-10 dispositions, B1/B2
+goal: tend
+write-set: tools/test_statiker_record.py, tools/golden-corpus fixture tracker + expected-violations golden file (new files, homes under tools/)
+done-criterion: a golden-corpus sweep test: one rich fixture tracker exercising every violation code in RULE_MINT_VERSION (positive and known-clean rows per code), a committed golden file of expected violations, and a test that diffs the sweep's full hit-set against it, red on ANY code's hits shrinking or growing; regenerating the golden requires a reviewed diff, never a blind overwrite. Red-first: run the corpus at c19c829 vs 2baa349 pre-repair and show the B1/B2 rows vanish (the incident reproduced as the fixture's own proof); reach: the corpus derives its code list from the tool's own RULE_MINT_VERSION table at runtime, so a new code with no corpus row goes red by construction
+evidence: opus-review-0284 B1/B2 measured pairs (dispositions record); the corpus anchor rule: a coverage basis derives from the RUNNING source, and the cheap instrument is the assertion on what must not degrade
+blocked-by: NONE
