@@ -1653,6 +1653,17 @@ voids, re-derive), REQUIREMENT (work matches design, design
 matches R-line, the R-line is wrong → amendment or
 reconciliation), INSTRUMENT (the check itself is defective →
 the V-line's evidence [INVALIDATED]; no work changes).
+The same classes scope the re-verification after the repairs
+land: the re-dispatch brief lists every repair (site and diff),
+and the leg re-runs each R-line whose checks' reach touches a
+repaired surface — reach judged by the leg from what its checks
+execute, never by a path join at the desk — carrying a V1
+verdict forward only with its per-line reason stated in the
+V-line's evidence. Per class: a REQUIREMENT repair takes a fresh
+read of the reconciled line against the work, no checks re-run;
+an INSTRUMENT repair re-executes its own red-first pair, nothing
+else; a WORK repair re-runs the touched R-lines' checks; any
+DESIGN repair voids the scoping — the full leg re-runs.
 (hypothesis) Verify returns count against the run budget (The
 record) — an unattended run earns no infinite loop.
 
