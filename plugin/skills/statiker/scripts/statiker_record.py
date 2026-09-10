@@ -856,7 +856,10 @@ def basis_id_citations(basis: str):
     out = []
     prev_is_record_name = False
     for tok in (basis or "").split():
-        bare = tok.strip(",;")
+        # 0.2.84 B1: `,;` alone left `(F20)`, `F20)`, `F20.` invisible
+        # to the id fullmatch — quoting/bracketing punctuation strips
+        # too.
+        bare = tok.strip("()[].,;:")
         if re.fullmatch(r"[FDRAV]\d+", bare):
             out.append((bare, prev_is_record_name))
             prev_is_record_name = False

@@ -4438,6 +4438,33 @@ class TestP32ForeignRecordIdCollision(RecordFixture):
         self.assertNotIn("foreign-id-suspect", self.violation_codes(v))
 
 
+# ------------- 0.2.84 checkpoint review B1: id-token punctuation strip
+
+class TestB1BasisIdCitationsPunctuationStripping(RecordFixture):
+    """0.2.84 checkpoint review, finding B1: basis_id_citations
+    stripped only `,;` from a whitespace-split token before the id
+    fullmatch, so a parenthesized citation like `(F20)` never
+    resolved to an id at all — invisible to basis-cites-invalidated
+    (silent reach loss vs c19c829). Cleaning strips `()[].,;:` before
+    the fullmatch."""
+
+    def test_parenthesized_citation_of_invalidated_id_fires(self):
+        body = ("- F20 [INVALIDATED] this run's own claim died — "
+                "basis: probe\n"
+                "- D1 [COMMITTED] rests on dead ground — "
+                "basis: the earlier probe (F20)\n")
+        v = self.sweep(body)
+        self.assertIn("basis-cites-invalidated", self.violation_codes(v))
+
+    def test_bare_citation_control_still_fires(self):
+        # positive control, unaffected either side of the fix
+        body = ("- F20 [INVALIDATED] this run's own claim died — "
+                "basis: probe\n"
+                "- D1 [COMMITTED] rests on dead ground — basis: F20\n")
+        v = self.sweep(body)
+        self.assertIn("basis-cites-invalidated", self.violation_codes(v))
+
+
 # ----------------------------- P24: the unforced landing annotation
 
 class TestP24LandingMissingHold(RecordFixture):
