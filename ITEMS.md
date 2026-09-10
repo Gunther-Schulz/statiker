@@ -76,6 +76,8 @@ write-set: UNKNOWN
 done-criterion: UNKNOWN
 evidence: BACKLOG.md:198-218
 blocked-by: evidence false  # the named missing evidence in the source body
+amend-reason: 2026-09-10 begehung R4: P33 datum in hand, un-park decidable
+amended-evidence: 2026-09-10 BACKLOG.md:198 (P33 body). The named missing evidence ARRIVED, run 3: entry-form R-lines were consumed successfully by both isolated legs (latest line per R1-R19 read and graded), so the attack/verify DOES see them; the real loss is gate-legibility of verify RESULTS produced outside the gate form (the pre-pause leg's eleven PASS existed as hand-carried F-lines, and the resumed close could not use them: both legs re-ran). Design decision now decidable at the seam bundle
 
 ## st-9
 grade: NEW
