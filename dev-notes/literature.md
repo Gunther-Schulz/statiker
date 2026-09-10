@@ -45,7 +45,17 @@ as far as searchable, the only instrumented study of it.
   reduce self-preference (uncorrelated to negative) — the bias is
   not a weakness that model progress retires; structural
   separation stays necessary. Supports the trial's premise that
-  self-blindness is not a capability patch.
+  self-blindness is not a capability patch. VERIFIED AT THE PAPER
+  (2026-09-10, verifier lane; quotes: yang2026-verify-quotes.md,
+  this directory): supports as written — §4.3 across 20 models,
+  abstract near-verbatim; 6 of 11 high-discriminability judges
+  still self-favor ("Machiavellian Judges"). Scope limits carried
+  with it: the capability-vs-bias read is a qualitative scatter,
+  no coefficient reported; capability is judge-relative to the
+  paper's own two benchmarks; English-only single-turn scope with
+  family effects not fully disentangled. The corpus Philosophy
+  line's permanence clause rests on this at
+  qualitative-measurement strength, not statistical.
 - Chen et al., "The Self-Correction Illusion: Role Relabeling
   Gates Explicit Error Flagging", 2026. arxiv.org/abs/2606.05976.
   Relabeling an erroneous claim from the model's own role to an
