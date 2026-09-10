@@ -3,8 +3,11 @@
 System under review: the statiker development-loop system — SKILL.md
 (operational text), the record/git/emit tools, the run record
 grammar, and the repo's own carriers. Declared revisit interval:
-one round per meta-session week while the trial runs; a row
-unvisited longer is a finding (skill rule).
+one round per ACTIVE meta-session week while the trial runs — the
+clock suspends while the trial is paused (amended R4, 2026-09-10:
+the calendar reading showed 25 days R3→R4 across a pause the
+original wording never contemplated); a row unvisited longer is a
+finding (skill rule).
 
 Derivation, first run 2026-08-16: rows from claim-emission
 surfaces (every place the system produces claims, values, or
@@ -23,7 +26,9 @@ basis, silent degradation) plus the trial's own measured class
 | Tracker grammar vs CROSS-SKILL consumers (/clippy-stats contract) | prose-covered — admission half mechanically pinned (record tool source-read, 0.12.4); metrics half measured DIVERGENT, claim narrowed in SKILL.md 0.2.70, reader-side booked in coding-clippy BACKLOG, residual decision parked (P11) | 2026-08-16 · R1 | 3 findings (2 executed divergences + 1 overwide claim) | P11's trigger: trial-close grading design |
 | Seals/queues/comparisons (XDG state) vs successor desks | prose-covered (seal-path derivation verdict, P1 shipped; queue-spent grammar) | 2026-08-15 · lane D | med | none owed now |
 | Certified-attack register (defaults/models) vs tier resolution at a real desk | dark — resolution order prose-only, never incident-fired | never | — | candidate lens R2+ |
-| Implement/verify/close sections vs real execution | dark BY CONSTRUCTION — zero units have ever landed under statiker; forcing points 4–5 are near-unfired text | never (no run reached them) | — | not walkable by reading: the first landing run is the instrument; note in round reports until then |
+| Implement/verify/close sections vs real execution | prose-covered (run 3 exercised forcing points 4–5 end to end: 2 units landed/deployed/live-verified; defect findings booked st-23/st-24, st-6/st-8 amended) | 2026-09-10 · R4 | 6 (lens rows; 1 blocking) | seam bundle builds st-23/st-24 + st-2/3/5; re-walk after the next run exercises the minted forms |
+| ENFORCER: the record tool held to its own invariants (its repair prescriptions, correction grammar, and verdicts obey the rules it enforces on the desk) | prose-covered (three run-3 incidents F147/F130/F91, fixes designed and booked st-2/st-3/st-5; minted as a row R4 — absence was itself a finding) | 2026-09-10 · R4 | 3 incidents (inherited from run 3) | st-2/3/5 build at the seam bundle; row re-walks after they land red-first |
+| CROSS-CUTTING: lifecycle of every artifact the system holds (where it lives, who writes it, who reads it) | dark (modelled — homes declared in SKILL.md's tools section and CLAUDE.md's carrier transition, but the reader census has never run; minted R4, never walked) | 2026-09-10 · R4 (minted only) | — | rotation candidate R5 (darkest with the register row) |
 | Plugin/version pin vs served conduct | mechanically-guarded (plugin-drift-scan banner; payload-bump pre-commit hook — both fired this session) | 2026-08-16 · this session | med | none owed now |
 | PLAN.md (design record) vs SKILL.md (shipped text) staleness | prose-covered — append-only supersession discipline exercised (R2 post-plan entry); no mechanical guard is buildable (the diff is judgment-shaped), backstop declared: this map's rotation re-walks the row | 2026-08-16 · R2 | 5 findings | re-walk after the trial-close grading (P11's trigger moment touches the same sections) |
 | Repo carriers (BACKLOG/OBSERVATIONS) vs drain reality (capture-vs-drain ratio) | prose-covered (corpus retirement trigger; banner where deployed) | 2026-08-16 · this session (P9/P10 drained same-day) | low | ratio re-read at next session start |
@@ -31,6 +36,13 @@ basis, silent degradation) plus the trial's own measured class
 | Run continuity vs harness turn/wake machinery (turn-ends, waits, wakers, dispatch lanes) | prose-covered (0.2.81 turn-end states clause; horizon rule) — mechanical half booked unbuilt (P16); stall waker-gap parked (P17) | 2026-08-16 · R3 | 2 (+2 prior mints today) | re-walk after P16 red-fires or P17's trigger |
 
 ## Round log
+
+| round | date | axis | why that axis | read-at | closed-at | reach | class |
+|---|---|---|---|---|---|---|---|
+| 1 | 2026-08-16 | tracker grammar vs /clippy-stats | darkest executable | unrecorded (pre-form; prose below) | unrecorded (same day; prose below) | unrecorded | claims never executed against their consumer (rows: Tracker grammar vs CROSS-SKILL consumers · Certified-attack register · Implement/verify/close sections vs real execution) |
+| 2 | 2026-08-16 | PLAN.md vs SKILL.md staleness | darkest readable | unrecorded (pre-form; prose below) | unrecorded (same day; prose below) | unrecorded | assurances never re-executed against their consumer (rows: PLAN.md (design record) vs SKILL.md (shipped text) staleness · Tracker grammar vs CROSS-SKILL consumers) |
+| 3 | 2026-08-16 | run continuity vs harness turn/wake | operator-named | unrecorded (pre-form; prose below) | unrecorded (same day; prose below) | unrecorded | rules inert at their firing moment (rows: run-continuity, conduct-text) |
+| 4 | 2026-09-10 | Implement/verify/close vs real execution | operator-named (P39/st-1): dark BY CONSTRUCTION until run 3's landings made it walkable; also stalest dark | statiker 08efadd · btb bc5f4727 | statiker 08efadd · btb bc5f4727 (nothing moved mid-round) | 0 hold, 0 superseded (no intervening change) | EXECUTION-MANDATED-FORM-UNBOUND (rows: Implement/verify/close · Record-tool verdicts · ENFORCER; property: does a mandated act leave a gate-legible record at its firing moment) |
 
 - 2026-08-16 · R1 — row: tracker grammar vs /clippy-stats
   (cross-skill consumer). Why: darkest executable row — the
@@ -136,3 +148,26 @@ basis, silent degradation) plus the trial's own measured class
   existence proof). Next round (rotation): certified-attack
   register row (darkest readable), unless a landing run opens
   implement/verify/close first.
+
+- 2026-09-10 · R4 — row: Implement/verify/close vs real execution
+  (operator-named, P39/st-1; the row's own next-step note said the
+  first landing run is the instrument — run 3 is that run: U20 +
+  U2 landed, deployed, live-verified, closed COMPLETE at btb
+  bc5f4727). Lens pre-registered in the P39 entry: per mechanism,
+  which of grounding / attackability / resumability it serves, or
+  only record-consistency, plus the economics currencies. CLOSED
+  same session, yield 6 lens rows (1 blocking) + 5 map rows +
+  1 close row — begehung-findings-2026-09-10-r4.tsv. Keeps:
+  isolated verify legs (caught 4 post-round defects suites
+  missed — the row's core value), unit-start/commit + close
+  machinery (low cost, no misfire). Defects, all one class
+  (EXECUTION-MANDATED-FORM-UNBOUND): red arms recordable as prose
+  (st-23), landing annotation unforced (st-24), verify results
+  gate-illegible outside the form (st-8 datum), plus the three
+  enforcer incidents (st-2/3/5) — dispositioned at the seam
+  bundle, which mints them together. Map hygiene minted this
+  round: round table, ENFORCER row, CROSS-CUTTING row, interval
+  clock amendment. Coverage after R4: 4 mechanically-guarded /
+  9 prose-covered / 2 dark of 15 rows. Next round (rotation):
+  CROSS-CUTTING artifact-lifecycle row or the certified-attack
+  register row (the two darks); operator lens overrides.
