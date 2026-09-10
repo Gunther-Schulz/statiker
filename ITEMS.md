@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 1
+added: 2
 compacted: 0
 
 ## st-1
@@ -202,3 +202,12 @@ evidence: docs/audits/migration-report-2026-09-10.md — 25 'non-entry prose', a
 blocked-by: evidence lifecycle lc-72 fix landed (a migrate build whose closure pass routes date-led bullets)
 amend-reason: 2026-09-10 re-pointed: the recognizer fix (lc-72, dd81507) is in and proven at unit level, but the merge's whole-run duplicate refusal (lc-73) now blocks the ingestion; BACKLOG.md retirement unchanged, still jointly gated with st-21
 amended-blocked-by: 2026-09-10 evidence lifecycle lc-73 duplicate-disposition landed (a merge build that routes the 25 closure bodies past the 20 declared same-work duplicates)
+
+## st-23
+grade: READY
+requirement: the implement/repair moment mandates red-first execution but no RECORDED FORM: F175's red run existed only as docstring prose, formally compliant, caught only by verify leg 1; SKILL.md's sole red-recording mandate is the attack-pin clause at :721. A committed red arm or pasted red output is re-executable (attackability); prose is not. Record: begehung R4 finding, run-3 F175 + repair 8c267ad8 (the lane's committed red arm is the exemplar)
+goal: tend
+write-set: plugin/skills/statiker/SKILL.md, tools/test_statiker_record.py (only if the clause names a record token)
+done-criterion: the Implementation section carries the red-recording clause (committed red arm or output pasted in the record); machine-read semantics check: rides the P32-bundle opus checkpoint review before the pin moves
+evidence: run-3 tracker F175 (V1, F174 series); repair commit 8c267ad8; SKILL.md grep: red-first mandate only at :54,:120,:721, none in :1239-1502
+blocked-by: NONE
