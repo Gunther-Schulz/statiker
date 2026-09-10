@@ -4465,6 +4465,51 @@ class TestB1BasisIdCitationsPunctuationStripping(RecordFixture):
         self.assertIn("basis-cites-invalidated", self.violation_codes(v))
 
 
+# --------- 0.2.84 checkpoint review B2+B6: record-name token redesign
+
+class TestB2B6RecordNameTokenRedesign(RecordFixture):
+    """0.2.84 checkpoint review, findings B2+B6:
+    RECORD_NAME_TOKEN_RE = `(/|:$)` over-matched the skill's own
+    canonical basis form (a code pointer like `tools/x.py:40`, or any
+    ordinary `label:`), silently exempting a same-run id from both
+    basis-cites-invalidated and foreign-id-suspect; and the exemption
+    reset after one id, so a page-mandated plural citation
+    (`tracker.md F20, F21`) drew foreign-id-suspect on its second id.
+    Redesigned: a record-name token is a token containing `/` and
+    ending `.md` or `.md:`, or the two-token label `run <name>:`; the
+    exemption persists across a contiguous comma-separated id list and
+    dies at the first non-id token."""
+
+    def test_code_pointer_before_a_same_run_id_no_longer_exempts(self):
+        # "tools/x.py:40" contains "/" but is a code pointer, not a
+        # record name — F20 is this run's own id and must not be
+        # silently exempted from the live-basis check
+        body = ("- F20 [INVALIDATED] this run's own claim died — "
+                "basis: probe\n"
+                "- D1 [COMMITTED] rests on — basis: tools/x.py:40 F20\n")
+        v = self.sweep(body)
+        self.assertIn("basis-cites-invalidated", self.violation_codes(v))
+
+    def test_bare_label_before_a_same_run_id_no_longer_exempts(self):
+        # "the probe:" ends `:` but names nothing readable as a record
+        body = ("- F20 [INVALIDATED] this run's own claim died — "
+                "basis: probe\n"
+                "- D1 [COMMITTED] rests on — basis: the probe: F20\n")
+        v = self.sweep(body)
+        self.assertIn("basis-cites-invalidated", self.violation_codes(v))
+
+    def test_tracker_path_exemption_persists_across_comma_separated_ids(self):
+        # this run's own F-class max is F5; a genuine record-name
+        # token (a "/"-bearing path ending ".md") must exempt every id
+        # in the contiguous comma-separated citation list that follows
+        # it, not just the first
+        body = ("- F5 [VERIFIED] the latest genuine finding — basis: e\n"
+                "- D1 [COMMITTED] rests on — "
+                "basis: canonical/run-2/tracker.md F20, F21\n")
+        v = self.sweep(body)
+        self.assertNotIn("foreign-id-suspect", self.violation_codes(v))
+
+
 # ----------------------------- P24: the unforced landing annotation
 
 class TestP24LandingMissingHold(RecordFixture):

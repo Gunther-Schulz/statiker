@@ -837,34 +837,49 @@ def cited_ids(basis: str):
 # same-numbered id, a foreign citation silently rested on it. The
 # basis rule (SKILL.md, The record): a basis citing another record
 # names the record (tracker path or run name) BEFORE its ids. A
-# record-name token is whatever the whitespace-split token
-# immediately preceding an id is, when that token is not itself an
-# id and looks like a name — a path (contains "/") or a label (ends
-# ":") — never a bare English word, so ordinary prose ("rests on
-# F20") is untouched. Scoped to the LIVE-BASIS check alone
+# record-name token is a token containing "/" AND ending ".md" or
+# ".md:" — a tracker path, never a code pointer like `tools/x.py:40`
+# (0.2.84 B2: the prior `(/|:$)` form over-matched both that and any
+# ordinary `label:`, silently exempting same-run ids it should not
+# have). The two-token label `run <name>:` is checked separately
+# (basis_id_citations, below). Scoped to the LIVE-BASIS check alone
 # (sweep_checks) — trend's concentration read (cited_ids, above)
 # is unaffected by design, since it grades THIS run's own repair ids
 # regardless of any record-name prose beside them.
-RECORD_NAME_TOKEN_RE = re.compile(r"(/|:$)")
+RECORD_NAME_TOKEN_RE = re.compile(r"/.*\.md:?$")
 
 
 def basis_id_citations(basis: str):
     """Yields (id, foreign) for every id-shaped token in `basis` — the
     id-scoped read the live-basis check consumes. `foreign` is True
-    when the immediately preceding whitespace-split token is a
-    record-name token (RECORD_NAME_TOKEN_RE)."""
+    when the id sits under an active record-name token — a token
+    matching RECORD_NAME_TOKEN_RE, or the second token of the label
+    `run <name>:` (the literal `run`, then a token ending `:`).
+
+    0.2.84 B6: the prior form re-derived record-name-ness only from
+    the token immediately before an id, so it reset after one id and
+    a plural citation's second+ id (`tracker.md F20, F21`) fell
+    through to a bare, unmarked lookup. Record-name state now PERSISTS
+    across a contiguous run of id tokens (comma-attached or plain) and
+    is only re-derived at the next NON-id token — it dies exactly at
+    the first token that is not itself an id."""
     out = []
-    prev_is_record_name = False
+    record_name = False
+    prev_tok = None
     for tok in (basis or "").split():
         # 0.2.84 B1: `,;` alone left `(F20)`, `F20)`, `F20.` invisible
         # to the id fullmatch — quoting/bracketing punctuation strips
         # too.
         bare = tok.strip("()[].,;:")
         if re.fullmatch(r"[FDRAV]\d+", bare):
-            out.append((bare, prev_is_record_name))
-            prev_is_record_name = False
-        else:
-            prev_is_record_name = bool(RECORD_NAME_TOKEN_RE.search(tok))
+            out.append((bare, record_name))
+            prev_tok = tok
+            continue
+        is_record_name = bool(RECORD_NAME_TOKEN_RE.search(tok))
+        if not is_record_name and prev_tok == "run" and tok.endswith(":"):
+            is_record_name = True
+        record_name = is_record_name
+        prev_tok = tok
     return out
 
 
