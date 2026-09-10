@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 5
+added: 6
 compacted: 0
 
 ## st-2
@@ -285,3 +285,12 @@ write-set: plugin/skills/statiker/SKILL.md, plugin/skills/statiker/scripts/stati
 done-criterion: graded on the next run's field data: if a run shows a missing or mistyped precedent line or an unrecorded red that the prose form failed to force, the mechanized reader mints with that incident as provenance; a clean run records the prose form as sufficient and this item drops
 evidence: opus-review-0284 findings N3/N4 (verbatim in the dispositions record); mint-timing convention (bite bar on the problem, field test on the design)
 blocked-by: evidence false  # the next statiker run's field data on both forms
+
+## st-27
+grade: PARKED
+requirement: V2 (post-repair verify leg) re-runs the FULL R-line set even when repairs touched a fraction of it: run 3's V2 re-ran all 21 and returned zero new findings, which the economics convention records as evidence for a cheaper form at this unit size, not as confirmation — record: run-3 close (V2 PASSED 21/21, d1b8ce85); operator question 2026-09-10
+goal: tend
+write-set: plugin/skills/statiker/SKILL.md (Verify section), plugin/skills/statiker/scripts/statiker_record.py + tools/test_statiker_record.py if the scoping needs a verdict field
+done-criterion: design sketch to grade: V2 defaults to DELTA scope: re-verify the R-lines the repairs touched plus the repairs own instruments; untouched R-lines carry V1 verdicts under the verify-gate stale-copy disposition (touched-paths overlap check, which already exists); FULL re-run stays mandatory when any repair classifies DESIGN (safety floor, outside the n=1 rule per the 2026-08-10 boundary). Graded on the next run with a V1-issues-repair-V2 cycle: cost delta and whether the scoped leg misses anything the full leg would have caught
+evidence: run-3 V2 zero-delta (the convention's own named datum shape); A2 rounds-per-design-surface reading (PLAN 2026-08-26) as the counter-argument the design must answer; verify-gate VERIFY_COPY_STALE disposition machinery at SKILL.md:1563-1570
+blocked-by: evidence false  # the next run with a V1-issues, repair, V2 cycle
