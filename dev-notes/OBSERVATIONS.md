@@ -7849,3 +7849,49 @@ their register" is re-confirmed at n+2.
   negation control (10/10 agreeing; negated: 0/10, straight
   156/744) — instrument-pair form. Phase back to implement, state
   token 005f3582.
+
+- 2026-09-10 — **RUN 3 CLOSED: Status COMPLETE, V2 PASSED 21/21,
+  prod on the pinned close commit bc5f4727 (verified at this desk:
+  origin/main = main = bc5f4727; desk's verify_deployed_sha exit 0
+  and clean 72-line boot log on record).** Lock LOCK_COMMITTED
+  bc5f4727 after SWEEP_CLEAN + CLOSURE_LIVE; 12-commit claim run
+  as its own invocation before the one batched push (9 record, 2
+  test repairs 8c267ad8/a27c4403, close-docs 08dbf9a2; none in the
+  Dockerfile COPY set). Close enumerations complete in the
+  tracker's ## Close: amendments (R1, R14; all letters amended),
+  accepted deviations (F177 frozen-snapshot type list, F178),
+  honest not-verified list (0.2.77 half, R5 A/B, R16 plant proof
+  not isolated, R19 narrow mypy, U2 downgrade not
+  committed-tested, crosswise base rate + quarter-line caveat),
+  leavings all dispositioned (F45/F62 dropped, F111/F186/F187
+  exported to the repo BACKLOG at 08dbf9a2, F146 carried in the
+  close, crosswise probe GRADUATED to
+  tools/check_crosswise_sign_probe.py — graduation discharge 13/13
+  prod + 888/888 straight, negation-identity red on 5 local cases;
+  post-deploy script dropped, property pinned by committed test;
+  five world facts landed desk-side). U2 lane digest (F182,
+  a27c4403): anchored count assertions, mutant pair proven both
+  directions; desk demanded verbatim verdicts over descriptions
+  and refuted a false base claim at the artifact, refutation sent
+  down the lane. V2 (F185): 21/21, every mutant between passing
+  baselines; desk owned a stderr-dropped log read as its own
+  instrument; boot-miscount MECHANISM executed (index-0-only strip
+  in _get_pending_revisions; one BACKLOG entry, two symptoms).
+  RULINGS: meta 1 reversed + 1 approval (parallel lanes)
+  superseded, both on desk measurements; desk 0 reversed.
+  EFFICIENCY READ (the trial metric): 2 attack rounds + 2 verify
+  legs + 2 sonnet repair lanes for TWO landed, deployed,
+  live-verified units — rounds-per-landed-unit ~2 vs the baseline
+  6. MINT-SEAM QUEUE from this close (fires now, before the
+  compression pass): P39/st-1 Begehung R4 (trigger = this close
+  report, lens pre-registered in the entry); P32–P38 bundle
+  (st-2..7 re-grade) + the three flagged lesson classes
+  (post-round-unattacked surface → P28/st-11 evidence; partition ≠
+  scheduling verdict → P36/st-6 second incident, execute-set axis;
+  unanchored-substring-over-rendered-text → corpus class live,
+  candidate SKILL.md/tool mint); precedent-line placement mint
+  (field datum: prose judgments exist, checkable form absent in
+  both units); then arm B (control-arm Part 2) on U2/U20 diffs;
+  then the compression pass. Desk session beat-the-books-6e
+  reported CLOSABLE (no lanes, timers, worktrees, unpushed) —
+  operator holds the close.
