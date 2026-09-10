@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 2
+added: 3
 compacted: 0
 
 ## st-1
@@ -210,4 +210,13 @@ goal: tend
 write-set: plugin/skills/statiker/SKILL.md, tools/test_statiker_record.py (only if the clause names a record token)
 done-criterion: the Implementation section carries the red-recording clause (committed red arm or output pasted in the record); machine-read semantics check: rides the P32-bundle opus checkpoint review before the pin moves
 evidence: run-3 tracker F175 (V1, F174 series); repair commit 8c267ad8; SKILL.md grep: red-first mandate only at :54,:120,:721, none in :1239-1502
+blocked-by: NONE
+
+## st-24
+grade: READY
+requirement: nothing FORCES the landing annotation at landing time: U2's original landing shipped without one and the close composed it by hand from the F164 chain (F183, ancestor proof + failing control). The annotation serves resumability and closure gating; a UNIT_COMMITTED unit with no landing annotation should surface as a sweep hold. Record: begehung R4 finding
+goal: tend
+write-set: plugin/skills/statiker/scripts/statiker_record.py, tools/test_statiker_record.py, plugin/skills/statiker/SKILL.md (one sentence if the hold is named)
+done-criterion: red-first fixture: a tracker with UNIT_COMMITTED evidence and no landing annotation holds in sweep (red today by absence of the check), annotated tracker clean; rides the P32-bundle review
+evidence: run-3 F183 with its basis (merge-base ancestor proof, control a27c4403 fails); the run's own hand-repair is the incident
 blocked-by: NONE
