@@ -637,6 +637,28 @@ provenance.
   self-containment criterion's disqualifier. The portability
   question (CLAUDE.md, self-containment) is re-asked per cut,
   not per release.
+  PLACEMENT GAP-FILL (operator decision, this date — upgraded
+  from observation to decided work): SKILL.md currently says
+  nothing about PLACEMENT — where a change architecturally
+  belongs — and the operator's production evidence says the bare
+  model still under-delivers it (running code, medium
+  architecture; on external codebases placement is the review
+  surface — maintainers decline convention-ignoring PRs
+  regardless of correctness; the corpus's fixing module carries
+  two such declined-PR incidents, corpus-present only). Design,
+  already settled 2026-08-26 (4b): the PRECEDENT LINE — each
+  unit's design writes "follows <path>, judged sound" or
+  "<path> is the problem, this unit's scope" — lands in SKILL.md
+  at the design-commit rule, PLUS an attack-question slot (does
+  the design name its precedent, and does the precedent fit —
+  the attack grades the claim, never trusts the desk).
+  Timing per the mint-timing convention: field-test first as a
+  run-scoped requirement on run 3's harness unit (arm A's
+  harness incident is the provenance class — three harnesses,
+  no precedent line, none matched; the resume brief now carries
+  the injection), mint at the compression seam with that datum.
+  Names a record form → the checkpoint-based opus review binds
+  the release that carries it.
 
 ## Horizon consideration — NOT a decision (operator, 2026-08-05)
 

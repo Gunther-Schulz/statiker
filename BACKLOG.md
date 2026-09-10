@@ -400,7 +400,13 @@ it is not decision-complete.
   line first, then the route-1 line, and resumes from the tracker
   (skill resume passage: sweep/closure first); (3) meta session
   re-opens the peer channel, re-arms the ~30-min horizon, grades
-  from the seeded two-unit digest onward. Decisions settled this
+  from the seeded two-unit digest onward; (4) the seed relay
+  carries the PRECEDENT LINE as a run-scoped requirement (each
+  unit's design states "follows <path>, judged sound" or "<path>
+  is the problem, this unit's scope" — PLAN 2026-08-26 (4b)):
+  the harness unit is the field test for the placement mint
+  (operator-decided 2026-09-10, PLAN that date's entry), datum
+  harvested for the compression-pass mint. Decisions settled this
   run so far (OBSERVATIONS 2026-08-23): delegation construction =
   one first-hand line per desk; hold-clearing ruling with
   boundary (conditional on U2's own reversibility derivation);
