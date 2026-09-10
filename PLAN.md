@@ -750,6 +750,38 @@ deliberate, the booked compression pass brings it back down
   remainder. Mechanism: operator attention neither scales,
   parallelizes, nor gets cheaper, so the optimum drifts
   agent-ward every model generation.
+  THE RESIDUE HYPOTHESIS, named (operator, this date — the
+  trial's claim in falsifiable form, consumer: arm B's grading
+  and the trial close). Claim: both pipelines ship imperfect
+  code; statiker shifts the defect DISTRIBUTION left — a class
+  of defects dies at design, so less residue reaches the
+  after-phase. Composition corollary (the stronger half): the
+  residue is also differently COMPOSED — the attack
+  preferentially removes design-class defects (wrong mechanism,
+  missed consumer, silent path, wrong scope), so statiker's
+  after-phase skews toward cheap implementation slips while the
+  loop-stack's keeps the expensive class; the hypothesis can
+  hold at EQUAL residue counts. Mechanism, why it should hold
+  even against a fully convergent fix loop: the loop's oracle is
+  breakage announcing itself, and the design-class defects the
+  attack removes are exactly the ones that do not announce
+  (silent, irreversible, architectural) — capability growth
+  fixed the loop's termination (the 2026-08-26 lineage entry's
+  divergent→convergent), never its oracle. Falsifier,
+  pre-registered: if attack-round bites run mostly
+  record/instrument-class while verify and prod keep catching
+  design-class defects at the bare arm's rate, the attack is
+  priced theater and the hypothesis dies. Instruments, all
+  already registered: the per-finding class split each round
+  records (the numerator), rounds-per-landed-unit (baseline 6),
+  arm B's code-shape comparison (the composition read). Claim
+  shape, operator-settled same date: ADDITIVE, not replacement —
+  everyone runs the ship-prove-revisit loop; statiker is an
+  upstream layer trading cheap before-currency (agent tokens)
+  against expensive after-currency (operator minutes, prod
+  incidents, architecture debt) — the kind split applied to
+  time, sized per setting by defect cost, asset lifetime,
+  requirement stability, and novelty density.
 
 ## Horizon consideration — NOT a decision (operator, 2026-08-05)
 
