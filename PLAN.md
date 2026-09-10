@@ -680,6 +680,14 @@ deliberate, the booked compression pass brings it back down
   says a lone attack model repeats one blind spot across rounds,
   so a diversity arm is a cheap probe candidate for a future
   fire-rate review. No mint from either without a firing.
+  [Candidate COMPLICATED by measurement, 2026-09-10 lit sweep
+  (dev-notes/literature.md): Kohli, "Nine Judges, Two Effective
+  Votes" (arXiv:2605.29800) measures frontier-judge panels
+  carrying ~2 independent votes — correlated errors — with the
+  best single judge matching the panel; weakens the diversity
+  arm, supports the current single-strong-attacker +
+  context-isolation design. The probe, if ever run, reads both
+  papers first.]
   Two further candidates (same date, same read). (a) SEQUENCE
   CARRIED BY THE TODO INSTRUMENT: pstack playbooks open a todo
   list with the playbook's steps COPIED IN VERBATIM, and a
