@@ -605,6 +605,25 @@ provenance.
   says a lone attack model repeats one blind spot across rounds,
   so a diversity arm is a cheap probe candidate for a future
   fire-rate review. No mint from either without a firing.
+  Two further candidates (same date, same read). (a) SEQUENCE
+  CARRIED BY THE TODO INSTRUMENT: pstack playbooks open a todo
+  list with the playbook's steps COPIED IN VERBATIM, and a
+  skipped step stays listed with `skip: <reason>`
+  (poteto-mode/SKILL.md, Playbooks) — compliance rides a harness
+  instrument instead of prose emphasis, and a skip is a declared
+  line, never silence. Statiker's seam sequences (resume order,
+  round-open gates, close enumeration) are prose the desk must
+  hold; part of the 11× line count is anti-skim emphasis that a
+  todo-carried sequence could replace with terser text. (b) THE
+  COMPRESSED-LINE GRAMMAR: pstack index entries are
+  when-it-applies + one-sentence rule, full text in the leaf —
+  the entry format for whatever survives on an always-loaded
+  page. NON-STEAL, named to keep the pass honest: most of
+  pstack's compression is bought by TRUSTING THE EXECUTOR —
+  enforcement text dropped because the model is assumed
+  competent — which is the very trade the trial exists to
+  measure; importing it would beg the trial's question, not
+  answer it.
 
 ## Horizon consideration — NOT a decision (operator, 2026-08-05)
 
