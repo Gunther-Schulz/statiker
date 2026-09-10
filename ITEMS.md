@@ -200,3 +200,5 @@ write-set: ITEMS-DONE.md, BACKLOG.md
 done-criterion: after the lc-72 fix releases: migrate --merge --from-done NONE re-run routes 25 archive bodies to ITEMS-DONE.md verbatim, bullet identity and conservation hold; only then is BACKLOG.md retirement decidable (jointly with st-21's consumer criterion)
 evidence: docs/audits/migration-report-2026-09-10.md — 25 'non-entry prose', all under ## Done, source blob a115998c; lifecycle ITEMS.md lc-72 (be97be9) carries the fix
 blocked-by: evidence lifecycle lc-72 fix landed (a migrate build whose closure pass routes date-led bullets)
+amend-reason: 2026-09-10 re-pointed: the recognizer fix (lc-72, dd81507) is in and proven at unit level, but the merge's whole-run duplicate refusal (lc-73) now blocks the ingestion; BACKLOG.md retirement unchanged, still jointly gated with st-21
+amended-blocked-by: 2026-09-10 evidence lifecycle lc-73 duplicate-disposition landed (a merge build that routes the 25 closure bodies past the 20 declared same-work duplicates)
