@@ -578,6 +578,34 @@ provenance.
   session's speed came from and where statiker legitimately
   matches it; the first-of-its-kind unit takes the full cycle.
 
+- 2026-09-10, meta session: **EXTERNAL COMPARAND EVIDENCE for the
+  compression pass** (consumer: the pass booked in BACKLOG, whose
+  direction line points here). Cursor's pstack plugin
+  (`~/dev/reference/cursor-plugins/pstack`, read this date; author
+  poteto, Cursor/React-core) solves the corpus-lines currency with
+  an INDEX-PLUS-LAZY-LEAVES architecture: the always-loaded router
+  (`skills/poteto-mode/SKILL.md`) is 143 lines; 23 one-page
+  principle skills and 23 playbooks load per-application only,
+  with a citation gate against unread reuse ("cite only principles
+  whose leaf SKILL.md you read this session") and a
+  named-decision tell ("name each principle that shaped a decision
+  and the specific choice it changed" — a citation with no
+  decision behind it reads as name-dropping). Cost pstack accepts
+  that single-home avoids: the index entries are PARAPHRASES of
+  the leaf rules — the drift class the single-home decision
+  exists to prevent — mitigated only by the read-before-cite
+  gate. Evidence, not a direction change: the single-home
+  decision stands; the pass weighs the split against its drift
+  cost with this comparand in hand. Second, smaller candidate
+  (attack-round shape, not compression): pstack's `interrogate`
+  buys reviewer independence from MODEL DIVERSITY — one identical
+  brief to 4 model families, consensus weighted as signal — where
+  statiker buys it from context isolation with a single resolved
+  attack tier; the corpus's instruments-sharing-an-author rule
+  says a lone attack model repeats one blind spot across rounds,
+  so a diversity arm is a cheap probe candidate for a future
+  fire-rate review. No mint from either without a firing.
+
 ## Horizon consideration — NOT a decision (operator, 2026-08-05)
 
 When statiker is validated, CONSIDER lifting its framework from it
