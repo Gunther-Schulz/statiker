@@ -1143,7 +1143,20 @@ def apply_supersession(entries, violations, line_ids, line_parse):
     line's own lineno is excluded from the returned entries too (as if
     the append never happened), so it can never become the id's latest
     line in a downstream `latest_by_id` read. The repair is a fresh id
-    for the correction, never a reused declarator."""
+    for the correction, never a reused declarator.
+
+    P37 (BACKLOG.md:74, F130): a correcting line whose own restatement
+    opens the wrong scope against what its target parsed draws
+    repair-scope-change/repair-tag-change (_repair_pin_complaints) -
+    SELF_TARGET_UNREACHABLE, no token can ever supersede a defective
+    correcting line itself. Held pending rather than appended
+    immediately: once ANY corrects-token against the SAME target
+    resolves cleanly (site supersede, zero repair-pin complaints),
+    every defective attempt against that target sheds - the
+    successful retry IS the defective line's repair, keyed on the
+    retry's outcome, never on which line came first; a target with no
+    clean resolution leaves its defective attempts' violations
+    standing, the only case an operator SWEEP_EXEMPT still reaches."""
     violated = {}
     for v in violations:
         violated.setdefault(v["line"], []).append(v["code"])
@@ -1153,6 +1166,8 @@ def apply_supersession(entries, violations, line_ids, line_parse):
     superseded, shed, bookkeeping, declarator_refused = (
         set(), set(), set(), set())
     complaints = []
+    pending_pin_complaints = []   # [(target n, [complaint dicts])]
+    clean_supersede_targets = set()
     for e in entries:
         tokens = list(CORRECTS_RE.finditer(e.body))
         if len(tokens) > 1:
@@ -1190,7 +1205,11 @@ def apply_supersession(entries, violations, line_ids, line_parse):
             site, declared = repair_class(violated[n], owner)
             if site == "supersede":
                 superseded.add(n)
-                complaints += _repair_pin_complaints(e, n, line_parse)
+                pin_complaints = _repair_pin_complaints(e, n, line_parse)
+                if pin_complaints:
+                    pending_pin_complaints.append((n, pin_complaints))
+                else:
+                    clean_supersede_targets.add(n)
             elif site == "bookkeeping":
                 shed.add(n)
                 bookkeeping.add(e.lineno)
@@ -1200,6 +1219,11 @@ def apply_supersession(entries, violations, line_ids, line_parse):
                      "text": f"{e.id}: `corrects line {n}` names a "
                              f"violation no repair token reaches — "
                              f"{declared}"})
+    # P37: a defective attempt's own repair-pin violation sheds once
+    # ANY corrects-token against the same target succeeded cleanly.
+    for n, pin_complaints in pending_pin_complaints:
+        if n not in clean_supersede_targets:
+            complaints += pin_complaints
     return ([e for e in entries
              if e.lineno not in superseded and e.lineno not in bookkeeping
              and e.lineno not in declarator_refused],

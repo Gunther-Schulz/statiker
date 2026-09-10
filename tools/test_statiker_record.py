@@ -2629,6 +2629,43 @@ class TestCorrectedLineSupersession(RecordFixture):
                          "a token naming line 123 disarmed line 12")
 
 
+class TestP37DefectiveCorrectingLineShedsOnSuccessfulRetry(RecordFixture):
+    """P37 (BACKLOG.md:74, F130): a correcting line that opens the
+    WRONG scope against its target's parsed scope draws its own
+    `repair-scope-change` violation — SELF_TARGET_UNREACHABLE, so no
+    later token can ever supersede IT. Before this fix the defective
+    line's violation was permanent record noise with no repair path
+    but an operator-granted SWEEP_EXEMPT. The successful retry IS its
+    repair: once ANY corrects-token against the SAME target succeeds
+    cleanly, the defective predecessor's own violation sheds — keyed
+    on the retry's outcome, never on which line came first, and the
+    record keeps both lines (append-only intact, nothing erased)."""
+
+    def test_defective_correcting_lines_violation_sheds_on_successful_retry(self):
+        bad = "- D2 [COMMITED] unit U1 the letter lands — basis: probe\n"
+        n = self.lineno_of(CLOSED + bad, "[COMMITED]")
+        body = (CLOSED + bad +
+                f"- D2 [COMMITTED] record: bookkeeping fix (corrects line "
+                f"{n}) — basis: probe\n"
+                f"- D2 [COMMITTED] unit U1 the letter lands (corrects line "
+                f"{n}) — basis: probe\n")
+        v = self.lint(body)
+        self.assertEqual(v["verdict"], "LINT_CLEAN",
+                         "the defective line's own violation held even "
+                         "though a later retry against its named target "
+                         "succeeded cleanly")
+
+    def test_defective_correcting_line_with_no_successful_retry_still_holds(self):
+        bad = "- D2 [COMMITED] unit U1 the letter lands — basis: probe\n"
+        n = self.lineno_of(CLOSED + bad, "[COMMITED]")
+        body = (CLOSED + bad +
+                f"- D2 [COMMITTED] record: bookkeeping fix (corrects line "
+                f"{n}) — basis: probe\n")
+        v = self.lint(body)
+        self.assertEqual(v["verdict"], "LINT_VIOLATIONS")
+        self.assertIn("repair-scope-change", self.violation_codes(v))
+
+
 # ================================================================= 0.2.49
 # The executable spec's own battery (docs/directives/
 # executable-spec-settle.md). Each case names its seed: R3-B1…B7 are
