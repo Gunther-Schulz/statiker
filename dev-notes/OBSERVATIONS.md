@@ -7833,3 +7833,19 @@ their register" is re-confirmed at n+2.
   approved: phase back to implement, F175+F176 parallel sonnet
   lanes (disjoint write-sets), verify leg 2 fresh opus, close,
   push batched at close.
+
+- 2026-09-10 — **Run 3: repair lanes SERIALIZED on desk measurement
+  (D39); P36 gains its second incident.** The parallel route I
+  approved missed the EXECUTE-set overlap: the integration harness
+  fixes host port 55433 (conftest.py:64, abort at :131-143) and
+  U20's red-first proof mutates conftest.py:282 while U2's pins
+  execute it. The record tool's waves verdict still returns the
+  two units parallel-eligible — lexical over WRITE-sets, blind to
+  execute-sets — quoted in D39. That is the P36/st-6 class
+  (partition output reads as a scheduling verdict) firing a second
+  time on a NEW axis (execute-set, not created-tree): the seam
+  mint widens from "ordering constraints are the desk's" to name
+  the execute-set explicitly. Crosswise F180 discharged with a
+  negation control (10/10 agreeing; negated: 0/10, straight
+  156/744) — instrument-pair form. Phase back to implement, state
+  token 005f3582.
