@@ -731,7 +731,14 @@ naming its red-first pin — and a pin DISCRIMINATES: red on the
 current state, green only through the fix; a criterion the
 defective state already satisfies verifies nothing, and a
 renumbering that drops a unit's pin clause is a silent unpin (both
-observed as a round's highest finding). Each unit is also
+observed as a round's highest finding). Each unit design also
+carries the PRECEDENT LINE, one per unit, verbatim form `follows
+<path>, judged sound` or `<path> is the problem, this unit's
+scope`, written in the design record and traveling into the brief
+unchanged — never left implicit: unstated, a dispatched
+implementer or a successor cannot find it (arm A's three
+harnesses — nobody wrote "like verify_deployed_sha.py", so nobody
+did); stated, it is a claim a fresh reader can check. Each unit is also
 classified by the reversibility of its EFFECT, not its diff: one
 whose green state includes something git cannot undo — a schema
 or data migration, an external write, a publish/push/send, a
