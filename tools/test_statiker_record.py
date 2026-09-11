@@ -4813,23 +4813,40 @@ class TestRNaDeclaratorBookkeepingInvalidatedExempt(RecordFixture):
     (already excluded from waves_over_units by tag alone) still drew
     declarator-bookkeeping over an ordinary bookkeeping correction,
     though there is no live declaration left to un-declare. FIX: a
-    tag test in the condition. Red arm: reviewer's pair."""
+    tag test in the condition.
+    RE-POINTED (0.2.85 checkpoint review, disposition T4): the
+    original fixture put the `record:` repair on a MACHINE-TOKEN
+    target (a colon-less `write-set a.txt` near-miss), so lint still
+    failed (repair-scope-change: a body-content repair form on a
+    machine-token violation) and the test could only assert
+    declarator-bookkeeping's own absence, never a clean verdict.
+    Re-pointed at a BODY-CONTENT target (a declarator line missing
+    its basis clause) so the sanctioned repair clears the tracker in
+    full — LINT_CLEAN. Red: remove the INVALIDATED-tag test from the
+    declarator-bookkeeping condition (statiker_record.py) in the
+    working tree, re-run this test, keep the red output, restore with
+    `git checkout -- plugin/skills/statiker/scripts/statiker_record.py`."""
 
     def _tracker(self):
         prefix = (
-            "- F2 [VERIFIED] unit U1 write-set a.txt — basis: design\n"
+            "- F2 [VERIFIED] unit U1 write-set: a.txt\n"
             "- F2 [INVALIDATED] unit U1 write-set: a.txt dead "
             "(mis-scoped) — basis: F9\n")
-        n = self.lineno_of(prefix, "write-set a.txt — basis: design")
+        n = self.lineno_of(prefix, "[VERIFIED] unit U1 write-set: a.txt")
         return prefix, n
 
     def test_invalidated_latest_same_id_no_longer_draws_the_hold(self):
         # the red case: latest_same_id's own line is [INVALIDATED] —
-        # nothing live stands to be un-declared
+        # nothing live stands to be un-declared; the corrects target
+        # is a body-content violation (basis-missing — the first line
+        # itself carries no `— basis:` clause), so the sanctioned
+        # bookkeeping repair clears the tracker in full
         prefix, n = self._tracker()
-        body = prefix + f"- F2 [VERIFIED] record: corrects line {n} — basis: bookkeeping\n"
+        body = prefix + (
+            f"- F2 [VERIFIED] record: corrects line {n} — basis: the "
+            f"basis-missing verdict at line {n}\n")
         v = self.lint(body)
-        self.assertNotIn("declarator-bookkeeping", self.violation_codes(v), v)
+        self.assertEqual(v["verdict"], "LINT_CLEAN", v)
 
     def test_live_latest_same_id_control_still_holds(self):
         # control: an ordinary bookkeeping correction under a LIVE
