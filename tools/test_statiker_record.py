@@ -4706,6 +4706,57 @@ class TestRB1WriteSetCorrectsSuffixSharedWithWaves(RecordFixture):
         self.assertEqual(v["spellings"], {}, v)
 
 
+# ---- 0.2.85 checkpoint review N2: the near-miss check must not run on
+# ---- normpath output
+
+class TestN2WriteSetNearMissUnnormalized(RecordFixture):
+    """0.2.85 checkpoint-review disposition N2 (notable; RB1 side
+    effect, silent direction; dev-notes/OBSERVATIONS.md, "0.2.85
+    checkpoint-review dispositions", 2026-09-11): RB1 (0.2.84
+    re-review) routed write_set_violations' near-miss check through
+    _normalize_write_set_path, which also applies `os.path.normpath` —
+    so a write-set field carrying a real second path THROUGH an
+    embedded `..` segment (`a.txt b/../c.txt`) collapses to a single
+    token (`c.txt`) before the near-miss check ever sees the space,
+    reading LINT_CLEAN, and the SAME collapsed path then reads
+    disjoint from a colliding unit's plain declaration in
+    waves_over_units, reading WAVES_COMPUTED instead of
+    WAVES_RECORD_MALFORMED. FIX: split the resolver — a suffix-strip
+    helper (_strip_write_set_corrects_suffix) shared by
+    write_set_violations (unnormalized) and waves_over_units;
+    normpath applies only at the consuming site,
+    _normalize_write_set_path (waves_over_units alone). Red arm: the
+    embedded-`..` field lints clean and waves computes today, must
+    fire both ways after; a genuine two-token field with no `..`
+    (`a.txt c.txt`) already fires both ways, unaffected by the split."""
+
+    def test_embedded_dotdot_near_miss_fires_lint_and_waves(self):
+        # the red case: normpath silently resolves "a.txt b/../c.txt"
+        # to "c.txt" — a single token, no space — before the near-miss
+        # check's own `len(path.split()) > 1` test ever runs
+        body = (
+            "- F1 [VERIFIED] unit U1 write-set: a.txt b/../c.txt — "
+            "basis: design\n"
+            "- F2 [VERIFIED] unit U2 write-set: a.txt — basis: design\n")
+        v = self.lint(body)
+        self.assertIn("write-set-path-near-miss", self.violation_codes(v), v)
+        self.assertEqual(v["verdict"], "LINT_VIOLATIONS", v)
+        w = self.waves(body)
+        self.assertEqual(w["verdict"], "WAVES_RECORD_MALFORMED", w)
+
+    def test_genuine_two_token_field_control_fires_both_ways(self):
+        # control: no embedded `..` — already fires both ways, unaffected
+        body = (
+            "- F1 [VERIFIED] unit U1 write-set: a.txt c.txt — "
+            "basis: design\n"
+            "- F2 [VERIFIED] unit U2 write-set: a.txt — basis: design\n")
+        v = self.lint(body)
+        self.assertIn("write-set-path-near-miss", self.violation_codes(v), v)
+        self.assertEqual(v["verdict"], "LINT_VIOLATIONS", v)
+        w = self.waves(body)
+        self.assertEqual(w["verdict"], "WAVES_RECORD_MALFORMED", w)
+
+
 # ------ 0.2.84 re-review RB2: declarator-bookkeeping tests SHAPE, not
 # ------ the correcting redeclaration's own unit
 

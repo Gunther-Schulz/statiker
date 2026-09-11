@@ -825,11 +825,16 @@ def write_set_violations(body: str, tag: str):
         return []
     rest = scrubbed[m.end():]
     if WRITE_SET_EXACT_RE.match(rest):
-        # 0.2.85 RB1: the shared resolver (_normalize_write_set_path,
-        # homed at the consuming site, waves_over_units) strips the
-        # corrects-suffix too now — reused here rather than a second,
-        # divergent strip.
-        path = _normalize_write_set_path(rest[len("write-set: "):])
+        # 0.2.85 RB1/N2: the shared suffix-strip helper
+        # (_strip_write_set_corrects_suffix, below) strips the
+        # corrects-suffix, reused here rather than a second, divergent
+        # strip — UNNORMALIZED: normpath is the consuming site's own
+        # step (_normalize_write_set_path, waves_over_units alone) and
+        # must never run here, or a real second path or leading-`/`
+        # defect collapses away through an embedded `..` before this
+        # check ever sees it (N2: `a.txt b/../c.txt` read clean under
+        # normpath).
+        path = _strip_write_set_corrects_suffix(rest[len("write-set: "):])
         if tag != "INVALIDATED" and (
                 len(path.split()) > 1 or path.startswith("/")):
             return ["write-set-path-near-miss"]
@@ -2047,21 +2052,38 @@ def cmd_closure(args):
 UNIT_WRITE_SET_RE = re.compile(r"^unit (U\d+) write-set: (\S.*)$")
 
 
+def _strip_write_set_corrects_suffix(p):
+    """The write-set declarator's own `(corrects line <n>)`
+    resolving-token suffix, stripped — the split resolver's SHARED
+    half (0.2.85 N2, checkpoint-review dispositions): both consumers
+    of a raw write-set path (write_set_violations' near-miss check,
+    UNNORMALIZED, and waves_over_units' alias recording) strip the
+    suffix through this one helper, so a sanctioned supersede-whole
+    repair's raw spelling reads the same underlying path as a plain
+    declaration of it. normpath is deliberately NOT applied here —
+    only at the consuming site that needs lexical comparison
+    (_normalize_write_set_path, below, waves_over_units alone): RB1
+    (0.2.84) routed the near-miss check through the normalizing form
+    too, so a field carrying a real second path through an embedded
+    `..` segment (`a.txt b/../c.txt`) collapsed to a single token
+    before the near-miss check's own multi-word test ever ran,
+    reading LINT_CLEAN / WAVES_COMPUTED instead of firing
+    write-set-path-near-miss / WAVES_RECORD_MALFORMED (N2)."""
+    return WRITE_SET_CORRECTS_SUFFIX_RE.sub("", p.strip())
+
+
 def _normalize_write_set_path(p):
     # 0.2.85 RB1 (dev-notes/OBSERVATIONS.md, 0.2.84 re-review
-    # dispositions): strip the write-set declarator's own `(corrects
-    # line <n>)` resolving-token suffix before normalizing — both
-    # consumers of a write-set path (this function's own caller,
-    # waves_over_units, and write_set_violations' near-miss check)
-    # go through this one resolver now, so a sanctioned
-    # supersede-whole repair's raw spelling collapses to the same
-    # comparison key as a plain declaration of the same path. Left
-    # unstripped here, the suffix made a real collision on the
-    # underlying path read as disjoint (reviewer's pair, RB1): two
-    # units writing the same file, one reaching it through the
-    # repair, certified parallel-eligible instead of serialized.
-    p = WRITE_SET_CORRECTS_SUFFIX_RE.sub("", p.strip())
-    return os.path.normpath(p)
+    # dispositions): strip the corrects-suffix (the shared helper
+    # above), then normalize — the CONSUMING site's own resolver,
+    # built on the helper, so a sanctioned supersede-whole repair's
+    # raw spelling collapses to the same comparison key as a plain
+    # declaration of the same path. waves_over_units alone calls this
+    # normalizing form, for lexical path comparison across spellings;
+    # write_set_violations' near-miss check uses the shared helper
+    # directly, unnormalized (N2, above) — the near-miss check must
+    # see the field AS DECLARED, never collapsed through `..`.
+    return os.path.normpath(_strip_write_set_corrects_suffix(p))
 
 
 def known_units_of(entries):
@@ -2110,16 +2132,15 @@ def waves_over_units(entries):
         if m:
             raw = m.group(2).strip()
             # 0.2.85 N1: the recorded alias is the suffix-STRIPPED
-            # spelling, not the raw one — a sanctioned supersede-whole
-            # repair's raw spelling (`a.txt (corrects line <n>)`)
-            # otherwise printed as a distinct "spelling" of the same
-            # path it resolves to, though nothing about it is an
-            # alternate spelling a desk chose; stripped, it equals the
-            # normalized key and the entry drops out of `spellings`.
-            # (N2, next: this inline strip and _normalize_write_set_path's
-            # own strip become one shared helper.)
-            stripped = WRITE_SET_CORRECTS_SUFFIX_RE.sub("", raw)
-            norm = _normalize_write_set_path(raw)
+            # spelling (the shared helper, N2), not the raw one — a
+            # sanctioned supersede-whole repair's raw spelling
+            # (`a.txt (corrects line <n>)`) otherwise printed as a
+            # distinct "spelling" of the same path it resolves to,
+            # though nothing about it is an alternate spelling a desk
+            # chose; stripped, it equals the normalized key and the
+            # entry drops out of `spellings`.
+            stripped = _strip_write_set_corrects_suffix(raw)
+            norm = os.path.normpath(stripped)
             write_sets.setdefault(m.group(1), set()).add(norm)
             aliases.setdefault(norm, set()).add(stripped)
     unplannable = sorted(known_units - write_sets.keys(),
