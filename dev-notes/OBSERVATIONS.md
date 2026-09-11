@@ -8492,5 +8492,11 @@ Release checklist, executed at 8359cd4 (payload identical to 378aa68):
   `claude plugin update statiker@statiker` → "updated from 0.2.82 to
   0.2.86"; installed_plugins.json re-read: version 0.2.86, gitCommitSha
   3cc426676134c7130d151b5fb6fc9bff5198cfa4 = the pushed HEAD, installPath
-  cache/statiker/statiker/0.2.86. Activation waits on the operator's
-  /reload-plugins; no dispatch composed in the window.
+  cache/statiker/statiker/0.2.86. No dispatch composed between the pin
+  move and the operator's /reload-plugins.
+- ACTIVATED (release-plugin step 10, after the operator's reload): a
+  read-only lane (sonnet-activation-0286) invoked statiker:statiker,
+  and the injection read "Base directory for this skill:
+  /home/g/.claude/plugins/cache/statiker/statiker/0.2.86/skills/statiker"
+  — inside the pin's installPath, version 0.2.86, gitCommitSha 3cc4266.
+  The 0.2.82 cache directory remains on disk, and no pin points at it.
