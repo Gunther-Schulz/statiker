@@ -133,6 +133,24 @@
   attack; a "saved" closing round moves defect discovery to
   prod, which here is real money.
 
+- **Desk-tier fit is an intake question (operator-settled
+  2026-09-11).** Each arc opening in this repo names the cheapest
+  tier whose judgment its remaining queue actually needs, before
+  work starts. OPUS is the default desk for maintenance arcs —
+  checkpoint reviews (already the reviewer default), disposition
+  rounds, releases, retirement/carrier passes — and for this
+  repo's work generally: its enforcement vocabulary (holds,
+  gates, exemptions) is the class fable's classifiers false-fire
+  on (corpus routing module, fable-classifiers bullet). FABLE is
+  reserved for open design tension, corpus-grade rule work, and
+  ambiguous multi-step judgment no existing convention scaffolds.
+  Brief-covered execution and discovery stay on the standing
+  sonnet default. A session that finds itself over-tiered for
+  what remains says so unprompted and recommends the handoff
+  rather than riding the arc (precedent: statiker-e5 →
+  statiker-4d mid-arc handoff, 2026-09-11, ledger entry of this
+  date).
+
 - **Two-session layout — the relay loop IS the procedure.** The
   meta/grading session runs in THIS repo (grades comparisons,
   mints, releases); the desk runs in the target repo. The operator

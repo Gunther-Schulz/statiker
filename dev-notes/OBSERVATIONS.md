@@ -8065,3 +8065,43 @@ desk 77521a5 aac3256 6749091 77a6c77 65fa32e 34b33ec 27d7ed6.
   by recorded trade; discrimination rests on the must-not-appear
   literal, mutation-proven red. Residual (a caveat dropping an
   axis passes) accepted, stands recorded here.
+
+## 2026-09-11 — 0.2.85 repair lap executed and booked (lane sonnet-repair-0285; pin still holds at 0.2.82, checkpoint review owed before it moves)
+
+Disposition-briefed lap over the re-review's RB1–RT-a (brief:
+docs/directives/2026-09-11-sonnet-repair-0285-brief.md). Nine
+commits, all trailer-claimed by the lane, verified at this desk:
+bump 3016b72; RB1 e2af662; RB2 510b9c4; RN-a d6296db; RN-b
+c2f3895; RN-c 0e6342d; RN-e 06c7b04; RN-f 18ecc9c; RT-a 4697457.
+Suite 499 → 512 passed, 0 failed, 0 skipped (delta = the 13 new
+tests; desk re-ran). Each mechanized item carried its executed
+red/green pair from the reviewer's arm plus a control; two
+accepted deviations, both grounded in the dispositions' own text
+(RN-e/RT-a: prose items, no red arm stated; RN-f: detection-only,
+red-first satisfied by a dry-run pair — planted missing
+REPAIR_FORMS entry flagged, unmutated tables clean).
+
+- **RN-b mint (`ambiguous-citation`, RULE_MINT_VERSION 0.2.85).**
+  Fire-born provenance: re-review finding RN-b (this file,
+  2026-09-10 entry). Tenet-list check against PLAN.md: OWED AT
+  RELEASE, assigned to statiker-4d (handoff §4,
+  docs/directives/2026-09-11-handoff-statiker-4d.md) — recorded
+  here so the absence is visible, not skipped.
+- **Brief-defect lesson (dispatcher's, merged with lane slot e).**
+  The 0.2.85 brief shipped one wrong Background line: a contract
+  check's consequence asserted from a grep hit without reading
+  the check's predicate — test_contract.py:1043 scans ALL-CAPS
+  verdict tokens (VERDICT_TOKEN_RE) and is blind to
+  lowercase-hyphenated violation codes, whose coverage lives in
+  RULE_MINT_VERSION (:1166) and now RN-f's repair-coverage check.
+  Class: instrument assurance wider than its predicate, at
+  brief-compose time; the repo carries two coverage mechanisms
+  for two token families, easy to conflate. Caught by the lane's
+  commissioned critique pass before any build call — the pass
+  paying for itself. Consumer: brief composers in this repo; next
+  checkpoint review grades whether it generalizes.
+- **Desk-tier handoff (operator-settled this date).** Fable desk
+  found over-tiered for the remaining queue; tier-fit convention
+  minted into CLAUDE.md (trial conventions), arc handed to
+  statiker-4d (opus) — retirement pass, checkpoint review,
+  dispositions, release. Ledger lines of this date.
