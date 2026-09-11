@@ -8487,3 +8487,10 @@ Release checklist, executed at 8359cd4 (payload identical to 378aa68):
   listing shows no statiker desk session — no desk needs a restart.
 - Version-bump check: plugin.json 0.2.86, installed pin 0.2.82
   (gitCommitSha d05b074).
+- Pin MOVED (executed after pushing 3cc4266): `claude plugin marketplace
+  update statiker` → "Successfully updated marketplace: statiker";
+  `claude plugin update statiker@statiker` → "updated from 0.2.82 to
+  0.2.86"; installed_plugins.json re-read: version 0.2.86, gitCommitSha
+  3cc426676134c7130d151b5fb6fc9bff5198cfa4 = the pushed HEAD, installPath
+  cache/statiker/statiker/0.2.86. Activation waits on the operator's
+  /reload-plugins; no dispatch composed in the window.
