@@ -8500,3 +8500,39 @@ Release checklist, executed at 8359cd4 (payload identical to 378aa68):
   /home/g/.claude/plugins/cache/statiker/statiker/0.2.86/skills/statiker"
   — inside the pin's installPath, version 0.2.86, gitCommitSha 3cc4266.
   The 0.2.82 cache directory remains on disk, and no pin points at it.
+
+## 2026-09-11 — P28/st-10 C4c field test, repeat: prediction registered BEFORE the 0.2.87 checkpoint review dispatches
+
+The 0.2.86 run returned UNDECIDED (above), so the test repeats at this
+lap, which has an owed round: the 0.2.87 checkpoint review, owed
+because st-30 items 3, 4 and 7 change machine-read tool behaviour.
+Design, rule, finding-kind rule and criterion are carried unchanged
+from the 0.2.86 registration (section of that heading, above). The
+dispositions classified are the ones recorded in the lap brief
+(docs/directives/2026-09-11-sonnet-lap-0287-brief.md, commit 99aff34),
+while lane sonnet-lap-0287 is in flight and before any review brief
+exists. Classified by statiker-4d:
+
+- FLAGGED (design-bearing): **st-28** — a new instrument. The brief
+  decides its predicate (set equality over the sweep's hit set,
+  derived from the running RULE_MINT_VERSION), its EXEMPT admission
+  boundary (only codes `sweep` cannot emit over one tracker file), and
+  its regeneration rule (never green on a regeneration run).
+  **st-30(3)** — widens the `< 1` threshold refusal to a second
+  carrier, the Budget header (a boundary widening; T1 precedent).
+  **st-30(4)** — the desk widened the reach from filter's GIT_ERROR
+  alone to every halt verdict, and decides the keep/drop boundary
+  (a `sha`/`shas` field survives only where it names landed commits).
+- NOT FLAGGED (a prescribed form executed): st-30(1) (every prescribing
+  text aligned to the existing same-id, same-unit supersede-whole
+  form), st-30(2) (pointer word), st-30(5) and st-30(6) (docstrings
+  state the existing reach; T2 precedent), st-30(7) (`pinned` mirrors
+  filter's reviewed resolve-once form; st-14 item 1 precedent),
+  st-30(8) (rewrap, words unchanged).
+
+Share: 3 flagged of 9 disposition slots, so a majority of
+DESIGN-kind blocking + notable findings at flagged slots is
+concentration above the flag's share. Variance caveat: three flagged
+slots, one round. The outcome line is appended when the review is
+dispositioned, opening with the literal marker st-10's blocker
+predicate greps for.
