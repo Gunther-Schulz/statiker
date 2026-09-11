@@ -8753,3 +8753,10 @@ Release checklist, executed against the payload at 769e7f2:
   move and the operator's /reload-plugins; the one running lane
   (opus-lapA-table-0287) reads SKILL.md at 769e7f2 through `git show`,
   never through the skill.
+- ACTIVATED (release-plugin step 10, after the operator's reload): a
+  read-only lane (sonnet-activation-0287) invoked statiker:statiker, and
+  the injection read "Base directory for this skill:
+  /home/g/.claude/plugins/cache/statiker/statiker/0.2.87/skills/statiker"
+  — inside the pin's installPath, version 0.2.87, gitCommitSha 7791b63.
+  The 0.2.82 and 0.2.86 cache directories remain on disk; no pin points
+  at either.
