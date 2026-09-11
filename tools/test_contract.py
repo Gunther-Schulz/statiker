@@ -1147,6 +1147,96 @@ def all_emitted_violation_codes(source_text):
     return codes
 
 
+def inline_repaired_codes(source_text):
+    """Violation codes whose OWN dict literal carries a `repair` key
+    beside `code` (freeze_breach_violations' shape: the violation
+    prints its own terminating repair text rather than going through
+    annotate_repairs/REPAIR_FORMS). Derived via AST rather than
+    restated as a hardcoded exemption list — RN-f (0.2.84 re-review):
+    a hardcoded list ages silently the day a second inline-repaired
+    code is minted or an existing one stops being inline-repaired,
+    exactly the drift class this suite's other derivations already
+    guard against."""
+    tree = ast.parse(source_text)
+    codes = set()
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Dict):
+            keys = {k.value for k in node.keys
+                    if isinstance(k, ast.Constant) and
+                    isinstance(k.value, str)}
+            if "code" not in keys or "repair" not in keys:
+                continue
+            for k, v in zip(node.keys, node.values):
+                if isinstance(k, ast.Constant) and k.value == "code" and \
+                        isinstance(v, ast.Constant) and \
+                        isinstance(v.value, str):
+                    codes.add(v.value)
+    return codes
+
+
+class TestRNfRepairFormCoverage(unittest.TestCase):
+    """0.2.84 re-review disposition RN-f (notable): B3's class (a
+    violation code minted with no REPAIR_FORMS entry, falling through
+    to annotate_repairs' "unclassified" placeholder — the desk reads
+    no composable repair) had no detector; only the individual codes
+    B3 found were fixed. The repair-coverage twin of
+    TestP5RuleMintVersionCoverage's mint-registry check: every
+    violation code the tool can emit either carries a REPAIR_FORMS
+    entry or is inline-repaired (its own dict literal prints a
+    `repair` key, freeze-breach's shape) — read from source via
+    `inline_repaired_codes`, never a hardcoded exemption list, so a
+    future inline-repaired code enters the exemption automatically and
+    a code that stops being inline-repaired loses it the same way."""
+
+    @classmethod
+    def setUpClass(cls):
+        sys.path.insert(0, str(SCRIPTS[1].parent))
+        import statiker_record
+        cls.record = statiker_record
+
+    def test_every_emitted_code_carries_a_repair_form(self):
+        source = SCRIPTS[1].read_text(encoding="utf-8")
+        emitted = all_emitted_violation_codes(source)
+        inline = inline_repaired_codes(source)
+        missing = sorted(emitted - set(self.record.REPAIR_FORMS) - inline)
+        self.assertEqual(
+            missing, [],
+            f"violation code(s) the tool can emit with no REPAIR_FORMS "
+            f"entry and no inline repair: {missing} — annotate_repairs "
+            f"falls through to the 'unclassified' placeholder for them")
+
+    def test_instrument_is_live(self):
+        # instrument check on the pair: a code the derivation really
+        # carries as inline-repaired is present (freeze-breach), and a
+        # sentinel it never emitted is absent — a set derived from
+        # neither would satisfy the coverage assertion whatever the
+        # tool offers
+        source = SCRIPTS[1].read_text(encoding="utf-8")
+        inline = inline_repaired_codes(source)
+        self.assertIn("freeze-breach", inline)
+        self.assertNotIn("__no_such_code__", inline)
+
+    def test_dry_run_catches_a_constructed_missing_entry(self):
+        # red-on-the-defect-it-was-built-for, dry-run form (Fixing:
+        # "a criterion booked unexercised sharpens on first contact"):
+        # a constructed REPAIR_FORMS missing one real, non-inline-
+        # repaired code must be flagged by the SAME comparison the
+        # live assertion above runs — proving the check discriminates
+        # before trusting its clean read of the real tables
+        source = SCRIPTS[1].read_text(encoding="utf-8")
+        emitted = all_emitted_violation_codes(source)
+        inline = inline_repaired_codes(source)
+        real_repair_forms = dict(self.record.REPAIR_FORMS)
+        self.assertIn("hold-form", real_repair_forms)  # a real, covered code
+        mutated = dict(real_repair_forms)
+        del mutated["hold-form"]
+        missing_under_mutation = sorted(emitted - set(mutated) - inline)
+        self.assertIn("hold-form", missing_under_mutation)
+        # control: the unmutated table still reports clean
+        missing_unmutated = sorted(emitted - set(real_repair_forms) - inline)
+        self.assertEqual(missing_unmutated, [])
+
+
 class TestP5RuleMintVersionCoverage(unittest.TestCase):
     """R10 (checkpoint review 2026-08-17): the reviewer's by-hand
     derivation check, graduated — every violation code the record
