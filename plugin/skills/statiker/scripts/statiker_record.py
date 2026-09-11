@@ -1324,9 +1324,20 @@ def apply_supersession(entries, violations, line_ids, line_parse):
             # prescribed supersede-whole repair for this shape (B3's
             # REPAIR_DECLARATOR_BOOKKEEPING text); firing on it too
             # refused the only repair the grammar makes reachable.
+            # 0.2.85 RB2: B4's exemption tested SHAPE only, not UNIT —
+            # a DIFFERENT unit's write-set redeclaration under the
+            # declarator id passed the same shape test and silently
+            # un-declared the live write-set under latest-line-wins
+            # (P38's own docstring sentence, a different trigger).
+            # The exemption now also requires the correcting line's
+            # own unit to equal latest_same_id's.
+            latest_ws_m = UNIT_WRITE_SET_RE.match(latest_same_id.body) \
+                if latest_same_id is not None else None
+            e_ws_m = UNIT_WRITE_SET_RE.match(e.body)
             if (latest_same_id is not None and n < latest_same_id.lineno
-                    and UNIT_WRITE_SET_RE.match(latest_same_id.body)
-                    and not UNIT_WRITE_SET_RE.match(e.body)):
+                    and latest_ws_m
+                    and not (e_ws_m
+                             and e_ws_m.group(1) == latest_ws_m.group(1))):
                 complaints.append(
                     {"code": "declarator-bookkeeping", "line": e.lineno,
                      "text": f"{e.id}: `corrects line {n}` reuses "

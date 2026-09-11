@@ -4691,6 +4691,51 @@ class TestRB1WriteSetCorrectsSuffixSharedWithWaves(RecordFixture):
             self.assertFalse(w["serialize"], v)
 
 
+# ------ 0.2.84 re-review RB2: declarator-bookkeeping tests SHAPE, not
+# ------ the correcting redeclaration's own unit
+
+class TestRB2DeclaratorBookkeepingUnitEquality(RecordFixture):
+    """0.2.84 re-review disposition RB2 (blocking): the 0.2.84 B4
+    exemption ("fire only when the correcting entry is not itself a
+    fresh write-set redeclaration") tested SHAPE alone
+    (UNIT_WRITE_SET_RE matching e.body) — a DIFFERENT unit's write-set
+    redeclaration under the declarator id passed the same test, so it
+    silently un-declared the live write-set under latest-line-wins
+    with no complaint (P38's own docstring sentence reproduced under a
+    different trigger). FIX: the exemption also requires the
+    correcting line's own unit (UNIT_WRITE_SET_RE group 1) to equal
+    latest_same_id's. Red arm: the reviewer's U9 fixture draws
+    declarator-bookkeeping again; the same-unit repair stays clean."""
+
+    def _tracker(self):
+        prefix = (
+            "- F2 [VERIFIED] unit U1 write-set a.txt — basis: design\n"
+            "- F2 [VERIFIED] unit U1 write-set: a.txt — basis: design\n")
+        n = self.lineno_of(prefix, "write-set a.txt — basis: design")
+        return prefix, n
+
+    def test_different_unit_redeclaration_draws_the_hold(self):
+        # the red case: U9's redeclaration passes the shape test but
+        # is not U1's own repair — it must not silently un-declare
+        # U1's live a.txt write-set
+        prefix, n = self._tracker()
+        body = prefix + (
+            f"- F2 [VERIFIED] unit U9 write-set: a.txt "
+            f"(corrects line {n}) — basis: design\n")
+        v = self.lint(body)
+        self.assertIn("declarator-bookkeeping", self.violation_codes(v), v)
+
+    def test_same_unit_redeclaration_stays_clean(self):
+        # control: the sanctioned same-unit repair (0.2.84 B4) must
+        # still be unaffected by the unit-equality requirement
+        prefix, n = self._tracker()
+        body = prefix + (
+            f"- F2 [VERIFIED] unit U1 write-set: a.txt "
+            f"(corrects line {n}) — basis: design\n")
+        v = self.lint(body)
+        self.assertNotIn("declarator-bookkeeping", self.violation_codes(v), v)
+
+
 # ----------------------------- P24: the unforced landing annotation
 
 class TestP24LandingMissingHold(RecordFixture):
