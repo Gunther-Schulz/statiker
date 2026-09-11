@@ -2564,7 +2564,11 @@ def cmd_filter(args):
     p = subprocess.run(["git", "show", f"{args.sha}:{rel}"], cwd=top,
                        capture_output=True)
     if p.returncode != 0:
-        finish("PIN_UNREADABLE", 2, sha=args.sha, tracker=args.tracker,
+        # st-30(4) (0.2.86 re-review finding 4): no `sha` field — the
+        # page's override (SKILL.md, :114-117) routes any halt
+        # carrying one as LANDED commits, and args.sha never resolved
+        # here (an input argument, not a landed reference).
+        finish("PIN_UNREADABLE", 2, tracker=args.tracker,
                stderr=p.stderr.decode(errors="replace").strip())
     # st-14 (1) (ITEMS.md, P31 remainder): resolve --sha to its full
     # commit form ONCE here (the verify-gate form, cmd_verify_gate
@@ -2575,7 +2579,10 @@ def cmd_filter(args):
         ["git", "rev-parse", "--verify", f"{args.sha}^{{commit}}"],
         cwd=top, capture_output=True, text=True)
     if verify.returncode != 0:
-        finish("GIT_ERROR", 2, sha=args.sha, tracker=args.tracker,
+        # st-30(4): no `sha` field, same reason as PIN_UNREADABLE above
+        # — args.sha resolved to SOME object (git show succeeded) but
+        # not to a commit, so it still never names a landed commit.
+        finish("GIT_ERROR", 2, tracker=args.tracker,
                error=f"--sha does not resolve to a commit in this "
                      f"repo: {verify.stderr.strip()}")
     resolved_sha = verify.stdout.strip()
@@ -2717,7 +2724,9 @@ def cmd_pinned(args):
     p = subprocess.run(["git", "show", f"{args.sha}:{rel}"], cwd=top,
                        capture_output=True)
     if p.returncode != 0:
-        finish("PIN_UNREADABLE", 2, sha=args.sha, tracker=args.tracker,
+        # st-30(4): no `sha` field, same reason as filter's PIN_UNREADABLE
+        # — args.sha never resolved here, so it names no landed commit.
+        finish("PIN_UNREADABLE", 2, tracker=args.tracker,
                stderr=p.stderr.decode(errors="replace").strip())
     pinned_bytes = p.stdout
     try:
@@ -2759,6 +2768,10 @@ def cmd_pinned(args):
                pinned_bytes=len(pinned_bytes),
                current_bytes=len(current_bytes))
     say(f"pinned: first divergent line @ {divergent_line}: {divergent_text}")
+    # st-30(4): `sha` KEPT here (unlike the PIN_UNREADABLE/GIT_ERROR
+    # halts above) — by this point `git show {args.sha}:{rel}` at
+    # :2724 already resolved args.sha to real content, so the value
+    # names a landed commit, the case the page's override is for.
     finish("PINNED_REWRITTEN", 2, sha=args.sha, tracker=args.tracker,
            first_divergent_line=divergent_line, evidence=divergent_text)
 
@@ -2787,7 +2800,10 @@ def cmd_verify_gate(args):
     verify = subprocess.run(["git", "rev-parse", "--verify", f"{args.sha}^{{commit}}"],
                             cwd=top, capture_output=True, text=True)
     if verify.returncode != 0:
-        finish("GIT_ERROR", 2, sha=args.sha, tracker=args.tracker,
+        # st-30(4): no `sha` field — args.sha never resolved to a
+        # commit here, so it names no landed commit (same reason as
+        # filter's and pinned's PIN_UNREADABLE/GIT_ERROR).
+        finish("GIT_ERROR", 2, tracker=args.tracker,
                error=f"--sha does not resolve to a commit in this repo: "
                      f"{verify.stderr.strip()}")
     # R8 (checkpoint review): compare against the RESOLVED full sha

@@ -4275,6 +4275,108 @@ class TestSt14FilterResolvesShaBeforeEmitting(RecordFixture):
         self.assertEqual(v["sha"], full_sha, v)
 
 
+# --------- st-30(4): no halt verdict carries `sha`/`shas` unless the
+# --------- value names LANDED commits
+
+class TestSt30Item4NoShaFieldOnUnresolvedHalts(RecordFixture):
+    """0.2.86 re-review finding 4: the page's override (SKILL.md,
+    :114-117) routes ANY halt verdict carrying a `sha`/`shas` field as
+    LANDED commits (HALT_RESIDUE_PERSISTS-shaped handling). filter's
+    new GIT_ERROR carried `sha` for an UNRESOLVED --sha argument — the
+    reviewer named it, and the same shape already existed in
+    PIN_UNREADABLE (both filter's and pinned's) and verify-gate's
+    GIT_ERROR: enumerated across every `finish(` call in the module
+    (desk grep), these four are every HALT verdict (non-zero exit)
+    carrying `sha`; no `finish(` call anywhere carries `shas`
+    (plural). FIX: drop `sha` from all four — the value never resolved
+    at the point each one fires, so it never names a landed commit.
+    KEPT: `pinned`'s PINNED_REWRITTEN halt, whose `sha` resolves
+    successfully (a prior `git show` on it already succeeded) before
+    the halt fires — it DOES name a landed commit, the case the page's
+    override is for. `ARTIFACT_WRITTEN` and `PINNED_APPEND_ONLY`
+    (proceed verdicts, exit 0) are out of scope — the rule binds
+    halts.
+
+    Neither the page nor any test in this suite reads `sha` off a
+    GIT_ERROR/PIN_UNREADABLE verdict as an input (checked: this file's
+    only `v["sha"]` reads target ARTIFACT_WRITTEN and PINNED_REWRITTEN;
+    SKILL.md :112-113 names these verdict classes generically, never
+    dereferencing their `sha` field) — so dropping it here is not a
+    halt-item-4 gap.
+
+    Red arm: `filter --sha 'HEAD^{tree}'` gave a `sha` field on
+    GIT_ERROR before the fix (a tree resolves for `git show` but not
+    for `rev-parse --verify ...^{commit}`); one test per dropped
+    site, each a reachable CLI invocation."""
+
+    def _git(self, *a, cwd=None):
+        env = {**os.environ, "GIT_CONFIG_GLOBAL": "/dev/null",
+              "GIT_AUTHOR_NAME": "t", "GIT_AUTHOR_EMAIL": "t@t",
+              "GIT_COMMITTER_NAME": "t", "GIT_COMMITTER_EMAIL": "t@t"}
+        return subprocess.run(["git", *a], cwd=cwd or self.dir, env=env,
+                              capture_output=True, text=True, check=True)
+
+    def _committed_tracker(self):
+        p = self.dir / "t.md"
+        p.write_text(HEADER + "- F1 [VERIFIED] only lock — basis: y\n")
+        self._git("add", "t.md")
+        self._git("commit", "-m", "lock")
+
+    def test_filter_git_error_on_a_tree_carries_no_sha(self):
+        self._committed_tracker()
+        out_tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(out_tmp.cleanup)
+        out = Path(out_tmp.name) / "artifact.md"
+        v = self.verdict(tool(["filter", "--tracker", "t.md", "--sha",
+                              "HEAD^{tree}", "--out", str(out)], cwd=self.dir))
+        self.assertEqual(v["verdict"], "GIT_ERROR", v)
+        self.assertNotIn("sha", v, v)
+
+    def test_filter_pin_unreadable_carries_no_sha(self):
+        self._committed_tracker()
+        out_tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(out_tmp.cleanup)
+        out = Path(out_tmp.name) / "artifact.md"
+        v = self.verdict(tool(["filter", "--tracker", "t.md", "--sha",
+                              "deadbeef", "--out", str(out)], cwd=self.dir))
+        self.assertEqual(v["verdict"], "PIN_UNREADABLE", v)
+        self.assertNotIn("sha", v, v)
+
+    def test_pinned_pin_unreadable_carries_no_sha(self):
+        self._committed_tracker()
+        v = self.verdict(tool(
+            ["pinned", "--tracker", "t.md", "--sha", "deadbeef"],
+            cwd=self.dir))
+        self.assertEqual(v["verdict"], "PIN_UNREADABLE", v)
+        self.assertNotIn("sha", v, v)
+
+    def test_verify_gate_git_error_carries_no_sha(self):
+        self._committed_tracker()
+        v = self.verdict(tool(
+            ["verify-gate", "--tracker", "t.md", "--sha", "0" * 40],
+            cwd=self.dir))
+        self.assertEqual(v["verdict"], "GIT_ERROR", v)
+        self.assertNotIn("sha", v, v)
+
+    def test_pinned_rewritten_still_carries_sha_control(self):
+        # control: a halt whose sha DID resolve (PINNED_REWRITTEN)
+        # keeps the field — it names a landed commit
+        bad = "- F1 [PENDING] awaiting leg — basis: dispatched\n"
+        sha = self._committed_tracker_with(HEADER + bad)
+        (self.dir / "t.md").write_text(
+            HEADER + "- F1 [VERIFIED] awaiting leg — basis: dispatched\n")
+        v = self.verdict(tool(
+            ["pinned", "--tracker", "t.md", "--sha", sha], cwd=self.dir))
+        self.assertEqual(v["verdict"], "PINNED_REWRITTEN", v)
+        self.assertEqual(v["sha"], sha, v)
+
+    def _committed_tracker_with(self, text):
+        (self.dir / "t.md").write_text(text)
+        self._git("add", "t.md")
+        self._git("commit", "-m", "lock")
+        return self._git("rev-parse", "HEAD").stdout.strip()
+
+
 # ---------------------------------------- E-B: unknown --unit halts
 
 class TestEBUnitUnknown(RecordFixture):
