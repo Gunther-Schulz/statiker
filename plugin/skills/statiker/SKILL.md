@@ -871,52 +871,41 @@ commit.
 
 A fresh-context attack on each locked design by a context that did
 not produce it, before implementation. The attack brief carries the
-tracker PINNED at the locked design's commit — produced by the
-record tool: `filter --tracker <path> --sha <lock sha> --out
-<artifact path>` serves the sha, never the working tree (a live
-tree serves HEAD) — the artifact path is the `.A<n>.artifact`
-species in its OWN namespace, `artifacts/`, beside — never
-inside — the seal directory (seal-path prints it; namespace
-hygiene: the path handed to the attacker no longer names the
-seal directory — what bars a read is the brief's scope, not the
-split), OUTSIDE every
-repo like the seals and for the seal rule's reason (an in-repo
-artifact is an untracked file under a brief asserting tree ==
-lock commit; the tool halts ARTIFACT_IN_REPO on any, halts a
-symlink tracker — name the real path — and `--out` alone is
-cwd-relative: an artifact lives outside the repo, so
-repo-root-relative grammar cannot name it) — and BLANKS the two
-Superseded species IN PLACE — each dropped line an empty line,
-so artifact line numbers EQUAL source line numbers and a
-`corrects line <n>` token dereferences identically in either —
-while entry-shaped lines inside a Superseded SECTION are
-PRESERVED; ENTRIES are never filtered (dead bodies are
-load-bearing for closure questions, and a hand-summary is the
-paraphrase-drift class). The artifact itself stays PURE —
-no header, nothing the source does not carry: source path,
-pinned sha, and the blanking declaration travel as
-ARTIFACT_WRITTEN verdict fields, and the brief QUOTES that
-verdict line beside the artifact; it also
-carries the question and the read-only tail (dispatch skill
-`references/forms.md`). Unfiltered, the
+tracker PINNED at the lock commit, produced by `filter --tracker
+<path> --sha <lock sha> --out <artifact path>` — serves the sha,
+never the working tree (a live tree serves HEAD); the artifact path
+is the `.A<n>.artifact` species in its OWN `artifacts/` namespace
+beside, never inside, the seal directory (seal-path prints it); what
+bars a read is the brief's scope, not the split; the artifact lives
+OUTSIDE every repo (an in-repo artifact is an untracked file under a
+brief asserting tree == lock commit): the tool halts
+ARTIFACT_IN_REPO on any, halts a symlink tracker (name the real
+path), and `--out` alone is cwd-relative; filter BLANKS the two
+Superseded species IN PLACE — each dropped line an empty line, so
+artifact line numbers EQUAL source line numbers and `corrects line
+<n>` dereferences identically — while entry-shaped lines inside a
+Superseded SECTION are PRESERVED; ENTRIES are never filtered (dead
+bodies are load-bearing for closure questions; a hand-summary is the
+paraphrase-drift class). The artifact stays PURE — no header: source
+path, pinned sha, and the blanking declaration travel as
+ARTIFACT_WRITTEN verdict fields, and the brief QUOTES that verdict
+line beside the artifact; the brief also carries the question and
+the read-only tail (dispatch skill `references/forms.md`).
+
+Unfiltered, the
 artifact compounds per round; the desk appends nothing to the record
 while any attacker is live — an append landing mid-round leaks
 sibling findings into an attacker's own record sweep, and the
-round's independence cannot be re-established afterward. The
-freeze defers appends, never work: desk findings and leg
-dispatches during a round queue at
-`~/.local/state/statiker/seals/<repo-key>/<tracker-filename>.A<n>.queue`
-(repo-key = `basename` of `git rev-parse --show-toplevel`, a
-hyphen, then the first 8 hex of `sha256` of that toplevel's
-REAL path — the basename alone collided for two checkouts
-sharing a name, a fork beside its origin; derive it in the MAIN
-checkout, never a linked worktree, where `--show-toplevel`
-answers with the worktree and `--git-common-dir` names the
-shared store; the tracker's
-filename verbatim with `.md`. XDG state, never `~/.claude/`:
-that path shape draws permission dialogs on every access) —
-existing whether or not a seal was
-written — and at the round's return: LAND the queue's entries,
+round's independence cannot be re-established afterward.
+
+The freeze defers appends, never work: desk findings and leg
+dispatches during a round queue at that round's `queue` species
+path, which `seal-path --tracker <path> --round A<n>` prints
+(SEAL_PATH; pasted, never hand-composed); the namespace is XDG
+state under `~/.local/state/statiker/seals/<repo-key>/`, keyed per
+repo and per tracker filename — never `~/.claude/` (that path shape
+draws permission dialogs on every access); the queue exists whether
+or not a seal was written — and at the round's return: LAND the queue's entries,
 SPEND the queue, THEN record the A-line — spend-before-A-line,
 so a desk dying mid-sequence leaves a spent queue and a missing
 A-line (a re-read), never a landed-but-unspent queue (a
@@ -980,48 +969,38 @@ The brief never carries the desk's reasoning — it transmits the
 producer's blind spots — and the rule reaches the ARTIFACT: an
 entry authored for the attacker's eyes (a weak-spot list, steering
 notes) is desk reasoning riding the never-filtered channel, and it
-frames the round it was meant to sharpen. Pre-round self-assessment
-is a sealed prediction, written before the round dispatches to
-`~/.local/state/statiker/seals/<repo-key>/<tracker-filename>.A<n>.seal`
-(repo-key as the queue path derives it, then the tracker's
-filename verbatim, `.md`
-included) — a path any successor desk re-derives through the git
-tool's `seal-path --tracker <path> --round <A<n>|verify>` verdict
-(SEAL_PATH: every species' full path — seal, queue, paths,
-artifact (its own `artifacts/` namespace), report, comparison —
-from the pinned derivation; paste,
-never hand-compose; the `report` species is the OPTIONAL
-out-of-repo copy of a round's returned report where the desk
-keeps one — never round-mandatory, reports travel by
-message); out of
-the repo because attackers read the repo, and an in-repo seal
-breaks any brief asserting tree == lock commit. At the round's
-return the desk compares seal against bites and writes the
-comparison BESIDE the seal, still out of the repo — later
-attackers read the repo, so seals and comparisons enter the
-tracker only in the close, where no further round follows. A
-seal is calibration, never evidence: it steers no verdict, and a
-missing or late one voids its comparison, not the round.
-Instrument-seal, widened (P24: the seal grades entries that EXIST,
-and an enumeration gap has no entry to seal — F76 was the fourth
-instrument in one run to declare a persisted population complete
-and be wrong, and no seal caught any of the four): a seal over
-CONCLUSIONS cannot reach an omission, a seal over INSTRUMENTS
-can — the AXIS three consecutive seal comparisons converged on,
-naming it beating guessing the instance twice running. A
-successor's seal therefore carries, per instrument touching a
-completeness or population claim: (i) a per-instrument REACH
-statement — what it structurally CAN return; (ii) a DEFEAT-MODE
-enumeration — what would return the same output as a true negative
-(F95's own defeat mode: a zero-row table reads exactly like a
-column carrying nothing); (iii) the recorded IRREDUCIBLE BLIND
-SET — what no available instrument reaches, named rather than
-silently absent; (iv) CENSUS-IMMUNE members dispositioned by
-reading their WRITER — the write path, never content absence (an
-empty store's content is silent; its writer is not). The mint's
-form sentence: a successor seals what each instrument cannot
-return, what each fixture cannot express, and which repairs shipped
-unexercised.
+frames the round it was meant to sharpen. Pre-round self-assessment is a sealed prediction, written before the
+round dispatches, to that round's `seal` species path; any successor
+desk re-derives it through the git tool's `seal-path --tracker
+<path> --round <A<n>|verify>` verdict (SEAL_PATH: every species'
+full path — seal, queue, paths, artifact (its own `artifacts/`
+namespace), report, comparison — from the pinned derivation; paste,
+never hand-compose); the `report` species is the OPTIONAL out-of-repo
+copy of a round's returned report where the desk keeps one — never
+round-mandatory, reports travel by message. Seals live out of the
+repo because attackers read the repo, and an in-repo seal breaks any
+brief asserting tree == lock commit; at the round's return the desk
+compares seal against bites and writes the comparison BESIDE the
+seal, still out of the repo — later attackers read the repo, so
+seals and comparisons enter the tracker only in the close, where no
+further round follows. A seal is calibration, never evidence: it
+steers no verdict, and a missing or late one voids its comparison,
+not the round.
+
+Instrument-seal, widened: the seal grades entries that EXIST, and an
+enumeration gap has no entry to seal — a seal over CONCLUSIONS
+cannot reach an omission, a seal over INSTRUMENTS can; a successor's
+seal therefore carries, per instrument touching a completeness or
+population claim: (i) a per-instrument REACH statement — what it
+structurally CAN return; (ii) a DEFEAT-MODE enumeration — what would
+return the same output as a true negative; (iii) the recorded
+IRREDUCIBLE BLIND SET — what no available instrument reaches, named
+rather than silently absent; (iv) CENSUS-IMMUNE members dispositioned
+by reading their WRITER — the write path, never content absence (an
+empty store's content is silent; its writer is not). The form
+sentence: a successor seals what each instrument cannot return, what
+each fixture cannot express, and which repairs shipped unexercised.
+
 Attack tier: a ROLE, resolved in order — `clippy.config/models`
 (`attack:` class) when present, else the first entry of the
 skill's shipped `defaults/models` (under this skill's base
@@ -1068,14 +1047,15 @@ premise broken for one design ([VOID] premise:) voids that design
 alone, and a design whose verdict block is missing stays
 [DISPATCHED] and re-enters as its own round — sibling designs
 grade normally in every case. A single locked design keeps the
-single-design shape. Each
-re-attack is a NEW fresh context (a resumed attacker inherits
-its own prior findings' frame), and a re-derived design is a NEW
-locked design — it gets the attack again, its repairs landing as
-ONE re-lock: per-finding re-locks split the priced unit
-(hypothesis). The re-derived design's basis takes P24 clause (b)'s
-re-derivation-seam rule (below), never restated
-here. The reply opening a repeat round — from the SECOND
+single-design shape; each re-attack is a NEW fresh context (a
+resumed attacker inherits its own prior findings' frame); a
+re-derived design is a NEW locked design — it gets the attack
+again, its repairs landing as ONE re-lock: per-finding re-locks
+split the priced unit (hypothesis). The re-derived design's basis
+takes clause (b)'s re-derivation-seam rule (below), never restated
+here.
+
+The reply opening a repeat round — from the SECOND
 repeat round
 on — cites the record
 tool's `trend` output as its arithmetic backstop and GRADES the
@@ -1084,10 +1064,9 @@ per-round counts (the trajectory arithmetic) read every F-line
 regardless of class or locus, while its concentration flag DOES
 read the citing entry's class (a `record:`-scoped citation never
 concentrates); the grade still never comes from the verdict alone,
-since the counts half stays class-blind. The grade computes only from
-the SECOND repeat round on: with fewer than two completed [BIT]
-rounds behind it there is no series, and the first repeat round
-is the ordinary re-lock path, never graded. CONTRACTING:
+since the counts half stays class-blind. With fewer than two
+completed [BIT] rounds behind it there is no series, and the first
+repeat round is the ordinary re-lock path, never graded. CONTRACTING:
 substance
 findings fall round over round AND land mostly on ground the
 previous round already bit. NON-CONTRACTING: everything else
@@ -1110,49 +1089,47 @@ no move: the series goes to the operator — attended the prompt;
 unattended the run closes FAILED with the series enumerated in
 the close (budget exhaustion's own disposition) — never another
 same-form round.
-The budget (the header) backstops this judgment
-mechanically; it is never the route. A round dies two ways, one
-clause (hypothesis):
-ABORTED in flight when a queued desk finding kills the locked
-design — the round is not left running over an object already
-scheduled for replacement; its A-line lands `[VOID]` with body
-`abort:` citing the killing entry (which must predate the
-abort — the check against aborting uncomfortable rounds). And
-VOIDED on return when the round's PREMISE was broken (wrong sha
-pinned, tree claim untrue at dispatch, wrong exclusions): graded
-as a round, never finding-by-finding — a review of the wrong
-object is not evidence about the right one, and salvaging its
-findings is how a broken instrument's output enters the record
-carrying a round's authority; the A-line lands `[VOID]` with
-body `premise:` naming the brief defect, the brief is repaired,
-a NEW round dispatches. A voided round's observations enter only
-as desk findings the desk re-derives itself. Each design's round
-records its A-line (The record). At a round's return every finding is
-classified, with basis: DESIGN-SUBSTANCE (wrong mechanism, money
-path, silent failure in the shipped system) or RECORD/INSTRUMENT
-(the run's own bookkeeping); findings append as F-lines with the
-tag their evidence earns — reach-matched in hand → [VERIFIED],
-where a judgment finding's reach is the cited record or design
-text itself, else [PENDING]. An UNMEASURED verdict is
-an open question the desk completes itself — its own executed
-measurement, recorded as the F-line's evidence — before the
-round's A-line lands. Report quotes the desk retains (pasted,
-never paraphrased; the defang below is the one sanctioned
-mutation) append as the quoted block the record tool produces —
-`quote --label "A<n> quotes"`, raw text on stdin: every line
-begins `>`, a blank line a BARE `>` (trailing whitespace may not
-survive target-repo hooks), the block ending at the first line
-not beginning `>`; bracketed tag literals defanged — brackets
-dropped, lowercased in place, the defanged names listed after a
-semicolon in the composed first line `> Superseded — A<n>
-quotes; <names>` (semicolon and list absent when no literal
-occurs; the filter matches the label's opening form) — so the
-defanged forms differ from every counted tag literal in both
-brackets and case: the record tool's tag-literal lint carries
-the brackets (its own greps, battery-pinned — the netting
-battery produces a real violation of the class), the brackets
-the load-bearing half, the case change margin. Regraded
-into F-lines in the same sitting. Any substance finding: the
+The budget (the header) backstops this judgment mechanically; it is
+never the route. A round dies two ways `(hypothesis)`: ABORTED in
+flight when a queued desk finding kills the locked design — the
+round is not left running over an object scheduled for replacement;
+its A-line lands `[VOID]` with body `abort:` citing the killing
+entry, which must predate the abort (the check against aborting
+uncomfortable rounds); VOIDED on return when the round's PREMISE was
+broken (wrong sha pinned, tree claim untrue at dispatch, wrong
+exclusions): graded as a round, never finding-by-finding — a review
+of the wrong object is not evidence about the right one, and
+salvaging its findings enters a broken instrument's output with a
+round's authority; the A-line lands `[VOID]` with body `premise:`
+naming the brief defect, the brief is repaired, a NEW round
+dispatches; a voided round's observations enter only as desk
+findings the desk re-derives itself.
+
+Each design's round records its A-line (The record); at a round's
+return every finding is classified with basis: DESIGN-SUBSTANCE
+(wrong mechanism, money path, silent failure in the shipped system)
+or RECORD/INSTRUMENT (the run's own bookkeeping); findings append as
+F-lines with the tag their evidence earns — reach-matched in hand →
+[VERIFIED] (a judgment finding's reach is the cited record or design
+text itself), else [PENDING]; an UNMEASURED verdict is an open
+question the desk completes itself — its own executed measurement
+recorded as the F-line's evidence — before the round's A-line lands.
+
+Report quotes the desk retains are pasted, never paraphrased (the
+defang is the one sanctioned mutation), and append as the quoted
+block the record tool produces — `quote --label "A<n> quotes"`, raw
+text on stdin: every line begins `>`, a blank line a BARE `>`, the
+block ending at the first line not beginning `>`; bracketed tag
+literals defanged — brackets dropped, lowercased in place — with the
+defanged names listed after a semicolon in the composed first line
+`> Superseded — A<n> quotes; <names>` (semicolon and list absent
+when no literal occurs; the filter matches the label's opening
+form) — so the defanged forms differ from every counted tag literal
+in both brackets and case — the record tool's tag-literal lint
+carries the brackets (the load-bearing half), the case change the
+margin; regraded into F-lines in the same sitting.
+
+Any substance finding: the
 round records [BIT] — that record change IS the reopen, and the
 reopen's SCOPE is the entries the findings cite plus their
 dependents through the invalidation machinery (The loop's
@@ -1187,7 +1164,7 @@ dispatched over SUSTAIN_DENIED is exactly the class this gate
 exists to catch. The same round-open seam also runs
 `tripwire --tracker <path>` (The record, Budget) beside `sustain` —
 its verdict quoted the same way; an armed TRIPWIRE_FIRES routes to
-the 0.68 NARROWING route (below), never blocking round-open on its
+the NARROWING route (below), never blocking round-open on its
 own tag, and TRIPWIRE_SILENT with reason "unarmed" is silently
 informational, never a hold — the breaker fires only where the
 header names its threshold.
@@ -1201,18 +1178,16 @@ mid-implementation is written with body opening `record:`
 entry LIVE at the closure (latest line not [INVALIDATED] when
 the closing A-line landed): that takes the scopeless
 [INVALIDATED] route, voids, and carries the premise-killing
-consequence (Implementation: the commit gate halts every
-in-flight sibling too, fail-closed — the rest re-dispatch after
-re-entry; carve-out parked as tool work).
+consequence (Implementation, I9).
+
 The desk refutes a finding only with its own reach-matched evidence
 (the F-line goes [INVALIDATED]); closure still needs the next
 round's [ZERO-DELTA]. A design claim a round REFUTED (its D-line
 [INVALIDATED] under that finding) re-enters the design only on a
 basis of a DIFFERENT KIND than the refuted one — the re-entering
 entry names the new kind and why it is immune to the prior failure
-mode (P24 clause (b): the corpus's derive-the-basis rule, applied at
-the re-derivation seam where momentum re-asserts the cheap basis
-that already failed once).
+mode (clause (b)).
+
 A run instrument the desk builds is unproven until it has gone
 RED on a real defect; until then its clean verdict closes no
 gate. An instrument's REACH enters the record as its own
