@@ -4641,6 +4641,56 @@ class TestB4DeclaratorBookkeepingSupersedeWholeExempt(RecordFixture):
         self.assertIn("write-set-path-near-miss", self.violation_codes(v))
 
 
+# ------- 0.2.84 re-review RB1: corrects-suffix strip shared with waves
+
+class TestRB1WriteSetCorrectsSuffixSharedWithWaves(RecordFixture):
+    """0.2.84 re-review disposition RB1 (dev-notes/OBSERVATIONS.md,
+    "0.2.84 re-review dispositions", 2026-09-10): the near-miss check
+    (write_set_violations) stripped the write-set declarator's
+    `(corrects line <n>)` resolving-token suffix before comparing, but
+    waves_over_units' own consumption of the SAME declarator line
+    (UNIT_WRITE_SET_RE.match(e.body).group(2)) did not — so the tool's
+    own sanctioned supersede-whole repair for a write-set near-miss
+    made a REAL collision on the underlying path read as disjoint,
+    certifying two units that write the same file as parallel-eligible
+    instead of serializing them. Reviewer's pair: two units on
+    `a.txt`, one reaching it through the sanctioned repair; a control
+    where the repair's underlying path genuinely differs."""
+
+    def _tracker_with_repaired_declarator(self, path="a.txt"):
+        prefix = (
+            f"- F1 [VERIFIED] unit U1 write-set: a.txt — basis: design\n"
+            f"- F2 [VERIFIED] unit U2 write-set: wrong.txt — basis: design\n")
+        n = self.lineno_of(prefix, "wrong.txt")
+        body = prefix + (
+            f"- F2 [VERIFIED] unit U2 write-set: {path} "
+            f"(corrects line {n}) — basis: design\n")
+        return body
+
+    def test_collision_through_sanctioned_repair_still_serializes(self):
+        # the red case: U2's LIVE write-set line reaches a.txt only
+        # through the corrects-suffix form — the underlying path
+        # collides with U1's plain declaration and must serialize
+        body = self._tracker_with_repaired_declarator("a.txt")
+        v = self.waves(body)
+        self.assertEqual(v["verdict"], "WAVES_COMPUTED", v)
+        by_units = [w["units"] for w in v["waves"]]
+        self.assertEqual(by_units, [["U1", "U2"]], v)
+        wave = v["waves"][0]
+        self.assertTrue(wave["serialize"], v)
+
+    def test_repair_to_a_genuinely_different_path_stays_disjoint(self):
+        # control: the corrects-suffix strip must not manufacture a
+        # collision where the underlying paths really differ
+        body = self._tracker_with_repaired_declarator("b.txt")
+        v = self.waves(body)
+        self.assertEqual(v["verdict"], "WAVES_COMPUTED", v)
+        by_units = sorted(w["units"] for w in v["waves"])
+        self.assertEqual(by_units, [["U1"], ["U2"]], v)
+        for w in v["waves"]:
+            self.assertFalse(w["serialize"], v)
+
+
 # ----------------------------- P24: the unforced landing annotation
 
 class TestP24LandingMissingHold(RecordFixture):

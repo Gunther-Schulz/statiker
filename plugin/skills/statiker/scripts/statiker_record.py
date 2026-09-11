@@ -825,10 +825,13 @@ def write_set_violations(body: str, tag: str):
         return []
     rest = scrubbed[m.end():]
     if WRITE_SET_EXACT_RE.match(rest):
-        path = WRITE_SET_CORRECTS_SUFFIX_RE.sub(
-            "", rest[len("write-set: "):])
+        # 0.2.85 RB1: the shared resolver (_normalize_write_set_path,
+        # homed at the consuming site, waves_over_units) strips the
+        # corrects-suffix too now — reused here rather than a second,
+        # divergent strip.
+        path = _normalize_write_set_path(rest[len("write-set: "):])
         if tag != "INVALIDATED" and (
-                len(path.split()) > 1 or path.lstrip().startswith("/")):
+                len(path.split()) > 1 or path.startswith("/")):
             return ["write-set-path-near-miss"]
         return []
     if WRITE_SET_NEAR_RE.match(rest):
@@ -2007,7 +2010,20 @@ UNIT_WRITE_SET_RE = re.compile(r"^unit (U\d+) write-set: (\S.*)$")
 
 
 def _normalize_write_set_path(p):
-    return os.path.normpath(p.strip())
+    # 0.2.85 RB1 (dev-notes/OBSERVATIONS.md, 0.2.84 re-review
+    # dispositions): strip the write-set declarator's own `(corrects
+    # line <n>)` resolving-token suffix before normalizing — both
+    # consumers of a write-set path (this function's own caller,
+    # waves_over_units, and write_set_violations' near-miss check)
+    # go through this one resolver now, so a sanctioned
+    # supersede-whole repair's raw spelling collapses to the same
+    # comparison key as a plain declaration of the same path. Left
+    # unstripped here, the suffix made a real collision on the
+    # underlying path read as disjoint (reviewer's pair, RB1): two
+    # units writing the same file, one reaching it through the
+    # repair, certified parallel-eligible instead of serialized.
+    p = WRITE_SET_CORRECTS_SUFFIX_RE.sub("", p.strip())
+    return os.path.normpath(p)
 
 
 def known_units_of(entries):
