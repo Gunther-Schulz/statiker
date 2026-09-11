@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 12
+added: 14
 compacted: 0
 
 ## st-10
@@ -174,3 +174,21 @@ write-set: plugin/skills/statiker/SKILL.md, PLAN.md (Size target supersession en
 done-criterion: SKILL.md final tighten released under an opus checkpoint review; PLAN.md carries an append-only Size-target supersession entry whose number is the measured Verify-block count at release, with its basis; CLAUDE.md's Verify comment names the re-derived target; the disclosure question (RETRO-netting, batched-trip, version-mismatch resume, design §5) recorded as no-disclosure with the measured residue, or surfaced to the operator as numbered single-home amendment questions; stabilization exit declared or explicitly not, at the operator's call at the seam
 evidence: design §2 (80-150 not reachable by the method order alone; projection ~650-750 after lap C, statiker-fb estimate); OBSERVATIONS.md:4438-4448
 blocked-by: st-32
+
+## st-34
+grade: READY
+requirement: 0.2.87 checkpoint-review residue (dev-notes/OBSERVATIONS.md, 2026-09-11 0.2.87 checkpoint-review dispositions): (N1) the golden corpus's clean controls miss the over-fire branch — F26 cites a nonexistent F1, and no tracker carries a Status: [READY] control; (N2) a Budget-header 'tripwire -1' reads unarmed (TRIPWIRE_BUDGET_RE takes digits only), the breaker silently off; (n1) the cross-pair disjointness assertion fires on a code legitimately present in both trackers; (n2) STATIKER_GOLDEN_REGEN regenerates on any non-empty value; (n3) the TestP5RuleMintVersionCoverage and TestRNfRepairFormCoverage docstrings omit the conditional-return and dict(code=) blind shapes; (n4) pinned, and filter whose form it copies, resolve a symbolic ref twice, so a concurrent commit can pair content from one commit with another's sha — record: opus-review-0287 report
+goal: tend
+write-set: plugin/skills/statiker/scripts/statiker_record.py, tools/test_statiker_record.py, tools/test_contract.py, tools/golden-corpus/tracker.md, tools/golden-corpus/tracker-admission.md, tools/golden-corpus/expected-violations.json, tools/golden-corpus/expected-violations-admission.json
+done-criterion: per the reviewer's executed pairs: (N1) F26 cites an id that exists and is live, and a Status: [READY] control row exists in a golden tracker; the reviewer's two mutants (drop the INVALIDATED test in the basis check; drop lint's Status/Phase tag-literal exemption) each turn TestGoldenCorpusSweep red; goldens regenerated and the diff reviewed; (N2) a tripwire field present in the Budget header that does not parse as an integer >= 1 is refused like --threshold, red: 'tripwire -1' gives TRIPWIRE_SILENT unarmed today, control 'tripwire 2' unchanged; (n1) the cross-pair disjointness assertion is removed, a code moving between trackers still shows as REMOVED/ADDED; (n2) regeneration fires only when STATIKER_GOLDEN_REGEN == '1', red: '0' regenerates today; (n3) both class docstrings state the blind shapes the helper's docstring names, or defer to it by name; (n4) pinned and filter resolve the ref once and read the file at the resolved sha, red: the reviewer's PATH-wrapper concurrent commit gives a mismatched sha today, keeping the PIN_UNREADABLE vs GIT_ERROR routing their tests pin. Rides the next tool-touching lap under a checkpoint review (N2 and n4 are machine-read); N1 lands before st-32 (lap B builds on the golden corpus)
+evidence: opus-review-0287 executed pairs (N1 mutant '2 passed' vs F26->F21 copy 'ADDED 95 basis-cites-invalidated'; N2 'tripwire -1' TRIPWIRE_SILENT unarmed; n1 planted entry-form in both trackers; n2 REGEN=0 regenerated; n3 five planted shapes; n4 PATH-wrapper race), recorded in OBSERVATIONS 2026-09-11 0.2.87 dispositions
+blocked-by: NONE
+
+## st-35
+grade: PARKED
+requirement: the page and pinned disagree on arming a live run's tripwire (opus-review-0287 N3, pre-lap surface): SKILL.md:275-277 arms by an in-place Budget-line edit ('header fields are mutable state'), while SKILL.md:186-187, :321, :450-452 and pinned's _mutable_field_positions (Status/Phase only) treat that edit as a rewrite (PINNED_REWRITTEN at the next resume or re-lock); since st-30(3) a seeded 'tripwire 0' halts every round-open tripwire run, and --threshold is the only clean repair — record: opus-review-0287 report, OBSERVATIONS 2026-09-11 0.2.87 dispositions
+goal: tend
+write-set: plugin/skills/statiker/SKILL.md, plugin/skills/statiker/scripts/statiker_record.py, tools/test_statiker_record.py
+done-criterion: one ruling, designed at the desk with its basis before any build, answering the successor-resumability question (an arm passed only by --threshold is not on the record, so a successor desk resumes unarmed): EITHER pinned admits the Budget line's tripwire field as mutable header state beside Status/Phase (red: pin with tripwire 0, edit to 2 gives PINNED_REWRITTEN today, PINNED_APPEND_ONLY after; control: any other header edit still REWRITTEN), OR the page's in-place route leaves and arming lives in an appended record form the tripwire verb reads; every page passage on header mutability agrees with pinned afterwards; rides a checkpoint review
+evidence: reviewer's red (pin with tripwire 0, edit to 2: PINNED_REWRITTEN) and control (edit Status only: PINNED_APPEND_ONLY); c19c829's commit message names the in-place Budget-line edit a working arming path (whether pinned's mutable set postdates it: unverified)
+blocked-by: decision the tripwire arming ruling: pinned's mutable header set vs an appended arming form (the successor-resumability question)

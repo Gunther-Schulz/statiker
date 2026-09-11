@@ -8609,3 +8609,134 @@ accepted as the pass's direction, three gaps carried into the carrier
 route vocabulary is sketched, not designed (booked st-32); lap C books
 the size-target re-derivation the operator concurred with on
 2026-08-10 (st-33). statiker-fb closable.
+
+## 2026-09-11 — 0.2.87 checkpoint-review dispositions (fresh-opus, lane opus-review-0287; verdict: PIN MOVES — 0 blocking, 3 notable, 4 nits)
+
+Reviewer at 769e7f2 (HEAD c2aa2d4, plugin/ and tools/ identical): suite
+537 passed + 2 subtests, 0 skipped; the lap's new tests against the
+378aa68 tool give 9 failed (every defect case) and 6 passed (every
+control). Realized per the reviewer's executed probes: st-28 (incident
+rows REMOVED at 2baa349, present at c19c829; both goldens; regeneration
+fails the run), st-30 items 1, 2, 4, 6, 7, 8; items 3 and 5 partly (N2,
+n3). Series across the 0.2.84 → 0.2.87 rounds, blocking: 6, 2, 1, 0, 0.
+
+- **N1 (notable, st-28).** The golden corpus's clean controls miss the
+  over-fire branch on the incident code: F26 ("cites a live id, no
+  violation — basis: F1") cites an F1 the tracker does not have, so a
+  mutant dropping the INVALIDATED test stays green, while a copy citing
+  F21 goes red; and no tracker carries `Status: [READY]`, so dropping
+  lint's Status/Phase tag-literal exemption stays green. Booked st-34
+  (tools/ only, not carried by the pin); lands before st-32, which
+  builds on the golden corpus. Kind: IMPLEMENTATION — the disposition's
+  "known-clean row per code" text stands, the fixture did not realize
+  it.
+- **N2 (notable, st-30(3)).** A Budget-header `tripwire -1` reads unarmed
+  (TRIPWIRE_BUDGET_RE takes digits only), the breaker silently off. Not
+  a regression (0.2.86 identical). Booked st-34: a present field that
+  does not parse as an integer ≥ 1 is refused. Kind: IMPLEMENTATION —
+  the text said n < 1 is refused; the code reached a literal 0 only.
+- **N3 (notable, pre-lap surface).** SKILL.md:275-277 arms a live run by
+  an in-place Budget-line edit; :186-187, :321, :450-452 and pinned's
+  mutable set (Status/Phase only) treat that edit as a rewrite. Since
+  st-30(3), `--threshold` is the only clean repair of a seeded
+  `tripwire 0`. Booked st-35 as a desk ruling: an arm passed only by
+  `--threshold` is not on the record, so a successor desk resumes
+  unarmed — the resumability value decides between widening pinned's
+  mutable set and an appended arming form.
+- **n1 (nit, st-28 follow-up).** The cross-pair disjointness assertion
+  (added by the lane beyond the brief) fires on a code legitimately
+  present in both trackers; a move already shows as REMOVED/ADDED.
+  st-34: remove it.
+- **n2 (nit, st-28).** The regeneration gate is truthy
+  (`STATIKER_GOLDEN_REGEN=0` regenerates); loud, since the run fails.
+  st-34: `== "1"`.
+- **n3 (nit, st-30(5)).** Two class docstrings name too few blind shapes
+  (a conditional return, live at statiker_record.py:785; `dict(code=)`);
+  the helper's own docstring is accurate. st-34.
+- **n4 (nit, st-30(7)).** pinned resolves a symbolic ref twice (read at
+  `<raw>:<rel>`, then rev-parse), a shape copied from filter; a
+  concurrent commit between the calls pairs one commit's content with
+  another's sha. st-34, both sites, keeping PIN_UNREADABLE vs GIT_ERROR
+  routing.
+
+Release decision: the reviewed object ships as 0.2.87; nothing edits the
+payload between this verdict and the pin move. The residue is not built
+now: N2 and n4 change tool behaviour and would owe their own checkpoint
+round, which this residue alone does not justify (attack timing; the
+0.2.86 precedent); N3 needs a ruling; N1, n1, n2 and n3 are tools/-only
+and ride with them.
+
+C4c FIELD TEST OUTCOME: UNDECIDED — the second consecutive one: zero
+blocking or notable DESIGN-kind findings on this lap's surface. N1
+(st-28, flagged) and N2 (st-30(3), flagged) are IMPLEMENTATION-kind; N3
+sits on pre-lap surface. Counted, not graded: six findings on the lap's
+surface, four at flagged slots (N1, N2, n1, n2) and two at unflagged
+ones (n3 at st-30(5), n4 at st-30(7)); the 0.2.86 run counted one of
+five at a flagged slot. No datum under the registered criterion; the
+test repeats at the next lap with an owed round (st-29 lap A's
+checkpoint review).
+
+## 2026-09-11 — 0.2.87 release gate (statiker-4d): tenet records for every mint the pin carries, lint, live-run check
+
+The pin moves 0.2.86 → 0.2.87 and carries st-30 items 1, 2, 3, 4, 7 and
+8 — every payload (plugin/) change between the installed pin 3cc4266 and
+769e7f2. st-28 and st-30 items 5 and 6 change tools/ only, which the pin
+does not ship; no tenet record is owed for them. Each mint against
+PLAN.md's live list (Mission and tenets, items 1-9, read at this desk):
+1 investigation-led design; 2 sufficiency = dispatchable; 3 the five
+forcing points inviolable; 4 decisions lock before implementation; 5
+autonomy; 6 economics (turns and corpus lines); 7 convergence circuit,
+gradeable form; 8 medium (exact → mechanism with red-first battery,
+judgment → prose); 9 placement (precedent line). Provenance: the 0.2.86
+re-review's findings 1-4, its `pinned` gap, and the 0.2.86 release lint
+flag (sections above); line costs from each commit's numstat.
+
+- **st-30(1) (9d3352d; tool +7/-3, page 0).** 1 pass (the reviewer's
+  executed pair, dispositioned before build); 2 pass (outcome sentence,
+  built without redesign); 3 n/a; 4 pass; 5 pass (the text a desk repairs
+  from now names a form the grammar accepts — one repair round fewer
+  per occurrence); 6 pass (+4 net tool lines); 7 pass (repair text inside
+  the record's own hold); 8 pass (red on the old text); 9 pass (follows
+  REPAIR_DECLARATOR_BOOKKEEPING, the form the page carries since N3).
+- **st-30(2) (0a0440d; page +1/-1).** 1-2 pass; 3 n/a; 4 pass; 5 n/a; 6
+  pass (0 net); 7 n/a; 8 pass (a prose pointer, no exact property owed);
+  9 pass (follows the page's own section order).
+- **st-30(3) (9fc8c69; tool +9).** 1-2 pass; 3 pass (the tripwire guards
+  the round budget; refusing a self-disarming value strengthens it); 4
+  pass; 5 pass (no operator seat added); 6 pass (+9 tool, page 0;
+  residue N2 booked); 7 n/a; 8 pass (header `tripwire 0` → USAGE_ERROR,
+  red on the old tool); 9 pass (follows st-14 item 5's `--threshold`
+  refusal).
+- **st-30(4) (bca3854; tool +20/-4).** 1 pass; 2 pass (the widened reach
+  was recorded before build); 3 pass (a halt no longer reads as landed
+  commits, protecting the uncommitted-vs-landed route); 4-5 pass; 6 pass
+  (+16 net tool, page 0); 7 pass (verdict fields gradeable); 8 pass (four
+  red tests plus the PINNED_REWRITTEN control); 9 pass (follows
+  SKILL.md:114-117's override as the definition; the git tool's
+  landed-commit halts keep the field, reviewer-confirmed).
+- **st-30(7) (8659aa9; tool +19/-5).** 1-2 pass; 3 n/a; 4-5 pass; 6 pass
+  (+14 net tool, page 0; residue n4 booked); 7 pass; 8 pass (four tests,
+  red on the old tool); 9 pass (follows filter's st-14 item 1 form — n4
+  shows that form resolves twice as well).
+- **st-30(8) (468a76c; page +4/-3, words unchanged).** 1-5 n/a; 6 pass
+  (+1 line); 7 n/a; 8 pass (skill-lint is the mechanism that flagged it);
+  9 n/a.
+
+No tenet fails. Page cost: SKILL.md +5/-4, +1 net; operational lines
+1766 (the Verify awk, fence included). Tool: +55/-12, +43 net.
+
+Release checklist, executed against the payload at 769e7f2:
+- Repo Verify block: `python3 -m pytest tools/ -q` → 537 passed, 2
+  subtests passed, 0 failed, 0 skipped (desk run at 769e7f2);
+  operational lines 1766 (no gate); payload inventory `statiker` only.
+- skill-lint (skill-craft 2.2.4, `--diff-base 3cc4266`) over SKILL.md and
+  references/evidence.md: "2 file(s); none; blocking=0", exit 0.
+- Release-during-live-run check: every statiker tracker under ~/dev is
+  closed (canonical-market-identity FAILED; canonical-frame-sign-repair
+  COMPLETE; canonical-market-identity-u2 COMPLETE — its header spells
+  `Skill: statiker 0.2.82`, so a `^SKILL:` marker search misses it; read
+  directly), no run tracker was modified on 2026-09-11 (find, positive
+  control: it reaches the u2 file), and the session listing shows no
+  statiker desk session — no desk needs a restart.
+- Version-bump check: plugin.json 0.2.87, installed pin 0.2.86
+  (gitCommitSha 3cc4266).
