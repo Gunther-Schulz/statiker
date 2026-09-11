@@ -574,10 +574,10 @@ REPAIR_CORRECTS_OUT_OF_BODY = (
 # literal `corrects line {n}` token the resolver could never target
 # (that `n` would resolve to this defective line's own number).
 REPAIR_DECLARATOR_BOOKKEEPING = (
-    "supersede-whole: restate the full write-set under the same id, "
-    "with a trailing `(corrects line <n>)` naming the ORIGINAL "
-    "target — never this line's own number; the one legal slot for "
-    "the token on a write-set declarator line")
+    "supersede-whole: restate the full write-set under the same id "
+    "and the same unit, with a trailing `(corrects line <n>)` naming "
+    "the ORIGINAL target — never this line's own number; the one "
+    "legal slot for the token on a write-set declarator line")
 REPAIR_FOREIGN_ID_SUSPECT = (
     "name the record before the id (tracker path or run label), or, "
     "for a genuine same-run id, correct the citing line")
