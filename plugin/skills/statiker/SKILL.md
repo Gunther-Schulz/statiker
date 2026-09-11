@@ -1629,27 +1629,25 @@ append-only has no expiry, and the close's enumeration is what
 makes the late landing findable.
 
 A finding entry may carry an OUT-OF-SCOPE grade at booking — the
-body opens `out-of-scope: <claim>` (classify_scope's third scope
-class, sibling to `unit U<k> `/`record:`: exempt from the
-post-closure scopeless-VOID rule, Implementation, since the grade is
-a leavings concern, never a design re-derivation trigger) — for a
-true finding outside the run's requirement head, found in passing.
-`closure` enumerates every out-of-scope-graded id and HOLDS
-(CLOSURE_LEAVINGS_HOLD, blocking both the whole-record query and any
-`--unit` query) until each carries a DISPOSITION on its latest
-line: an export ref — `— exported: <ref>`, citing a decision-graded
-backlog entry in the target repo that cites this run's record, the
-unit-draft shape run 1's five exports already used, seedable by a
-successor run — or a one-line recorded drop — `— dropped: <reason>`.
-The printed closure verdict names the undispositioned set; the desk
-composes the disposition as an ordinary new tag-first line for the
-same id (append-only, latest-line-wins), never an edit of the
-booking line. The disposition line RE-CARRIES its `out-of-scope: `
-opener (or opens `record: ` where the disposition is itself desk
-bookkeeping) — the natural phrasing that drops it (a bare
-`— exported: <ref>` or `— dropped: <reason>` opening the body) reads
-scopeless and voids the WHOLE closure, the same trap the cleared-hold
-line's own warning names (Implementation).
+body opens `out-of-scope: <claim>` — the third scope class, sibling
+to `unit U<k> `/`record:`, exempt from the post-closure
+scopeless-VOID rule (Implementation) since the grade is a leavings
+concern, never a design re-derivation trigger — for a true finding
+outside the requirement head, found in passing. `closure` enumerates
+every out-of-scope-graded id and HOLDS (CLOSURE_LEAVINGS_HOLD,
+blocking both the whole-record query and any `--unit` query) until
+each carries a DISPOSITION on its latest line: an export ref
+`— exported: <ref>` citing a decision-graded backlog entry in the
+target repo that cites this run's record, seedable by a successor
+run, or a one-line recorded drop `— dropped: <reason>`. The printed
+closure verdict names the undispositioned set; the desk composes the
+disposition as an ordinary new tag-first line for the same id
+(append-only, latest-line-wins), never an edit of the booking line.
+The disposition line RE-CARRIES its `out-of-scope: ` opener (or
+opens `record: ` where the disposition is desk bookkeeping) — a bare
+`— exported: <ref>` or `— dropped: <reason>` opening reads scopeless
+and voids the WHOLE closure, the same trap the cleared-hold line's
+warning names (Implementation).
 The close REPORT itself carries a LEAVINGS section enumerating three
 classes: (1) out-of-scope findings — the mechanical gate above, the
 one class that is a run artifact proper; (2) instruments and probes
