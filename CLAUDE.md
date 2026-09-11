@@ -19,7 +19,12 @@
   the restated-basis class, and the one skipped tenet was the
   one that would have caught three review rounds' blockers
   (release-review round 3, 2026-08-16 — the medium tenet,
-  unchecked on mechanism-dense prose mints).
+  unchecked on mechanism-dense prose mints). The RELEASING desk
+  re-asks it over the pin's whole carried set — every mint between
+  the installed pin and the released version shows its record before
+  the pin moves, never only the mints a handoff names (0.2.86
+  release: eleven carried mints had none, recorded at the release
+  gate, dev-notes/OBSERVATIONS.md 2026-09-11).
 - **PLAN.md is the design record** — settled decisions are not
   re-opened without new evidence.
 - **Carrier transition (2026-09-10, operator GO).** Work items live
