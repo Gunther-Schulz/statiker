@@ -2728,6 +2728,21 @@ def cmd_pinned(args):
         # — args.sha never resolved here, so it names no landed commit.
         finish("PIN_UNREADABLE", 2, tracker=args.tracker,
                stderr=p.stderr.decode(errors="replace").strip())
+    # st-30(7) (0.2.86 re-review, the `pinned` gap): resolve --sha to
+    # its full commit form ONCE here — the same form filter (st-14 (1))
+    # and verify-gate already use — and emit that resolved value below,
+    # never the raw --sha argument (which may be abbreviated). An
+    # argument that reads via `git show` (a tree-ish) but does not
+    # resolve to a commit takes filter's GIT_ERROR route, no `sha`
+    # field (st-30(4)): it never resolved to a landed commit either.
+    verify = subprocess.run(
+        ["git", "rev-parse", "--verify", f"{args.sha}^{{commit}}"],
+        cwd=top, capture_output=True, text=True)
+    if verify.returncode != 0:
+        finish("GIT_ERROR", 2, tracker=args.tracker,
+               error=f"--sha does not resolve to a commit in this "
+                     f"repo: {verify.stderr.strip()}")
+    resolved_sha = verify.stdout.strip()
     pinned_bytes = p.stdout
     try:
         with open(fs, "rb") as f:
@@ -2764,15 +2779,14 @@ def cmd_pinned(args):
             divergent_text = f"pinned: {a!r} — current: {b!r}"
             break
     if divergent_line is None:
-        finish("PINNED_APPEND_ONLY", 0, sha=args.sha, tracker=args.tracker,
+        finish("PINNED_APPEND_ONLY", 0, sha=resolved_sha, tracker=args.tracker,
                pinned_bytes=len(pinned_bytes),
                current_bytes=len(current_bytes))
     say(f"pinned: first divergent line @ {divergent_line}: {divergent_text}")
     # st-30(4): `sha` KEPT here (unlike the PIN_UNREADABLE/GIT_ERROR
-    # halts above) — by this point `git show {args.sha}:{rel}` at
-    # :2724 already resolved args.sha to real content, so the value
-    # names a landed commit, the case the page's override is for.
-    finish("PINNED_REWRITTEN", 2, sha=args.sha, tracker=args.tracker,
+    # halts above) — resolved_sha (st-30(7)) names a landed commit,
+    # the case the page's override is for.
+    finish("PINNED_REWRITTEN", 2, sha=resolved_sha, tracker=args.tracker,
            first_divergent_line=divergent_line, evidence=divergent_text)
 
 

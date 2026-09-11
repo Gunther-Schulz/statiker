@@ -3362,6 +3362,63 @@ class TestEIPinned(PinnedFixture):
         self.assertIn("left its line", v["evidence"])
 
 
+# --------- st-30(7): `pinned` resolves --sha once, mirroring `filter`
+
+class TestSt30Item7PinnedResolvesShaOnce(PinnedFixture):
+    """0.2.86 re-review, the `pinned` gap (P31's body scoped st-14
+    item 1's resolve-once fix to filter alone; this is a new site of
+    the same class): `pinned` echoed the raw --sha argument in its
+    verdict's `sha` field — an abbreviated sha reached
+    PINNED_APPEND_ONLY/PINNED_REWRITTEN unresolved, unlike filter's
+    ARTIFACT_WRITTEN (st-14 item 1) and verify-gate, both of which
+    already resolve via `git rev-parse --verify <sha>^{commit}` once.
+    FIX mirrors filter's form exactly, added right after the existing
+    `git show` read (PIN_UNREADABLE) succeeds: a ref that reads via
+    `git show` but does not resolve to a commit takes filter's
+    GIT_ERROR route, no `sha` field (st-30(4) — it never named a
+    landed commit either). Red arm: an abbreviated sha was echoed raw
+    in PINNED_APPEND_ONLY today; the full-sha control is unaffected
+    both ways."""
+
+    def pinned(self, sha, tracker="t.md"):
+        return self.verdict(tool(
+            ["pinned", "--tracker", tracker, "--sha", sha], cwd=self.dir))
+
+    def test_abbreviated_sha_resolves_to_full_form(self):
+        full_sha = self.committed_repo(
+            HEADER + "- F1 [VERIFIED] only lock — basis: y\n")
+        abbrev_sha = full_sha[:10]
+        v = self.pinned(abbrev_sha)
+        self.assertEqual(v["verdict"], "PINNED_APPEND_ONLY", v)
+        self.assertEqual(v["sha"], full_sha, v)
+        self.assertNotEqual(v["sha"], abbrev_sha, v)
+
+    def test_full_sha_control_resolves_to_itself(self):
+        full_sha = self.committed_repo(
+            HEADER + "- F1 [VERIFIED] only lock — basis: y\n")
+        v = self.pinned(full_sha)
+        self.assertEqual(v["verdict"], "PINNED_APPEND_ONLY", v)
+        self.assertEqual(v["sha"], full_sha, v)
+
+    def test_abbreviated_sha_resolves_on_a_rewritten_tracker_too(self):
+        bad = "- F1 [PENDING] awaiting leg — basis: dispatched\n"
+        full_sha = self.committed_repo(HEADER + bad)
+        (self.dir / "t.md").write_text(
+            HEADER + "- F1 [VERIFIED] awaiting leg — basis: dispatched\n")
+        v = self.pinned(full_sha[:10])
+        self.assertEqual(v["verdict"], "PINNED_REWRITTEN", v)
+        self.assertEqual(v["sha"], full_sha, v)
+
+    def test_a_tree_ish_that_never_resolves_to_a_commit_is_a_git_error(self):
+        # HEAD^{tree} reads fine via `git show` (PIN_UNREADABLE would
+        # not fire) but is not a commit — filter's GIT_ERROR route,
+        # per st-30(4) with no `sha` field
+        self.committed_repo(HEADER + "- F1 [VERIFIED] x — basis: y\n")
+        v = self.pinned("HEAD^{tree}")
+        self.assertEqual(v["verdict"], "GIT_ERROR", v)
+        self.assertNotIn("sha", v, v)
+
+
 # -------------------------------------------------------------- P30 (verify)
 
 class TestP30VerifyGate(PinnedFixture):
