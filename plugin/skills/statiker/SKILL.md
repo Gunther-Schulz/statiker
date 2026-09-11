@@ -1665,8 +1665,9 @@ execute, never by a path join at the desk — carrying a V1
 verdict forward only with its per-line reason stated in the
 V-line's evidence. Per class: a REQUIREMENT repair takes a fresh
 read of the reconciled line against the work, no checks re-run —
-except a reconciliation that WIDENS the R-line's demand, which
-re-classes as WORK: the widened demand was never exercised, so
+except an amendment or reconciliation that WIDENS the R-line's
+demand, which re-classes as WORK: the widened demand was never
+exercised, so
 the touched R-lines' checks re-run same as WORK's own route; an
 INSTRUMENT repair re-executes its own red-first pair, nothing
 else; a WORK repair re-runs the touched R-lines' checks; any
