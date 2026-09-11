@@ -2357,8 +2357,8 @@ def cmd_sustain(args):
     SUSTAINING SET is the LATEST RESOLVED round's own findings — a
     round whose A-line is [BIT] or [ZERO-DELTA] (the same
     round-boundary windowing `trend_over_rounds` computes, reused
-    rather than reimplemented) — a new round opens only if that set
-    holds at least one DESIGN-SUBSTANCE finding, an F-line whose
+    rather than reimplemented) — the verdict reads SUSTAIN_OK only if
+    that set holds at least one DESIGN-SUBSTANCE finding, an F-line whose
     entry-class prefix (`classify_scope`, tool-side) is NOT
     `record:`; a record/instrument-class finding is desk work and
     never buys a round. Only meaningful over a [BIT] round — a
@@ -2436,6 +2436,15 @@ def cmd_tripwire(args):
     principle stands); neither present is UNARMED, never a guessed
     default (checkpoint review R3). The verdict's `reason` field
     distinguishes unarmed/silent/fires."""
+    # st-14 (5) (ITEMS.md, P31 remainder): --threshold below 1 is
+    # meaningless (0 or negative rounds is not a resolved-round
+    # count) and was never checked — only `is None` was, so a 0 or
+    # negative --threshold rode through as an ordinary arm, firing
+    # immediately on zero resolved rounds. An invocation mistake,
+    # caught before the tracker is even read.
+    if args.threshold is not None and args.threshold < 1:
+        finish("USAGE_ERROR", 3,
+               error=f"--threshold must be >= 1 ({args.threshold} given)")
     text = load(args.tracker)
     entries, violations, meta, reach = parse_tracker(text)
     say_head_region_entries("tripwire", reach)
@@ -2544,6 +2553,19 @@ def cmd_filter(args):
     if p.returncode != 0:
         finish("PIN_UNREADABLE", 2, sha=args.sha, tracker=args.tracker,
                stderr=p.stderr.decode(errors="replace").strip())
+    # st-14 (1) (ITEMS.md, P31 remainder): resolve --sha to its full
+    # commit form ONCE here (the verify-gate form, cmd_verify_gate
+    # above) and emit that resolved value — never the raw --sha
+    # argument, which may be abbreviated or otherwise non-canonical
+    # while the artifact's own `sha` field is its provenance record.
+    verify = subprocess.run(
+        ["git", "rev-parse", "--verify", f"{args.sha}^{{commit}}"],
+        cwd=top, capture_output=True, text=True)
+    if verify.returncode != 0:
+        finish("GIT_ERROR", 2, sha=args.sha, tracker=args.tracker,
+               error=f"--sha does not resolve to a commit in this "
+                     f"repo: {verify.stderr.strip()}")
+    resolved_sha = verify.stdout.strip()
     # E-E(1) (begehung-harvest F11): "wrong sha pinned" is one of the
     # three premise breaks that VOID a whole round, and filter accepted
     # any readable sha with no staleness signal — the artifact of a
@@ -2622,7 +2644,7 @@ def cmd_filter(args):
         finish("USAGE_ERROR", 3,
                error=f"--out is not writable: {args.out} ({e})")
     say(f"artifact written: {args.out}")
-    finish("ARTIFACT_WRITTEN", 0, sha=args.sha, out=args.out,
+    finish("ARTIFACT_WRITTEN", 0, sha=resolved_sha, out=args.out,
            source_tracker=rel, newest_commit=newest_commit,
            lines_in=len(lines), lines_out=len(out),
            blocks_blanked=blocks, sections_blanked=sections,

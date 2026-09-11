@@ -1278,6 +1278,32 @@ class TestR3TripwireArmingFromBudget(RecordFixture):
         self.assertEqual(v["reason"], "fires", v)
 
 
+# ---------------- st-14 (5): tripwire rejects a --threshold below 1
+
+class TestSt14TripwireThresholdRejectsBelowOne(RecordFixture):
+    """st-14 item (5) (ITEMS.md, amended-done-criterion 2026-09-11;
+    P31 remainder): cmd_tripwire's --threshold parser (`type=int`)
+    accepted any integer, only `threshold is None` ever tested — never
+    the value's sanity. A threshold below 1 is meaningless (every
+    round count either trivially satisfies `rounds < threshold` or
+    arms on zero completed rounds). FIX: reject --threshold < 1 with
+    USAGE_ERROR. Red arm: --threshold 0 (and negative) is accepted
+    today (a normal TRIPWIRE_SILENT/FIRES verdict, never USAGE_ERROR);
+    a positive threshold is the unaffected control."""
+
+    def test_threshold_zero_is_rejected(self):
+        v = self.tripwire("", threshold=0)
+        self.assertEqual(v["verdict"], "USAGE_ERROR", v)
+
+    def test_negative_threshold_is_rejected(self):
+        v = self.tripwire("", threshold=-1)
+        self.assertEqual(v["verdict"], "USAGE_ERROR", v)
+
+    def test_positive_threshold_control_is_unaffected(self):
+        v = self.tripwire("", threshold=5)
+        self.assertNotEqual(v["verdict"], "USAGE_ERROR", v)
+
+
 # -------------------------------------------------------------------- filter
 
 class TestFilter(RecordFixture):
@@ -4160,6 +4186,62 @@ class TestEESmallFixes(RecordFixture):
         self.assertIn("record-line form is normative in", text)
         self.assertIn(":876-880", text)
         self.assertIn(":486-487", text)
+
+
+# ---------------- st-14 (1): filter resolves --sha to its full commit
+# ---------------- form before emitting it
+
+class TestSt14FilterResolvesShaBeforeEmitting(RecordFixture):
+    """st-14 item (1) (ITEMS.md, amended-done-criterion 2026-09-11;
+    P31 remainder): `filter`'s ARTIFACT_WRITTEN verdict carried the
+    RAW --sha argument verbatim — an abbreviated or otherwise
+    non-canonical spelling reached the artifact's own provenance
+    field unresolved, though the tool already reads the tracker's
+    history at that sha and could resolve it once. FIX: resolve --sha
+    via `git rev-parse --verify <sha>^{commit}` ONCE (the verify-gate
+    form, cmd_verify_gate) and emit the resolved full sha, never the
+    raw argument. Red arm: an abbreviated sha reaches ARTIFACT_WRITTEN
+    unresolved today; the already-full-length control is unaffected
+    either way (a full sha resolves to itself)."""
+
+    def _git(self, *a, cwd=None):
+        env = {**os.environ, "GIT_CONFIG_GLOBAL": "/dev/null",
+              "GIT_AUTHOR_NAME": "t", "GIT_AUTHOR_EMAIL": "t@t",
+              "GIT_COMMITTER_NAME": "t", "GIT_COMMITTER_EMAIL": "t@t"}
+        return subprocess.run(["git", *a], cwd=cwd or self.dir, env=env,
+                              capture_output=True, text=True, check=True)
+
+    def test_abbreviated_sha_resolves_to_full_form(self):
+        self._git("init", "-b", "main")
+        p = self.dir / "t.md"
+        p.write_text(HEADER + "- F1 [VERIFIED] only lock — basis: y\n")
+        self._git("add", "t.md")
+        self._git("commit", "-m", "lock")
+        full_sha = self._git("rev-parse", "HEAD").stdout.strip()
+        abbrev_sha = full_sha[:10]
+        out_tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(out_tmp.cleanup)
+        out = Path(out_tmp.name) / "artifact.md"
+        v = self.verdict(tool(["filter", "--tracker", "t.md", "--sha",
+                              abbrev_sha, "--out", str(out)], cwd=self.dir))
+        self.assertEqual(v["verdict"], "ARTIFACT_WRITTEN", v)
+        self.assertEqual(v["sha"], full_sha, v)
+        self.assertNotEqual(v["sha"], abbrev_sha, v)
+
+    def test_full_sha_control_resolves_to_itself(self):
+        self._git("init", "-b", "main")
+        p = self.dir / "t.md"
+        p.write_text(HEADER + "- F1 [VERIFIED] only lock — basis: y\n")
+        self._git("add", "t.md")
+        self._git("commit", "-m", "lock")
+        full_sha = self._git("rev-parse", "HEAD").stdout.strip()
+        out_tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(out_tmp.cleanup)
+        out = Path(out_tmp.name) / "artifact.md"
+        v = self.verdict(tool(["filter", "--tracker", "t.md", "--sha",
+                              full_sha, "--out", str(out)], cwd=self.dir))
+        self.assertEqual(v["verdict"], "ARTIFACT_WRITTEN", v)
+        self.assertEqual(v["sha"], full_sha, v)
 
 
 # ---------------------------------------- E-B: unknown --unit halts
