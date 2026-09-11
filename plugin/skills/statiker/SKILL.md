@@ -1328,9 +1328,8 @@ executes it) are the desk's, read from the D-lines.
 
 A missing decision, file, or value is reported as a gap, never
 bridged — and triaged on arrival: a unit-local gap decision is a
-design
-decision made without an attack round, and it is recorded as
-exactly that — `- D<n> [AUTO-ACCEPTED] unit U<k> gap: <decision>
+design decision made without an attack round, and it is recorded
+as exactly that — `- D<n> [AUTO-ACCEPTED] unit U<k> gap: <decision>
 — basis: <gap report>` — surfaced by its tag, enumerated in the
 close, graded only through the WORK verify checks against the
 requirement head (no entry-level grading exists); no attack
