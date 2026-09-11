@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 9
+added: 10
 compacted: 0
 
 ## st-10
@@ -128,7 +128,7 @@ goal: tend
 write-set: plugin/skills/statiker/SKILL.md, plugin/skills/statiker/scripts/statiker_record.py, tools/test_statiker_record.py, tools/test_contract.py
 done-criterion: UNKNOWN
 evidence: LEDGER.md decision 'does the SKILL.md size problem get a references/ split' (operator-settled method order: delete/tighten, precipitate to tool checks, disclosure only for branch-gated content; a references/ move is an explicit single-home amendment); the five OBSERVATIONS consumer entries above; st-19 names this pass as its candidate mechanism pass
-blocked-by: st-11
+blocked-by: decision compression-pass design: its done-criterion (size target and the per-step order delete/tighten -> precipitate to tool checks -> disclosure, per the LEDGER compression-order decision), graded at the tier CLAUDE.md desk-tier fit names; st-11 closed 2026-09-11
 
 ## st-30
 grade: READY
@@ -141,3 +141,12 @@ blocked-by: NONE
 amend-reason: 2026-09-11 the 0.2.86 release's skill-lint wrap flag, accepted for that release, joins the residue
 amended-requirement: 2026-09-11 0.2.86 re-review residue plus the release lint flag (dev-notes/OBSERVATIONS.md, 2026-09-11 re-review dispositions and release gate): (1) declarator-bookkeeping violation text and apply_supersession docstring prescribe 'repair with a fresh id', which the grammar refuses; (2) st-14's re-lock pointer names Implementation, clause (b) sits in The attack; (3) Budget header 'tripwire 0' still fires; (4) filter's GIT_ERROR halt carries a sha field the page routes as landed; (5) three coverage docstrings over-claim (a literal code in a tuple return is invisible); (6) TestRNc docstring names ambiguous-citation as live; (7) pinned echoes the raw sha argument; (8) SKILL.md:1303 wraps at 88 columns (skill-lint blocking flag, from 63a3508) — record: opus-rereview-0286 report, skill-lint at the 0.2.86 release
 amended-done-criterion: 2026-09-11 per the reviewer's executed pairs: (1) violation text and docstring name the same-id, same-unit supersede-whole form, red: following today's text gives corrects-nothing; (2) the pointer reads '(below)'; (3) a Budget-header tripwire below 1 is refused like --threshold, red: 'tripwire 0' gives TRIPWIRE_FIRES today; (4) filter's error halts carry no sha field, red: --sha 'HEAD^{tree}' prints one today; (5) and (6) the docstrings state the derivation's actual reach; (7) pinned resolves the sha once as filter now does, red: an abbreviated sha is echoed today; (8) skill-lint reports 0 wrap flags on SKILL.md. Rides the next version bump under a checkpoint review (items 3, 4 and 7 are machine-read)
+
+## st-31
+grade: PARKED
+requirement: st-27's delta-scoped re-verification (SKILL.md:1663-1677, released 0.2.86) was minted at n=1 on run 3's zero-delta full V2, and its original done-criterion's field grading (does the scoped leg miss what the full leg would catch) was dropped from the amended criterion and closed unexercised — record: ITEMS-DONE.md st-27 (done-criterion vs amended-done-criterion), OBSERVATIONS.md:8456
+goal: tend
+write-set: dev-notes/OBSERVATIONS.md, plugin/skills/statiker/SKILL.md (Verify section, on REFUTE only)
+done-criterion: PRE-REGISTERED 2026-09-11 (statiker-4d): at the first statiker run reaching V1 -> repairs -> V2 with at least one non-DESIGN repair, the meta desk runs a SHADOW full V2 leg (isolated, read-only, at the scoped V2's HEAD, never written into the run's tracker) beside the desk's scoped V2. REFUTE if the shadow leg fails any R-line the scoped leg CARRIED FORWARD on a V1 verdict -> the scoping narrows (the missed repair class forces the full leg) under a checkpoint review. CONFIRM if the shadow leg fails no carried-forward R-line -> the scoping stands, graded. A shadow failure on an R-line the scoped leg also re-ran counts against the work, never the scoping. UNDECIDED (no non-DESIGN repair, shadow leg not run) -> waits for the next such cycle. Record: one line 'st-27 FIELD TEST OUTCOME: <CONFIRM|REFUTE|UNDECIDED>' in OBSERVATIONS with both legs' per-R verdicts and the turn-cost delta. Dry-run: run 3's full V2 zero-delta reads CONFIRM-shaped; a constructed INSTRUMENT-classed repair that also changed work behavior, failing under the shadow leg on a carried-forward R-line, reads REFUTE
+evidence: run 3 V2 PASSED 21/21 zero-delta (d1b8ce85); st-27 original done-criterion (ITEMS-DONE.md, 'Graded on the next run with a V1-issues-repair-V2 cycle'); SKILL.md:1663-1677 at 5cb5b09
+blocked-by: evidence false  # the next statiker run reaching a V1 -> repairs -> V2 cycle with a non-DESIGN repair; no run live at the 0.2.86 release gate (3 trackers FAILED/COMPLETE/COMPLETE)
