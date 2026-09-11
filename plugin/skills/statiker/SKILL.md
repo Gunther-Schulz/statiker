@@ -29,13 +29,12 @@ overriding context-independence (PLAN.md, Ecosystem composition):
   work — every EXECUTION brief cites it; verifier and attack briefs
   never do (a fresh context briefed with conduct-of-building material
   is being framed as a builder).
-- The operator corpus, where the stack has one, carries the
-  grounding and evidence ethics (bases, refutation probes,
-  altitude); assumed, not restated. Without one,
-  `references/evidence.md` (under this skill's base directory) is
-  the binding source — read it before the run's first entry, and
-  on such a stack attack and verify briefs cite it in place of
-  the corpus.
+- The corpus, where present, carries the grounding and evidence
+  ethics (bases, refutation probes, altitude), assumed not restated;
+  without one, `references/evidence.md` (under this skill's base
+  directory) is the binding source — read it before the run's first
+  entry; on such a stack attack and verify briefs cite it in place
+  of the corpus.
 
 ## The tools
 
