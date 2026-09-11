@@ -8243,3 +8243,54 @@ here (three flagged slots, one round).
 The outcome is appended as its own line when the re-review is
 dispositioned, opening with the literal outcome marker st-10's
 blocker predicate greps for.
+
+## 2026-09-11 — 0.2.86 repair lap executed and booked (lane sonnet-repair-0286; pin still holds at 0.2.82, re-review owed before it moves)
+
+Disposition-briefed lap over the 0.2.85 checkpoint review's B1–T4
+plus st-14 (brief docs/directives/2026-09-11-sonnet-repair-0286-brief.md).
+Ten commits, all trailer-claimed by the lane (Claude Sonnet 5),
+verified at this desk: bump d859a75; B1 584970b; N1 fa870eb; N2
+718f223; N3 612bd8a; T1 b65197e; T2 85e6067; T3 9c4f2a7; T4 57cd519;
+st-14 8d3ebb6. Suite 512 → 521 passed, 0 failed, 0 skipped (desk
+re-ran with the read-only flags). Every mechanized item carried its
+red/green pair (B1, N1, N2; T4 by the brief's mutation recipe; st-14
+items 1 and 5). `ambiguous-citation`: zero hits left in plugin/, and
+in tools/ only inside B1's own must-not-appear test (desk grep).
+Operational lines 1762 → 1765.
+
+- **Deviation 1 (the lane dropped RN-b's "and"-separated control
+  under the brief's literal "replace") — graded a COVERAGE HOLE,
+  repaired at the desk.** That control was the only pin of the
+  persistence rule's second half: the record-name exemption dies at
+  the first non-id token. TestB2B6RecordNameTokenRedesign's docstring
+  states it; none of its tests exercised it. Cause: the dispatcher's
+  brief wording, not the lane. Restored as
+  `test_exemption_dies_at_the_first_non_id_token` in this booking's
+  commit. Red-first executed at the desk: pass at HEAD; FAIL with
+  basis_id_citations' `record_name = is_record_name` mutated to
+  `record_name = record_name or is_record_name` (mutant present, one
+  line); pass after `git checkout --` (0 diff lines); full suite 522
+  passed, 0 failed, 0 skipped. B1's own disposition criterion survives
+  unchanged.
+- **Deviation 2 (two foreign commits in the copy, where the brief
+  predicted one) — accepted.** 9209367 (statiker-ba's design file) and
+  b7dc0da (desk carrier booking): zero overlap with the lane's write
+  set, per the lane's `git show --stat` and this desk's own check.
+- **Lane lesson (slot e), recorded, not minted.** A re-pointed test
+  for already-fixed behaviour takes its red from a working-tree
+  mutation of the fix's own condition, restored by `git checkout --`
+  with an empty-diff check before commit. The brief supplied the
+  recipe; it ran clean, and the desk reused it for deviation 1.
+- **Brief-defect lesson (dispatcher's).** "Replace test class X with
+  arms Y" silently licensed dropping X's controls that Y did not
+  restate. Class: a write instruction scoped by NAME rather than by
+  the cases it must preserve — the outcomes-first brief rule, missed
+  at a deletion. Consumer: brief composers in this repo; the next
+  brief that replaces or removes a test names the controls that must
+  survive.
+- **st-14** closes at release with the rest of the batch.
+
+Re-review next (brief docs/directives/2026-09-11-opus-rereview-0286-brief.md),
+owed per criterion 2. The reviewer's reading scope excludes dev-notes/
+and docs/, so the C4c field test's registered prediction cannot steer
+where it looks.

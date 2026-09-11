@@ -4598,6 +4598,19 @@ class TestB2B6RecordNameTokenRedesign(RecordFixture):
         v = self.sweep(body)
         self.assertNotIn("foreign-id-suspect", self.violation_codes(v))
 
+    def test_exemption_dies_at_the_first_non_id_token(self):
+        # the other half of the persistence rule: a non-id token ("and")
+        # between the record name and the id ends the exemption, so F20
+        # resolves in THIS run's namespace, where it is [INVALIDATED].
+        # Restored at the desk after the 0.2.86 lap dropped RN-b's
+        # "and"-separated control, which was this half's only pin.
+        body = ("- F20 [INVALIDATED] this run's own claim died — "
+                "basis: probe\n"
+                "- D1 [COMMITTED] rests on — "
+                "basis: dev-notes/tracker.md and F20\n")
+        v = self.sweep(body)
+        self.assertIn("basis-cites-invalidated", self.violation_codes(v))
+
 
 # -------- 0.2.84 checkpoint review B3: repair forms for new codes
 
