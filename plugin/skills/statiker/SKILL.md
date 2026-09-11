@@ -489,8 +489,8 @@ lines<=<n> — basis: <citation>` / `SWEEP_EXEMPT: <code> line <n>
 `unit U<k> irreversible: <effect>`. The two attribution labels
 (`SKILL:`, `unit U<k> irreversible:`) carry NO near-miss class by
 recorded decision (a bare-word scan false-fires; attribution
-fields fail soft). A fourth literal set — the unit design's
-PRECEDENT LINE (Stop rule), verbatim `follows <path>, judged
+fields fail soft). The PRECEDENT LINE — one clause of the unit's
+design D-line (Stop rule), verbatim `follows <path>, judged
 sound`, `<path> is the problem, this unit's scope`, or `no
 precedent, first of its kind` — carries no lint class yet either:
 unread by any mechanized check, the design record and the brief are
