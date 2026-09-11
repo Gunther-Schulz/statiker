@@ -1204,8 +1204,7 @@ live closure. The red-first pin the unit's design named is
 EXECUTED, not merely asserted: its red state is RECORDED as a
 committed red arm (a commit the fix's own diff reverts) or the red
 run's pasted output — never prose describing it, which is formally
-compliant and unattackable (F175: a docstring-only red run,
-caught only by verify leg 1, no earlier gate). The closure
+compliant and unattackable. The closure
 read runs through the record tool at each dispatch —
 `closure --tracker <path> --unit U<k>`
 (without `--unit`: CLOSURE_LIVE / CLOSURE_VOID over the whole
@@ -1216,10 +1215,8 @@ CLOSURE_RECORD_MALFORMED bars every unit the same way — an
 entry-shaped line broke the grammar, and the entry set the
 closure computes is unsound until repaired. Repair is
 APPEND-ONLY, by the literal token `corrects line <n>` — one
-token per line — and is COMPOSED FROM THE VERDICT, never from
-memory: the verdict names each violation's class and the
-repair form it takes. The split is settled in the executable
-spec (The tools); its principles: a violation ON A MACHINE
+token per line — composed from the verdict (The record). The split
+is settled in the executable spec (The tools); its principles: a violation ON A MACHINE
 TOKEN indicts the semantics every gate reads, so the target is
 superseded whole and the correcting line RESTATES the content,
 re-carrying whatever PARSED on the target — tag and scope
