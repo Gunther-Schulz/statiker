@@ -1144,7 +1144,7 @@ its own prior findings' frame), and a re-derived design is a NEW
 locked design — it gets the attack again, its repairs landing as
 ONE re-lock: per-finding re-locks split the priced unit
 (hypothesis). The re-derived design's basis takes P24 clause (b)'s
-re-derivation-seam rule (Implementation, below), never restated
+re-derivation-seam rule (below), never restated
 here. The reply opening a repeat round — from the SECOND
 repeat round
 on — cites the record
