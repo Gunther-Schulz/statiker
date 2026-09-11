@@ -273,7 +273,6 @@ UNEXEMPTIBLE_CODES = {"tag-literal-in-body", "pending-latest"}
 # as the mint REGISTRY for every code, not only the FORM-gated ones.
 RULE_MINT_VERSION = {
     "admission-window": "0.2.33",
-    "ambiguous-citation": "0.2.85",
     "basis-cites-invalidated": "0.2.33",
     "basis-missing": "0.2.33",
     "clause-unparsed": "0.2.43",
@@ -582,13 +581,6 @@ REPAIR_DECLARATOR_BOOKKEEPING = (
 REPAIR_FOREIGN_ID_SUSPECT = (
     "name the record before the id (tracker path or run label), or, "
     "for a genuine same-run id, correct the citing line")
-# 0.2.85 RN-b (dev-notes/OBSERVATIONS.md, 0.2.84 re-review
-# dispositions): a record-named id that also resolves in this run's
-# own namespace cannot be discriminated by the tool — the repair text
-# is the disposition's own decision sentence, verbatim.
-REPAIR_AMBIGUOUS_CITATION = (
-    "name the record for a foreign id, or drop the record name for "
-    "the same-run id")
 REPAIR_LANDING_MISSING = (
     "append the landing annotation line for the committed sha")
 
@@ -628,8 +620,7 @@ REPAIR_FORMS = dict(
     + [("corrects-token-out-of-body", REPAIR_CORRECTS_OUT_OF_BODY)]
     + [("declarator-bookkeeping", REPAIR_DECLARATOR_BOOKKEEPING)]
     + [("foreign-id-suspect", REPAIR_FOREIGN_ID_SUSPECT)]
-    + [("landing-missing", REPAIR_LANDING_MISSING)]
-    + [("ambiguous-citation", REPAIR_AMBIGUOUS_CITATION)])
+    + [("landing-missing", REPAIR_LANDING_MISSING)])
 
 
 def annotate_repairs(violations, line_ids=None):
@@ -1715,22 +1706,20 @@ def sweep_checks(entries, landed_units=frozenset()):
             continue
         for cited, foreign in basis_id_citations(e.basis or ""):
             if foreign:
-                # 0.2.85 RN-b: a record-named id that ALSO resolves
-                # in THIS run's own namespace is ambiguous — is it
-                # the foreign record's id, or this run's own
-                # (possibly dead) one? The exemption stops
-                # discriminating here; the old silent skip is a live
-                # hole (a genuinely foreign citation reads identical
-                # to an accidental same-run one), so the desk is
-                # shown the ambiguity instead of either guess.
-                if cited in latest:
-                    violations.append(
-                        {"code": "ambiguous-citation", "line": e.lineno,
-                         "text": f"{id_}: basis cites {cited} under a "
-                                 "record-name token, but this run also "
-                                 f"has its own {cited} — name the "
-                                 "record for a foreign id, or drop the "
-                                 "record name for the same-run id"})
+                # 0.2.85 B1 (checkpoint-review disposition, RN-b
+                # WITHDRAWN): a record-named id that also resolves in
+                # THIS run's own namespace could not be discriminated
+                # by the tool (the foreign record's id, or this run's
+                # own possibly-dead one?) — RN-b minted a SUBSTANCE
+                # hold for it, but field reading found 0 record-named
+                # citations in 1006 basis lines across three real
+                # trackers: a reviewer-constructed hole with no field
+                # incident, closing an unattended run FAILED on a
+                # correct citation. The exemption stops discriminating
+                # here and always has: an id under a record-name token
+                # is not checked against this run's own invalidations
+                # — the accepted residual, pinned by test rather than
+                # left silent (TestB1AmbiguousCitationWithdrawn).
                 continue
             c = latest.get(cited)
             if c is not None and c.tag == "INVALIDATED":

@@ -4777,42 +4777,76 @@ class TestRNaDeclaratorBookkeepingInvalidatedExempt(RecordFixture):
         self.assertIn("declarator-bookkeeping", self.violation_codes(v), v)
 
 
-# ------------- 0.2.84 re-review RN-b: ambiguous-citation
+# ------------- 0.2.85 checkpoint review B1: ambiguous-citation withdrawn
 
-class TestRNbAmbiguousCitation(RecordFixture):
-    """0.2.84 re-review disposition RN-b (notable, design decided at
-    disposition time): any doc path (.md) before a same-run id exempts
-    that id from basis-cites-invalidated — a live hole, page and tool
-    agreeing, since the citation could equally be THIS run's own
-    (possibly dead) id. DECISION: a record-named id that also resolves
-    in this run's namespace is ambiguous — mint hold
-    `ambiguous-citation`. Red arm: reviewer's pair (doc-path + same-run
-    invalidated id holds; doc-path "and"-separated control stays the
-    existing hold — the record-name exemption never persists across a
-    non-id token, so that citation is not ambiguous at all)."""
+class TestB1AmbiguousCitationWithdrawn(RecordFixture):
+    """0.2.85 checkpoint-review disposition B1 (blocking; RN-b
+    re-decided: WITHDRAW the mint; dev-notes/OBSERVATIONS.md,
+    "0.2.85 checkpoint-review dispositions", 2026-09-11):
+    `ambiguous-citation` held the page-mandated foreign citation
+    whenever this run also carried its own live id of the same
+    number — a SUBSTANCE code, never retro, exemptible only by
+    operator SWEEP_EXEMPT, so an unattended run closed FAILED on a
+    correct citation. Field reading (desk, 2026-09-11): 0
+    record-named citations in 1006 basis lines across three real
+    statiker trackers — RN-b guarded a reviewer-constructed hole with
+    no field incident. DECISION: remove the hold emission; the
+    record-name token's exemption goes back to a silent `continue`
+    for every foreign id, live-collision or not. That is the RN-b
+    hole, accepted and PINNED here as a recorded residual, never
+    silent. Red arm: reviewer's pair (live-collision under both
+    record-name forms reads SWEEP_CLEAN after, SWEEP_HOLDS
+    ambiguous-citation today; a genuinely foreign id stays clean both
+    ways; the residual — a doc-path citation of this run's own
+    [INVALIDATED] id — raises neither ambiguous-citation nor
+    basis-cites-invalidated, pinned by assertion)."""
 
-    def test_doc_path_before_a_same_run_invalidated_id_is_ambiguous(self):
-        # the red case: F20 sits under an active record-name token
-        # (foreign-exempted) but ALSO resolves as this run's own
-        # [INVALIDATED] F20 — the citation cannot be disambiguated
-        body = ("- F20 [INVALIDATED] this run's own claim died — "
+    def test_live_collision_under_a_doc_path_record_name_is_clean(self):
+        # the red case: F20 is THIS run's own LIVE finding, and D1
+        # cites F20 under a record-name token (a foreign tracker
+        # path) — before B1 this held ambiguous-citation; withdrawn,
+        # the exemption never discriminates live-collision from a
+        # genuinely foreign id
+        body = ("- F20 [VERIFIED] this run's own finding twenty — "
                 "basis: probe\n"
-                "- D1 [COMMITTED] rests on — "
+                "- D1 [COMMITTED] rests on the other run — "
+                "basis: dev-notes/other-run.md F20\n")
+        v = self.sweep(body)
+        self.assertEqual(v["verdict"], "SWEEP_CLEAN", v)
+
+    def test_live_collision_under_a_run_label_record_name_is_clean(self):
+        # same shape, the two-token `run <name>:` record-name form
+        body = ("- F20 [VERIFIED] this run's own finding twenty — "
+                "basis: probe\n"
+                "- D1 [COMMITTED] rests on the other run — "
+                "basis: run other-run: F20\n")
+        v = self.sweep(body)
+        self.assertEqual(v["verdict"], "SWEEP_CLEAN", v)
+
+    def test_genuinely_foreign_id_control_stays_clean(self):
+        # control: no same-run collision at all — clean both before
+        # and after B1, unaffected by the withdrawal
+        body = ("- F20 [VERIFIED] this run's own finding twenty — "
+                "basis: probe\n"
+                "- D1 [COMMITTED] rests on the other run — "
+                "basis: dev-notes/other-run.md F7\n")
+        v = self.sweep(body)
+        self.assertEqual(v["verdict"], "SWEEP_CLEAN", v)
+
+    def test_residual_pinned_invalidated_same_run_collision_stays_clean(self):
+        # the accepted residual, pinned explicit: a DEAD same-run F20
+        # cited under a record-name token raises neither
+        # ambiguous-citation (withdrawn) nor basis-cites-invalidated
+        # (the exemption's `continue` never reaches that check) — a
+        # future repair that silently reintroduces the discrimination
+        # is caught by this test going red, not by silence
+        body = ("- F20 [INVALIDATED] our claim died — basis: probe\n"
+                "- D1 [COMMITTED] rests — "
                 "basis: dev-notes/tracker.md F20\n")
         v = self.sweep(body)
-        self.assertIn("ambiguous-citation", self.violation_codes(v), v)
-
-    def test_and_separated_doc_path_control_stays_the_existing_hold(self):
-        # control: "and" breaks the record-name token's persistence —
-        # F20 falls through to an ordinary same-run citation, and the
-        # existing basis-cites-invalidated hold fires exactly as before
-        body = ("- F20 [INVALIDATED] this run's own claim died — "
-                "basis: probe\n"
-                "- D1 [COMMITTED] rests on — "
-                "basis: dev-notes/tracker.md and F20\n")
-        v = self.sweep(body)
-        self.assertIn("basis-cites-invalidated", self.violation_codes(v), v)
         self.assertNotIn("ambiguous-citation", self.violation_codes(v), v)
+        self.assertNotIn(
+            "basis-cites-invalidated", self.violation_codes(v), v)
 
 
 # ---- 0.2.84 re-review RN-c: record-name token punctuation asymmetry

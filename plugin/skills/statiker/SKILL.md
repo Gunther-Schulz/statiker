@@ -556,12 +556,9 @@ reachable there, and there alone.
   (`tracker.md F20, F21`) exempts every id it lists, not only the
   first. The scan flags a bare id whose number exceeds this run's own
   class max as `foreign-id-suspect` — the backstop for the
-  id-below-max case, which count alone cannot catch. A record-named
-  id that ALSO resolves in this run's own namespace is ambiguous —
-  the foreign record's id, or this run's own (possibly dead) one?
-  The exemption stops discriminating there; the scan flags it
-  `ambiguous-citation` (name the record for a foreign id, or drop the
-  record name for the same-run id).
+  id-below-max case, which count alone cannot catch. An id under a
+  record-name token is not checked against this run's own
+  invalidations.
 - entry tags are BARE enum values; annotations
   live in the line body after the bracket, never inside it, and a
   bracketed tag literal never appears inside a body — the record
