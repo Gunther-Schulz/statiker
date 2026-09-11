@@ -1186,7 +1186,14 @@ class TestRNfRepairFormCoverage(unittest.TestCase):
     `repair` key, freeze-breach's shape) — read from source via
     `inline_repaired_codes`, never a hardcoded exemption list, so a
     future inline-repaired code enters the exemption automatically and
-    a code that stops being inline-repaired loses it the same way."""
+    a code that stops being inline-repaired loses it the same way.
+    0.2.85 checkpoint review T2 (nit; RN-f assurance wider than its
+    predicate): this check's REACH is literal code strings at
+    emission sites — `all_emitted_violation_codes`' own AST walk
+    reads only `ast.Constant` string arguments/elements/dict values
+    (above); a code assembled from a variable or expression at its
+    emission site is invisible to the derivation and so outside this
+    check's coverage (reviewer's planted mutant; no live instance)."""
 
     @classmethod
     def setUpClass(cls):
