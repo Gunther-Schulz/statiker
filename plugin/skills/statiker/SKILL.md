@@ -38,108 +38,100 @@ overriding context-independence (PLAN.md, Ecosystem composition):
 
 ## The tools
 
-Two shipped state machines live under this skill's base directory
-(the Skill injection's base-directory line names it; invoke with
-python3): `scripts/statiker_git.py` — git transactions: the
-run-start preflight, the LOCK commit, unit START and COMMIT — and
-`scripts/statiker_record.py` — record grammar: tracker lint, the
-[READY] sweep's computable slice, the closure predicate, the
-pinned attack artifact, the append-only check against the pin
-(`pinned`), the verify-leg copy-freeze check (`verify-gate`), the
-never-sustain round-open gate (`sustain`), the zero-landed progress
-tripwire (`tripwire`), defanged quote blocks.
-The two scripts
-plus their red-first battery (the source repo's tools/ suites —
-the attack rounds' probes and record findings mechanized) are the
-EXECUTABLE SPEC of the record grammar and the transaction
-semantics: the contract lives there, this page keeps principles
-and desk conduct, and a divergence is graded against the battery,
-never against this page's wording. Principles the desk relies
-on: a path is taken AS NAMED in every git operation, never
-substituted; containment resolves in the direction of SAFETY — a
+Two scripts under this skill's base directory (the Skill injection's
+base-directory line names it; invoke with python3):
+`scripts/statiker_git.py` = git transactions: run-start preflight,
+LOCK commit, unit START and COMMIT; `scripts/statiker_record.py` =
+record grammar: tracker lint, the [READY] sweep's computable slice,
+the closure predicate, the pinned attack artifact, the append-only
+check against the pin (`pinned`), the verify-leg copy-freeze check
+(`verify-gate`), the never-sustain round-open gate (`sustain`), the
+zero-landed progress tripwire (`tripwire`), defanged quote blocks.
+
+The two scripts plus their red-first battery (the source repo's
+tools/ suites) are the EXECUTABLE SPEC of the record grammar and the
+transaction semantics: the contract lives there, this page keeps
+principles and desk conduct, and a divergence is graded against the
+battery, never against this page's wording.
+
+Principles the desk relies on: a path is taken AS NAMED in every git
+operation, never substituted; containment resolves toward SAFETY — a
 must-be-inside path (lock-set, write-set) is decided on its REAL
 resolution, a must-be-outside path (artifact, seals, attack
-worktrees) is outside
-only when named and real form agree — any realpath
-acceptance noted per path in the verdict as `resolved_from`,
-and a path problem halts at a CHECK, never a commit. Byte policy
-runs both
-directions: git byte output decodes the way the OS decodes argv,
-and verdict and quote output emit at the byte level over the
-input's own bytes — a tool that re-spells a byte on output mints
-the second spelling the input rule exists to prevent. The record
-tool anchors its repo at the TRACKER's own directory, the git
-tool at its invocation cwd — briefs invoke it from the repo
-root, which the invocation lines already do. Every
-invocation — usage errors included (USAGE_ERROR); `--help` alone
-excepted, argparse answers it verdict-free — ends in
-exactly one final
-`STATIKER-GIT VERDICT: {json}` or `STATIKER-RECORD VERDICT:
-{json}` line, evidence lines before it — the desk books THAT
-LINE verbatim as the basis of
-whatever entry the verdict obliges; an exit code is routing
-convenience, never the result. Happy paths route in their own
-sections; `lint` alone answers ad-hoc grammar questions
-(LINT_CLEAN / LINT_VIOLATIONS; `sweep` includes it), and `quote`
-and `filter` return QUOTE_BLOCK and ARTIFACT_WRITTEN with their
-production counts. `waves` returns WAVES_COMPUTED — units sharing
-a declared write-set path grouped, members of a group SERIALIZE;
-scheduling across groups is the desk's, read from the D-lines — the
-disjoint-write-sets answer names no scheduling verdict (ordering
-constraints, execute-set collisions). A unit whose record lines
-declare no live write-set comes back UNPLANNABLE, never placed
-(the line form: Implementation; a unit with no `unit U<k>`-bodied
-entry at all appears in neither list), and the partition is no
-dispatchability read: the per-unit gate stays `closure --unit`.
-`trend` returns TREND_COMPUTED /
-TREND_NO_ROUNDS — per-round F-LINE counts (every F-line in a
-round's span, not attacker findings alone) with an arithmetic
-trajectory verdict. `sustain` returns SUSTAIN_OK / SUSTAIN_DENIED /
-SUSTAIN_NOT_APPLICABLE — the never-sustain round-open gate (Stop
-rule, "That closes design"). `tripwire` returns TRIPWIRE_FIRES /
-TRIPWIRE_SILENT — the zero-landed progress tripwire (The record,
-Budget). All four halt WAVES_RECORD_MALFORMED /
-TREND_RECORD_MALFORMED / SUSTAIN_RECORD_MALFORMED /
-TRIPWIRE_RECORD_MALFORMED where an
-entry-shaped line broke the
-grammar, repaired like any lint hold (`corrects line <n>`
-composed from the verdict's violation lines). ANY verdict no
-section names is a halt for
-the seam that ran it — booked as a `record:` F-line from the
-verdict line, the seam's halt route applying (TRACKER_UNREADABLE,
-PIN_UNREADABLE, NOT_A_REPO, PATH_OUTSIDE_REPO, PATH_INSIDE_REPO,
-USAGE_ERROR, GIT_ERROR, INTERNAL_ERROR, and any future member).
-One override
-on every route: a halt verdict carrying a `shas` or `sha` field
-has LANDED commits — routed like HALT_RESIDUE_PERSISTS, never as
-uncommitted. Unit briefs carry the git tool's
-ABSOLUTE path and its invocation lines — the tool is the shared
-implementation, so no lock-procedure text is ever expanded into a
-brief. The record tool is DESK-only: it reads the record, so no
-attack or verify brief ever cites it — those contexts'
-independence is the point. Provenance and the red-first suites:
-the source repo, tools/test_statiker_git.py and
-tools/test_statiker_record.py (the attack rounds' probe battery
-and record findings mechanized).
+worktrees) is outside only when named and real form agree — any
+realpath acceptance noted per path in the verdict as `resolved_from`;
+a path problem halts at a CHECK, never a commit. Byte policy both
+directions: git byte output decodes the way the OS decodes argv, and
+verdict and quote output emit at byte level over the input's own
+bytes (a tool re-spelling a byte mints the second spelling the input
+rule prevents). The record tool anchors its repo at the TRACKER's own
+directory, the git tool at its invocation cwd — briefs invoke it from
+the repo root.
 
-At run start, before any design work: `preflight
---tracker <path>`. PREFLIGHT_OK proceeds (it also reports any
-in-progress operation, informational at this seam). Preflight
-runs a DEDICATED repo-health read — index-reading by design, so
-a corrupt index halts here, before any work rests on it (a
-mid-run corruption still surfaces at whatever seam meets it).
-Strictness is the health read's alone; every other read keeps
-its own DOCUMENTED exit semantics — a non-error exit (the
-ignore check's not-ignored) is an answer, an error exit of any
-read still halts.
-PREFLIGHT_UNPINNABLE_TRACKER means the repo
-ignores the tracker path and can never pin this run's record —
-surfaced to a present operator before further work; unattended
-the run closes FAILED at minimal cost (Close, Status written
-FAILED); any other preflight verdict surfaces the same way. The
-`state-gate` subcommand (STATE_CLEAN / STATE_IN_PROGRESS) is the
-re-entry instrument: an attended halt's clearing reply is
-verified by it before the halted procedure re-runs.
+Every invocation — usage errors included (USAGE_ERROR); `--help`
+alone excepted (argparse answers verdict-free) — ends in exactly one
+final `STATIKER-GIT VERDICT: {json}` or `STATIKER-RECORD VERDICT:
+{json}` line, evidence lines before it; the desk books THAT LINE
+verbatim as the basis of whatever entry the verdict obliges; an exit
+code is routing convenience, never the result.
+
+Happy paths route in their own sections; `lint` alone answers ad-hoc
+grammar questions (LINT_CLEAN / LINT_VIOLATIONS; `sweep` includes
+it); `quote` and `filter` return QUOTE_BLOCK and ARTIFACT_WRITTEN
+with production counts; `waves` returns WAVES_COMPUTED — units
+sharing a declared write-set path grouped, members of a group
+SERIALIZE; scheduling across groups is the desk's, read from the
+D-lines (Implementation, "Disjoint is a write-set answer"); a unit
+whose record lines declare no live write-set comes back UNPLANNABLE,
+never placed (a unit with no `unit U<k>`-bodied entry appears in
+neither list); the partition is no dispatchability read — the
+per-unit gate stays `closure --unit`.
+
+`trend` returns TREND_COMPUTED / TREND_NO_ROUNDS: per-round F-LINE
+counts (every F-line in a round's span, not attacker findings alone)
+with an arithmetic trajectory verdict; `sustain` returns SUSTAIN_OK /
+SUSTAIN_DENIED / SUSTAIN_NOT_APPLICABLE, the never-sustain round-open
+gate (The attack, "That closes design"); `tripwire` returns
+TRIPWIRE_FIRES / TRIPWIRE_SILENT, the zero-landed progress tripwire
+(The record, Budget); all four halt WAVES_RECORD_MALFORMED /
+TREND_RECORD_MALFORMED / SUSTAIN_RECORD_MALFORMED /
+TRIPWIRE_RECORD_MALFORMED where an entry-shaped line broke the
+grammar, repaired like any lint hold (`corrects line <n>` composed
+from the verdict's violation lines).
+
+ANY verdict no section names is a halt for the seam that ran it —
+booked as a `record:` F-line from the verdict line, the seam's halt
+route applying (the catch-all: TRACKER_UNREADABLE, PIN_UNREADABLE,
+NOT_A_REPO, PATH_OUTSIDE_REPO, PATH_INSIDE_REPO, USAGE_ERROR,
+GIT_ERROR, INTERNAL_ERROR, and any future member); one override on
+every route: a halt verdict carrying a `shas` or `sha` field has
+LANDED commits — routed like HALT_RESIDUE_PERSISTS, never as
+uncommitted.
+
+Unit briefs carry the git tool's ABSOLUTE path and its invocation
+lines — the tool is the shared implementation, so no lock-procedure
+text is ever expanded into a brief. The record tool is DESK-only: no
+attack or verify brief ever cites it (those contexts' independence is
+the point). Provenance and red-first suites: the source repo's
+tools/test_statiker_git.py and tools/test_statiker_record.py.
+
+At run start, before any design work: `preflight --tracker <path>`;
+PREFLIGHT_OK proceeds (also reports any in-progress operation,
+informational here). Preflight runs a DEDICATED index-reading
+repo-health read — a corrupt index halts here, before any work rests
+on it (mid-run corruption surfaces at whatever seam meets it);
+strictness is the health read's alone — every other read keeps its
+DOCUMENTED exit semantics: a non-error exit (the ignore check's
+not-ignored) is an answer, an error exit of any read still halts.
+
+PREFLIGHT_UNPINNABLE_TRACKER = the repo ignores the tracker path and
+can never pin this run's record — surfaced to a present operator
+before further work; unattended the run closes FAILED at minimal
+cost (Close, Status written FAILED); any other preflight verdict
+surfaces the same way. The `state-gate` subcommand (STATE_CLEAN /
+STATE_IN_PROGRESS) is the re-entry instrument: an attended halt's
+clearing reply is verified by it before the halted procedure
+re-runs.
 
 ## The record (forcing point 1)
 
