@@ -1327,26 +1327,29 @@ pin needing a prerequisite substrate) and execute-set collisions
 executes it) are the desk's, read from the D-lines.
 
 A missing decision, file, or value is reported as a gap, never
-bridged, and triaged on arrival; a unit-local gap decision is a
-design decision made without an attack round, recorded as exactly
-that with the `- D<n> [AUTO-ACCEPTED] unit U<k> gap: <decision> —
-basis: <gap report>` template verbatim — surfaced by its tag,
-enumerated in the close, graded only through the WORK verify checks
-against the requirement head (no entry-level grading exists); no
-attack round reads it on the normal run shape — a coverage fact, not
-a bar (a re-entry round reads the full record) — so the tag surface
-and the close enumeration are the backstops; that unit re-dispatches
-on the amended record, siblings run on. A gap that kills a locked
-premise is recorded as the killed entry's SCOPELESS [INVALIDATED]
-line (The loop) — the body never opens `unit U<k>` or `record:` —
-voiding the closure through the predicate above; that invalidation
-IS the triage discriminator: no entry live at the closure dies →
-unit-local; one dies → premise-killing; stop the siblings resting on
-it; the commit gate's consult halts EVERY in-flight sibling on the
-voided closure, fail-closed — clean siblings' edits stay in their
-trees, named as the re-dispatch's write-set, and land after the ONE
-re-entry with every return in hand (a start-sha-predates-the-void
-carve-out is parked tool work, never improvised at the desk).
+bridged — and triaged on arrival: a unit-local gap decision is a
+design
+decision made without an attack round, and it is recorded as
+exactly that — `- D<n> [AUTO-ACCEPTED] unit U<k> gap: <decision>
+— basis: <gap report>` — surfaced by its tag, enumerated in the
+close, graded only through the WORK verify checks against the
+requirement head (no entry-level grading exists); no attack
+round reads it on the normal run shape — a coverage fact, not a
+bar: a re-entry round reads the full record — so the tag
+surface and the close enumeration are the backstops. That
+unit re-dispatches on the amended record, siblings run on. A
+gap that kills a locked premise is recorded as the killed
+entry's SCOPELESS [INVALIDATED] line (The loop) — the body
+never opens `unit U<k>` or `record:` — voiding the closure
+through the predicate above; that invalidation IS the triage
+discriminator: no entry live at the closure dies → unit-local,
+one dies → premise-killing. Stop the siblings resting on it;
+the commit gate's consult halts EVERY in-flight sibling on the
+voided closure, fail-closed — clean siblings' edits stay in
+their trees, named as the re-dispatch's write-set, and land
+after the ONE re-entry with every return in hand (a
+start-sha-predates-the-void carve-out is parked tool work,
+never improvised at the desk).
 
 Model per
 `clippy.config/models` (`impl:` class) when present, else the
