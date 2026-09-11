@@ -5,13 +5,14 @@ description: Conducts a development task from investigation through verified imp
 
 # Statiker
 
-Certify before construction, construct without designing. The loop
-is free — investigation refines, confirms, or forces adjustment
-until the design stops moving AND carries the implementation detail
-execution needs. Five forcing points stand guard; everything else is
-judgment. Thin in ceremony, never thin in forcing points: the
-failure prevented is skim-and-build under momentum, and the forcing
-points ARE the anti-skim mechanism — top-tier models exhibit it too
+Certify the design bears load before construction, construct
+without designing. The loop is free — investigation refines,
+confirms, or forces adjustment until the design stops moving AND
+carries the implementation detail execution needs. Five forcing
+points stand guard; everything else is judgment. Thin in ceremony,
+never thin in forcing points: the failure prevented is
+skim-and-build under momentum, and the forcing points ARE the
+anti-skim mechanism — top-tier models exhibit it too
 (dev-notes/OBSERVATIONS.md in the source repo,
 github.com/Gunther-Schulz/statiker — home of all PLAN.md and
 dev-notes references below).
@@ -29,9 +30,10 @@ overriding context-independence (PLAN.md, Ecosystem composition):
   work — every EXECUTION brief cites it; verifier and attack briefs
   never do (a fresh context briefed with conduct-of-building material
   is being framed as a builder).
-- The corpus, where present, carries the grounding and evidence
-  ethics (bases, refutation probes, altitude), assumed not restated;
-  without one, `references/evidence.md` (under this skill's base
+- The operator corpus, where the stack has one, carries the
+  grounding and evidence ethics (bases, refutation probes,
+  altitude), assumed not restated; without one,
+  `references/evidence.md` (under this skill's base
   directory) is the binding source — read it before the run's first
   entry; on such a stack attack and verify briefs cite it in place
   of the corpus.
@@ -197,9 +199,9 @@ re-running `sweep`, `closure`, AND `pinned` against the standing lock
 itself, never by the leg's claim — the positional pair reads an
 in-place rewrite as clean and the pin diff is the one check it cannot
 fool, whether or not the leg committed. A record with no pin yet is
-young, its holds few, and a hold set small enough that the brief
-would rival the repair stays desk work; the desk's context carries
-verdicts, not the repair work.
+young and its holds few — there the repair is desk work; a hold set
+small enough that the brief would rival the repair stays desk work;
+the desk's context carries verdicts, not the repair work.
 
 The gate covers FORM; a resume also re-runs the record's dated
 WORLD-FACING discharges: a staleness check measured at its date
@@ -303,13 +305,14 @@ Status and Phase within the first ~20 lines (the stats reader's
 admission window); after the header the requirement head in two
 grades declared apart: INTENT — the operator's request VERBATIM as
 PLAIN text, never a `>` blockquote (the grammar reserves `>` lines
-for Superseded blocks: a blockquoted INTENT lints illegal and is
-exactly what the attack filter drops); verbatim binds the words, not
-tag literals or layout — a bracketed tag literal inside the
-operator's text is defanged exactly as report quotes are, the
-mutation noted beside the line (undefanged it holds every later
-sweep for the run's life); derived requirements as long as needed,
-numbered `R<n>.` — never dash-led `- R<n>` (the amendment form);
+for Superseded blocks: a blockquoted INTENT lints illegal, and the
+one lint-legal quote form is exactly what the attack filter
+drops); verbatim binds the words, not tag literals or layout — a
+bracketed tag literal inside the operator's text is defanged
+exactly as report quotes are, the mutation noted beside the line
+(undefanged it holds every later sweep, correctly, for the run's
+life); derived requirements as long as needed, numbered `R<n>.` —
+never dash-led `- R<n>` (the amendment form);
 verify reads this head plus its R-lines, not the conversation.
 
 At requirement-head composition the desk gauges the item's WRITE-SET
@@ -891,11 +894,12 @@ artifact line numbers EQUAL source line numbers and `corrects line
 <n>` dereferences identically — while entry-shaped lines inside a
 Superseded SECTION are PRESERVED; ENTRIES are never filtered (dead
 bodies are load-bearing for closure questions; a hand-summary is the
-paraphrase-drift class). The artifact stays PURE — no header: source
-path, pinned sha, and the blanking declaration travel as
-ARTIFACT_WRITTEN verdict fields, and the brief QUOTES that verdict
-line beside the artifact; the brief also carries the question and
-the read-only tail (dispatch skill `references/forms.md`).
+paraphrase-drift class). The artifact stays PURE — no header,
+nothing the source does not carry: source path, pinned sha, and the
+blanking declaration travel as ARTIFACT_WRITTEN verdict fields, and
+the brief QUOTES that verdict line beside the artifact; the brief
+also carries the question and the read-only tail (dispatch skill
+`references/forms.md`).
 
 Unfiltered, the
 artifact compounds per round; the desk appends nothing to the record
@@ -1099,11 +1103,12 @@ unattended the run closes FAILED with the series enumerated in
 the close (budget exhaustion's own disposition) — never another
 same-form round.
 The budget (the header) backstops this judgment mechanically; it is
-never the route. A round dies two ways `(hypothesis)`: ABORTED in
-flight when a queued desk finding kills the locked design — the
-round is not left running over an object scheduled for replacement;
-its A-line lands `[VOID]` with body `abort:` citing the killing
-entry, which must predate the abort (the check against aborting
+never the route. A round dies two ways, one clause `(hypothesis)`:
+ABORTED in flight when a queued desk finding kills the locked
+design — the round is not left running over an object scheduled
+for replacement; its A-line lands `[VOID]` with body `abort:`
+citing the killing entry, which must predate the abort (the check
+against aborting
 uncomfortable rounds); VOIDED on return when the round's PREMISE was
 broken (wrong sha pinned, tree claim untrue at dispatch, wrong
 exclusions): graded as a round, never finding-by-finding — a review
@@ -1517,12 +1522,11 @@ still no commits, no tracker writes. The carve-out DECLARES the
 repo checks' by-product paths, and the declaration with each path's
 pre-existence (present or absent) is observed AND written at
 dispatch, before the round runs, to that round's `paths` species
-path (`seal-path --round A<n>` for attack rounds; `--round verify`
-gives the `.verify.paths` file, REWRITTEN at each verify dispatch —
-at most one is in flight, so no count is derived); re-derivable by
-any successor desk from `seal-path`'s computation — never carried
-only in
-the brief or in memory.
+path (`seal-path --tracker <path> --round A<n>` for attack rounds;
+`--round verify` gives the `.verify.paths` file, REWRITTEN at each
+verify dispatch — at most one is in flight, so no count is
+derived); re-derivable by any successor desk from `seal-path`'s
+computation — never carried only in the brief or in memory.
 
 The dispatch also
 records the copy's HEAD sha at leg read-start — a `record:` F-line
