@@ -1299,9 +1299,10 @@ live closure. The red-first pin the unit's design named is
 EXECUTED, not merely asserted: its red state is RECORDED as a
 committed red arm (a commit the fix's own diff reverts) or the red
 run's pasted output — never prose describing it, which is formally
-compliant and unattackable (F175: a docstring-only red run, caught
-only by verify leg 1, no earlier gate). The closure read runs through the record tool at
-each dispatch — `closure --tracker <path> --unit U<k>`
+compliant and unattackable (F175: a docstring-only red run,
+caught only by verify leg 1, no earlier gate). The closure
+read runs through the record tool at each dispatch —
+`closure --tracker <path> --unit U<k>`
 (without `--unit`: CLOSURE_LIVE / CLOSURE_VOID over the whole
 record): CLOSURE_VOID bars every unit — a scopeless line, or a
 post-closure [INVALIDATED] line for an entry LIVE at the
