@@ -2467,6 +2467,15 @@ def cmd_tripwire(args):
             finish("TRIPWIRE_SILENT", 0, reason="unarmed", rounds=None,
                    threshold=None, landed=None, v_lines=None, **meta)
         threshold = int(m.group(1))
+        # st-30(3) (0.2.86 re-review finding 3): the --threshold < 1
+        # refusal above covered the flag alone — the header carrier
+        # (Budget's `/ tripwire <n>` field) reached this point
+        # unchecked, so `tripwire 0` armed on zero resolved rounds the
+        # same way a bare --threshold 0 used to.
+        if threshold < 1:
+            finish("USAGE_ERROR", 3,
+                   error="Budget line's `tripwire <n>` field must be "
+                         f">= 1 ({threshold} given)")
         say(f"tripwire: armed from the Budget line's `tripwire "
             f"{threshold}` field")
     bounds, _, _, _, _ = trend_over_rounds(entries)

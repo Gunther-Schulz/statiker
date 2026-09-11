@@ -1304,6 +1304,37 @@ class TestSt14TripwireThresholdRejectsBelowOne(RecordFixture):
         self.assertNotEqual(v["verdict"], "USAGE_ERROR", v)
 
 
+# --------- st-30(3): the Budget header's own tripwire field rejects <1
+
+class TestSt30Item3BudgetHeaderTripwireRejectsBelowOne(RecordFixture):
+    """0.2.86 re-review finding 3: st-14 item 5's `--threshold < 1`
+    refusal covered the flag alone — the SECOND carrier (Budget's own
+    `/ tripwire <n>` field, read when --threshold is omitted) reached
+    the arming point unchecked, so a header `tripwire 0` armed on zero
+    resolved rounds and fired immediately, the same defect st-14 item
+    5 fixed for the flag. FIX mirrors that site: the header-derived
+    threshold gets the same USAGE_ERROR refusal. Red arm: `tripwire 0`
+    in the Budget line gave TRIPWIRE_FIRES today; control: `tripwire
+    1` is unaffected."""
+
+    def test_header_tripwire_zero_is_rejected(self):
+        header = ("# Run: test\nStatus: in-progress\n"
+                  "Phase: investigate-design\nSkill: statiker 0.2.33\n"
+                  "Budget: cycles 7 / rounds 4 / verify 3 / tripwire 0\n\n"
+                  "## Cycle 1\n")
+        v = self.tripwire("", header=header)
+        self.assertEqual(v["verdict"], "USAGE_ERROR", v)
+
+    def test_header_tripwire_one_control_is_unaffected(self):
+        header = ("# Run: test\nStatus: in-progress\n"
+                  "Phase: investigate-design\nSkill: statiker 0.2.33\n"
+                  "Budget: cycles 7 / rounds 4 / verify 3 / tripwire 1\n\n"
+                  "## Cycle 1\n")
+        v = self.tripwire("", header=header)
+        self.assertNotEqual(v["verdict"], "USAGE_ERROR", v)
+        self.assertEqual(v["verdict"], "TRIPWIRE_SILENT", v)
+
+
 # -------------------------------------------------------------------- filter
 
 class TestFilter(RecordFixture):
