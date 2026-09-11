@@ -130,6 +130,9 @@ evidence: BACKLOG.md:279-317
 blocked-by: decision design pass over P28's executed-evidence-closure mechanism, at the tier CLAUDE.md's desk-tier fit reserves for open design tension (fable); the arrived evidence is in this item's evidence slot
 amend-reason: 2026-09-11 retirement pass 2026-09-11: the body's re-trigger condition arrived and was never graded; evidence pointer now carries it
 amended-evidence: 2026-09-11 BACKLOG.md:279-317 (P28 body: five incidents, run-2 close-grading split, rationale/account lineage unabsorbed). Re-trigger ARRIVED: OBSERVATIONS.md:7832 books the D38 post-round seam as P28-class evidence (2026-09-10), unexecuted in the run-3 mint-seam queue. Derived by statiker-4d, for the design pass to grade: the 0.2.84 repair lap's own surface drew 2 blocking findings at re-review (OBSERVATIONS.md:7999 heading)
+amend-reason: 2026-09-11 0.2.85 checkpoint review added the series datum; operator handed the design pass to statiker-ba
+amended-evidence: 2026-09-11 BACKLOG.md:279-317 (P28 body: five incidents, run-2 close-grading split, rationale/account lineage unabsorbed). Re-trigger ARRIVED: OBSERVATIONS.md:7832 books the D38 post-round seam as P28-class evidence (2026-09-10). Review series on the 0.2.84/0.2.85 batch (OBSERVATIONS 2026-09-10 and 2026-09-11 disposition sections): blocking 6, 2, 1, each later round concentrated on the previous lap's own surface; 0.2.85's blocker B1 is a desk-decided repair design shipped unattacked, N2 a repair side effect
+amended-blocked-by: 2026-09-11 decision design pass over P28's executed-evidence-closure mechanism, handed to statiker-ba 2026-09-11 on operator authorization; brief docs/directives/2026-09-11-handoff-p28-design-statiker-ba.md
 
 ## st-11
 grade: NEW
@@ -212,15 +215,6 @@ write-set: UNKNOWN
 done-criterion: UNKNOWN
 evidence: BACKLOG.md:646-662
 blocked-by: evidence false  # P13 (BACKLOG.md:646 body): the mechanism pass (candidate: the compression pass's precipitate-to-tool-checks step, LEDGER compression-order decision) or the first run where a prose-side disposition of r4-H1, r4-M4 or r3-MINOR-5 measurably costs; all three still self-declared parked in SKILL.md at 49e9529
-
-## st-20
-grade: PARKED
-requirement: PARKED 2026-08-16 — P11: the cross-skill stats contract is half-maintained, and the unmaintained half miscounts silently — record: BACKLOG.md:663
-goal: UNKNOWN
-write-set: UNKNOWN
-done-criterion: UNKNOWN
-evidence: BACKLOG.md:663-683
-blocked-by: decision operator: is cross-skill clippy-vs-statiker comparison via /clippy-stats a trial deliverable (P11 body BACKLOG.md:663; PLAN.md:174-176 names it the open decision); asked 2026-09-11 by statiker-4d
 
 ## st-21
 grade: PARKED

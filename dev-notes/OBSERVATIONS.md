@@ -8105,3 +8105,94 @@ REPAIR_FORMS entry flagged, unmutated tables clean).
   minted into CLAUDE.md (trial conventions), arc handed to
   statiker-4d (opus) — retirement pass, checkpoint review,
   dispositions, release. Ledger lines of this date.
+
+## 2026-09-11 — 0.2.85 checkpoint-review dispositions (fresh-opus, lane opus-review-0285; verdict: pin does NOT move — 1 blocking, 3 notable, 5 nits, all with executed pairs)
+
+Recorded by statiker-4d BEFORE implementation; the 0.2.86 repair
+lap's brief (docs/directives/2026-09-11-sonnet-repair-0286-brief.md)
+quotes the reviewer's fixture bodies as red arms. Suite at the
+reviewed state 49e9529: 512 passed, 0 failed, 0 skipped (reviewer's
+run). Series trend over the three same-form rounds on this batch
+(the two sections above plus this one): blocking 6 → 2 → 1, total
+13 → 10 → 9, and each later round concentrated on the previous
+lap's OWN surface — this round's blocker is a desk-decided repair
+design shipped unattacked (RN-b), N2 a repair's side effect (RB1).
+That is P28-class evidence, carried into st-10's evidence slot. The
+form response in THIS lap: every design disposition below removes or
+narrows; none adds machinery.
+
+- **B1 (blocking; RN-b re-decided: WITHDRAW the mint).**
+  `ambiguous-citation` holds the page-mandated foreign citation
+  (`basis: dev-notes/other-run.md F20`, and `basis: run other-run:
+  F20`) whenever this run carries its own live F20, and its repair
+  text cannot clear it — the record is already named. A SUBSTANCE
+  code (never retro), exemptible only by operator SWEEP_EXEMPT, so an
+  unattended run closes FAILED on a correct citation. Field reading
+  (desk, 2026-09-11): 0 record-named citations in 1006 basis lines
+  across the three real statiker trackers
+  (beat-the-books/.clippy/runs; the pattern shown matching both
+  planted forms). RN-b guarded a reviewer-constructed hole with no
+  field incident. DECISION: remove the hold emission, the repair
+  constant and its REPAIR_FORMS entry, the RULE_MINT_VERSION row, and
+  the page's routing sentence; the page states the exemption's
+  REACH instead — an id under a record-name token is not checked
+  against this run's own invalidations. That is the RN-b hole,
+  accepted as a recorded residual here. Red arms (reviewer's
+  executed pair): the live-collision and run-label forms read
+  SWEEP_CLEAN after (hold today); control `dev-notes/other-run.md F7`
+  clean both ways; the residual PINNED by assertion — doc-path +
+  same-run INVALIDATED F20 raises no hold — so it stays explicit,
+  never silent. The tenet-list check owed for this mint (the
+  2026-09-11 lap entry above) is moot: the mint is withdrawn.
+- **N1 (notable; RB1's spellings clause unmet).** waves_over_units
+  records the raw group(2), suffix included, as an alias, so the
+  sanctioned repair prints spellings `{"a.txt": ["a.txt", "a.txt
+  (corrects line <n>)"]}`; RB1's FIX said spellings stays empty. FIX:
+  the recorded alias is the suffix-stripped spelling. The committed
+  RB1 test targets a CLEAN line (lint: corrects-nothing, a shape the
+  grammar refuses) and never asserts spellings — re-point it at the
+  reviewer's sanctioned shape and assert spellings == {} beside the
+  serialization. Red arm: that shape, spellings non-empty today;
+  plain-declaration control {}.
+- **N2 (notable; RB1 side effect, silent direction).** The near-miss
+  check now runs on normpath output, so `unit U1 write-set: a.txt
+  b/../c.txt` lints clean and waves reads U1 and U2 disjoint. FIX:
+  split the resolver — ONE suffix-strip helper shared by both sites;
+  normpath only at the consuming site (waves_over_units). Red arm:
+  that field beside U2 a.txt fires write-set-path-near-miss and waves
+  halts WAVES_RECORD_MALFORMED after (LINT_CLEAN / WAVES_COMPUTED
+  today); control `a.txt c.txt` fires both ways.
+- **N3 (notable; RB2's page side).** SKILL.md's declarator-bookkeeping
+  clause ("UNLESS the correcting line is itself a fresh `unit U<k>
+  write-set: <path>` redeclaration") and REPAIR_DECLARATOR_BOOKKEEPING
+  both omit the same-unit condition the tool now enforces. FIX: both
+  name the SAME unit. The tool pair is already committed (TestRB2);
+  the page side rides the re-review.
+- **T1 (nit; RN-e reach).** The carve-out reads "a reconciliation that
+  WIDENS the R-line's demand"; a desk [AMENDED] R-line that widens
+  stays on the fresh-read route. FIX: "an amendment or reconciliation
+  that WIDENS the R-line's demand".
+- **T2 (nit; RN-f assurance wider than predicate).** The contract check
+  derives literal code strings only; a code emitted from a variable
+  passes it (reviewer's planted mutant; no live instance). FIX: the
+  class docstring states that reach. No machinery.
+- **T3 (nit; RN-c page definition stale).** The page's record-name
+  token "ending `.md` or `.md:`" omits the `()[].,;:` strip the tool
+  applies before matching. FIX: the definition names the same strip.
+- **T4 (nit; RN-a test's red arm).** The fixture puts a `record:`
+  repair on a machine-token target, so lint still fails
+  (repair-scope-change) and the test asserts only NotIn. FIX: re-point
+  at the reviewer's body-content target (a declarator line missing
+  its basis clause) and assert LINT_CLEAN; red by removing RN-a's
+  INVALIDATED test from the condition; live control unchanged.
+- **T5 (nit; no change).** A same-unit correction to a different path
+  supersedes that unit's whole write-set — the declarator narrowing
+  its own set, which is the supersede-whole semantics; old tool
+  identical.
+- **Bundled: st-14** (P31 remainder, four items) rides this lap per its
+  own done-criterion's condition, so the re-review reads the final
+  form.
+
+Re-review: owed after the lap (criterion 2 — the lap removes a hold
+code and changes the near-miss predicate; this is the stated reason
+for the round). Pin holds at 0.2.82.

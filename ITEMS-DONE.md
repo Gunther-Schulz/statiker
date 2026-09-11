@@ -37,5 +37,15 @@ done-criterion: UNKNOWN
 evidence: BACKLOG.md:219-278
 blocked-by: NONE
 
+## st-20
+grade: DROPPED
+requirement: PARKED 2026-08-16 — P11: the cross-skill stats contract is half-maintained, and the unmaintained half miscounts silently — record: BACKLOG.md:663
+goal: UNKNOWN
+write-set: UNKNOWN
+done-criterion: UNKNOWN
+evidence: BACKLOG.md:663-683
+blocked-by: NONE
+blocker-moot: operator: is cross-skill clippy-vs-statiker comparison via /clippy-stats a trial deliverable (P11 body BACKLOG.md:663; PLAN.md:174-176 names it the open decision); asked 2026-09-11 by statiker-4d
+
 ## Archive (pre-migration)
 

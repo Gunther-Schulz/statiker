@@ -172,8 +172,9 @@ machinery. Different skill, shared ledger convention.
 the stats reader's admission contract stands, its per-metric
 greps silently diverge on statiker-era trackers — series metrics
 come from the record tool's `trend`/`waves`. Cross-skill
-comparison via /clippy-stats is the open decision at BACKLOG
-P11.]
+comparison via /clippy-stats is NOT a trial deliverable (operator
+decision 2026-09-11, P11/st-20 dropped; coding-clippy's booked
+statiker-era reader branch closes the miscount class).]
 
 ## Ecosystem composition (deliberate context-dependence)
 
@@ -437,10 +438,10 @@ deliberate, the booked compression pass brings it back down
   trackers. Shared home and admission contract STAND (`.clippy/
   runs/`, Status/Phase enums pinned); series metrics for a
   statiker run come from the record tool's `trend`/`waves`
-  (SKILL.md 0.2.70). Whether cross-skill comparison via
-  /clippy-stats remains a trial deliverable is the open decision
-  at BACKLOG P11 — the control-arm-comparison promise in that
-  section rides on it. Two same-pass staleness notes, recorded so
+  (SKILL.md 0.2.70). Cross-skill comparison via /clippy-stats is
+  NOT a trial deliverable (operator decision 2026-09-11, P11/st-20
+  dropped) — the control-arm comparison in that section rests on
+  the record tool's series verdicts, never on the stats reader. Two same-pass staleness notes, recorded so
   the Settled list stops misdirecting: the Settled bullet "attack
   tier: fable-first" is superseded by this file's own 2026-08-06
   certification (opus is the attack tier; fable's attack seat
