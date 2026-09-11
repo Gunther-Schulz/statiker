@@ -332,7 +332,16 @@
   an intermediate state with a real consumer (a fresh desk starting
   mid-sequence) still releases at its own seam. Provenance: the
   0.2.32→record-tool sequencing correction — the desk recommended
-  attack-first, the operator's economy argument won.
+  attack-first, the operator's economy argument won. Widened
+  2026-09-11 (operator: "we do a lot of rounds that could be
+  merged"): RELEASES batch the same way. Each release spends a
+  checkpoint round, a pin move, an operator reload and an activation
+  check, and buys nothing until a desk run consumes the pin — so with
+  no run live, reviewed-ready work accumulates into one lap, one
+  review and one release, cut when a run is about to start or the arc
+  closes. Measured the day it was settled: three releases
+  (0.2.86–0.2.88), no run live at any of them, 28 desk wake-ups that
+  only announced a lane commit (ledger 7e0572f).
 - **Desk interrogation is cheap — ask when it informs the skill.**
   Diagnostic questions relayed to the running desk (which rule
   routed a conduct call — quote it or say "improvised"; what a

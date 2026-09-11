@@ -1039,6 +1039,56 @@ class TestRuntimeVerdictBattery(unittest.TestCase):
             self.assertNotIn("GATE_UNREADABLE", r["verdicts"], r)
 
 
+def section_pointers(text):
+    """Every quoted section pointer on the page, and the unresolved ones.
+
+    A pointer is `<Section>, "<phrase>")` inside parentheses, <Section>
+    one of the page's own `## ` heading names (read at runtime, the part
+    before any `:` or `(`). It resolves when the phrase, whitespace-
+    normalized, occurs in that section's body. Reach: a pointer that
+    names its own section resolves on its own quoted text, and bare
+    `(Section)` pointers carry no phrase to check. st-36: the 0.2.88
+    review's B1 dangled past the suite and skill-lint."""
+    def norm(s):
+        return re.sub(r"\s+", " ", s).strip()
+    sections, cur, buf = {}, None, []
+    for line in text.split("\n"):
+        if line.startswith("## "):
+            if cur is not None:
+                sections[cur] = norm(" ".join(buf))
+            cur, buf = line[3:].strip(), []
+        else:
+            buf.append(line)
+    if cur is not None:
+        sections[cur] = norm(" ".join(buf))
+    names = sorted({re.split(r"[:(]", h)[0].strip() for h in sections},
+                   key=len, reverse=True)
+    pattern = re.compile(
+        "(" + "|".join(re.escape(n) for n in names) + r'),\s*"([^"]+)"\)')
+    found = pattern.findall(norm(text))
+    unresolved = [(name, phrase) for name, phrase in found
+                  if not any(norm(phrase) in body
+                             for head, body in sections.items()
+                             if head.startswith(name))]
+    return found, unresolved
+
+
+class TestSkillSectionPointersResolve(unittest.TestCase):
+    def test_every_quoted_section_pointer_resolves(self):
+        found, unresolved = section_pointers(SKILL.read_text())
+        self.assertTrue(found)  # instrument check: pointers were parsed
+        self.assertEqual(
+            unresolved, [],
+            f"quoted section pointers whose phrase is not in the named "
+            f"section: {unresolved}")
+
+    def test_a_dangling_pointer_is_caught(self):
+        text = (SKILL.read_text()
+                + '\n(forms at Close, "no such phrase on this page")\n')
+        _, unresolved = section_pointers(text)
+        self.assertIn(("Close", "no such phrase on this page"), unresolved)
+
+
 class TestVerdictParity(unittest.TestCase):
     def test_every_emitted_verdict_is_routed_in_skill(self):
         missing = emitted_verdicts() - skill_named_verdicts()
