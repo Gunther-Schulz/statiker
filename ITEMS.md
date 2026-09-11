@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 7
+added: 8
 compacted: 0
 
 ## st-2
@@ -304,3 +304,12 @@ write-set: tools/test_statiker_record.py, tools/golden-corpus fixture tracker + 
 done-criterion: a golden-corpus sweep test: one rich fixture tracker exercising every violation code in RULE_MINT_VERSION (positive and known-clean rows per code), a committed golden file of expected violations, and a test that diffs the sweep's full hit-set against it, red on ANY code's hits shrinking or growing; regenerating the golden requires a reviewed diff, never a blind overwrite. Red-first: run the corpus at c19c829 vs 2baa349 pre-repair and show the B1/B2 rows vanish (the incident reproduced as the fixture's own proof); reach: the corpus derives its code list from the tool's own RULE_MINT_VERSION table at runtime, so a new code with no corpus row goes red by construction
 evidence: opus-review-0284 B1/B2 measured pairs (dispositions record); the corpus anchor rule: a coverage basis derives from the RUNNING source, and the cheap instrument is the assertion on what must not degrade
 blocked-by: NONE
+
+## st-29
+grade: PARKED
+requirement: the compression pass has named consumers but no work-item carrier: consumer in OBSERVATIONS.md:4448, 7488, 7528, 7587 and last in run 3's mint-seam queue (OBSERVATIONS.md:7886-7895); SKILL.md operational lines 1762 at 49e9529 vs the ~150 stabilization exit (CLAUDE.md Verify) — record: LEDGER compression-order decision (2026-09-10)
+goal: tend
+write-set: plugin/skills/statiker/SKILL.md, plugin/skills/statiker/scripts/statiker_record.py, tools/test_statiker_record.py, tools/test_contract.py
+done-criterion: UNKNOWN
+evidence: LEDGER.md decision 'does the SKILL.md size problem get a references/ split' (operator-settled method order: delete/tighten, precipitate to tool checks, disclosure only for branch-gated content; a references/ move is an explicit single-home amendment); the five OBSERVATIONS consumer entries above; st-19 names this pass as its candidate mechanism pass
+blocked-by: st-11
