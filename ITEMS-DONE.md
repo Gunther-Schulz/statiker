@@ -17,5 +17,16 @@ blocker-moot: regrade: was READY under the old carrier: READY is judged, never i
 closed-reason: 2026-09-10 2026-09-10 Begehung R4 executed and closed at this desk: map upgraded to 0.3.3 form (round table, ENFORCER row, CROSS-CUTTING row), findings file begehung-findings-2026-09-10-r4.tsv (12 rows, 1 blocking, both checkers GREEN), class EXECUTION-MANDATED-FORM-UNBOUND, dispositions booked st-23/st-24 + amends st-6/st-8
 closed-ref: ae0aad3
 
+## st-18
+grade: DONE
+requirement: READY (small) 2026-08-16 — P14: seal-namespace comparison species naming drift — record: BACKLOG.md:630
+goal: UNKNOWN
+write-set: UNKNOWN
+done-criterion: UNKNOWN
+evidence: BACKLOG.md:630-645
+blocked-by: NONE
+blocker-moot: regrade: was READY under the old carrier: READY is judged, never inherited
+closed-reason: 2026-09-11 P14 rename executed 2026-09-11 by statiker-4d: A8/A9 .seal-comparison moved (mv -n, no collision) to the .comparison paths statiker_git.py seal-path prints; sizes 2661/2643 unchanged; 0 seal-comparison files remain under ~/.local/state/statiker; operator-machine state, no repo commit
+
 ## Archive (pre-migration)
 

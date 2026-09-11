@@ -201,15 +201,6 @@ done-criterion: UNKNOWN
 evidence: BACKLOG.md:603-629
 blocked-by: evidence false  # the named missing evidence in the source body
 
-## st-18
-grade: NEW
-requirement: READY (small) 2026-08-16 — P14: seal-namespace comparison species naming drift — record: BACKLOG.md:630
-goal: UNKNOWN
-write-set: UNKNOWN
-done-criterion: UNKNOWN
-evidence: BACKLOG.md:630-645
-blocked-by: decision regrade: was READY under the old carrier: READY is judged, never inherited
-
 ## st-19
 grade: NEW
 requirement: PARKED 2026-08-16 — P13: the release-review series' tool-work residue (the mechanism pass's collected items) — record: BACKLOG.md:646
