@@ -1665,8 +1665,11 @@ repaired surface — reach judged by the leg from what its checks
 execute, never by a path join at the desk — carrying a V1
 verdict forward only with its per-line reason stated in the
 V-line's evidence. Per class: a REQUIREMENT repair takes a fresh
-read of the reconciled line against the work, no checks re-run;
-an INSTRUMENT repair re-executes its own red-first pair, nothing
+read of the reconciled line against the work, no checks re-run —
+except a reconciliation that WIDENS the R-line's demand, which
+re-classes as WORK: the widened demand was never exercised, so
+the touched R-lines' checks re-run same as WORK's own route; an
+INSTRUMENT repair re-executes its own red-first pair, nothing
 else; a WORK repair re-runs the touched R-lines' checks; any
 DESIGN repair voids the scoping — the full leg re-runs.
 (hypothesis) Verify returns count against the run budget (The
