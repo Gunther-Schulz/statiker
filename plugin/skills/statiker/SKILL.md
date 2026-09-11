@@ -531,91 +531,83 @@ tracker with no `## ` heading at all parses NO entries, silently.
 
 ## The loop
 
-The desk (this session; intended consumer is a top-tier session
-model — prescription density is calibrated to it) orchestrates,
-forms and records decisions, writes briefs, grades.
-Investigation and discovery legs go to cheaper-tier subagents on
-pointed decision-complete briefs —
-brief-writing is where hunt-judgment lives (Fire-born clauses,
-below); what a leg returns is evidence, recorded with its basis.
+The desk is this session, intended consumer a top-tier session model
+(prescription density calibrated to it); it orchestrates, forms and
+records decisions, writes briefs, grades; investigation and
+discovery legs go to cheaper-tier subagents on pointed
+decision-complete briefs — brief-writing is where hunt-judgment
+lives (Fire-born clauses, below); a leg's return is evidence,
+recorded with its basis.
+
 A leg is recorded [PENDING] at dispatch and resolved only by a
 body-read of its return — a stopped or past-horizon leg's output
-included: a late report is evidence, not noise, and "it never
-returned" is a transcript claim checked in the transcript (a round
-was staged over a design whose refutation sat in two unread
-returns). The [READY] sweep's no-[PENDING] gate holds unread legs
-open mechanically. An unreturnable leg — stopped per
-the harness's task state or BY the desk at its horizon
-(dispatch skill §4: inspect or stop, never more waiting),
-with NO return to read (the transcript check above, never
-memory) or still [PENDING] after its return's body-read (a
-read that resolves takes the evidence's tag, the ordinary
-rule above) — gets ONE new [AUTO-ACCEPTED]
-tag-first line as a deliberate carry
-with the
-loss stated — the sweep and the closing [ZERO-DELTA]'s
-no-[PENDING] condition both read that as resolved.
-(hypothesis) A SPIKE — a throwaway build grounding a basis no
-existing code can answer, greenfield's common case — is a
-discovery leg like any other: it builds in the leg's OWN
-scratchpad, never the repo, and returns MEASUREMENTS. Its
-findings land as F-lines with executed bases; its code is
-evidence, never implementation — a unit rebuilds from the locked
-design, so the no-design invariant is untouched.
+included: a late report is evidence, not noise; "it never returned"
+is a transcript claim checked in the transcript; the [READY] sweep's
+no-[PENDING] gate holds unread legs open mechanically; an
+unreturnable leg — stopped per the harness's task state or BY the
+desk at its horizon (dispatch skill §4: inspect or stop, never more
+waiting), with NO return to read (the transcript check, never
+memory) or still [PENDING] after its return's body-read (a read that
+resolves takes the evidence's tag) — gets ONE new [AUTO-ACCEPTED]
+tag-first line as a deliberate carry with the loss stated; the sweep
+and the closing [ZERO-DELTA]'s no-[PENDING] condition both read that
+as resolved.
+
+`(hypothesis)` A SPIKE — a throwaway build grounding a basis no
+existing code can answer, greenfield's common case — is a discovery
+leg: it builds in the leg's OWN scratchpad, never the repo, and
+returns MEASUREMENTS; its findings land as F-lines with executed
+bases; its code is evidence, never implementation — a unit rebuilds
+from the locked design, so the no-design invariant is untouched.
+
 A leg is dispatched TO A DECISION: its brief names the recorded
-decision it unblocks and what each possible return would decide —
-a leg whose returns cannot change any recorded decision or any
-entry's tag is not dispatched (the record gate's mechanical
-repair leg is the named carve-out: the decision its return
-settles is the gate's own clear-or-hold) (the corpus's discriminating-
-evidence rule, priced at compose time where it costs a sentence,
-not at review time where it costs a round). The same test closes
-investigation: when no un-dispatched leg would move a decision,
-the design is done investigating — [READY] then decides whether
-it is done designing. (hypothesis)
-An out-of-scope discovery — true, outside the requirement head:
-an unrelated defect, an adjacent improvement, a region the run
-decides not to carry — is recorded with its EXIT named in the
-entry body: CARRIED (an R-amendment brings it into scope; the
-design re-enters for it) or EXPORTED (a named carrier outside
-the run — backlog entry, ledger line, issue — with the
-reference). Fixing it inside a unit without one of those exits
-is barred: the run's three certified surfaces are the attacked
-design, the verified requirement, and the pinned record, and an
-in-flight fix enters none of them. (hypothesis)
+decision it unblocks and what each possible return would decide; a
+leg whose returns cannot change any recorded decision or any entry's
+tag is not dispatched — the record gate's mechanical repair leg is
+the named carve-out (the decision its return settles is the gate's
+own clear-or-hold); the same test closes investigation: when no
+un-dispatched leg would move a decision, the design is done
+investigating — [READY] then decides whether it is done designing.
+`(hypothesis)`
+
+An out-of-scope discovery — true, outside the requirement head: an
+unrelated defect, an adjacent improvement, a region the run decides
+not to carry — is recorded with its EXIT named in the body: CARRIED
+(an R-amendment brings it into scope; the design re-enters for it)
+or EXPORTED (a named carrier outside the run — backlog entry, ledger
+line, issue — with the reference); fixing it inside a unit without
+one of those exits is barred: the run's three certified surfaces are
+the attacked design, the verified requirement, and the pinned
+record, and an in-flight fix enters none of them. `(hypothesis)`
 
 Design against the recorded requirement. A decision COMMITS with a
-basis that reaches its premise: where the premise is a data shape
-or code path, the basis is an executed measurement or a hop-trace
-that reaches the CONSUMING READ — a surface inventory stopping
-short of where the value is read answers a narrower question, and
-that last unmade hop is where two rounds bit (the attack's probe
-obligation, applied at the commit moment). A deliberate skip is
-tagged [AUTO-ACCEPTED], never a read dressed as ground. New
-evidence that kills a premise appends an [INVALIDATED] line for
-the entry and for every
-decision resting on it — re-derive the dependents; a premise and its
-dependent contradicting inside one record is the escape shape.
-Superseding cuts both ways: a new entry that contradicts an old one
+basis that reaches its premise — where the premise is a data shape
+or code path, an executed measurement or a hop-trace reaching the
+CONSUMING READ (a surface inventory stopping short of where the
+value is read answers a narrower question; the attack's probe
+obligation applied at the commit moment); a deliberate skip is
+tagged [AUTO-ACCEPTED], never a read dressed as ground; new evidence
+that kills a premise appends an [INVALIDATED] line for the entry and
+for every decision resting on it — re-derive the dependents; a
+premise and its dependent contradicting inside one record is the
+escape shape.
+
+Superseding cuts both ways: a new entry contradicting an old one
 appends the old id's [INVALIDATED] line (two live contradictory
-entries route the implementer to whichever it reads first), and
-invalidating an entry restates what survives of it in a live entry,
-CLAUSE BY CLAUSE — each clause of the dead entry dispositioned
+entries route the implementer to whichever it reads first);
+invalidating an entry restates what survives in a live entry CLAUSE
+BY CLAUSE — each clause of the dead entry dispositioned
 restated-at-<id> or dead; an entry-level summary is where the
-load-bearing clause drops silently (a dropped pin clause cost a
-round). A restated clause takes The record's full adoption path
-(The record: [PENDING] under a new id, cleared under that same
-id) — the [READY] sweep holds unchecked restatements open
-mechanically; unchecked ones have carried dead citations,
-unresolvable paths, and a killed anchoring premise forward. A
-dead disposition is written `dead (<what kills it>)`, and the
-sweep's dead-basis body-read holds a killer-less dead clause open
-as [PENDING]. Clause dispositions AGGREGATE across an id's
-[INVALIDATED] lines — a later line re-dispositions only the
+load-bearing clause drops silently; a restated clause takes The
+record's full adoption path ([PENDING] under a new id, cleared under
+that same id) and the [READY] sweep holds unchecked restatements
+open mechanically; a dead disposition is written `dead (<what kills
+it>)`, and the sweep's dead-basis body-read holds a killer-less dead
+clause open as [PENDING]; clause dispositions AGGREGATE across an
+id's [INVALIDATED] lines — a later line re-dispositions only the
 clauses it names; every reader takes the union, latest line per
-CLAUSE, never the id's last line alone. A partial invalidation
-orphans the surviving
-clauses, and later readers inherit the dead rule or nothing.
+CLAUSE, never the id's last line alone; a partial invalidation
+orphans the surviving clauses.
 
 ## Stop rule: [READY] = dispatchable (forcing point 2)
 
