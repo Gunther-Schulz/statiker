@@ -548,11 +548,12 @@ near-miss check exempts exactly this trailing form, nothing wider)
   always resolves in THIS run's namespace, so once this run mints
   its own same-numbered id a foreign citation silently rests on it
   (P32, F66); the live-basis scan ignores every id under an active
-  record-name token — a token containing `/` AND ending `.md` or
-  `.md:`, or the two-token label `run <name>:` — never a bare code
-  pointer (`tools/x.py:40`) or an ordinary `label:`, which name
-  nothing readable as a record and leave the id resolving in THIS
-  run's namespace as usual; the exemption PERSISTS across a
+  record-name token — a token, quoting/bracketing punctuation
+  (`()[].,;:`) stripped before the match, containing `/` AND ending
+  `.md` or `.md:`, or the two-token label `run <name>:` — never a
+  bare code pointer (`tools/x.py:40`) or an ordinary `label:`, which
+  name nothing readable as a record and leave the id resolving in
+  THIS run's namespace as usual; the exemption PERSISTS across a
   contiguous comma-separated id list following the record-name token
   and dies at the first non-id token, so a plural citation
   (`tracker.md F20, F21`) exempts every id it lists, not only the
