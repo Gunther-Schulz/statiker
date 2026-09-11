@@ -4736,6 +4736,47 @@ class TestRB2DeclaratorBookkeepingUnitEquality(RecordFixture):
         self.assertNotIn("declarator-bookkeeping", self.violation_codes(v), v)
 
 
+# ----- 0.2.84 re-review RN-a: declarator-bookkeeping ignores the
+# ----- INVALIDATED tag on latest_same_id
+
+class TestRNaDeclaratorBookkeepingInvalidatedExempt(RecordFixture):
+    """0.2.84 re-review disposition RN-a (notable): SKILL.md's own
+    prose (Implementation) already says the refusal fires on the
+    latest EARLIER line being a LIVE write-set declaration, but the
+    tool never checked the tag — an [INVALIDATED] latest_same_id
+    (already excluded from waves_over_units by tag alone) still drew
+    declarator-bookkeeping over an ordinary bookkeeping correction,
+    though there is no live declaration left to un-declare. FIX: a
+    tag test in the condition. Red arm: reviewer's pair."""
+
+    def _tracker(self):
+        prefix = (
+            "- F2 [VERIFIED] unit U1 write-set a.txt — basis: design\n"
+            "- F2 [INVALIDATED] unit U1 write-set: a.txt dead "
+            "(mis-scoped) — basis: F9\n")
+        n = self.lineno_of(prefix, "write-set a.txt — basis: design")
+        return prefix, n
+
+    def test_invalidated_latest_same_id_no_longer_draws_the_hold(self):
+        # the red case: latest_same_id's own line is [INVALIDATED] —
+        # nothing live stands to be un-declared
+        prefix, n = self._tracker()
+        body = prefix + f"- F2 [VERIFIED] record: corrects line {n} — basis: bookkeeping\n"
+        v = self.lint(body)
+        self.assertNotIn("declarator-bookkeeping", self.violation_codes(v), v)
+
+    def test_live_latest_same_id_control_still_holds(self):
+        # control: an ordinary bookkeeping correction under a LIVE
+        # latest_same_id must still be refused (unaffected by the fix)
+        prefix = (
+            "- F2 [VERIFIED] unit U1 write-set a.txt — basis: design\n"
+            "- F2 [VERIFIED] unit U1 write-set: a.txt — basis: design\n")
+        n = self.lineno_of(prefix, "write-set a.txt — basis: design")
+        body = prefix + f"- F2 [VERIFIED] record: corrects line {n} — basis: bookkeeping\n"
+        v = self.lint(body)
+        self.assertIn("declarator-bookkeeping", self.violation_codes(v), v)
+
+
 # ----------------------------- P24: the unforced landing annotation
 
 class TestP24LandingMissingHold(RecordFixture):

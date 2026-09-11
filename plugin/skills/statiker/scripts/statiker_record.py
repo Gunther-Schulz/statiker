@@ -1331,11 +1331,18 @@ def apply_supersession(entries, violations, line_ids, line_parse):
             # (P38's own docstring sentence, a different trigger).
             # The exemption now also requires the correcting line's
             # own unit to equal latest_same_id's.
+            # 0.2.85 RN-a: SKILL.md's own prose already says the
+            # refusal fires on the latest EARLIER line being a LIVE
+            # write-set declaration; the tool never checked the tag,
+            # so an [INVALIDATED] latest_same_id (already excluded
+            # from waves_over_units by tag alone) still drew the
+            # complaint though nothing live stands to be un-declared.
             latest_ws_m = UNIT_WRITE_SET_RE.match(latest_same_id.body) \
                 if latest_same_id is not None else None
             e_ws_m = UNIT_WRITE_SET_RE.match(e.body)
             if (latest_same_id is not None and n < latest_same_id.lineno
                     and latest_ws_m
+                    and latest_same_id.tag != "INVALIDATED"
                     and not (e_ws_m
                              and e_ws_m.group(1) == latest_ws_m.group(1))):
                 complaints.append(
