@@ -120,23 +120,16 @@ amended-blocked-by: 2026-09-10 NONE
 promote-reason: 2026-09-10 2026-09-10 re-grade judged: the parked item's named missing evidence arrived (run 3) and the design was decided at this desk in today's amend (leg-return seam rule, candidates a/b dead on the datum); slots complete, executable by a fresh context
 promoted-by: 2026-09-10 statiker-cc meta desk (fable)
 
-## st-9
-grade: NEW
-requirement: PARKED 2026-08-16 — P18: "serious core issues" investigation (operator-named, at run-2 stop) — record: BACKLOG.md:219
-goal: UNKNOWN
-write-set: UNKNOWN
-done-criterion: UNKNOWN
-evidence: BACKLOG.md:219-278
-blocked-by: evidence false  # the named missing evidence in the source body
-
 ## st-10
-grade: NEW
+grade: PARKED
 requirement: PARKED 2026-08-17 — P28: repairs mint defects — closure prose is fresh attack surface (FIVE recorded incidents across the trial) — record: BACKLOG.md:279
 goal: UNKNOWN
 write-set: UNKNOWN
 done-criterion: UNKNOWN
 evidence: BACKLOG.md:279-317
-blocked-by: evidence false  # the named missing evidence in the source body
+blocked-by: decision design pass over P28's executed-evidence-closure mechanism, at the tier CLAUDE.md's desk-tier fit reserves for open design tension (fable); the arrived evidence is in this item's evidence slot
+amend-reason: 2026-09-11 retirement pass 2026-09-11: the body's re-trigger condition arrived and was never graded; evidence pointer now carries it
+amended-evidence: 2026-09-11 BACKLOG.md:279-317 (P28 body: five incidents, run-2 close-grading split, rationale/account lineage unabsorbed). Re-trigger ARRIVED: OBSERVATIONS.md:7832 books the D38 post-round seam as P28-class evidence (2026-09-10), unexecuted in the run-3 mint-seam queue. Derived by statiker-4d, for the design pass to grade: the 0.2.84 repair lap's own surface drew 2 blocking findings at re-review (OBSERVATIONS.md:7999 heading)
 
 ## st-11
 grade: NEW
@@ -148,76 +141,86 @@ evidence: BACKLOG.md:318-477
 blocked-by: decision regrade: was READY under the old carrier: READY is judged, never inherited
 
 ## st-12
-grade: NEW
+grade: PARKED
 requirement: PARKED 2026-08-17 — P23: an open operator question has no non-blocking carrier in the record (desk workaround observed, run-2 resume) — record: BACKLOG.md:478
 goal: UNKNOWN
 write-set: UNKNOWN
 done-criterion: UNKNOWN
 evidence: BACKLOG.md:478-494
-blocked-by: evidence false  # the named missing evidence in the source body
+blocked-by: evidence false  # P23 trigger (BACKLOG.md:478 body): a second incident of an operator question held in chat. Its other trigger (next record-grammar mint window) is struck as non-discriminating: it fired at P5, P15, P26 and the P32 bundle and no desk built the class. Re-checked LIVE at 49e9529, statiker-4d 2026-09-11
 
 ## st-13
-grade: NEW
+grade: PARKED
 requirement: PARKED 2026-08-16 — P17: the mailbox wait's waker is the monitored party (silent-stall exposure; Begehung R3) — record: BACKLOG.md:495
 goal: UNKNOWN
 write-set: UNKNOWN
 done-criterion: UNKNOWN
 evidence: BACKLOG.md:495-523
-blocked-by: evidence false  # the named missing evidence in the source body
+blocked-by: evidence false  # P17 (BACKLOG.md:495 body): one observed stall past a stated horizon under a mailbox lane; n=0 in the statiker and dispatch-guards records at 2026-09-11 (recheck lane sonnet-recheck-a); statiker-4d retirement pass
 
 ## st-14
-grade: NEW
+grade: READY
 requirement: READY (small) 2026-08-17 — P31: post-release polish batch from the 0.2.82 re-review (all fixes reviewer-prescribed, none release-blocking) — record: BACKLOG.md:524
 goal: UNKNOWN
 write-set: UNKNOWN
 done-criterion: UNKNOWN
 evidence: BACKLOG.md:524-555
 blocked-by: decision regrade: was READY under the old carrier: READY is judged, never inherited
+amend-reason: 2026-09-11 retirement pass 2026-09-11: migration UNKNOWNs filled from the body; two of six sub-items found landed
+amended-requirement: 2026-09-11 P31 remainder (BACKLOG.md:524 body), live at 49e9529: (1) filter's finish emits the raw --sha beside the resolved newest_commit (statiker_record.py:2605); (4) no pointer from the re-lock passage to P24's clause (b) (one occurrence, SKILL.md:1281); (5) tripwire --threshold accepts < 1 (:2834, only 'is None' tested); (6) cmd_sustain docstring still says 'a new round opens only if' (:2340). Items (2) harvester narrowing and (3) post-closure qualifier already landed (tools/test_contract.py:271-289, SKILL.md:1733)
+amended-goal: 2026-09-11 tend
+amended-write-set: 2026-09-11 plugin/skills/statiker/scripts/statiker_record.py, tools/test_statiker_record.py, plugin/skills/statiker/SKILL.md
+amended-done-criterion: 2026-09-11 per BACKLOG.md:526-551 for the four live items: (1) resolve --sha once via rev-parse --verify <sha>^{commit} and emit the resolved value; (5) reject --threshold < 1; (4) one-line pointer from the re-lock passage to P24's clause (b); (6) 'a new round opens only if' becomes 'the verdict reads SUSTAIN_OK only if'. Red-first battery cases for (1) and (5); (4) and (6) with the suite green. Rides a version bump, never its own release: into the 0.2.85 repair lap if the checkpoint review blocks, else the next batch
+amended-blocked-by: 2026-09-11 NONE
+promote-reason: 2026-09-11 design decided per sub-item in the body at BACKLOG.md:524-555; the four live items re-checked at 49e9529 and quoted into the slots with verifier, write-set and done-criterion; a fresh context can execute from the slots
+promoted-by: 2026-09-11 statiker-4d desk (opus)
 
 ## st-15
-grade: NEW
+grade: PARKED
 requirement: READY 2026-08-17 — P16 (re-opened): Stop-hook HELD OUT of 0.2.82 on checkpoint-review findings (4 executed false-fire classes); design INVERTED for the next build — record: BACKLOG.md:556
 goal: UNKNOWN
 write-set: UNKNOWN
 done-criterion: UNKNOWN
 evidence: BACKLOG.md:556-591
-blocked-by: decision regrade: was READY under the old carrier: READY is judged, never inherited
+blocked-by: st-12
+amend-reason: 2026-09-11 retirement pass 2026-09-11: grading found the design depends on st-12
+amended-evidence: 2026-09-11 BACKLOG.md:556-591 (P16 body, design inverted). Re-checked LIVE at 49e9529: hooks.json still 'hooks': {} under the R11 hold; statiker_stop_guard.py untouched since 6e1e668. Not decision-complete: the redesign specifies authority detection as P23's authority: opener class (BACKLOG.md:576-579, 'one mechanism with P23'), which st-12 carries undesigned
 
 ## st-16
-grade: NEW
+grade: PARKED
 requirement: PARKED 2026-08-15 — P8: write-set paths with whitespace (or leading /) are structurally undeclarable since P2 — record: BACKLOG.md:592
 goal: UNKNOWN
 write-set: UNKNOWN
 done-criterion: UNKNOWN
 evidence: BACKLOG.md:592-602
-blocked-by: evidence false  # the named missing evidence in the source body
+blocked-by: evidence false  # P8 trigger (BACKLOG.md:592 body): the first real unit needing a space-carrying or absolute write-set path; premise re-checked LIVE at 49e9529 (statiker_record.py:842-844 still refuses both as write-set-path-near-miss), statiker-4d retirement pass 2026-09-11
 
 ## st-17
-grade: NEW
+grade: PARKED
 requirement: PARKED 2026-08-16 — P12: the early head round (decomposition attacked before deep design) returns to design — cut from the 0.2.74 release after drawing blockers in BOTH release-review rounds — record: BACKLOG.md:603
 goal: UNKNOWN
 write-set: UNKNOWN
 done-criterion: UNKNOWN
 evidence: BACKLOG.md:603-629
-blocked-by: evidence false  # the named missing evidence in the source body
+blocked-by: evidence false  # P12 (BACKLOG.md:603 body): the trial-close grading, or the first multi-unit greenfield run that misses the early decomposition round. Re-checked LIVE at 49e9529: A-line tags still DISPATCHED|BIT|ZERO-DELTA|VOID (SKILL.md:538); the 0.68 NARROWING route is the mid-run re-scope, not this round
 
 ## st-19
-grade: NEW
+grade: PARKED
 requirement: PARKED 2026-08-16 — P13: the release-review series' tool-work residue (the mechanism pass's collected items) — record: BACKLOG.md:646
 goal: UNKNOWN
 write-set: UNKNOWN
 done-criterion: UNKNOWN
 evidence: BACKLOG.md:646-662
-blocked-by: evidence false  # the named missing evidence in the source body
+blocked-by: evidence false  # P13 (BACKLOG.md:646 body): the mechanism pass (candidate: the compression pass's precipitate-to-tool-checks step, LEDGER compression-order decision) or the first run where a prose-side disposition of r4-H1, r4-M4 or r3-MINOR-5 measurably costs; all three still self-declared parked in SKILL.md at 49e9529
 
 ## st-20
-grade: NEW
+grade: PARKED
 requirement: PARKED 2026-08-16 — P11: the cross-skill stats contract is half-maintained, and the unmaintained half miscounts silently — record: BACKLOG.md:663
 goal: UNKNOWN
 write-set: UNKNOWN
 done-criterion: UNKNOWN
 evidence: BACKLOG.md:663-683
-blocked-by: evidence false  # the named missing evidence in the source body
+blocked-by: decision operator: is cross-skill clippy-vs-statiker comparison via /clippy-stats a trial deliverable (P11 body BACKLOG.md:663; PLAN.md:174-176 names it the open decision); asked 2026-09-11 by statiker-4d
 
 ## st-21
 grade: PARKED

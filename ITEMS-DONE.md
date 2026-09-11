@@ -28,5 +28,14 @@ blocked-by: NONE
 blocker-moot: regrade: was READY under the old carrier: READY is judged, never inherited
 closed-reason: 2026-09-11 P14 rename executed 2026-09-11 by statiker-4d: A8/A9 .seal-comparison moved (mv -n, no collision) to the .comparison paths statiker_git.py seal-path prints; sizes 2661/2643 unchanged; 0 seal-comparison files remain under ~/.local/state/statiker; operator-machine state, no repo commit
 
+## st-9
+grade: DROPPED
+requirement: PARKED 2026-08-16 — P18: "serious core issues" investigation (operator-named, at run-2 stop) — record: BACKLOG.md:219
+goal: UNKNOWN
+write-set: UNKNOWN
+done-criterion: UNKNOWN
+evidence: BACKLOG.md:219-278
+blocked-by: NONE
+
 ## Archive (pre-migration)
 
