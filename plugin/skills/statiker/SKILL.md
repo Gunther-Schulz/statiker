@@ -136,18 +136,14 @@ re-runs.
 ## The record (forcing point 1)
 
 Append-only tracker at `.clippy/runs/<yyyy-mm-dd>-<slug>.md` —
-clippy's ledger convention. Of the stats reader's contract, the
-ADMISSION half (Status/Phase enums in the header window) is
-maintained and pinned; its per-metric greps are NOT maintained
-against this grammar — SERIES metrics for a statiker run come from
-the record tool's `trend` verdict (unit parallelism from `waves`),
-never from the stats reader's counting literals (its cycle count
-and decision-family collapse both diverge silently here,
-measured). That disclaimer is scoped to the counting metrics
-alone: the defang duty, bare tags, tag-first counting, and the
-landing indent all stand on the record tool's own parsing and the
-closure gate, not on the stats reader — the unmaintained greps
-revoke none of them. Never overwrite
+clippy's ledger convention. Of the stats reader's contract, the ADMISSION half (Status/Phase
+enums in the header window) is maintained and pinned; its per-metric
+greps are NOT maintained against this grammar — SERIES metrics come
+from the record tool's `trend` verdict (unit parallelism from
+`waves`), never from the stats reader's counting literals. The
+disclaimer is scoped to the counting metrics alone: the defang duty,
+bare tags, tag-first counting, and the landing indent stand on the
+record tool's own parsing and the closure gate. Never overwrite
 another run's tracker; resume
 an in-progress run from its tracker, not from memory. That resume
 compares the header's `Skill:` version against the version this desk
@@ -176,52 +172,45 @@ with the header's version as `skill_versions` in sweep and closure
 verdicts (attribution, never a gate): the `Skill:` line is pinned
 surface — Status and Phase are the only mutable fields — so a header
 rewritten to the new version reads as tampering, not as an update.
-A resume opens with the RECORD GATE, before any design work: run
-`sweep` and `closure` first, whatever the resume's cause. Their
-verdicts route by KIND at this seam: `closure`'s state verdicts —
-CLOSURE_ABSENT, CLOSURE_LIVE, the mid-design normal — are
-information, never halts, and CLOSURE_VOID bars units, not the
-design work this gate runs ahead of; only FORM holds gate. The
-gate's repair route covers FORM holds only — grammar, lint, and
-dead-basis classes, the ones a stated repair form can close:
-those are repaired through a DISPATCHED mechanical leg on the
-cheapest capable tier (the routing table's execution default; the
-verdict names each violation's class and repair form, so the
-brief is decision-complete by construction, and judgment residue
-the verdict NAMES returns to the desk, never decided in the leg).
-The leg is the tracker's ONE WRITER for its duration: the desk's
-own appends wait for its return — the attack freeze's shape at
-this seam — and a tracker that moved under the leg is the leg's
+A resume opens with the RECORD GATE before any design work: `sweep`
+and `closure` first, whatever the cause. Verdicts route by KIND —
+`closure`'s state verdicts CLOSURE_ABSENT, CLOSURE_LIVE (the
+mid-design normal) are information, never halts; CLOSURE_VOID bars
+units, not the design work this gate runs ahead of; only FORM holds
+gate. The repair route covers FORM holds only (grammar, lint,
+dead-basis classes — the ones a stated repair form can close),
+repaired through a DISPATCHED mechanical leg on the cheapest capable
+tier (the routing table's execution default); the verdict names each
+violation's class and repair form, so the brief is decision-complete
+by construction, and judgment residue the verdict NAMES returns to
+the desk, never decided in the leg. The leg is the tracker's ONE
+WRITER for its duration (the desk's own appends wait — the attack
+freeze's shape) — a tracker that moved under the leg is the leg's
 halt: report, never repair over a moved file.
+
 Latest-line [PENDING]s from open legs are LIVE WORK, not repair
-material: they resolve by the ordinary body-read of their
-returns, and clearing one to [AUTO-ACCEPTED] to satisfy a gate
-destroys the evidence the tag holds open. The desk grades the
-leg's return by re-running `sweep`, `closure`, AND `pinned`
-against the standing lock itself, never by the leg's claim — the
-positional pair reads an in-place rewrite as clean, and the pin
-diff is the one check it cannot fool, whether or not the leg
-committed its work. A record with no pin yet is young and its
-holds few — there the repair is desk work by the
-brief-would-rival-the-repair rule
-below. So the
-desk's context carries verdicts, not the repair work (a resumed
-desk repairing its own accumulated holds inline spent a session on
-record archaeology before its first design act). A hold set small
-enough that the brief would rival the repair stays desk work.
-The gate covers the record's FORM; a resume also re-runs the
-record's dated, WORLD-FACING discharges: a staleness check
-measured at its date expires with every commit since — re-run the
-bounded diff (`git diff <the discharge's read sha>..HEAD -- <the
-design-cited paths>`; the discharge line carries the sha it read
-at, which IS its expiry anchor — one without a sha looks
-unexpired forever and re-runs unbounded) over design-cited paths
-before any work rests on the
-record's citations, and a discharge NAMES ITS OWN EXPIRY, so the
-next resume inherits an obligation, never a reassurance (a
-"zero commits since" discharge carried across a 7-day resume hid
-16 commits, one touching the very file that round's HIGH landed
-on). A resume also reads the newest round's QUEUE (`seal-path`
+material — they resolve by the ordinary body-read of their returns;
+clearing one to [AUTO-ACCEPTED] to satisfy a gate destroys the
+evidence the tag holds open. The desk grades the leg's return by
+re-running `sweep`, `closure`, AND `pinned` against the standing lock
+itself, never by the leg's claim — the positional pair reads an
+in-place rewrite as clean and the pin diff is the one check it cannot
+fool, whether or not the leg committed. A record with no pin yet is
+young, its holds few, and a hold set small enough that the brief
+would rival the repair stays desk work; the desk's context carries
+verdicts, not the repair work.
+
+The gate covers FORM; a resume also re-runs the record's dated
+WORLD-FACING discharges: a staleness check measured at its date
+expires with every commit since — re-run the bounded diff `git diff
+<the discharge's read sha>..HEAD -- <the design-cited paths>` before
+any work rests on the record's citations; the discharge line carries
+the sha it read at, which IS its expiry anchor (one without a sha
+looks unexpired forever and re-runs unbounded); a discharge NAMES ITS
+OWN EXPIRY, so the next resume inherits an obligation, never a
+reassurance.
+
+A resume also reads the newest round's QUEUE (`seal-path`
 prints it): an unspent queue is inherited work — land and spend
 it before new appends — the resume's order: version pair →
 record gate (its leg, if one, returning first) → world-facing
@@ -235,19 +224,17 @@ read from the record — the Mode line, every live operator-imposed
 hold, any mid-run INTENT line — shown as INFORMATION, never
 re-asked: frozen operator ground only its owner lifts, and a lift
 arrives as an operator line, not as an answer to a desk question.
-An entry
-ADOPTED — content re-entering from outside the record's live
-entries: a prior or superseded run's tracker, session memory of
+An entry ADOPTED — content re-entering from outside the record's
+live entries: a prior or superseded run's tracker, session memory of
 work no live entry records, or a clause restated out of an
-invalidated entry (citing a LIVE entry as basis is not adoption)
-— is recorded [PENDING] under this run's own next id at adoption.
-That SAME id carries the resolution once a current-check scoped
-to the claim runs (re-read the cited lines; staleness-check
-against commits since the basis read — an earlier item's own
-implementation invalidates reads of the files it touched): pass →
-the entry class's live tag, citing source AND check; fail →
-[INVALIDATED] with the failure as basis. Unrecorded memory of
-prior work is never a basis.
+invalidated entry (citing a LIVE entry as basis is not adoption) — is
+recorded [PENDING] under this run's own next id at adoption. That
+SAME id carries the resolution once a current-check scoped to the
+claim runs (re-read the cited lines; staleness-check against commits
+since the basis read — an earlier item's own implementation
+invalidates reads of the files it touched): pass → the entry class's
+live tag citing source AND check; fail → [INVALIDATED] with the
+failure as basis. Unrecorded memory of prior work is never a basis.
 
 Header: `# Run: <title>`; `Status:` from
 {in-progress, [READY], PASSED, FAILED, COMPLETE}; `Phase:` from
@@ -268,122 +255,98 @@ first `Budget:` line, so an amendment F-line records the operator's
 authority but never arms), or passing `--threshold` at the seam. A
 Budget line with no `tripwire` field leaves the breaker unarmed
 (below).
-Exhaustion never continues silently: attended it forces the
-operator prompt; unattended, the cap is a SAFETY ESCAPE only (P19 —
-every cap firing to date, across two runs, was operator-overridden:
-a bound whose every firing is overridden carries no information and
-trains the override reflex) — hitting it STOPS-AND-REPORTS for the
-operator, never grades FAILED by itself. The DRIVING stop signals
-are progress-shaped and record-computable, checked well before the
-cap: the ZERO-LANDED tripwire (`tripwire --tracker <path>
-[--threshold <n>]`, TRIPWIRE_FIRES when at least `<n>` resolved
-attack rounds exist yet neither a landing annotation nor a V-line
-does anywhere in the record — `<n>` NAMED by the caller at arming
-via `--threshold`, or read from the header Budget line's own
-`/ tripwire <n>` field when `--threshold` is omitted, `--threshold`
-always overriding the header; never hardcoded in the tool, and
-never guessed — neither present is TRIPWIRE_SILENT with reason
-"unarmed") and the existing NON-CONTRACTING
-trend grade (The attack) — BOTH route to the 0.68 NARROWING route
-(The attack), never to another same-form round. Housekeeping never
-bills the run's budget: record-repair legs (The record, the resume's
-mechanical leg) and sweep/closure passes are meta-owned, outside
-cycle accounting. Excess iteration is a SYMPTOM, never a verdict —
-every cause is diagnosable, so a stop-and-report fires as a MINT
-SOURCE: it owes a named cause at close-out, read from the
-DISCRIMINATING EVIDENCE pre-registered when the check was armed (the
-trend verdict for arithmetic, named locus body-reads for
-repair-versus-account, each terminal entry's class split) — a
-firing's cause report is a READ, not a composition — and a
-computable cause becomes a named tripwire so the next run stops on
-the pathology itself; a breaker tripping twice for one cause
-indicts the missing tripwire. The stop-and-report has THREE
-ENDINGS, all operator-owned: FAILED (the operator refuses the run);
-EXPORT (the operator re-scopes — the displaced scope exits per The
-loop's exit machinery to a backlog entry); or CONTINUE — a
-disposition that GRANTS the closing round as an ordinary budget-raise
-entry (above), so the route back to the gate is machinery, never
-improvisation.
-The bound is operator-owned from the moment it is recorded: the
-desk SPENDS the budget and never raises it — a mid-run amendment
-is an operator decision, whatever provenance class the bound's
-text carries (fire-born, not hypothesis-class: a desk-amended
-bound, set just above current spend, bound nothing). An operator
-raise LANDS as an ordinary entry quoting the operator's line —
-the header is pinned surface, never rewritten — and every later
-exhaustion check reads the LATEST such entry over the header's
-default. The raise line's template: `- F<n> [VERIFIED] record:
+Exhaustion never continues silently: attended it forces the operator
+prompt; unattended the cap is a SAFETY ESCAPE only — hitting it
+STOPS-AND-REPORTS for the operator, never grades FAILED by itself.
+The DRIVING stop signals are progress-shaped and record-computable,
+checked well before the cap: the ZERO-LANDED tripwire (`tripwire
+--tracker <path> [--threshold <n>]`; TRIPWIRE_FIRES when at least
+`<n>` resolved attack rounds exist yet neither a landing annotation
+nor a V-line does anywhere; `<n>` named by the caller via
+`--threshold` or read from the header Budget line's `/ tripwire <n>`
+field, `--threshold` always overriding; never hardcoded, never
+guessed — neither present is TRIPWIRE_SILENT with reason "unarmed")
+and the NON-CONTRACTING trend grade (The attack) — BOTH route to the
+NARROWING route (The attack), never to another same-form round.
+
+Housekeeping never bills the budget (record-repair legs — The
+record, the resume's mechanical leg — and sweep/closure passes are
+meta-owned, outside cycle accounting); excess iteration is a
+SYMPTOM, never a verdict; a stop-and-report fires as a MINT SOURCE:
+it owes a named cause at close-out, read from the DISCRIMINATING
+EVIDENCE pre-registered at arming (the trend verdict for arithmetic,
+named locus body-reads for repair-versus-account, each terminal
+entry's class split) — a cause report is a READ, not a composition;
+a computable cause becomes a named tripwire; a breaker tripping
+twice for one cause indicts the missing tripwire. THREE ENDINGS, all
+operator-owned: FAILED (operator refuses the run); EXPORT (operator
+re-scopes; displaced scope exits per The loop's exit machinery to a
+backlog entry); CONTINUE (a disposition GRANTING the closing round
+as an ordinary budget-raise entry, so the route back to the gate is
+machinery, never improvisation).
+
+The bound is operator-owned from the moment it is recorded: the desk
+SPENDS the budget and never raises it; a mid-run amendment is an
+operator decision whatever provenance class the bound's text
+carries. An operator raise LANDS as an ordinary entry quoting the
+operator's line (the header is pinned surface, never rewritten), and
+every later exhaustion check reads the LATEST such entry over the
+header's default. The raise line's template: `- F<n> [VERIFIED] record:
 budget raised to cycles <n> / rounds <n> / verify <n> — "<the
 operator's line verbatim>" — basis: operator` (the `record: `
 opener is what voids no closure and re-opens no unit;
 machine-findable surfacing in the verdicts is parked tool
 work — until it ships, the exhaustion check's read is a
 body-read for this template).
-Status and Phase sit within the first ~20
-lines (the stats reader's admission window). After the header,
-the requirement head in two
-grades, declared apart: INTENT — the operator's request VERBATIM,
-as PLAIN text: the record grammar reserves `>` lines for
-Superseded blocks, so a blockquoted INTENT lints illegal, and the
-one lint-legal quote form is exactly what the attack filter
-drops — the operator's words would vanish from every attack
-artifact (verbatim binds the words, not tag literals or layout: a
-bracketed tag literal inside the operator's text is defanged
-exactly as report quotes are, the mutation noted beside the
-line — undefanged it
-holds every later sweep, correctly, for the run's life) —
-and the derived requirements, as long as it needs to be, numbered
-`R<n>.` — never dash-led `- R<n>`, the record grammar's amendment
-form; verify
-reads this head plus its R-lines, not the conversation.
-At requirement-head composition the desk gauges the item's
-WRITE-SET SPAN, bidirectional and entry-boundary-skeptical (P21:
-find-time entry boundaries are claims the seed RE-DERIVES, never
-adopted unit boundaries) — intake re-derives the unit set from the
-entries' write boundaries and the current world, slicing an
-oversized entry AND batching under-sized siblings whose write-sets
-overlap: each candidate unit names the files realizing it, and units
-naming an overlapping file merge or serialize — a mechanical join
-over each candidate's declared write-set, the instrument. An item
-that is migration-bearing, multi-consumer,
-or architecture-wide seeds as a DECOMPOSITION run whose
-done-criterion is exported unit-sized backlog entries —
+Status and Phase within the first ~20 lines (the stats reader's
+admission window); after the header the requirement head in two
+grades declared apart: INTENT — the operator's request VERBATIM as
+PLAIN text, never a `>` blockquote (the grammar reserves `>` lines
+for Superseded blocks: a blockquoted INTENT lints illegal and is
+exactly what the attack filter drops); verbatim binds the words, not
+tag literals or layout — a bracketed tag literal inside the
+operator's text is defanged exactly as report quotes are, the
+mutation noted beside the line (undefanged it holds every later
+sweep for the run's life); derived requirements as long as needed,
+numbered `R<n>.` — never dash-led `- R<n>` (the amendment form);
+verify reads this head plus its R-lines, not the conversation.
+
+At requirement-head composition the desk gauges the item's WRITE-SET
+SPAN, bidirectional and entry-boundary-skeptical: find-time entry
+boundaries are claims the seed RE-DERIVES, never adopted unit
+boundaries; intake re-derives the unit set from the entries' write
+boundaries and the current world — slicing an oversized entry AND
+batching under-sized siblings whose write-sets overlap: each
+candidate unit names the files realizing it, and units naming an
+overlapping file merge or serialize (a mechanical join over each
+candidate's declared write-set, the instrument); a migration-bearing,
+multi-consumer, or architecture-wide item seeds as a DECOMPOSITION
+run whose done-criterion is exported unit-sized backlog entries —
 implementation runs seed per unit, never the architecture-scale item
-whole. Three incidents: run 1 spent nine sessions on the full
-canonical-market-identity item for zero landed units, the narrowing
-route taken only at close on operator prompt; its own five
-find-time-composed exports named a live lead (the upsert
-self-healing property) that may delete one of them — structure
-written before the evidence that shapes it, the reason the gauge
-re-derives rather than adopts; run 2's bound-firing cause report
-named item scope as the run's root pathology — a complete
-persistence enumeration across a 60-table database demanded for a
-one-deletion change, the count walking 7→9→11→12-plus across five
-rounds, each closure attacked on the ground the requirement's width
-created. Distinct from the in-run early decomposition round (The
-attack's narrowing route, P12): this gate fires AT SEED, before any
-cycle spends.
+whole.
+
+Distinct from The attack's narrowing route (the in-run early
+decomposition round): this gate fires AT SEED, before any cycle
+spends.
+
 (hypothesis) The head derives from INTENT + the PROFESSIONAL
-STANDARD, never INTENT alone: the customer is owed
-professional-grade results they never asked for, so an
-underspecified INTENT derives the quality requirements a
-competent shop would — a size and complexity budget, no
-unjustified abstractions, a threat model where inputs cross
-trust boundaries — as R-lines gradeable by judgment, never
-lint; the derivation is the run's first and largest design act
-and iterates with the loop like everything downstream. Where
-the INTENT supports one, an R-line carries a success metric — a
-real number the work moves. R-lines state the PROBLEM at its
-own altitude: a solution choice inside an R-line locks design
-prematurely and dodges the attack — solutions are D-lines. An
-underspecified INTENT also derives a CUSTOMER-LEGIBLE mirror —
-a 3–6 sentence announcement-form restatement of what ships
+STANDARD, never INTENT alone; an underspecified INTENT derives the
+quality requirements a competent shop would — a size and complexity
+budget, no unjustified abstractions, a threat model where inputs
+cross trust boundaries — as R-lines gradeable by judgment, never
+lint; the derivation is the run's first and largest design act and
+iterates with the loop. Where the INTENT supports one, an R-line
+carries a success metric (a real number the work moves); R-lines
+state the PROBLEM at its own altitude — a solution choice inside an
+R-line locks design prematurely and dodges the attack; solutions are
+D-lines. An underspecified INTENT also derives a CUSTOMER-LEGIBLE
+mirror: a 3–6 sentence announcement-form restatement of what ships
 (mockups for UI work), recorded as an R-line the customer could
-grade, and reconciliations reference it: every other surface of
-the record is record-speak a non-technical customer cannot
-grade. A full-spec INTENT derives a near-empty complement, and
-a deviation from the spec's letter escalates as reconciliation,
-never a silent derivation. A derived
+grade, which reconciliations reference; a full-spec INTENT derives a
+near-empty complement, and a deviation from the spec's letter
+escalates as reconciliation, never a silent derivation.
+
+A derived
 requirement is inherited text (a backlog item, a prior session's
 plan, intake derivation), not operator ground: when the run's own
 investigation contradicts its letter, the desk amends it by
@@ -395,23 +358,23 @@ recorded recommendation advancing an unattended run (the [READY]
 prompt's pattern); one advanced unattended stays OPEN —
 re-surfaced at each operator prompt and at the run's close —
 until the operator answers. An ask on OPERATOR-AUTHORITY ground —
-one only an operator line can satisfy: an exemption grant, a
-bound raise — cannot advance on a recommendation. It lands as an
-ordinary [PENDING] entry under its own id, its body naming the
-gate where it bites (gate names written defanged — the
-tag-literal rule), and it holds exactly what a live [PENDING]
-holds: work outside those gates continues, and the entry is what
-a resume read and the close find. The skill's mandated stops
-keep their own rules — budget exhaustion, preflight surfacing,
-an attended halt's clearing, the non-contracting prompt, the
-irreversible-unit hold; this class is none of them. Attended,
-the ask leads the next prompt as a labeled decision line;
-unattended it rides the close with the open reconciliations. An
-advance prompt's "y" answers loop advance only — a grant enters
-as the operator's line quoted in the clearing entry (`— basis:
-operator`), never inferred from an advance. An authority ask
-contests no text and skips the provenance trace. Escalation is
-PROVENANCE-GATED:
+one only an operator line satisfies: an exemption grant, a bound
+raise — cannot advance on a recommendation; it lands as an ordinary
+[PENDING] entry under its own id, its body naming the gate where it
+bites (gate names written defanged — the tag-literal rule), and
+holds exactly what a live [PENDING] holds: work outside those gates
+continues, and the entry is what a resume read and the close find.
+The mandated stops keep their own rules — budget exhaustion,
+preflight surfacing, an attended halt's clearing, the
+non-contracting prompt, the irreversible-unit hold; this class is
+none of them. Attended, the ask leads the next prompt as a labeled
+decision line; unattended it rides the close with the open
+reconciliations. An advance prompt's "y" answers loop advance only —
+a grant enters as the operator's line quoted in the clearing entry
+(`— basis: operator`), never inferred from an advance. An authority
+ask contests no text and skips the provenance trace.
+
+Escalation is PROVENANCE-GATED:
 before a question routes to the operator, trace the contested
 text to its origin. Operator words escalate as reconciliation;
 derived text — R-lines, inherited constraints, a run
@@ -420,23 +383,19 @@ instrument's policy — is desk work: amend or carry
 seam, never as a question. An operator-imposed hold is always
 theirs. Attended mode moves WHERE decisions are presented — the
 seams — never WHO makes them; a question the record can answer,
-asked anyway, spends the operator's one seat. A mid-run
-operator instruction that
-changes what the run is FOR appends at the record's END opening
-with the literal label `INTENT: `, its authority the operator's
-words — never inserted under the head: append-only is
-positional, and an insertion would shift every line number
-under a live `corrects` reference — and not an R-line: R-lines
-are derived text, operator words are not — and the desk states
-which live
-decisions it kills (a killed one takes the scopeless
-[INVALIDATED] route; the closure voids and the design
-re-enters). The label is what makes the landing machine-
-findable: every sweep and closure verdict LISTS the late
-INTENT lines it found (`late_intent`), and verify grades
-against the head plus every listed line — the tool, never
-memory or conversation, is what finds them; conversation is
-the one channel verify deliberately never reads.
+asked anyway, spends the operator's one seat. A mid-run operator instruction that changes what the run is FOR
+appends at the record's END opening with the literal label
+`INTENT: `, its authority the operator's words; never inserted under
+the head (append-only is positional: an insertion shifts every line
+number under a live `corrects` reference); not an R-line (R-lines
+are derived text, operator words are not); the desk states which
+live decisions it kills — a killed one takes the scopeless
+[INVALIDATED] route, the closure voids and the design re-enters;
+every sweep and closure verdict LISTS the late INTENT lines it found
+(`late_intent`), and verify grades against the head plus every
+listed line — the tool, never memory or conversation, finds them;
+conversation is the one channel verify never reads.
+
 (hypothesis) The record's one mutable surface is
 the header's Status and Phase fields, updated at each transition
 and at the verify verdict; everything below them is append-only.
@@ -479,40 +438,39 @@ lines<=<n> — basis: <citation>` / `SWEEP_EXEMPT: <code> line <n>
 `unit U<k> irreversible: <effect>`. The two attribution labels
 (`SKILL:`, `unit U<k> irreversible:`) carry NO near-miss class by
 recorded decision (a bare-word scan false-fires; attribution
-fields fail soft). The PRECEDENT LINE — one clause of the unit's
-design D-line (Stop rule), verbatim `follows <path>, judged
-sound`, `<path> is the problem, this unit's scope`, or `no
-precedent, first of its kind` — carries no lint class yet either:
-unread by any mechanized check, the design record and the brief are
-its only enforcement. A mistyped `SWEEP_EXEMPT:` fails safe —
-the hold it meant to net still blocks. DETECTION is wider
-than validity by design: the lint detects would-be machine
-tokens positionally — never by word-search — and anything
-detected that fails the exact literal lints as a near-miss
-violation; validity itself never relaxes. The detection
-surfaces, their exclusions (quoted lines and the requirement
-head above the first `## ` heading parse NO entries — operator
-words and report quotes never register), and each violation's
-class and repair form are settled in the executable spec (The
-tools); the verdict NAMES them, and the desk composes repairs
-from the verdict, never from memory. The lint is a tripwire
-over the observed slip space, not the guarantee — the contract
-is the literal, and a slip beyond the patterns is desk error.
-DEFANG lint is separate and scans the WHOLE file: an undefanged
-bracketed tag literal holds the sweep wherever it sits — in
-INTENT it is the enforcement of the hand-defang duty.
-Write the literal or expect the lint to say so.
+fields fail soft). The PRECEDENT LINE (one clause of the unit's design D-line; forms at
+Stop rule, "Each unit design also carries the PRECEDENT LINE")
+carries no lint class yet — unread by any mechanized check, the
+design record and the brief are its only enforcement.
+
+A mistyped `SWEEP_EXEMPT:` fails safe — the hold it meant to net
+still blocks. DETECTION is wider than validity by design: the lint
+detects would-be machine tokens positionally, never by word-search,
+and anything detected that fails the exact literal lints as a
+near-miss violation; validity never relaxes; the detection surfaces,
+their exclusions (quoted lines and the requirement head above the
+first `## ` heading parse NO entries — operator words and report
+quotes never register), and each violation's class and repair form
+are settled in the executable spec (The tools) — the verdict NAMES
+them and the desk composes repairs from the verdict, never from
+memory; the lint is a tripwire over the observed slip space, not the
+guarantee — the contract is the literal, a slip beyond the patterns
+is desk error. DEFANG lint is separate and scans the WHOLE file: an
+undefanged bracketed tag literal holds the sweep wherever it sits,
+in INTENT enforcing the hand-defang duty; write the literal or
+expect the lint to say so.
+
 Beside the write-set declarator: a correction appended under a
 write-set declarator's own id, whose latest EARLIER line for that id
 is a live `unit U<k> write-set: <path>` declaration, is refused
 (hold: `declarator-bookkeeping`) UNLESS the correcting line is itself
 a fresh `unit U<k> write-set: <path>` redeclaration BY THE SAME
-UNIT — under latest-line-wins, an ordinary bookkeeping correction
-there would become the id's resolved body and un-declare the path
-though a live declaration for it still stands, and a DIFFERENT
-unit's redeclaration under the same id is exactly that ordinary
-correction in the exempted shape's clothing. The repair is the
-supersede-whole form: restate the full write-set under the same id
+UNIT; why: under latest-line-wins an ordinary bookkeeping correction
+would become the id's resolved body and un-declare the path while a
+live declaration stands, and a DIFFERENT unit's redeclaration under
+the same id is that ordinary correction in the exempted shape's
+clothing; the repair is the supersede-whole form: restate the full
+write-set under the same id
 AND THE SAME UNIT, with a trailing `(corrects line <n>)` naming the
 ORIGINAL target, never this line's own number — the ONE legal slot
 for the token on a write-set declarator line (the path-field
@@ -536,8 +494,8 @@ near-miss check exempts exactly this trailing form, nothing wider)
 - a basis citing ANOTHER record's entries names the record (tracker
   path or run name) before its ids, never a bare id — a bare id
   always resolves in THIS run's namespace, so once this run mints
-  its own same-numbered id a foreign citation silently rests on it
-  (P32, F66); the live-basis scan ignores every id under an active
+  its own same-numbered id a foreign citation silently rests on it;
+  the live-basis scan ignores every id under an active
   record-name token — a token, quoting/bracketing punctuation
   (`()[].,;:`) stripped before the match, containing `/` AND ending
   `.md` or `.md:`, or the two-token label `run <name>:` — never a
