@@ -8294,3 +8294,196 @@ Re-review next (brief docs/directives/2026-09-11-opus-rereview-0286-brief.md),
 owed per criterion 2. The reviewer's reading scope excludes dev-notes/
 and docs/, so the C4c field test's registered prediction cannot steer
 where it looks.
+
+## 2026-09-11 — 0.2.86 re-review dispositions (fresh-opus, lane opus-rereview-0286; verdict: PIN MOVES — 0 blocking, 1 notable, 5 nits, 2 gaps)
+
+Suite at 8359cd4 (plugin/ and tools/ identical to 378aa68): 522
+passed, 0 skipped (reviewer's run; the desk's own run at 378aa68 read
+the same). Realized per the reviewer's old/new probes: B1, N1, N2,
+N3, T1, T3, T4; T2 partly; st-14 items 1, 5 and 6, item 4 present but
+mis-sectioned. The batch's new tests run against the OLD tool give 8
+failed (every defect case) and 10 passed (every control).
+
+- **Finding 1 (notable; PRE-LAP — the phrase is present once at both
+  49e9529 and HEAD, desk grep).** apply_supersession's
+  declarator-bookkeeping violation TEXT and docstring say "repair with
+  a fresh id", which the grammar refuses (corrects-nothing), against
+  the page and the violation's own `repair` field. Loud; costs a desk
+  one repair round per occurrence. Booked into st-30. Dispatcher's
+  lesson: N3's FIX enumerated two sites (page, repair constant) where
+  it should have stated the outcome — every text prescribing this
+  repair agrees — the outcomes-first brief rule, missed twice today.
+- **Finding 2 (nit).** st-14 item 4's pointer reads "(Implementation,
+  below)"; P24 clause (b) sits under The attack. Booked into st-30.
+- **Finding 3 (nit).** The `--threshold < 1` refusal does not cover the
+  header carrier: `tripwire 0` in the Budget line still gives
+  TRIPWIRE_FIRES at threshold 0, old and new. Tool behaviour. Booked
+  into st-30.
+- **Finding 4 (nit).** filter's new GIT_ERROR halt carries a `sha`
+  field, which the page's override routes as landed commits (the same
+  shape already exists in PIN_UNREADABLE and verify-gate's GIT_ERROR);
+  the moving-ref pairing is read from code, unverified. Booked into
+  st-30.
+- **Finding 5 (nit).** T2's docstring, and two sibling docstrings on
+  the same derivation, still over-claim: a literal code in a TUPLE
+  return is invisible too (planted tuple passes both coverage checks;
+  a planted list fails them). Booked into st-30.
+- **Finding 6 (nit).** TestRNcRecordNameTokenPunctuationStrip's
+  docstring still describes ambiguous-citation as live. Booked into
+  st-30.
+- **Gap: `pinned` echoes the raw sha argument** (PINNED_APPEND_ONLY with
+  an abbreviated sha, old and new). P31's body scoped item (1) to
+  filter alone ("exactly this one further site", BACKLOG.md:526-532),
+  so this is a new site of the same class, not an st-14 miss. Booked
+  into st-30.
+- **Gap: scratchpad collision (reviewer's own report).** Both opus
+  lanes ran under the session-shared scratch root; the re-review
+  overwrote the first review's probe.py and removed its old/new copies.
+  No booked evidence lost — the fixture bodies were already quoted
+  into the 0.2.86 brief. Dispatcher's lesson: "your OWN scratchpad" is
+  not an assignment where a subagent's scratch root IS the session's;
+  the dispatch skill's slugged-name rule for untracked outputs binds
+  sequential read-only lanes too, so the brief names
+  `<scratchpad>/<lane-name>/`.
+
+Release decision: the reviewed object ships as 0.2.86, and nothing
+edits the payload between this verdict and the pin move. Findings 1-6
+and the `pinned` gap are not built now: findings 3 and 4 and the
+`pinned` gap change tool behaviour and would owe their own checkpoint
+round, which this residue alone does not justify (economics lens,
+attack timing).
+
+C4c FIELD TEST OUTCOME: UNDECIDED — the re-review returned zero
+blocking or notable DESIGN-kind findings on this lap's change surface;
+its one notable sits on pre-lap surface. Counted, not graded: st-14 ×3
+nits (unflagged), T2 ×1 nit (unflagged), finding 6 ×1 nit (a stale
+docstring left by B1, flagged, implementation-kind). No datum. Per the
+registration the test repeats at the next lap that has an owed round,
+and st-10's blocker predicate is narrowed so that only a confirming or
+refuting outcome line clears it. (Predicate proven after this line
+landed: exit 1 on this file; a planted confirming line matches, exit 0.)
+
+## 2026-09-11 — 0.2.86 release gate (statiker-4d): tenet records for every mint the pin carries, lint disposition, live-run check
+
+The pin moves 0.2.82 → 0.2.86 and carries the 0.2.84 mint batch plus
+st-27. None of those mints had an OBSERVATIONS entry recording its
+tenet-list check (case-insensitive search of this file: the last
+enumerated checks sit in the 2026-08-17 entries; nothing after them for
+these mints), so the release desk records them here, before the pin
+moves, each against PLAN.md's live list (Mission and tenets, items 1-9,
+read at this desk): 1 investigation-led design; 2 sufficiency =
+dispatchable; 3 the five forcing points inviolable; 4 decisions lock
+before implementation; 5 autonomy; 6 economics (turns and corpus lines);
+7 convergence circuit, gradeable form; 8 medium (exact → mechanism with
+red-first battery, judgment → prose); 9 placement (precedent line).
+Provenance and precedent read from each mint commit's own message body
+and its ITEMS.md slots; line costs from `git show --numstat`.
+
+- **st-2 / P38 (307dd4c; tool +38, page 0).** Provenance: run F147's
+  declare/redeclare/corrects sequence (BACKLOG.md:47). 1 pass (designed
+  in the P38 body, 2026-08-26); 2 pass (slots promoted, the lane built
+  without redesign); 3 pass (no forcing point touched; a hold at the
+  record seam); 4 pass (settled 08-26, built 09-10); 5 pass (a refusal
+  the desk repairs itself, no operator seat); 6 pass — cost stated: its
+  repair shape drew B4, RB2, RN-a and N3 across three rounds, and its
+  original "fresh id" wording survives in the violation text (st-30
+  item 1); 7 pass (a machine-read hold inside the record); 8 pass
+  (mechanism, red run in the commit); 9 pass (follows apply_supersession's
+  complaint codes raised on the correcting line — corrects-nothing,
+  multi-corrects-token).
+- **st-3 / P37 (622d3b6; tool +26, page 0).** Provenance: the P37 run
+  incident (an unsheddable violation cost an operator SWEEP_EXEMPT round
+  trip). 1 pass; 2 pass; 3 pass; 4 pass; 5 pass (removes that operator
+  round trip); 6 pass (no page lines); 7 pass (the shed keys on a
+  recorded outcome); 8 pass (two-fixture battery with a regression
+  control against blanket amnesty); 9 pass (follows latest-line-wins:
+  the clean retry IS the repair).
+- **st-5 / P35 (1bfbb46; tool +10, page 0).** Provenance: F91 (the
+  prescribed repair moved the hold one line down). 1-5 pass; 6 pass (no
+  page lines); 7 pass; 8 pass (fixpoint proof, red-first); 9 pass
+  (follows REPAIR_FORMS' composable repair texts; the terminating basis
+  names the prescribing verdict).
+- **st-4 / P34 (a09d800; tool +7, page 0).** Provenance: the desk's
+  measurement of the page form leaving irreversible_units empty. 1 pass;
+  2 pass; 3 pass; 4 pass; 5 not-applicable (no seat involved); 6 pass
+  (the cheaper side changed: tool widened, page unchanged); 7 pass;
+  8 pass (red via temporary revert of the new scan); 9 pass (the page
+  is the definition, the tool the problem and this unit's scope).
+- **st-24 (d5ef7c4; page +5/-1, tool +44).** Provenance: run 3 F183 (U2's
+  landing annotation composed by hand at close). 1 pass; 2 pass; 3 pass;
+  4 pass; 5 pass (no hand reconstruction at close); 6 pass — +4 net page
+  lines, one sentence naming the hold; 7 pass (attribution enters the
+  record at landing); 8 pass (sweep hold + red-first fixture; its reach
+  widened at 0.2.84 review N2); 9 pass (follows the sweep-hold family
+  with a REPAIR_FORMS entry).
+- **st-6 / P36 (01f2f4b; page +6/-1, tool +18).** Provenance: F98 (pin
+  inside a created tree) and run 3 D39 (execute-set collision). 1-5
+  pass; 6 pass — +5 net, replacing an over-claiming label rather than
+  adding machinery; 7 pass; 8 pass (scheduling judgment stays the
+  desk's prose; the tool prints only its predicate, guarded by a
+  must-not-appear test); 9 pass (follows the waves verdict's own output
+  with its predicate stated).
+- **st-7 / P32 (0bca5e9; page +9, tool +58).** Provenance: F66 (a seed
+  entry silently resting on this run's same-numbered ids). 1-5 pass;
+  6 pass — cost stated: the batch's most expensive mint, drawing
+  0.2.84 review B1/B2/B6, re-review RN-b/RN-c, and the ambiguous-citation
+  mint later withdrawn; 7 pass; 8 pass (the prose basis rule is primary
+  because an id below this run's max is undetectable by count; the
+  foreign-id-suspect hold is the mechanism for the detectable case —
+  the split its own done-criterion stated); 9 pass (basis_id_citations
+  built beside cited_ids, leaving trend's read untouched).
+- **st-8 / P33 re-targeted (c214b30; page +7/-1, tool 0).** Provenance:
+  run 3's eleven PASS verdicts unusable at resume, both legs re-run.
+  1 pass (re-targeted on the arrived datum; candidates a and b recorded
+  dead); 2 pass; 3 pass (strengthens forcing point 5 at its seam); 4 pass;
+  5 pass; 6 pass — +6 net, saving a full leg re-run on resume; 7 pass
+  (results enter gate form the same turn); 8 pass (seam conduct in prose;
+  the mechanism reused is verify-gate's sha check); 9 pass (follows
+  verify-gate and the V-line).
+- **st-23 (63a3508; page +6/-1, tool 0).** Provenance: run 3 F175 (a
+  docstring-only red run). 1-5 pass; 6 pass — +5 net; it also carried
+  the wrap flag below; 7 pass (a recorded red is re-executable, hence
+  attackable); 8 pass with residue (a recording mandate in prose; the
+  gate-legible token deferred to st-26 on its field-test trigger, per
+  the mint-timing convention); 9 pass (follows the attack-pin clause's
+  design-time red mandate, extended to execution time).
+- **st-25 (2baa349; page +8/-1, tool 0).** Provenance: arm A's three
+  parallel harnesses (nobody wrote "like verify_deployed_sha.py").
+  1-3 pass; 4 pass (the precedent is decided at design, before any
+  brief); 5 pass; 6 pass — +7 net; 7 pass (one line a fresh reader can
+  check); 8 pass with residue (mechanized reader deferred to st-26);
+  9 pass (it carries tenet 9 itself, PLAN.md:595-617).
+- **st-27 (34b33ec; page +11, tool 0).** Provenance: run 3's zero-delta
+  V2 over all 21 R-lines (the economics convention's named datum) and
+  the operator's 2026-09-10 challenge. 1 pass; 2 pass; 3 pass — the
+  floor holds: V1 and the isolated leg stay whole, and any DESIGN repair
+  forces the full V2; 4 pass; 5 pass; 6 pass — +11 page lines against
+  re-running untouched R-lines every lap; 7 pass (carried-forward
+  verdicts state their per-line reason); 8 pass (reach is judged by the
+  leg, correctly prose); 9 pass (follows verify-gate's
+  VERIFY_COPY_STALE disposition). Repaired since: RN-e and T1.
+- **ambiguous-citation (0.2.85 RN-b).** Tenet check moot: the mint was
+  withdrawn at 0.2.86 B1 and ships in no released version.
+
+No tenet fails. The eleven mints' page cost, summed from their own
+numstat above: +52 added, -5 removed, +47 net SKILL.md lines;
+operational lines read 1765 at release. Consumer: the compression
+pass, st-29.
+
+Release checklist, executed at 8359cd4 (payload identical to 378aa68):
+- Repo Verify block: `python3 -m pytest tools/ -q` → 522 passed, 0
+  failed, 0 skipped; operational lines 1765 (no gate); payload inventory
+  `statiker` only.
+- skill-lint (skill-craft 2.2.4, `--diff-base d05b074`) over SKILL.md and
+  references/evidence.md: 1 blocking flag, 10 singleton warnings
+  (non-blocking). The flag: SKILL.md:1303 wraps at 88 columns (limit
+  72), introduced by 63a3508 (st-23). ACCEPTED for this release, reason:
+  a one-line prose wrap with no semantic effect, whose fix would be an
+  unreviewed payload edit after the clean verdict plus a 0.2.87 bump
+  (0.2.86 is already on origin). Moved into st-30 as item 8.
+- Release-during-live-run check: every statiker tracker under ~/dev is
+  closed (canonical-market-identity FAILED; canonical-frame-sign-repair
+  COMPLETE; canonical-market-identity-u2 COMPLETE), and the session
+  listing shows no statiker desk session — no desk needs a restart.
+- Version-bump check: plugin.json 0.2.86, installed pin 0.2.82
+  (gitCommitSha d05b074).

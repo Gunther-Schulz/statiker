@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 8
+added: 9
 compacted: 0
 
 ## st-2
@@ -139,6 +139,8 @@ amended-write-set: 2026-09-11 plugin/skills/statiker/SKILL.md, CLAUDE.md, dev-no
 amended-done-criterion: 2026-09-11 per docs/directives/2026-09-11-p28-design-statiker-ba.md section 9: (i) the C4c field test over the 0.2.86 lap's dispositions, prediction registered in OBSERVATIONS 2026-09-11 before the re-review dispatched, graded and its outcome line recorded; (ii) on CONFIRM: C4a lands in SKILL.md's Verify demand list and C4b/C4c in CLAUDE.md from the design's DRAFT clauses under skill-craft, with C4b's wording separating a NEW token/hold/predicate from a repair restoring an existing predicate's stated reach; criterion-2 opus review passed; OBSERVATIONS mint entry enumerating tenets 1-9. On REFUTE: st-10 re-parks to design citing the datum. On UNDECIDED: the test repeats at the next lap with an owed round
 amended-evidence: 2026-09-11 BACKLOG.md:279-317 (P28 body); OBSERVATIONS.md:7832 (D38 post-round seam); review series on the 0.2.84/0.2.85 batch, blocking 6, 2, 1 (OBSERVATIONS 2026-09-10/2026-09-11 disposition sections); design pass docs/directives/2026-09-11-p28-design-statiker-ba.md (9209367, statiker-ba, fable): SPLIT verdict, executed-evidence closure refuted as class-closer, recognition and routing rule-shaped (C4a/C4b/C4c), grading stays with the fresh round
 amended-blocked-by: 2026-09-11 evidence grep -q 'C4c FIELD TEST OUTCOME:' /home/g/dev/Gunther-Schulz/statiker/dev-notes/OBSERVATIONS.md
+amend-reason: 2026-09-11 field test returned UNDECIDED at the 0.2.86 re-review (no design-kind finding on the lap's surface); predicate narrowed and anchored so the UNDECIDED line does not unblock; the test repeats at the next lap with an owed round
+amended-blocked-by: 2026-09-11 evidence grep -qE '^C4c FIELD TEST OUTCOME: (CONFIRM|REFUTE)' /home/g/dev/Gunther-Schulz/statiker/dev-notes/OBSERVATIONS.md
 
 ## st-11
 grade: NEW
@@ -313,3 +315,15 @@ write-set: plugin/skills/statiker/SKILL.md, plugin/skills/statiker/scripts/stati
 done-criterion: UNKNOWN
 evidence: LEDGER.md decision 'does the SKILL.md size problem get a references/ split' (operator-settled method order: delete/tighten, precipitate to tool checks, disclosure only for branch-gated content; a references/ move is an explicit single-home amendment); the five OBSERVATIONS consumer entries above; st-19 names this pass as its candidate mechanism pass
 blocked-by: st-11
+
+## st-30
+grade: READY
+requirement: 0.2.86 re-review residue (dev-notes/OBSERVATIONS.md, 2026-09-11 re-review dispositions): (1) declarator-bookkeeping violation text and apply_supersession docstring prescribe 'repair with a fresh id', which the grammar refuses; (2) st-14's re-lock pointer names Implementation, clause (b) sits in The attack; (3) Budget header 'tripwire 0' still fires; (4) filter's GIT_ERROR halt carries a sha field the page routes as landed; (5) three coverage docstrings over-claim (a literal code in a tuple return is invisible); (6) TestRNc docstring names ambiguous-citation as live; (7) pinned echoes the raw sha argument — record: opus-rereview-0286 report
+goal: tend
+write-set: plugin/skills/statiker/scripts/statiker_record.py, plugin/skills/statiker/SKILL.md, tools/test_statiker_record.py, tools/test_contract.py
+done-criterion: per the reviewer's executed pairs: (1) violation text and docstring name the same-id, same-unit supersede-whole form, red: following today's text gives corrects-nothing; (2) the pointer reads '(below)'; (3) a Budget-header tripwire below 1 is refused like --threshold, red: 'tripwire 0' gives TRIPWIRE_FIRES today; (4) filter's error halts carry no sha field, red: --sha 'HEAD^{tree}' prints one today; (5) and (6) the docstrings state the derivation's actual reach; (7) pinned resolves the sha once as filter now does, red: an abbreviated sha is echoed today. Rides the next version bump under a checkpoint review (items 3, 4 and 7 are machine-read)
+evidence: opus-rereview-0286 executed pairs, findings 1-6 and the pinned gap, recorded in OBSERVATIONS 2026-09-11
+blocked-by: NONE
+amend-reason: 2026-09-11 the 0.2.86 release's skill-lint wrap flag, accepted for that release, joins the residue
+amended-requirement: 2026-09-11 0.2.86 re-review residue plus the release lint flag (dev-notes/OBSERVATIONS.md, 2026-09-11 re-review dispositions and release gate): (1) declarator-bookkeeping violation text and apply_supersession docstring prescribe 'repair with a fresh id', which the grammar refuses; (2) st-14's re-lock pointer names Implementation, clause (b) sits in The attack; (3) Budget header 'tripwire 0' still fires; (4) filter's GIT_ERROR halt carries a sha field the page routes as landed; (5) three coverage docstrings over-claim (a literal code in a tuple return is invisible); (6) TestRNc docstring names ambiguous-citation as live; (7) pinned echoes the raw sha argument; (8) SKILL.md:1303 wraps at 88 columns (skill-lint blocking flag, from 63a3508) — record: opus-rereview-0286 report, skill-lint at the 0.2.86 release
+amended-done-criterion: 2026-09-11 per the reviewer's executed pairs: (1) violation text and docstring name the same-id, same-unit supersede-whole form, red: following today's text gives corrects-nothing; (2) the pointer reads '(below)'; (3) a Budget-header tripwire below 1 is refused like --threshold, red: 'tripwire 0' gives TRIPWIRE_FIRES today; (4) filter's error halts carry no sha field, red: --sha 'HEAD^{tree}' prints one today; (5) and (6) the docstrings state the derivation's actual reach; (7) pinned resolves the sha once as filter now does, red: an abbreviated sha is echoed today; (8) skill-lint reports 0 wrap flags on SKILL.md. Rides the next version bump under a checkpoint review (items 3, 4 and 7 are machine-read)
