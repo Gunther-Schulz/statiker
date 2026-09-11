@@ -5174,8 +5174,12 @@ class TestRNcRecordNameTokenPunctuationStrip(unittest.TestCase):
     the same punctuation set before the record-name match. Red arm:
     reviewer's comma pair. Tested directly against
     basis_id_citations() to isolate the punctuation fix from RN-b's
-    ambiguous-citation behavior (both apply to the same fixture
-    shape)."""
+    ambiguous-citation hold (both applied to the same fixture shape;
+    st-30(6), 0.2.86 re-review finding 6: ambiguous-citation itself
+    was WITHDRAWN at 0.2.86 B1 — TestB1AmbiguousCitationWithdrawn,
+    above — this isolation choice predates that and stays correct
+    unchanged, since it targets basis_id_citations() directly rather
+    than the now-removed hold)."""
 
     def setUp(self):
         sys.path.insert(0, str(SCRIPT.parent))
