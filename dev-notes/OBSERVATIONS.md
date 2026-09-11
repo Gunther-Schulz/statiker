@@ -8820,3 +8820,79 @@ Grade: ACCEPTED as the lap-A build table.
   each TIGHTEN row's must-survive list is complete (judgment), and a
   census of readers citing the narration lap A drops (the dark
   lifecycle row).
+
+## 2026-09-11 — st-29 lap A stage 2 executed and graded (lane sonnet-lapA-0288, 0.2.88; pin holds at 0.2.87, checkpoint review owed)
+
+Commits 9670a40 (bump 0.2.87 → 0.2.88) … 7774046, fifteen, the lane's
+trailer on each (7774046: I9 rewrapped, whitespace only — the page is
+whitespace-normalized identical to a8d9d28). Desk-verified at the
+artifact (a8d9d28, and 7774046 for the rewrap), with its own
+instruments rather than the lane's: 68 of 69 TIGHTEN/DELETE rows
+applied (each row's full pinned text, whitespace-normalized, absent from
+the page; red control: a restored row is caught), the 69th, I9,
+standing verbatim as pinned under the desk's accept-as-is ruling; 87
+KEEP rows intact from their handles, A23 differing only by the ordered
+G2 fix; verdict-token set equal, 76 = 76 (regexes imported from the
+running tools/test_contract.py; red control: every occurrence of one
+token removed gives missing 1); pointer fixes realized ("0.68
+NARROWING" 0, the G3 form 1, "(Fire-born clauses, below)" 0); suite 537
+passed + 2 subtests; skill-lint exit 0, blocking 0; no body line over
+85 columns; operational lines 1621 (canonical, at 7774046) against the
+table's 1478 projection.
+
+Rulings: the 143-line overrun is ACCEPTED — the table's targets were
+estimates, rule 3 let rows keep their must-survive items over target,
+and a second pass over 68 rows for about 100 lines would spend a build
+and grading round lap B's precipitation makes largely moot. A third
+pointer fix (75c3fcd: "(Fire-born clauses, below)" → "(Fire-born and
+hypothesis clauses, below)") is ACCEPTED: the heading's actual name,
+surfaced when a rewrap put the wrapped phrase on one line and the
+dead-cite lint fired. I9 is ACCEPTED as pinned: its must-survive cell
+restates essentially the whole row, so only a ~4-line target was
+unmet. The lane first tightened it (b13d31e, acting on the desk's
+earlier combined fix message), then reverted it to pinned (a8d9d28,
+acting on the superseding ruling); the desk accepts a8d9d28 as the
+final page.
+
+Corrections recorded, each with the post-incident answers:
+- **Three TIGHTEN rows skipped (R27, R41, I9), caught at the desk,
+  not by the lane's verifier.** The stage-2 brief's checks were all
+  PRESENCE checks — KEEP text present, tokens present, must-survive
+  literals present — so a row the lane never touched passed every one
+  of them. Class: an instrument set with no assertion on what must NOT
+  appear, blind to the omission defect. Mint declined on
+  duplicate-home grounds: the global corpus already binds it (Fixing —
+  the cheap instrument across the class is an assertion on what must
+  NOT appear); the miss was the desk's brief composition. The lane
+  added the absence check (1b) mid-run.
+- **The lane's verdict-token red control proved nothing.** It renamed
+  one occurrence of a token that recurs, the set did not change, and
+  the report counted the control as passed. Class: a red control keyed
+  to occurrences under a set-valued predicate. The desk re-ran it with
+  every occurrence removed (above). Mechanism: judgment-shaped at the
+  lane; the desk's re-run is the check.
+- **Directives crossed a closing report again.** Both fix messages
+  reached the lane only after its five-part report; the stated
+  preconditions let it act on the still-valid one. Second instance
+  today (sonnet-lap-0287 the first); no change — the precondition
+  convention is doing its job, and the desk's own sweep, not the
+  lane's inbox, is what found the misses.
+- **Mid-paragraph exact-string edits leave wrap artifacts** (lane
+  lesson): the untouched prefix of a shared line stays on the new
+  text's first line. The lane's length scan caught four; a page-edit
+  brief carries a length scan as a routine check.
+- **The desk misread a diff and sent the lane a false claim.** Seeing
+  an uncommitted I9 edit after b13d31e, the desk read its added side as
+  new wording ("adds 'and it is recorded as'") and ordered a discard.
+  That side was the PINNED text: the lane was reverting b13d31e's
+  tightening under the accept-as-is ruling. The lane refused on the
+  directive's false precondition and reported the actual state, so
+  nothing was lost. Class: a derived claim about a diff's meaning
+  attached to an observed diff, never checked against the reference
+  that decides it (the pin). Mechanism: judgment-shaped at the desk; a
+  claim that a change adds or removes text is checked against the
+  pinned page before it becomes an instruction. The one real defect in
+  a8d9d28 was cosmetic: the revert re-wrapped "a design / decision" so
+  a line held only "design". A `^design$` grep returned zero for that
+  visibly present line — an instrument that missed a known positive —
+  and was not relied on.
