@@ -2109,9 +2109,19 @@ def waves_over_units(entries):
         m = UNIT_WRITE_SET_RE.match(e.body)
         if m:
             raw = m.group(2).strip()
+            # 0.2.85 N1: the recorded alias is the suffix-STRIPPED
+            # spelling, not the raw one — a sanctioned supersede-whole
+            # repair's raw spelling (`a.txt (corrects line <n>)`)
+            # otherwise printed as a distinct "spelling" of the same
+            # path it resolves to, though nothing about it is an
+            # alternate spelling a desk chose; stripped, it equals the
+            # normalized key and the entry drops out of `spellings`.
+            # (N2, next: this inline strip and _normalize_write_set_path's
+            # own strip become one shared helper.)
+            stripped = WRITE_SET_CORRECTS_SUFFIX_RE.sub("", raw)
             norm = _normalize_write_set_path(raw)
             write_sets.setdefault(m.group(1), set()).add(norm)
-            aliases.setdefault(norm, set()).add(raw)
+            aliases.setdefault(norm, set()).add(stripped)
     unplannable = sorted(known_units - write_sets.keys(),
                         key=lambda u: int(u[1:]))
     units = sorted(write_sets, key=lambda u: int(u[1:]))

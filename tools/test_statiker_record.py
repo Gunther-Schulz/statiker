@@ -4653,42 +4653,57 @@ class TestRB1WriteSetCorrectsSuffixSharedWithWaves(RecordFixture):
     own sanctioned supersede-whole repair for a write-set near-miss
     made a REAL collision on the underlying path read as disjoint,
     certifying two units that write the same file as parallel-eligible
-    instead of serializing them. Reviewer's pair: two units on
-    `a.txt`, one reaching it through the sanctioned repair; a control
-    where the repair's underlying path genuinely differs."""
+    instead of serializing them.
+    RE-POINTED (0.2.85 checkpoint review, disposition N1): the
+    original fixture targeted a CLEAN line (`wrong.txt`, no lint
+    violation of its own) rather than a real
+    write-set-path-near-miss, and never asserted `spellings` —
+    waves_over_units recorded the raw `group(2)`, corrects-suffix
+    included, as the alias, so the sanctioned repair printed
+    spellings `{"a.txt": ["a.txt", "a.txt (corrects line <n>)"]}`
+    though RB1's own FIX said spellings stays empty. FIX: the
+    recorded alias is the suffix-stripped spelling, so it equals the
+    normalized key and the entry drops out of `spellings`
+    (aliases.items() filtered to `rs != {n}`). Reviewer's pair: the
+    sanctioned repair of a REAL near-miss (`a.txt b.txt` corrected to
+    `a.txt`), one unit colliding with another's plain declaration;
+    a plain-declaration control with no corrects-suffix at all."""
 
-    def _tracker_with_repaired_declarator(self, path="a.txt"):
+    def _tracker_with_repaired_near_miss(self):
         prefix = (
-            f"- F1 [VERIFIED] unit U1 write-set: a.txt — basis: design\n"
-            f"- F2 [VERIFIED] unit U2 write-set: wrong.txt — basis: design\n")
-        n = self.lineno_of(prefix, "wrong.txt")
+            "- F1 [VERIFIED] unit U1 write-set: a.txt — basis: design\n"
+            "- F2 [VERIFIED] unit U2 write-set: a.txt b.txt — "
+            "basis: design\n")
+        n = self.lineno_of(prefix, "a.txt b.txt")
         body = prefix + (
-            f"- F2 [VERIFIED] unit U2 write-set: {path} "
-            f"(corrects line {n}) — basis: design\n")
+            f"- F2 [VERIFIED] unit U2 write-set: a.txt "
+            f"(corrects line {n}) — basis: the verdict\n")
         return body
 
     def test_collision_through_sanctioned_repair_still_serializes(self):
-        # the red case: U2's LIVE write-set line reaches a.txt only
-        # through the corrects-suffix form — the underlying path
-        # collides with U1's plain declaration and must serialize
-        body = self._tracker_with_repaired_declarator("a.txt")
+        # the red case: U2's near-miss line ("a.txt b.txt") is
+        # repaired via the sanctioned corrects-suffix form — the
+        # underlying path collides with U1's plain "a.txt" and must
+        # serialize, and the alias recorded for it is the
+        # suffix-stripped spelling, identical to the normalized key
+        body = self._tracker_with_repaired_near_miss()
         v = self.waves(body)
         self.assertEqual(v["verdict"], "WAVES_COMPUTED", v)
         by_units = [w["units"] for w in v["waves"]]
         self.assertEqual(by_units, [["U1", "U2"]], v)
         wave = v["waves"][0]
         self.assertTrue(wave["serialize"], v)
+        self.assertEqual(v["spellings"], {}, v)
 
-    def test_repair_to_a_genuinely_different_path_stays_disjoint(self):
-        # control: the corrects-suffix strip must not manufacture a
-        # collision where the underlying paths really differ
-        body = self._tracker_with_repaired_declarator("b.txt")
+    def test_plain_declaration_control_reports_no_spelling(self):
+        # control: no corrects-suffix at all — spellings stays empty
+        # on both sides of the fix
+        body = (
+            "- F1 [VERIFIED] unit U1 write-set: a.txt — basis: design\n"
+            "- F2 [VERIFIED] unit U2 write-set: a.txt — basis: design\n")
         v = self.waves(body)
         self.assertEqual(v["verdict"], "WAVES_COMPUTED", v)
-        by_units = sorted(w["units"] for w in v["waves"])
-        self.assertEqual(by_units, [["U1"], ["U2"]], v)
-        for w in v["waves"]:
-            self.assertFalse(w["serialize"], v)
+        self.assertEqual(v["spellings"], {}, v)
 
 
 # ------ 0.2.84 re-review RB2: declarator-bookkeeping tests SHAPE, not
