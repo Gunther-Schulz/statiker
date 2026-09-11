@@ -137,6 +137,18 @@ lap A stage 1: per-clause disposition table over SKILL.md at 769e7f2"
    body falls in exactly one row — paste uncovered and double-covered
    counts (both must be 0).
 
+## Commit plan
+
+Commit-blocking guards, each with the read that found it:
+- Global pre-commit (`core.hooksPath` →
+  `~/dev/Gunther-Schulz/dotfiles/git/hooks`; its payload-version check
+  at pre-commit :140-177, read at this desk) fires only on staged paths
+  under `plugin/`. Your one file is under `docs/`, so it does not
+  apply; no version bump is involved in this lane.
+- Global pre-push exists; you never push.
+- No repo-local hook.
+One commit, as stated under Deliverable. Trailer as stated in the Tail.
+
 ## Write boundaries
 
 You write ONE file: `docs/directives/2026-09-11-st29-lapA-clause-table.md`.
