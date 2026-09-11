@@ -26,11 +26,12 @@
   in `ITEMS.md` under the lifecycle plugin's tool
   (`.claude/lifecycle.json`; bookings via `lifecycle item add`,
   never hand-edited). `BACKLOG.md` is NOT retired: it remains the
-  body store the migrated entries point into (blob `a115998c`) and
-  stays writable only for arcs still recorded there (P29's run
-  bookkeeping). Retirement is decidable only when st-21 (consumer
-  migration) and st-22 (`## Done` ingestion, blocked on lifecycle
-  lc-72's recognizer fix) both close. Migration report:
+  body store the migrated entries point into (blob `a115998c`),
+  read-only: the last arc still recorded there (P29's run
+  bookkeeping, st-11) closed at the 0.2.86 release, 2026-09-11.
+  Retirement is decidable only when st-21 (consumer migration) and
+  st-22 (`## Done` ingestion, blocked on lifecycle lc-73's
+  duplicate-disposition fix) both close. Migration report:
   `docs/audits/migration-report-2026-09-10.md`.
 - **`dev-notes/clippy-lineage.md` is the lineage evidence register**
   — clippy-history Stichproben and the weakness ledger, loosely
