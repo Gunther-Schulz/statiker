@@ -615,66 +615,61 @@ The design is done when a decision-complete brief could be written
 from it — the dispatch skill §1 definition is the test, not a
 feeling. If writing the impl briefs would require deciding anything,
 the design is not done: design until it could be briefed.
-(hypothesis) [READY] also asks DECOMPOSITION-COMPLETENESS: is the
-head professionally complete — is there a requirement a competent
-shop would have derived that is still missing? A cheap self-check
-before pricing an attack round; the attack's decomposition mandate
-is the load-bearing grader, so nothing rests on this question
-beyond the easy catch. [READY] is
-recordable only when the record sweeps clean: no entry's latest line
-is [PENDING] (an assumption deliberately carried unverified
-gets its [AUTO-ACCEPTED] line, never left [PENDING]), no id appears
-as two live entries (duplicates are found by body-read, not tag
-grammar), and no live entry rests on an invalidated entry's
-content — the dead-basis read is a body-read covering the
-invalidation lines themselves: a missing clause list, or a dead
-clause without its named killer, holds the record from [READY].
-The record tool's `sweep --tracker <path>` runs FIRST at this
-seam: SWEEP_CLEAN clears the mechanical half only;
-SWEEP_HOLDS blocks [READY] on the computable slice
-(latest-line [PENDING]s, killer-less dead dispositions, live
-bases citing invalidated ids, grammar and defang lint — a lint
-hold on an appended line repairs by the `corrects line <n>`
-token, Implementation's form, the verdict naming each
-violation's class and repair form), and its
-verdict carries the clause-disposition union the dead-basis read
-consumes; the residue the tool NAMES — dead-basis body-reads, the
-duplicate-id body-read, restatement adoption checks — is the
-judgment slice, still desk work. An open [PENDING]
-under a claimed [READY] is
-the premature-call shape.
+`(hypothesis)` [READY] also asks DECOMPOSITION-COMPLETENESS — is the
+head professionally complete, or is a requirement a competent shop
+would have derived still missing; a cheap self-check before pricing
+an attack round; the attack's decomposition mandate is the
+load-bearing grader, so nothing rests on this question beyond the
+easy catch.
+
+[READY] is recordable only when the record sweeps clean: no entry's
+latest line is [PENDING] (an assumption deliberately carried
+unverified gets its [AUTO-ACCEPTED] line, never left [PENDING]); no
+id appears as two live entries (found by body-read, not tag
+grammar); no live entry rests on an invalidated entry's content —
+the dead-basis read is a body-read covering the invalidation lines
+themselves: a missing clause list, or a dead clause without its
+named killer, holds the record from [READY]. `sweep --tracker
+<path>` runs FIRST at this seam: SWEEP_CLEAN clears the mechanical
+half only; SWEEP_HOLDS blocks [READY] on the computable slice
+(latest-line [PENDING]s, killer-less dead dispositions, live bases
+citing invalidated ids, grammar and defang lint — a lint hold on an
+appended line repairs by the `corrects line <n>` token,
+Implementation's form, the verdict naming each violation's class and
+repair form); its verdict carries the clause-disposition union the
+dead-basis read consumes; the residue the tool NAMES — dead-basis
+body-reads, the duplicate-id body-read, restatement adoption
+checks — is the judgment slice, still desk work. An open [PENDING]
+under a claimed [READY] is the premature-call shape.
+
 A declared exemption nets a matching hold out of the blocking set
-before SWEEP_HOLDS is decided: a labeled `SWEEP_EXEMPT: <code>
-lines<=<n> — basis: <citation>` or `SWEEP_EXEMPT: <code> line <n>
-— basis: <citation>` line — INTENT:'s and
+before SWEEP_HOLDS is decided: both labeled forms VERBATIM
+(`SWEEP_EXEMPT: <code> lines<=<n> — basis: <citation>` and
+`SWEEP_EXEMPT: <code> line <n> — basis: <citation>`) — INTENT:'s and
 SKILL:'s sibling, same body-region placement, same field-not-gate
 treatment — moves every violation of that CODE at a covered line
 into the verdict's `exempt_holds` field (each carrying the
-exemption's own declaring line), frozen at declaration — the
-coverage clamps at the declaring line itself, so nothing
-appended after the declaration is ever netted, whatever `<n>`
-says: a violation at any line GREATER than min(`<n>`, the
-declaring line) blocks untouched. An exemption is OPERATOR
-authority, carried in the mandatory `— basis:` tail (the
-operator's line quoted, or the id of the entry
-recording their direction) — the tool nets nothing from a
-citation-less declaration. A desk never exempts its own gate's
-holds on its own judgment,
-and an unattended run's unexemptible holds ride the close
-instead. What the guard VERIFIES is the exemption's BOUNDS — the
-code, the frozen coverage, everything outside it still firing;
-the
-legitimacy judgment belongs to the cited authorization.
-Exemptible holds are FORM DEBT only. Defang-class holds
-(`tag-literal-in-body`) are never exemptible —
-the tool refuses the netting — because an undefanged tag literal
-holds every later sweep correctly, for the run's life (The
-record); and LIVE-WORK holds (`pending-latest`) are never
-exemptible either: the no-[PENDING] gate holds unread legs open
-mechanically, and a netting that reached it would unlock
-[READY], the closing [ZERO-DELTA], and the Verify dispatch in
-one line. `exempt_holds` is enumerated in the close beside the
-[AUTO-ACCEPTED] entries: netted is never invisible.
+exemption's own declaring line), frozen at declaration — coverage
+clamps at the declaring line itself, so nothing appended after it is
+netted whatever `<n>` says: a violation at any line GREATER than
+min(`<n>`, the declaring line) blocks untouched. An exemption is
+OPERATOR authority carried in the mandatory `— basis:` tail (the
+operator's line quoted, or the id of the entry recording their
+direction) — the tool nets nothing from a citation-less declaration.
+A desk never exempts its own gate's holds on its own judgment, and
+an unattended run's unexemptible holds ride the close instead. The
+guard VERIFIES the exemption's BOUNDS (code, frozen coverage,
+everything outside still firing) — legitimacy belongs to the cited
+authorization; exemptible holds are FORM DEBT only. Defang-class
+holds (`tag-literal-in-body`) are never exemptible — the tool
+refuses the netting — because an undefanged tag literal holds every
+later sweep correctly for the run's life (The record); LIVE-WORK
+holds (`pending-latest`) are never exemptible — a netting reaching
+the no-[PENDING] gate would unlock [READY], the closing
+[ZERO-DELTA], and the Verify dispatch in one line; `exempt_holds` is
+enumerated in the close beside the [AUTO-ACCEPTED] entries: netted
+is never invisible.
+
 A FORM-code hold — `superseded-block-form`, `basis-missing`,
 `tag-literal-in-body`, `clause-unparsed` — additionally nets against
 its own code's MINT VERSION: each carries a rule→version entry in a
@@ -699,48 +694,48 @@ is. No new
 verdict name: SWEEP_CLEAN,
 SWEEP_HOLDS, and every downstream gate consult inherit the netted
 set with no separate git-tool change.
-Record `Status: [READY]` with the impl units enumerated, each
-naming its red-first pin — and a pin DISCRIMINATES: red on the
-current state, green only through the fix; a criterion the
-defective state already satisfies verifies nothing, and a
-renumbering that drops a unit's pin clause is a silent unpin (both
-observed as a round's highest finding). Each unit design also
-carries the PRECEDENT LINE, one clause of the unit's design D-line,
-one per unit, verbatim form `follows <path>, judged sound`, `<path>
-is the problem, this unit's scope`, or `no precedent, first of its
-kind`, written in the design record and traveling into the brief
-unchanged — never left implicit: unstated, a dispatched
-implementer or a successor cannot find it (arm A's three
-harnesses — nobody wrote "like verify_deployed_sha.py", so nobody
-did); stated, it is a claim a fresh reader can check. Each unit is also
-classified by the reversibility of its EFFECT, not its diff: one
-whose green state includes something git cannot undo — a schema
-or data migration, an external write, a publish/push/send, a
-deletion outside the write-set — is tagged irreversible BESIDE
-its enumeration, as the BARE label line `unit U<k> irreversible:
-<effect>` — the label-line class (`SKILL: `'s sibling), standing
-alone at column 0, never an entry and never a body opener, so it
-re-opens nothing under the closure predicate; the record tool
-surfaces the
-set as `irreversible_units` in sweep and closure verdicts —
-attribution, never a gate: unattended enforcement stays the hold
-entry. Every other bound in this skill limits waste; this
-one limits damage: unattended an irreversible unit never
-dispatches — it takes the hold entry (Implementation) and rides
-the close for the operator; attended it dispatches after the
-effect is named. (hypothesis) Unit ORDERING is
-integration-risk-first: where the design crosses boundaries, the
-first unit is a tracer bullet — the thinnest end-to-end slice
-wiring every boundary — so integration failures surface in the
-first landing, not at verify; horizontal layer-by-layer ordering
-is the exception and carries its reason in the enumeration.
-(hypothesis) A unit's edit commission is
-symbol-anchored — the target named by symbol, with a residue check
-proving it gone or changed — never a bare line range (line numbers
-may cite, never command): ranges decay
-as file and record evolve, and one commissioned range landed
-exactly on the guards a prior decision retained, deletable verbatim
-by a literalist implementer. UNATTENDED is
+Record `Status: [READY]` with the impl units enumerated, each naming
+its red-first pin; a pin DISCRIMINATES: red on the current state,
+green only through the fix; a criterion the defective state already
+satisfies verifies nothing; a renumbering that drops a unit's pin
+clause is a silent unpin.
+
+Each unit design carries the PRECEDENT LINE, one clause of the
+unit's design D-line, one per unit, in the three verbatim forms
+`follows <path>, judged sound`, `<path> is the problem, this unit's
+scope`, `no precedent, first of its kind`; written in the design
+record and traveling into the brief unchanged — never left implicit:
+unstated, a dispatched implementer or a successor cannot find it;
+stated, it is a claim a fresh reader can check.
+
+Each unit is also classified by the reversibility of its EFFECT, not
+its diff: one whose green state includes something git cannot
+undo — a schema or data migration, an external write, a
+publish/push/send, a deletion outside the write-set — is tagged
+irreversible BESIDE its enumeration as the BARE label line `unit
+U<k> irreversible: <effect>` — the label-line class (`SKILL: `'s
+sibling), alone at column 0, never an entry and never a body opener,
+so it re-opens nothing under the closure predicate; the record tool
+surfaces the set as `irreversible_units` in sweep and closure
+verdicts — attribution, never a gate: unattended enforcement stays
+the hold entry; every other bound limits waste, this one limits
+damage: unattended an irreversible unit never dispatches — it takes
+the hold entry (Implementation) and rides the close for the
+operator; attended it dispatches after the effect is named.
+
+`(hypothesis)` Unit ORDERING is integration-risk-first: where the
+design crosses boundaries, the first unit is a tracer bullet — the
+thinnest end-to-end slice wiring every boundary — so integration
+failures surface in the first landing, not at verify; horizontal
+layer-by-layer ordering is the exception and carries its reason in
+the enumeration.
+
+`(hypothesis)` A unit's edit commission is symbol-anchored — the
+target named by symbol, with a residue check proving it gone or
+changed — never a bare line range (line numbers may cite, never
+command): ranges decay as file and record evolve.
+
+UNATTENDED is
 the default: the recorded recommendation advances the run — no
 prompts, reconciliations surface in the close, the run's one
 touchpoint — but [READY] still opens with the desk's own INTENT
@@ -759,17 +754,16 @@ attended Mode's advance prompt and an operator-authority ask
 included; a version-mismatch abandonment (The record); a
 mandated stop (the operator-authority passage's enumeration); or
 the close. The delivered-report-reads-as-done momentum is the
-named failure shape. `Mode: attended` in the
-header (operator-declared at run start) presents the record and
-recommendation at [READY] instead, ENDING with one advance
-prompt — "(y) advances per the recommendation"; anything else
-is free-form override. Design decisions are never posed as
-choices; the prompt carries loop control only. Supervision is
-monotone: an operator appearing mid-run takes over on one
-recorded line and the run continues attended — adding
-supervision never needs justification, and an attended run
-never silently becomes unattended
-(hypothesis). Advancing locks the design — the LOCK. Its
+named failure shape. `Mode: attended` in the header (operator-declared at run start)
+presents the record and recommendation at [READY] instead, ENDING
+with one advance prompt — "(y) advances per the recommendation";
+anything else is free-form override; design decisions are never
+posed as choices — the prompt carries loop control only; supervision
+is monotone: an operator appearing mid-run takes over on one
+recorded line and the run continues attended; an attended run never
+silently becomes unattended. `(hypothesis)`
+
+Advancing locks the design — the LOCK. Its
 transaction machinery lives in the git tool; the desk's work is
 the composition, the one judgment instrument, and the record
 forms around the verdicts.
@@ -861,21 +855,17 @@ the unit rules' meanings — USAGE_ERROR, GIT_ERROR,
 INTERNAL_ERROR) halts the lock uncommitted, verdict line booked
 as a `record:` F-line, routed like HALT_STATE.
 Everything outside the pathspec is operator state — never
-committed, never unstaged, never restaged. Desk scratch
-belongs in the desk's own scratchpad, never the repo (the
-attacker rule's counterpart, Verify). A brief
-that asserts the tree claim (The
-attack's freeze scope, named there) names any tracked surface
-the claim cannot then cover as an
-exclusion (the drop and extras lists above are that
-list's mechanical floor; an operator-modified tracked path
-outside every lock-set path joins through this same rule) —
-the attacker
-reads an excluded path as outside
-the frozen surface, evidence of nothing; a brief that never
-asserts it needs no exclusions. A
-re-derived design re-enters here: new [READY], new sweep, new
-lock commit.
+committed, never unstaged, never restaged; desk scratch belongs in
+the desk's own scratchpad, never the repo (the attacker rule's
+counterpart, Verify); a brief asserting the tree claim (The attack's
+freeze scope) names every tracked surface the claim cannot cover as
+an exclusion — the drop and extras lists above are that list's
+mechanical floor, and an operator-modified tracked path outside
+every lock-set path joins through the same rule; the attacker reads
+an excluded path as outside the frozen surface, evidence of nothing;
+a brief that never asserts the claim needs no exclusions. A
+re-derived design re-enters here: new [READY], new sweep, new lock
+commit.
 
 ## The attack (forcing point 3)
 
