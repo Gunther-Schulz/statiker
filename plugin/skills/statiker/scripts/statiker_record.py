@@ -931,7 +931,13 @@ def basis_id_citations(basis: str):
             out.append((bare, record_name))
             prev_tok = tok
             continue
-        is_record_name = bool(RECORD_NAME_TOKEN_RE.search(tok))
+        # 0.2.85 RN-c: strip the same quoting/bracketing punctuation
+        # set id tokens strip (B1, above) before the record-name
+        # match — a trailing comma or bracket right after `.md` broke
+        # the `$`-anchored match and left the id it introduced
+        # unmarked as foreign.
+        is_record_name = bool(
+            RECORD_NAME_TOKEN_RE.search(tok.strip("()[].,;:")))
         if not is_record_name and prev_tok == "run" and tok.endswith(":"):
             is_record_name = True
         record_name = is_record_name

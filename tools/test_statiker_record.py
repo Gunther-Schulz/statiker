@@ -4815,6 +4815,45 @@ class TestRNbAmbiguousCitation(RecordFixture):
         self.assertNotIn("ambiguous-citation", self.violation_codes(v), v)
 
 
+# ---- 0.2.84 re-review RN-c: record-name token punctuation asymmetry
+
+class TestRNcRecordNameTokenPunctuationStrip(unittest.TestCase):
+    """0.2.84 re-review disposition RN-c (notable): id tokens strip
+    quoting/bracketing punctuation before the id fullmatch (B1,
+    0.2.84), but RECORD_NAME_TOKEN_RE never did — a trailing comma or
+    bracket sitting right after `.md` breaks the `$`-anchored match
+    (leading punctuation never did, since `.search()` has no `^`
+    anchor), so a comma-separated doc-path citation
+    (`tracker.md, F20`) went unrecognized as a record name while a
+    parenthesized one (`(tracker.md F20)`) already worked. FIX: strip
+    the same punctuation set before the record-name match. Red arm:
+    reviewer's comma pair. Tested directly against
+    basis_id_citations() to isolate the punctuation fix from RN-b's
+    ambiguous-citation behavior (both apply to the same fixture
+    shape)."""
+
+    def setUp(self):
+        sys.path.insert(0, str(SCRIPT.parent))
+        import statiker_record
+        self.m = statiker_record
+
+    def tearDown(self):
+        sys.path.remove(str(SCRIPT.parent))
+
+    def test_trailing_comma_after_md_is_recognized_as_record_name(self):
+        # the red case: a comma glued to `.md` broke the `$` anchor
+        self.assertEqual(
+            self.m.basis_id_citations("dev-notes/tracker.md, F20"),
+            [("F20", True)])
+
+    def test_leading_paren_control_already_worked(self):
+        # control: leading punctuation never broke `.search()` (no
+        # `^` anchor) — unaffected either side of the fix
+        self.assertEqual(
+            self.m.basis_id_citations("(dev-notes/tracker.md F20)"),
+            [("F20", True)])
+
+
 # ----------------------------- P24: the unforced landing annotation
 
 class TestP24LandingMissingHold(RecordFixture):
