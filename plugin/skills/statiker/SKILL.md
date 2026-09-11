@@ -136,8 +136,9 @@ re-runs.
 ## The record (forcing point 1)
 
 Append-only tracker at `.clippy/runs/<yyyy-mm-dd>-<slug>.md` —
-clippy's ledger convention. Of the stats reader's contract, the ADMISSION half (Status/Phase
-enums in the header window) is maintained and pinned; its per-metric
+clippy's ledger convention. Of the stats reader's contract, the
+ADMISSION half (Status/Phase enums in the header window) is
+maintained and pinned; its per-metric
 greps are NOT maintained against this grammar — SERIES metrics come
 from the record tool's `trend` verdict (unit parallelism from
 `waves`), never from the stats reader's counting literals. The
@@ -383,7 +384,9 @@ instrument's policy — is desk work: amend or carry
 seam, never as a question. An operator-imposed hold is always
 theirs. Attended mode moves WHERE decisions are presented — the
 seams — never WHO makes them; a question the record can answer,
-asked anyway, spends the operator's one seat. A mid-run operator instruction that changes what the run is FOR
+asked anyway, spends the operator's one seat.
+
+A mid-run operator instruction that changes what the run is FOR
 appends at the record's END opening with the literal label
 `INTENT: `, its authority the operator's words; never inserted under
 the head (append-only is positional: an insertion shifts every line
@@ -438,7 +441,9 @@ lines<=<n> — basis: <citation>` / `SWEEP_EXEMPT: <code> line <n>
 `unit U<k> irreversible: <effect>`. The two attribution labels
 (`SKILL:`, `unit U<k> irreversible:`) carry NO near-miss class by
 recorded decision (a bare-word scan false-fires; attribution
-fields fail soft). The PRECEDENT LINE (one clause of the unit's design D-line; forms at
+fields fail soft).
+
+The PRECEDENT LINE (one clause of the unit's design D-line; forms at
 Stop rule, "Each unit design also carries the PRECEDENT LINE")
 carries no lint class yet — unread by any mechanized check, the
 design record and the brief are its only enforcement.
@@ -536,8 +541,8 @@ The desk is this session, intended consumer a top-tier session model
 records decisions, writes briefs, grades; investigation and
 discovery legs go to cheaper-tier subagents on pointed
 decision-complete briefs — brief-writing is where hunt-judgment
-lives (Fire-born clauses, below); a leg's return is evidence,
-recorded with its basis.
+lives (Fire-born and hypothesis clauses, below); a leg's return is
+evidence, recorded with its basis.
 
 A leg is recorded [PENDING] at dispatch and resolved only by a
 body-read of its return — a stopped or past-horizon leg's output
@@ -754,7 +759,9 @@ attended Mode's advance prompt and an operator-authority ask
 included; a version-mismatch abandonment (The record); a
 mandated stop (the operator-authority passage's enumeration); or
 the close. The delivered-report-reads-as-done momentum is the
-named failure shape. `Mode: attended` in the header (operator-declared at run start)
+named failure shape.
+
+`Mode: attended` in the header (operator-declared at run start)
 presents the record and recommendation at [READY] instead, ENDING
 with one advance prompt — "(y) advances per the recommendation";
 anything else is free-form override; design decisions are never
@@ -905,8 +912,9 @@ path, which `seal-path --tracker <path> --round A<n>` prints
 state under `~/.local/state/statiker/seals/<repo-key>/`, keyed per
 repo and per tracker filename — never `~/.claude/` (that path shape
 draws permission dialogs on every access); the queue exists whether
-or not a seal was written — and at the round's return: LAND the queue's entries,
-SPEND the queue, THEN record the A-line — spend-before-A-line,
+or not a seal was written — and at the round's return: LAND the
+queue's entries, SPEND the queue, THEN record the A-line —
+spend-before-A-line,
 so a desk dying mid-sequence leaves a spent queue and a missing
 A-line (a re-read), never a landed-but-unspent queue (a
 re-land into an append-only record). The spend: append
@@ -969,7 +977,9 @@ The brief never carries the desk's reasoning — it transmits the
 producer's blind spots — and the rule reaches the ARTIFACT: an
 entry authored for the attacker's eyes (a weak-spot list, steering
 notes) is desk reasoning riding the never-filtered channel, and it
-frames the round it was meant to sharpen. Pre-round self-assessment is a sealed prediction, written before the
+frames the round it was meant to sharpen.
+
+Pre-round self-assessment is a sealed prediction, written before the
 round dispatches, to that round's `seal` species path; any successor
 desk re-derives it through the git tool's `seal-path --tracker
 <path> --round <A<n>|verify>` verdict (SEAL_PATH: every species'
@@ -1216,8 +1226,9 @@ entry-shaped line broke the grammar, and the entry set the
 closure computes is unsound until repaired. Repair is
 APPEND-ONLY, by the literal token `corrects line <n>` — one
 token per line — composed from the verdict (The record). The split
-is settled in the executable spec (The tools); its principles: a violation ON A MACHINE
-TOKEN indicts the semantics every gate reads, so the target is
+is settled in the executable spec (The tools); its principles: a
+violation ON A MACHINE TOKEN indicts the semantics every gate reads,
+so the target is
 superseded whole and the correcting line RESTATES the content,
 re-carrying whatever PARSED on the target — tag and scope
 both; a tag or scope change through repair lints as its own
