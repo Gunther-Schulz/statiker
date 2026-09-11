@@ -5310,5 +5310,156 @@ class TestPureFunctions(unittest.TestCase):
                             viol["repair"])
 
 
+# ---------------------------------------------------------- golden corpus
+
+GOLDEN_DIR = REPO_ROOT / "tools" / "golden-corpus"
+GOLDEN_TRACKER = GOLDEN_DIR / "tracker.md"
+GOLDEN_EXPECTED = GOLDEN_DIR / "expected-violations.json"
+
+
+class TestGoldenCorpusSweep(unittest.TestCase):
+    """st-28: a regression battery over `sweep`'s full hit SET on one
+    rich, COMMITTED tracker (tools/golden-corpus/tracker.md) — the
+    class of defect the 0.2.84 checkpoint review's B1/B2 slipped
+    through a 482-green suite: `basis_id_citations` silently NARROWED
+    across versions (a live-basis check went green on citation shapes
+    it correctly fired on at c19c829) because the battery's own tests
+    were derived from the new helper's intent — same-parentage
+    expectations move with the mutant, so nothing caught the
+    regression (dev-notes/OBSERVATIONS.md, 2026-09-10 checkpoint-review
+    dispositions, B1/B2). This corpus's incident rows (F20-F25, the
+    Block: basis-cites-invalidated section of tracker.md) are the
+    exact B1/B2 citation shapes: `(F20)`, `F20)`, `F20.`,
+    `tools/x.py:40 F20`, `the probe: F20`.
+
+    Coverage is DERIVED from the RUNNING module's RULE_MINT_VERSION
+    (imported, never a restated list — Fixing, what a check anchors
+    to: a coverage basis restated from the source it grades cannot
+    age loudly). Red on ANY code's hits shrinking or growing
+    (test_sweep_hit_set_matches_golden), and on a new code minted
+    with no corpus row (test_coverage_matches_rule_mint_version).
+
+    EXEMPT names codes `sweep` cannot emit alongside the other 28
+    codes in this ONE tracker file. A tracker carries exactly one
+    Status line and one Phase line; parse_tracker's header check is
+    if/elif per field — a field is either INVALID (its own
+    status-enum/phase-enum code) or VALID-and-past-ADMISSION_WINDOW
+    (admission-window), never both on the same field in one header.
+    This file's Status and Phase are both invalid, for status-enum's
+    and phase-enum's own positive rows, so admission-window has no
+    field left to fire from HERE — `sweep` emits it over a different
+    single-tracker file (a valid field placed past line 20), just
+    never jointly with this file's other 28 rows (measured: st-28
+    brief, docs/directives/2026-09-11-sonnet-lap-0287-brief.md).
+
+    Red-first proof (three arms, executed manually against the
+    committed fixture before this class was trusted — not re-run by
+    the suite itself, since arm 1 needs historical tool checkouts and
+    arms 2/3 mutate the working tree):
+      1. INCIDENT (shrink) — `sweep` over this fixture with the tool
+         extracted at 2baa349 (st-25) is MISSING all five
+         basis-cites-invalidated incident hits (lines 90-94); the
+         tool at c19c829 (0.2.82 re-review, the pre-regression
+         baseline) carries all five, matching HEAD/golden. Diffs from
+         codes minted after either commit are expected and were
+         observed (foreign-id-suspect, landing-missing: both minted
+         0.2.84, absent at c19c829); an additional expected diff
+         comes from an UNRELATED historical fix (0.2.85 RB1/N2, the
+         write-set declarator's `(corrects line <n>)` suffix
+         stripping) not yet present at either historical sha, which
+         changes how this fixture's declarator-bookkeeping block
+         (lines 31-33) parses under both old tool versions — noted,
+         not a gap, since the required incident rows (F21-F25)
+         behaved exactly as predicted.
+      2. GROWTH — dropping hold_violations' AUTO-ACCEPTED exemption
+         in the working tree makes hold-form ALSO fire on this
+         fixture's clean control (F19, line 28) — an ADDED hit vs
+         golden; reverted (`git checkout --`), `git diff` empty
+         after.
+      3. REACH — adding `"golden-probe-code": "0.0.0"` to
+         RULE_MINT_VERSION in the working tree makes
+         test_coverage_matches_rule_mint_version's own equality fail
+         (the new code has no corpus row); reverted the same way."""
+
+    EXEMPT = {
+        "admission-window": (
+            "requires a VALID Status or Phase header line placed past "
+            "ADMISSION_WINDOW (line 20); this corpus's one header "
+            "carries an invalid Status and an invalid Phase instead, "
+            "for status-enum's and phase-enum's own positive rows — a "
+            "field is either valid-and-late or invalid, never both in "
+            "one header, so no single tracker file emits all three "
+            "together. sweep emits admission-window over a different "
+            "single-tracker header (a valid field placed past line "
+            "20)."),
+    }
+
+    def setUp(self):
+        sys.path.insert(0, str(SCRIPT.parent))
+        import statiker_record
+        self.m = statiker_record
+        self.tracker_lines = GOLDEN_TRACKER.read_text().split("\n")
+
+    def tearDown(self):
+        sys.path.remove(str(SCRIPT.parent))
+
+    def _sweep_verdict(self):
+        r = subprocess.run(
+            [sys.executable, str(SCRIPT), "sweep", "--tracker",
+             str(GOLDEN_TRACKER)], capture_output=True, text=True, timeout=60)
+        lines = [l for l in r.stdout.split("\n") if l.startswith(VERDICT_PREFIX)]
+        self.assertEqual(
+            len(lines), 1,
+            f"expected one verdict line, stdout:\n{r.stdout}\nstderr:\n{r.stderr}")
+        return json.loads(lines[0][len(VERDICT_PREFIX):])
+
+    def _hit_set(self, verdict):
+        out = set()
+        for v in verdict.get("violations", []):
+            ln = v["line"]
+            text = (self.tracker_lines[ln - 1].strip()
+                    if 0 < ln <= len(self.tracker_lines) else "")
+            out.add((ln, v["code"], text))
+        return out
+
+    def test_sweep_hit_set_matches_golden(self):
+        verdict = self._sweep_verdict()
+        produced = self._hit_set(verdict)
+        if os.environ.get("STATIKER_GOLDEN_REGEN"):
+            golden_list = sorted(
+                [{"line": l, "code": c, "text": t} for (l, c, t) in produced],
+                key=lambda g: (g["line"], g["code"]))
+            GOLDEN_EXPECTED.write_text(
+                json.dumps(golden_list, indent=2, ensure_ascii=False) + "\n")
+            self.fail("golden regenerated — review `git diff "
+                      "tools/golden-corpus/expected-violations.json` "
+                      "before committing")
+        golden = {(g["line"], g["code"], g["text"])
+                 for g in json.loads(GOLDEN_EXPECTED.read_text())}
+        removed = golden - produced
+        added = produced - golden
+        if removed or added:
+            msg = ["golden-corpus sweep mismatch (parsed sets, not "
+                  "rendered text):"]
+            for l, c, t in sorted(removed):
+                msg.append(f"REMOVED (in golden, not produced): {c} @ "
+                          f"line {l}: {t}")
+            for l, c, t in sorted(added):
+                msg.append(f"ADDED (produced, not in golden): {c} @ "
+                          f"line {l}: {t}")
+            self.fail("\n".join(msg))
+
+    def test_coverage_matches_rule_mint_version(self):
+        golden = json.loads(GOLDEN_EXPECTED.read_text())
+        codes_in_golden = {g["code"] for g in golden}
+        self.assertEqual(codes_in_golden & set(self.EXEMPT), set(),
+                         "an EXEMPT code must never also carry a golden row")
+        self.assertEqual(
+            set(self.m.RULE_MINT_VERSION), codes_in_golden | set(self.EXEMPT),
+            "every RULE_MINT_VERSION code needs a golden row or an EXEMPT "
+            "entry — a new code with neither is exactly what this red-first "
+            "coverage assertion exists to catch")
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=1)

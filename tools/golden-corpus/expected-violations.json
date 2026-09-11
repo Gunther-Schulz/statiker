@@ -1,0 +1,167 @@
+[
+  {
+    "line": 2,
+    "code": "status-enum",
+    "text": "Status: bogus-status"
+  },
+  {
+    "line": 3,
+    "code": "phase-enum",
+    "text": "Phase: bogus-phase"
+  },
+  {
+    "line": 11,
+    "code": "entry-form",
+    "text": "- F10 missing brackets entirely — basis: design"
+  },
+  {
+    "line": 15,
+    "code": "entry-near-miss",
+    "text": "F12 [VERIFIED] no leading dash near-miss — basis: design"
+  },
+  {
+    "line": 15,
+    "code": "tag-literal-in-body",
+    "text": "F12 [VERIFIED] no leading dash near-miss — basis: design"
+  },
+  {
+    "line": 19,
+    "code": "tag-enum",
+    "text": "- F14 [BOGUS] tag not in the class enum — basis: design"
+  },
+  {
+    "line": 23,
+    "code": "scope-near-miss",
+    "text": "- F16 [VERIFIED] Unit U1 wrong-case scope opener — basis: design"
+  },
+  {
+    "line": 27,
+    "code": "hold-form",
+    "text": "- F18 [VERIFIED] unit U1 held: something bad — basis: design"
+  },
+  {
+    "line": 31,
+    "code": "write-set-near-miss",
+    "text": "- F30 [VERIFIED] unit U2 write-set a.txt — basis: design"
+  },
+  {
+    "line": 33,
+    "code": "declarator-bookkeeping",
+    "text": "- F30 [VERIFIED] record: corrects line 31 — basis: y"
+  },
+  {
+    "line": 40,
+    "code": "write-set-path-near-miss",
+    "text": "- F40 [VERIFIED] unit U5 write-set: a.txt b.txt — basis: design"
+  },
+  {
+    "line": 44,
+    "code": "basis-missing",
+    "text": "- F50 [VERIFIED] no basis clause here at all"
+  },
+  {
+    "line": 48,
+    "code": "corrects-token-out-of-body",
+    "text": "- F60 [VERIFIED] some finding — basis: corrects line 5 additional"
+  },
+  {
+    "line": 52,
+    "code": "superseded-block-form",
+    "text": "> stray quote line outside any Superseded block"
+  },
+  {
+    "line": 59,
+    "code": "landing-indent",
+    "text": "unit U20 landed: sha1111111111111111111111111111111111111a"
+  },
+  {
+    "line": 61,
+    "code": "landing-blank",
+    "text": "unit U21 landed: sha2222222222222222222222222222222222b"
+  },
+  {
+    "line": 66,
+    "code": "landing-missing",
+    "text": "- F90 [VERIFIED] unit U30 committed clean (UNIT_COMMITTED, sha deadbeef01) — basis: unit-commit"
+  },
+  {
+    "line": 72,
+    "code": "pending-latest",
+    "text": "- F100 [PENDING] awaiting verification, stays latest — basis: design"
+  },
+  {
+    "line": 77,
+    "code": "killerless-dead",
+    "text": "- F110 [INVALIDATED] clause alpha dead — basis: design"
+  },
+  {
+    "line": 81,
+    "code": "clause-unparsed",
+    "text": "- F120 [INVALIDATED] clause gamma unresolved — basis: design"
+  },
+  {
+    "line": 85,
+    "code": "tag-literal-in-body",
+    "text": "- F130 [VERIFIED] mentions [VERIFIED] again in the body — basis: design"
+  },
+  {
+    "line": 90,
+    "code": "basis-cites-invalidated",
+    "text": "- F21 [VERIFIED] cites the invalidated claim, parenthesized — basis: (F20)"
+  },
+  {
+    "line": 91,
+    "code": "basis-cites-invalidated",
+    "text": "- F22 [VERIFIED] cites the invalidated claim, trailing paren — basis: prose F20)"
+  },
+  {
+    "line": 92,
+    "code": "basis-cites-invalidated",
+    "text": "- F23 [VERIFIED] cites the invalidated claim, trailing period — basis: prose F20."
+  },
+  {
+    "line": 93,
+    "code": "basis-cites-invalidated",
+    "text": "- F24 [VERIFIED] cites the invalidated claim, code pointer form — basis: tools/x.py:40 F20"
+  },
+  {
+    "line": 94,
+    "code": "basis-cites-invalidated",
+    "text": "- F25 [VERIFIED] cites the invalidated claim, labeled prose form — basis: the probe: F20"
+  },
+  {
+    "line": 99,
+    "code": "foreign-id-suspect",
+    "text": "- F140 [VERIFIED] cites a bare id past this run's own max — basis: F9999"
+  },
+  {
+    "line": 102,
+    "code": "corrects-nothing",
+    "text": "- F150 [VERIFIED] two bogus corrects tokens (corrects line 999999) (corrects line 999998) — basis: design"
+  },
+  {
+    "line": 102,
+    "code": "multi-corrects-token",
+    "text": "- F150 [VERIFIED] two bogus corrects tokens (corrects line 999999) (corrects line 999998) — basis: design"
+  },
+  {
+    "line": 108,
+    "code": "repair-scope-change",
+    "text": "- D160 [COMMITTED] unit U40 bookkeeping v4 (corrects line 107) — basis: probe"
+  },
+  {
+    "line": 114,
+    "code": "repair-tag-change",
+    "text": "- D170 [INVALIDATED] record: bookkeeping v6 (corrects line 113) — basis: probe"
+  },
+  {
+    "line": 119,
+    "code": "intent-near-miss",
+    "text": "Intent - about to do stuff informally"
+  },
+  {
+    "line": 127,
+    "code": "freeze-breach",
+    "text": "- F201 [VERIFIED] appended after the open freeze — basis: design"
+  }
+]
