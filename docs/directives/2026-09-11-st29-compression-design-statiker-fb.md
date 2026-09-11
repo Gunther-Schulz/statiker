@@ -3,10 +3,16 @@
 Author: statiker-fb (fable desk), under the operator's first-hand
 delegation of 2026-09-11 ("full GO" over the handoff
 `docs/directives/2026-09-11-handoff-st29-compression-design-statiker-fb.md`).
-Object: `plugin/skills/statiker/SKILL.md` at pin 136a7c2 — measured
-1764 operational lines at that pin (the release gate read 1765 at
-8359cd4; ITEMS.md st-29 reads 1762 at 49e9529 — three pins, three
-counts, variance is real page motion, not measurement error).
+Object: `plugin/skills/statiker/SKILL.md` at pin 136a7c2 —
+canonical count 1765 operational lines (the CLAUDE.md Verify awk,
+executed at the pin). The per-section table below sums to 1764:
+the section-split instrument counts body lines only, while the
+canonical awk also emits and counts the closing frontmatter fence
+(`---` is non-blank) — instrument delta, not page motion; plugin/
+is byte-identical 378aa68..136a7c2 (statiker-4d, G3, confirmed
+here by executing both instruments). [Corrected 2026-09-11 after
+grading: the original sentence read the three counts as page
+motion.]
 Method order: the LEDGER compression-order decision (LEDGER.md line
 4, operator-settled 2026-09-10): delete/tighten (R4 table) →
 precipitate to tool checks (medium tenet) → disclosure only for
