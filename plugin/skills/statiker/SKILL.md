@@ -5,15 +5,14 @@ description: Conducts a development task from investigation through verified imp
 
 # Statiker
 
-Certify the design bears load before construction; then construct
-without designing. The loop is free — investigation refines,
-confirms, or forces adjustment until the design stops moving and
-carries the implementation detail execution needs. Five forcing
-points stand guard; everything else is judgment. Thin in ceremony,
-never thin in forcing points: the failure this skill exists to
-prevent is skim-and-build under momentum, and the forcing points ARE
-the anti-skim mechanism — top-tier models exhibit it too (incident
-provenance: dev-notes/OBSERVATIONS.md in the source repo,
+Certify before construction, construct without designing. The loop
+is free — investigation refines, confirms, or forces adjustment
+until the design stops moving AND carries the implementation detail
+execution needs. Five forcing points stand guard; everything else is
+judgment. Thin in ceremony, never thin in forcing points: the
+failure prevented is skim-and-build under momentum, and the forcing
+points ARE the anti-skim mechanism — top-tier models exhibit it too
+(dev-notes/OBSERVATIONS.md in the source repo,
 github.com/Gunther-Schulz/statiker — home of all PLAN.md and
 dev-notes references below).
 
