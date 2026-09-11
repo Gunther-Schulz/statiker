@@ -33,9 +33,9 @@ Subcommands (each prints evidence lines, then exactly one final line
                                     every seal-namespace species' full
                                     path (SEAL_PATH: seal, queue,
                                     paths, artifact, report,
-                                    comparison) from the pinned
-                                    repo-key derivation — derived in
-                                    the MAIN checkout even when
+                                    comparison) from this subcommand's
+                                    own repo-key derivation — derived
+                                    in the MAIN checkout even when
                                     invoked from a linked worktree
   worktree-add    --sha S --path P provision a worktree at a locked
                                     sha; P must sit OUTSIDE the repo
@@ -368,10 +368,11 @@ def main_toplevel_real(repo):
     store — its parent (the standard `.git`-directory layout) is the
     main checkout's toplevel. For the main checkout itself this
     equals `--show-toplevel` already (git_dir == common_dir there),
-    so no branch is needed (P1, SKILL.md's repo-key derivation:
-    'derive it in the MAIN checkout, never a linked worktree, where
+    so no branch is needed (P1 — this function's own repo-key
+    derivation, independently re-derived by tools/test_statiker_git.py:
+    derive it in the MAIN checkout, never a linked worktree, where
     --show-toplevel answers with the worktree and --git-common-dir
-    names the shared store')."""
+    names the shared store)."""
     common = os.fsdecode(repo.git("rev-parse", "--git-common-dir").stdout.strip())
     common_path = Path(common)
     if not common_path.is_absolute():
@@ -380,8 +381,9 @@ def main_toplevel_real(repo):
 
 
 def repo_key(main_top_real: str) -> str:
-    """`basename`-hyphen-first-8-hex-of-sha256(REAL path) (P1,
-    SKILL.md's pinned derivation) — the basename alone collided for
+    """`basename`-hyphen-first-8-hex-of-sha256(REAL path) (P1, this
+    function's own derivation, independently re-derived by
+    tools/test_statiker_git.py) — the basename alone collided for
     two checkouts sharing a name, a fork beside its origin."""
     digest = hashlib.sha256(
         main_top_real.encode("utf-8", "surrogateescape")).hexdigest()[:8]
@@ -414,7 +416,7 @@ def queue_is_spent(text: str) -> bool:
 
 
 def seal_namespace_paths(key: str, tracker_filename: str, round_: str):
-    """Every species' full path (P1, SKILL.md's pinned derivation +
+    """Every species' full path (P1, this function's own derivation +
     the invented-homes pin): XDG state, never `~/.claude/` (that path
     shape draws permission dialogs on every access). The ARTIFACT
     species lives in its OWN namespace, `artifacts/<key>/`, beside —

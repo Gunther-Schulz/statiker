@@ -2022,8 +2022,9 @@ class TestHarvest2BrokenPipeAndRetryBaseEnv(GitFixture):
 # ----------------------------------------------------------- seal-path (P1)
 
 def expected_seal_species(main_top_real, tracker_filename, round_, home):
-    """The independent reference derivation (SKILL.md-pinned, The
-    attack + The tools): basename-hyphen-first-8-hex-sha256 of the
+    """The independent reference derivation (statiker_git.py's
+    repo_key/seal_namespace_paths is the definition; this is its
+    independent check): basename-hyphen-first-8-hex-sha256 of the
     MAIN checkout's REAL toplevel path, joined with the tracker's own
     filename and the round id — computed here from first principles,
     never by calling into the tool under test. `home` is the
@@ -2085,8 +2086,9 @@ class TestSealPath(GitFixture):
 
     def test_paths_from_a_linked_worktree_derive_in_main(self):
         # P1: --show-toplevel from INSIDE a linked worktree answers
-        # with the worktree's own root — the pinned derivation must
-        # use the MAIN checkout instead, via --git-common-dir
+        # with the worktree's own root — main_toplevel_real's own
+        # derivation must use the MAIN checkout instead, via
+        # --git-common-dir
         self.write(".clippy/runs/t.md", self.GATE_CLEAN_TRACKER)
         self.git("add", ".clippy/runs/t.md")
         self.git("commit", "-m", "tracker")

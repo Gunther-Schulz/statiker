@@ -218,10 +218,11 @@ R_LINE_RE = re.compile(r"^R\d+\.")
 # grades against the head PLUS what the tool lists, never memory.
 INTENT_EXACT_RE = re.compile(r"^INTENT: ")
 INTENT_NEAR_RE = re.compile(r"(?i)^intent\b")
-# P3 (BACKLOG, SKILL.md :145): a resuming desk's version-crossing
-# APPEND entry carries this literal line as its machine-readable
-# core — INTENT_EXACT_RE's sibling, same body-region placement, same
-# field-not-gate treatment (no near-miss class: attribution only).
+# P3 (BACKLOG, SKILL.md, The record, "SKILL: statiker <version>"):
+# a resuming desk's version-crossing APPEND entry carries this
+# literal line as its machine-readable core — INTENT_EXACT_RE's
+# sibling, same body-region placement, same field-not-gate
+# treatment (no near-miss class: attribution only).
 SKILL_VERSION_EXACT_RE = re.compile(r"^SKILL: statiker (\S+)$")
 # the header's own `Skill: statiker <version>` line (SKILL.md, The
 # record) — read here for the FIRST time; the header capture below
@@ -404,10 +405,11 @@ OUT_OF_SCOPE_DISPOSITION_RE = re.compile(r"— (exported|dropped): \S")
 HOLD_EXACT_RE = re.compile(r"^unit U\d+ held: ")
 HOLD_NEAR_RE = re.compile(r"(?i)^(?:hold|held)s?\b")
 HOLD_COLON_RE = re.compile(r"(?i)(?<![A-Za-z])(?:hold|held)s?\s*:")
-# P4 (BACKLOG, SKILL.md :468): the irreversible tag's own record
-# line, HOLD_EXACT_RE's sibling — `unit U<k> irreversible: <effect>`
-# as its own record line's body, [READY]'s enumeration form. FIELD
-# only in this version, NO near-miss lint class (BACKLOG's own
+# P4 (BACKLOG, SKILL.md, Stop rule, "unit U<k> irreversible:
+# <effect>"): the irreversible tag's own record line, HOLD_EXACT_RE's
+# sibling — `unit U<k> irreversible: <effect>` as its own record
+# line's body, [READY]'s enumeration form. FIELD only in this
+# version, NO near-miss lint class (BACKLOG's own
 # caution: a bare-word scan false-fires on "not irreversible" and
 # shared bodies — the E-K false-fire class, conservatism decided
 # rather than an oversight); unattended enforcement stays the hold

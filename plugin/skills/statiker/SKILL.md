@@ -982,8 +982,9 @@ round dispatches, to that round's `seal` species path; any successor
 desk re-derives it through the git tool's `seal-path --tracker
 <path> --round <A<n>|verify>` verdict (SEAL_PATH: every species'
 full path — seal, queue, paths, artifact (its own `artifacts/`
-namespace), report, comparison — from the pinned derivation; paste,
-never hand-compose); the `report` species is the OPTIONAL out-of-repo
+namespace), report, comparison — from `seal-path`'s computation;
+paste, never hand-compose); the `report` species is the OPTIONAL
+out-of-repo
 copy of a round's returned report where the desk keeps one — never
 round-mandatory, reports travel by message. Seals live out of the
 repo because attackers read the repo, and an in-repo seal breaks any
@@ -1519,7 +1520,8 @@ dispatch, before the round runs, to that round's `paths` species
 path (`seal-path --round A<n>` for attack rounds; `--round verify`
 gives the `.verify.paths` file, REWRITTEN at each verify dispatch —
 at most one is in flight, so no count is derived); re-derivable by
-any successor desk (The attack's derivation) — never carried only in
+any successor desk from `seal-path`'s computation — never carried
+only in
 the brief or in memory.
 
 The dispatch also
