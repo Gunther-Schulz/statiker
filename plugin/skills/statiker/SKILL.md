@@ -405,21 +405,19 @@ and at the verify verdict; everything below them is append-only.
 Status writes its enum member verbatim — [READY] keeps its
 brackets (the header parse and the stats reader both admit only
 the bracketed form).
-Run `lint` once the header and head are written: a form defect
-found here costs re-creating a one-screen file before anything
-rests on it; found at the [READY] sweep it holds a full record
-whose head the append-only rule cannot rewrite. The append-only
-claim is checked mechanically once a pin exists: `pinned
---tracker P --sha S` — the two mutable field lines above are
-exempt, every other line binds byte-exact against the pin.
-PINNED_APPEND_ONLY proceeds; PINNED_REWRITTEN halts the seam
-that ran it, first divergent line in the verdict (an in-place
-TAG rewrite reads exactly like a clean record to every
-positional gate; the diff against the pin is the one thing it
-cannot fool). Run it at resume and before any re-lock — S is
-the standing lock, recoverable as the newest commit touching
-the tracker (every lock's pathspec carries the tracker, and
-nothing else legitimately commits it).
+Run `lint` once header and head are written — a form defect found
+then costs re-creating a one-screen file, found at the [READY] sweep
+it holds a full record whose head append-only cannot rewrite. The
+append-only claim is checked mechanically once a pin exists: `pinned
+--tracker P --sha S` — the two mutable field lines exempt, every
+other line binds byte-exact against the pin; PINNED_APPEND_ONLY
+proceeds; PINNED_REWRITTEN halts the seam that ran it, first
+divergent line in the verdict (an in-place TAG rewrite reads clean
+to every positional gate; the pin diff is the one thing it cannot
+fool); run it at resume and before any re-lock; S is the standing
+lock, recoverable as the newest commit touching the tracker (every
+lock's pathspec carries the tracker, and nothing else legitimately
+commits it).
 
 Entries are one line each, status tag first, appended never
 rewritten (the templates below wrap only on this page). A status
@@ -528,11 +526,11 @@ near-miss check exempts exactly this trailing form, nothing wider)
   the resolving line.
 
 Each investigation/design round appends under a `## Cycle <n>`
-heading. The heading marks the round for the record's readers; it
-is not a schedule — a round is whatever investigation the design
-needed. The FIRST `## ` heading is also load-bearing: it closes
-the head region, and above it nothing parses as an entry — a
-tracker with no `## ` heading at all parses NO entries, silently.
+heading; it marks the round for the record's readers and is no
+schedule (a round is whatever investigation the design needed); the
+FIRST `## ` heading closes the head region — above it nothing parses
+as an entry, and a tracker with no `## ` heading parses NO entries,
+silently.
 
 ## The loop
 
@@ -1326,30 +1324,31 @@ is a write-set answer, never a scheduling verdict: ordering
 constraints (a unit's write-set inside another's created tree, a
 pin needing a prerequisite substrate) and execute-set collisions
 (shared harness ports, a conftest one lane mutates while another
-executes it) are the desk's, read from the D-lines. A missing
-decision, file, or value is reported as a gap, never bridged —
-and triaged on arrival: a unit-local gap decision is a design
-decision made without an attack round, and it is recorded as
-exactly that — `- D<n> [AUTO-ACCEPTED] unit U<k> gap: <decision>
-— basis: <gap report>` — surfaced by its tag, enumerated in the
-close, graded only through the WORK verify checks against the
-requirement head (no entry-level grading exists); no attack
-round reads it on the normal run shape — a coverage fact, not a
-bar: a re-entry round reads the full record — so the tag
-surface and the close enumeration are the backstops. That
-unit re-dispatches on the amended record, siblings run on. A
-gap that kills a locked premise is recorded as the killed
-entry's SCOPELESS [INVALIDATED] line (The loop) — the body
-never opens `unit U<k>` or `record:` — voiding the closure
-through the predicate above; that invalidation IS the triage
-discriminator: no entry live at the closure dies → unit-local,
-one dies → premise-killing. Stop the siblings resting on it;
-the commit gate's consult halts EVERY in-flight sibling on the
-voided closure, fail-closed — clean siblings' edits stay in
-their trees, named as the re-dispatch's write-set, and land
-after the ONE re-entry with every return in hand (a
-start-sha-predates-the-void carve-out is parked tool work,
-never improvised at the desk). Model per
+executes it) are the desk's, read from the D-lines.
+
+A missing decision, file, or value is reported as a gap, never
+bridged, and triaged on arrival; a unit-local gap decision is a
+design decision made without an attack round, recorded as exactly
+that with the `- D<n> [AUTO-ACCEPTED] unit U<k> gap: <decision> —
+basis: <gap report>` template verbatim — surfaced by its tag,
+enumerated in the close, graded only through the WORK verify checks
+against the requirement head (no entry-level grading exists); no
+attack round reads it on the normal run shape — a coverage fact, not
+a bar (a re-entry round reads the full record) — so the tag surface
+and the close enumeration are the backstops; that unit re-dispatches
+on the amended record, siblings run on. A gap that kills a locked
+premise is recorded as the killed entry's SCOPELESS [INVALIDATED]
+line (The loop) — the body never opens `unit U<k>` or `record:` —
+voiding the closure through the predicate above; that invalidation
+IS the triage discriminator: no entry live at the closure dies →
+unit-local; one dies → premise-killing; stop the siblings resting on
+it; the commit gate's consult halts EVERY in-flight sibling on the
+voided closure, fail-closed — clean siblings' edits stay in their
+trees, named as the re-dispatch's write-set, and land after the ONE
+re-entry with every return in hand (a start-sha-predates-the-void
+carve-out is parked tool work, never improvised at the desk).
+
+Model per
 `clippy.config/models` (`impl:` class) when present, else the
 operator corpus routing table, else — no corpus on the stack — a
 cheaper tier than the desk, the same terminal default discovery
