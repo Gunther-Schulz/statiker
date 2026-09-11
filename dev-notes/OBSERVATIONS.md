@@ -8971,3 +8971,66 @@ touched (comments and pointers only), under the CLAUDE.md
 checkpoint-review threshold; every repair carries its executed check
 above, run at the desk after the lane. The C4c field test does not
 repeat here: this repair lap has no owed round.
+
+Repair lap executed (lane sonnet-lapA-fix-0288): dcea444 (B1 B2),
+f23a69b (N1 + G4), 0775b92 (n1–n7), the lane's trailer on each; its
+critique pass ran after the build (a recorded deviation), and it kept B1
+in the pointers commit where the brief's restoration list also named it.
+Desk-verified at 0775b92: a quoted-section-pointer resolver reports 4
+pointers, 0 unresolved (red control: a planted pointer is caught; known
+positive: at 7774046 it flags B1); "I9" occurs 0 times; B1's pinned
+wording is back in Stop rule and B2's quoted pointer is present; n1, n3,
+n4, n5, n6 ("holds every later sweep, correctly") and n7 ("two ways,
+one clause") each occur at HEAD, n6 and n7 absent at 7774046; n2's
+`--tracker` form is present and the old shorthand gone; the N1 grep
+gives 0 (5 at 7774046); the scripts and tests diff is comments and
+docstrings only; G4's two citations name a section and a quoted handle
+that occurs in it; verdict tokens 76 = 76; suite 537 passed + 2
+subtests; skill-lint blocking 0; no body line over 85; operational
+lines 1628.
+- **Correction recorded (the desk's instrument).** The desk's first
+  pointer resolver matched only `(Section, "phrase")` directly after the
+  parenthesis, so it never saw B1's `(…; forms at Stop rule, "…")` form
+  and read 0 unresolved at 7774046, where B1 dangles. It was caught by
+  running the resolver on that known positive before trusting its green
+  at HEAD, then widened to any known section name before a quoted
+  phrase. Class: an instrument's reach keyed to the shapes in mind
+  while building. Mint declined on duplicate-home grounds: the corpus
+  already requires the known-positive run (Fixing, instruments —
+  reach is settled at arming), and this is that rule firing.
+
+## 2026-09-11 — 0.2.88 release gate (statiker-4d): tenet record for the lap the pin carries, lint, live-run check
+
+The pin moves 0.2.87 → 0.2.88 and carries st-29 lap A — SKILL.md
+compressed from the table at da6936d (build 9670a40 … 7774046), plus the
+0.2.88 review repairs (dcea444, f23a69b, 0775b92). No rule is added: the lap
+deletes narration and restatement, tightens prose, fixes three stale
+pointers, and restores pinned wording where the review found precision
+lost; comment edits in the scripts and tests. The birth-class tenet check,
+asked over the lap as one change against PLAN.md's live list (items
+1-9, read at this desk): 1 n/a (no design mint); 2 pass (the table was
+decision-complete — the build applied it, and the two cells that were
+not became B1 and B2); 3 pass — the five forcing points' text is KEEP or
+TIGHTEN with every must-survive item carried, reviewer-confirmed no load
+loss; 4 pass (the table was graded before any edit); 5 n/a; 6 pass —
+this is the tenet the lap serves: 1766 → 1628 operational lines for
+one review round and three lanes (table, build, repair), every future
+desk turn re-billing the smaller page; 7 pass (verdict-token set
+unchanged, 76 = 76, TestVerdictParity green); 8 pass (no mechanism
+moved to prose or prose to mechanism in this lap; lap B carries
+precipitation); 9 n/a.
+
+Release checklist, executed against the payload at 0775b92:
+- Repo Verify block: `python3 -m pytest tools/ -q` → 537 passed, 2
+  subtests passed, 0 failed, 0 skipped (desk run at 0775b92);
+  operational lines 1628; payload inventory `statiker` only.
+- skill-lint (skill-craft 2.2.4, `--diff-base 7791b63`) over SKILL.md and
+  references/evidence.md: exit 0, blocking 0 (singleton warnings only).
+- Release-during-live-run check (re-run for this gate): every statiker
+  tracker under ~/dev is closed (canonical-market-identity FAILED;
+  canonical-frame-sign-repair COMPLETE; canonical-market-identity-u2
+  COMPLETE), no run tracker was modified after the 0.2.87 gate (find,
+  positive control: it reaches the u2 file), and the session listing
+  shows no statiker desk session.
+- Version-bump check: plugin.json 0.2.88, installed pin 0.2.87
+  (gitCommitSha 7791b63).
