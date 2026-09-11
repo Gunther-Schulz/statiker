@@ -8740,3 +8740,16 @@ Release checklist, executed against the payload at 769e7f2:
   statiker desk session — no desk needs a restart.
 - Version-bump check: plugin.json 0.2.87, installed pin 0.2.86
   (gitCommitSha 3cc4266).
+- Push guard: the first push was refused — 11 sonnet-lap-0287 commits
+  sat in no record carrier at the pushed tip. Booked as the lane's
+  commit-inventory decision in LEDGER.md (7791b63, the precedent form of
+  the earlier laps); no override used.
+- Pin MOVED (executed after pushing 7791b63): `claude plugin marketplace
+  update statiker` → "Successfully updated marketplace: statiker";
+  `claude plugin update statiker@statiker` → "updated from 0.2.86 to
+  0.2.87"; installed_plugins.json re-read: version 0.2.87, gitCommitSha
+  7791b63c95b2ab994880f130c7320d40af9f4f2a = the pushed HEAD, installPath
+  cache/statiker/statiker/0.2.87. No dispatch composed between the pin
+  move and the operator's /reload-plugins; the one running lane
+  (opus-lapA-table-0287) reads SKILL.md at 769e7f2 through `git show`,
+  never through the skill.

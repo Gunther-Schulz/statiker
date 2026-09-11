@@ -260,5 +260,30 @@ blocker-moot: regrade: was READY under the old carrier: READY is judged, never i
 closed-reason: 2026-09-11 P29 checklist arc done: run 3 closed COMPLETE 2026-09-10, its mint-seam queue released in 0.2.86 (pin moved at 3cc4266), arm B graded (2c4e7a2); the compression pass remainder carries on as st-29
 closed-ref: 3cc4266
 
+## st-28
+grade: DONE
+requirement: the record tool's checks can silently NARROW across versions and no per-feature test catches it: the 0.2.84 review's B1/B2 (live-basis check went green on citation shapes it fired on at c19c829) slipped a 482-green battery because the batch's tests were derived from the new helper's intent (same-parentage expectations move with the mutant) — record: dev-notes/OBSERVATIONS.md 2026-09-10 dispositions, B1/B2
+goal: tend
+write-set: tools/test_statiker_record.py, tools/golden-corpus fixture tracker + expected-violations golden file (new files, homes under tools/)
+done-criterion: a golden-corpus sweep test: one rich fixture tracker exercising every violation code in RULE_MINT_VERSION (positive and known-clean rows per code), a committed golden file of expected violations, and a test that diffs the sweep's full hit-set against it, red on ANY code's hits shrinking or growing; regenerating the golden requires a reviewed diff, never a blind overwrite. Red-first: run the corpus at c19c829 vs 2baa349 pre-repair and show the B1/B2 rows vanish (the incident reproduced as the fixture's own proof); reach: the corpus derives its code list from the tool's own RULE_MINT_VERSION table at runtime, so a new code with no corpus row goes red by construction
+evidence: opus-review-0284 B1/B2 measured pairs (dispositions record); the corpus anchor rule: a coverage basis derives from the RUNNING source, and the cheap instrument is the assertion on what must not degrade
+blocked-by: NONE
+closed-reason: 2026-09-11 released in 0.2.87 (pin 0.2.86 -> 0.2.87 at 7791b63, 2026-09-11) after the opus checkpoint review (opus-review-0287: PIN MOVES, 0 blocking); residue booked st-34 and st-35; dispositions and release gate in OBSERVATIONS 2026-09-11
+closed-ref: ff28885, 769e7f2
+
+## st-30
+grade: DONE
+requirement: 0.2.86 re-review residue (dev-notes/OBSERVATIONS.md, 2026-09-11 re-review dispositions): (1) declarator-bookkeeping violation text and apply_supersession docstring prescribe 'repair with a fresh id', which the grammar refuses; (2) st-14's re-lock pointer names Implementation, clause (b) sits in The attack; (3) Budget header 'tripwire 0' still fires; (4) filter's GIT_ERROR halt carries a sha field the page routes as landed; (5) three coverage docstrings over-claim (a literal code in a tuple return is invisible); (6) TestRNc docstring names ambiguous-citation as live; (7) pinned echoes the raw sha argument — record: opus-rereview-0286 report
+goal: tend
+write-set: plugin/skills/statiker/scripts/statiker_record.py, plugin/skills/statiker/SKILL.md, tools/test_statiker_record.py, tools/test_contract.py
+done-criterion: per the reviewer's executed pairs: (1) violation text and docstring name the same-id, same-unit supersede-whole form, red: following today's text gives corrects-nothing; (2) the pointer reads '(below)'; (3) a Budget-header tripwire below 1 is refused like --threshold, red: 'tripwire 0' gives TRIPWIRE_FIRES today; (4) filter's error halts carry no sha field, red: --sha 'HEAD^{tree}' prints one today; (5) and (6) the docstrings state the derivation's actual reach; (7) pinned resolves the sha once as filter now does, red: an abbreviated sha is echoed today. Rides the next version bump under a checkpoint review (items 3, 4 and 7 are machine-read)
+evidence: opus-rereview-0286 executed pairs, findings 1-6 and the pinned gap, recorded in OBSERVATIONS 2026-09-11
+blocked-by: NONE
+amend-reason: 2026-09-11 the 0.2.86 release's skill-lint wrap flag, accepted for that release, joins the residue
+amended-requirement: 2026-09-11 0.2.86 re-review residue plus the release lint flag (dev-notes/OBSERVATIONS.md, 2026-09-11 re-review dispositions and release gate): (1) declarator-bookkeeping violation text and apply_supersession docstring prescribe 'repair with a fresh id', which the grammar refuses; (2) st-14's re-lock pointer names Implementation, clause (b) sits in The attack; (3) Budget header 'tripwire 0' still fires; (4) filter's GIT_ERROR halt carries a sha field the page routes as landed; (5) three coverage docstrings over-claim (a literal code in a tuple return is invisible); (6) TestRNc docstring names ambiguous-citation as live; (7) pinned echoes the raw sha argument; (8) SKILL.md:1303 wraps at 88 columns (skill-lint blocking flag, from 63a3508) — record: opus-rereview-0286 report, skill-lint at the 0.2.86 release
+amended-done-criterion: 2026-09-11 per the reviewer's executed pairs: (1) violation text and docstring name the same-id, same-unit supersede-whole form, red: following today's text gives corrects-nothing; (2) the pointer reads '(below)'; (3) a Budget-header tripwire below 1 is refused like --threshold, red: 'tripwire 0' gives TRIPWIRE_FIRES today; (4) filter's error halts carry no sha field, red: --sha 'HEAD^{tree}' prints one today; (5) and (6) the docstrings state the derivation's actual reach; (7) pinned resolves the sha once as filter now does, red: an abbreviated sha is echoed today; (8) skill-lint reports 0 wrap flags on SKILL.md. Rides the next version bump under a checkpoint review (items 3, 4 and 7 are machine-read)
+closed-reason: 2026-09-11 released in 0.2.87 (pin 0.2.86 -> 0.2.87 at 7791b63, 2026-09-11) after the opus checkpoint review (opus-review-0287: PIN MOVES, 0 blocking); residue booked st-34 and st-35; dispositions and release gate in OBSERVATIONS 2026-09-11
+closed-ref: 9d3352d, 0a0440d, 9fc8c69, bca3854, ce8e450, 43baee9, 8659aa9, 468a76c
+
 ## Archive (pre-migration)
 
