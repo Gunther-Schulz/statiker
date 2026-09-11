@@ -285,5 +285,27 @@ amended-done-criterion: 2026-09-11 per the reviewer's executed pairs: (1) violat
 closed-reason: 2026-09-11 released in 0.2.87 (pin 0.2.86 -> 0.2.87 at 7791b63, 2026-09-11) after the opus checkpoint review (opus-review-0287: PIN MOVES, 0 blocking); residue booked st-34 and st-35; dispositions and release gate in OBSERVATIONS 2026-09-11
 closed-ref: 9d3352d, 0a0440d, 9fc8c69, bca3854, ce8e450, 43baee9, 8659aa9, 468a76c
 
+## st-29
+grade: DONE
+requirement: the compression pass has named consumers but no work-item carrier: consumer in OBSERVATIONS.md:4448, 7488, 7528, 7587 and last in run 3's mint-seam queue (OBSERVATIONS.md:7886-7895); SKILL.md operational lines 1762 at 49e9529 vs the ~150 stabilization exit (CLAUDE.md Verify) — record: LEDGER compression-order decision (2026-09-10)
+goal: tend
+write-set: plugin/skills/statiker/SKILL.md, plugin/skills/statiker/scripts/statiker_record.py, tools/test_statiker_record.py, tools/test_contract.py
+done-criterion: UNKNOWN
+evidence: LEDGER.md decision 'does the SKILL.md size problem get a references/ split' (operator-settled method order: delete/tighten, precipitate to tool checks, disclosure only for branch-gated content; a references/ move is an explicit single-home amendment); the five OBSERVATIONS consumer entries above; st-19 names this pass as its candidate mechanism pass
+blocked-by: NONE
+amend-reason: 2026-09-11 the design gate st-29 was parked on settled at 1e10047; a three-lap pass is not one decision-complete item, so st-29 narrows to lap A with a pre-build clause table (G1) and laps B and C book on their own gates; lap A rebases on the 0.2.87 page, so it waits for st-30's release
+amended-requirement: 2026-09-11 st-29 lap A (compression pass, delete + tighten, page only): SKILL.md carries 1765 operational lines (Verify-block count at 136a7c2) against PLAN.md's 80-150; the design pass settled at docs/directives/2026-09-11-st29-compression-design-statiker-fb.md (1e10047, statiker-fb, fable), graded at statiker-4d: three laps in LEDGER order, this item is lap A, laps B and C booked separately — record: the design file §1, §3, §4
+amended-write-set: 2026-09-11 plugin/skills/statiker/SKILL.md, dev-notes/OBSERVATIONS.md (the lap's clause-disposition table and tenet record)
+amended-done-criterion: 2026-09-11 per docs/directives/2026-09-11-st29-compression-design-statiker-fb.md §1, §3 lap A and §4: STAGE 1 — a per-clause disposition table over SKILL.md at the post-0.2.87 pin (quoted clause handle -> deleted / tightened-to <handle> / kept, with provenance pointer), produced BEFORE any edit by a fresh judgment pass (review tier or above) under §1's section dispositions, graded at the desk; STAGE 2 — a build lane applies exactly that table, page only (tool and tests untouched), every verdict token kept (TestVerdictParity, test_contract.py:1042-1051, bidirectional); an opus checkpoint review whose brief carries the table and names the two dark Begehung rows (CROSS-CUTTING lifecycle, certified-attack register) as attack surface, dispositions recorded before the pin moves; python3 -m pytest tools/ -q green; skill-lint clean; the Verify-block count printed at release; the table and a tenet 1-9 record in OBSERVATIONS. Field datum: the next real run under the lap-A pin, stop-call if a deleted clause's class re-fires (design §3)
+amended-evidence: 2026-09-11 design file 1e10047 (§0 premises measured; §6 scratch run The tools 102->60 against a registered 55±10, statiker-fb-measured, not re-run at this desk); OBSERVATIONS.md:4438-4448 (operator-concurred size-target re-derivation, 2026-08-10); LEDGER.md:4 (method order); desk grading gaps G1 (per-clause table before build), G2 (lap B undesigned), G3 (1765 vs 1764 is instrument difference, not page motion)
+amended-blocked-by: 2026-09-11 st-30
+amend-reason: 2026-09-11 st-30 released at 0.2.87 (the rebase base exists) and stage 1's table is graded; stage 2 is dispatchable from the table
+amended-evidence: 2026-09-11 design file 1e10047 + 8e4f370 (§0 premises measured; §6 scratch run The tools 102->60 against a registered 55±10, statiker-fb-measured); OBSERVATIONS.md:4438-4448 (operator-concurred size-target re-derivation, 2026-08-10); LEDGER.md:4 (method order); STAGE 1 DONE: docs/directives/2026-09-11-st29-lapA-clause-table.md (da6936d, opus-lapA-table-0287), graded and accepted at the desk (OBSERVATIONS 2026-09-11 'st-29 lap A stage 1: clause table graded'): projection 1478 canonical, torn rows as chosen, G2/G3 pointer fixes ride stage 2
+amended-blocked-by: 2026-09-11 NONE
+promote-reason: 2026-09-11 stage 1's per-clause table (da6936d) is graded and accepted: every row carries its disposition, must-survive list or load home, and line range, so stage 2 applies it with no design decision; the rebase base (0.2.87) is released
+promoted-by: 2026-09-11 statiker-4d
+closed-reason: 2026-09-11 st-29 lap A released in 0.2.88 (pin 0.2.87 -> 0.2.88 at c18a681, 2026-09-11): SKILL.md 1766 -> 1628 operational lines from the graded clause table (da6936d), built 9670a40..7774046, checkpoint review opus-review-0288 (B1 B2 N1 n1-n7) repaired at dcea444 f23a69b 0775b92; laps B and C continue as st-32 and st-33; dispositions and release gate in OBSERVATIONS 2026-09-11
+closed-ref: da6936d, 7774046, 0775b92, c18a681
+
 ## Archive (pre-migration)
 

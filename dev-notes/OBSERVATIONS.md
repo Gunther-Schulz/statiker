@@ -9034,3 +9034,12 @@ Release checklist, executed against the payload at 0775b92:
   shows no statiker desk session.
 - Version-bump check: plugin.json 0.2.88, installed pin 0.2.87
   (gitCommitSha 7791b63).
+- Push: the 22 outgoing commits were claimed first (the build lane's 15
+  and the repair lane's 3 booked in LEDGER); the push guard passed.
+- Pin MOVED (executed after pushing c18a681): `claude plugin marketplace
+  update statiker` → "Successfully updated marketplace: statiker";
+  `claude plugin update statiker@statiker` → "updated from 0.2.87 to
+  0.2.88"; installed_plugins.json re-read: version 0.2.88, gitCommitSha
+  c18a6815e57215a78fffbccb963fc1e02e4913e0 = the pushed HEAD, installPath
+  cache/statiker/statiker/0.2.88. No lane runs between the pin move and
+  the operator's /reload-plugins.
