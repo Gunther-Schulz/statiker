@@ -8896,3 +8896,78 @@ Corrections recorded, each with the post-incident answers:
   a line held only "design". A `^design$` grep returned zero for that
   visibly present line — an instrument that missed a known positive —
   and was not relied on.
+
+## 2026-09-11 — 0.2.88 checkpoint-review dispositions (fresh-opus, lane opus-review-0288; verdict: pin does NOT move — 2 blocking, 1 notable, 7 nits)
+
+Reviewer at 7774046 (HEAD fd5c6ed, plugin/ and tools/ identical): no
+load loss (every changed row read side by side; R19's rule half at R18,
+A24's deleted clause at I9's passage, I9 byte-equal to pin); 86 of 87
+KEEP rows found in order, A23 differing only by G2; no text inserted
+between KEEP rows (red control: a planted sentence caught); verdict
+tokens 76 = 76; suite 537 passed + 2 subtests; skill-lint blocking 0;
+70 dropped phrases searched outside the page with positive controls,
+only N1's readers dangling. Recorded before implementation; each
+repair's executed check is named.
+
+- **B1 (blocking, R30/S7).** R30's pointer (SKILL.md:444-445) quotes
+  Stop rule "Each unit design also carries the PRECEDENT LINE"; the
+  tightened S7 (:706) dropped "also", so the pointer resolves nowhere.
+  Origin: the table's own cells disagreed (R30 quoted S7 as pinned, S7's
+  cell dropped the word). FIX: restore "also" in S7 — the pinned wording,
+  which the pointer already quotes. Check: a quoted-section-pointer
+  resolver over the page reports 0 unresolved (red control: a planted
+  dangling pointer is flagged).
+- **B2 (blocking, A24).** "(Implementation, I9)" (:1189) cites the
+  clause table's row id, which exists nowhere on the page. FIX: the
+  pointer quotes the passage's opening words — `(Implementation, "A
+  missing decision, file, or value is reported as a gap")`. Check: the
+  resolver finds it in Implementation; "I9" occurs 0 times.
+- **N1 (notable, A4/A11/V3).** The seal/queue/paths derivation left the
+  page (stage-1 torn item 1), but readers still cite it as page text:
+  SKILL.md:985 "from the pinned derivation" and :1521 "(The attack's
+  derivation)"; statiker_git.py:37, :371-374, :384, :417; and
+  tools/test_statiker_git.py:2025, :2088 ("SKILL.md-pinned"). No desk
+  load is lost: statiker_git.py:365-379 derives the key and the test
+  computes it independently. FIX: every one of these names the tool's
+  `seal-path` computation (statiker_git.py) as the definition, and the
+  test as its independent reference — never a SKILL.md derivation.
+  Comments and page pointers only; no code change. Check: `grep -rn
+  "pinned derivation\|SKILL.md-pinned\|SKILL.md's pinned"` over plugin/
+  and tools/ gives 0 (red: the same grep at 7774046 gives hits).
+- **Same class, in scope (G4, the tool's half).** statiker_record.py:221
+  (":145") and :407 (":468") cite SKILL.md by line number, stale at the
+  pin and moved again by this lap. FIX: each cites its target by section
+  name plus a quoted handle. The held-out hook's line citations stay on
+  st-15.
+- **n1 (R6, :199).** The no-pin → desk-work link is only implied. FIX:
+  restore it from the pinned wording ("…young and its holds few — there
+  the repair is desk work").
+- **n2 (V3, :1518).** The shorthand `seal-path --round A<n>` omits the
+  required `--tracker`. FIX: `seal-path --tracker <path> --round A<n>`.
+- **n3 (P1, :8).** "Certify before construction" dropped its object.
+  FIX: restore "Certify the design bears load before construction".
+- **n4 (C4, :32/:36).** "The corpus, where present" left ":36 on such a
+  stack" without an antecedent. FIX: restore the pinned "The operator
+  corpus, where the stack has one".
+- **n5 (A2, :894).** "stays PURE — no header:" dropped the general
+  no-additions clause, which was not in the must-survive cell. FIX:
+  restore "no header, nothing the source does not carry".
+- **n6 (R17, :305).** The pinned text separated two facts — a blockquoted
+  INTENT lints illegal, and the one lint-legal quote form is what the
+  attack filter drops — and "holds every later sweep, correctly". The
+  tightened text conflates them and drops "correctly". FIX: restore the
+  distinction and the word.
+- **n7 (A18, :1101).** "two ways, one clause" lost "one clause". FIX:
+  restore it.
+- **Definition note (no build defect).** Table cells mandated pointers
+  the pinned text lacked (T5, R30, A24, I4, V2, A4), against rule 4;
+  T5's resolves with its load intact; R30's and A24's are B1 and B2.
+  Recorded against the stage-1 table: a TIGHTEN cell that composes a new
+  pointer must quote text the page will still carry.
+
+Repair lap, and why no re-review: the delta is about 15 prose lines,
+most of them restoring pinned wording, with no machine-read semantics
+touched (comments and pointers only), under the CLAUDE.md
+checkpoint-review threshold; every repair carries its executed check
+above, run at the desk after the lane. The C4c field test does not
+repeat here: this repair lap has no owed round.
