@@ -703,7 +703,7 @@ green only through the fix; a criterion the defective state already
 satisfies verifies nothing; a renumbering that drops a unit's pin
 clause is a silent unpin.
 
-Each unit design carries the PRECEDENT LINE, one clause of the
+Each unit design also carries the PRECEDENT LINE, one clause of the
 unit's design D-line, one per unit, in the three verbatim forms
 `follows <path>, judged sound`, `<path> is the problem, this unit's
 scope`, `no precedent, first of its kind`; written in the design
@@ -1186,7 +1186,8 @@ mid-implementation is written with body opening `record:`
 entry LIVE at the closure (latest line not [INVALIDATED] when
 the closing A-line landed): that takes the scopeless
 [INVALIDATED] route, voids, and carries the premise-killing
-consequence (Implementation, I9).
+consequence (Implementation, "A missing decision, file, or value
+is reported as a gap").
 
 The desk refutes a finding only with its own reach-matched evidence
 (the F-line goes [INVALIDATED]); closure still needs the next
