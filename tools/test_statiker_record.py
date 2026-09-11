@@ -5461,5 +5461,54 @@ class TestGoldenCorpusSweep(unittest.TestCase):
             "coverage assertion exists to catch")
 
 
+# ----- st-30(1): declarator-bookkeeping's violation TEXT (and the
+# ----- apply_supersession docstring) still prescribed "repair with a
+# ----- fresh id" — the grammar refuses a fresh id there (P38); the
+# ----- same-id, same-unit supersede-whole form (REPAIR_DECLARATOR_
+# ----- BOOKKEEPING, SKILL.md's own clause, 0.2.86 N3) is the reachable
+# ----- repair. 0.2.86 re-review finding 1.
+
+class TestSt30Item1DeclaratorBookkeepingTextNamesSupersedeWhole(RecordFixture):
+    """0.2.86 re-review, finding 1: apply_supersession's
+    declarator-bookkeeping violation TEXT and its own docstring said
+    "repair with a fresh id", contradicting REPAIR_DECLARATOR_
+    BOOKKEEPING and the SKILL.md clause it already carries (0.2.86
+    N3), and the grammar refuses a fresh-id correction there (P38: a
+    fresh-id correcting line under the declarator id is what the
+    refusal exists to bar in the first place). FIX: both texts name
+    the same-id, same-unit supersede-whole form. Red: the violation's
+    own `text` field names "fresh id" today. Control: the
+    supersede-whole repair the (fixed) text prescribes sweeps the
+    tracker clean, unaffected by the text-only fix — green before and
+    after."""
+
+    def _tracker(self):
+        prefix = (
+            "- F2 [VERIFIED] unit U1 write-set a.txt — basis: design\n"
+            "- F2 [VERIFIED] unit U1 write-set: a.txt — basis: design\n")
+        n = self.lineno_of(prefix, "write-set a.txt — basis: design")
+        return prefix, n
+
+    def test_violation_text_does_not_prescribe_fresh_id(self):
+        prefix, n = self._tracker()
+        body = prefix + f"- F2 [VERIFIED] record: corrects line {n} — basis: y\n"
+        v = self.lint(body)
+        viol = next(x for x in v["violations"]
+                   if x["code"] == "declarator-bookkeeping")
+        self.assertNotIn("fresh id", viol["text"], viol["text"])
+
+    def test_supersede_whole_repair_sweeps_clean(self):
+        # control: the same-id, same-unit supersede-whole repair the
+        # text (and REPAIR_DECLARATOR_BOOKKEEPING) prescribes must
+        # actually clear the hold, unaffected by the text-only fix —
+        # green both before and after
+        prefix, n = self._tracker()
+        body = prefix + (
+            f"- F2 [VERIFIED] unit U1 write-set: a.txt "
+            f"(corrects line {n}) — basis: design\n")
+        v = self.lint(body)
+        self.assertEqual(v["verdict"], "LINT_CLEAN", v)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=1)

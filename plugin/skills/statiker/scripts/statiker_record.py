@@ -1282,8 +1282,11 @@ def apply_supersession(entries, violations, line_ids, line_parse):
     it still stands. Neither superseded nor shed; the correcting
     line's own lineno is excluded from the returned entries too (as if
     the append never happened), so it can never become the id's latest
-    line in a downstream `latest_by_id` read. The repair is a fresh id
-    for the correction, never a reused declarator.
+    line in a downstream `latest_by_id` read. The repair is the
+    same-id, same-unit supersede-whole form (st-30(1)): restate the
+    full write-set under the same id and unit with a trailing
+    `(corrects line <n>)` naming the original target — never a fresh
+    id.
 
     P37 (BACKLOG.md:74, F130): a correcting line whose own restatement
     opens the wrong scope against what its target parsed draws
@@ -1363,7 +1366,8 @@ def apply_supersession(entries, violations, line_ids, line_parse):
                              f"({latest_same_id.lineno}) is a write-set "
                              "declaration, and a correction appended "
                              "under the same id un-declares it under "
-                             "latest-line-wins; repair with a fresh id"})
+                             "latest-line-wins; repair with the same-id, "
+                             "same-unit supersede-whole form"})
                 declarator_refused.add(e.lineno)
                 continue
             site, declared = repair_class(violated[n], owner)
