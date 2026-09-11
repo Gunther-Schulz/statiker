@@ -8196,3 +8196,50 @@ narrows; none adds machinery.
 Re-review: owed after the lap (criterion 2 — the lap removes a hold
 code and changes the near-miss predicate; this is the stated reason
 for the round). Pin holds at 0.2.82.
+
+## 2026-09-11 — P28/st-10 C4c field test: prediction registered BEFORE the 0.2.86 re-review dispatches
+
+Design under test: docs/directives/2026-09-11-p28-design-statiker-ba.md
+(commit 9209367, statiker-ba, fable), §5 and §9. Its rule: a
+disposition is DESIGN-BEARING when its text decides a new predicate,
+hold, or boundary rather than executing a prescribed form. Classified
+by statiker-4d over the 0.2.85 checkpoint-review dispositions (section
+above) while the 0.2.86 lap is in flight and before any re-review
+brief exists:
+
+- FLAGGED (design-bearing): **B1** — re-decides RN-b: withdraws the
+  hold and decides the exemption's stated reach (an
+  accepted-residual boundary). **N2** — decides the near-miss
+  predicate's input (the suffix strip shared, normpath moved to the
+  consuming site only). **T1** — widens the RN-e carve-out's
+  boundary from reconciliations to amendments too.
+- NOT FLAGGED (a prescribed form executed): N1 (RB1's own stated
+  spellings clause), N3 (page and repair text aligned to the
+  committed tool predicate), T2 (docstring states the existing
+  reach), T3 (page definition aligned to the existing strip), T4
+  (test re-pointed), T5 (no change), st-14 items 1/4/5/6
+  (reviewer-prescribed at the 0.2.82 re-review).
+
+Finding-kind rule (pre-registered): a re-review finding on this lap's
+change surface is DESIGN-kind when its fix would change the
+disposition's decided TEXT; IMPLEMENTATION-kind when that text stands
+and only the code, page or test realizing it changes (the RB1 → N2
+side-effect shape, which the design places outside the flag by
+construction). Each finding is attributed to the disposition whose
+change it lands on.
+
+Criterion (pre-registered): over the re-review's blocking + notable
+DESIGN-kind findings on this lap's surface — CONFIRM when more than
+half sit at flagged dispositions (3 of 10 disposition slots, so a
+majority there is concentration above the flag's share); REFUTE when
+more than half sit at unflagged ones, and st-10 returns to design
+carrying the datum; UNDECIDED on zero such findings or an exact tie —
+no datum, recorded as such, and the test repeats at the next lap that
+has an owed round. IMPLEMENTATION-kind findings, nits, and findings on
+pre-lap surface are counted and listed but do not grade. n=1 is
+decision-grade under the trial convention; variance caveat recorded
+here (three flagged slots, one round).
+
+The outcome is appended as its own line when the re-review is
+dispositioned, opening with the literal outcome marker st-10's
+blocker predicate greps for.
