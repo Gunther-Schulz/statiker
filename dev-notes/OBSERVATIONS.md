@@ -8536,3 +8536,76 @@ concentration above the flag's share. Variance caveat: three flagged
 slots, one round. The outcome line is appended when the review is
 dispositioned, opening with the literal marker st-10's blocker
 predicate greps for.
+
+## 2026-09-11 — 0.2.87 lap executed and graded (lane sonnet-lap-0287; pin holds at 0.2.86, checkpoint review owed)
+
+Commits 50fb0cd (bump) … 468a76c, ten, all carrying the lane's trailer.
+Desk-verified at the artifact, not from the report: suite 537 passed,
+0 failed, 0 skipped (522 at 136a7c2); skill-lint exit 0, 0 wrap flags;
+operational lines 1766; tree clean. Report red-first arms: st-28's
+incident arm reproduced the 0.2.84 B1/B2 rows vanishing at 2baa349 and
+present at c19c829; growth and reach arms red; st-30 items 1, 3, 4, 7
+red against the old tool (the lane isolated the tool file with `git
+stash push` while the new tests stayed in the tree). st-30(4) dropped
+`sha` from four halts (filter PIN_UNREADABLE and GIT_ERROR, pinned
+PIN_UNREADABLE, verify-gate GIT_ERROR) and kept it on PINNED_REWRITTEN.
+Dependents search at the desk: SKILL.md names those halts only as
+routes (:112-113), the `sha` override (:114-117) is generic, every
+`v["sha"]` reader in tools/ targets a verdict that keeps the field,
+and dotfiles holds no reader (pattern live on SKILL.md:112).
+
+Corrections recorded, each with the post-incident answers:
+- **Brief self-contradiction (st-28, caught at desk grading).** The
+  brief's design sentence ("one fixed rich tracker") and its coverage
+  rule (EXEMPT only for codes `sweep` cannot emit over a single
+  tracker) could not both hold: `admission-window` needs a valid late
+  header field, the one tracker's header carried invalid fields for
+  status-enum/phase-enum, and the lane exempted a code `sweep` does
+  emit elsewhere — a silent coverage hole under a docstring-level
+  assurance. Class: parentage — a spec's design sentence and its
+  verifier sentence disagreeing. Mechanism: judgment-shaped (no
+  computable predicate over brief prose); caught because the desk read
+  the exemption's own reason against the rule. Repair: follow-up item
+  to the same lane (a second golden tracker; EXEMPT empties), before
+  the review dispatches.
+- **Brief omitted the dispatcher's own co-writer commit.** The
+  expected-commits list named the fable design file and desk commits
+  under ITEMS/LEDGER/dev-notes, but not the handoff file 5ea29e6 the
+  desk committed after the brief. The lane read it as benign. Class:
+  assumed-delivery enumeration. Mechanism: judgment-shaped; the brief's
+  base-check paragraph is written before the desk's own later commits
+  exist.
+- **A state-dependent directive arrived after the lane closed.** The
+  desk's critique reply (order swap, red-first arrangement) reached the
+  lane only after its closing report; because the directive stated its
+  precondition ("valid while … no st-28 commit exists"), the lane
+  reported it stale instead of acting. Measured instance of the
+  desk-pair precondition convention doing its job; no change.
+- **Mutation arms restored by whole-file `git checkout` wiped
+  uncommitted work twice.** The lane's growth and reach arms restored
+  `statiker_record.py` by checkout while st-30(1)'s fix sat uncommitted
+  in the same file; caught by grep and re-applied each time. The
+  restore recipe was this desk's own: the 0.2.86 and 0.2.87 briefs both
+  prescribe `git checkout --` to undo a mutant. Class: a destructive
+  step sized by intent rather than by the file's current state.
+  Mint declined on duplicate-home grounds: the global corpus already
+  binds it (Fixing — what sizes a destructive step is the object's
+  current state, never the intent), and the recurrence was recipe text
+  copied from one brief into the next, not a missing rule. The
+  follow-up item's arms already restore by the reverse targeted edit;
+  a brief copied from the 0.2.86/0.2.87 ones must not carry their
+  `git checkout --` restore line forward.
+- **Operational line count, 1765 vs 1764 at 136a7c2.** Not page motion:
+  the CLAUDE.md Verify awk emits the closing frontmatter fence as its
+  first line and counts it (executed at 136a7c2: first output line
+  `---`; excluding it gives 1764; statiker-fb's mechanism, confirmed).
+  The Verify command stays as is: every recorded count in the series
+  includes the fence, so changing it would break comparability for a
+  constant offset of one.
+
+st-29 design pass (statiker-fb, fable, 1e10047) graded at this desk:
+accepted as the pass's direction, three gaps carried into the carrier
+(598baef) — lap A needs its per-clause table before any edit; lap B's
+route vocabulary is sketched, not designed (booked st-32); lap C books
+the size-target re-derivation the operator concurred with on
+2026-08-10 (st-33). statiker-fb closable.
