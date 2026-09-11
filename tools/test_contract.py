@@ -1123,7 +1123,15 @@ def all_emitted_violation_codes(source_text):
     so a code minted anywhere in the file and left out of
     RULE_MINT_VERSION fails loudly instead of riding either
     silently-forgiven-forever (a FORM code with no mint version never
-    retro-nets) or silently unrecorded."""
+    retro-nets) or silently unrecorded.
+
+    REACH (st-30(5), 0.2.86 re-review finding 5): literal code strings
+    at these three emission shapes only — a code assembled from a
+    variable or expression, or returned inside a TUPLE rather than a
+    `return [...]` LIST, is invisible to this walk (the List-only
+    Return branch below matches no `ast.Tuple`; verified: a planted
+    `return ('code',)` is invisible, a planted `return ['code']` is
+    caught)."""
     tree = ast.parse(source_text)
     codes = set()
     for node in ast.walk(tree):
@@ -1188,12 +1196,16 @@ class TestRNfRepairFormCoverage(unittest.TestCase):
     future inline-repaired code enters the exemption automatically and
     a code that stops being inline-repaired loses it the same way.
     0.2.85 checkpoint review T2 (nit; RN-f assurance wider than its
-    predicate): this check's REACH is literal code strings at
-    emission sites — `all_emitted_violation_codes`' own AST walk
-    reads only `ast.Constant` string arguments/elements/dict values
-    (above); a code assembled from a variable or expression at its
-    emission site is invisible to the derivation and so outside this
-    check's coverage (reviewer's planted mutant; no live instance)."""
+    predicate), widened by st-30(5) (0.2.86 re-review finding 5): this
+    check's REACH is literal code strings at emission sites —
+    `all_emitted_violation_codes`' own AST walk reads only
+    `ast.Constant` string arguments/elements/dict values (above); a
+    code assembled from a variable or expression at its emission
+    site, OR a literal code returned inside a TUPLE rather than a
+    `return [...]` LIST, is invisible to the derivation and so outside
+    this check's coverage (T2: reviewer's planted variable-mutant;
+    finding 5: a planted tuple return passes this check where a
+    planted list return is caught — no live instance of either)."""
 
     @classmethod
     def setUpClass(cls):
@@ -1252,7 +1264,14 @@ class TestP5RuleMintVersionCoverage(unittest.TestCase):
     without its entry ages loudly (this test fails) instead of either
     over-forgiving (a FORM code with no mint version never grades
     RETRO, so P5's epoch-scoped sweep silently never applies to it)
-    or riding the tool unrecorded in the version-attribution table."""
+    or riding the tool unrecorded in the version-attribution table.
+
+    REACH (st-30(5), 0.2.86 re-review finding 5, same caveat as
+    TestRNfRepairFormCoverage's — the two share `all_emitted_
+    violation_codes`): literal code strings at emission sites only —
+    a code assembled from a variable or expression, or returned
+    inside a TUPLE rather than a `return [...]` LIST, is invisible to
+    the derivation and so outside this check's coverage too."""
 
     @classmethod
     def setUpClass(cls):
