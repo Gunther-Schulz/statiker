@@ -4777,6 +4777,44 @@ class TestRNaDeclaratorBookkeepingInvalidatedExempt(RecordFixture):
         self.assertIn("declarator-bookkeeping", self.violation_codes(v), v)
 
 
+# ------------- 0.2.84 re-review RN-b: ambiguous-citation
+
+class TestRNbAmbiguousCitation(RecordFixture):
+    """0.2.84 re-review disposition RN-b (notable, design decided at
+    disposition time): any doc path (.md) before a same-run id exempts
+    that id from basis-cites-invalidated — a live hole, page and tool
+    agreeing, since the citation could equally be THIS run's own
+    (possibly dead) id. DECISION: a record-named id that also resolves
+    in this run's namespace is ambiguous — mint hold
+    `ambiguous-citation`. Red arm: reviewer's pair (doc-path + same-run
+    invalidated id holds; doc-path "and"-separated control stays the
+    existing hold — the record-name exemption never persists across a
+    non-id token, so that citation is not ambiguous at all)."""
+
+    def test_doc_path_before_a_same_run_invalidated_id_is_ambiguous(self):
+        # the red case: F20 sits under an active record-name token
+        # (foreign-exempted) but ALSO resolves as this run's own
+        # [INVALIDATED] F20 — the citation cannot be disambiguated
+        body = ("- F20 [INVALIDATED] this run's own claim died — "
+                "basis: probe\n"
+                "- D1 [COMMITTED] rests on — "
+                "basis: dev-notes/tracker.md F20\n")
+        v = self.sweep(body)
+        self.assertIn("ambiguous-citation", self.violation_codes(v), v)
+
+    def test_and_separated_doc_path_control_stays_the_existing_hold(self):
+        # control: "and" breaks the record-name token's persistence —
+        # F20 falls through to an ordinary same-run citation, and the
+        # existing basis-cites-invalidated hold fires exactly as before
+        body = ("- F20 [INVALIDATED] this run's own claim died — "
+                "basis: probe\n"
+                "- D1 [COMMITTED] rests on — "
+                "basis: dev-notes/tracker.md and F20\n")
+        v = self.sweep(body)
+        self.assertIn("basis-cites-invalidated", self.violation_codes(v), v)
+        self.assertNotIn("ambiguous-citation", self.violation_codes(v), v)
+
+
 # ----------------------------- P24: the unforced landing annotation
 
 class TestP24LandingMissingHold(RecordFixture):
