@@ -8673,8 +8673,11 @@ sits on pre-lap surface. Counted, not graded: six findings on the lap's
 surface, four at flagged slots (N1, N2, n1, n2) and two at unflagged
 ones (n3 at st-30(5), n4 at st-30(7)); the 0.2.86 run counted one of
 five at a flagged slot. No datum under the registered criterion; the
-test repeats at the next lap with an owed round (st-29 lap A's
-checkpoint review).
+test repeats at the next REPAIR lap with an owed round — the lap that
+builds st-34/st-35's review-finding dispositions. st-29 lap A's review
+does not qualify: its rows are compression dispositions, not
+dispositions of review findings, so the design-bearing classification
+has nothing to classify there.
 
 ## 2026-09-11 — 0.2.87 release gate (statiker-4d): tenet records for every mint the pin carries, lint, live-run check
 
@@ -8760,3 +8763,60 @@ Release checklist, executed against the payload at 769e7f2:
   — inside the pin's installPath, version 0.2.87, gitCommitSha 7791b63.
   The 0.2.82 and 0.2.86 cache directories remain on disk; no pin points
   at either.
+
+## 2026-09-11 — st-29 lap A stage 1: clause table graded (lane opus-lapA-table-0287, da6936d)
+
+Table: 156 rows (87 KEEP, 68 TIGHTEN, 1 DELETE) over SKILL.md at
+769e7f2; projection 1765 → 1477 body lines (1766 → 1478 canonical).
+Lane checks, each red on a planted fault first: handles 156/156
+(whitespace-normalized; one heading handle matches three places and is
+anchored by its range), 0 verdict tokens orphaned, coverage 0
+uncovered / 0 double-covered. Desk re-check with an independently
+written parser over `git show 769e7f2`: 156 rows, 1765 non-blank body
+lines, 0 uncovered, 0 multi-covered, 0 handles missing from their own
+range; control pair shown (a real handle found, a mutated one not).
+
+Grade: ACCEPTED as the lap-A build table.
+- **Band miss (lane gap G1).** Design §2's lap-A band (~1100–1200)
+  assumed tightening across the lap-B routing masses; the stage-1
+  brief's rule 3 holds them for lap B (472 projected lines), and rules
+  4–6 hold §5, dark and fresh text (914 lines held in all). Rule 3
+  stands: tightening prose lap B replaces spends a review round on an
+  object already slated for replacement. The band is a lap-B number;
+  lap A's projection is ~1478, and the page-wide ~650–750 projection is
+  unaffected, since it counts on precipitating those masses.
+- **Torn rows: all twelve take the lane's chosen reading.** Item 1
+  (path derivations, TIGHTEN): design §1 decided the derivations leave
+  — `seal-path` computes the paths and the page forbids hand-composing
+  them — while the home principle and species names stay, so the
+  lifecycle row's homes stay on the page. Item 4 (fresh-mint rows S7,
+  I2, V2, V6, R30, R32, R38), read at the desk: every drop is incident
+  narration or a form literal restated verbatim elsewhere (R30's
+  literals stay at S7); the operative sentences st-26's and st-31's
+  field tests grade survive, so the graded objects do not change. Item
+  6 (R13's P19 rationale): dropped — design rationale lives in the
+  design record, and the conduct rule stays. Items 2, 3, 5, 7–12 as the
+  lane chose, on its stated bases.
+- **Gaps.** G2: "the 0.68 NARROWING route" names the route shipped in
+  0.2.68 (6e211ee) — a version shorthand the states-decisions-cleanly
+  convention excludes; lap A rewrites it to "the NARROWING route (The
+  attack)". G3: the `sustain` gloss (pinned :101) points at Stop rule,
+  while "That closes design" sits at :1240 in The attack; lap A
+  corrects the pointer. G4: the held-out stop hook cites SKILL.md by
+  line number; recorded on st-15, whose redesign anchors on text. The
+  lineage register's pointer (dev-notes/clippy-lineage.md:120) now
+  names Stop rule at 769e7f2.
+- **Correction recorded (the desk's brief).** The design's size band
+  and the stage-1 brief's constraint set were two parents never
+  reconciled: the desk derived rule 3 without re-projecting the band,
+  so the table was ordered against a target its own rules excluded.
+  Class: parentage — two parents disagreeing, surfaced only by the
+  measurement. Mechanism: judgment-shaped (no computable predicate over
+  a design's projection and a brief's rules); the lane's arithmetic
+  caught it. A second lane lesson is adopted directly: clause-row
+  handles take a stated whitespace-normalization convention, carried
+  into the stage-2 brief.
+- **Carried to lap A's checkpoint review, unverified here:** whether
+  each TIGHTEN row's must-survive list is complete (judgment), and a
+  census of readers citing the narration lap A drops (the dark
+  lifecycle row).

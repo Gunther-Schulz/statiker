@@ -117,7 +117,9 @@ carries what current evidence exists).
   "conceptual over sequential", and statiker's free loop is that
   fully realized. The class moved to the BRIEFED tier, where
   literalism is now the defended interface (statiker's
-  commissioned-line-range scar, SKILL.md Implementation).
+  commissioned-line-range scar: SKILL.md Stop rule at 769e7f2, where
+  the narration sits; the st-29 lap A compression leaves only its
+  rule on the page).
 - **Mechanized, not deleted**: the proof-of-compliance layer —
   chat step-theater became the on-disk tracker plus tools emitting
   verdict lines. Invariant across all six states: make the
