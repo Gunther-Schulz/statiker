@@ -1488,36 +1488,32 @@ nobody checked returns exactly what one that passed returns, and
 the desk cannot know what a fresh context declined to exercise
 unless the brief demanded the statement. The brief demands the same
 statement PER FINDING repaired in-round: whether its red state
-exists RE-EXECUTABLY — a committed red arm (a commit the fix's own
-diff reverts) or the red run's pasted output — NOT EXERCISED
-otherwise, since a docstring-only red run is formally compliant and
-unattackable short of this leg (F175). The V-line's evidence
+exists RE-EXECUTABLY (Implementation's recorded forms — a committed
+red arm or the red run's pasted output) — NOT EXERCISED otherwise, a
+docstring-only red run being formally compliant and unattackable
+short of this leg. The V-line's evidence
 carries the per-R table; PASSED is recordable only with every
 R-line met or its non-exercise carried as a named
-[AUTO-ACCEPTED]. (hypothesis) The verify brief
+[AUTO-ACCEPTED]. `(hypothesis)` The verify brief
 carries the tracker, the code, and the question — read-only tail,
 no executor cite, one named carve-out stated in the brief AFTER
 the pasted tail and governing on conflict: executing the repo's
 checks writes their normal by-products (caches, build dirs) —
 still no commits, no tracker writes. The carve-out DECLARES the
-repo checks' by-product paths, and the declaration with each
-path's pre-existence (present or absent) is observed AND
-written at dispatch, before the round runs, to the seal
-namespace —
-`~/.local/state/statiker/seals/<repo-key>/<tracker-filename>.<round>.paths`
-(`<round>` = the A<n> id for attack rounds; a verify leg
-writes `.verify.paths`, REWRITTEN at each verify dispatch —
-at most one is in flight, so no count is derived),
-re-derivable by any successor desk (The attack's derivation)
-— never carried only in the brief or in memory. The dispatch also
+repo checks' by-product paths, and the declaration with each path's
+pre-existence (present or absent) is observed AND written at
+dispatch, before the round runs, to that round's `paths` species
+path (`seal-path --round A<n>` for attack rounds; `--round verify`
+gives the `.verify.paths` file, REWRITTEN at each verify dispatch —
+at most one is in flight, so no count is derived); re-derivable by
+any successor desk (The attack's derivation) — never carried only in
+the brief or in memory.
+
+The dispatch also
 records the copy's HEAD sha at leg read-start — a `record:` F-line
 ("verify leg reads at <sha>"), so a resume can re-run the gate
-against it: the desk is an
-UNFROZEN concurrent writer during verify, unlike the attack rounds'
-append freeze (P30, F121/F124 — the unit transaction's own collision
-check was once replaced by exactly the condition this breaks, "this
-desk is the only writer in this copy", then broken by a mid-leg desk
-commit). At the
+against it: the desk is an UNFROZEN concurrent writer during verify,
+unlike the attack rounds' append freeze. At the
 return, after any queued appends (attack
 rounds, The attack) and record repairs land and before the
 outcome line, the desk removes exactly the declared paths the
@@ -1538,8 +1534,7 @@ verify leg's report, the desk runs verify-gate and appends the
 V-line in the SAME TURN — a per-R verdict has no gate-legible form
 until the V-line lands, and a pause between the leg's return and
 that append leaves them as hand-carried F-lines a resumed close
-cannot consume (P33, run 3: eleven PASS verdicts, both legs
-re-ran). Before the V-line,
+cannot consume. Before the V-line,
 `verify-gate --tracker <path> --sha <the recorded read-start sha>`
 checks the copy against that recorded sha: VERIFY_COPY_CLEAN
 proceeds; VERIFY_COPY_STALE names every commit and touched path
