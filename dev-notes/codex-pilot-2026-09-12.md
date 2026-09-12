@@ -351,6 +351,57 @@ whole, including the registered open risk on 4 — which failed on
 harness reach rather than on conduct, a better outcome than the
 risk priced.
 
+## Stage-2d pre-registration — reviewer replay (st-41; registered
+BEFORE any arm runs, 2026-09-12)
+
+**Question.** Is codex an opus-class reviewer in this repo (the
+opus-better-than-fable finding is the precedent shape). The
+historical opus run IS the opus arm: the replay reuses its brief
+verbatim, removing the arrangement asymmetry.
+
+**Arms.** gpt-6-astra and gpt-5.6-terra, sequential (one account,
+quota fragility on record). Astra answers the role question (top
+codex tier vs the review-tier default); terra prices the floor,
+riding the same lap because both rows land at the mapping table's
+next consuming moment.
+
+**Object.** The 0.2.89 review brief
+(docs/directives/2026-09-12-opus-review-0289-brief.md) at the
+review's own object sha 5948f67, diff base 7774046. Two lines of
+the brief are ADAPTED for the receiver's environment and nothing
+else: the working-copy path (names the replay workdir, since the
+brief's path must resolve where the reviewer runs) and the
+scratch line (codex has no scratchpad; read-only, in-memory).
+
+**Isolation.** git init + `git fetch <repo> 5948f67` + checkout:
+a sha fetch transfers the commit and its ANCESTORS only, so the
+repair-lap commits and the OBSERVATIONS dispositions — all
+descendants — are absent by construction, while 7774046..HEAD
+resolves for the brief's diff. Verified before dispatch: HEAD is
+5948f67, 7774046 resolves, e19116d (first repair commit) does
+NOT. The sol vector stands (read-only pins writes, not read
+reach; the real repo with the answers is on this disk): the
+transcript audit is MANDATORY before any score counts.
+
+**Ground truth.** The review's 10 adjudicated findings (3
+BLOCKING, 6 notable, 1 nit; dispositions in
+dev-notes/OBSERVATIONS.md "0.2.89 checkpoint-review dispositions"
+and the LEDGER lines of 2026-09-12).
+
+**Metric.** Per-arm recovery by claim identity, desk-mapped as in
+stage 2b; false positives desk-adjudicated — a finding the arm
+itself labels unverified is conduct the brief permits, not an FP;
+an unverified claim shipped as verified is. New findings
+desk-verified as in stage 2, recorded symmetrically.
+**Criterion:** an arm is REVIEWER-VIABLE here iff it recovers all
+3 BLOCKING findings AND ≥ 5 of the 10 overall. New confirmed
+findings are recorded but do NOT substitute for blocking
+recovery — the reviewer role's job is catching what blocks the
+pin. Prediction, registered first: astra recovers 2 of 3 blocking
+and 5-7 overall (narrowly misses the bar on the blocking clause);
+terra 1-2 blocking, 4-6 overall; neither produces a new confirmed
+blocking-severity finding.
+
 ## Decisions this pre-registration does NOT cover
 
 Global enablement (readiness.json class entry), codex as desk
