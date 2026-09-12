@@ -1452,6 +1452,66 @@ class TestR6BudgetTripwireAnchorsOnTheSlashForm(RecordFixture):
         self.assertEqual(v["reason"], "silent", v)
 
 
+# --------- st-44 (A1, Stage-2d replay finding, adjudicated 58f9300):
+# --------- a valueless `/ tripwire` field refuses instead of unarming
+
+class TestSt44A1ValuelessTripwireFieldRefuses(RecordFixture):
+    """A Budget header ending `/ tripwire` with NO value at all misses
+    TRIPWIRE_BUDGET_RE's required `\\s+(\\S+)` value group and falls
+    through to the `not m` branch, which read it exactly like an
+    ABSENT field — TRIPWIRE_SILENT unarmed, zero lints, the breaker
+    silently off. Same fail-open family as st-34 N2 (a present but
+    unparseable value) and 0.2.89 B3 (a near-miss arming entry): an
+    arming field's whole purpose is to be load-bearing at a seam
+    nobody re-reads. FIX: TRIPWIRE_BUDGET_FIELD_RE detects the `/
+    tripwire` marker's presence independent of a value following it,
+    so a present-but-empty value is refused with the same USAGE_ERROR
+    shape a non-integer value already gets; only a field that never
+    appears at all stays unarmed.
+
+    Red arm (executed 2026-09-12, against HEAD before this fix):
+    header `... / tripwire` (no value) gave TRIPWIRE_SILENT
+    reason="unarmed" with no error. Controls: `/ tripwire 2` still
+    arms at threshold 2; `/ tripwire abc` still USAGE_ERROR; a Budget
+    line with no `tripwire` field at all still reads unarmed
+    (test_header_tripwire_absent_field_still_reads_unarmed, above,
+    covers that control and is left untouched by this fix)."""
+
+    def test_valueless_tripwire_field_is_rejected(self):
+        header = ("# Run: test\nStatus: in-progress\n"
+                  "Phase: investigate-design\nSkill: statiker 0.2.33\n"
+                  "Budget: cycles 7 / rounds 4 / verify 3 / tripwire\n\n"
+                  "## Cycle 1\n")
+        v = self.tripwire("", header=header)
+        self.assertEqual(v["verdict"], "USAGE_ERROR", v)
+
+    def test_valueless_tripwire_field_with_trailing_space_is_rejected(self):
+        header = ("# Run: test\nStatus: in-progress\n"
+                  "Phase: investigate-design\nSkill: statiker 0.2.33\n"
+                  "Budget: cycles 7 / rounds 4 / verify 3 / tripwire \n\n"
+                  "## Cycle 1\n")
+        v = self.tripwire("", header=header)
+        self.assertEqual(v["verdict"], "USAGE_ERROR", v)
+
+    def test_present_value_control_still_arms(self):
+        header = ("# Run: test\nStatus: in-progress\n"
+                  "Phase: investigate-design\nSkill: statiker 0.2.33\n"
+                  "Budget: cycles 7 / rounds 4 / verify 3 / tripwire 2\n\n"
+                  "## Cycle 1\n")
+        v = self.tripwire("", header=header)
+        self.assertNotEqual(v["verdict"], "USAGE_ERROR", v)
+        self.assertEqual(v["verdict"], "TRIPWIRE_SILENT", v)
+        self.assertEqual(v["reason"], "silent", v)
+
+    def test_non_numeric_value_control_still_refuses(self):
+        header = ("# Run: test\nStatus: in-progress\n"
+                  "Phase: investigate-design\nSkill: statiker 0.2.33\n"
+                  "Budget: cycles 7 / rounds 4 / verify 3 / tripwire abc\n\n"
+                  "## Cycle 1\n")
+        v = self.tripwire("", header=header)
+        self.assertEqual(v["verdict"], "USAGE_ERROR", v)
+
+
 # --------- st-35: the tripwire's arming carrier moves to an appended
 # --------- record entry (dev-notes/OBSERVATIONS.md, 2026-09-12 ruling)
 

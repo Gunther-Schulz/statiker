@@ -168,6 +168,19 @@ BUDGET_ROUNDS_RE = re.compile(r"\brounds\s+(\d+)\b")
 # the declared `/` form; a present `/ tripwire <x>` still refuses a
 # non-integer or sub-1 value exactly as before (st-34 N2 unchanged).
 TRIPWIRE_BUDGET_RE = re.compile(r"/\s*tripwire\s+(\S+)")
+# st-44 (A1, Stage-2d replay finding, adjudicated 58f9300): a header
+# ending `/ tripwire` with NO value at all misses TRIPWIRE_BUDGET_RE's
+# required `\s+(\S+)` value group, falls through to the `not m` branch
+# below, and reads as though the field were never named at all —
+# TRIPWIRE_SILENT unarmed, zero lints. Same fail-open family st-34 N2
+# and 0.2.89 B3 fixed on the sibling arming-entry carrier: an arming
+# field's whole purpose is to be load-bearing at a seam nobody
+# re-reads. This marker matches the field's presence alone, value or
+# not, so cmd_tripwire can tell "field absent" (still unarmed, by
+# design — the `not m` branch below) from "field present, value
+# missing" (refused, the same USAGE_ERROR shape a non-integer value
+# gets).
+TRIPWIRE_BUDGET_FIELD_RE = re.compile(r"/\s*tripwire\b")
 # st-35 (dev-notes/OBSERVATIONS.md, "the tripwire's arming carrier"
 # ruling): the appended arming route — arming, or tightening an armed
 # tripwire, lands as an ordinary `record: `-scoped F-line (SCOPE_EXACT_RE
@@ -2551,8 +2564,18 @@ def cmd_tripwire(args):
             say(f"tripwire: armed from {latest_arm.id}'s appended entry "
                 f"(tripwire armed at {threshold})")
         else:
-            m = TRIPWIRE_BUDGET_RE.search(meta["budget"] or "")
+            budget_text = meta["budget"] or ""
+            m = TRIPWIRE_BUDGET_RE.search(budget_text)
             if not m:
+                # st-44 (A1): a `/ tripwire` field present with no value
+                # is NOT the absent-field case below — refuse it the same
+                # way a non-integer value is refused, never silently
+                # unarmed.
+                if TRIPWIRE_BUDGET_FIELD_RE.search(budget_text):
+                    finish("USAGE_ERROR", 3,
+                           error="Budget line's `tripwire` field carries "
+                                 "no value — name an integer >= 1 or drop "
+                                 "the field entirely")
                 say("tripwire: unarmed — no --threshold given, no "
                     "appended arming entry, and the Budget line "
                     "carries no `tripwire <n>` field")
