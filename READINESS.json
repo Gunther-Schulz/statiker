@@ -1,0 +1,45 @@
+{
+  "role": "tier-readiness exclusions and deviations (dispatch skill §6), plus this repo's codex (role, model) certification records per st-38's done-criterion",
+  "exclusions": [],
+  "deviations": [],
+  "codex": {
+    "basis": "dev-notes/codex-pilot-2026-09-12.md — pre-registered stages 1, 2, 2b, 2c, 2d; every certification desk-graded at statiker-58",
+    "scope": "statiker-measured. Global usage enabled by operator 2026-09-12 (LEDGER decision of that date): entries are candidate-in-operation outside this repo, graded by the fire-rate review",
+    "certifications": [
+      {
+        "lane_role": "read-side mechanical (lint/sweep comprehension)",
+        "models": ["gpt-5.6-luna", "gpt-5.6-terra", "gpt-6-astra"],
+        "status": "ready",
+        "evidence": "stage-1 PASS at sonnet parity (recall 0.94-0.97, precision 0.78-0.85), 2026-09-12; cheapest viable luna",
+        "tokens_per_run": "46k-57k"
+      },
+      {
+        "lane_role": "attack round",
+        "models": ["gpt-6-astra", "gpt-5.6-terra"],
+        "status": "ready",
+        "evidence": "stage-2 astra: 2 desk-confirmed unique findings vs opus (C2, C5); stage-2b terra: 5/13 recovery incl 4 of astra's 6, no new. Recovery-style attack rides terra; cross-vendor blind-spot yield needs astra. Both arms are ALONGSIDE opus (opus-unique 7), never instead",
+        "tokens_per_run": "~60k either tier"
+      },
+      {
+        "lane_role": "implementation (write-side)",
+        "models": ["gpt-5.6-terra"],
+        "status": "ready",
+        "evidence": "stage-2c R6 replay PASS: red-first order verified in transcript, semantic match to landed fix, suite desk-verified 563/0, 2026-09-12",
+        "bindings": "codex cannot commit (sandbox denies .git writes) — the dispatcher commits; suite counts inside the sandbox are depressed — grade outside; transcript audit mandatory (read reach is unpinned)",
+        "tokens_per_run": "32k"
+      },
+      {
+        "lane_role": "reviewer (checkpoint review)",
+        "models": [],
+        "status": "excluded",
+        "evidence": "stage-2d: astra 1/10, terra 0/10 recovery of the 0.2.89 adjudicated set; the multi-location route-token contract class invisible to both arms. Codex audits structure, does not read page-vs-tool contract. The reviewer role STAYS OPUS"
+      },
+      {
+        "lane_role": "desk",
+        "models": [],
+        "status": "eval-open",
+        "evidence": "stage 3 parked (operator, 2026-09-12); certify only when a consuming run wants a codex desk"
+      }
+    ]
+  }
+}
