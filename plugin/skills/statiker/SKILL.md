@@ -112,6 +112,13 @@ uncommitted.
 
 ### Route vocabulary
 
+A verdict's token is the FAIL-CLOSED member of its page
+dispositions: the one that books and halts wherever this page's
+own seams treat the same verdict name differently. A seam may be
+more permissive than its token only through an explicit sentence
+at that seam; the token itself never under-states the obligation,
+so a desk reading only the token is never unsafe.
+
 Every verdict line carries a `route` field — the tool's own stamp,
 one lookup against a closed eight-token vocabulary; the desk reads
 it rather than re-deriving a verdict's disposition from its name. A
@@ -149,10 +156,13 @@ per class:
   attended, the operator's clearing reply re-enters; unattended,
   the seam's own close rule applies.
 - `surface` — operator ground: no desk resolution exists (a
-  tampered pin, an unpinnable tracker). Attended it leads the next
-  prompt; unattended the run takes the seam's terminal disposition
-  (FAILED / rides the close). Distinct from `halt` by resolver: a
-  halt's clearing can be desk work on provenance; surface never.
+  tampered pin, an unpinnable tracker). It carries `halt`'s booking
+  obligation (the verdict line books verbatim as a `record:`
+  F-line) AND routes the resolution to the operator rather than the
+  desk. Attended it leads the next prompt; unattended the run takes
+  the seam's terminal disposition (FAILED / rides the close).
+  Distinct from `halt` by resolver: a halt's clearing can be desk
+  work on provenance; surface never.
 - `triage` — the verdict is complete evidence for a desk judgment
   between dispositions this page names (stale-copy harmless vs
   re-run; contention provenance; the residue check). Judgment stays
@@ -164,6 +174,11 @@ verdict name the registry lacks stamps `route: "unrouted"`. A
 verdict whose `route` field is absent, unknown, or `unrouted` is a
 HALT for the seam that ran it, booked from the verdict line —
 fail-closed, the same catch-all above.
+
+The two-route rule: where a verdict line carries an embedded
+verdict (the git tool's `gate` field), the OUTER verdict's route
+governs the seam; an embedded verdict's own route is evidence about
+the inner call, never a second instruction.
 
 Unit briefs carry the git tool's ABSOLUTE path and its invocation
 lines — the tool is the shared implementation, so no lock-procedure

@@ -62,16 +62,15 @@ ROUTES = {
     "UNIT_COMMITTED_RESIDUE": "book-and-continue",
     # repair-from-verdict (1)
     "LOCK_GATE_HOLDS": "repair-from-verdict",
-    # barred (2)
+    # barred (1)
     "STATE_IN_PROGRESS": "barred",
-    "UNIT_GATE_BLOCKED": "barred",
-    # triage (3)
-    "BLOCKED_CONTENTION": "triage",
-    "UNIT_COLLISION": "triage",
+    # triage (1)
     "UNIT_NO_DIFF_VS_HEAD": "triage",
     # surface (1)
     "PREFLIGHT_UNPINNABLE_TRACKER": "surface",
-    # halt (23)
+    # halt (26; UNIT_GATE_BLOCKED, BLOCKED_CONTENTION and UNIT_COLLISION
+    # moved here 0.2.89 fix — the fail-closed floor, dev-notes/
+    # OBSERVATIONS.md "0.2.89 checkpoint-review dispositions")
     "HALT_STATE": "halt",
     "HALT_TRACKER_COLLISION": "halt",
     "HALT_TRACKER_UNPINNABLE": "halt",
@@ -95,6 +94,9 @@ ROUTES = {
     "USAGE_ERROR": "halt",
     "GIT_ERROR": "halt",
     "INTERNAL_ERROR": "halt",
+    "UNIT_GATE_BLOCKED": "halt",
+    "BLOCKED_CONTENTION": "halt",
+    "UNIT_COLLISION": "halt",
 
     # ---- record tool (37 emitted names; the 4 shared names above are
     # not repeated here) ----
@@ -126,17 +128,19 @@ ROUTES = {
     "CLOSURE_ABSENT": "barred",
     "CLOSURE_VOID": "barred",
     "UNIT_HELD": "barred",
-    # narrow (2)
-    "SUSTAIN_DENIED": "narrow",
+    # narrow (1)
     "TRIPWIRE_FIRES": "narrow",
     # triage (1)
     "VERIFY_COPY_STALE": "triage",
     # surface (1)
     "PINNED_REWRITTEN": "surface",
-    # halt (8; 4 of these — PATH_OUTSIDE_REPO, USAGE_ERROR, GIT_ERROR,
-    # INTERNAL_ERROR — are keyed above from the git tool's list)
+    # halt (9; 4 of these — PATH_OUTSIDE_REPO, USAGE_ERROR, GIT_ERROR,
+    # INTERNAL_ERROR — are keyed above from the git tool's list; SUSTAIN_DENIED
+    # moved here 0.2.89 fix — the fail-closed floor, dev-notes/OBSERVATIONS.md
+    # "0.2.89 checkpoint-review dispositions")
     "UNIT_UNKNOWN": "halt",
     "ARTIFACT_IN_REPO": "halt",
     "PIN_UNREADABLE": "halt",
     "TRACKER_UNREADABLE": "halt",
+    "SUSTAIN_DENIED": "halt",
 }
