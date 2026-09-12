@@ -25,6 +25,28 @@
   the pin moves, never only the mints a handoff names (0.2.86
   release: eleven carried mints had none, recorded at the release
   gate, dev-notes/OBSERVATIONS.md 2026-09-11).
+  WHAT COUNTS AS A MINT (C4b, minted 2026-09-12 at the 0.2.89
+  release gate; design docs/directives/2026-09-11-p28-design-statiker-ba.md):
+  a REPAIR DISPOSITION that introduces a new machine token, hold
+  code, predicate or mandatory form IS a mint, and the provenance
+  bar and the tenet check bind it exactly as they bind content
+  that presents as one. It escapes by COSTUME: a repair does not
+  look like an addition, so neither gate fires. Distinguish a new
+  token/predicate/form from a repair restoring an EXISTING
+  predicate's stated reach, which is not a mint. Incident: RN-b/B1,
+  minted at a disposition seam with no field incident and withdrawn
+  one round later on a 0/1006 field reading. Field datum from this
+  rule's own release, the discriminating pair drawn from the 0.2.89
+  repair lap rather than constructed: it FIRES on d946b1a (the
+  near-miss lint added `tripwire-arm-near-miss` to
+  MACHINE_TOKEN_CODES and RULE_MINT_VERSION at a disposition seam,
+  and no tenet record was written at that seam — the release gate's
+  re-ask is what caught it), and stays SILENT on 0dbabac (the
+  regex anchor restored the reach the disposition text already
+  stated). One boundary case the same lap produced, recorded
+  because it is why this is prose and not a check: e19116d's
+  fail-closed floor adds no token name but does add a mandatory
+  form, and whether it fires is a desk judgment.
 - **PLAN.md is the design record** — settled decisions are not
   re-opened without new evidence.
 - **Carrier transition (2026-09-10, operator GO).** Work items live

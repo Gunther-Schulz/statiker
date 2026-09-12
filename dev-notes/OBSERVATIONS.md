@@ -9999,3 +9999,92 @@ survived a checkpoint review because a cited id reads as a booking.
 Booked at this release as the real st-36 so the three existing
 references resolve to what they mean; the docstring is left as written
 because it now points at a live item.
+
+## 2026-09-12 — st-10's CONFIRM branch SPLITS three ways: C4b mints, C4a books, C4c waits for an instrument that can discriminate
+
+The 0.2.89 release gate's fourth duty. The field test resolved CONFIRM
+and prescribes a three-clause mint; its own recording desk called the
+variance caveat severe and refused to treat the datum as strong. The
+decision here is that the caveat does not apply uniformly, because the
+three clauses never rested on the same evidence.
+
+**What the denominator actually bears on.** The C4c field test grades
+ONE premise: do design-kind findings CONCENTRATE at pre-flagged
+dispositions. That premise is C4c's — the targeting clause. C4a rests on
+the P28 body's five incidents plus the D38 seam; C4b rests on the
+RN-b/B1 incident, where a repair disposition minted a hold code with no
+provenance and was withdrawn a round later on a 0/1006 field reading.
+Neither was ever measured by this test. Minting all three on a bare
+CONFIRM would rest two clauses on a datum that was not about them;
+refusing all three would hold C4b hostage to an instrument failure in a
+neighbouring clause. The split follows the evidence per clause rather
+than the branch label.
+
+**C4b — MINTED, into this repo's CLAUDE.md birth-class bullet.** Widened
+into the existing rule rather than added beside it (amendment over
+addition): the bullet already demands fire-born provenance and a tenet
+check per addition, and C4b widens what COUNTS as one. A repair
+disposition introducing a new machine token, hold code, predicate or
+mandatory form is a mint; a repair restoring an existing predicate's
+stated reach is not.
+The mint-timing convention asks for a field datum on the DESIGN where
+one can be had before the seam, and this release supplied it from its
+own carried set — a discriminating pair drawn from real data, never
+constructed:
+- FIRES on `d946b1a`: the near-miss lint added `tripwire-arm-near-miss`
+  to MACHINE_TOKEN_CODES and RULE_MINT_VERSION at a disposition seam,
+  and no tenet record was written at that seam. Only the releasing
+  desk's re-ask caught it, hours later. The recognizer would have fired
+  at the right moment.
+- SILENT on `0dbabac`: the regex anchor restored the reach the
+  disposition text already stated, which is the non-mint half of C4b's
+  own wording.
+- BOUNDARY, recorded rather than smoothed: `e19116d`'s fail-closed floor
+  adds no token NAME but does add a mandatory form. Whether it fires is
+  a desk judgment, and that is the evidence that this clause is prose
+  with the operator as backstop rather than a check — the same bar the
+  route-token class-check failed this morning at 24/76.
+Tenet position: 5 PASS (a seam-time question, no human seat added — it
+binds a desk already at the seam), 6 PASS (zero payload lines, zero
+extra rounds; it fires inside a gate that already runs), 8 PASS by
+placement (the computable slice does not exist here — "mandatory form"
+is judgment-shaped — so the remainder stays prose at a seam whose
+false-fire cost is near zero, which is this repo's own rule for
+seam-time checklist questions). Not payload: no pin implication, no
+review criterion triggered.
+Self-application, since the rule's first test is itself: C4b is a
+mandatory form introduced at a disposition seam, so it must clear its
+own bar. It does — fire-born provenance (RN-b/B1) plus the field datum
+above — and it is recorded here rather than asserted.
+
+**C4a — BOOKED READY on st-10, riding the next lap.** It is payload
+(SKILL.md's Verify demand list, 3-4 lines) and the design's own tenet
+pass marks it PASS WITH OBLIGATION because it names record forms, so
+CLAUDE.md's review criterion (2) binds it to a fresh-context opus
+checkpoint review before any pin move. No run is live, and a release
+buys nothing until a desk run consumes the pin, so spending a review
+round and a pin move on 3-4 lines now is the split-unit waste the
+batching convention was widened to prevent (2026-09-11). The design is
+DECIDED; only the scheduling is booked, which is the distinction the
+two-exits rule draws between a fix not yet designed and a fix not yet
+built.
+
+**C4c — NOT MINTED, booked as st-37 with its instrument repair.** The
+clause may well be right; nothing here says otherwise. What is
+established is that the instrument built to grade it cannot currently
+discriminate, and a criterion that reports a verdict while
+discriminating nothing is worse than no criterion, because the verdict
+travels and the caveat does not. The repair is named in the tension
+entry and is cheap (one paragraph per item classified before the review
+dispatches, or an explicit restriction of the graded population with the
+denominator stated in the outcome line). Repair first, then repeat,
+then mint or drop. The batching decision is NOT re-opened: one round
+finding ten defects is the efficiency it was made for, and the tension
+entry is explicit that the batching harmed the measurement riding on
+the review rather than the review.
+
+**Why this was the desk's call and not the operator's.** The operator's
+GO named "the st-10 denominator decision" among the duties. The
+question is which evidence supports which clause — derivable from the
+record, with the mint-timing, batching and economics conventions all
+bearing on it. Nothing in it is an intent question.
