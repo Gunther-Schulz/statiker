@@ -1465,9 +1465,10 @@ class TestSt44A1ValuelessTripwireFieldRefuses(RecordFixture):
     arming field's whole purpose is to be load-bearing at a seam
     nobody re-reads. FIX: TRIPWIRE_BUDGET_FIELD_RE detects the `/
     tripwire` marker's presence independent of a value following it,
-    so a present-but-empty value is refused with the same USAGE_ERROR
-    shape a non-integer value already gets; only a field that never
-    appears at all stays unarmed.
+    so a present-but-empty value — the field ending bare (`/
+    tripwire` alone, or followed only by whitespace) — is refused
+    with the same USAGE_ERROR shape a non-integer value already
+    gets; a field that never appears at all stays unarmed.
 
     Red arm (executed 2026-09-12, against HEAD before this fix):
     header `... / tripwire` (no value) gave TRIPWIRE_SILENT
@@ -1475,7 +1476,16 @@ class TestSt44A1ValuelessTripwireFieldRefuses(RecordFixture):
     arms at threshold 2; `/ tripwire abc` still USAGE_ERROR; a Budget
     line with no `tripwire` field at all still reads unarmed
     (test_header_tripwire_absent_field_still_reads_unarmed, above,
-    covers that control and is left untouched by this fix)."""
+    covers that control and is left untouched by this fix).
+
+    NOTE (0.2.90 checkpoint review, N1): the marker's trailing `\\b`
+    still missed a value jammed directly onto the keyword with no
+    separating whitespace (`tripwire3`) — "e" and "3" share no word
+    boundary, so that shape read as an absent field exactly like the
+    bug this class fixes. Widened in
+    TestSt44N1DigitJammedTripwireFieldRefuses, below; this class's
+    own cases (bare and trailing-whitespace) are untouched by that
+    widening."""
 
     def test_valueless_tripwire_field_is_rejected(self):
         header = ("# Run: test\nStatus: in-progress\n"
@@ -1510,6 +1520,89 @@ class TestSt44A1ValuelessTripwireFieldRefuses(RecordFixture):
                   "## Cycle 1\n")
         v = self.tripwire("", header=header)
         self.assertEqual(v["verdict"], "USAGE_ERROR", v)
+
+
+# --------- 0.2.90 checkpoint review (N1): a digit-jammed tripwire
+# --------- value (no separating whitespace) also refuses, not unarms
+
+class TestSt44N1DigitJammedTripwireFieldRefuses(RecordFixture):
+    """N1 (0.2.90 checkpoint-review, dev-notes/OBSERVATIONS.md "0.2.90
+    checkpoint-review dispositions"): TRIPWIRE_BUDGET_FIELD_RE's
+    trailing `\\b` requires a word-boundary right after "tripwire",
+    which a digit jammed directly onto the keyword with no
+    separating whitespace (`/ tripwire3`) never produces — "e" and
+    "3" are both word characters, so no boundary falls between them.
+    The marker missed the field entirely and TRIPWIRE_BUDGET_RE
+    (which requires `\\s+` before its captured value) missed it too,
+    so the field read exactly like an ABSENT one: TRIPWIRE_SILENT
+    reason="unarmed", with the evidence line claiming the Budget line
+    "carries no `tripwire <n>` field" — false, the field is there,
+    just jammed against its value. FIX: drop the marker's trailing
+    `\\b` so it matches the keyword's bare presence regardless of
+    what immediately follows it.
+
+    Red arm (executed 2026-09-12, against HEAD before this fix):
+    header `... / tripwire3` gave TRIPWIRE_SILENT reason="unarmed",
+    exit 0, no error. Controls (all must hold, per the class the fix
+    belongs to): `/ tripwire 2` still arms at 2; `/ tripwire abc`
+    still USAGE_ERROR; `/ tripwire` (valueless) still USAGE_ERROR; a
+    Budget line with no `tripwire` field at all still reads unarmed;
+    the R6 no-slash prose control ("— tripwire armed later by entry")
+    still reads unarmed."""
+
+    def test_digit_jammed_tripwire_field_is_rejected(self):
+        header = ("# Run: test\nStatus: in-progress\n"
+                  "Phase: investigate-design\nSkill: statiker 0.2.33\n"
+                  "Budget: cycles 7 / rounds 4 / verify 3 / tripwire3\n\n"
+                  "## Cycle 1\n")
+        v = self.tripwire("", header=header)
+        self.assertEqual(v["verdict"], "USAGE_ERROR", v)
+
+    def test_present_value_control_still_arms(self):
+        header = ("# Run: test\nStatus: in-progress\n"
+                  "Phase: investigate-design\nSkill: statiker 0.2.33\n"
+                  "Budget: cycles 7 / rounds 4 / verify 3 / tripwire 2\n\n"
+                  "## Cycle 1\n")
+        v = self.tripwire("", header=header)
+        self.assertNotEqual(v["verdict"], "USAGE_ERROR", v)
+        self.assertEqual(v["verdict"], "TRIPWIRE_SILENT", v)
+        self.assertEqual(v["reason"], "silent", v)
+
+    def test_non_numeric_value_control_still_refuses(self):
+        header = ("# Run: test\nStatus: in-progress\n"
+                  "Phase: investigate-design\nSkill: statiker 0.2.33\n"
+                  "Budget: cycles 7 / rounds 4 / verify 3 / tripwire abc\n\n"
+                  "## Cycle 1\n")
+        v = self.tripwire("", header=header)
+        self.assertEqual(v["verdict"], "USAGE_ERROR", v)
+
+    def test_valueless_control_still_refuses(self):
+        header = ("# Run: test\nStatus: in-progress\n"
+                  "Phase: investigate-design\nSkill: statiker 0.2.33\n"
+                  "Budget: cycles 7 / rounds 4 / verify 3 / tripwire\n\n"
+                  "## Cycle 1\n")
+        v = self.tripwire("", header=header)
+        self.assertEqual(v["verdict"], "USAGE_ERROR", v)
+
+    def test_absent_field_control_still_reads_unarmed(self):
+        header = ("# Run: test\nStatus: in-progress\n"
+                  "Phase: investigate-design\nSkill: statiker 0.2.33\n"
+                  "Budget: cycles 7 / rounds 4 / verify 3\n\n"
+                  "## Cycle 1\n")
+        v = self.tripwire("", header=header)
+        self.assertEqual(v["verdict"], "TRIPWIRE_SILENT", v)
+        self.assertEqual(v["reason"], "unarmed", v)
+
+    def test_r6_no_slash_prose_control_still_reads_unarmed(self):
+        header = ("# Run: test\nStatus: in-progress\n"
+                  "Phase: investigate-design\nSkill: statiker 0.2.33\n"
+                  "Budget: cycles 7 / rounds 4 / verify 3 "
+                  "— tripwire armed later by entry\n\n"
+                  "## Cycle 1\n")
+        v = self.tripwire("", header=header)
+        self.assertNotEqual(v["verdict"], "USAGE_ERROR", v)
+        self.assertEqual(v["verdict"], "TRIPWIRE_SILENT", v)
+        self.assertEqual(v["reason"], "unarmed", v)
 
 
 # --------- st-35: the tripwire's arming carrier moves to an appended

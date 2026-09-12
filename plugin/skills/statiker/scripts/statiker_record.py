@@ -175,12 +175,25 @@ TRIPWIRE_BUDGET_RE = re.compile(r"/\s*tripwire\s+(\S+)")
 # TRIPWIRE_SILENT unarmed, zero lints. Same fail-open family st-34 N2
 # and 0.2.89 B3 fixed on the sibling arming-entry carrier: an arming
 # field's whole purpose is to be load-bearing at a seam nobody
-# re-reads. This marker matches the field's presence alone, value or
-# not, so cmd_tripwire can tell "field absent" (still unarmed, by
-# design — the `not m` branch below) from "field present, value
-# missing" (refused, the same USAGE_ERROR shape a non-integer value
-# gets).
-TRIPWIRE_BUDGET_FIELD_RE = re.compile(r"/\s*tripwire\b")
+# re-reads. This marker is meant to match the field's presence alone,
+# value or not, so cmd_tripwire can tell "field absent" (still
+# unarmed, by design — the `not m` branch below) from "field present,
+# value missing" (refused, the same USAGE_ERROR shape a non-integer
+# value gets).
+# 0.2.90 checkpoint review (N1, dev-notes/OBSERVATIONS.md "0.2.90
+# checkpoint-review dispositions"): the trailing `\b` above overshot
+# that intent — a value jammed directly onto the keyword with no
+# separating whitespace (`/ tripwire3`) leaves no word boundary right
+# after "tripwire" (both "e" and "3" are word characters), so the
+# marker missed it too and the field read as though it were never
+# named at all, the same silent-unarmed shape this marker exists to
+# close. Red-first (reviewer's executed case): header `... /
+# tripwire3` gave TRIPWIRE_SILENT reason="unarmed" with the evidence
+# line claiming the Budget line "carries no `tripwire <n>` field" —
+# false, the field is there, just jammed. Dropping the trailing `\b`
+# matches the keyword's bare presence regardless of what immediately
+# follows it, jammed or separated, restoring the intent stated above.
+TRIPWIRE_BUDGET_FIELD_RE = re.compile(r"/\s*tripwire")
 # st-35 (dev-notes/OBSERVATIONS.md, "the tripwire's arming carrier"
 # ruling): the appended arming route — arming, or tightening an armed
 # tripwire, lands as an ordinary `record: `-scoped F-line (SCOPE_EXACT_RE
@@ -2567,15 +2580,20 @@ def cmd_tripwire(args):
             budget_text = meta["budget"] or ""
             m = TRIPWIRE_BUDGET_RE.search(budget_text)
             if not m:
-                # st-44 (A1): a `/ tripwire` field present with no value
-                # is NOT the absent-field case below — refuse it the same
+                # st-44 (A1): a `/ tripwire` field present with no usable
+                # value — missing entirely, or jammed onto the keyword
+                # with no separating whitespace (0.2.90 review, N1) — is
+                # NOT the absent-field case below — refuse it the same
                 # way a non-integer value is refused, never silently
                 # unarmed.
                 if TRIPWIRE_BUDGET_FIELD_RE.search(budget_text):
                     finish("USAGE_ERROR", 3,
                            error="Budget line's `tripwire` field carries "
-                                 "no value — name an integer >= 1 or drop "
-                                 "the field entirely")
+                                 "no usable value (missing, or not "
+                                 "separated from the keyword by "
+                                 "whitespace) — name an integer >= 1, "
+                                 "separated by a space, or drop the "
+                                 "field entirely")
                 say("tripwire: unarmed — no --threshold given, no "
                     "appended arming entry, and the Budget line "
                     "carries no `tripwire <n>` field")
