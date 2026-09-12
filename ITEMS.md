@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 21
+added: 22
 compacted: 0
 
 ## st-10
@@ -263,3 +263,12 @@ write-set: dev-notes/
 done-criterion: pre-registration written to dev-notes BEFORE any arm runs (arms, sha pinned from the review brief's own base statement, recovery metric by claim identity desk-mapped, false-positive adjudication rule, pass criterion); codex arm(s) run against the SAME brief file docs/directives/2026-09-12-opus-review-0289-brief.md at the review's own object sha; per-arm recovery of the 10 adjudicated findings scored with false positives desk-adjudicated; results section landed in dev-notes with a verdict on codex's reviewer role here
 evidence: ground truth: the 0.2.89 review's 10 findings with recorded dispositions (LEDGER 2026-09-12 lines; dev-notes/OBSERVATIONS.md 2026-09-12; repair lap e19116d..e43e418); the historical opus run IS the opus arm since the replay reuses its brief verbatim, which removes the arrangement asymmetry; arm lineup kept small per the operator's just-the-tiers cut, decided at pre-registration
 blocked-by: evidence grep -q "^## Stage-2 RESULTS" /home/g/dev/Gunther-Schulz/statiker/dev-notes/codex-pilot-2026-09-12.md
+
+## st-43
+grade: READY
+requirement: Stage-2d reviewer replay left 7 candidate findings unadjudicated (dev-notes/codex-pilot-2026-09-12.md, Stage-2d RESULTS): astra 4 (valueless '/ tripwire' silently unarmed vs test claim at test_statiker_record.py:1338; section_pointers population collapse on destination-heading rename, test_contract.py:1064; pinned race assertion checks SHA not content, test_statiker_record.py:6014; page first-heading boundary omits Requirement-head parser exception, SKILL.md:599 vs record.py:1020), terra 2 (desk-basis tripwire raise accepted against page operator reservation SKILL.md:321-324; trailing garbage after valid threshold accepted), plus astra's residual (documented quotation carrying ' — basis:' can lint but never ARM at HEAD). st-40 is the precedent shape
+goal: general-maintenance
+write-set: dev-notes/,plugin/skills/statiker/,tools/
+done-criterion: each of the 7 adjudicated against the page's definitions and tool behavior at HEAD with an executed pair per verdict (confirmed -> fire-born disposition per birth-class discipline with the replay finding as provenance; refuted -> one-line reason); results appended to the codex-pilot file's Stage-2d section or a successor dev-note; line numbers re-anchored at adjudication time (they cite the review object 5948f67 or HEAD of this date)
+evidence: arm reports: scratchpad codex-eval/results/review-gpt-6-astra.md and review-gpt-5.6-terra.md (session-local; claims quoted in the requirement above survive the scratchpad); A1's HEAD probe already executed at statiker-58 (near-miss lint fires, control clean) — only its residual usability half remains open
+blocked-by: NONE
