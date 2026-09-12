@@ -9210,3 +9210,34 @@ pass carrying that as its datum — never a fourth same-form repeat.
 The outcome is appended as its own line when the review is
 dispositioned, opening with the literal marker st-10's blocker
 predicate greps for (`^C4c FIELD TEST OUTCOME: (CONFIRM|REFUTE)`).
+
+## 2026-09-12 — C4c registration CORRECTED before the review: st-32's lap B contributes no classifiable population
+
+Correcting this morning's registration (the section above), in place of
+the appended classification it promised. The promise itself was the
+error, and it is caught by this test's OWN precedent rather than by
+anything new.
+
+The 0.2.87 entry ruled: "st-29 lap A's review does not qualify: its
+rows are compression dispositions, not dispositions of review findings,
+so the design-bearing classification has nothing to classify there."
+st-32 IS the compression pass — lap B. Its rows are compression
+dispositions of the same kind. So the appended registration this
+morning's entry promised would have imported a population the
+criterion cannot classify, and the flagged/unflagged share would have
+been computed over a denominator the rule excludes.
+
+**Corrected registration, unchanged in every other respect:** the
+graded population for this round is the SEVEN disposition slots already
+classified (N1, N2, n1, n2, n3, n4, st-35), 3 flagged. DESIGN-kind
+blocking + notable findings landing on lap B's surface are COUNTED and
+LISTED in the outcome, exactly as pre-lap-surface findings are, and do
+not grade. No appended registration is owed, and the line in this
+morning's entry that says the review is void without one is withdrawn:
+nothing about the review's timing changes.
+
+Note on why this was catchable only here: the promise read as rigor —
+more of the batch brought under the registered criterion — which is the
+costume a scope error wears when it widens rather than narrows. The
+criterion's own precedent is what refuses it, and the precedent was one
+section up from the entry that broke it.
