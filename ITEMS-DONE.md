@@ -339,5 +339,17 @@ promoted-by: 2026-09-12 statiker-df (opus desk)
 closed-reason: 2026-09-12 the tripwire arming carrier moved to an appended record entry per the 2026-09-12 desk ruling (8f0884f), plus two defects of the RULING rather than of the lane: retraction now disarms and the page states the resolution order once (fc17258), and the arming form's fail-OPEN near-miss, found by the 0.2.89 review as B3, now takes a machine-token enumeration entry and a near-miss lint class (d946b1a). Closed at the 0.2.89 pin move. The cost-asymmetry tenet is recorded FAIL for this ruling in the release-gate re-ask: two post-build holes in one ruling
 closed-ref: 8f0884f, fc17258, d946b1a
 
+## st-42
+grade: DONE
+requirement: Write-side codex probe: certify a codex tier for the statiker IMPLEMENTATION lane (repairs, build briefs) — the volume lane (repair lanes carried 40 of ~90 lane commits in the 09-10..12 burst) and the only major lane class with zero codex evidence; stage 1 tested read-side only (its pre-reg's own does-not-cover list names this probe)
+goal: general-maintenance
+write-set: dev-notes/,docs/directives/
+done-criterion: pre-registration BEFORE the arm runs: pick one small ADJUDICATED past repair (a sonnet repair lap item with recorded red-first arrangement and known-good landed diff), replay its brief via codex in an isolated worktree (workspace-write sandbox, worktree per dispatch-skill rung 2), graded on: suite green, diff equivalence-or-adjudicated-divergence against the landed repair, red-first arrangement executed, commit conduct (trailer, pathspec, no amend); arm from the 5.6 ladder chosen at registration; results section in dev-notes with a lane verdict
+evidence: stage-1/2/2b results in dev-notes/codex-pilot-2026-09-12.md; candidate replay objects: the sonnet-repair-0289 lap's single-commit repairs (e.g. 0dbabac R6 regex anchor, known dispositions in LEDGER 2026-09-12); dispatch-skill worktree recipe is the isolation form; codex conduct facts (git-repo requirement, schema strictness, quota fragility) in the same dev-notes file
+blocked-by: NONE
+blocker-moot: operator GO on the write-side probe and its arm choice, asked in statiker-58 on 2026-09-12
+closed-reason: 2026-09-12 PASS: terra carried the R6 replay red-first (order verified in transcript), semantic match to the landed fix (one variant, stricter than landed, indistinguishable on every exercised input), suite desk-verified 563/0. One adjudicated deviation from the criterion's letter: archive-init isolation instead of a worktree — codex workspace-write cannot write a worktree's out-of-tree .git and a history copy would carry the answer commit; registered before dispatch. Commit conduct not executable under the sandbox (.git write-denied) — harness binding, commits stay the dispatcher's. Lane verdict + bindings in dev-notes/codex-pilot-2026-09-12.md Stage-2c.
+closed-ref: 107069f, 7465b06
+
 ## Archive (pre-migration)
 
