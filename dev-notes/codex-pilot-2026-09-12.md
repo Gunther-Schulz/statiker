@@ -237,8 +237,19 @@ deliverable, ledgered 2026-09-12)
 | desk | opus | stage 3 PARKED | — |
 
 Certification is per (role, model), never inferred down the ladder
-(the ledgered decision). Cross-vendor cost comparison still lacks
-a common unit (claude -p accounts differently) — open.
+(the ledgered decision). COST MODEL (operator, 2026-09-12): a
+run's cost is tokens used × the tier's per-token credit price —
+higher tiers burn more credits per token. The measured volumes
+above are roughly tier-invariant per role (attack ~60k both
+tiers; stage-1 spread 46k–67k with sol's excess being its oracle
+hunt, not its tier), so the RATIO of tier credit prices is, to
+first order, the ratio of run costs — which is why a same-verdict
+result one tier down (stage 2b) is a real economic finding, not a
+wash. The tier credit multipliers themselves are an environment
+binding this file does not yet carry: read them from the codex
+plan's own pricing before any dollar-denominated claim
+(unverified until then). Cross-vendor comparison still lacks a
+common unit (claude -p accounts differently) — open.
 
 ## Stage-2c pre-registration — write-side implementation probe
 (st-42; registered BEFORE the arm runs, 2026-09-12)
