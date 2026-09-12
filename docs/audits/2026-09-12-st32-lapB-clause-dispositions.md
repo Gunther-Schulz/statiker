@@ -2,7 +2,11 @@
 
 Author: opus-st32-clause-table (opus lane, dispatcher team-lead),
 2026-09-12. Brief:
-`docs/directives/2026-09-12-opus-st32-clause-table-brief.md`.
+`docs/directives/2026-09-12-opus-st32-clause-table-brief.md` — read at
+`3c041e5`; the dispatcher corrected it in place at `d901291` after
+this lane's critique pass, and the corrections (Background 1, 2, 3,
+the `stale-range@769e7f2` column name, and the added coverage-map
+requirement) are all satisfied below.
 Design dispositioned against:
 `docs/directives/2026-09-12-st32-lapB-design-statiker-a5.md` (§§1, 3,
 4, 6). Lap A's table:
@@ -46,6 +50,11 @@ Lap A's column discipline is kept (its "Table conventions", cited):
   express (design §4's class) KEEPS. No other home → KEEPS, whatever
   the size (brief's rule).
 - **Token routes cited** are design §3's mapping, verbatim.
+- **Coverage map**: the design's ~230 is a sum over eight SPANS at a
+  third sha, a different partition of a different object from lap A's
+  28 rows. The spans are re-expressed as `3c041e5` line numbers and
+  intersected with the resolved row ranges before any comparison is
+  made; uncovered span blocks are reported as gaps, never absorbed.
 
 ## Summary
 
@@ -78,8 +87,9 @@ paste-and-retry-once provision (item 5), the Implementation gap
 sentence (item 4), the residue-check criterion (item 6), the Close
 benign-reading sentence (item 1). Over the lock span those kept
 classes ARE most of the span: measured leaving from S17+S18 is 12 of
-66 lines, against §6's estimated 54. Over the unit span, measured 18
-of 103 against an estimated 60. The two halves of §6 cannot both be
+the lock span's 66 non-blank lines, against §6's estimated 54. Over
+the unit span (104 nb, 103 of them inside I14-I18), measured 18
+against an estimated 60. The two halves of §6 cannot both be
 right; the KEEP list is the one §4 corroborates clause by clause, so
 the estimate is what this table finds wrong.
 
@@ -99,14 +109,16 @@ object are therefore structurally unreachable by a verdict-name-keyed
 registry. Lap A marked them `B` as "record read-side semantics"; lap
 B's instrument does not reach that class.
 
-**F4 — design §6's "record gate :179-204 = 25, leaving ~15" falls
-OUTSIDE this table's object.** At `3c041e5` that span (the resume
-RECORD GATE, routing CLOSURE_ABSENT / CLOSURE_LIVE / CLOSURE_VOID by
-KIND) is covered by lap-A rows R4 (marked `§5`, a disclosure
-candidate) and R6 (unmarked) — neither is a `B` row. The 28-row
-object cannot disposition it. Surfaced as a gap for the dispatcher:
-either the gate span is added to lap B's object by a separate
-decision, or the ~15 lines drop out of the design's leaving total.
+**F4 — four blocks of design §6's leaving mass fall OUTSIDE this
+table's object.** The coverage map below gives them in full; the
+largest is §6's whole "record gate :179-204 = 25, leaving ~15" span,
+which at `3c041e5` (the resume RECORD GATE, routing CLOSURE_ABSENT /
+CLOSURE_LIVE / CLOSURE_VOID by KIND) sits in lap-A rows R4 (marked
+`§5`, a disclosure candidate) and R6 (unmarked) — neither is a `B`
+row. 72 non-blank lines of §6's spans have no `B` row covering them.
+Surfaced as a gap for the dispatcher: either those blocks enter lap
+B's object by a separate decision, or their share of the ~230 drops
+out of the design's leaving total.
 
 **F5 — three routings in this table CHANGE conduct rather than
 precipitate it.** Each is the design's deliberate call, recorded here
@@ -306,25 +318,56 @@ was located directly (`Housekeeping` at :285), giving R13 = 272-284.
 | design §6's projected post-lap-B page | ~1440 |
 | **divergence** | **−164 leaving; +172 page** |
 
-Per-span comparison against design §6's own figures, restricted to
-the regions the 28 `B` rows cover:
+The estimate and the measurement are over DIFFERENT partitions of
+different objects, so the shared coordinate that makes the comparison
+mean anything is established in the next section, not assumed here.
 
-| §6 span | §6 estimated leaving | measured here | rows |
-|---|---|---|---|
-| tools | ~22 | 20 | T4 T5 T6 T7 T9 T10 |
-| lock | ~54 | 12 | S17 S18 |
-| unit | ~60 | 18 | I14 I15 I16 I17 I18 |
-| gate | ~15 | **not in this object** | — (lap-A rows R4, R6; see F4) |
-| sweep | ~7 | 4 | S3 |
-| closure invocation/routes | ~30 | 8 | I3 I5 I6 I7 |
-| trend consult detail | ~25 | 0 | A17 (see F2) |
-| sustain/tripwire routes | ~20 | 2 | A23 |
-| (outside every §6 span) | — | 2 | R27 (R13 R31 R32 R38 S4 contribute 0) |
-| **total** | **~233** | **66** | |
+## Span-vs-row coverage map
 
-The divergence concentrates in three spans (lock −42, unit −42, trend
-−25); F1 and F2 give the causes. The dispositions above were not
-adjusted toward the estimate.
+Design §6's ~230 is a sum over eight hand-drawn SPANS measured at
+`0775b92`; this table's partition is lap A's 28 rows, anchored at
+`769e7f2` and re-resolved at `3c041e5`. Different partitions of
+different objects, so the comparison needs a shared coordinate before
+it means anything. The coordinate is established here: **every §6
+span re-expressed as `3c041e5` line numbers**, then intersected with
+the 28 resolved row ranges.
+
+**Re-expressing the spans.** `git diff -U0 0775b92 3c041e5 --
+plugin/skills/statiker/SKILL.md` has three hunks: `@@ -254,7 +254,18`
+(+11), `@@ -268,4 +279,3` (−1), `@@ -1184 +1194` (substitution). So
+lines ≤253 are unshifted and lines ≥272 are shifted +10 — the whole
+of §6's "+10" lands between them [measured].
+
+| §6 span | at `0775b92` | at `3c041e5` | span nb | §6 est. leaving | `B` rows covering it | measured leaving | uncovered block |
+|---|---|---|---|---|---|---|---|
+| tools residue | 80-111 | 80-111 | 30 | ~22 | T5 T6 T7 | 15 | none |
+| record gate | 179-204 | 179-204 | 25 | ~15 | **none** | — | 179-204 (25 nb) — lap-A R4 (`§5`), R6 |
+| [READY] sweep | 631-649 | 641-659 | 19 | ~7 | S3 | 4 | none |
+| lock routes | 799-864 | 809-874 | 66 | ~54 | S17 S18 | 12 | none |
+| attack repeat-round | 1071-1120 | 1081-1130 | 50 | ~25 | A17 | 0 | 1115-1130 (16 nb) — lap-A A18 |
+| sustain/tripwire seam | 1163-1196 | 1173-1206 | 34 | ~20 | A23 | 2 | 1195-1206 (12 nb) — lap-A A24 |
+| closure predicate | 1223-1335 | 1233-1345 | 112 | ~30 | I3 I4 I5 I6 I7 | 8 | 1326-1345 (19 nb) — lap-A I8 |
+| unit routes | 1386-1489 | 1396-1499 | 104 | ~60 | I14 I15 I16 I17 I18 | 18 | 1396 (1 nb) |
+| **span totals** | | | **440** | **~233** | | **59** | **72 nb uncovered** |
+
+**`B` rows inside NO §6 span** (10 of 28): T4, T9, T10, R13, R27,
+R31, R32, R38, S4, K3 — 143 non-blank lines, contributing **7** to
+the leaving total (T9 1, T10 4, R27 2; the other seven leave 0).
+
+Grand total: 59 (inside spans) + 7 (outside) = **66 leaving**, the
+totals row's figure.
+
+The divergence concentrates in four spans — lock −42, unit −42,
+attack/trend −25, sustain −18. F1 and F2 give the causes; F4 gives
+the 72 uncovered lines, which are not this table's to disposition.
+The dispositions above were not adjusted toward the estimate.
+
+*One caveat on the uncovered blocks.* Their lap-A row names come
+from the same handle-resolution pass; lap-A row I9 resolved
+non-monotonically (two hits, first at :1205) and overlaps both the
+sustain and closure tails, so I8/A24 are named as the rows whose
+resolved ranges cover those blocks, not as a claim about I9's true
+position. No `B` row is affected.
 
 ## What this table does NOT settle
 
