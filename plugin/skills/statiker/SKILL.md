@@ -617,7 +617,10 @@ heading; it marks the round for the record's readers and is no
 schedule (a round is whatever investigation the design needed); the
 FIRST `## ` heading closes the head region — above it nothing parses
 as an entry, and a tracker with no `## ` heading parses NO entries,
-silently.
+silently. One exception: a first heading titled `## Requirement head`
+(case-insensitive) does not close the region — it runs through to the
+NEXT `## ` heading, or EOF when none follows, parsing no entries
+throughout exactly as the plain case does.
 
 ## The loop
 
