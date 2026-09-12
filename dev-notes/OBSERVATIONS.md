@@ -9407,3 +9407,86 @@ The lane dispositioned R13 against the page, which is correct, and the
 stage-2 brief must say plainly that lap A's cell is dead text for that
 row — a build lane composing from it would reintroduce a rule this
 batch removed two hours earlier.
+
+## 2026-09-12 — 0.2.89 tenet records: every payload mint the pin will carry, enumerated against PLAN's nine
+
+Written BEFORE the checkpoint review returns, over the mints
+themselves (which a repair lap does not change); any mint the review's
+dispositions alter is re-asked before the pin moves. Carried set =
+everything between the INSTALLED pin (0.2.88) and 0.2.89, per
+CLAUDE.md's releasing-desk rule — not only what a handoff names.
+Test-only changes (golden-corpus controls, the regen gate, the removed
+disjointness assertion, docstrings, the n4 race arm) are not payload
+and take no tenet record; they are graded by the review as instruments.
+
+PLAN's list enumerated for each mint: 1 investigation-led design ·
+2 sufficiency=dispatchable · 3 anti-skim · 4 cost asymmetry ·
+5 autonomy · 6 economics · 7 convergence circuit · 8 medium ·
+9 placement.
+
+**M1 — the tripwire's arming carrier moves to an appended record entry**
+(SKILL.md:253-270 + cmd_tripwire). Provenance: 0.2.87 checkpoint review
+N3 (page and `pinned` disagreed; an arm passed only by `--threshold`
+left no record, so a successor resumed unarmed). Ruling and bases:
+OBSERVATIONS 2026-09-12.
+1 PASS — ruled from four executed reads, the rejected alternative
+recorded. 2 PASS — the ruling carried its own red-first arrangement;
+the lane built from it without a design decision. 3 N/A — adds no
+forcing point. 4 PASS — the design settled before the lane opened;
+the two defects found later cost sentences, not a rewrite. 5 PASS —
+the disarm authority split is stated so a desk needs no operator for
+the tightening direction. 6 PASS — one lane, no new round class; +10
+page lines. 7 PASS — the field datum is the arming route's own
+red-first arms. 8 PASS — the resolution ORDER is mechanism (tool),
+the authority split is prose (judgment, n=0 incidents for a gate).
+9 N/A — not a unit design.
+
+**M2 — retraction disarms** (SKILL.md same passage + `latest_by_id`
+before the tag filter). Provenance: desk probe after the arming lane
+closed — a retracted arm still armed the breaker, and retraction is the
+only disarm form the record has, which M1's ruling reserved to the
+operator while naming no form. Red-first recorded at fc17258.
+1 PASS — found by probing, not modelling. 2 PASS. 3 N/A. 4 FAIL,
+recorded: this was a design gap in M1's own ruling, caught after the
+build rather than before it — the cost was one desk repair, but the
+tenet's claim is that such gaps are cheaper before implementation, and
+this one was not. 5 PASS. 6 PASS — one hunk, no extra round. 7 PASS —
+red against 8f0884f, green after, two controls green both sides.
+8 PASS — supersession is mechanism; no new grammar. 9 N/A.
+
+**M3 — a present-but-unparseable `tripwire` field is refused**
+(TRIPWIRE_BUDGET_RE + cmd_tripwire). Provenance: 0.2.87 review N2
+(`tripwire -1` read as unarmed, the breaker silently off).
+1 N/A — reviewer-prescribed, no design pass. 2 PASS. 3 N/A. 4 PASS.
+5 PASS — refusal is loud, no human seat added. 6 PASS. 7 PASS — red
+and control pasted by the lane, re-verified here. 8 PASS — the
+predicate is mechanism; it reuses `--threshold`'s own refusal shape.
+9 N/A.
+
+**M4 — the route registry, the `route` field, and the replacement
+parity contract** (statiker_emit.py + both scripts' finish() +
+TestRouteParity + the page's vocabulary section). Provenance: st-29's
+compression design and st-19's named mechanism pass; design
+docs/directives/2026-09-12-st32-lapB-design-statiker-a5.md, graded at
+this desk.
+1 PASS — design pass with an executed 76-verdict mapping under a
+registered prediction. 2 PASS — the lane built without a design
+decision. 3 N/A. 4 PASS. 5 PASS. 6 PASS/CAVEAT — the lap's SIZE claim
+did not survive measurement (the pass stopped as a size programme,
+operator 2026-09-12); the mint itself is one lane and buys fire-time
+enforcement of routing that was read-time prose, which is the medium
+tenet's direction, so the economics verdict rests on that and not on
+lines. 7 PASS — R1-R6 with the baseline stated first. 8 PASS — this
+mint IS the medium tenet applied: routing becomes a machine-read field
+with a red-first battery, the principles stay prose. 9 N/A.
+
+**M5 — `filter` and `pinned` resolve a symbolic ref once**
+(both sites). Provenance: 0.2.87 review n4 (a commit landing between
+two resolutions paired one commit's content with another's sha).
+1 N/A — reviewer-prescribed. 2 PASS. 3 N/A. 4 PASS. 5 PASS. 6 PASS.
+7 PASS — proven by a PATH-wrapper race at both sites, and the hand
+proof was made permanent (TestResolveOnceUnderAConcurrentCommit, red
+against the pre-fix blob). 8 PASS. 9 N/A.
+
+**Aggregate:** 5 mints, 45 tenet marks. One FAIL, recorded rather than
+argued away: M2's cost-asymmetry mark. No mint lacks provenance.
