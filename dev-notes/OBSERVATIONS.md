@@ -10088,3 +10088,75 @@ GO named "the st-10 denominator decision" among the duties. The
 question is which evidence supports which clause — derivable from the
 record, with the mint-timing, batching and economics conventions all
 bearing on it. Nothing in it is an intent question.
+
+## 2026-09-12 — st-44 batch record and 0.2.90 checkpoint-review dispositions (review: fresh-opus, lane opus-review-0290; verdict: pin HOLDS — 1 blocking, 4 notable, 5 nits; all instruments red-first re-proven by the reviewer)
+
+Batch: the four st-43 replay findings fixed red-first
+(eb2e081/a0353fe/84039ba/d3aa57d, sonnet lane, brief d85de28),
+manifest 0.2.90 at 5acc95a, pin held. Provenance: Stage-2d
+reviewer replay (astra A1-A4), adjudicated 58f9300.
+
+MINT JUDGMENT (C4b re-ask, the release gate's question): A1 IS a
+mint — it introduces a new refusal predicate
+(TRIPWIRE_BUDGET_FIELD_RE) and a new mandatory form (a named
+tripwire field must carry a value); it adds no MACHINE_TOKEN_CODES
+entry, the e19116d boundary class, and the judgment lands
+mint-side because the refusal is new reach, not restored reach.
+Provenance bar: the st-43 A1 adjudication (executed pair) is the
+incident; field lineage st-34 N2 and 0.2.89 B3 (same fail-open
+family, sibling carriers). A2-A4 are not mints (A2/A3 instrument
+repairs, A4 restores page-tool agreement).
+
+TENET CHECK (PLAN.md live list, enumerated): 1 PASS
+(adjudication-led, executed pairs before design); 2 PASS (st-44
+decision-complete, executed by a fresh lane with zero design
+decisions); 3 N/A (no run-conduct change); 4 PASS (designs locked
+in the item before the lap); 5 N/A; 6 PASS (four fixes batched
+into one lap, one review, one pending pin move; review on the
+final form); 7 PASS (record → attack → verify, this entry the
+gradeable form); 8 PASS with the review's own caveat recorded —
+A1's mechanism carries its battery, while the multi-location page
+boundary that produced B1 stays prose, carried by the standing
+review instruction; 9 PASS (A1's comment names its lineage; A2
+reuses the existing check site; the lane's parentage self-catch
+recorded in a0353fe).
+
+REVIEW DISPOSITIONS (each before release, per convention):
+- B1 (head-region boundary described at three page locations, two
+  contradicting the tool; obeying :240-243 silently parks four
+  label families) — FIX, page lap: amend :240-243 (placement names
+  the head region, not "below the first heading") and :541-542
+  (drop the requirement-head-above-first-heading assertion).
+  Reviewer's pair held: same labels, first-heading title varied,
+  red arm loses all four families under SWEEP_CLEAN.
+- N1 (A1's marker reach overshoots its comment: digit-jammed
+  `/ tripwire3` matches neither regex, silently unarmed while the
+  evidence line denies the field) — FIX, same lap: widen the
+  field marker to fire on the digit-jammed shape; red-first from
+  the reviewer's executed case; the misleading "carries no value"
+  message corrected in the same commit (nit i).
+- N2 (prose Budget line ENDING in `/tripwire` hard-fails; R6's
+  regression fixture carries no slash so cannot see it) —
+  ACCEPTED RESIDUE, no change: loud, fail-closed, contrived
+  shape; R6's protected class (no-slash prose) intact. Recorded
+  so the next R6-adjacent edit re-asks.
+- N3 (A2's generic pass reads ordinary capitalized parentheticals
+  as dangling pointers; latent — the page's 4 hits are all real
+  pointers — tools-side only, the fires-on-non-defect shape) —
+  BOOKED st-45 with the dedup nit (iv); needs its own design
+  (distinguishing pointer form from prose is not a one-line
+  predicate).
+- N4 (:346-351 mis-describes the tripwire seam, pre-existing,
+  population widened by A1) — FIX, same page lap (sits beside the
+  accurate :339-341).
+- Nit ii (case-asymmetry between tripwire regexes and A4's
+  case-insensitive title) — recorded, no change: internally
+  consistent per carrier.
+- Nit iii (A3's filter assertion byte-pins TEXT_A; a legitimate
+  future transformation goes red loudly) — recorded, accepted:
+  loud on a non-defect is the cheap failure direction here.
+- Nit v (A4's sentence omits that the title is the whole heading
+  line) — FIX, same page lap: one parenthetical.
+
+The repair lap's dispositions above are the brief (the lap
+dispatches on them); suite re-run and release gate follow the lap.
