@@ -9154,3 +9154,59 @@ lane. It also gains urgency from st-34's own N2: once a present-but-
 unparseable `tripwire` field is refused like `--threshold`, the
 population of records stuck in this bind grows, and the appended route
 is their only repair that `pinned` accepts.
+
+## 2026-09-12 — P28/st-10 C4c field test, second repeat: prediction registered BEFORE the 0.2.89 batch's checkpoint review
+
+The 0.2.87 run returned UNDECIDED (the second consecutive one), and
+that entry names this lap as where the test repeats: "the lap that
+builds st-34/st-35's review-finding dispositions". That is the 0.2.89
+batch, which has an owed round (N2, n4 and st-35 all change machine-read
+tool behaviour — CLAUDE.md's review class 2). Design, rule, finding-kind
+rule and criterion are carried UNCHANGED from the 0.2.86 registration
+(OBSERVATIONS 2026-09-11, that heading).
+
+Classified by statiker-df while lane sonnet-st34-tools is in flight,
+before any review brief exists, and before the lane's first report:
+
+- FLAGGED (design-bearing): **N2** — decides that a PRESENT `tripwire`
+  field which does not parse as an integer >= 1 is refused, and that
+  ABSENT remains the only unarmed case: an input boundary widened from
+  a literal 0 to every unparseable value (the st-30(3) / T1 precedent,
+  which was flagged for this same shape). **n4** — the brief decides a
+  new ORDER for the two probes (rev-parse first, a fallback `git show`
+  separating PIN_UNREADABLE from GIT_ERROR) rather than mirroring an
+  existing reviewed form; st-30(7) was NOT flagged precisely because it
+  mirrored filter's already-reviewed resolve-once shape, and this one
+  has no such parent. **st-35** — the arming ruling: a new resolution
+  order, the read-side semantics of an appended arming entry, and the
+  tightening/loosening authority split.
+- NOT FLAGGED (a prescribed form executed): **N1** (the 0.2.87
+  disposition's own "known-clean row per code" text stands; the fixture
+  did not realize it, and the reviewer prescribed both mutants as the
+  acceptance instrument), **n1** (removal prescribed by the reviewer;
+  the docstring follows the removal), **n2** (`== "1"`, prescribed),
+  **n3** (docstrings state the reach the shared helper's docstring
+  already states — the T2 precedent).
+
+Share: 3 flagged of 7 disposition slots, so a majority of DESIGN-kind
+blocking + notable findings at flagged slots is concentration above the
+flag's share. Variance caveat: three flagged slots, one round.
+
+st-32 (lap B) joins the SAME review when its design settles. Its
+dispositions are not knowable today, so they are classified in an
+APPENDED registration before the review dispatches, and the share is
+recomputed there over the combined slot set. A review dispatched before
+that appended registration exists voids this round's datum.
+
+Pre-registered stop on the test's own FORM (new this round, the
+re-entry seam's question — is another round owed, or is the form
+failing): this is the third consecutive attempt, after two UNDECIDEDs
+returned by zero DESIGN-kind findings on the lap's surface. If this
+round also returns UNDECIDED, the repeat STOPS: three rounds producing
+no datum under one criterion indicts the criterion's discriminating
+power, not the design under test, and st-10 goes back to the design
+pass carrying that as its datum — never a fourth same-form repeat.
+
+The outcome is appended as its own line when the review is
+dispositioned, opening with the literal marker st-10's blocker
+predicate greps for (`^C4c FIELD TEST OUTCOME: (CONFIRM|REFUTE)`).
