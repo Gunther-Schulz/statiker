@@ -119,6 +119,10 @@ some prose line right before an indented landing
 Intent - about to do stuff informally
 INTENT: proper late-intent form
 
+## Block: tripwire-arm-near-miss
+- F160 [VERIFIED] record: tripwire armed at 2 (per operator) — basis: design
+- F161 [VERIFIED] record: tripwire armed at 2 — basis: design
+
 ## Block: freeze-breach
 - A1 [DISPATCHED] an earlier, resolved round — basis: brief
 - A1 [ZERO-DELTA] clean return — basis: report

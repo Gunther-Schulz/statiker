@@ -160,7 +160,12 @@
     "text": "Intent - about to do stuff informally"
   },
   {
-    "line": 127,
+    "line": 123,
+    "code": "tripwire-arm-near-miss",
+    "text": "- F160 [VERIFIED] record: tripwire armed at 2 (per operator) — basis: design"
+  },
+  {
+    "line": 131,
     "code": "freeze-breach",
     "text": "- F201 [VERIFIED] appended after the open freeze — basis: design"
   }

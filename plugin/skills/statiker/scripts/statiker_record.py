@@ -170,6 +170,16 @@ TRIPWIRE_BUDGET_RE = re.compile(r"\btripwire\s+(\S+)")
 # consulted once an arming entry exists.
 TRIPWIRE_ARM_RE = re.compile(
     r'^record: tripwire armed at (\S+)(?: — ".*")?$')
+# 0.2.89 fix (B3, dev-notes/OBSERVATIONS.md "0.2.89 checkpoint-review
+# dispositions"): the arming form fails OPEN — an entry whose body
+# begins `record: tripwire armed` but strays from TRIPWIRE_ARM_RE's
+# exact shape (or carries the wrong class/tag) silently drops out of
+# cmd_tripwire's arm_entries filter and the run reads unarmed with no
+# lint pointing at the slip. NEAR is deliberately looser than
+# TRIPWIRE_ARM_RE (case-insensitive, no trailing-shape requirement):
+# the near-miss condition below is "looks like an arming attempt AND
+# is not a fully-qualified one", not a second grammar to maintain.
+TRIPWIRE_ARM_NEAR_RE = re.compile(r'(?i)^record: tripwire armed\b')
 
 CLASS_TAGS = {
     "F": {"VERIFIED", "PENDING", "INVALIDATED", "AUTO-ACCEPTED"},
@@ -316,6 +326,7 @@ RULE_MINT_VERSION = {
     "superseded-block-form": "0.2.33",
     "tag-enum": "0.2.33",
     "tag-literal-in-body": "0.2.33",
+    "tripwire-arm-near-miss": "0.2.89",
     "write-set-near-miss": "0.2.59",
     "write-set-path-near-miss": "0.2.62",
 }
@@ -605,6 +616,7 @@ REPAIR_LANDING_MISSING = (
 MACHINE_TOKEN_CODES = {
     "entry-form", "tag-enum", "entry-near-miss", "scope-near-miss",
     "hold-form", "write-set-near-miss", "write-set-path-near-miss",
+    "tripwire-arm-near-miss",
 }
 BODY_CONTENT_CODES = {
     "tag-literal-in-body", "basis-missing",
@@ -1169,6 +1181,16 @@ def parse_tracker(text: str):
             # e.body — a token sitting in the basis clause is
             # invisible to it and resolves nothing, silently
             viol("corrects-token-out-of-body", i, line)
+        # 0.2.89 fix (B3): checked unconditionally on body_main, ahead
+        # of scope parsing below — a malformed scope opener (e.g.
+        # `Record: tripwire armed…`) already lints scope-near-miss,
+        # but this class must ALSO catch a fine scope opener whose
+        # class/tag or trailing shape breaks cmd_tripwire's own filter
+        # (cls == "F" and tag == "VERIFIED" and TRIPWIRE_ARM_RE.match).
+        if TRIPWIRE_ARM_NEAR_RE.match(body_main) and not (
+                cls == "F" and tag == "VERIFIED"
+                and TRIPWIRE_ARM_RE.match(body_main)):
+            viol("tripwire-arm-near-miss", i, line)
         scope_parsed = True
         if SCOPE_NEAR_RE.match(body_main) and \
                 not SCOPE_EXACT_RE.match(body_main):

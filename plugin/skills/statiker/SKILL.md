@@ -514,7 +514,11 @@ phrasing: the entry head `- <C><n> `, the scope openers
 (that exact prefix as the body's opening — a hold written any
 other way holds nothing), the write-set declarator
 `write-set: ` after its unit scope opener (Implementation), the
-`corrects line <n>` repair token,
+`corrects line <n>` repair token, the tripwire arming form
+`record: tripwire armed at <n>` (an entry's own appended arming
+route, The record tool; class F, tag VERIFIED — near-miss lint
+class `tripwire-arm-near-miss`, since an arming entry's whole
+purpose is to be load-bearing at a seam nobody re-reads),
 the late-instruction label `INTENT: `, and three bare label
 lines: `SKILL: statiker <version>`, `SWEEP_EXEMPT: <code>
 lines<=<n> — basis: <citation>` / `SWEEP_EXEMPT: <code> line <n>
