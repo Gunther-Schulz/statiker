@@ -2579,33 +2579,53 @@ def cmd_filter(args):
         finish("ARTIFACT_IN_REPO", 2, out=args.out, repo=out_repo,
                error="attack artifact must land outside every repo "
                      "(tree-claim briefs assert tree == lock commit)")
-    # read the history of the TRACKER's repo — `rel` is relative to
-    # `top`, so a cwd-resolved `git show` asks the wrong repo (or none)
-    p = subprocess.run(["git", "show", f"{args.sha}:{rel}"], cwd=top,
-                       capture_output=True)
-    if p.returncode != 0:
-        # st-30(4) (0.2.86 re-review finding 4): no `sha` field — the
-        # page's override (SKILL.md, :114-117) routes any halt
-        # carrying one as LANDED commits, and args.sha never resolved
-        # here (an input argument, not a landed reference).
-        finish("PIN_UNREADABLE", 2, tracker=args.tracker,
-               stderr=p.stderr.decode(errors="replace").strip())
-    # st-14 (1) (ITEMS.md, P31 remainder): resolve --sha to its full
-    # commit form ONCE here (the verify-gate form, cmd_verify_gate
-    # above) and emit that resolved value — never the raw --sha
-    # argument, which may be abbreviated or otherwise non-canonical
-    # while the artifact's own `sha` field is its provenance record.
+    # st-34 (n4) (0.2.87 checkpoint review): resolve --sha to a commit
+    # ONCE, then read the TRACKER's content at THAT resolved sha — the
+    # old order (`git show` at the raw --sha first, `rev-parse
+    # --verify` second) let a commit land on the branch between the
+    # two calls when --sha names a symbolic ref, pairing one commit's
+    # content with a DIFFERENT commit's sha in the emitted verdict
+    # (the reviewer's PATH-wrapper race: a `git` wrapper early on PATH
+    # advancing the branch between the two resolutions). st-14 (1)
+    # (ITEMS.md, P31 remainder): the emitted `sha` field is always this
+    # resolved full form, never the raw --sha argument, which may be
+    # abbreviated or otherwise non-canonical.
     verify = subprocess.run(
         ["git", "rev-parse", "--verify", f"{args.sha}^{{commit}}"],
         cwd=top, capture_output=True, text=True)
-    if verify.returncode != 0:
+    if verify.returncode == 0:
+        resolved_sha = verify.stdout.strip()
+        # read the history of the TRACKER's repo at the RESOLVED sha
+        # — `rel` is relative to `top`, so a cwd-resolved `git show`
+        # asks the wrong repo (or none). Reading at the resolved sha,
+        # never the raw --sha, is what keeps content and sha from the
+        # same resolution.
+        p = subprocess.run(["git", "show", f"{resolved_sha}:{rel}"],
+                           cwd=top, capture_output=True)
+        if p.returncode != 0:
+            # st-30(4) (0.2.86 re-review finding 4): no `sha` field —
+            # the page's override (SKILL.md, :114-117) routes any halt
+            # carrying one as LANDED commits, and this resolved commit
+            # never named a landed reference for THIS path (a path
+            # absent at that commit — today's route for that case).
+            finish("PIN_UNREADABLE", 2, tracker=args.tracker,
+                   stderr=p.stderr.decode(errors="replace").strip())
+    else:
+        # rev-parse could not resolve a commit — run `git show` on the
+        # RAW --sha to separate the two routes exactly as before:
+        # unreadable at all (PIN_UNREADABLE, as today) from a readable
+        # tree-ish that simply is not a commit (GIT_ERROR, as today).
+        p = subprocess.run(["git", "show", f"{args.sha}:{rel}"], cwd=top,
+                           capture_output=True)
+        if p.returncode != 0:
+            finish("PIN_UNREADABLE", 2, tracker=args.tracker,
+                   stderr=p.stderr.decode(errors="replace").strip())
         # st-30(4): no `sha` field, same reason as PIN_UNREADABLE above
         # — args.sha resolved to SOME object (git show succeeded) but
         # not to a commit, so it still never names a landed commit.
         finish("GIT_ERROR", 2, tracker=args.tracker,
                error=f"--sha does not resolve to a commit in this "
                      f"repo: {verify.stderr.strip()}")
-    resolved_sha = verify.stdout.strip()
     # E-E(1) (begehung-harvest F11): "wrong sha pinned" is one of the
     # three premise breaks that VOID a whole round, and filter accepted
     # any readable sha with no staleness signal — the artifact of a
@@ -2741,28 +2761,44 @@ def cmd_pinned(args):
                      f"string, not the record")
     if rel is None:
         unpinnable_tracker(args.tracker, rel, top, resolved)
-    p = subprocess.run(["git", "show", f"{args.sha}:{rel}"], cwd=top,
-                       capture_output=True)
-    if p.returncode != 0:
-        # st-30(4): no `sha` field, same reason as filter's PIN_UNREADABLE
-        # — args.sha never resolved here, so it names no landed commit.
-        finish("PIN_UNREADABLE", 2, tracker=args.tracker,
-               stderr=p.stderr.decode(errors="replace").strip())
-    # st-30(7) (0.2.86 re-review, the `pinned` gap): resolve --sha to
-    # its full commit form ONCE here — the same form filter (st-14 (1))
-    # and verify-gate already use — and emit that resolved value below,
-    # never the raw --sha argument (which may be abbreviated). An
-    # argument that reads via `git show` (a tree-ish) but does not
-    # resolve to a commit takes filter's GIT_ERROR route, no `sha`
-    # field (st-30(4)): it never resolved to a landed commit either.
+    # st-34 (n4) (0.2.87 checkpoint review): resolve --sha to a commit
+    # ONCE, then read the pinned content at THAT resolved sha — the
+    # old order (`git show` at the raw --sha first, `rev-parse
+    # --verify` second, st-30(7)'s own shape copied from filter) let a
+    # commit land on the branch between the two calls when --sha names
+    # a symbolic ref, pairing one commit's content with a DIFFERENT
+    # commit's sha in the emitted verdict (the reviewer's PATH-wrapper
+    # race). The emitted `sha` field is always this resolved full form,
+    # never the raw --sha argument (which may be abbreviated).
     verify = subprocess.run(
         ["git", "rev-parse", "--verify", f"{args.sha}^{{commit}}"],
         cwd=top, capture_output=True, text=True)
-    if verify.returncode != 0:
+    if verify.returncode == 0:
+        resolved_sha = verify.stdout.strip()
+        p = subprocess.run(["git", "show", f"{resolved_sha}:{rel}"],
+                           cwd=top, capture_output=True)
+        if p.returncode != 0:
+            # st-30(4): no `sha` field, same reason as filter's
+            # PIN_UNREADABLE — this resolved commit never named a
+            # landed reference for THIS path (a path absent at that
+            # commit — today's route for that case).
+            finish("PIN_UNREADABLE", 2, tracker=args.tracker,
+                   stderr=p.stderr.decode(errors="replace").strip())
+    else:
+        # rev-parse could not resolve a commit — run `git show` on the
+        # RAW --sha to separate the two routes exactly as before:
+        # unreadable at all (PIN_UNREADABLE, as today) from a readable
+        # tree-ish that simply is not a commit (GIT_ERROR, as today,
+        # filter's own st-30(4) reasoning: it never named a landed
+        # commit either).
+        p = subprocess.run(["git", "show", f"{args.sha}:{rel}"], cwd=top,
+                           capture_output=True)
+        if p.returncode != 0:
+            finish("PIN_UNREADABLE", 2, tracker=args.tracker,
+                   stderr=p.stderr.decode(errors="replace").strip())
         finish("GIT_ERROR", 2, tracker=args.tracker,
                error=f"--sha does not resolve to a commit in this "
                      f"repo: {verify.stderr.strip()}")
-    resolved_sha = verify.stdout.strip()
     pinned_bytes = p.stdout
     try:
         with open(fs, "rb") as f:
