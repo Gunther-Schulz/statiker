@@ -36,19 +36,32 @@ THAT file, and your output states the sha it is anchored to.
 
 ## Background (established; verify at the cited lines)
 
-1. Lap A's table has 183 data rows; exactly 28 carry `B` as their
-   final mark cell (counted by the dispatcher at `3c041e5`, python
-   over rows starting `|`). Those 28 are the lap-B routing masses lap
-   A deliberately did not touch.
-2. **Lap A's line ranges are STALE and so are the design's.** The page
-   gained 10 operational lines after lap A's pin (the st-35 arming
-   clause, +7 at the lane, +3 at the desk repair), all in the Budget
-   region, so every span below it shifted. Verified by the dispatcher:
-   the design's "lock routes :799-864" lands on `(b) The judgment
-   instrument the tool cannot run` at `3c041e5`, while the lock-route
-   content it names sits at `:809`. **Re-anchor every row by its
-   QUOTED opening text, never by its line number**, and report the
-   resolved range beside the stale one.
+1. Lap A's table: 196 lines start `|`, of which 13 are separators and
+   13 are header rows → 170; the lane's read subtracts 14 per-section
+   SUMMARY rows → **156 clause data rows**. Exactly **28** carry `B`
+   as their final mark cell. (CORRECTED 2026-09-12 after the lane's
+   critique: this brief first said "183 data rows", which counted the
+   13 header rows as data. Re-measured by the dispatcher — 196/13/13
+   confirmed; the 28 is unaffected and was independently confirmed.)
+2. Of those 28, lap A dispositioned **15 TIGHTEN and 13 KEEP**
+   (dispatcher-verified). So "lap-B routing masses lap A did not
+   touch" is true of 13 only: for the 15 TIGHTEN rows the body at
+   `3c041e5` is lap A's REWRITTEN text, and those rows' must-survive
+   cells are a spec of what lap A intended, not a description of your
+   object. Disposition against the PINNED PAGE TEXT, and flag any row
+   whose handle no longer resolves.
+3. **Lap A's ranges and the design's are stale by DIFFERENT amounts,
+   and lap A's are stale non-uniformly.** Operational counts,
+   dispatcher-measured: `769e7f2` (lap A's pin) 1766, `0775b92` (the
+   design's base) 1628, `3c041e5` (your pin) 1638. So the design's
+   ranges are off by +10, while lap A's are off by the whole lap A
+   compression — **−128 operational, distributed per row, not
+   uniform**. Re-anchoring by quoted handle is therefore the only
+   usable method for lap A rows, not hygiene. (Corroborating spot
+   check: the design's "lock routes :799-864" lands on `(b) The
+   judgment instrument the tool cannot run` at `3c041e5`, while the
+   lock-route content sits at `:809`.) Report the resolved range
+   beside the stale one.
 3. The design's §6 span figures are per-span APPROXIMATIONS
    ("approximately 22 (tools) + 54 (lock) + 60 (unit) …"), not a
    per-clause enumeration. That absence is why this stage exists —
@@ -67,9 +80,9 @@ For each of the 28 `B` rows, emit one table row with these columns:
 | col | content |
 |---|---|
 | `id` | lap A's row id, verbatim |
-| `anchor` | the quoted opening text you re-anchored on (from lap A's own quote column) |
+| `anchor` | the quoted opening text you re-anchored on (lap A's `handle` column — its ≤12 opening words, whitespace-normalised) |
 | `range@3c041e5` | the resolved line range in the pinned page |
-| `stale-range` | lap A's range, for the audit trail |
+| `stale-range@769e7f2` | lap A's range, for the audit trail — a 769e7f2 number by construction, which is why the column carries its sha (corrected after the lane's critique: it contradicted "every line number you emit is a line number in the pinned file") |
 | `disposition` | `PRECIPITATES` / `KEEPS` / `SPLIT` |
 | `leaves` | for PRECIPITATES/SPLIT: the clause text that leaves the page, and its OTHER HOME named — the registry entry (`ROUTES["<VERDICT>"] == <token>`) or a named tool check. A row whose load has no other home is a KEEPS row, whatever its size |
 | `stays` | for KEEPS/SPLIT: the target text that remains, as PRINCIPLE + VOCABULARY, with a target line count |
@@ -96,9 +109,16 @@ carries the modulation. When in doubt, KEEPS: a wrongly-kept line
 costs lines, a wrongly-dropped one costs conduct.
 
 **Totals row, mandatory:** non-blank lines leaving, staying, and the
-net against the pinned page's operational count — so the desk can
-compare your measured total against the design's estimated ~230.
-A material divergence from the design's estimate is a FINDING about
+net against the pinned page's operational count.
+
+**And a span-vs-row COVERAGE MAP beside it** (added 2026-09-12 on the
+lane's critique, which was right): the design's ~230 is a sum over
+eight hand-drawn SPANS at a third sha, while your partition is lap A's
+28 rows — a different partition of a different object. Compared
+without a shared coordinate that is could-not-verify, never agreement.
+So emit the map: which §6 span each of your rows falls in, and any §6
+leaving mass with NO `B` row covering it, reported as a gap. A
+material divergence from the design's estimate is then a FINDING about
 the estimate, reported as such, never a reason to bend the
 dispositions.
 
