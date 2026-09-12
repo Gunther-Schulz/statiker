@@ -1048,7 +1048,29 @@ def section_pointers(text):
     normalized, occurs in that section's body. Reach: a pointer that
     names its own section resolves on its own quoted text, and bare
     `(Section)` pointers carry no phrase to check. st-36: the 0.2.88
-    review's B1 dangled past the suite and skill-lint."""
+    review's B1 dangled past the suite and skill-lint.
+
+    st-44 (A2, Stage-2d replay finding, adjudicated 58f9300): the match
+    pattern used to be built ONLY from CURRENT heading names, so a
+    pointer naming a heading that was RENAMED stopped matching the
+    pattern at all — it left `found` entirely instead of entering
+    `unresolved`, and `assertTrue(found)` only catches TOTAL collapse,
+    never a partial one. Same parentage class the corpus names: an
+    expectation derived from the artifact it grades moves with the
+    mutant. FIX: a second, name-independent extraction pass finds every
+    pointer-shaped occurrence regardless of whether its name is still a
+    valid heading; one whose name is not in the CURRENT heading-name set
+    at all is a dangling reference and lands in `unresolved` directly —
+    checked by exact membership (`name in names`), not `startswith`,
+    because a rename that merely EXTENDS the old name as a prefix (e.g.
+    "Implementation" -> "Implementation Renamed (...)") must still count
+    as gone.
+
+    Red arm (executed 2026-09-12, against HEAD before this fix): renaming
+    the `## Implementation` heading in an in-memory copy of the page
+    dropped `found` from 4 to 2 with `unresolved` still empty — the two
+    pointers naming it vanished silently. Fixed: they land in
+    `unresolved` (found stays 4)."""
     def norm(s):
         return re.sub(r"\s+", " ", s).strip()
     sections, cur, buf = {}, None, []
@@ -1063,13 +1085,29 @@ def section_pointers(text):
         sections[cur] = norm(" ".join(buf))
     names = sorted({re.split(r"[:(]", h)[0].strip() for h in sections},
                    key=len, reverse=True)
-    pattern = re.compile(
-        "(" + "|".join(re.escape(n) for n in names) + r'),\s*"([^"]+)"\)')
-    found = pattern.findall(norm(text))
+    names_set = set(names)
+    normalized = norm(text)
+    found = []
+    if names:
+        pattern = re.compile(
+            "(" + "|".join(re.escape(n) for n in names) + r'),\s*"([^"]+)"\)')
+        found = pattern.findall(normalized)
     unresolved = [(name, phrase) for name, phrase in found
                   if not any(norm(phrase) in body
                              for head, body in sections.items()
                              if head.startswith(name))]
+    # A2's own pass: any pointer-shaped occurrence whose name is not a
+    # current heading at all — the known-names pattern above can never
+    # find these (its alternation IS the current heading-name set), so
+    # they are found generically and, being nameless-to-the-page by
+    # construction, are unresolved on sight.
+    generic = re.compile(r'([A-Z][A-Za-z0-9 /_-]*?),\s*"([^"]+)"\)')
+    for name, phrase in generic.findall(normalized):
+        if (name, phrase) in found:
+            continue
+        if name not in names_set:
+            found.append((name, phrase))
+            unresolved.append((name, phrase))
     return found, unresolved
 
 
@@ -1087,6 +1125,26 @@ class TestSkillSectionPointersResolve(unittest.TestCase):
                 + '\n(forms at Close, "no such phrase on this page")\n')
         _, unresolved = section_pointers(text)
         self.assertIn(("Close", "no such phrase on this page"), unresolved)
+
+    def test_a_renamed_heading_orphans_its_pointers_into_unresolved(self):
+        # st-44 (A2): the two pointers naming "Implementation" must not
+        # silently leave `found` when that heading is renamed — they
+        # must land in `unresolved` instead. Red arm (pre-fix): found
+        # dropped 4 -> 2, unresolved stayed empty.
+        text = SKILL.read_text().replace(
+            "## Implementation (forcing point 4)",
+            "## Implementation Renamed (forcing point 4)")
+        found, unresolved = section_pointers(text)
+        self.assertEqual(len(found), 4, found)
+        self.assertEqual(
+            sorted(unresolved),
+            sorted([
+                ("Implementation", "Disjoint is a write-set answer"),
+                ("Implementation",
+                 "A missing decision, file, or value is reported as a "
+                 "gap"),
+            ]),
+            unresolved)
 
 
 class TestVerdictParity(unittest.TestCase):
