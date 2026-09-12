@@ -109,3 +109,58 @@ decision adds an arm and weakens no safety floor.
 Global enablement (readiness.json class entry), codex as desk
 (stage 3, parked), write-side lane certification (follow-on probe,
 own registration).
+
+## Stage-1 RESULTS (2026-09-12, graded at statiker-58)
+
+Workdir pinned at repo sha 857984c (page + fixture copies; answer
+key never in the workdir). Harness lessons: codex exec refuses a
+non-git workdir without --skip-git-repo-check; exit code 0 does not
+reflect an API failure (a 400 on the output schema emptied a run,
+visible only in stderr); OpenAI strict structured outputs demand
+every property in `required`.
+
+Validity gate: recall(sonnet) = 0.97 ≥ 0.60 — arrangement VALID.
+PASS bar resolved: recall ≥ 0.87, precision ≥ 0.75.
+
+| arm | reported | tp | precision | recall | verdict |
+|---|---|---|---|---|---|
+| sonnet (calibration) | 39 | 33 | 0.85 | 0.97 | baseline |
+| gpt-6-astra | 39 | 33 | 0.85 | 0.97 | PASS |
+| gpt-5.6-terra | 39 | 33 | 0.85 | 0.97 | PASS (profile identical to sonnet) |
+| gpt-5.6-luna | 41 | 32 | 0.78 | 0.94 | PASS |
+| gpt-5.6-sol | 34 | 34 | 1.00 | 1.00 | NO VERDICT on this metric — oracle |
+
+**The sol finding (transcript-audited).** sol never read the answer
+key (0 hits) but hunted the filesystem, found STALE copies of
+statiker_record.py in other sessions' scratchpads, and ran
+`lint --tracker` / `sweep --tracker` on the fixture: its perfect
+score is the tool's output. The sandbox's `read-only` pins writes,
+not read reach — an instrument-reach gap in this harness, recorded.
+As a comprehension score: invalid. As certification evidence for a
+statiker mechanical lane: finding and running the repo's own
+instrument is the most lane-appropriate behaviour any arm showed.
+luna attempted the same hunt (one find under ~/.codex/skills),
+failed, and read the page; astra and terra never left the workdir.
+sonnet's arm shows no oracle (imperfect, profile identical to
+terra; claude -p default mode denies un-allowlisted Bash).
+
+**Prediction check.** Registered prediction (recall 0.6–0.9 for
+astra and sonnet) was BEATEN on the high side by both (0.97) —
+recorded against the prediction, per its purpose.
+
+**Convergent-extras finding (fire-born, booked st-40).** Three to
+four independent arms flagged the SAME six (line, code) pairs the
+key lacks — lines 107/109 `[COMMITED]` (misspelled tag), 113/115
+`Record:` (mis-cased scope opener), 103 (self-described missing
+basis), 35 (write-set near-miss). The suite is green asserting
+tool ≡ key, so the tool is silent there too: divergence between
+independently built instruments pointing at a shared key/tool
+parentage gap. Adjudication against the page's definitions is
+st-40; no key or tool change rides this results commit.
+
+**Stage-1 verdict.** All three scoreable codex tiers PASS at
+sonnet parity; astra and terra are indistinguishable from the
+certified Claude tier on this leg. Stage 2 proceeds with
+gpt-6-astra as the attack arm (configured default; sol's oracle
+behaviour disqualifies its score, not the model — but astra's
+in-bounds discipline is the property an attack arm needs).
