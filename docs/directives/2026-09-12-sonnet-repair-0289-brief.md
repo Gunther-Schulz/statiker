@@ -172,3 +172,22 @@ red-first arm (R1+R2+R3+R4 may share one commit — they are one ruling);
 R5, R6, R7, R8 separate.
 Commit titles: `0.2.89 fix: <item> — <what>`.
 Trailer: `Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>`
+
+## Commit plan
+
+Commit-blocking guards, with the read that found them: the global
+`pre-commit` at `core.hooksPath=~/dev/Gunther-Schulz/dotfiles/git/hooks`
+(read at compose time) blocks a PAYLOAD commit whose plugin version
+equals the ORIGIN manifest's. `SKILL.md` and the two scripts are
+payload. The manifest is ALREADY bumped to `0.2.89` and the batch is
+UNPUSHED, so the exemption is ARMED for every commit of yours and **you
+bump nothing** — the dispatcher pushes at integration only, which is
+what keeps it armed. A bounce therefore means the batch was pushed:
+HALT and report, never `--no-verify`. No repo-local `.git/hooks/` hooks
+exist. `SKILL.md` additionally trips the skill-craft load gate
+(Background 6) — that is a same-turn skill invocation, not a commit
+guard.
+
+Pre-authorized repair class: if the commit plan collides with a repo
+guard, reorder to satisfy the guard and report the permutation as a
+deviation. Novel deviations halt.
