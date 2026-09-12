@@ -141,6 +141,8 @@ amend-reason: 2026-09-10 re-pointed: the recognizer fix (lc-72, dd81507) is in a
 amended-blocked-by: 2026-09-10 evidence lifecycle lc-73 duplicate-disposition landed (a merge build that routes the 25 closure bodies past the 20 declared same-work duplicates)
 amend-reason: 2026-09-10 blocker predicate made EXECUTABLE: item ready runs the predicate as a command and my prose form exited 2 (trigger_broken); the grep goes green when lc-73's closed body moves to lifecycle's done home
 amended-blocked-by: 2026-09-10 evidence grep -q '^## lc-73' /home/g/dev/Gunther-Schulz/lifecycle/ITEMS-DONE.md
+amend-reason: 2026-09-12 Evidence refreshed after a peer relay concluded execute-a-run from lc-72's closure alone; the lifecycle record refutes that, and the stale lc-72 citation in this body is what misled
+amended-evidence: 2026-09-12 lc-72 (recognizer for date-led bullets) is CLOSED in lifecycle ITEMS-DONE.md:116 (verified 2026-09-12, statiker-58) and migrate --merge ships; but the merge was ALREADY EXECUTED here 2026-09-10 and structurally refused: FINDING merge_duplicate_body 20, nothing written (lifecycle lc-73's evidence slot records the run). lc-73 (READY in lifecycle ITEMS.md:451, blocked on its own duplicate-disposition design decision) carries lc-72's unmet cross-repo remainder; this item's predicate greps lc-73 and is correctly quiet. A desk reading only lc-72's closure re-derives execute-a-run wrongly, as the dotfiles drainage desk did 2026-09-12
 
 ## st-26
 grade: PARKED
