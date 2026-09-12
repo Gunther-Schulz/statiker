@@ -759,8 +759,12 @@ def _exit_after_broken_pipe(code):
 
 
 def finish(verdict, exit_code, **detail):
-    text = VERDICT_PREFIX + json.dumps({"verdict": verdict, **detail},
-                                       ensure_ascii=False)
+    # st-32 lap B: one lookup, no gate-logic change — a name the
+    # registry lacks stamps "unrouted" (statiker_emit.ROUTES; design
+    # docs/directives/2026-09-12-st32-lapB-design-statiker-a5.md §1).
+    route = statiker_emit.ROUTES.get(verdict, "unrouted")
+    text = VERDICT_PREFIX + json.dumps({"verdict": verdict, "route": route,
+                                        **detail}, ensure_ascii=False)
     if BROKEN_PIPE:
         # stdout is already gone — the one-verdict-line guarantee's
         # last stderr-safe attempt, exit reporting the broken pipe

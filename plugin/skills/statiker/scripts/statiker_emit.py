@@ -24,3 +24,119 @@ def stderr_fallback(text):
         sys.stderr.buffer.flush()
     except OSError:
         pass
+
+
+# st-32 lap B: the route registry. Content copied verbatim from the
+# settled design's §§1 and 3
+# (docs/directives/2026-09-12-st32-lapB-design-statiker-a5.md) — do
+# not re-derive by reading the scripts. Single home for both tools
+# (statiker_git.py and statiker_record.py each import this module
+# already); each script's `finish()` stamps `route` via one lookup
+# against ROUTES, falling back to "unrouted" for a name the registry
+# lacks (emission never fails on a registry gap — design §1). A name
+# shared by both scripts (PATH_OUTSIDE_REPO, USAGE_ERROR, GIT_ERROR,
+# INTERNAL_ERROR) is keyed once and shares one route — all four route
+# `halt` today (design §2).
+
+ROUTE_VOCABULARY = frozenset({
+    "proceed", "book-and-continue", "repair-from-verdict", "barred",
+    "narrow", "halt", "surface", "triage",
+})
+
+ROUTES = {
+    # ---- git tool (43 emitted names) ----
+    # proceed (9)
+    "PREFLIGHT_OK": "proceed",
+    "STATE_CLEAN": "proceed",
+    "SEAL_PATH": "proceed",
+    "WORKTREE_ADDED": "proceed",
+    "WORKTREE_REMOVED": "proceed",
+    "LOCK_CHECK_CLEAN": "proceed",
+    "LOCK_COMMITTED": "proceed",
+    "UNIT_START_CLEAN": "proceed",
+    "UNIT_COMMITTED": "proceed",
+    # book-and-continue (4)
+    "LOCK_CHECK_DROPS": "book-and-continue",
+    "LOCK_COMMITTED_EXTRAS": "book-and-continue",
+    "UNIT_COMMITTED_EXTRAS": "book-and-continue",
+    "UNIT_COMMITTED_RESIDUE": "book-and-continue",
+    # repair-from-verdict (1)
+    "LOCK_GATE_HOLDS": "repair-from-verdict",
+    # barred (2)
+    "STATE_IN_PROGRESS": "barred",
+    "UNIT_GATE_BLOCKED": "barred",
+    # triage (3)
+    "BLOCKED_CONTENTION": "triage",
+    "UNIT_COLLISION": "triage",
+    "UNIT_NO_DIFF_VS_HEAD": "triage",
+    # surface (1)
+    "PREFLIGHT_UNPINNABLE_TRACKER": "surface",
+    # halt (23)
+    "HALT_STATE": "halt",
+    "HALT_TRACKER_COLLISION": "halt",
+    "HALT_TRACKER_UNPINNABLE": "halt",
+    "HALT_DROPS_STALE": "halt",
+    "HALT_DROPS_UNACKNOWLEDGED": "halt",
+    "HALT_NO_CHANGES": "halt",
+    "HALT_NO_PATHSPEC": "halt",
+    "HALT_DIRECTORY_PATH": "halt",
+    "HALT_MISSING_PATH": "halt",
+    "HALT_RESIDUE_PERSISTS": "halt",
+    "HALT_IGNORED_WRITESET": "halt",
+    "UNIT_START_MISMATCH": "halt",
+    "UNIT_COMMIT_COLLISION": "halt",
+    "WRITE_SET_NAMES_TRACKER": "halt",
+    "GATE_UNREADABLE": "halt",
+    "ADD_FAILED": "halt",
+    "COMMIT_FAILED": "halt",
+    "NOT_A_REPO": "halt",
+    "PATH_INSIDE_REPO": "halt",
+    "PATH_OUTSIDE_REPO": "halt",
+    "USAGE_ERROR": "halt",
+    "GIT_ERROR": "halt",
+    "INTERNAL_ERROR": "halt",
+
+    # ---- record tool (37 emitted names; the 4 shared names above are
+    # not repeated here) ----
+    # proceed (14)
+    "LINT_CLEAN": "proceed",
+    "SWEEP_CLEAN": "proceed",
+    "CLOSURE_LIVE": "proceed",
+    "UNIT_DISPATCHABLE": "proceed",
+    "WAVES_COMPUTED": "proceed",
+    "TREND_COMPUTED": "proceed",
+    "TREND_NO_ROUNDS": "proceed",
+    "SUSTAIN_OK": "proceed",
+    "SUSTAIN_NOT_APPLICABLE": "proceed",
+    "TRIPWIRE_SILENT": "proceed",
+    "ARTIFACT_WRITTEN": "proceed",
+    "PINNED_APPEND_ONLY": "proceed",
+    "VERIFY_COPY_CLEAN": "proceed",
+    "QUOTE_BLOCK": "proceed",
+    # repair-from-verdict (8)
+    "LINT_VIOLATIONS": "repair-from-verdict",
+    "SWEEP_HOLDS": "repair-from-verdict",
+    "CLOSURE_RECORD_MALFORMED": "repair-from-verdict",
+    "CLOSURE_LEAVINGS_HOLD": "repair-from-verdict",
+    "WAVES_RECORD_MALFORMED": "repair-from-verdict",
+    "TREND_RECORD_MALFORMED": "repair-from-verdict",
+    "SUSTAIN_RECORD_MALFORMED": "repair-from-verdict",
+    "TRIPWIRE_RECORD_MALFORMED": "repair-from-verdict",
+    # barred (3)
+    "CLOSURE_ABSENT": "barred",
+    "CLOSURE_VOID": "barred",
+    "UNIT_HELD": "barred",
+    # narrow (2)
+    "SUSTAIN_DENIED": "narrow",
+    "TRIPWIRE_FIRES": "narrow",
+    # triage (1)
+    "VERIFY_COPY_STALE": "triage",
+    # surface (1)
+    "PINNED_REWRITTEN": "surface",
+    # halt (8; 4 of these — PATH_OUTSIDE_REPO, USAGE_ERROR, GIT_ERROR,
+    # INTERNAL_ERROR — are keyed above from the git tool's list)
+    "UNIT_UNKNOWN": "halt",
+    "ARTIFACT_IN_REPO": "halt",
+    "PIN_UNREADABLE": "halt",
+    "TRACKER_UNREADABLE": "halt",
+}

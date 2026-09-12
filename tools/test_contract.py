@@ -1090,14 +1090,6 @@ class TestSkillSectionPointersResolve(unittest.TestCase):
 
 
 class TestVerdictParity(unittest.TestCase):
-    def test_every_emitted_verdict_is_routed_in_skill(self):
-        missing = emitted_verdicts() - skill_named_verdicts()
-        self.assertEqual(
-            missing, set(),
-            f"emitted by a script, named nowhere in SKILL.md: "
-            f"{sorted(missing)} — route it or add it to a catch-all's "
-            f"parenthetical")
-
     def test_every_skill_named_verdict_is_emitted(self):
         phantom = skill_named_verdicts() - emitted_verdicts()
         self.assertEqual(
@@ -1160,6 +1152,99 @@ class TestVerdictParity(unittest.TestCase):
                       "LOCK_COMMITTED_EXTRAS", "CLOSURE_RECORD_MALFORMED"):
             self.assertIn(known, got)
         self.assertIn("HALT_STATE", skill_named_verdicts())
+
+
+def _verdict_field(line, field):
+    m = re.search(rf'"{field}":\s*"([^"]*)"', line)
+    return m.group(1) if m else None
+
+
+class TestRouteParity(unittest.TestCase):
+    """The replacement contract (st-32 lap B, design §5:
+    docs/directives/2026-09-12-st32-lapB-design-statiker-a5.md). The
+    old `test_every_emitted_verdict_is_routed_in_skill` direction
+    (deleted above) is replaced by a registry the tools themselves
+    stamp into every verdict line — `statiker_emit.ROUTES` /
+    `ROUTE_VOCABULARY`, the single home both scripts already import.
+    `test_every_skill_named_verdict_is_emitted` (TestVerdictParity,
+    above) still catches page rot on the residual verdict set the
+    page legitimately keeps naming; only that one direction moved
+    here."""
+
+    @classmethod
+    def setUpClass(cls):
+        sys.path.insert(0, str(SCRIPTS[1].parent))
+        import statiker_emit
+        cls.emit = statiker_emit
+
+    def test_every_emitted_verdict_is_routed(self):
+        missing = emitted_verdicts() - set(self.emit.ROUTES)
+        self.assertEqual(
+            missing, set(),
+            f"emitted by a script, absent from ROUTES: {sorted(missing)}")
+
+    def test_every_route_entry_is_emitted(self):
+        phantom = set(self.emit.ROUTES) - emitted_verdicts()
+        self.assertEqual(
+            phantom, set(),
+            f"in ROUTES, emitted by no script: {sorted(phantom)}")
+
+    def test_route_values_are_the_closed_vocabulary(self):
+        self.assertEqual(set(self.emit.ROUTES.values()),
+                          self.emit.ROUTE_VOCABULARY)
+        self.assertNotIn("unrouted", self.emit.ROUTES.values())
+
+    def test_page_names_every_route_token(self):
+        text = SKILL.read_text(encoding="utf-8")
+        missing = [tok for tok in sorted(self.emit.ROUTE_VOCABULARY)
+                   if f"`{tok}`" not in text]
+        self.assertEqual(
+            missing, [],
+            f"route token(s) with no backtick-quoted literal on the "
+            f"page: {missing}")
+
+    def test_route_field_is_stamped_record(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            repo = Path(tmp)
+            subprocess.run(
+                ["git", "init", "-q", "-b", "main"], cwd=repo,
+                env=battery_env(), capture_output=True, check=True)
+            tracker = repo / "t.md"
+            tracker.write_text(
+                "# Run: test\n"
+                "Status: in-progress\n"
+                "Phase: investigate-design\n"
+                "Skill: statiker 0.2.33\n\n"
+                "INTENT — do the thing.\n\n"
+                "## Cycle 1\n"
+                "- F1 [VERIFIED] a fact — basis: cmd output\n")
+            p = subprocess.run(
+                [sys.executable, str(SCRIPTS[1]), "lint", "--tracker",
+                 str(tracker)],
+                cwd=str(repo), env=battery_env(), capture_output=True,
+                text=True, timeout=60)
+        lines = [l for l in split_lines(p.stdout)
+                 if l.startswith("STATIKER-RECORD VERDICT: ")]
+        self.assertEqual(len(lines), 1, p.stdout)
+        self.assertEqual(_verdict_field(lines[0], "verdict"), "LINT_CLEAN",
+                          lines[0])
+        self.assertEqual(_verdict_field(lines[0], "route"),
+                          self.emit.ROUTES["LINT_CLEAN"], lines[0])
+
+    def test_route_field_is_stamped_git(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            p = subprocess.run(
+                [sys.executable, str(SCRIPTS[0]), "preflight", "--tracker",
+                 "t.md"],
+                cwd=tmp, env=battery_env(), capture_output=True, text=True,
+                timeout=60)
+        lines = [l for l in split_lines(p.stdout)
+                 if l.startswith("STATIKER-GIT VERDICT: ")]
+        self.assertEqual(len(lines), 1, p.stdout)
+        self.assertEqual(_verdict_field(lines[0], "verdict"), "NOT_A_REPO",
+                          lines[0])
+        self.assertEqual(_verdict_field(lines[0], "route"),
+                          self.emit.ROUTES["NOT_A_REPO"], lines[0])
 
 
 def all_emitted_violation_codes(source_text):

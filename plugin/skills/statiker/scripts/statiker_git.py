@@ -174,8 +174,12 @@ def finish(verdict, exit_code, **detail):
     # back to the exact input byte; ensure_ascii's default \udcXX
     # escape is six literal ASCII characters a desk could paste, never
     # equal to the one real byte it names (tier2-without.md F4).
-    text = VERDICT_PREFIX + json.dumps({"verdict": verdict, **detail},
-                                       ensure_ascii=False)
+    # st-32 lap B: one lookup, no gate-logic change — a name the
+    # registry lacks stamps "unrouted" (statiker_emit.ROUTES; design
+    # docs/directives/2026-09-12-st32-lapB-design-statiker-a5.md §1).
+    route = statiker_emit.ROUTES.get(verdict, "unrouted")
+    text = VERDICT_PREFIX + json.dumps({"verdict": verdict, "route": route,
+                                        **detail}, ensure_ascii=False)
     if BROKEN_PIPE:
         _stderr_fallback(text)
         _exit_after_broken_pipe(3)
