@@ -161,7 +161,7 @@ evidence: opus-review-0287 executed pairs (N1 mutant '2 passed' vs F26->F21 copy
 blocked-by: NONE
 
 ## st-35
-grade: PARKED
+grade: READY
 requirement: the page and pinned disagree on arming a live run's tripwire (opus-review-0287 N3, pre-lap surface): SKILL.md:275-277 arms by an in-place Budget-line edit ('header fields are mutable state'), while SKILL.md:186-187, :321, :450-452 and pinned's _mutable_field_positions (Status/Phase only) treat that edit as a rewrite (PINNED_REWRITTEN at the next resume or re-lock); since st-30(3) a seeded 'tripwire 0' halts every round-open tripwire run, and --threshold is the only clean repair — record: opus-review-0287 report, OBSERVATIONS 2026-09-11 0.2.87 dispositions
 goal: tend
 write-set: plugin/skills/statiker/SKILL.md, plugin/skills/statiker/scripts/statiker_record.py, tools/test_statiker_record.py
@@ -174,3 +174,7 @@ amended-write-set: 2026-09-12 plugin/skills/statiker/SKILL.md, plugin/skills/sta
 amended-done-criterion: 2026-09-12 per the ruling in dev-notes/OBSERVATIONS.md 2026-09-12 (st-35 ruling, statiker-df): tripwire resolves its threshold as --threshold > the LATEST appended `- F<n> [VERIFIED] record: tripwire armed at <n>[ — "<operator line>"] — basis: <operator|desk>` entry > the header Budget line's field > unarmed, the >= 1 refusal applying to whichever source DECIDES; SKILL.md:253-260's in-place clause replaced by the appended route and its 'an amendment F-line ... never arms' sentence removed; :176-177, :405-410, :414-420 and _mutable_field_positions untouched; the ruling's five red-first arms executed with the baseline stated first (R1 bite: header 'tripwire 0' + appended arm at 2 gives USAGE_ERROR today, armed at 2 after; R1b: the in-place repair still gives PINNED_REWRITTEN and the appended one PINNED_APPEND_ONLY, both sides; R2, R3 controls unchanged; R4 a bad appended value refused naming the entry); pytest tools/ green; opus checkpoint review dispositioned before the pin moves
 amended-evidence: 2026-09-12 0.2.87 review N3 with the reviewer's executed red (pin with tripwire 0, edit to 2: PINNED_REWRITTEN) and control (edit Status only: PINNED_APPEND_ONLY), OBSERVATIONS 2026-09-11 0.2.87 dispositions; the ruling and its four bases, OBSERVATIONS 2026-09-12 (SKILL.md:291-303 the budget-raise precedent on the same header line; :176-177/:405-410/:414-420 + statiker_record.py:2682-2695 the tool's side; :2707-2708/:2764-2768 the line-granular exemption cost; :378/:2265-2280/:885 no new grammar needed), all read at 62a90d9
 amended-blocked-by: 2026-09-12 st-34
+amend-reason: 2026-09-12 2026-09-12 statiker-df: my own blocker was anchored to the wrong object. The collision was with the st-34 LANE, which closed at its report; the st-34 ITEM stays open until the batch's release, so an item-keyed blocker would have held st-35's build until AFTER the release the batch exists to share. Lane closed, tree clean, st-34's files free — st-35 is unblocked now
+amended-blocked-by: 2026-09-12 NONE
+promote-reason: 2026-09-12 the ruling is recorded with its basis, rejected alternative and R1-R4 red-first arrangement, the build brief is written, and the file collision that sequenced it has cleared with the st-34 lane's close
+promoted-by: 2026-09-12 statiker-df (opus desk)

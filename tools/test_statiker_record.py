@@ -5793,5 +5793,131 @@ class TestSt30Item1DeclaratorBookkeepingTextNamesSupersedeWhole(RecordFixture):
         self.assertEqual(v["verdict"], "LINT_CLEAN", v)
 
 
+
+RACE_SHIM = r"""#!/usr/bin/env python3
+import os, subprocess, sys
+real, mark, repo = (os.environ["RACE_REAL_GIT"],
+                    os.environ["RACE_MARK"], os.environ["RACE_REPO"])
+a = sys.argv[1:]
+resolution = ((len(a) >= 2 and a[0] == "show" and ":" in a[1])
+              or (len(a) >= 3 and a[0] == "rev-parse" and a[1] == "--verify"))
+p = subprocess.run([real, *a], capture_output=True)
+sys.stdout.buffer.write(p.stdout)
+sys.stderr.buffer.write(p.stderr)
+if resolution and not os.path.exists(mark):
+    open(mark, "w").close()
+    env = {**os.environ, "GIT_CONFIG_GLOBAL": "/dev/null"}
+    with open(os.path.join(repo, "t.md"), "w") as f:
+        f.write(os.environ["RACE_TEXT_B"])
+    for cmd in (["add", "t.md"],
+                ["-c", "user.name=R", "-c", "user.email=r@e",
+                 "commit", "-q", "-m", "the racing commit"]):
+        subprocess.run([real, *cmd], cwd=repo, env=env, capture_output=True)
+sys.exit(p.returncode)
+"""
+
+
+class TestResolveOnceUnderAConcurrentCommit(unittest.TestCase):
+    """The permanent arm for the double-resolution class (st-34 n4,
+    fixed at 36233e5): `filter` and `pinned` must resolve a symbolic
+    `--sha` ONCE and read the record's content at that resolved sha.
+    Resolved twice, a commit landing between the two calls pairs one
+    commit's CONTENT with another commit's SHA — and the verdict is
+    well-formed either way, which is why only a race separates them.
+
+    Why this arm is permanent where the suite's other live-mutation
+    proofs are not: the repo's convention exempts arms that need a
+    historical tool checkout or that mutate the working tree
+    (TestGoldenCorpusSweep's docstring). This one does neither — it
+    builds its own throwaway repo and races it with a PATH-early `git`
+    shim, so nothing outside the temp dir is touched and no old tool is
+    needed. The lane that fixed n4 proved it by hand and flagged the
+    absence; a hand proof that is never re-run lets the next regression
+    make the same finding again.
+
+    Discrimination: the shim advances the ref exactly once, and only on
+    a resolution call, so the two commits differ by construction. The
+    arm asserts that the shim actually fired (a harness that failed to
+    race is vacuous, not green) and that the emitted `sha` is the
+    PRE-race tip — the commit whose content both the fixed and the
+    broken tool read. Broken, `sha` names the post-race commit instead.
+
+    Red-first, executed 2026-09-12 against the pre-fix script (the
+    statiker_record.py blob at 7a0c5b7, run from a scratch copy):
+    `pinned` emitted the post-race sha while its content came from the
+    pre-race commit, and `filter` did the same — both arms red, both
+    green at HEAD. Baseline stated first: the unmutated suite was green
+    (543 passed) before the arm was written.
+    """
+
+    TEXT_A = HEADER + "- F1 [VERIFIED] the pinned content — basis: design\n"
+    TEXT_B = HEADER + "- F1 [VERIFIED] the racing content — basis: design\n"
+
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self._tmp.name)
+        self.repo = self.root / "repo"
+        self.repo.mkdir()
+        self.env = {**os.environ, "GIT_CONFIG_GLOBAL": "/dev/null"}
+        self._git("init", "-q", "-b", "main")
+        (self.repo / "t.md").write_text(self.TEXT_A)
+        self._git("add", "t.md")
+        self._git("-c", "user.name=R", "-c", "user.email=r@e",
+                  "commit", "-q", "-m", "the pinned commit")
+        self.commit_a = self._git("rev-parse", "HEAD").stdout.strip()
+
+        shim_dir = self.root / "bin"
+        shim_dir.mkdir()
+        shim = shim_dir / "git"
+        shim.write_text(RACE_SHIM)
+        shim.chmod(0o755)
+        self.race_env = {
+            **self.env,
+            "PATH": f"{shim_dir}{os.pathsep}{os.environ['PATH']}",
+            "RACE_REAL_GIT": shutil.which("git"),
+            "RACE_MARK": str(self.root / "fired"),
+            "RACE_REPO": str(self.repo),
+            "RACE_TEXT_B": self.TEXT_B,
+        }
+
+    def tearDown(self):
+        self._tmp.cleanup()
+
+    def _git(self, *args, env=None):
+        return subprocess.run(["git", *args], cwd=self.repo,
+                              env=env or self.env, capture_output=True,
+                              text=True, check=True)
+
+    def _raced(self, args):
+        p = subprocess.run([sys.executable, str(SCRIPT), *args],
+                           cwd=self.repo, env=self.race_env,
+                           capture_output=True, text=True, timeout=60)
+        lines = [l for l in p.stdout.split("\n")
+                 if l.startswith(VERDICT_PREFIX)]
+        self.assertEqual(len(lines), 1,
+                         f"stdout:\n{p.stdout}\nstderr:\n{p.stderr}")
+        v = json.loads(lines[0][len(VERDICT_PREFIX):])
+        head = self._git("rev-parse", "HEAD").stdout.strip()
+        self.assertNotEqual(
+            head, self.commit_a,
+            "the shim never fired — no commit landed between the two "
+            "resolutions, so this arm raced nothing")
+        return v
+
+    def test_pinned_emits_the_sha_whose_content_it_read(self):
+        v = self._raced(["pinned", "--tracker", "t.md", "--sha", "main"])
+        self.assertEqual(
+            v.get("sha"), self.commit_a,
+            f"pinned emitted a sha it did not read at: {v}")
+
+    def test_filter_emits_the_sha_whose_content_it_read(self):
+        out = self.root / "artifact.md"
+        v = self._raced(["filter", "--tracker", "t.md", "--sha", "main",
+                         "--out", str(out)])
+        self.assertEqual(
+            v.get("sha"), self.commit_a,
+            f"filter emitted a sha it did not read at: {v}")
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=1)
