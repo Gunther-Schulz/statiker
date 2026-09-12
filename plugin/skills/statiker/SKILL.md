@@ -110,6 +110,61 @@ every route: a halt verdict carrying a `shas` or `sha` field has
 LANDED commits — routed like HALT_RESIDUE_PERSISTS, never as
 uncommitted.
 
+### Route vocabulary
+
+Every verdict line carries a `route` field — the tool's own stamp,
+one lookup against a closed eight-token vocabulary; the desk reads
+it rather than re-deriving a verdict's disposition from its name. A
+route token names the desk's seam-invariant disposition class — the
+(record obligation, resolver, continuation) triple — never the
+seam- or mode-specific conduct, which stays this page's principle
+per class:
+
+- `proceed` — the asked act succeeded or the state answer permits
+  the next act; the invoking seam's own conduct consumes the
+  verdict's fields. No new booking obliged by the route (a seam's
+  own duty — landing annotation, quote-in-brief, quote-at-round-
+  open — stays that seam's principle, each with a mechanical
+  backstop where one exists).
+- `book-and-continue` — the act LANDED or the answer stands, AND
+  the verdict carries a finding: booked as a `record:` F-line (or
+  the drop supersede form) from the verdict line, work continuing.
+- `repair-from-verdict` — the record needs a mechanical repair the
+  verdict itself names (violation lines with class and repair form,
+  an embedded gate verdict, an undispositioned set); compose the
+  repair from the verdict, re-run the gate. Judgment residue the
+  verdict names returns to the desk.
+- `barred` — the tool worked and its answer is "not now / not
+  this": the asked action is denied by run state already in the
+  record. Nothing to book (the state IS the record), no transaction
+  failed; resolution is the run's own machinery (the hold entry,
+  the closure re-derivation, waiting on the gate).
+- `narrow` — the verdict routes to the attack's NARROWING route,
+  never another same-form round (The attack keeps narrowing as
+  principle; the token carries the destination on the verdict line
+  itself).
+- `halt` — the seam stops; the verdict line is booked verbatim as a
+  `record:` F-line; nothing landed UNLESS the verdict carries
+  `shas`/`sha` — routed like HALT_RESIDUE_PERSISTS, kept above;
+  attended, the operator's clearing reply re-enters; unattended,
+  the seam's own close rule applies.
+- `surface` — operator ground: no desk resolution exists (a
+  tampered pin, an unpinnable tracker). Attended it leads the next
+  prompt; unattended the run takes the seam's terminal disposition
+  (FAILED / rides the close). Distinct from `halt` by resolver: a
+  halt's clearing can be desk work on provenance; surface never.
+- `triage` — the verdict is complete evidence for a desk judgment
+  between dispositions this page names (stale-copy harmless vs
+  re-run; contention provenance; the residue check). Judgment stays
+  prose; the token tells the desk it is AT a judgment seam and
+  where its dispositions live.
+
+The unrouted verdict: emission never fails on a registry gap — a
+verdict name the registry lacks stamps `route: "unrouted"`. A
+verdict whose `route` field is absent, unknown, or `unrouted` is a
+HALT for the seam that ran it, booked from the verdict line —
+fail-closed, the same catch-all above.
+
 Unit briefs carry the git tool's ABSOLUTE path and its invocation
 lines — the tool is the shared implementation, so no lock-procedure
 text is ever expanded into a brief. The record tool is DESK-only: no
