@@ -521,3 +521,86 @@ certified Claude tier on this leg. Stage 2 proceeds with
 gpt-6-astra as the attack arm (configured default; sol's oracle
 behaviour disqualifies its score, not the model — but astra's
 in-bounds discipline is the property an attack arm needs).
+
+## st-40 ADJUDICATION (2026-09-12, statiker-f7): all six convergent extras are CORRECT SILENCE
+
+Verdict on every one of the six (line,code) pairs 3-4 independent
+codex arms flagged in `tools/golden-corpus/tracker.md`: the tool is
+right, the answer key is right, and the models are wrong. No tool
+defect, no key gap, no fixture change, no code change.
+
+**What the six actually are.** Every flagged line is a deliberately
+planted SEED defect that a later line REPAIRS with the `corrects
+line <n>` token, and the fixture block is named for the REPAIR's own
+defect rather than the seed's:
+
+| seed | the planted defect | repaired at | that block tests |
+|---|---|---|---|
+| 35 | `write-set` missing its colon | 37 | (control: a clean repair) |
+| 103 | no `— basis:` clause | 104 | multi-corrects-token / corrects-nothing |
+| 107 | `[COMMITED]` misspelled | 108 | repair-scope-change |
+| 109 | `[COMMITED]` misspelled | 110 | repair-scope-change |
+| 113 | `Record:` mis-cased | 114 | repair-tag-change |
+| 115 | `Record:` mis-cased | 116 | repair-tag-change |
+
+**The page sentence that decides it** (Implementation, the repair
+rules): a body-content violation's correcting line "sheds the
+target's VIOLATIONS, nothing more", and a machine-token violation's
+target "is superseded whole and the correcting line RESTATES the
+content". Shedding is exactly what the tool does here. The page also
+anticipates the misreading in one sentence: "Flagged text still sits
+in the file for foreign readers (the stats reader's unanchored
+greps) — the compose-time rules are the only cleanse." A reader
+scanning TEXT sees a malformed line; only the repair resolution
+knows it is shed.
+
+**Executed pair, per candidate — the discriminating evidence.**
+Control: the unmutated fixture is silent at all six. Mutant: delete
+the repair line only (seed line numbers are unaffected, every seed
+preceding its repair) and the seed fires its exact expected code:
+
+    delete  37 -> line  35: write-set-near-miss
+    delete 104 -> line 103: basis-missing
+    delete 108 -> line 107: tag-enum
+    delete 110 -> line 109: tag-enum
+    delete 114 -> line 113: scope-near-miss
+    delete 116 -> line 115: scope-near-miss
+
+Six for six. So the tool DETECTS every one of these defects and the
+silence is the shed, not a blind spot.
+
+**The same-parentage suspicion is REFUTED for these six, and the
+mutation is what refutes it.** The worry was that the key was
+authored from tool output, so key-silence would merely echo
+tool-silence and prove nothing. But the tool's silence here is
+REMOVABLE: it disappears on deleting a line the key never mentions.
+A key copied from output could not predict that, and a tool blind to
+the class could not produce it. The agreement is independently
+grounded on this population. (It says nothing about the rest of the
+key, which this adjudication did not examine.)
+
+**Why 3-4 arms converged on a false positive — the finding worth
+keeping.** They read the fixture line-by-line and flagged malformed
+text without modelling supersession, which is a property of the
+WHOLE file, not of the line. Convergence across arms measured
+nothing here: the arms share the blind spot, so agreement certifies
+nothing about the axis none of them varied (corpus Fixing,
+instruments: two measurements holding one axis fixed is
+could-not-verify on that axis, never confirmation). Treat
+"N independent models agreed" on a line-local reading of a
+supersession-bearing record as weak by construction.
+
+**Not minted.** This produced six false positives in a model eval,
+not a bite in production. Birth-class bar unmet; recorded here as
+the carrier, no payload patch.
+
+**Instrument note, recorded because it nearly cost the answer.** My
+first mutation harness wrote fixtures to the session scratchpad and
+every run came back clean — which read exactly like "the seed does
+not fire" and would have confirmed the shed hypothesis falsely. The
+tool had returned PATH_OUTSIDE_REPO: the record tool anchors its
+repo at the TRACKER's own directory (SKILL.md, The tools), so a
+tracker outside any git repo halts before linting. The fix was a
+`git init` scratch repo, and the control above (unmutated copy
+inside it reproduces the baseline, line-31 included) is what proves
+the instrument was live before any mutant was believed.
