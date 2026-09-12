@@ -10160,3 +10160,16 @@ REVIEW DISPOSITIONS (each before release, per convention):
 
 The repair lap's dispositions above are the brief (the lap
 dispatches on them); suite re-run and release gate follow the lap.
+
+Repair lap executed (sonnet lane sonnet-0290-repair, 2026-09-12):
+c5ab588 (page: B1a/B1b/N4/nit-v — all three head-boundary sites now
+defer to the boundary sentence instead of restating it) and b7af1b0
+(tool: N1 — TRIPWIRE_BUDGET_FIELD_RE loses its trailing `\b` so a
+digit-jammed `/ tripwire3` refuses; nit i message and the st-44
+docstring corrected; +6 tests). Red-first from the reviewer's
+executed case, all controls held. Desk re-verified at the artifact:
+both diffs read against the dispositions, suite 577 passed (571
+baseline + 6). This closes the 0.2.90/0.2.91 checkpoint round; the
+batch releases as 0.2.91 (the 0.2.90 manifest bump was pushed
+early, re-equalizing the payload guard — 7b30cf0 is the corrected
+bump).
