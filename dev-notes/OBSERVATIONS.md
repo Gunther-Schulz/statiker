@@ -9587,3 +9587,51 @@ resolve-once arm reproduced red against 7a0c5b7 and green at HEAD with
 routes preserved across 8 cases, st-36's pointer instrument reproduced
 red at 7774046, the arming resolution order on the exact form, and both
 golden-corpus controls exercising the branches they name.
+
+## 2026-09-12 — P28/st-10 C4c field test: the registered criterion resolves
+
+Graded against the criterion registered this morning BEFORE the review
+dispatched (unchanged since the 0.2.86 registration), over the 0.2.89
+checkpoint review's dispositions.
+
+**Classification of each finding against the 7 pre-registered slots.**
+- **B3** (the arming form fails open) — on **st-35's** surface, a
+  FLAGGED slot. DESIGN-kind: its fix changes the disposition's decided
+  TEXT, adding a near-miss lint class and a machine-token enumeration
+  entry the ruling never specified. QUALIFIES.
+- **N2** (`TRIPWIRE_BUDGET_RE` lost the `/` anchor) — st-34's N2 slot,
+  FLAGGED, but IMPLEMENTATION-kind: the disposition's text ("a present
+  field that does not parse as an integer >= 1 is refused") stands and
+  only the code realizing it was wrong. Counted, does not grade.
+- **N1** (stale pointers) — spans st-34's n4 slot and lap B's page
+  insert; IMPLEMENTATION-kind either way. Counted, does not grade.
+- **B1, B2, N3, N4, N5, N6, n1** — all on lap B's surface, which
+  carries no flagged/unflagged classification (this morning's
+  correction: compression dispositions are not dispositions of review
+  findings, so the design-bearing rule has nothing to classify there).
+  Counted and listed, do not grade.
+
+**C4c FIELD TEST OUTCOME: CONFIRM** — 1 qualifying finding, at a
+FLAGGED slot; more than half of the graded population sits at flagged
+dispositions, which is the registered CONFIRM condition.
+
+**Variance caveat, stated at full strength because it is severe.** The
+graded population is ONE finding of the review's ten. Seven were
+excluded by a scope correction this desk made hours before the review
+ran, and two were implementation-kind. A criterion whose denominator
+resolves to 1 discriminates almost nothing: the same outcome would
+follow from any single design-kind finding landing anywhere in the
+flagged set, and the pre-registered stop (a third UNDECIDED ends the
+repeat) did not fire only because this round produced a qualifying
+finding at all. The datum is recorded as the criterion requires and is
+NOT treated as strong evidence that flagging predicts where design
+defects land.
+
+**Consequence.** st-10's blocker predicate
+(`grep -qE '^C4c FIELD TEST OUTCOME: (CONFIRM|REFUTE)'`) now resolves,
+so st-10 leaves the machine's court. Per its own done-criterion the
+CONFIRM branch lands C4a in SKILL.md's Verify demand list and C4b/C4c
+in CLAUDE.md from the design's DRAFT clauses — that is a mint, and it
+is NOT taken on this datum's strength alone: the caveat above is
+carried into that item so the mint decision weighs a denominator of
+one rather than inheriting a bare CONFIRM.
