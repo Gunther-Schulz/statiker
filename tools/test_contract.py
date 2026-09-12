@@ -1255,7 +1255,17 @@ class TestRNfRepairFormCoverage(unittest.TestCase):
     `return [...]` LIST, is invisible to the derivation and so outside
     this check's coverage (T2: reviewer's planted variable-mutant;
     finding 5: a planted tuple return passes this check where a
-    planted list return is caught — no live instance of either)."""
+    planted list return is caught — no live instance of either).
+    st-34 (n3): two further shapes the same walk cannot see, named for
+    completeness — a CONDITIONAL return whose immediate value is not
+    itself a bare `ast.List` (`hold_violations`'s
+    `return [] if tag == "AUTO-ACCEPTED" else ["hold-form"]`,
+    statiker_record.py:785 — the ternary wraps the list, so the
+    `ast.Return`/`ast.List` branch never matches this site; "hold-form"
+    still resolves via that function's other, plain `return [...]`
+    lines, so no code is silently unrecorded today), and a
+    `dict(code=...)` CALL-form emission (only a `{"code": ...}` literal
+    `ast.Dict` is read; no live instance)."""
 
     @classmethod
     def setUpClass(cls):
@@ -1321,7 +1331,14 @@ class TestP5RuleMintVersionCoverage(unittest.TestCase):
     violation_codes`): literal code strings at emission sites only —
     a code assembled from a variable or expression, or returned
     inside a TUPLE rather than a `return [...]` LIST, is invisible to
-    the derivation and so outside this check's coverage too."""
+    the derivation and so outside this check's coverage too. st-34
+    (n3), same widening as that class's docstring: also a CONDITIONAL
+    return whose immediate value is not itself a bare `ast.List`
+    (`hold_violations`'s ternary at statiker_record.py:785; "hold-form"
+    still resolves via that function's other plain `return [...]`
+    lines, so no code is silently unrecorded today), and a
+    `dict(code=...)` CALL-form emission (only a `{"code": ...}` literal
+    `ast.Dict` is read; no live instance)."""
 
     @classmethod
     def setUpClass(cls):
