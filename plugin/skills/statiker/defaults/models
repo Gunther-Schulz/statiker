@@ -10,7 +10,10 @@
 # the submitting PR. No provenance, no entry. Entries are
 # ecosystem-scoped; bare classes bind the Claude ecosystem, other
 # ecosystems extend as <class>@<ecosystem> once a certified probe
-# exists there (none yet).
+# exists there (codex, 2026-09-12, below). A harness resolves only
+# its own ecosystem's entries; a class's entries under another
+# ecosystem are that stack's certification record, not this
+# harness's resolution input.
 #
 # Format: <class>: <model> per line, preference order; # comments.
 
@@ -20,3 +23,37 @@
 # artifacts (n=4, one domain). Provenance: the source repo's
 # dev-notes/OBSERVATIONS.md.
 attack: opus
+
+# attack@codex — CERTIFIED 2026-09-12, pre-registered replay
+# probes against a graded opus baseline (statiker source repo,
+# dev-notes/codex-pilot-2026-09-12.md, Stage-2a/2b RESULTS).
+# astra first for cross-vendor unique yield (2 findings the opus
+# arm missed on the same pinned object); terra recovery-viable
+# one tier down (5/13 recovery incl. 4 of astra's 6, ~60k
+# tokens). Both attack at roughly a third of the opus arm's
+# finding volume — an @codex round is a supplementary or
+# budget arm, and the certification is per (role, model), never
+# per vendor.
+attack@codex: astra
+attack@codex: terra
+
+# impl@codex: terra — CERTIFIED 2026-09-12: R6 replay unit built
+# green with red-first conduct intact (same pilot record,
+# Stage-2c RESULTS; 32k tokens). Harness bindings a dispatcher
+# must hold (exit 0 masks API errors — stderr is the verdict
+# channel; workspace-write denies .git writes, so the dispatcher
+# commits; suites grade outside the sandbox): the dispatch
+# skill's references/codex-routing.md, canonical.
+impl@codex: terra
+
+# verify/reviewer @codex: EXCLUDED BY MEASUREMENT 2026-09-12 —
+# not merely absent. astra recovered 1/10 and terra 0/10 known
+# review defects on this skill's own text (same pilot record,
+# Stage-2d RESULTS); the route-token class was invisible to
+# both. No @codex entry may be added for a reviewer-role class
+# without a fresh probe clearing that measured floor.
+#
+# Read-side/discovery legs (no register class here — statiker
+# resolves discovery via the stack's routing table): luna, terra
+# and astra measured at sonnet parity, recorded in the dispatch
+# skill's references/codex-routing.md.

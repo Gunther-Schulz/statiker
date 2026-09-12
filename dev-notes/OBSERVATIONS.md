@@ -10173,3 +10173,51 @@ baseline + 6). This closes the 0.2.90/0.2.91 checkpoint round; the
 batch releases as 0.2.91 (the 0.2.90 manifest bump was pushed
 early, re-equalizing the payload guard — 7b30cf0 is the corrected
 bump).
+
+## The register gains the codex ecosystem (2026-09-12, operator GO)
+
+Incident/provenance: the codex pilot (dev-notes/
+codex-pilot-2026-09-12.md, stages 0-2d, all pre-registered)
+certified codex models for three worker roles and EXCLUDED the
+reviewer role by measurement; the operator named an external
+consumer ("a friend wants to use it") and directed the worker-role
+readiness ship now, desk-arm eval deferred to a later probe. On a
+bare machine the shipped register is the stack's certification
+carrier (SKILL.md, The attack: "recorded in the register or the
+stack's own config/ledger"), so certifications living only in this
+repo's READINESS.json and the dispatch skill's codex-routing.md are
+invisible exactly where the self-containment criterion looks.
+
+Change: defaults/models gains attack@codex (astra, terra —
+preference order with the role split), impl@codex (terra, with the
+dispatcher-side harness bindings pointed at codex-routing.md as
+canonical), a recorded verify/reviewer EXCLUSION (measured 1/10 and
+0/10 — absence made loud, with the bar a future entry must clear),
+and a discovery pointer. The header's "(none yet)" is superseded and
+the ecosystem-scoping sentence gains the resolution rule: a harness
+resolves only its own ecosystem's entries. Claude-harness attack
+resolution is UNCHANGED — the bare `attack: opus` entry stays the
+first and only entry its parse consults.
+
+Not a C4b mint: no new machine token, predicate, or mandatory form —
+register entries in the file's own declared format
+(<class>@<ecosystem>: <model>), certification data under the
+register's standing no-provenance-no-entry rule. No checkpoint
+review owed: SKILL.md delta zero (criteria 1 and 2 read over
+SKILL.md), and resolution behavior for this harness is unchanged.
+
+Birth-class tenet check, enumerated over PLAN.md's live list (1-9,
+read at this desk): 1 n/a (no design work — certification data);
+2 pass (each entry is dispatch-ready with provenance inline; a
+config author needs no further derivation); 3 pass (no forcing
+point touched; the attack tier's resolution order and certification
+duty stand verbatim); 4 n/a (no implementation lock affected);
+5 pass (extends the certified set a fresh stack can resolve
+without a human seat; the exclusion note replaces a would-be
+human judgment call with a recorded measurement); 6 pass (zero
+SKILL.md operational lines; the register carries the cost, read
+only at tier resolution; releases batched to this operator-named
+consumer seam); 7 n/a (no quality-axis machinery touched);
+8 pass (what must hold exactly — the exclusion — is stated as a
+measured floor with its numbers, not as advice; judgment stays
+in the preference-order prose); 9 n/a (no unit design).
