@@ -4972,8 +4972,9 @@ class TestB3RepairFormsForNewCodes(RecordFixture):
     version (`declarator-bookkeeping`, `foreign-id-suspect`,
     `landing-missing`) had no REPAIR_FORMS entry, so annotate_repairs
     fell through to the "unclassified: this violation's repair form
-    is not settled" placeholder (SKILL.md:498-501, ES-10) — the desk
-    reads no composable repair for any of them."""
+    is not settled" placeholder (SKILL.md, The record, "the desk
+    composes repairs from the verdict, never from memory") — the
+    desk reads no composable repair for any of them."""
 
     def test_declarator_bookkeeping_repair_is_classified(self):
         prefix = ("- F2 [VERIFIED] unit U1 write-set a.txt — basis: design\n"
@@ -5463,9 +5464,11 @@ class TestN2LandingMissingReachExtension(RecordFixture):
     to two live shapes. First, `\\bUNIT_COMMITTED\\b` never matched
     `UNIT_COMMITTED_EXTRAS`/`UNIT_COMMITTED_RESIDUE` — `_` is a word
     character, so no boundary exists between `D` and `_`. Second, it
-    ignored the `record:`-scoped F-line form SKILL.md:1481-1483
-    itself prescribes for a non-landed unit's return (`record: unit
-    U<k> returned UNIT_COMMITTED ...`), since the check required
+    ignored the `record:`-scoped F-line form SKILL.md's
+    Implementation section ("the desk books as a `record:` F-line
+    from the pasted verdict") itself prescribes for a non-landed
+    unit's return (`record: unit U<k> returned UNIT_COMMITTED ...`),
+    since the check required
     scope == "unit". Fixed: the token regex now takes the optional
     suffix on a surviving boundary, and evidence is accepted from a
     unit-scoped entry OR a record-scoped entry whose body names `unit

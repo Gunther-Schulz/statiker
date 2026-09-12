@@ -1722,8 +1722,10 @@ def sweep_checks(entries, landed_units=frozenset()):
     for e in entries:
         scope, unit = classify_scope(e.body)
         # 0.2.84 N2: the desk's own prescribed non-landed-unit return
-        # (SKILL.md:1481-1483) is a `record:`-scoped F-line naming the
-        # unit in prose — scope=="unit" alone missed every one of them.
+        # (SKILL.md, Implementation, "the desk books as a `record:`
+        # F-line from the pasted verdict") is a `record:`-scoped
+        # F-line naming the unit in prose — scope=="unit" alone
+        # missed every one of them.
         if scope == "record" and UNIT_COMMITTED_EVIDENCE_RE.search(e.body):
             m = re.search(r"\bunit (U\d+)\b", e.body)
             if m:
@@ -2172,8 +2174,8 @@ def waves_over_units(entries):
     unit-scoped line both count. A unit is PLANNABLE only if at least
     one of its write-set lines is LIVE (latest-line-per-id, tag !=
     INVALIDATED) — the same supersede convention the lock-set F-line
-    uses (SKILL.md:486-487; SENTENCE-C1 citation refresh, computed
-    against the current file)."""
+    uses (SKILL.md, Stop rule, "The tracker plus every LIVE
+    lock-set path")."""
     latest = latest_by_id(entries)
     known_units = known_units_of(entries)
     write_sets = {}
@@ -2686,10 +2688,12 @@ def cmd_filter(args):
                            cwd=top, capture_output=True)
         if p.returncode != 0:
             # st-30(4) (0.2.86 re-review finding 4): no `sha` field —
-            # the page's override (SKILL.md, :114-117) routes any halt
-            # carrying one as LANDED commits, and this resolved commit
-            # never named a landed reference for THIS path (a path
-            # absent at that commit — today's route for that case).
+            # the page's override (SKILL.md, The tools, "a halt
+            # verdict carrying a `shas` or `sha` field has LANDED
+            # commits") routes any halt carrying one as LANDED
+            # commits, and this resolved commit never named a landed
+            # reference for THIS path (a path absent at that commit
+            # — today's route for that case).
             finish("PIN_UNREADABLE", 2, tracker=args.tracker,
                    stderr=p.stderr.decode(errors="replace").strip())
     else:
