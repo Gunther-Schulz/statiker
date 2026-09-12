@@ -104,7 +104,59 @@ could-not-verify on the blind-spot axis, not confirmation — the
 axis neither varied. n=1 is decision-grade per the trial rule; this
 decision adds an arm and weakens no safety floor.
 
-**Stage-2 interim status (2026-09-12 18:40, statiker-58).** Both
+## Stage-2 RESULTS (2026-09-12, graded at statiker-58)
+
+Both arms attacked the design doc at object files identical to
+9143abe (codex arm's checkout was 738d86a; it verified and stated
+the no-relevant-diff itself). Opus arm: 11 findings + enumerated
+clean-checks + dispositioned skips, all proofs executed, keyed to
+doc lines. Codex arm (gpt-6-astra, second run after the quota
+kill): 6 findings, all proofs executed (AST extraction, in-memory
+mutants with captured output), keyed to doc lines — shared
+coordinate direct, no re-mapping needed.
+
+Mapping (claim + site): OVERLAP 4 — distribution double-count
+(O7≡C1), runtime-battery gate on §6's page shrink (O3≡C3, codex
+adding an executed planted-case red), token-presence blindness to
+paragraph deletion (O4≡C4; opus's case drawn from the artifact,
+codex's constructed), instrument-test miscount (O6≡C6).
+OPUS-UNIQUE 7 — the four wrong token assignments (O1, none found
+by codex), the undecidable tiebreak disjunction (O2), §5's
+replacement-scope self-contradiction (O5), the unreachability
+over-claim (O8), R1's wrong red set (O9), §6's unmeasured-span
+leaving mass (O10), and the 43/44 + st-19 basis pair (O11).
+CODEX-UNIQUE 2, both desk-CONFIRMED at the artifacts this date:
+- C2: UNIT_GATE_BLOCKED routed `barred` whose definition says
+  "Nothing to book (the state IS the record)" (doc :74-78, :179)
+  while the page obliges EVERY non-landed unit return to book a
+  [VERIFIED] record: F-line PLUS a hold entry
+  (SKILL.md@0775b92:1448-1461) — incompatible instructions.
+  Adjacent to O1's site, distinct claim (token-definition
+  incompatibility vs wrong grouping).
+- C5: §5's "a wrong-token stamp also fails" (doc :286-292) holds
+  only for the two probed names — an executed constant-stamp
+  mutant (proceed in record, halt in git) passes both probes and
+  registry tests 1-3. The assurance-wider-than-predicate shape;
+  opus O8 grazed the two-name reach as basis but claimed a
+  different defect at a different site.
+
+**CRITERION RESOLVES: codex ≥ 1 confirmed unique finding — it has
+two. Codex (gpt-6-astra) earns the standing attack-arm
+recommendation.** Symmetric count recorded: opus-unique 7 — opus
+remains the stronger single arm; the result argues for BOTH arms,
+not substitution. Both directions non-empty means the blind-spot
+axis actually varied: this is the measured case for cross-vendor
+attack rounds, not could-not-verify.
+
+Conduct notes for the certification record: codex corrected the
+brief's sha note unprompted, stated its in-memory-only mutation
+discipline, executed every proof, and enumerated its clean-checks;
+the first (quota-killed) run was already mid mutation-probe. Cost
+note: the first run died to an account quota — quota reliability
+is a standing-role consideration the routing entry must carry.
+
+**Stage-2 interim status (2026-09-12 18:40, statiker-58 — superseded
+by the RESULTS above, kept for the record).** Both
 arms dispatched at object sha 9143abe. The codex arm (gpt-6-astra)
 was KILLED BY A USAGE LIMIT at ~57k tokens (account quota, reset
 21:48 local) — its empty output is a LOST LANE, never a
