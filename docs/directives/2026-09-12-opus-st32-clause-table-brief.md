@@ -27,8 +27,9 @@ THAT file, and your output states the sha it is anchored to.
   disposition clauses against it, you do not re-open it.
 - `docs/directives/2026-09-11-st29-lapA-clause-table.md` — lap A's
   table. **Its 28 rows whose final mark cell is `B` are your object**
-  (183 data rows total; the `B` mark means "lap-B routing mass, kept
-  by lap A"). Read its "Rules applied" header in full: your table is
+  (156 clause data rows; the `B` mark means "lap-B routing mass",
+  which lap A either kept or tightened — Background 1 and 2). Read its
+  "Rules applied" header in full: your table is
   the same instrument one lap later and keeps its column discipline.
 - `dev-notes/OBSERVATIONS.md`, the section `## 2026-09-11 — st-29 lap
   A stage 1: clause table graded` — how the desk graded that table,
@@ -62,11 +63,11 @@ THAT file, and your output states the sha it is anchored to.
    judgment instrument the tool cannot run` at `3c041e5`, while the
    lock-route content sits at `:809`.) Report the resolved range
    beside the stale one.
-3. The design's §6 span figures are per-span APPROXIMATIONS
+4. The design's §6 span figures are per-span APPROXIMATIONS
    ("approximately 22 (tools) + 54 (lock) + 60 (unit) …"), not a
    per-clause enumeration. That absence is why this stage exists —
    your table is what makes stage 2 executable.
-4. The parity rule lap A worked under ("no verdict token leaves the
+5. The parity rule lap A worked under ("no verdict token leaves the
    page") is exactly what lap B REPLACES: the new contract keeps
    page-named ⊆ emitted (design §5 test 5) but drops the requirement
    that every emitted verdict be named on the page. So a token
