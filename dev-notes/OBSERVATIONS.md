@@ -9241,3 +9241,65 @@ more of the batch brought under the registered criterion — which is the
 costume a scope error wears when it widens rather than narrows. The
 criterion's own precedent is what refuses it, and the precedent was one
 section up from the entry that broke it.
+
+## 2026-09-12 — INCIDENT (statiker-df): the st-35 ruling enumerated ONE page dependent where the page carries THREE
+
+Found by the sonnet-st35-arming lane's critique pass, which named the
+second dependent and correctly refused to edit it (outside its stated
+write boundary). A desk sweep for the rest then found a third.
+
+**What the ruling got wrong.** Its "Page edits owed" named the arming
+clause, and its "untouched" list named the three append-only passages.
+Both lists were keyed to the passages the 0.2.87 REVIEW happened to
+cite. The invariant the sweep should have been keyed on is different:
+ANY page text stating where `tripwire`'s threshold comes from. Sweeping
+on that invariant (`grep -nE "threshold|tripwire" SKILL.md`) returns
+three such passages:
+
+1. SKILL.md:253-266 — the arming clause. Named; the lane edited it.
+2. SKILL.md:272-278 — the TRIPWIRE_FIRES paragraph: "`<n>` named by the
+   caller via `--threshold` or read from the header Budget line's
+   `/ tripwire <n>` field … neither present is TRIPWIRE_SILENT with
+   reason 'unarmed'". NOT named.
+3. SKILL.md:1189-1191 — "the breaker fires only where the header names
+   its threshold." NOT named.
+
+**Re-grading the lane's own grade, upward.** The lane called (2)
+"stale, though not FALSE (nothing it says became untrue, it's just
+incomplete)". That under-states it. Under the ruling, a record whose
+arming lives ONLY in an appended entry has neither `--threshold` nor a
+header field present, and the tool ARMS — so "neither present is
+TRIPWIRE_SILENT with reason 'unarmed'" asserts unarmed for exactly the
+case the ruling exists to enable. It is false, not incomplete. (3) is
+false by the same argument. Two false page sentences, not one stale one
+— and the case they get wrong is the repair case, the whole point of
+the change.
+
+**Post-incident question 1 — can the lesson be a mechanism?** No, at
+this grain. The computable slice (does page prose enumerate the same
+source set the tool resolves) is judgment-shaped over prose: a lint for
+it would over-fire on every legitimate partial mention, which is the
+guard-that-fires-on-a-non-defect shape this repo already books as a
+defect. What IS mechanizable is narrower and already exists in kind —
+the contract tests that bind page-named tokens to tool behavior; the
+lap B design's `test_page_names_every_route_token` is that same
+instrument for the route vocabulary.
+
+**Post-incident question 2 — at which level is the lesson true?** Every
+project — and the corpus already carries it: "Changes to anything
+others depend on — name, type, shape, value set, meaning, or a settled
+decision others cite — break silently wherever dependents were not
+search-established first … the mark is CHOSEN — taken from the members
+already in hand it keys the sweep to their shared idiom, returns
+exactly those, and reads as complete." That is this incident verbatim,
+including the reason it read as complete. So NO mint is owed: this is
+an existing corpus rule firing, not a gap in the corpus. Recording it
+as a fire is the honest disposition; minting a repo-level restatement
+would be the ratification-of-the-last-incident shape the economics lens
+names.
+
+**Repair.** Both false sentences are fixed at this desk once the
+arming lane closes and releases SKILL.md — they sit outside that lane's
+write boundary, and extending its ownership mid-report would cross a
+report already in flight (the measured crossing hazard). One file, two
+small hunks, session live: do-it-now, not a booking.
