@@ -187,6 +187,59 @@ including ≥ 1 of the 6 findings astra found (C1-C6), OR produces
 ≥ 1 new confirmed finding. Prediction, registered first: terra
 recovers 3-6, mostly the overlap set, no new confirmed finding.
 
+## Stage-2b RESULTS (2026-09-12, graded at statiker-58)
+
+Arm returned 5 findings, 59,704 tokens (astra's same-brief attack:
+60,207 — volume is tier-invariant on this object, so the tiers'
+per-token price difference is the whole economic delta). Recovery
+mapping (claim + site, against the 13 adjudicated):
+
+- T1 → O7≡C1 (distribution 80≠76). Terra measured the REGISTRY at
+  9143abe (halt=30, narrow=1, triage=2) where astra name-keyed the
+  doc's own mapping (27 distinct halt) — different instruments,
+  same defect, both totals refute the doc's 76.
+- T2 → O1, an OPUS-unique finding astra missed: the four wrong
+  token assignments (UNIT_GATE_BLOCKED / BLOCKED_CONTENTION /
+  UNIT_COLLISION are `halt` in the registry, SUSTAIN_DENIED
+  `barred` — the 0.2.89 R1 correction the doc predates).
+- T3 → O4≡C4 (token-presence blind to paragraph deletion), with an
+  artifact-drawn case (`halt` survives twice inside the `surface`
+  paragraph) — the opus-style case, not astra's constructed one.
+- T4 → C5, astra's codex-unique (stamping probes' two-name reach);
+  terra stated the reach gap from the test read, executed no
+  mutant — weaker proof, same claim + site.
+- T5 → O6≡C6 (five instrument tests, not four).
+
+New findings: none.
+
+**CRITERION RESOLVES: recovered 5 of 13 including 4 of astra's 6
+(C1, C4, C5, C6) — terra is ATTACK-VIABLE one tier down.**
+Prediction check: count (5 in 3-6) and no-new held; composition
+beat the "mostly overlap" clause — 3 overlap + 1 opus-unique + 1
+codex-unique. Recorded against the prediction.
+
+Role reading: the attack lane has a working FLOOR at the 5.6
+tier — terra recovers known-class defects, including one each arm
+above it missed on one side. UNIQUE YIELD stayed astra's and
+opus's (terra added nothing new). Recovery/regression-style attack
+rides terra at 5.6 price; the cross-vendor blind-spot hunt — the
+rationale that earned the arm — keeps astra.
+
+## Economic-equivalents table (accumulating; the program's
+deliverable, ledgered 2026-09-12)
+
+| statiker role | claude lineup | codex result | tokens/run |
+|---|---|---|---|
+| read-side mechanical (lint/sweep comprehension) | sonnet | terra + luna + astra PASS at sonnet parity (stage 1); cheapest viable: luna | 46k–57k |
+| attack round | opus (reviewer default) | terra VIABLE for recovery-style; astra for unique yield (stages 2, 2b) | ~60k |
+| implementation (write-side) | sonnet | st-42 probe — pre-registered below | — |
+| reviewer replay (0.2.89 brief) | opus | st-41 READY, not yet run | — |
+| desk | opus | stage 3 PARKED | — |
+
+Certification is per (role, model), never inferred down the ladder
+(the ledgered decision). Cross-vendor cost comparison still lacks
+a common unit (claude -p accounts differently) — open.
+
 ## Decisions this pre-registration does NOT cover
 
 Global enablement (readiness.json class entry), codex as desk
