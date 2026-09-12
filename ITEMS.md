@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 24
+added: 25
 compacted: 0
 
 ## st-10
@@ -245,3 +245,12 @@ write-set: tools/test_contract.py
 done-criterion: the generic pass distinguishes pointer form from prose by a designed predicate (not an enumerated allowlist), with a red-first pair: the reviewer's three prose additions stay OUT of unresolved (non-defect control) while a genuinely dangling pointer (renamed-heading mutant) still lands IN it; dedup counts distinct occurrences; suite green
 evidence: the reviewer's three executed prose cases and the renamed-heading mutants are recorded in the 0.2.90 review report (statiker-58 transcript, 2026-09-12) and summarized in the OBSERVATIONS batch record; the fires-on-non-defect rule is corpus Fixing (unprovable and over-firing checks)
 blocked-by: NONE
+
+## st-46
+grade: READY
+requirement: Codex-only mode certification — the third of the operator's three support modes (Claude-only, Claude+codex both shipped 0.2.92; codex-only gated on the pilot's parked stage 3). Operator re-confirmed the goal and deferred the testing round 2026-09-12 ('I think desk we can skip today... at a later time we can do testing'); external consumer named (a friend runs statiker; her field usage is probe material).
+goal: general-maintenance
+write-set: dev-notes (new pre-registered probe record),plugin/skills/statiker/defaults/models,dev-notes/OBSERVATIONS.md
+done-criterion: Both probes pre-registered (criterion before any arm dispatches) and resolved: (1) DESK arm — a codex model drives a small scripted statiker run graded against a known-good desk transcript, the criterion keyed to verdict-contract conduct (route-token reading, repair composition from verdicts) since that is the measured codex weakness; (2) VERIFY arm — per-R-line grading on a finished unit against a graded baseline. Each outcome lands as a register entry with provenance inline OR a measured exclusion with its floor stated (the Stage-2d form). Plus the two codex-only setup bindings written where a bare-machine user reads them: page delivery without skill injection (hand-fed SKILL.md), and sandbox config for .git writes (workspace-write denies them; the desk's lock/unit machinery is commits).
+evidence: dev-notes/codex-pilot-2026-09-12.md stages 0-2d (stage 3 parked by design); Stage-2d reviewer exclusion astra 1/10 terra 0/10 — the adjacent adverse measurement the desk probe must be designed around; 0.2.92 register entries e5f1ff4
+blocked-by: decision operator opens the codex-only testing round (deferred first-hand 2026-09-12)
