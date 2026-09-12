@@ -9490,3 +9490,100 @@ against the pre-fix blob). 8 PASS. 9 N/A.
 
 **Aggregate:** 5 mints, 45 tenet marks. One FAIL, recorded rather than
 argued away: M2's cost-asymmetry mark. No mint lacks provenance.
+
+## 2026-09-12 — 0.2.89 checkpoint-review dispositions (fresh-opus, lane opus-review-0289; verdict: pin does NOT move — 3 blocking, 6 notable, 1 nit)
+
+Reviewer at 494dbe5 (object identical at bb6b76c): suite 563 passed,
+0 failed, 0 SKIPPED. It re-ran two of this batch's red-first arms
+against their historical blobs and both discriminate on the real
+defect. Object drift noted by the reviewer and owned here: the brief
+named HEAD 5948f67 while the actual HEAD was 494dbe5 — the brief's own
+commit moved it, the trap the dispatch discipline names and which this
+desk guarded against in the build briefs and not in this one.
+
+### The ruling that closes B1, B2, N3, N5 and N6 as one class
+
+Five findings are one defect: the registry maps a verdict NAME to one
+token on the premise that a disposition is seam-invariant, and the
+page's own text routes at least two verdicts differently by seam
+(BLOCKED_CONTENTION at :926 vs :1546; HALT_MISSING_PATH at :925 vs
+:1519) and groups three verdicts identically that the registry splits
+across three tokens (UNIT_GATE_BLOCKED / UNIT_COLLISION /
+WRITE_SET_NAMES_TRACKER → barred / triage / halt).
+
+The design anticipated this and its §4 named seven such verdicts —
+BLOCKED_CONTENTION and HALT_MISSING_PATH among them — and answered
+"route the token to the dominant member, keep one page sentence at the
+other seam". The review's contribution is showing that the choice of
+dominant member was made by which seam is machinery-rich rather than
+by which is SAFE: `triage` and `barred` both disclaim a record
+obligation the lock and unit seams mandate, so the token drops a
+booking the page requires.
+
+**RULING — the fail-closed floor.** A verdict's token is the
+FAIL-CLOSED member of its page dispositions: the one that books and
+halts wherever the seams differ. A seam may be more permissive than
+its token only through an explicit page sentence at that seam; the
+token itself never under-states the obligation. So a desk that reads
+only the token is never unsafe, which is what makes "read the token
+rather than re-deriving the disposition" honest.
+
+Consequent registry changes, all conduct-preserving: SUSTAIN_DENIED
+`narrow` → the page's gate closes design, it does not re-scope the
+head (B1); BLOCKED_CONTENTION `triage` → `halt` (B2);
+UNIT_GATE_BLOCKED `barred` → `halt` and UNIT_COLLISION `triage` →
+`halt` (N3, and this supersedes the desk's earlier F5 ruling by
+extending it — same direction, now with a stated tiebreak);
+PINNED_REWRITTEN stays `surface` with one page sentence reconciled
+(N6); HALT_MISSING_PATH stays `halt`, its gap-report seam keeping its
+sentence (N5). The page gains ONE sentence stating the floor, which is
+the rule the tokens are now readable under.
+
+### B3 — the arming form fails OPEN. Verified at this desk.
+
+A near-miss `record: tripwire armed at <n>` entry silently disarms:
+probed here, a parenthetical before the em-dash gives TRIPWIRE_SILENT
+"unarmed" with `lint` reporting LINT_CLEAN; with a header `tripwire 9`
+present the same near-miss runs at 9 while the evidence line names the
+header and never mentions the ignored entry. This is st-34's N2 defect
+class reintroduced on the new carrier inside the same batch, and it
+runs against the page's own stated direction (a mistyped `SWEEP_EXEMPT:`
+fails safe). DISPOSITION: the form enters the machine-token
+enumeration and takes a near-miss lint class — not the fail-soft
+declaration, because an arming entry's whole purpose is to be load-
+bearing at a seam nobody re-reads. Mine, not the lane's: the ruling
+specified a form and never asked what a mistyped one does.
+
+### The remaining findings
+
+- **N1** (five stale `SKILL.md:<line>` pointers in scripts and tests;
+  three shifted by this batch's own page insert, one rewritten by the
+  n4 edit while its target moved): repaired in the lap. The class was
+  repaired at 0.2.88 by f23a69b for page-internal pointers; the
+  instrument built there does not reach script→page pointers, which is
+  a mechanism gap booked separately, not repaired inline.
+- **N2** (TRIPWIRE_BUDGET_RE lost the `/` anchor, so the word
+  "tripwire" anywhere in the Budget line hard-fails the subcommand):
+  repaired by anchoring on the page's declared field form. Executed
+  pair in the reviewer's report; the regression is against 7774046.
+- **N4** (two `route` fields on one line — the embedded gate verdict
+  carries its own; verified independently at this desk, two occurrences
+  on one `unit-start` line): the page states that the OUTER verdict's
+  route governs and an embedded verdict's route is evidence about the
+  inner call. Reviewer's divergence half is labelled derived; the fail-
+  closed floor makes a divergence safe by construction.
+- **n1** (TestRouteParity's docstring overstates the replacement —
+  `TestRuntimeVerdictBattery` still requires page naming for the 72
+  battery-driven verdicts, so only the 4 undriven names lost it):
+  docstring corrected. Reviewer probed all 76 against
+  `skill_named_verdicts()`: zero missing, nothing rotted.
+
+### Verified SOUND and not re-opened
+
+Route stamping at runtime (78 rows, 72 distinct verdicts, zero missing
+or out-of-vocabulary), registry set-equality both directions, the
+registry's per-route counts derived rather than restated, st-34's n4
+resolve-once arm reproduced red against 7a0c5b7 and green at HEAD with
+routes preserved across 8 cases, st-36's pointer instrument reproduced
+red at 7774046, the arming resolution order on the exact form, and both
+golden-corpus controls exercising the branches they name.
