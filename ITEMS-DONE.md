@@ -351,5 +351,16 @@ blocker-moot: operator GO on the write-side probe and its arm choice, asked in s
 closed-reason: 2026-09-12 PASS: terra carried the R6 replay red-first (order verified in transcript), semantic match to the landed fix (one variant, stricter than landed, indistinguishable on every exercised input), suite desk-verified 563/0. One adjudicated deviation from the criterion's letter: archive-init isolation instead of a worktree — codex workspace-write cannot write a worktree's out-of-tree .git and a history copy would carry the answer commit; registered before dispatch. Commit conduct not executable under the sandbox (.git write-denied) — harness binding, commits stay the dispatcher's. Lane verdict + bindings in dev-notes/codex-pilot-2026-09-12.md Stage-2c.
 closed-ref: 107069f, 7465b06
 
+## st-41
+grade: DONE
+requirement: Reviewer-replay probe: is codex an opus-class reviewer in this repo (operator GO 2026-09-12, ledger decision line of this date; the opus-better-than-fable reviewer finding is the precedent shape). Replay the 0.2.89 checkpoint review against codex arms and score recovery of the adjudicated finding set
+goal: general-maintenance
+write-set: dev-notes/
+done-criterion: pre-registration written to dev-notes BEFORE any arm runs (arms, sha pinned from the review brief's own base statement, recovery metric by claim identity desk-mapped, false-positive adjudication rule, pass criterion); codex arm(s) run against the SAME brief file docs/directives/2026-09-12-opus-review-0289-brief.md at the review's own object sha; per-arm recovery of the 10 adjudicated findings scored with false positives desk-adjudicated; results section landed in dev-notes with a verdict on codex's reviewer role here
+evidence: ground truth: the 0.2.89 review's 10 findings with recorded dispositions (LEDGER 2026-09-12 lines; dev-notes/OBSERVATIONS.md 2026-09-12; repair lap e19116d..e43e418); the historical opus run IS the opus arm since the replay reuses its brief verbatim, which removes the arrangement asymmetry; arm lineup kept small per the operator's just-the-tiers cut, decided at pre-registration
+blocked-by: NONE
+closed-reason: 2026-09-12 Criterion resolved: both codex arms FAIL — astra 1/10 recovered (B3, blocking, desk-verified both at object and against HEAD's repair), terra 0/10; the review's dominant yield (the five-findings-one-defect route-token contract class) invisible to both arms though both audited the registry and called it clean — name parity checked, page-seam agreement never read. Codex is a structure-auditor, not a contract-reader; the reviewer role stays opus. Candidate new findings booked st-43. Full results + conduct notes + harness bindings in dev-notes/codex-pilot-2026-09-12.md Stage-2d.
+closed-ref: 0733f6a, 52c94c9
+
 ## Archive (pre-migration)
 

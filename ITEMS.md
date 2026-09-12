@@ -255,15 +255,6 @@ done-criterion: each of the six candidates resolved as tool-defect, key-gap, or 
 evidence: dev-notes/codex-pilot-2026-09-12.md Stage-1 RESULTS (convergent-extras finding, with per-arm flag lists); key rows for lines 35-115 read at statiker-58 2026-09-12 (absent); fixture lines quoted in the results section; model transcripts are session-scratch and die with statiker-58 — the results section carries what survives
 blocked-by: NONE
 
-## st-41
-grade: READY
-requirement: Reviewer-replay probe: is codex an opus-class reviewer in this repo (operator GO 2026-09-12, ledger decision line of this date; the opus-better-than-fable reviewer finding is the precedent shape). Replay the 0.2.89 checkpoint review against codex arms and score recovery of the adjudicated finding set
-goal: general-maintenance
-write-set: dev-notes/
-done-criterion: pre-registration written to dev-notes BEFORE any arm runs (arms, sha pinned from the review brief's own base statement, recovery metric by claim identity desk-mapped, false-positive adjudication rule, pass criterion); codex arm(s) run against the SAME brief file docs/directives/2026-09-12-opus-review-0289-brief.md at the review's own object sha; per-arm recovery of the 10 adjudicated findings scored with false positives desk-adjudicated; results section landed in dev-notes with a verdict on codex's reviewer role here
-evidence: ground truth: the 0.2.89 review's 10 findings with recorded dispositions (LEDGER 2026-09-12 lines; dev-notes/OBSERVATIONS.md 2026-09-12; repair lap e19116d..e43e418); the historical opus run IS the opus arm since the replay reuses its brief verbatim, which removes the arrangement asymmetry; arm lineup kept small per the operator's just-the-tiers cut, decided at pre-registration
-blocked-by: evidence grep -q "^## Stage-2 RESULTS" /home/g/dev/Gunther-Schulz/statiker/dev-notes/codex-pilot-2026-09-12.md
-
 ## st-43
 grade: READY
 requirement: Stage-2d reviewer replay left 7 candidate findings unadjudicated (dev-notes/codex-pilot-2026-09-12.md, Stage-2d RESULTS): astra 4 (valueless '/ tripwire' silently unarmed vs test claim at test_statiker_record.py:1338; section_pointers population collapse on destination-heading rename, test_contract.py:1064; pinned race assertion checks SHA not content, test_statiker_record.py:6014; page first-heading boundary omits Requirement-head parser exception, SKILL.md:599 vs record.py:1020), terra 2 (desk-basis tripwire raise accepted against page operator reservation SKILL.md:321-324; trailing garbage after valid threshold accepted), plus astra's residual (documented quotation carrying ' — basis:' can lint but never ARM at HEAD). st-40 is the precedent shape
