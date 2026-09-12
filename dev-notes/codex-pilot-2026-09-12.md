@@ -514,6 +514,17 @@ tool ≡ key, so the tool is silent there too: divergence between
 independently built instruments pointing at a shared key/tool
 parentage gap. Adjudication against the page's definitions is
 st-40; no key or tool change rides this results commit.
+ADJUDICATED 2026-09-12 (st-40 closed at statiker-f7, e00c842):
+all six are CORRECT SILENCE — each is a planted seed a later
+`corrects line <n>` repair legitimately sheds, proven by a
+per-candidate mutation pair, and the same mutation refutes the
+same-parentage suspicion. The convergence itself is the lesson
+for this pilot's scoring: 3-4 arms agreed because ALL read
+line-locally and none modelled supersession, a whole-file
+property — cross-arm agreement certifies nothing about an axis
+no arm varied (the corpus instrument rule, measured here on the
+pilot's own arms), so convergent extras are a shared-blind-spot
+hypothesis before they are a key-gap one.
 
 **Stage-1 verdict.** All three scoreable codex tiers PASS at
 sonnet parity; astra and terra are indistinguishable from the
