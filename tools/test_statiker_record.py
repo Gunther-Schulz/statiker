@@ -1336,6 +1336,62 @@ class TestSt30Item3BudgetHeaderTripwireRejectsBelowOne(RecordFixture):
         self.assertEqual(v["verdict"], "TRIPWIRE_SILENT", v)
 
 
+# --------- st-34 (N2): the Budget header's tripwire field rejects a
+# --------- value that does not parse as an integer at all
+
+class TestSt34N2BudgetHeaderTripwireRejectsNonInteger(RecordFixture):
+    """0.2.87 checkpoint review, N2: TRIPWIRE_BUDGET_RE was digits-only
+    (`\\btripwire\\s+(\\d+)\\b`), so a present-but-negative or
+    non-numeric value (`tripwire -1`) never matched at all and fell
+    through to the `not m` branch — TRIPWIRE_SILENT reason="unarmed",
+    the breaker silently off, indistinguishable from a Budget line
+    that never named `tripwire`. FIX: the regex now captures the raw
+    token after `tripwire`; cmd_tripwire tries `int()` on it and
+    refuses a value that fails to parse with the same USAGE_ERROR
+    shape st-30(3) already uses for a parsed value below 1 — the same
+    site, the same verdict/exit shape, no second refusal route
+    invented. An ABSENT `tripwire` field (the regex finds no match at
+    all) is the only case that still reads as unarmed. Red arm:
+    `tripwire -1` gave TRIPWIRE_SILENT reason="unarmed" today; control
+    `tripwire 2` is unaffected (still arms, still TRIPWIRE_SILENT
+    reason="silent" on zero rounds)."""
+
+    def test_header_tripwire_negative_is_rejected(self):
+        header = ("# Run: test\nStatus: in-progress\n"
+                  "Phase: investigate-design\nSkill: statiker 0.2.33\n"
+                  "Budget: cycles 7 / rounds 4 / verify 3 / tripwire -1\n\n"
+                  "## Cycle 1\n")
+        v = self.tripwire("", header=header)
+        self.assertEqual(v["verdict"], "USAGE_ERROR", v)
+
+    def test_header_tripwire_non_numeric_is_rejected(self):
+        header = ("# Run: test\nStatus: in-progress\n"
+                  "Phase: investigate-design\nSkill: statiker 0.2.33\n"
+                  "Budget: cycles 7 / rounds 4 / verify 3 / tripwire abc\n\n"
+                  "## Cycle 1\n")
+        v = self.tripwire("", header=header)
+        self.assertEqual(v["verdict"], "USAGE_ERROR", v)
+
+    def test_header_tripwire_absent_field_still_reads_unarmed(self):
+        header = ("# Run: test\nStatus: in-progress\n"
+                  "Phase: investigate-design\nSkill: statiker 0.2.33\n"
+                  "Budget: cycles 7 / rounds 4 / verify 3\n\n"
+                  "## Cycle 1\n")
+        v = self.tripwire("", header=header)
+        self.assertEqual(v["verdict"], "TRIPWIRE_SILENT", v)
+        self.assertEqual(v["reason"], "unarmed", v)
+
+    def test_header_tripwire_two_control_still_arms(self):
+        header = ("# Run: test\nStatus: in-progress\n"
+                  "Phase: investigate-design\nSkill: statiker 0.2.33\n"
+                  "Budget: cycles 7 / rounds 4 / verify 3 / tripwire 2\n\n"
+                  "## Cycle 1\n")
+        v = self.tripwire("", header=header)
+        self.assertNotEqual(v["verdict"], "USAGE_ERROR", v)
+        self.assertEqual(v["verdict"], "TRIPWIRE_SILENT", v)
+        self.assertEqual(v["reason"], "silent", v)
+
+
 # -------------------------------------------------------------------- filter
 
 class TestFilter(RecordFixture):

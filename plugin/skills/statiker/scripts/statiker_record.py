@@ -152,8 +152,14 @@ ADMISSION_WINDOW = 20
 BUDGET_ROUNDS_RE = re.compile(r"\brounds\s+(\d+)\b")
 # R3 (checkpoint review): the header Budget line's OPTIONAL
 # `/ tripwire <n>` field — the arming carrier when `tripwire` is
-# invoked with no --threshold (SKILL.md, The record).
-TRIPWIRE_BUDGET_RE = re.compile(r"\btripwire\s+(\d+)\b")
+# invoked with no --threshold (SKILL.md, The record). st-34 (N2)
+# (0.2.87 checkpoint review): captures the raw TOKEN after `tripwire`,
+# not just digits — a digits-only pattern let a malformed value
+# (`tripwire -1`) miss the match entirely and fall through to the
+# unarmed branch below, silencing the breaker instead of refusing the
+# invocation; the caller (cmd_tripwire) parses the token and refuses a
+# non-integer or sub-1 value the way --threshold refuses one.
+TRIPWIRE_BUDGET_RE = re.compile(r"\btripwire\s+(\S+)")
 
 CLASS_TAGS = {
     "F": {"VERIFIED", "PENDING", "INVALIDATED", "AUTO-ACCEPTED"},
@@ -2468,7 +2474,19 @@ def cmd_tripwire(args):
                 "Budget line carries no `tripwire <n>` field")
             finish("TRIPWIRE_SILENT", 0, reason="unarmed", rounds=None,
                    threshold=None, landed=None, v_lines=None, **meta)
-        threshold = int(m.group(1))
+        raw = m.group(1)
+        # st-34 (N2) (0.2.87 checkpoint review): a PRESENT field that
+        # does not parse as an integer at all (`tripwire -1` no longer
+        # misses TRIPWIRE_BUDGET_RE's match, now that it captures any
+        # token) is refused the same way as a sub-1 value below —
+        # never silently read as unarmed. An ABSENT field is the only
+        # case that stays unarmed (the `not m` branch above).
+        try:
+            threshold = int(raw)
+        except ValueError:
+            finish("USAGE_ERROR", 3,
+                   error="Budget line's `tripwire <n>` field must be "
+                         f"an integer >= 1 ({raw!r} given)")
         # st-30(3) (0.2.86 re-review finding 3): the --threshold < 1
         # refusal above covered the flag alone — the header carrier
         # (Budget's `/ tripwire <n>` field) reached this point
