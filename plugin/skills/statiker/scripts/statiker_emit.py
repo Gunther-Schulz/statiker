@@ -124,9 +124,17 @@ ROUTES = {
     "TREND_RECORD_MALFORMED": "repair-from-verdict",
     "SUSTAIN_RECORD_MALFORMED": "repair-from-verdict",
     "TRIPWIRE_RECORD_MALFORMED": "repair-from-verdict",
-    # barred (4; SUSTAIN_DENIED moved here 0.2.89 fix — the
-    # fail-closed floor, dev-notes/OBSERVATIONS.md "0.2.89
-    # checkpoint-review dispositions")
+    # barred (4; SUSTAIN_DENIED moved here 0.2.89 fix, B1 — NOT the
+    # fail-closed floor: the floor breaks ties among a verdict's
+    # differing SEAM dispositions, and SUSTAIN_DENIED has exactly one
+    # (the never-sustain round-open gate, SKILL.md "sustain returns
+    # SUSTAIN_OK / SUSTAIN_DENIED ..."). `narrow` was simply wrong —
+    # the gate closes design, it does not re-scope the head — and the
+    # gate's own shape is barred's: the tool ran, the denial is
+    # computed from run state already in the record, and the page
+    # books it by quoting the verdict in the round-open line rather
+    # than as an F-line. dev-notes/OBSERVATIONS.md "0.2.89
+    # checkpoint-review dispositions" and the 2026-09-12 desk ruling)
     "CLOSURE_ABSENT": "barred",
     "CLOSURE_VOID": "barred",
     "UNIT_HELD": "barred",
