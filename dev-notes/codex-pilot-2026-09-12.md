@@ -104,6 +104,17 @@ could-not-verify on the blind-spot axis, not confirmation — the
 axis neither varied. n=1 is decision-grade per the trial rule; this
 decision adds an arm and weakens no safety floor.
 
+**Stage-2 interim status (2026-09-12 18:40, statiker-58).** Both
+arms dispatched at object sha 9143abe. The codex arm (gpt-6-astra)
+was KILLED BY A USAGE LIMIT at ~57k tokens (account quota, reset
+21:48 local) — its empty output is a LOST LANE, never a
+zero-findings result: the transcript shows it mid mutation-probe
+(deleting the page's `halt` paragraph to test route-test
+discrimination) when the quota cut it. Retry armed for after the
+reset, same brief, same sha. The opus arm is unaffected and
+in flight. No grading happens until both arms return; this section
+is interim status, not results.
+
 ## Decisions this pre-registration does NOT cover
 
 Global enablement (readiness.json class entry), codex as desk
