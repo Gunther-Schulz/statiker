@@ -167,6 +167,26 @@ reset, same brief, same sha. The opus arm is unaffected and
 in flight. No grading happens until both arms return; this section
 is interim status, not results.
 
+## Stage-2b addendum — attack arm one tier below (pre-registered
+before the arm runs; operator GO 2026-09-12: "testing one tier
+below would be valuable")
+
+**Arm.** gpt-5.6-terra — the tier-below pick on stage-1 evidence
+(sonnet-identical profile, in-bounds conduct); same brief text as
+stage 2, same object (design doc, object files identical to
+9143abe). The arm runs fresh; the object is unchanged, so the 13
+adjudicated stage-2 findings (4 overlap + 7 opus-unique + 2
+codex-unique) serve as recovery ground truth without contaminating
+the arm.
+
+**Metric.** (a) Recovery: which of the 13 terra re-finds
+(claim+site mapping, desk-adjudicated); (b) new findings
+desk-verified as in stage 2. **Criterion:** terra is
+attack-viable one tier down iff it recovers ≥ 4 of the 13
+including ≥ 1 of the 6 findings astra found (C1-C6), OR produces
+≥ 1 new confirmed finding. Prediction, registered first: terra
+recovers 3-6, mostly the overlap set, no new confirmed finding.
+
 ## Decisions this pre-registration does NOT cover
 
 Global enablement (readiness.json class entry), codex as desk
