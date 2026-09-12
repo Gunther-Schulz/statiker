@@ -42,7 +42,8 @@ Scratch: your OWN scratchpad. Slug every scratch file `st32reg`.
 2. Both scripts already import the registry's home module:
    `statiker_record.py:137`, `statiker_git.py:95` (`grep -n
    statiker_emit`).
-3. `test_contract.py` unions its `SCRIPTS` list at `:181`, so the
+3. `test_contract.py` unions its `SCRIPTS` list at `:180` (`for script
+   in SCRIPTS:`; corrected from `:181` after the lane's critique), so the
    parity test spans BOTH tools — which is why this lane's write set
    includes the git tool. The git edit admitted here is the
    **mechanical stamping line only**; no gate-logic change rides in.
