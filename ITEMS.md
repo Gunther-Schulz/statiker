@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 18
+added: 19
 compacted: 0
 
 ## st-10
@@ -236,3 +236,12 @@ write-set: BACKLOG.md,ITEMS.md,CLAUDE.md
 done-criterion: BACKLOG.md deleted; every ITEMS.md evidence slot citing BACKLOG.md:NNN re-rooted to carry pinned blob a115998c inline (resolving via git cat-file -p a115998c) BEFORE the delete; inbound-reference triage stated as command plus hits in the deletion commit; deletion record in CLAUDE.md (the laws file) naming the cat-file resolution path with a negative control shown — the dispatch-guards worked pattern
 evidence: live line-cited ranges that must be re-rooted first, per statiker-f7 at the release gate: st-10 :279-317, st-12 :478-494, st-13 :495-523, st-15 :556-591, st-16 :592-602, st-17 :603-629, st-19 :646-662; freeze banner d773e12 held 983 lines so all currently resolve; lifecycle lc-86 (migrate deletes-with-record by default) is the tool half, booked in the drainage directive
 blocked-by: evidence grep -q "^## st-21" /home/g/dev/Gunther-Schulz/statiker/ITEMS-DONE.md && grep -q "^## st-22" /home/g/dev/Gunther-Schulz/statiker/ITEMS-DONE.md
+
+## st-40
+grade: READY
+requirement: Adjudicate the codex-pilot convergent extras against the page: 3-4 independent models flagged six (line,code) pairs in tools/golden-corpus/tracker.md that BOTH the answer key and the tool are silent on (suite green asserts tool==key) — lines 107/109 misspelled tag [COMMITED], 113/115 mis-cased scope opener Record:, 103 self-described missing basis, 35 write-set near-miss; same-parentage suspicion (key authored from tool output)
+goal: general-maintenance
+write-set: tools/golden-corpus/,plugin/skills/statiker/scripts/statiker_record.py,tools/
+done-criterion: each of the six candidates resolved as tool-defect, key-gap, or correct-silence with the page sentence that decides it cited; any tool fix lands red-first with the fixture gaining the discriminating case and expected-violations updated in the SAME commit; suite green at close
+evidence: dev-notes/codex-pilot-2026-09-12.md Stage-1 RESULTS (convergent-extras finding, with per-arm flag lists); key rows for lines 35-115 read at statiker-58 2026-09-12 (absent); fixture lines quoted in the results section; model transcripts are session-scratch and die with statiker-58 — the results section carries what survives
+blocked-by: NONE
