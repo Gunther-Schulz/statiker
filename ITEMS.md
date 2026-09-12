@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 14
+added: 15
 compacted: 0
 
 ## st-10
@@ -193,3 +193,12 @@ amend-reason: 2026-09-12 2026-09-12 statiker-df: my own blocker was anchored to 
 amended-blocked-by: 2026-09-12 NONE
 promote-reason: 2026-09-12 the ruling is recorded with its basis, rejected alternative and R1-R4 red-first arrangement, the build brief is written, and the file collision that sequenced it has cleared with the st-34 lane's close
 promoted-by: 2026-09-12 statiker-df (opus desk)
+
+## st-36
+grade: PARKED
+requirement: the pointer instrument does not reach script->page pointers: 0.2.88's f23a69b + test_contract.py's section_pointers() cover page-INTERNAL pointers, and the 0.2.89 review's N1 found five stale SKILL.md:<line> pointers in scripts and tests that it cannot see; repaired by hand at 3afb52e with nothing pinning the class. The 0.2.89 review disposition calls this gap 'booked separately' and it was never booked; three tracked files already cite the id st-36 (dev-notes/OBSERVATIONS.md:9587, tools/test_contract.py:1050 docstring, docs/directives/2026-09-11-handoff-corpus-batching-statiker-ca.md:77) - record: dev-notes/OBSERVATIONS.md 2026-09-12 release gate, the st-36 finding
+goal: tend
+write-set: tools/test_contract.py, dev-notes/OBSERVATIONS.md
+done-criterion: UNKNOWN
+evidence: 0.2.89 review N1 (dev-notes/OBSERVATIONS.md, '0.2.89 checkpoint-review dispositions', the remaining findings): five stale script->page pointers, three shifted by this batch's own page insert, one rewritten by the n4 edit while its target moved; the page-internal instrument at tools/test_contract.py:1040-1050 (section_pointers, reach stated in its own docstring); the hand repair 3afb52e (no permanent check). Neighbouring evidence on the mechanism bar: the 0.2.89 route-token class-check died in its dry run at 24/76 multi-location verdicts, so a pointer gate's false-fire rate is the question to measure BEFORE building, not after
+blocked-by: decision what instrument reaches script->page pointers without over-firing, decided by a dry run over the real script corpus before any build (the 0.2.89 precedent: the class-level check was designed, dry-run and killed at 24/76); if the bar is unmet the remainder is a review instruction, not a check

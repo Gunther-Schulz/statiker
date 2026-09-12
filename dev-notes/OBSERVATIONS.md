@@ -9809,3 +9809,193 @@ check, and the boundary the SUSTAIN_DENIED ruling established (the
 floor applies only where seams actually DIFFER). Recorded as a
 criterion that sharpened on first contact with real cases — the dry-run
 requirement working, one round before it would have shipped.
+
+## 2026-09-12 — 0.2.89 RELEASE GATE (statiker-release-opus): the tenet re-ask over the pin's whole carried set
+
+CLAUDE.md's birth-class discipline binds the RELEASING desk, not the
+minting one: every mint between the installed pin and the released
+version shows its record before the pin moves. bb6b76c wrote five
+records BEFORE the checkpoint review returned and stated its own
+condition — "any mint the review's dispositions alter gets re-asked
+before the pin moves". The repair lap then produced six more payload
+commits and altered three of the five. This is that re-ask. It is not
+an inheritance: the carried set, the tenet list and every mark below
+were derived here.
+
+**How the carried set was derived — at the effect site, not from the
+handoff.** The installed pin is a directory copy, so what 0.2.88
+actually SERVES is on disk. Each of the last 40 commits touching the
+payload was compared byte-for-byte against
+`~/.claude/plugins/cache/statiker/statiker/0.2.88/skills/statiker/SKILL.md`;
+`0775b92` is the match, so the carried set is `0775b92..HEAD`. The
+handoff's commit range was never used as the basis. Result: 12
+payload-touching commits + the manifest bump. Measured per-file delta
+against the installed tree: SKILL.md 110 changed lines,
+statiker_record.py 294, statiker_emit.py 128, statiker_git.py 8;
+evidence.md, defaults/models and both hook files byte-identical.
+Independent agreement with bb6b76c's five-mint boundary, reached by a
+different route.
+
+PLAN's nine, enumerated from PLAN.md:43-74 (the consolidated index,
+read at this desk — not from bb6b76c's handles): 1 investigation-led
+design · 2 sufficiency = dispatchable · 3 anti-skim · 4 cost asymmetry ·
+5 autonomy · 6 economics · 7 convergence circuit · 8 medium ·
+9 placement.
+
+Test-only commits take no tenet record and are graded as instruments:
+`e43e418` (docstring), `feda382` (the R6 regression test built at
+integration). Neither is payload — verified by `git log --oneline
+0775b92..HEAD -- plugin/`, which lists neither.
+
+### The re-ask over bb6b76c's five
+
+**M1 — the tripwire's arming carrier moves to an appended record
+entry** (`8f0884f`). ALTERED by `d946b1a` (M7 below), which extends the
+form with a near-miss lint rather than overturning it.
+1 PASS · 2 PASS · 3 N/A · **4 FAIL — mark FLIPPED from bb6b76c's PASS**
+· 5 PASS · 6 PASS · 7 PASS · 8 PASS · 9 N/A.
+The flip is the whole point of re-asking. bb6b76c graded cost-asymmetry
+PASS on M1 with one post-build defect already recorded against M2. The
+review then found a SECOND hole in the same ruling (B3: the arming form
+fails OPEN — a near-miss entry silently disarms, `lint` reporting
+LINT_CLEAN), and the ruling's author names the cause exactly: "the
+ruling specified a form and never asked what a mistyped one does." Two
+post-build holes in one ruling is not a design that locked before
+implementation; it is a design that locked incompletely and was
+completed by the attack. Recorded as FAIL rather than argued down to
+"the repairs were small", which is the smoothing bb6b76c refused on M2.
+
+**M2 — retraction disarms** (`fc17258`). UNALTERED: no repair-lap commit
+touches `latest_by_id` or the retraction path (per-commit file map read
+at this desk; the lap's `statiker_record.py` hunks are
+TRIPWIRE_ARM_NEAR_RE, TRIPWIRE_BUDGET_RE and pointer comments only).
+bb6b76c's marks stand unchanged, its 4 FAIL included.
+
+**M3 — a present-but-unparseable `tripwire` field is refused**
+(`7a0c5b7`). ALTERED by `0dbabac` (review N2).
+1 N/A · 2 PASS · 3 N/A · 4 PASS · 5 PASS · 6 PASS ·
+**7 FAIL — mark FLIPPED from bb6b76c's PASS** · 8 PASS (see below) ·
+9 N/A.
+bb6b76c graded the convergence circuit PASS on "red and control pasted
+by the lane, re-verified here". The review found TRIPWIRE_BUDGET_RE had
+lost its `/` anchor, so the word "tripwire" anywhere in the Budget line
+hard-failed the subcommand — the check fired on a NON-defect. The arms
+proved the bite and never probed the over-fire direction; the controls
+were drawn from the defect rather than from the definition of a
+legitimate Budget line, which is the same-parentage class. A battery
+that cannot go red on over-fire did not certify what its PASS was read
+to certify. Tenet 8 holds only from `feda382`: R6 shipped with no
+permanent check at all (suite 563 → 563 across eight repairs), and the
+regression test built at integration is what makes the predicate a
+mechanism rather than a one-time edit (suite 563 → 566).
+
+**M4 — the route registry, the `route` field, the parity contract and
+the page's vocabulary section** (`8107238`, `cb36f6d`). ALTERED by
+`e19116d`, `6a43dc0`, `c87c29b`.
+1 PASS · 2 PASS · 3 N/A ·
+**4 FAIL — mark FLIPPED from bb6b76c's PASS** · 5 PASS ·
+6 PASS/CAVEAT · 7 PASS · 8 PASS · 9 N/A.
+The design's §4 ANTICIPATED the multi-seam verdicts — it named seven,
+BLOCKED_CONTENTION and HALT_MISSING_PATH among them — and ruled "route
+the token to the dominant member". The review's contribution was
+showing the dominant member had been chosen by which seam is
+machinery-rich rather than by which is SAFE, so four tokens under-stated
+a booking obligation the page mandates. That is a design decision, made
+at design time, wrong at design time, and surfaced only after the build:
+it cost a repair lane plus two integration commits, not a sentence. The
+forcing point caught it, which is the attack working; the tenet it
+falsifies is nonetheless 4, and marking it PASS because the attack
+existed would make the mark measure the wrong thing.
+6 PASS/CAVEAT keeps bb6b76c's reading and adds the number it could not
+have: the lap's net page cost is +17 operational lines (1689 → 1706,
+the CLAUDE.md Verify awk, measured at this desk), landed in the same
+week the size programme was cancelled as unreachable (Option A). The
+economics verdict rests on fire-time enforcement replacing read-time
+prose, never on lines, and the line cost is stated rather than netted
+away.
+
+**M5 — `filter` and `pinned` resolve a symbolic ref once**
+(`36233e5`). UNALTERED (`statiker_git.py` untouched by the repair lap;
+`3afb52e`'s edits are in `statiker_record.py`). bb6b76c's marks stand.
+
+### The two mints bb6b76c could not have covered
+
+**M6 (NEW) — the fail-closed floor** (`e19116d` R1-R4, `6a43dc0`,
+`c87c29b`). Provenance: the 0.2.89 checkpoint review's B1, B2, N3, N5
+and N6, ruled at this repo's desk as ONE class.
+1 PASS — ruled from the page's own seams with the reviewer's executed
+citations opened (:926 vs :1546; :925 vs :1519), the rejected
+alternative recorded (the design's dominant-member criterion).
+2 PASS — briefed at `539bd56` and built by a sonnet lane; its one
+deviation (SUSTAIN_DENIED committed as `halt` against the brief's
+`barred`) was self-caught against its own diff and corrected in a new
+commit before the report.
+3 N/A — adds no forcing point.
+4 N/A — M6 IS the correction of M4's design defect; the incident is
+booked once, at M4, and is not double-counted here.
+5 PASS — every token change is desk-side and stricter; R3 names the
+operator as `surface`'s resolver, which states an existing seat
+precisely rather than adding one.
+6 PASS/CAVEAT — one repair lane plus integration; the +17 page lines
+are booked at M4.
+7 PASS — red-first on all four tokens by real invocations against a
+throwaway repo and tracker, reading the emitted `route` field rather
+than the dict.
+8 PASS, and this mint is where the medium tenet was tested rather than
+assumed: the class-level check (count page locations per verdict, flag
+the multi-location set) was designed and DRY-RUN over real data before
+building, and the dry run killed it — 24 of the registry's 76 verdicts
+are multi-location, so the gate would fire on ordinary page edits and
+train the override reflex. Mechanism bar UNMET, and the judgment
+remainder took CLAUDE.md's checkpoint-review bullet as a standing
+WHERE TO PRESS instruction with 24/76 as the stated reason it is prose.
+9 N/A.
+
+**M7 (NEW) — the arming form is machine-token-enumerated and
+near-miss-linted** (`d946b1a`). Provenance: review B3, re-probed at the
+desk.
+1 N/A — reviewer-prescribed; the disposition was ruled at the desk.
+2 PASS · 3 N/A · 4 N/A (the incident is M1's, booked there) · 5 PASS —
+the lint is loud and adds no human seat · 6 PASS — +6 page lines, one
+golden row · 7 PASS — red-first on Background 2's exact repro, with TWO
+controls: the sanctioned form still lints clean and still arms, and the
+header-present case still resolves its threshold while now lighting the
+near-miss · 8 PASS — the near-miss class is mechanism with a golden
+row; its "load-bearing at a seam nobody re-reads" rationale stays prose
+· 9 N/A.
+
+**R7 — five stale `SKILL.md:<line>` pointers repaired** (`3afb52e`).
+Editorial: no concept enters the payload, tenets 1-9 N/A. Recorded so
+the enumeration covers every payload commit rather than the
+interesting ones. Its residue is a real gap and is booked below.
+
+### Aggregate
+
+7 mints, 63 tenet marks. **Four FAILs: M1/4, M2/4, M3/7, M4/4** — three
+of them flips of a PASS that bb6b76c recorded in good faith before the
+attack ran. The re-ask earned its cost: had this desk inherited the
+handoff's five records, the pin would have moved carrying three marks
+the review had already refuted. No mint lacks provenance. Test-only
+commits graded as instruments, not as mints.
+
+The concentration is itself the finding: three of four FAILs are
+cost-asymmetry, and all three are the same shape — a design that locked
+with a hole the attack found, in a batch whose attack was BATCHED across
+three items of very different design density. This is the same
+interaction the field-test tension entry names from the other side.
+
+### A finding the re-ask surfaced: `st-36` resolves to nothing
+
+The review's N1 disposition says the script→page pointer gap is "a
+mechanism gap booked separately, not repaired inline", and the review's
+sound-list names "st-36's pointer instrument". There is no st-36. Three
+tracked files reference the id — `dev-notes/OBSERVATIONS.md:9587`,
+`tools/test_contract.py:1050` (a shipped docstring) and
+`docs/directives/2026-09-11-handoff-corpus-batching-statiker-ca.md:77` —
+and `git log -S"st-36" -- ITEMS.md ITEMS-DONE.md` returns nothing: the
+id was written as the booking's id and the booking never happened. A
+gap named in prose with no carrier is the two-exits failure, and it
+survived a checkpoint review because a cited id reads as a booking.
+Booked at this release as the real st-36 so the three existing
+references resolve to what they mean; the docstring is left as written
+because it now points at a live item.
