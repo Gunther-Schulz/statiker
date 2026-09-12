@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 23
+added: 24
 compacted: 0
 
 ## st-10
@@ -236,3 +236,12 @@ amended-evidence: 2026-09-12 ORDERING CONSTRAINT (statiker-f7, 2026-09-12, verif
 amend-reason: 2026-09-12 Settles the 're-rooted' ambiguity statiker-f7 surfaced and corrects this desk's own earlier temporal phrasing: METHOD, not order, is what protects lc-73's anchor — append-only amend retains base lines at any time, so 'not before the merge' wrongly read as permission to rewrite after, inviting the one act (hand-edit) that both violates the never-hand-edit rule and blinds lc-73
 amended-done-criterion: 2026-09-12 BACKLOG.md deleted; every ITEMS.md evidence citation of BACKLOG.md:NNN re-rooted via 'lifecycle item amend --evidence' so the EFFECTIVE evidence resolves without BACKLOG.md, carrying pinned blob a115998c inline (resolving via git cat-file -p a115998c). Re-rooted means the effective value resolves without the file — NEVER that the BACKLOG.md:NNN strings are removed from ITEMS.md: the base evidence lines of st-1..st-20 are retained by the verb's append-only construction, are never hand-edited, and are lifecycle lc-73's provenance anchor (its declared kill condition is string removal). Inbound-reference triage stated as command plus hits in the deletion commit; deletion record in CLAUDE.md (the laws file) naming the cat-file resolution path with a negative control shown — the dispatch-guards worked pattern
 amended-evidence: 2026-09-12 DEPENDENT (cross-repo): lifecycle lc-73 (lifecycle repo, b452d88) anchors its re-import detector on st-1..st-20's base 'evidence: BACKLOG.md:<line>-<end>' lines. Protection is the METHOD, not the order: 'item amend --evidence' appends and retains base lines by construction at any time, so no conforming carrier operation can destroy the anchor — only a hand-edit can, and bookings are never hand-edited (CLAUDE.md). The earlier amendment's ordering framing stands only as WHEN the pass runs (blocker predicate holds it behind the st-22 merge, machine-evaluated); it is not what keeps the anchor alive.
+
+## st-45
+grade: READY
+requirement: 0.2.90 review N3: test_contract.py's section_pointers generic pass (a0353fe, :1104) reads ordinary capitalized parentheticals with a quoted phrase as dangling pointers — three executed one-line page additions each turned unresolved from 0 to 1 at HEAD while pre-fix stayed 0; latent today (the page's 4 generic hits are all real pointers, suite green) and tools-side only, but it is the check-that-fires-on-a-non-defect shape on the page edited most. Includes the dedup nit: :1106 dedups against a found list that now also holds generic-appended entries, so a twice-occurring dangling pointer counts once - record: dev-notes/OBSERVATIONS.md 2026-09-12 st-44 batch record, N3
+goal: general-maintenance
+write-set: tools/test_contract.py
+done-criterion: the generic pass distinguishes pointer form from prose by a designed predicate (not an enumerated allowlist), with a red-first pair: the reviewer's three prose additions stay OUT of unresolved (non-defect control) while a genuinely dangling pointer (renamed-heading mutant) still lands IN it; dedup counts distinct occurrences; suite green
+evidence: the reviewer's three executed prose cases and the renamed-heading mutants are recorded in the 0.2.90 review report (statiker-58 transcript, 2026-09-12) and summarized in the OBSERVATIONS batch record; the fires-on-non-defect rule is corpus Fixing (unprovable and over-firing checks)
+blocked-by: NONE
