@@ -9635,3 +9635,40 @@ in CLAUDE.md from the design's DRAFT clauses — that is a mint, and it
 is NOT taken on this datum's strength alone: the caveat above is
 carried into that item so the mint decision weighs a denominator of
 one rather than inheriting a bare CONFIRM.
+
+## 2026-09-12 — the batched review and the field test are in tension, and the field test is what broke
+
+Not an argument against the batching decision (LEDGER 7e0572f,
+operator 2026-09-11) — an interaction nobody priced when it was made.
+
+**What happened.** The batch merged three items of very different
+design density into ONE review: a mechanical residue lap (st-34), a
+desk ruling (st-35), and a design-heavy registry (st-32 lap B). All
+three BLOCKING findings landed in the two design-heavy parts; the
+mechanical residue drew none.
+
+**The interaction.** The C4c field test grades whether DESIGN-kind
+findings CONCENTRATE at pre-flagged dispositions, so it needs every
+finding to sit on surface that carries a flagged/unflagged
+classification. A batched review does not give it that: lap B's surface
+was never classified (correctly — compression dispositions are not
+dispositions of review findings), so seven of ten findings could only
+be counted, never graded, and the criterion resolved on a denominator
+of one. The batching did not harm the REVIEW — it found ten real things
+at one round's cost, which is the batching working. It harmed the
+MEASUREMENT riding on the review.
+
+**Which to change, if either.** Not the batching: one round finding ten
+defects is the efficiency the decision was made for. The field test is
+the instrument that assumed a population shape its own venue no longer
+has. Its options, for whoever takes st-10's mint decision: classify
+EVERY item's surface that enters a batched review (cheap — it is one
+paragraph per item, written before the review dispatches), or restrict
+the graded population explicitly to classified surface and state the
+denominator in the outcome line (what happened here by accident rather
+than by design). Doing neither means the test keeps resolving on
+whatever fraction happens to be classifiable, which is how a criterion
+reports a verdict while discriminating nothing.
+
+**Booked, not acted on:** this is st-10's to weigh, since it is the
+same decision as whether the CONFIRM branch mints at all.

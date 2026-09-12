@@ -24,6 +24,9 @@ amended-evidence: 2026-09-11 BACKLOG.md:279-317 (P28 body); OBSERVATIONS.md:7832
 amended-blocked-by: 2026-09-11 evidence grep -q 'C4c FIELD TEST OUTCOME:' /home/g/dev/Gunther-Schulz/statiker/dev-notes/OBSERVATIONS.md
 amend-reason: 2026-09-11 field test returned UNDECIDED at the 0.2.86 re-review (no design-kind finding on the lap's surface); predicate narrowed and anchored so the UNDECIDED line does not unblock; the test repeats at the next lap with an owed round
 amended-blocked-by: 2026-09-11 evidence grep -qE '^C4c FIELD TEST OUTCOME: (CONFIRM|REFUTE)' /home/g/dev/Gunther-Schulz/statiker/dev-notes/OBSERVATIONS.md
+amend-reason: 2026-09-12 2026-09-12 statiker-df: the executable evidence predicate resolved, so st-10 leaves the machine's court — but the CONFIRM branch prescribes a MINT and this datum cannot carry one alone. The blocker is re-typed from evidence to decision so the next desk weighs the denominator instead of inheriting a bare CONFIRM
+amended-evidence: 2026-09-12 as before, plus: C4c FIELD TEST OUTCOME: CONFIRM recorded 2026-09-12 over the 0.2.89 checkpoint review, with the caveat that the graded population is 1 of 10 findings — seven excluded because they landed on lap B's surface, which carries no flagged/unflagged classification, and two implementation-kind. The criterion resolved as registered; its discriminating power on this round did not
+amended-blocked-by: 2026-09-12 decision the C4a/C4b/C4c mint, weighing a CONFIRM whose graded denominator is ONE finding of the review's ten (OBSERVATIONS 2026-09-12, C4c outcome + variance caveat). The evidence blocker has resolved; what remains is a judged mint decision, not a wait
 
 ## st-12
 grade: PARKED
