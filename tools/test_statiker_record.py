@@ -1391,6 +1391,67 @@ class TestSt34N2BudgetHeaderTripwireRejectsNonInteger(RecordFixture):
         self.assertEqual(v["reason"], "silent", v)
 
 
+# --------- 0.2.89 review (N2 / repair R6): the Budget header's
+# --------- tripwire field is read ONLY in the page's `/ tripwire <n>`
+# --------- form, so the word in prose no longer hard-fails the tool
+
+
+class TestR6BudgetTripwireAnchorsOnTheSlashForm(RecordFixture):
+    """0.2.89 checkpoint review, N2 (dev-notes/OBSERVATIONS.md, "0.2.89
+    checkpoint-review dispositions"). st-34's N2 fix widened the
+    capture from digits-only to `(\\S+)` so a present-but-unparseable
+    value would be refused rather than silently read as unarmed — but
+    it did so on a BARE `\\btripwire\\s+(\\S+)`, dropping the page's own
+    `/` anchor (SKILL.md declares "an optional trailing `/ tripwire
+    <n>` field"). The word "tripwire" ANYWHERE in the Budget line then
+    matched and hard-failed the subcommand: a header noting the
+    breaker will be "armed later by entry" — ordinary prose after the
+    st-35 arming carrier moved to an appended entry — gave
+    USAGE_ERROR. FIX: anchor on the declared `/` form.
+
+    This class was added by the dispatcher at integration, not by the
+    repair lane: R6 shipped proven red-first in throwaway invocations
+    with nothing in the suite pinning it, so a re-widening of the
+    regex would have gone green. The hand-derivation was the
+    prototype; this is the mechanism.
+
+    Red arm (executed 2026-09-12, dispatcher): with
+    TRIPWIRE_BUDGET_RE reverted to the bare `\\btripwire\\s+(\\S+)`,
+    test_prose_tripwire_in_budget_line_reads_unarmed goes RED
+    (USAGE_ERROR != TRIPWIRE_SILENT) while
+    test_present_slash_field_still_refuses_a_non_integer stays GREEN —
+    the pair discriminates, and the control is what refuses a "fix"
+    that simply stops the pattern matching anything."""
+
+    def test_prose_tripwire_in_budget_line_reads_unarmed(self):
+        header = ("# Run: test\nStatus: in-progress\n"
+                  "Phase: investigate-design\nSkill: statiker 0.2.33\n"
+                  "Budget: cycles 7 / rounds 4 / verify 3 "
+                  "— tripwire armed later by entry\n\n"
+                  "## Cycle 1\n")
+        v = self.tripwire("", header=header)
+        self.assertNotEqual(v["verdict"], "USAGE_ERROR", v)
+        self.assertEqual(v["verdict"], "TRIPWIRE_SILENT", v)
+        self.assertEqual(v["reason"], "unarmed", v)
+
+    def test_present_slash_field_still_refuses_a_non_integer(self):
+        header = ("# Run: test\nStatus: in-progress\n"
+                  "Phase: investigate-design\nSkill: statiker 0.2.33\n"
+                  "Budget: cycles 7 / rounds 4 / verify 3 / tripwire abc\n\n"
+                  "## Cycle 1\n")
+        v = self.tripwire("", header=header)
+        self.assertEqual(v["verdict"], "USAGE_ERROR", v)
+
+    def test_present_slash_field_still_arms(self):
+        header = ("# Run: test\nStatus: in-progress\n"
+                  "Phase: investigate-design\nSkill: statiker 0.2.33\n"
+                  "Budget: cycles 7 / rounds 4 / verify 3 / tripwire 2\n\n"
+                  "## Cycle 1\n")
+        v = self.tripwire("", header=header)
+        self.assertEqual(v["verdict"], "TRIPWIRE_SILENT", v)
+        self.assertEqual(v["reason"], "silent", v)
+
+
 # --------- st-35: the tripwire's arming carrier moves to an appended
 # --------- record entry (dev-notes/OBSERVATIONS.md, 2026-09-12 ruling)
 
