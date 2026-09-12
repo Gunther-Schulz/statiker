@@ -92,7 +92,7 @@ some prose line right before an indented landing
 - F23 [VERIFIED] cites the invalidated claim, trailing period — basis: prose F20.
 - F24 [VERIFIED] cites the invalidated claim, code pointer form — basis: tools/x.py:40 F20
 - F25 [VERIFIED] cites the invalidated claim, labeled prose form — basis: the probe: F20
-- F26 [VERIFIED] cites a live id, no violation — basis: F1
+- F26 [VERIFIED] cites a live id, no violation — basis: F21
 - F27 [VERIFIED] cites a foreign high id under a record-name prefix — basis: docs/other-run.md F9999
 
 ## Block: foreign-id-suspect

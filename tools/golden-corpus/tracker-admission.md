@@ -1,5 +1,5 @@
 # Run: golden-corpus-admission
-Status: in-progress
+Status: [READY]
 Skill: statiker 0.2.87
 
 INTENT — padding line 5
