@@ -66,7 +66,19 @@ afterwards it should have come first.
    test derives its coverage from the RUNNING module, so a new class
    needs a golden row or that test goes red. **That is the intended
    behaviour — satisfy it with a real corpus row, never by weakening
-   the test.**
+   the test.** Opened by the dispatcher AFTER dispatch, on the lane's
+   critique (`grep -n RULE_MINT_VERSION` over the record tool and
+   `tools/`): definition at `statiker_record.py:291`, consumed at
+   `:361` and `:1840`; the sweep's own docstring at
+   `tools/test_statiker_record.py:5704` reads "Coverage is DERIVED
+   from the RUNNING module's RULE_MINT_VERSION", and `:5843-5844`
+   asserts `set(m.RULE_MINT_VERSION) == codes_in_golden | EXEMPT`.
+   SECOND consumer this line originally missed: `tools/test_contract.py`
+   `:1437-1448` requires a `RULE_MINT_VERSION` entry for every emitted
+   code AND for every `FORM_CODES_MINT_GATED` member — so an emittable
+   new class is gated twice on the same registry entry. Both reds are
+   satisfied by the registry entry plus the golden row, never by
+   editing an assertion.
 5. Payload guard: manifest at `0.2.89`, batch UNPUSHED, exemption
    armed — you bump nothing. A bounce means the batch was pushed: HALT
    and report, never `--no-verify`.

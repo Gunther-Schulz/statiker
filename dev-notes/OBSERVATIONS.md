@@ -9672,3 +9672,49 @@ reports a verdict while discriminating nothing.
 
 **Booked, not acted on:** this is st-10's to weigh, since it is the
 same decision as whether the CONFIRM branch mints at all.
+
+## 2026-09-12 — the repair lane's critique caught an ungraded Background line, and produced one false positive worth keeping
+
+**Incident (real).** `sonnet-repair-0289`'s critique pass named
+Background 4 of its brief (`docs/directives/2026-09-12-sonnet-repair-0289-brief.md`)
+as the unopened line, correctly. Background 1-3 each carried an explicit
+"opened by the dispatcher" with a command or concrete output; 4 asserted
+the `RULE_MINT_VERSION` registry and the golden-corpus sweep's coverage
+derivation as fact with no shown read. Opened on the critique: the
+docstring at `tools/test_statiker_record.py:5704` and the assertion at
+`:5843-5844` confirm the claim — AND a second consumer the line missed
+entirely, `tools/test_contract.py:1437-1448`, which gates the same
+registry entry from the emitted-code side. So the unopened line was
+true but INCOMPLETE, which is the reach failure rather than a false
+claim: correct as a sentence, narrower than the question it shut.
+Corrected IN the brief (the carrier a running lane re-reads), not
+appended beside it.
+
+Post-incident questions. (1) Mechanism? No — the condition ("this
+Background line asserts repo state and shows no read") is not a
+computable predicate over free prose; a checker would fire on every
+design sentence. (2) Truth level? Already minted verbatim: the dispatch
+skill §1's per-line provenance rule, including "mixed provenance under
+one uniform header is the label-over-body drift", which is exactly
+this shape — three graded neighbours made the ungraded fourth read as
+graded. Duplicate home, no mint.
+
+**The false positive, which is the part worth keeping.** The lane also
+reported a candidate contradiction: Background 5 says the manifest is
+at `0.2.89`, while the gitStatus block in the lane's own context shows
+`8d65478 0.2.88 released` as a recent commit with no later bump. It
+flagged this before opening the manifest, which is the critique pass
+working as designed. Refuted at the artifact: working tree `0.2.89`,
+`origin/main` `0.2.88`, 43 commits unpushed, the bump at `4325cbd`
+sitting above the short head gitStatus prints.
+
+The mechanism is worth naming because it will recur on every lane in
+an unpushed batch: a lane's injected gitStatus is a SESSION-START
+SNAPSHOT carrying a truncated commit head, and it reads as current repo
+state. A brief asserting a state that snapshot contradicts (a manifest
+version, a base commit, an unpushed-batch premise) gets doubted against
+a stale instrument, and the doubt costs a round trip — or worse, is
+resolved silently in the snapshot's favour by a lane that does not ask.
+Instrument lesson filed to the owning instrument's repo
+(dispatch-guards `dev-notes/dispatch-OBSERVATIONS.md`), with the
+pre-formulated brief text.
