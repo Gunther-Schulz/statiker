@@ -6026,5 +6026,64 @@ class TestResolveOnceUnderAConcurrentCommit(unittest.TestCase):
             f"filter emitted a sha it did not read at: {v}")
 
 
+
+class TestSt35ArmingRetraction(RecordFixture):
+    """st-35 follow-up (statiker-df, 2026-09-12, found by probe after
+    the arming lane closed): an arming entry is an ORDINARY entry, so
+    the record's own supersession rule governs it — a later line with
+    the SAME id and a new tag replaces the earlier one. The first cut
+    filtered `[VERIFIED]` arming entries and took the last MATCHING
+    one, which keeps reading a retracted arm: the retraction line is
+    tagged `[INVALIDATED]`, so it fails the tag filter and the stale
+    `[VERIFIED]` line survives as the winner.
+
+    Why this is the ruling's own gap and not a nicety: the ruling
+    reserves DISARMING to the operator ("arming, or tightening, is the
+    desk's; RAISING the threshold or disarming is an operator
+    decision") while naming no disarm form. Retraction IS the record's
+    disarm form — the same supersession every other entry class uses —
+    so honouring it closes the gap with no new grammar, which is the
+    same argument that put arming on an appended entry in the first
+    place.
+
+    Red-first, executed 2026-09-12 against 8f0884f (the arming lane's
+    own commit, before this fix): `test_a_retracted_arm_does_not_arm`
+    failed with the tool reporting "armed from F1's appended entry
+    (tripwire armed at 2)" over a retraction line. Baseline stated
+    first: the suite was green at 555 before this arm was written. The
+    two control tests below passed before AND after — they pin the
+    behaviour the fix must not move.
+    """
+
+    ARM_2 = "- F1 [VERIFIED] record: tripwire armed at 2 — basis: desk\n"
+
+    def test_a_retracted_arm_does_not_arm(self):
+        # the operator's disarm: same id, later line, INVALIDATED
+        body = self.ARM_2 + (
+            "- F1 [INVALIDATED] record: tripwire armed at 2 — basis: "
+            "operator retracts the arm\n")
+        v = self.tripwire(body)
+        self.assertEqual(v["verdict"], "TRIPWIRE_SILENT", v)
+        self.assertEqual(
+            v["reason"], "unarmed",
+            f"a retracted arming entry still armed the breaker: {v}")
+        self.assertIsNone(v["threshold"], v)
+
+    def test_a_superseded_arm_reads_its_latest_value(self):
+        # CONTROL (green before and after): same id, later line, still
+        # VERIFIED — an ordinary re-arm, latest value wins
+        body = self.ARM_2 + (
+            "- F1 [VERIFIED] record: tripwire armed at 5 — basis: desk\n")
+        v = self.tripwire(body)
+        self.assertEqual(v["threshold"], 5, v)
+
+    def test_a_later_arm_under_a_new_id_wins(self):
+        # CONTROL (green before and after): latest LINE across ids
+        body = self.ARM_2 + (
+            "- F2 [VERIFIED] record: tripwire armed at 7 — basis: desk\n")
+        v = self.tripwire(body)
+        self.assertEqual(v["threshold"], 7, v)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=1)

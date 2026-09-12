@@ -260,11 +260,15 @@ tool resolves the threshold as `--threshold` (always overriding) >
 the LATEST such entry > the header Budget line's `/ tripwire <n>`
 field > unarmed, so an appended arm REPAIRS a record seeded with a
 bad or absent header value — the header is never consulted once an
-arming entry exists. Arming, or tightening an armed tripwire, is the
-desk's; RAISING the threshold or disarming is an operator decision,
-the same split the budget bound below carries (basis: operator on
-that entry). A Budget line with no `tripwire` field and no appended
-arming entry leaves the breaker unarmed (below).
+arming entry exists. The entry supersedes like any other — a later
+line under the SAME id wins, and RETRACTION (that id re-tagged
+[INVALIDATED]) is the disarm form, so the tool falls back through
+the order as if the arm were never written. Arming, or tightening
+an armed tripwire, is the desk's; RAISING the threshold or
+disarming is an operator decision, the same split the budget bound
+below carries (basis: operator on that entry). A Budget line with
+no `tripwire` field and no live appended arming entry leaves the
+breaker unarmed (below).
 Exhaustion never continues silently: attended it forces the operator
 prompt; unattended the cap is a SAFETY ESCAPE only — hitting it
 STOPS-AND-REPORTS for the operator, never grades FAILED by itself.
@@ -272,10 +276,9 @@ The DRIVING stop signals are progress-shaped and record-computable,
 checked well before the cap: the ZERO-LANDED tripwire (`tripwire
 --tracker <path> [--threshold <n>]`; TRIPWIRE_FIRES when at least
 `<n>` resolved attack rounds exist yet neither a landing annotation
-nor a V-line does anywhere; `<n>` named by the caller via
-`--threshold` or read from the header Budget line's `/ tripwire <n>`
-field, `--threshold` always overriding; never hardcoded, never
-guessed — neither present is TRIPWIRE_SILENT with reason "unarmed")
+nor a V-line does anywhere; `<n>` comes from the arming carrier
+above — named at arming time, never hardcoded, never guessed, and
+no source naming one is TRIPWIRE_SILENT with reason "unarmed")
 and the NON-CONTRACTING trend grade (The attack) — BOTH route to the
 NARROWING route (The attack), never to another same-form round.
 
@@ -1188,7 +1191,7 @@ its verdict quoted the same way; an armed TRIPWIRE_FIRES routes to
 the NARROWING route (below), never blocking round-open on its
 own tag, and TRIPWIRE_SILENT with reason "unarmed" is silently
 informational, never a hold — the breaker fires only where the
-header names its threshold.
+record names its threshold (the arming carrier, The record).
 A reopen bars the design's UNITS only: investigation, record
 repair, and the run's own instruments stay open desk work — their
 lines land before the closing A-line (this return's

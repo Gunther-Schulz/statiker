@@ -2483,9 +2483,22 @@ def cmd_tripwire(args):
         # the header must not be consulted once one exists (the whole
         # point of the appended route is repairing a record seeded
         # with a bad or absent header value).
-        arm_entries = [e for e in entries
-                       if e.cls == "F" and e.tag == "VERIFIED"
-                       and TRIPWIRE_ARM_RE.match(e.body)]
+        # st-35 follow-up (2026-09-12): an arming entry is an ORDINARY
+        # entry, so the record's own supersession rule governs it —
+        # resolve latest_by_id BEFORE filtering on the tag. Filtering
+        # `[VERIFIED]` first keeps reading a RETRACTED arm: the
+        # retraction line (same id, later, `[INVALIDATED]`) fails the
+        # tag filter and the stale `[VERIFIED]` line survives as the
+        # winner. Retraction IS the record's disarm form, and the
+        # ruling reserves disarming to the operator while naming no
+        # other one — honouring supersession closes that with no new
+        # grammar, the same argument that put arming on an appended
+        # entry.
+        arm_entries = sorted(
+            (e for e in latest_by_id(entries).values()
+             if e.cls == "F" and e.tag == "VERIFIED"
+             and TRIPWIRE_ARM_RE.match(e.body)),
+            key=lambda e: e.lineno)
         if arm_entries:
             latest_arm = arm_entries[-1]
             raw = TRIPWIRE_ARM_RE.match(latest_arm.body).group(1)
