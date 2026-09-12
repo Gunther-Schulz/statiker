@@ -1,18 +1,18 @@
-# Statiker — backlog
+# Statiker — backlog — FROZEN legacy carrier (superseded by ITEMS.md)
 
-Future work graded by decision-completeness (operator-corpus file
-roles). PLAN.md stays the design record; entries here are work items,
-and a SKILL.md change stays fire-born per CLAUDE.md — an entry can
-build tooling, but a clause mint still needs its incident.
-Composition checks, from lane R's two independent hits 2026-08-15:
-an entry minting a NEW verdict name carries a SKILL.md-authorship
-dependency (the parity battery is set-exact BOTH ways) — the entry
-pre-names the exact route sentence, and it lands in the SAME
-commit as the emitting code: a route minted ahead is a phantom
-verdict, red within minutes (fired 2026-08-15); an emit without a
-route is the F1 class. And an entry citing SKILL.md prose as a
-record-line grammar quotes the backtick literal at MINT time, or
-it is not decision-complete.
+FROZEN at the 2026-09-10 carrier migration (operator GO; CLAUDE.md,
+Carrier transition): the live queue is `ITEMS.md` — bookings go
+through the lifecycle verbs (`lifecycle item add`), NEVER into this
+file. It remains the read-only body store the migrated entries
+point into; cited ranges (BACKLOG.md:NNN) resolve against the
+migration's pinned source blob `a115998c` (`git cat-file -p
+a115998c`), so this head rewrite is LINE-COUNT-NEUTRAL and no
+anchor moves. Retirement is decidable only when st-21 (consumer
+migration) and st-22 (`## Done` ingestion) both close. Precedent
+and incident: beat-the-books 260d4c85 — a desk wrote into that
+repo's unfrozen dead carrier within four hours of its migration;
+hazard reported for this repo by dotfiles-85, 2026-09-12. The
+pre-banner head text survives at this file's prior blob.
 
 ## Open
 
