@@ -374,5 +374,16 @@ blocker-moot: does the staged Codex pilot get GO as proposed in statiker-58 on 2
 closed-reason: 2026-09-12 All three criterion legs resolved: stage-1 certification recorded in READINESS.json (read-side ready at sonnet parity, record tools the grading instrument); stage-2 cross-vendor attack comparison pre-registered and graded (astra 2 confirmed unique, opus 7 — both-arms verdict), extended by stages 2b/2c/2d (attack floor terra, implementation terra, reviewer EXCLUDED); stage-3 desk stays parked per the criterion's own scope. Program deliverable (economic-equivalents table) and full results: dev-notes/codex-pilot-2026-09-12.md. Global usage GO ledgered 2026-09-12.
 closed-ref: 3ba8a2b, 0dac603, 52c94c9
 
+## st-40
+grade: DONE
+requirement: Adjudicate the codex-pilot convergent extras against the page: 3-4 independent models flagged six (line,code) pairs in tools/golden-corpus/tracker.md that BOTH the answer key and the tool are silent on (suite green asserts tool==key) — lines 107/109 misspelled tag [COMMITED], 113/115 mis-cased scope opener Record:, 103 self-described missing basis, 35 write-set near-miss; same-parentage suspicion (key authored from tool output)
+goal: general-maintenance
+write-set: tools/golden-corpus/,plugin/skills/statiker/scripts/statiker_record.py,tools/
+done-criterion: each of the six candidates resolved as tool-defect, key-gap, or correct-silence with the page sentence that decides it cited; any tool fix lands red-first with the fixture gaining the discriminating case and expected-violations updated in the SAME commit; suite green at close
+evidence: dev-notes/codex-pilot-2026-09-12.md Stage-1 RESULTS (convergent-extras finding, with per-arm flag lists); key rows for lines 35-115 read at statiker-58 2026-09-12 (absent); fixture lines quoted in the results section; model transcripts are session-scratch and die with statiker-58 — the results section carries what survives
+blocked-by: NONE
+closed-reason: 2026-09-12 adjudicated at statiker-f7: all six convergent extras are CORRECT SILENCE, no tool defect and no key gap, so no code or fixture change. Each flagged line is a planted seed defect shed by a later 'corrects line <n>' repair, and each fixture block is named for the repair's own defect rather than the seed's. Deciding page sentence (Implementation): a correcting line sheds the target's VIOLATIONS; and the page anticipates the misreading directly, 'Flagged text still sits in the file for foreign readers'. Executed pair per candidate, six for six: unmutated fixture silent at all six, and deleting only the repair line makes each seed fire its exact expected code. That mutation also refutes the same-parentage suspicion on this population, since the tool's silence is removable by deleting a line the key never mentions. Not minted: six false positives in a model eval is not a production bite, birth-class bar unmet
+closed-ref: e00c842
+
 ## Archive (pre-migration)
 
