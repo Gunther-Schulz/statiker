@@ -9303,3 +9303,65 @@ arming lane closes and releases SKILL.md — they sit outside that lane's
 write boundary, and extending its ownership mid-report would cross a
 report already in flight (the measured crossing hazard). One file, two
 small hunks, session live: do-it-now, not a booking.
+
+## 2026-09-12 — st-32 lap B stage 1 graded (opus-st32-clause-table, 56e95c0): the precipitate method does not reach the page
+
+Table read at the desk (body, not the summary) and its arithmetic
+re-run here: 28 unique clause rows, dispositions **0 PRECIPITATES /
+16 SPLIT / 12 KEEPS**, object 510 non-blank lines, **66 LEAVING / 444
+STAYING**. Verified independently — my first two counts were wrong
+(a disposition regex matching the table's own definitions section and
+its coverage-map rows, 31 of 28; the second parsed row ids and agreed
+with the lane exactly). The lane's figures stand as reported.
+
+**The headline, measured not projected.** The route vocabulary section
+has already landed (cb36f6d): 1638 → **1689** operational. Lap B's
+removals take 66. So lap B — the compression pass's HEAVY lap — nets
+**−15 operational lines**, and the page after it projects to **~1623**.
+Against: the design's §9 net −190; statiker-fb's whole-pass band
+650–750 (already dead, 2026-09-12 entry above); PLAN.md's target
+80–150.
+
+**Why, structurally — this is the finding, not the number.** Zero rows
+precipitate cleanly. Every row whose routing leaves also carries load a
+name-keyed registry cannot hold: a predicate, a write-side template, or
+one of design §4's seam modulations. And 148 of the 510 lines carry no
+verdict token at all (R31/R32/R38, A17/I4/I7 — what lap A marked "record
+read-side semantics"), so a verdict-NAME→token registry cannot reach
+them even in principle. The method's ceiling is not effort; it is that
+the page's mass is not per-verdict routing.
+
+### Desk decisions on the three the lane returned
+
+**F5 — the registry must PRESERVE conduct; three routes are changed,
+not precipitated.** Verified at the page by this desk: `PINNED_REWRITTEN`
+"halts the seam that ran it" (:482) vs registry `surface`;
+`UNIT_GATE_BLOCKED` "halt the unit UNBUILT" (:1460-62) vs `barred`,
+which books nothing where a halt books an F-line; `UNIT_COLLISION`
+"halt the unit UNBUILT — no edit, no commit, no landing annotation"
+(:1465-70) vs `triage`. After lap B the registry IS the conduct source,
+so adopting these ships three behaviour changes inside a representation
+lap. RULING: the lap encodes the page's current conduct — all three
+route `halt` — and the design's re-routings are booked separately with
+the design's own reasoning (§3's membership notes), each to be judged
+on its merits under a review that knows it is judging a behaviour
+change. Same rule that kept r4-H1's gate logic out of this lap.
+
+**F4 — the 72 nb of §6 spans with no `B` row do NOT enter lap B.**
+They were never in the 28-row object; lap A dispositioned them under
+other marks (§5, R6, A18, A24, I8). Widening a lap's scope mid-flight
+to close a gap against an estimate is bending the work toward the
+number — the exact move the brief forbade in the other direction.
+Their share of the ~230 simply drops out, which is part of why the
+estimate was wrong.
+
+**The +40 vocabulary estimate — superseded by measurement.** Not a
+judgment call: the section is built and measured at +51 operational
+(1638 → 1689). The projection uses 1689, not an estimate.
+
+### What this does NOT settle
+
+Whether the compression pass continues, and whether PLAN.md's 80–150
+stands, are the operator's — intent, not derivation. Surfaced this
+date with a recommendation. Lap C's booked re-derivation ("the number
+is an outcome, not a gate") is the seam where it lands either way.
