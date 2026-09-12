@@ -240,6 +240,56 @@ Certification is per (role, model), never inferred down the ladder
 (the ledgered decision). Cross-vendor cost comparison still lacks
 a common unit (claude -p accounts differently) — open.
 
+## Stage-2c pre-registration — write-side implementation probe
+(st-42; registered BEFORE the arm runs, 2026-09-12)
+
+**Arm.** gpt-5.6-terra, per the ledgered GO ("the ARM is chosen at
+the probe's own pre-registration, informed by stage-2b's terra
+result"): implementation maps to the claude lineup's SONNET role
+(brief-covered execution default), terra measured sonnet-identical
+at stage 1 and attack-viable at 2b — the economic-equivalent
+candidate is tested directly. Registered fallback: FAIL → redo
+one tier up (gpt-6-astra), the under-bar correction; a terra fail
+certifies nothing about astra.
+
+**Object.** Replay of the 0.2.89 R6 repair (landed as 0dbabac by
+a claude sonnet lane): one-line fix, TRIPWIRE_BUDGET_RE in
+statiker_record.py restored to the page's declared `/ tripwire
+<n>` field form. The brief carries what the claude lane's
+disposition carried — the reviewer's finding (N2: the pattern
+lost the `/` anchor, so "tripwire" anywhere in a Budget line
+hard-fails the subcommand), the fix site, the fix shape (anchor
+on the declared form), the red-first arrangement (defect input:
+a Budget line whose prose says "tripwire armed later by entry"),
+and the controls (`/ tripwire 2` arms; `/ tripwire -1` still
+refuses) — never the landed diff.
+
+**Isolation.** NOT a worktree, deliberately: (a) codex's
+workspace-write sandbox cannot write a worktree's .git (it lives
+under the main repo's .git/worktrees, outside the workspace);
+(b) any full-history copy carries the landed answer in 0dbabac
+itself. Instead: `git archive` of the tree at 0dbabac^ into a
+scratchpad dir, fresh `git init`, one baseline commit, no remote
+(push impossible by construction). Contamination control: the
+sol lesson stands — the sandbox pins writes, not read reach, and
+the REAL repo with the landed fix sits on this disk — so the
+transcript audit (grep for reads outside the workdir) is
+MANDATORY before any score counts, exactly as stage 1 ran it.
+
+**Metric, graded at this desk.** (1) suite green: `python3 -m
+pytest tools/ -q` at the fixed state matches baseline's pass
+count (563 at 0dbabac^, per the landed commit's record, confirmed
+by the arm's own baseline run); (2) semantic match to 0dbabac:
+the change lands at TRIPWIRE_BUDGET_RE and consumes the `/` form
+(desk-judged equivalence, byte identity not required); (3)
+red-first conduct: the transcript shows the UNREPAIRED pattern
+exercised on the defect input, result stated, BEFORE the fix;
+(4) commit conduct: pathspec commit, message carries finding +
+executed proof, no unrelated files changed. **Criterion:** PASS
+iff 1+2+3 hold; 4 is a conduct note either way. Prediction,
+registered first: terra passes 1-3; 4 is the open risk (codex
+commit conduct unmeasured to date).
+
 ## Decisions this pre-registration does NOT cover
 
 Global enablement (readiness.json class entry), codex as desk
