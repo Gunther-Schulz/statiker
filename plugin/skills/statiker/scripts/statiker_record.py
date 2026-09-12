@@ -63,18 +63,18 @@ Subcommands (each prints evidence lines, then exactly one final line
                                       resolved attack rounds exist yet
                                       neither a landing annotation nor
                                       a V-line does, else
-                                      TRIPWIRE_SILENT; N is named by
-                                      the caller at arming time via
-                                      --threshold, or read from the
-                                      header Budget line's
-                                      `/ tripwire <N>` field when
-                                      --threshold is omitted —
-                                      --threshold always overrides;
-                                      an unarmed tracker (neither
-                                      given) is TRIPWIRE_SILENT with
-                                      reason "unarmed", never a
-                                      guessed default. The verdict's
-                                      `reason` field distinguishes
+                                      TRIPWIRE_SILENT; N resolves as
+                                      --threshold (always overriding)
+                                      > the LATEST appended `record:
+                                      tripwire armed at N` entry
+                                      (st-35) > the header Budget
+                                      line's `/ tripwire <N>` field >
+                                      unarmed — an unarmed tracker
+                                      (none of the three given) is
+                                      TRIPWIRE_SILENT with reason
+                                      "unarmed", never a guessed
+                                      default. The verdict's `reason`
+                                      field distinguishes
                                       unarmed/silent/fires
   filter  --tracker P --sha S --out F pinned attack artifact (reads
                                       the sha, drops the two
@@ -160,6 +160,16 @@ BUDGET_ROUNDS_RE = re.compile(r"\brounds\s+(\d+)\b")
 # invocation; the caller (cmd_tripwire) parses the token and refuses a
 # non-integer or sub-1 value the way --threshold refuses one.
 TRIPWIRE_BUDGET_RE = re.compile(r"\btripwire\s+(\S+)")
+# st-35 (dev-notes/OBSERVATIONS.md, "the tripwire's arming carrier"
+# ruling): the appended arming route — arming, or tightening an armed
+# tripwire, lands as an ordinary `record: `-scoped F-line (SCOPE_EXACT_RE
+# already admits `record: `; the entry needs no new grammar). Resolution
+# order: --threshold > the LATEST such entry > the header's own
+# `tripwire <n>` field > unarmed — so an appended arm REPAIRS a record
+# seeded with a bad or absent header value; the header is never
+# consulted once an arming entry exists.
+TRIPWIRE_ARM_RE = re.compile(
+    r'^record: tripwire armed at (\S+)(?: — ".*")?$')
 
 CLASS_TAGS = {
     "F": {"VERIFIED", "PENDING", "INVALIDATED", "AUTO-ACCEPTED"},
@@ -2441,11 +2451,12 @@ def cmd_tripwire(args):
     same count `trend` computes) — either one silences it. The
     threshold is NAMED by the caller at arming time (SKILL.md's Stop
     rule design: a breaker's discriminating evidence is pre-registered
-    when armed, never composed at firing time) via --threshold, or
-    read from the tracker's own header `Budget:` line's optional
-    `/ tripwire <N>` field when --threshold is omitted — --threshold
-    always overrides the header when both are given (the caller-named
-    principle stands); neither present is UNARMED, never a guessed
+    when armed, never composed at firing time): --threshold (always
+    overriding) > the LATEST appended `record: tripwire armed at <n>`
+    entry (st-35, dev-notes/OBSERVATIONS.md — the arming carrier moved
+    off the header so an appended arm can repair a record seeded with
+    a bad or absent header value) > the tracker's own header `Budget:`
+    line's optional `/ tripwire <N>` field > unarmed, never a guessed
     default (checkpoint review R3). The verdict's `reason` field
     distinguishes unarmed/silent/fires."""
     # st-14 (5) (ITEMS.md, P31 remainder): --threshold below 1 is
@@ -2468,36 +2479,60 @@ def cmd_tripwire(args):
         finish("TRIPWIRE_RECORD_MALFORMED", 2, violations=blocking, **meta)
     threshold = args.threshold
     if threshold is None:
-        m = TRIPWIRE_BUDGET_RE.search(meta["budget"] or "")
-        if not m:
-            say("tripwire: unarmed — no --threshold given and the "
-                "Budget line carries no `tripwire <n>` field")
-            finish("TRIPWIRE_SILENT", 0, reason="unarmed", rounds=None,
-                   threshold=None, landed=None, v_lines=None, **meta)
-        raw = m.group(1)
-        # st-34 (N2) (0.2.87 checkpoint review): a PRESENT field that
-        # does not parse as an integer at all (`tripwire -1` no longer
-        # misses TRIPWIRE_BUDGET_RE's match, now that it captures any
-        # token) is refused the same way as a sub-1 value below —
-        # never silently read as unarmed. An ABSENT field is the only
-        # case that stays unarmed (the `not m` branch above).
-        try:
-            threshold = int(raw)
-        except ValueError:
-            finish("USAGE_ERROR", 3,
-                   error="Budget line's `tripwire <n>` field must be "
-                         f"an integer >= 1 ({raw!r} given)")
-        # st-30(3) (0.2.86 re-review finding 3): the --threshold < 1
-        # refusal above covered the flag alone — the header carrier
-        # (Budget's `/ tripwire <n>` field) reached this point
-        # unchecked, so `tripwire 0` armed on zero resolved rounds the
-        # same way a bare --threshold 0 used to.
-        if threshold < 1:
-            finish("USAGE_ERROR", 3,
-                   error="Budget line's `tripwire <n>` field must be "
-                         f">= 1 ({threshold} given)")
-        say(f"tripwire: armed from the Budget line's `tripwire "
-            f"{threshold}` field")
+        # st-35: an appended arming entry outranks the header field —
+        # the header must not be consulted once one exists (the whole
+        # point of the appended route is repairing a record seeded
+        # with a bad or absent header value).
+        arm_entries = [e for e in entries
+                       if e.cls == "F" and e.tag == "VERIFIED"
+                       and TRIPWIRE_ARM_RE.match(e.body)]
+        if arm_entries:
+            latest_arm = arm_entries[-1]
+            raw = TRIPWIRE_ARM_RE.match(latest_arm.body).group(1)
+            try:
+                threshold = int(raw)
+            except ValueError:
+                finish("USAGE_ERROR", 3,
+                       error=f"{latest_arm.id}'s tripwire-arming entry "
+                             f"must name an integer >= 1 ({raw!r} given)")
+            if threshold < 1:
+                finish("USAGE_ERROR", 3,
+                       error=f"{latest_arm.id}'s tripwire-arming entry "
+                             f"must name >= 1 ({threshold} given)")
+            say(f"tripwire: armed from {latest_arm.id}'s appended entry "
+                f"(tripwire armed at {threshold})")
+        else:
+            m = TRIPWIRE_BUDGET_RE.search(meta["budget"] or "")
+            if not m:
+                say("tripwire: unarmed — no --threshold given, no "
+                    "appended arming entry, and the Budget line "
+                    "carries no `tripwire <n>` field")
+                finish("TRIPWIRE_SILENT", 0, reason="unarmed", rounds=None,
+                       threshold=None, landed=None, v_lines=None, **meta)
+            raw = m.group(1)
+            # st-34 (N2) (0.2.87 checkpoint review): a PRESENT field that
+            # does not parse as an integer at all (`tripwire -1` no longer
+            # misses TRIPWIRE_BUDGET_RE's match, now that it captures any
+            # token) is refused the same way as a sub-1 value below —
+            # never silently read as unarmed. An ABSENT field is the only
+            # case that stays unarmed (the `not m` branch above).
+            try:
+                threshold = int(raw)
+            except ValueError:
+                finish("USAGE_ERROR", 3,
+                       error="Budget line's `tripwire <n>` field must be "
+                             f"an integer >= 1 ({raw!r} given)")
+            # st-30(3) (0.2.86 re-review finding 3): the --threshold < 1
+            # refusal above covered the flag alone — the header carrier
+            # (Budget's `/ tripwire <n>` field) reached this point
+            # unchecked, so `tripwire 0` armed on zero resolved rounds the
+            # same way a bare --threshold 0 used to.
+            if threshold < 1:
+                finish("USAGE_ERROR", 3,
+                       error="Budget line's `tripwire <n>` field must be "
+                             f">= 1 ({threshold} given)")
+            say(f"tripwire: armed from the Budget line's `tripwire "
+                f"{threshold}` field")
     bounds, _, _, _, _ = trend_over_rounds(entries)
     rounds = len(bounds)
     # any landing mention counts, indented (the sanctioned form) or

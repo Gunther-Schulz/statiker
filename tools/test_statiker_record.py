@@ -1391,6 +1391,84 @@ class TestSt34N2BudgetHeaderTripwireRejectsNonInteger(RecordFixture):
         self.assertEqual(v["reason"], "silent", v)
 
 
+# --------- st-35: the tripwire's arming carrier moves to an appended
+# --------- record entry (dev-notes/OBSERVATIONS.md, 2026-09-12 ruling)
+
+HEADER_TRIPWIRE_ZERO = ("# Run: test\nStatus: in-progress\n"
+                        "Phase: investigate-design\nSkill: statiker 0.2.33\n"
+                        "Budget: cycles 7 / rounds 4 / verify 3 / "
+                        "tripwire 0\n\n"
+                        "## Cycle 1\n")
+
+
+class TestSt35TripwireArmingCarrier(RecordFixture):
+    """st-35 ruling: `tripwire` resolves its threshold as --threshold
+    (always overriding) > the LATEST appended `record: tripwire armed
+    at <n>` entry > the header Budget line's `/ tripwire <n>` field >
+    unarmed — so an appended arm REPAIRS a record seeded with a bad or
+    absent header value; the header is never consulted once an arming
+    entry exists. R1 (the bite): a header `tripwire 0` gave
+    USAGE_ERROR before this change ("must be >= 1 (0 given)"); the
+    appended arm now decides instead and the header is never reached.
+    R2/R3 are the unchanged controls (no appended entry; --threshold
+    still wins over an appended arm). R4: a bad appended value is
+    refused, naming the ENTRY, not the Budget line."""
+
+    def test_r1_appended_arm_repairs_a_bad_header_value(self):
+        # TODAY (pre-st-35): USAGE_ERROR. AFTER: the appended entry
+        # decides — armed at 2, the bad header value never reached.
+        body = "- F1 [VERIFIED] record: tripwire armed at 2 — basis: desk\n"
+        v = self.tripwire(body, header=HEADER_TRIPWIRE_ZERO)
+        self.assertNotEqual(v["verdict"], "USAGE_ERROR", v)
+        self.assertEqual(v["threshold"], 2, v)
+
+    def test_r1_control_header_alone_still_usage_errors(self):
+        # the unprobed case: no appended entry, the bad header value
+        # alone still refuses — the probed result (armed at 2) differs
+        # from this unprobed one (USAGE_ERROR)
+        v = self.tripwire("", header=HEADER_TRIPWIRE_ZERO)
+        self.assertEqual(v["verdict"], "USAGE_ERROR", v)
+
+    def test_r2_no_appended_entry_the_header_field_still_decides(self):
+        v = self.tripwire("", header=HEADER_WITH_TRIPWIRE_BUDGET)
+        self.assertEqual(v["verdict"], "TRIPWIRE_SILENT", v)
+        self.assertEqual(v["reason"], "silent", v)
+        self.assertEqual(v["threshold"], 5, v)
+
+    def test_r3_explicit_threshold_still_overrides_an_appended_arm(self):
+        body = "- F1 [VERIFIED] record: tripwire armed at 2 — basis: desk\n"
+        v = self.tripwire(body, threshold=3,
+                          header=HEADER_WITH_TRIPWIRE_BUDGET)
+        self.assertEqual(v["threshold"], 3, v)
+
+    def test_r4_a_bad_appended_arm_is_refused_naming_the_entry(self):
+        body = "- F1 [VERIFIED] record: tripwire armed at 0 — basis: desk\n"
+        v = self.tripwire(body, header=HEADER_TRIPWIRE_ZERO)
+        self.assertEqual(v["verdict"], "USAGE_ERROR", v)
+        self.assertIn("F1", v["error"], v)
+        self.assertNotIn("Budget", v["error"], v)
+
+    def test_a_non_integer_appended_arm_is_refused(self):
+        body = ("- F1 [VERIFIED] record: tripwire armed at abc "
+                "— basis: desk\n")
+        v = self.tripwire(body, header=HEADER_TRIPWIRE_ZERO)
+        self.assertEqual(v["verdict"], "USAGE_ERROR", v)
+        self.assertIn("F1", v["error"], v)
+
+    def test_the_latest_appended_arm_wins_over_an_earlier_one(self):
+        body = ("- F1 [VERIFIED] record: tripwire armed at 2 — basis: desk\n"
+                "- F2 [VERIFIED] record: tripwire armed at 5 — basis: "
+                "operator\n")
+        v = self.tripwire(body, header=HEADER_TRIPWIRE_ZERO)
+        self.assertEqual(v["threshold"], 5, v)
+
+    def test_the_quoted_operator_line_form_parses_too(self):
+        body = ('- F1 [VERIFIED] record: tripwire armed at 3 — "raise it, '
+                'we have runway" — basis: operator\n')
+        v = self.tripwire(body, header=HEADER_TRIPWIRE_ZERO)
+        self.assertEqual(v["threshold"], 3, v)
+
+
 # -------------------------------------------------------------------- filter
 
 class TestFilter(RecordFixture):
@@ -3416,6 +3494,35 @@ class TestEIPinned(PinnedFixture):
         v = self.pinned(sha)
         self.assertEqual(v["verdict"], "PINNED_REWRITTEN")
         self.assertIn("left its line", v["evidence"])
+
+
+class TestSt35PinnedRouteControl(PinnedFixture):
+    """R1b (the control that records why the route changed): repairing
+    a tracker's tripwire bind by editing the Budget header line IN
+    PLACE still reads PINNED_REWRITTEN — the shape the pin predicate
+    has always caught — while appending a `record: tripwire armed at
+    <n>` entry reads PINNED_APPEND_ONLY. This arm must show NO
+    movement: it is the evidence that st-35 moved the page to the tool
+    (an appended entry) and not the tool to the page — the Budget line
+    stays out of `pinned`'s mutable set, `_mutable_field_positions`
+    untouched by this change."""
+
+    def pinned(self, sha, tracker="t.md"):
+        return self.verdict(tool(
+            ["pinned", "--tracker", tracker, "--sha", sha], cwd=self.dir))
+
+    def test_in_place_budget_repair_still_reads_rewritten(self):
+        sha = self.committed_repo(HEADER_TRIPWIRE_ZERO)
+        (self.dir / "t.md").write_text(
+            HEADER_TRIPWIRE_ZERO.replace("tripwire 0", "tripwire 2"))
+        self.assertEqual(self.pinned(sha)["verdict"], "PINNED_REWRITTEN")
+
+    def test_appended_arming_entry_reads_append_only(self):
+        sha = self.committed_repo(HEADER_TRIPWIRE_ZERO)
+        with (self.dir / "t.md").open("a") as f:
+            f.write("- F1 [VERIFIED] record: tripwire armed at 2 "
+                    "— basis: desk\n")
+        self.assertEqual(self.pinned(sha)["verdict"], "PINNED_APPEND_ONLY")
 
 
 # --------- st-30(7): `pinned` resolves --sha once, mirroring `filter`

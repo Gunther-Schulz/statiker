@@ -251,13 +251,20 @@ defaults 7 / 4 / 3, declared at run start where a successor reads
 it (an unattended loop without a declared bound terminates on
 context death, the one ending that produces no readable verdict).
 The line takes an optional trailing `/ tripwire <n>` field — the
-zero-landed tripwire's own arming carrier, written at seed; arming
-a LIVE run means editing the Budget header line in place (header
-fields are mutable state, not entries — the tool reads only the
-first `Budget:` line, so an amendment F-line records the operator's
-authority but never arms), or passing `--threshold` at the seam. A
-Budget line with no `tripwire` field leaves the breaker unarmed
-(below).
+zero-landed tripwire's own arming carrier, written at seed. Arming a
+LIVE run, or tightening an already-armed one, LANDS as an appended
+`record: `-scoped entry (the header is pinned surface, never
+rewritten): `- F<n> [VERIFIED] record: tripwire armed at <n>[ —
+"<the operator's line verbatim>"] — basis: <operator|desk>`; the
+tool resolves the threshold as `--threshold` (always overriding) >
+the LATEST such entry > the header Budget line's `/ tripwire <n>`
+field > unarmed, so an appended arm REPAIRS a record seeded with a
+bad or absent header value — the header is never consulted once an
+arming entry exists. Arming, or tightening an armed tripwire, is the
+desk's; RAISING the threshold or disarming is an operator decision,
+the same split the budget bound below carries (basis: operator on
+that entry). A Budget line with no `tripwire` field and no appended
+arming entry leaves the breaker unarmed (below).
 Exhaustion never continues silently: attended it forces the operator
 prompt; unattended the cap is a SAFETY ESCAPE only — hitting it
 STOPS-AND-REPORTS for the operator, never grades FAILED by itself.
