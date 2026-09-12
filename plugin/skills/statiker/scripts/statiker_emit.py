@@ -124,23 +124,23 @@ ROUTES = {
     "TREND_RECORD_MALFORMED": "repair-from-verdict",
     "SUSTAIN_RECORD_MALFORMED": "repair-from-verdict",
     "TRIPWIRE_RECORD_MALFORMED": "repair-from-verdict",
-    # barred (3)
+    # barred (4; SUSTAIN_DENIED moved here 0.2.89 fix — the
+    # fail-closed floor, dev-notes/OBSERVATIONS.md "0.2.89
+    # checkpoint-review dispositions")
     "CLOSURE_ABSENT": "barred",
     "CLOSURE_VOID": "barred",
     "UNIT_HELD": "barred",
+    "SUSTAIN_DENIED": "barred",
     # narrow (1)
     "TRIPWIRE_FIRES": "narrow",
     # triage (1)
     "VERIFY_COPY_STALE": "triage",
     # surface (1)
     "PINNED_REWRITTEN": "surface",
-    # halt (9; 4 of these — PATH_OUTSIDE_REPO, USAGE_ERROR, GIT_ERROR,
-    # INTERNAL_ERROR — are keyed above from the git tool's list; SUSTAIN_DENIED
-    # moved here 0.2.89 fix — the fail-closed floor, dev-notes/OBSERVATIONS.md
-    # "0.2.89 checkpoint-review dispositions")
+    # halt (8; 4 of these — PATH_OUTSIDE_REPO, USAGE_ERROR, GIT_ERROR,
+    # INTERNAL_ERROR — are keyed above from the git tool's list)
     "UNIT_UNKNOWN": "halt",
     "ARTIFACT_IN_REPO": "halt",
     "PIN_UNREADABLE": "halt",
     "TRACKER_UNREADABLE": "halt",
-    "SUSTAIN_DENIED": "halt",
 }
