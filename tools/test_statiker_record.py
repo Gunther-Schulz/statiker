@@ -12,7 +12,6 @@ clippy-stats source read 2026-08-07 (0.12.4).
 Run: python3 tools/test_statiker_record.py
 """
 
-import itertools
 import json
 import os
 import shutil
@@ -5613,7 +5612,13 @@ class TestGoldenCorpusSweep(unittest.TestCase):
     tracker: a minimal header whose Phase line is valid and placed
     past ADMISSION_WINDOW (line 20), nothing else present. EXEMPT is
     now {} — every RULE_MINT_VERSION code has a golden row in one
-    pair or the other, kept disjoint (asserted below).
+    pair or the other. st-34 (n1): a code's row is not required to be
+    disjoint across pairs — a code legitimately present in both is not
+    itself a defect, and a code MOVING between pairs already shows as
+    REMOVED/ADDED in test_sweep_hit_set_matches_golden above, so the
+    cross-pair disjointness assertion this class used to carry only
+    duplicated that coverage while over-firing on the legitimate case;
+    removed.
 
     Red-first proof (executed manually against the committed
     fixtures before each version of this class was trusted — not
@@ -5722,11 +5727,9 @@ class TestGoldenCorpusSweep(unittest.TestCase):
 
     def test_coverage_matches_rule_mint_version(self):
         codes_in_golden = set()
-        per_pair_codes = []
         for _tracker, golden_path in GOLDEN_PAIRS:
-            codes = {g["code"] for g in json.loads(golden_path.read_text())}
-            per_pair_codes.append(codes)
-            codes_in_golden |= codes
+            codes_in_golden |= {g["code"]
+                                for g in json.loads(golden_path.read_text())}
         self.assertEqual(codes_in_golden & set(self.EXEMPT), set(),
                          "an EXEMPT code must never also carry a golden row")
         self.assertEqual(
@@ -5734,17 +5737,11 @@ class TestGoldenCorpusSweep(unittest.TestCase):
             "every RULE_MINT_VERSION code needs a golden row (in any "
             "pair) or an EXEMPT entry — a new code with neither is exactly "
             "what this red-first coverage assertion exists to catch")
-        # disjointness: no code's positive row is duplicated across two
-        # DIFFERENT pairs — each RULE_MINT_VERSION code has exactly one
-        # golden home, so a code migrating pairs is visible, not silent.
-        # itertools.combinations rather than a hardcoded pair index: the
-        # check holds for any number of registered pairs, not only two.
-        for a, b in itertools.combinations(range(len(per_pair_codes)), 2):
-            overlap = per_pair_codes[a] & per_pair_codes[b]
-            self.assertEqual(
-                overlap, set(),
-                f"code(s) with a golden row in both {GOLDEN_PAIRS[a][0].name} "
-                f"and {GOLDEN_PAIRS[b][0].name}: {overlap}")
+        # st-34 (n1): the cross-pair disjointness assertion this method
+        # used to carry here is REMOVED — it fired on a code
+        # legitimately present in both trackers, which is not a
+        # defect; a code MOVING between pairs already shows as
+        # REMOVED/ADDED in test_sweep_hit_set_matches_golden above.
 
 
 # ----- st-30(1): declarator-bookkeeping's violation TEXT (and the
