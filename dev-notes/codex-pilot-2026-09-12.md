@@ -604,3 +604,133 @@ tracker outside any git repo halts before linting. The fix was a
 `git init` scratch repo, and the control above (unmutated copy
 inside it reproduces the baseline, line-31 included) is what proves
 the instrument was live before any mutant was believed.
+
+## st-43 ADJUDICATION (2026-09-12, statiker-f7): 4 of 7 confirmed, 2 refuted, 1 confirmed-but-not-a-defect
+
+All seven replay candidates adjudicated against the page's definitions
+and tool behaviour AT HEAD (c031678), each with an executed pair. Line
+numbers re-anchored here by content, not carried from the review
+object.
+
+### CONFIRMED — A1: a valueless `/ tripwire` silently unarms the breaker
+
+`TRIPWIRE_BUDGET_RE = re.compile(r"/\s*tripwire\s+(\S+)")` requires a
+value, so a Budget header ending `/ tripwire` with nothing after it
+does not match, falls to the `not m` branch, and the run reads
+UNARMED. Worse, that branch's own evidence line says the header
+"carries no `tripwire <n>` field" — false for a line that carries the
+field and omits the value.
+
+This is st-34 N2's own defect class surviving one shape. That fix's
+docstring names the failure exactly: "the breaker silently off,
+indistinguishable from a Budget line that never named `tripwire`". N2
+closed the non-numeric case; the VALUELESS case still does it.
+
+Executed pair (probe tracker, HEAD tool):
+
+    header `/ tripwire 2`    -> TRIPWIRE_SILENT threshold=2   (control)
+    header `/ tripwire abc`  -> USAGE_ERROR                   (control)
+    header `/ tripwire `     -> TRIPWIRE_SILENT unarmed, ZERO lints  <-- bite
+
+The entry carrier has a near-miss class for exactly this reason
+(`tripwire-arm-near-miss`, 0.2.89 B3, minted because "an arming
+entry's whole purpose is to be load-bearing at a seam nobody
+re-reads"). The header carrier has none, and the same argument applies
+to it verbatim.
+
+### CONFIRMED — A2: `section_pointers` collapses its own population on a heading rename
+
+`test_contract.py`'s `section_pointers` builds its match `names` from
+the page's CURRENT `## ` headings, so a pointer naming a heading that
+was RENAMED stops matching the pattern at all: it leaves `found`
+rather than entering `unresolved`. The check degrades to silence
+exactly when it should fire. `assertTrue(found)` catches only TOTAL
+collapse, never partial.
+
+Executed pair, over the real page:
+
+    baseline:  found=4  unresolved=0   -> green
+    rename the `Implementation` heading (2 of the 4 pointers name it):
+               found=2  unresolved=0   -> STILL GREEN
+
+Two pointers now name a section that does not exist — the precise
+defect this instrument exists to catch — and it reports clean. Same
+parentage class the corpus names: an expectation derived from the
+artifact it grades moves with the mutant.
+
+### CONFIRMED — A3: the pinned race arm pins the sha half only (narrow)
+
+`test_pinned_emits_the_sha_whose_content_it_read` and its `filter`
+sibling assert `v["sha"] == commit_a` plus an instrument check that
+the shim fired. Neither asserts that the CONTENT read came from
+commit_a — while the docstring states that premise as fact ("the
+commit whose content both the fixed and the broken tool read").
+Astra's claim is true as stated. Severity is low: a resolve-once tool
+takes content and sha from the same resolution by construction, so no
+currently reachable defect sits behind the gap. One added content
+assertion closes it and makes the docstring's premise checked rather
+than asserted.
+
+### CONFIRMED — A4: the page's head-boundary rule omits the tool's Requirement-head exception
+
+The tool (statiker_record.py, the ES-1/E-L block) does NOT end the
+head region at the first `## ` heading when that heading is titled
+"Requirement head" (case-insensitive): the region then runs to the
+NEXT heading, or EOF. The page states the rule without the exception —
+"the FIRST `## ` heading closes the head region", and "the requirement
+head above the first `## ` heading parse NO entries".
+
+The tool is authoritative here by the page's own precedence rule: "The
+two scripts plus their red-first battery are the EXECUTABLE SPEC of
+the record grammar … a divergence is graded against the battery, never
+against this page's wording." So the finding is against the PAGE, and
+the fix is one sentence of page text, not a tool change.
+
+### REFUTED — T1: a desk-basis RAISE is accepted because that was decided
+
+Terra is right about the behaviour and wrong that it is a defect.
+Executed: armed at 2 `basis: operator`, then an appended entry at 9
+`basis: desk` -> threshold resolves 9, no refusal, no lint. The page
+reserves raising to the operator, and the tool does not enforce it —
+deliberately. LEDGER:27 (the st-35 ruling) decides it: "Authority
+stays prose — tightening the desk's, loosening the operator's; n=0
+incidents for a desk loosening its own breaker." Mechanizing a
+judgment-shaped authority condition is the over-firing class the
+mechanism bar excludes. No change.
+
+### REFUTED — T2: no trailing garbage is accepted, on any of the three carriers
+
+Executed across all three threshold carriers at HEAD:
+
+    --threshold:  2 ok | 2abc USAGE_ERROR | 0x2 USAGE_ERROR | 2.0 USAGE_ERROR
+    entry form:   2 ok | 2abc USAGE_ERROR | -1 USAGE_ERROR | 0 USAGE_ERROR | 2.0 USAGE_ERROR
+    Budget header:2 ok | abc USAGE_ERROR | -1 USAGE_ERROR
+
+Only a bare integer parses; surrounding whitespace is stripped by
+`int()`, which is not garbage. The claim does not reproduce. No change.
+
+### CONFIRMED AS BEHAVIOUR, NOT A DEFECT — A1-residual
+
+An arming entry whose operator quotation contains the literal
+` — basis:` splits at the FIRST occurrence, truncating `body_main` so
+TRIPWIRE_ARM_RE cannot match. Executed: such a line never arms
+(TRIPWIRE_SILENT, unarmed) AND raises `tripwire-arm-near-miss`. It
+fails LOUD, which is exactly the contract B3 minted. The limitation is
+real — an operator line containing that literal cannot be carried
+verbatim in the quotation slot and must be reworded — but a loud
+refusal is the designed outcome, not a bite. Recorded as a documented
+limitation; no patch.
+
+### DISPOSITION OF THE FOUR CONFIRMED
+
+Booked as ONE follow-on item rather than built here, and the reason is
+this repo's own batching convention: every one of the four touches
+payload or its battery, a payload mint touching machine-read semantics
+owes a fresh-context opus checkpoint review before the pin moves, and
+with NO run live a release buys nothing until a desk run consumes the
+pin. Four separate fixes would each spend a review round and a pin
+move; one lap spends one. The 0.2.89 pin moved hours ago, so this is
+precisely the "reviewed-ready work accumulates into one lap" case the
+2026-09-11 widening names. Fix designs are stated in the booked entry
+so a fresh context can execute them without re-deriving this
+adjudication.
