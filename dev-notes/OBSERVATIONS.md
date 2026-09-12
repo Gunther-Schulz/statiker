@@ -9365,3 +9365,45 @@ Whether the compression pass continues, and whether PLAN.md's 80–150
 stands, are the operator's — intent, not derivation. Surfaced this
 date with a recommendation. Lap C's booked re-derivation ("the number
 is an outcome, not a gate") is the seam where it lands either way.
+
+## 2026-09-12 — ADDENDUM: the ~1623 projection's staying half is a FLOOR, and the sign of lap B's net is not reliable
+
+The table lane's addendum reports a one-sided divergence between lap
+A's per-row target line counts and what lap A actually delivered.
+Re-measured independently at this desk (lap A's `target <n>` cells
+against non-blank counts over the lane's resolved ranges at 3c041e5):
+
+    rows checked 15 · over target 14 · at target 1 (T10) · under 0
+    sum target 197 · sum actual 246 · +49, ~25% light
+
+The lane reported 15/15 and +38 (~19%); the per-row actuals differ
+slightly (range-boundary convention — lap A's shared-line rule lets a
+range's first line carry the previous row's tail). The discrepancy is
+immaterial: the DIRECTION is one-sided in both measurements, which a
+mere counting-convention difference would not produce, and the
+magnitude is ~20% either way.
+
+**Consequence, and it reaches the number this desk already quoted.**
+The 444 STAYING figure is not a measurement — it is a sum of targets
+for text a build lane has yet to compose, of exactly the same kind as
+lap A's, written by the same class of instrument. If it runs ~20%
+light as lap A's did, the staying text lands near 533 against the 510
+non-blank lines standing there today. Lap B would then leave the page
+LARGER, not 15 lines smaller.
+
+So the honest statement of lap B's page effect is: **removals 66,
+measured; additions 51, measured; staying text a target whose class has
+historically overrun by ~20%, which is enough to flip the net's sign.**
+The ~1623 projection is quoted with that caveat or not quoted. The
+FINDING is unaffected and if anything strengthened — a heavy lap whose
+net line effect cannot be signed is not a size programme.
+
+**Also from the addendum, for stage 2 (verified in kind by this desk:
+the st-35 arming change is mine):** lap A's must-survive cell for R13
+is SUPERSEDED. It specifies the old two-source threshold rule
+("--threshold … or the header Budget line's field, --threshold always
+overriding"); the page at :279-281 now states the arming-carrier rule.
+The lane dispositioned R13 against the page, which is correct, and the
+stage-2 brief must say plainly that lap A's cell is dead text for that
+row — a build lane composing from it would reintroduce a rule this
+batch removed two hours earlier.
