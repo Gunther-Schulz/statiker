@@ -11,7 +11,8 @@ Working copy: `/home/g/dev/Gunther-Schulz/statiker`, at current
 HEAD (cb3def8 or later; report the sha you started from). Shared
 copy — commit by pathspec, unpushed, never amend, never `git add`.
 
-READ FIRST (slot h names what you actually read):
+GROUNDING-BASIS — read before building (slot h names what you
+actually read):
 1. `ITEMS.md`, the `## st-44` block — the authoritative
    done-criterion; its text governs over this brief on conflict.
 2. `dev-notes/codex-pilot-2026-09-12.md`, section "Stage-2d
