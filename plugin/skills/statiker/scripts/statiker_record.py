@@ -159,7 +159,15 @@ BUDGET_ROUNDS_RE = re.compile(r"\brounds\s+(\d+)\b")
 # unarmed branch below, silencing the breaker instead of refusing the
 # invocation; the caller (cmd_tripwire) parses the token and refuses a
 # non-integer or sub-1 value the way --threshold refuses one.
-TRIPWIRE_BUDGET_RE = re.compile(r"\btripwire\s+(\S+)")
+# 0.2.89 fix (N2, dev-notes/OBSERVATIONS.md "0.2.89 checkpoint-review
+# dispositions"): the bare `\btripwire\s+(\S+)` form dropped the
+# page's own `/` anchor (SKILL.md, "an optional trailing `/ tripwire
+# <n>` field") — the word "tripwire" appearing ANYWHERE in the Budget
+# line (e.g. prose noting it will be "armed later by entry") matched
+# and hard-failed the subcommand on a non-numeric capture. Anchored on
+# the declared `/` form; a present `/ tripwire <x>` still refuses a
+# non-integer or sub-1 value exactly as before (st-34 N2 unchanged).
+TRIPWIRE_BUDGET_RE = re.compile(r"/\s*tripwire\s+(\S+)")
 # st-35 (dev-notes/OBSERVATIONS.md, "the tripwire's arming carrier"
 # ruling): the appended arming route — arming, or tightening an armed
 # tripwire, lands as an ordinary `record: `-scoped F-line (SCOPE_EXACT_RE
