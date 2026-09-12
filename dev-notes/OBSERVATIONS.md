@@ -9043,3 +9043,114 @@ Release checklist, executed against the payload at 0775b92:
   c18a6815e57215a78fffbccb963fc1e02e4913e0 = the pushed HEAD, installPath
   cache/statiker/statiker/0.2.88. No lane runs between the pin move and
   the operator's /reload-plugins.
+
+## 2026-09-12 — st-35 ruling (statiker-df, opus desk): the tripwire's arming carrier
+
+The question st-35 booked (0.2.87 review N3): the page arms a LIVE
+run's tripwire by an IN-PLACE Budget-header edit, while three other
+page passages and `pinned` treat any non-Status/Phase header edit as a
+rewrite. Ruling below, designed at the desk with its basis, before any
+build — st-35's own done-criterion demands that order.
+
+**RULING: the in-place arming route LEAVES. Arming lands as an appended
+`record: `-scoped entry, and `tripwire` reads the LATEST such entry
+over the header Budget line's field.** The rejected alternative is
+admitting the Budget line into `pinned`'s mutable set.
+
+Basis, all four reads executed at 62a90d9:
+
+1. **The page already rules this way for the other field on the SAME
+   header line.** SKILL.md:291-303 (budget bound): "An operator raise
+   LANDS as an ordinary entry quoting the operator's line (the header
+   is pinned surface, never rewritten), and every later exhaustion
+   check reads the LATEST such entry over the header's default", with
+   the template `- F<n> [VERIFIED] record: budget raised to cycles <n>
+   / rounds <n> / verify <n> — "<operator's line verbatim>" — basis:
+   operator`. The in-place arming clause at :253-260 is the OUTLIER on
+   its own line, not the rule it deviates from.
+2. **The tool agrees with the majority reading.**
+   `_mutable_field_positions` (statiker_record.py:2682-2695) exempts
+   the first `Status:` and first `Phase:` lines only, and its docstring
+   cites SKILL.md's "The record's one mutable surface" sentence
+   (:405-407) as its authority. :176-177 and :414-420 say the same.
+   Three page passages plus the tool on one side, one clause on the
+   other.
+3. **The rejected alternative's cost sits where it is least
+   affordable.** `pinned`'s exemption is LINE-granular — at the exempt
+   position "only the field's presence binds" (docstring :2707-2708,
+   loop :2764-2768), the value is unchecked. Admitting the Budget line
+   would therefore make the budget BOUND silently rewritable, which is
+   exactly the operator-owned quantity :291-295 protects ("the desk
+   SPENDS the budget and never raises it"). A field-granular exemption
+   would avoid that, at the price of new parse machinery inside the one
+   check the page calls "the one thing it cannot fool" (:419-420).
+4. **No new grammar is needed for the chosen route.** `record: ` is
+   already a scope opener (`SCOPE_EXACT_RE`, statiker_record.py:378),
+   a `record: `-scoped F-line is already classified as desk bookkeeping
+   and excluded from "the newest round's findings" (:2265-2280, P26),
+   and `basis:` is free text (only id citations are extracted, :885).
+   So the arming entry is an ORDINARY entry in an existing form and the
+   change is READ-SIDE only. This is the fix-placement rule's second
+   axis: the change reuses what the site already computes and
+   introduces no concept the site did not have.
+
+**Resolution order (the design the build lane implements).**
+`--threshold` (always overriding) > the LATEST appended arming entry >
+the header Budget line's `/ tripwire <n>` field > unarmed. The `>= 1`
+refusal applies to whichever source DECIDES — so an appended arm
+REPAIRS a record seeded `tripwire 0` (today USAGE_ERROR exit 3,
+statiker_record.py:2476-2479, at every round open), and a bad appended
+value is refused the same way. Ordering matters here and is the point
+of the ruling: consulted after the header, the appended arm would leave
+the recorded bind in place.
+
+**Entry template** (one form, the quote optional):
+`- F<n> [VERIFIED] record: tripwire armed at <n>[ — "<the operator's
+line verbatim>"] — basis: <operator|desk>`
+
+**Authority stays PROSE, deliberately.** Arming, or tightening an armed
+tripwire, is the desk's — the tripwire only ever STOPS and reports, it
+never grades (SKILL.md:261-263). RAISING the threshold or disarming is
+a loosening and is an operator decision, the same split the budget
+bound already carries. Not mechanized: the incident population for a
+desk loosening its own breaker is n=0, while the incident that DID bite
+is the unreadable arm; a gate here would be a check minted ahead of its
+defect class (the economics lens — the mint names the class it catches,
+and this one has none yet).
+
+**Page edits owed** (lap scope, page side): :253-260's in-place clause
+is replaced by the appended route, and its sentence "an amendment
+F-line records the operator's authority but never arms" goes — it stops
+being true. :176-177, :405-410 and :414-420 are untouched: they were
+already correct and are now uncontradicted. `_mutable_field_positions`
+is untouched.
+
+**Red-first arrangement for the build lane** (baseline stated first:
+the unmutated suite's result, then each arm):
+- R1 (the bite): a tracker pinned with header `/ tripwire 0` plus an
+  appended `- F<n> [VERIFIED] record: tripwire armed at 2 — basis:
+  desk`. TODAY: USAGE_ERROR exit 3, "Budget line's `tripwire <n>` field
+  must be >= 1 (0 given)". AFTER: armed at 2. Discrimination: the
+  probed result equals the outcome the probe names (armed at 2) and
+  differs from the unprobed one (USAGE_ERROR).
+- R1b (why the route changed, kept as the control that records it):
+  repairing the same record by editing the Budget line IN PLACE gives
+  `pinned` → PINNED_REWRITTEN, both before and after; the appended
+  route gives PINNED_APPEND_ONLY, both before and after. The pin
+  verdict is what separates the two routes, and it is unaffected by
+  this change — which is the evidence that the ruling moved the page to
+  the tool rather than the tool to the page.
+- R2 (control, unchanged): no appended arming entry → the header field
+  still decides.
+- R3 (control, unchanged): `--threshold 3` with an appended arm at 2 →
+  3 wins.
+- R4: an appended arm at 0 → USAGE_ERROR whose message names the
+  ENTRY as the source, not the Budget line.
+
+**Sequencing.** st-35's build write-set overlaps the st-34 lane's
+(`statiker_record.py`, `tools/test_statiker_record.py`), so it
+serializes behind that lane in the 0.2.89 batch — never a parallel
+lane. It also gains urgency from st-34's own N2: once a present-but-
+unparseable `tripwire` field is refused like `--threshold`, the
+population of records stuck in this bind grows, and the appended route
+is their only repair that `pinned` accepts.
