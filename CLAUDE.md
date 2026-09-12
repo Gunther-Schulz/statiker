@@ -302,6 +302,21 @@
   brief carries the diff since the last REVIEWED state, the full
   skill text, and the question, never the author's reasoning;
   every finding gets a recorded disposition before release.
+  WHERE TO PRESS, standing since 0.2.89: a verdict the page describes
+  at MORE THAN ONE location is where a route token and a page
+  disposition diverge silently — the token is one word and the seams
+  are prose, so the token can fail-open at the seam nobody re-read.
+  Five of the 0.2.89 review's ten findings were that one defect. It
+  stays a REVIEW INSTRUCTION and not a check: measured at 0.2.89, 24
+  of the registry's 76 verdicts are multi-location, so a gate over
+  that population fires on ordinary page edits and trains the
+  override reflex (the mechanism bar, corpus Calibration). The
+  reviewer is told to enumerate the multi-location verdicts and check
+  each token against EVERY seam that names it; the fail-closed floor
+  (Route vocabulary) is the rule they check against, and it applies
+  only where the seams actually differ — a verdict named twice for
+  one disposition (SUSTAIN_DENIED) takes its single disposition's
+  token, not the floor's tiebreak.
   Provenance for the split: iteration speed during the live trial
   (operator), priced by the 4-round review series' measured
   pattern — tool+battery-backed changes survived review while

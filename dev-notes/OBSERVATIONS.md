@@ -9718,3 +9718,94 @@ resolved silently in the snapshot's favour by a lane that does not ask.
 Instrument lesson filed to the owning instrument's repo
 (dispatch-guards `dev-notes/dispatch-OBSERVATIONS.md`), with the
 pre-formulated brief text.
+
+## 2026-09-12 — 0.2.89 repair lap verified at the artifact (sonnet-repair-0289, 6 commits) + 2 integration commits
+
+**Verified, not taken on the report's word.** Write boundary respected
+across all six commits (no `docs/`, `ITEMS.md`, `LEDGER.md`,
+`OBSERVATIONS.md`); base `15d0c47` ancestor-confirmed; tree clean;
+suite 563 passed / 2 subtests / 0 failed / **0 skipped**; page 1706
+operational lines (base 1689, +17 as reported). The eight derived
+per-route count comments in `statiker_emit.py` all match the mapping —
+checked mechanically, and my own checker threw TWO false mismatches by
+ignoring exclusions the comments themselves state ("the 4 shared names
+above are not repeated here"; "4 of these are keyed above from the git
+tool's list"). Both resolved by opening the file. A self-built tally is
+the instrument, and its boundary choice is the basis — recorded because
+the false mismatches were finding-shaped and would have read as defects.
+
+**The lane's own defect, self-caught.** It committed SUSTAIN_DENIED as
+`halt` against the brief's explicit `barred`, rationalised it in part
+1/3 as brief ambiguity, then caught it re-reading the brief against its
+own diff and fixed it in a new commit (`6a43dc0`, never amended) before
+finishing the report. Its named cause is right: it generalised from
+BLOCKED_CONTENTION / UNIT_GATE_BLOCKED / UNIT_COLLISION (all → `halt`)
+and let the pattern override the table's different fourth entry.
+
+**The desk ruling that settles the token** (issued while the correction
+was still uncommitted; it had landed by the time the ruling arrived).
+SUSTAIN_DENIED is `barred`, and the fail-closed floor DOES NOT REACH
+IT: the floor breaks ties among a verdict's DIFFERING seam
+dispositions, and SUSTAIN_DENIED has exactly one — the never-sustain
+round-open gate, named identically at SKILL.md:94-96 and :1250-1261.
+`narrow` was wrong on B1's own grounds (the gate closes design, it does
+not re-scope the head), and the gate's shape is `barred`'s by the
+token's definition at :144-148: the tool ran, the denial is computed
+from run state already in the record, and the page books it by quoting
+the verdict in the round-open line rather than as an F-line. Forcing
+`halt` would have booked an F-line and stopped a seam the page
+continues — a conduct CHANGE, against the dispositions' own
+conduct-preserving constraint. MY SHARE: the dispositions record named
+B1's defect and never named the replacement token; the brief supplied
+`barred` without carrying the definitional read across, which is what
+invited the re-derivation. A brief that states a target token without
+its basis is a ruling asserting state without its measurement.
+
+### Two integration commits, both from gaps the report did not name
+
+**`feda382` — R6 shipped with no permanent check.** Found by the suite
+count not moving across eight repairs (563 → 563). R6's bite was proven
+red-first in throwaway invocations and nothing pinned it, so
+re-widening `TRIPWIRE_BUDGET_RE` would have gone green. Built here:
+baseline stated first (3 passed unmutated at HEAD); with the regex
+reverted to the pre-R6 bare form the bite test goes RED (USAGE_ERROR on
+the word "armed" in Budget-line prose) while BOTH controls stay GREEN —
+the controls refuse a "fix" that merely stops the pattern matching
+anything. Script restored byte-identical (`git diff --quiet`) before
+the final run. Suite 563 → 566. R5 got this right via its golden row;
+R1's class is prose-shaped; R6 was the one where the check was cheap
+and simply absent, so the carrier's cost test refused a booking.
+
+**`c87c29b` — right value, wrong reason.** The lane's comment beside
+the corrected token cited "the fail-closed floor" as its basis. Left
+standing it teaches the next reader to apply the floor to
+single-disposition verdicts, where it over-states the token and
+silently changes conduct.
+
+### The instrument that did not survive its own dry run
+
+The class behind five of the review's ten findings — a route token
+contradicting the page's own disposition — was booked as a computable
+slice: count the page locations naming each verdict, flag the
+multi-location set as the population where divergence hides. The item
+carrier's cost test vetoed the booking (one file, one hunk, session
+live), correctly, and my stated absence was backwards: attack-timing
+argues the SAME direction, since a decided-but-unbuilt change must land
+BEFORE the round that grades the object, not after.
+
+So it went to build — and the dry run over real data killed the design:
+**24 of the registry's 76 verdicts are multi-location.** A gate over a
+third of the registry fires on ordinary page edits and trains the
+override reflex. Narrowing to permissive-token members leaves ~13, no
+better. The full predicate (does this token contradict this prose
+disposition?) is judgment-shaped; no tight computable slice exists at
+this grain.
+
+Mechanism bar UNMET, so the judgment remainder took a carrier instead:
+CLAUDE.md's checkpoint-review bullet now carries a standing WHERE TO
+PRESS instruction naming the multi-location population, with the
+measured 24/76 as the stated reason it is an instruction and not a
+check, and the boundary the SUSTAIN_DENIED ruling established (the
+floor applies only where seams actually DIFFER). Recorded as a
+criterion that sharpened on first contact with real cases — the dry-run
+requirement working, one round before it would have shipped.
