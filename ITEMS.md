@@ -143,6 +143,8 @@ amend-reason: 2026-09-10 blocker predicate made EXECUTABLE: item ready runs the 
 amended-blocked-by: 2026-09-10 evidence grep -q '^## lc-73' /home/g/dev/Gunther-Schulz/lifecycle/ITEMS-DONE.md
 amend-reason: 2026-09-12 Evidence refreshed after a peer relay concluded execute-a-run from lc-72's closure alone; the lifecycle record refutes that, and the stale lc-72 citation in this body is what misled
 amended-evidence: 2026-09-12 lc-72 (recognizer for date-led bullets) is CLOSED in lifecycle ITEMS-DONE.md:116 (verified 2026-09-12, statiker-58) and migrate --merge ships; but the merge was ALREADY EXECUTED here 2026-09-10 and structurally refused: FINDING merge_duplicate_body 20, nothing written (lifecycle lc-73's evidence slot records the run). lc-73 (READY in lifecycle ITEMS.md:451, blocked on its own duplicate-disposition design decision) carries lc-72's unmet cross-repo remainder; this item's predicate greps lc-73 and is correctly quiet. A desk reading only lc-72's closure re-derives execute-a-run wrongly, as the dotfiles drainage desk did 2026-09-12
+amend-reason: 2026-09-12 statiker-f7 relayed two facts from dotfiles-1a's lc-73 ruling that change how st-22 executes
+amended-evidence: 2026-09-12 lc-73 (lifecycle b452d88) execution facts (statiker-f7, 2026-09-12): (1) the live proof of the lc-73 fix is a statiker migrate re-run and THIS desk holds the consuming working copy — expect the lc-73 build to name this desk for the proof run; (2) that proof run is NOT a test: with lc-73 fixed the merge SUCCEEDS and performs the real ingestion of the 25 closure bodies into ITEMS-DONE.md — proof and production write are one act. Run it deliberately as st-22's execution, or against a copy first.
 
 ## st-26
 grade: PARKED
