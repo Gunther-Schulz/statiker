@@ -1165,7 +1165,12 @@ class TestRouteParity(unittest.TestCase):
     old `test_every_emitted_verdict_is_routed_in_skill` direction
     (deleted above) is replaced by a registry the tools themselves
     stamp into every verdict line — `statiker_emit.ROUTES` /
-    `ROUTE_VOCABULARY`, the single home both scripts already import.
+    `ROUTE_VOCABULARY`, the single home both scripts already import
+    — for the UNDRIVEN verdicts only: `test_every_observed_verdict_
+    is_routed_in_skill` (TestRuntimeVerdictBattery, above) still
+    enforces page naming, at runtime, for every verdict the battery
+    actually drives; only the frozen `UNDRIVEN_REMAINDER` names lost
+    that enforcement and now rest on the registry alone.
     `test_every_skill_named_verdict_is_emitted` (TestVerdictParity,
     above) still catches page rot on the residual verdict set the
     page legitimately keeps naming; only that one direction moved
