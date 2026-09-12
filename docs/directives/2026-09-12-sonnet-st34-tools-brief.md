@@ -23,9 +23,12 @@ Scratch: your OWN scratchpad. Name every scratch file with the slug
 - `dev-notes/OBSERVATIONS.md`, the section
   `## 2026-09-11 — 0.2.87 checkpoint-review dispositions` (line 8613 at
   base `6137ea3`, content anchor: the heading ends
-  "verdict: PIN MOVES — 0 blocking, 3 notable, 4 nits"). Findings N1,
-  N2, n1, n2, n3, n4 are your seven work items; N3 is NOT yours
-  (booked st-35, a desk ruling).
+  "verdict: PIN MOVES — 0 blocking, 3 notable, 4 nits"). The review
+  recorded SEVEN findings; SIX of them are yours — N1, N2, n1, n2, n3,
+  n4. N3 is NOT yours (booked st-35, a desk ruling).
+  (Corrected 2026-09-12 after the lane's critique pass: this line and
+  the design section's opener both read "seven" against a six-item
+  body. Six is right.)
 - `ITEMS.md`, entry `## st-34` (line 144 at base; content anchor:
   `grade: READY` followed by `requirement: 0.2.87 checkpoint-review
   residue`). Its `done-criterion` is the acceptance list — read it in
@@ -92,7 +95,7 @@ hit inline.
 
 ## The settled design — implement exactly this, do not redesign
 
-Seven items. Each lands as its own commit with its own red-first
+Six items. Each lands as its own commit with its own red-first
 arrangement, except where noted; state each red's arrangement (which
 side was old, where the expectation came from) in the report.
 
