@@ -5698,7 +5698,7 @@ class TestGoldenCorpusSweep(unittest.TestCase):
                 tracker_lines = tracker.read_text().split("\n")
                 verdict = self._sweep_verdict(tracker)
                 produced = self._hit_set(verdict, tracker_lines)
-                if os.environ.get("STATIKER_GOLDEN_REGEN"):
+                if os.environ.get("STATIKER_GOLDEN_REGEN") == "1":
                     golden_list = sorted(
                         [{"line": l, "code": c, "text": t}
                          for (l, c, t) in produced],
