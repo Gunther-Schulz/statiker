@@ -223,15 +223,6 @@ done-criterion: the instrument is repaired FIRST, then the test repeats, then th
 evidence: C4c FIELD TEST OUTCOME: CONFIRM recorded 2026-09-12 with its own severe variance caveat (1 of 10 findings graded); the batching tension entry of the same date, which locates the cause in the venue rather than the clause and names the two repair options; the batching decision itself (LEDGER 7e0572f, operator 2026-09-11), which is NOT re-opened by this: one round finding ten defects is the efficiency it was made for, and the entry is explicit that the batching harmed the measurement riding on the review, not the review
 blocked-by: decision which of the two named repairs the instrument takes (classify every batched item surface before dispatch, or restrict the graded population and state the denominator), taken before the next checkpoint review is briefed so the repeat can be pre-registered
 
-## st-38
-grade: READY
-requirement: Codex interop pilot: statiker runs with Claude, Codex, or both (operator, statiker-58 session 2026-09-12); coupling audit already measured SKILL.md near runner-neutral (0 tier names; 1 hit each claude/subagent/plugin; 63 executor-neutral 'dispatch')
-goal: general-maintenance
-write-set: READINESS.json,dev-notes/,docs/directives/
-done-criterion: stage 1: Codex certified for one mechanical lane class via the tier-readiness pipeline, recorded in READINESS.json with the record tools as grading instrument; stage 2: pre-registered cross-vendor attack-round comparison (fresh opus vs codex on one locked design), criterion in dev-notes BEFORE dispatch, divergence of finding sets graded; stage 3 (codex desk) explicitly parked, not part of done
-evidence: codex-cli 0.154.0 at /usr/bin/codex (command -v, 2026-09-12); dispatch-guards carries references/codex-routing.md (dispatch-side conduct facts); SKILL.md token counts measured at statiker-58 this date; self-containment criterion (CLAUDE.md 2026-08-17) is the audit question form; corpus 2026-09-12 fixing amendment (payload authorship shares blind spots) is stage 2's motivating rule
-blocked-by: decision does the staged Codex pilot get GO as proposed in statiker-58 on 2026-09-12 (stages 0-2 now, stage 3 parked)
-
 ## st-39
 grade: READY
 requirement: BACKLOG.md deletion pass: superseded carriers of migrated repos are DELETED, banners interim (operator decision 2026-09-12, verified at dotfiles docs/directives/2026-09-12-dotfiles-drainage-arc.md:27-42 by statiker-58; statiker named there as bannered interim d773e12, deletion ours since our sessions hold the copy)

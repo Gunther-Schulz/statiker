@@ -362,5 +362,17 @@ blocked-by: NONE
 closed-reason: 2026-09-12 Criterion resolved: both codex arms FAIL — astra 1/10 recovered (B3, blocking, desk-verified both at object and against HEAD's repair), terra 0/10; the review's dominant yield (the five-findings-one-defect route-token contract class) invisible to both arms though both audited the registry and called it clean — name parity checked, page-seam agreement never read. Codex is a structure-auditor, not a contract-reader; the reviewer role stays opus. Candidate new findings booked st-43. Full results + conduct notes + harness bindings in dev-notes/codex-pilot-2026-09-12.md Stage-2d.
 closed-ref: 0733f6a, 52c94c9
 
+## st-38
+grade: DONE
+requirement: Codex interop pilot: statiker runs with Claude, Codex, or both (operator, statiker-58 session 2026-09-12); coupling audit already measured SKILL.md near runner-neutral (0 tier names; 1 hit each claude/subagent/plugin; 63 executor-neutral 'dispatch')
+goal: general-maintenance
+write-set: READINESS.json,dev-notes/,docs/directives/
+done-criterion: stage 1: Codex certified for one mechanical lane class via the tier-readiness pipeline, recorded in READINESS.json with the record tools as grading instrument; stage 2: pre-registered cross-vendor attack-round comparison (fresh opus vs codex on one locked design), criterion in dev-notes BEFORE dispatch, divergence of finding sets graded; stage 3 (codex desk) explicitly parked, not part of done
+evidence: codex-cli 0.154.0 at /usr/bin/codex (command -v, 2026-09-12); dispatch-guards carries references/codex-routing.md (dispatch-side conduct facts); SKILL.md token counts measured at statiker-58 this date; self-containment criterion (CLAUDE.md 2026-08-17) is the audit question form; corpus 2026-09-12 fixing amendment (payload authorship shares blind spots) is stage 2's motivating rule
+blocked-by: NONE
+blocker-moot: does the staged Codex pilot get GO as proposed in statiker-58 on 2026-09-12 (stages 0-2 now, stage 3 parked)
+closed-reason: 2026-09-12 All three criterion legs resolved: stage-1 certification recorded in READINESS.json (read-side ready at sonnet parity, record tools the grading instrument); stage-2 cross-vendor attack comparison pre-registered and graded (astra 2 confirmed unique, opus 7 — both-arms verdict), extended by stages 2b/2c/2d (attack floor terra, implementation terra, reviewer EXCLUDED); stage-3 desk stays parked per the criterion's own scope. Program deliverable (economic-equivalents table) and full results: dev-notes/codex-pilot-2026-09-12.md. Global usage GO ledgered 2026-09-12.
+closed-ref: 3ba8a2b, 0dac603, 52c94c9
+
 ## Archive (pre-migration)
 
