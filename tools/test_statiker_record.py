@@ -6079,6 +6079,22 @@ class TestResolveOnceUnderAConcurrentCommit(unittest.TestCase):
     pre-race commit, and `filter` did the same — both arms red, both
     green at HEAD. Baseline stated first: the unmutated suite was green
     (543 passed) before the arm was written.
+
+    st-44 (A3, Stage-2d replay finding, adjudicated 58f9300): the two
+    assertions below asserted `v["sha"] == commit_a` plus the instrument
+    check that the shim fired, but neither asserted that the CONTENT
+    read came from commit_a — while this docstring states that premise
+    as fact ("the commit whose content both the fixed and the broken
+    tool read"). Severity is low: a resolve-once tool takes content and
+    sha from the same resolution by construction, so no currently
+    reachable defect sits behind the gap (a tool that resolved sha
+    correctly but read content from elsewhere would pass the sha check
+    and fail a content check — that pairing is what closes the gap).
+    Each test now also asserts on the content actually read: `pinned`'s
+    own divergence evidence names both sides' literal text, so the
+    PINNED side is asserted to carry commit_a's distinguishing phrase
+    and not commit_b's; `filter`'s `--out` artifact is asserted
+    byte-identical to TEXT_A.
     """
 
     TEXT_A = HEADER + "- F1 [VERIFIED] the pinned content — basis: design\n"
@@ -6140,6 +6156,23 @@ class TestResolveOnceUnderAConcurrentCommit(unittest.TestCase):
         self.assertEqual(
             v.get("sha"), self.commit_a,
             f"pinned emitted a sha it did not read at: {v}")
+        # A3: the sha check above does not by itself prove the CONTENT
+        # read came from commit_a — a tool that resolved sha correctly
+        # but read content elsewhere would still pass it. The race
+        # fixture diverges TEXT_A from TEXT_B at the tracker's one entry
+        # line, so `pinned` (comparing its pinned-side read against the
+        # post-race working tree) reports PINNED_REWRITTEN with an
+        # `evidence` field naming both sides verbatim; assert the
+        # pinned side carries commit_a's distinguishing text.
+        pinned_side = v.get("evidence", "").partition(" — current: ")[0]
+        self.assertIn(
+            "the pinned content", pinned_side,
+            f"pinned's own comparison did not show commit_a's content: "
+            f"{v}")
+        self.assertNotIn(
+            "the racing content", pinned_side,
+            f"pinned's own comparison showed commit_b's content on the "
+            f"pinned side: {v}")
 
     def test_filter_emits_the_sha_whose_content_it_read(self):
         out = self.root / "artifact.md"
@@ -6148,6 +6181,13 @@ class TestResolveOnceUnderAConcurrentCommit(unittest.TestCase):
         self.assertEqual(
             v.get("sha"), self.commit_a,
             f"filter emitted a sha it did not read at: {v}")
+        # A3: same gap as pinned's — assert the artifact filter actually
+        # wrote is commit_a's content, not only that it reports commit_a's
+        # sha.
+        self.assertEqual(
+            out.read_text(), self.TEXT_A,
+            f"filter's artifact content did not match commit_a's text: "
+            f"{v}")
 
 
 
