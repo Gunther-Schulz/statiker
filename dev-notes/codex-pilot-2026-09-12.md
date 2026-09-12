@@ -21,14 +21,18 @@ the harness runs): the statiker page
 (`expected-violations.json`, 34 (line, code) pairs, proven by the
 repo's own suite) never enters the workdir.
 
-**Arms.** The six models the local codex state lists (gpt-5.5,
-gpt-5.6-luna, gpt-5.6-sol, gpt-5.6-terra, gpt-6-astra, gpt-reserve;
-cached list — availability proven by the run, an unavailable model
-is recorded as such, not skipped silently), each via
+**Arms.** AMENDED before any scored run (operator, 2026-09-12,
+first-hand in statiker-58: "we don't need to test all six — just
+the tiers"): the tier-distinct models only — gpt-5.6-luna,
+gpt-5.6-sol, gpt-5.6-terra (the 5.6 ladder) and gpt-6-astra (the
+configured flagship default); gpt-5.5 (superseded generation) and
+gpt-reserve (fallback alias) dropped. Each via
 `codex exec -s read-only -m <model>` with an output JSON schema;
 plus ONE calibration arm: Claude sonnet via `claude -p` print mode,
 same prompt file verbatim. Identical prompt and vocabulary across
-all arms.
+all arms. An unavailable model is recorded as such, never skipped
+silently. (Original six-model list: cached codex state; superseded
+by this amendment — no scored arm ran before it.)
 
 **Prompt vocabulary.** The 30 violation codes the fixtures
 exercise, names only, no definitions — all 30 verified present as
