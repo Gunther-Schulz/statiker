@@ -233,7 +233,7 @@ deliverable, ledgered 2026-09-12)
 | read-side mechanical (lint/sweep comprehension) | sonnet | terra + luna + astra PASS at sonnet parity (stage 1); cheapest viable: luna | 46k–57k |
 | attack round | opus (reviewer default) | terra VIABLE for recovery-style; astra for unique yield (stages 2, 2b) | ~60k |
 | implementation (write-side) | sonnet | terra PASS (stage 2c: R6 replay, red-first, desk-verified 563/0; commit stays the dispatcher's — sandbox binding) | 32k |
-| reviewer replay (0.2.89 brief) | opus | st-41 READY, not yet run | — |
+| reviewer replay (0.2.89 brief) | opus | astra + terra FAIL (1/10 and 0/10 recovery; structure-auditors, not contract-readers) — the role STAYS OPUS | 83k / 115k |
 | desk | opus | stage 3 PARKED | — |
 
 Certification is per (role, model), never inferred down the ladder
@@ -401,6 +401,65 @@ pin. Prediction, registered first: astra recovers 2 of 3 blocking
 and 5-7 overall (narrowly misses the bar on the blocking clause);
 terra 1-2 blocking, 4-6 overall; neither produces a new confirmed
 blocking-severity finding.
+
+## Stage-2d RESULTS (2026-09-12, graded at statiker-58)
+
+Transcript audit: CLEAN both arms (zero reads outside the
+workdir). Tokens: astra 83,246; terra 115,269 — the reviewer
+object breaks the volume-is-tier-invariant pattern, and inversely
+(the cheaper tier spent 38% more for less yield).
+
+**Recovery: astra 1 of 10 (1 of 3 blocking); terra 0 of 10.**
+- Astra's single BLOCKING find recovers B3 by claim identity (the
+  arming form fails OPEN silently, lint clean) through a DISTINCT
+  input route: a documented quotation carrying ` — basis:` inside
+  it, split at the first separator, fails TRIPWIRE_ARM_RE and
+  read unarmed. Desk-verified both ways: red at the review
+  object, and at HEAD the landed B3 near-miss lint FIRES on
+  astra's exact input (executed probe, control clean) — the
+  silence is repaired; residually the documented quotation form
+  still cannot ARM, only lint, a usability question passed to
+  adjudication.
+- NEITHER arm found the review's dominant yield: the
+  multi-location route-token class (B1, B2, N3, N5, N6 — five
+  findings, one defect, the fail-closed-floor ruling). Both arms
+  ran a static route audit and declared it CLEAN — terra
+  explicitly: 76 names, 76 entries, all 8 vocabulary values. They
+  verified NAME PARITY, the mechanical half; the defect lived in
+  the page's seam PROSE disagreeing with the token — the
+  contract-semantics half only the historical opus arm read.
+  Neither found N1 (stale pointers), N2 (both probed the very
+  regex at :162 and reported ADJACENT malformations while missing
+  the one that bit), N4, or n1.
+- Candidate NEW findings, recorded not confirmed: astra 4 (bare
+  `/ tripwire` with no value silently unarmed vs the test's
+  claim; section_pointers population collapses when a destination
+  heading is renamed; the pinned race assertion checks SHA not
+  content; the page's first-heading boundary omits the
+  Requirement-head parser exception) and terra 2 (desk-basis
+  tripwire raise accepted against the page's operator
+  reservation; trailing garbage after a valid threshold accepted)
+  plus astra's residual above. Adjudication against HEAD and the
+  page's definitions is booked (st-43); per the registered
+  criterion, new findings do not substitute for blocking
+  recovery.
+
+**CRITERION RESOLVES: both arms FAIL — codex is NOT an opus-class
+reviewer in this repo, at either tier.** The registered
+prediction was wrong on the high side for both arms (astra
+predicted 2/3 + 5-7, actual 1/3 + 1/10; terra predicted 1-2 +
+4-6, actual 0/10) — recorded against the prediction. The shape of
+the failure is the certification content: codex audits STRUCTURE
+(name parity, set equality, executed probes on named mechanisms —
+its probes were real and its pairs discriminated) and does not
+read CONTRACT — page prose against tool behavior, the agreement
+this repo's review exists to check. The reviewer role stays with
+opus. Conduct notes: both arms correctly reported that the
+read-only sandbox blocked a pytest re-run (harness binding: a
+codex reviewer cannot re-verify the suite; the brief's supplied
+counts stay testimony to it); astra explicitly separated supplied
+evidence from its own executions and named its delivery-channel
+gap rather than improvising.
 
 ## Decisions this pre-registration does NOT cover
 
