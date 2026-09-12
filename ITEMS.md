@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 17
+added: 18
 compacted: 0
 
 ## st-10
@@ -227,3 +227,12 @@ write-set: READINESS.json,dev-notes/,docs/directives/
 done-criterion: stage 1: Codex certified for one mechanical lane class via the tier-readiness pipeline, recorded in READINESS.json with the record tools as grading instrument; stage 2: pre-registered cross-vendor attack-round comparison (fresh opus vs codex on one locked design), criterion in dev-notes BEFORE dispatch, divergence of finding sets graded; stage 3 (codex desk) explicitly parked, not part of done
 evidence: codex-cli 0.154.0 at /usr/bin/codex (command -v, 2026-09-12); dispatch-guards carries references/codex-routing.md (dispatch-side conduct facts); SKILL.md token counts measured at statiker-58 this date; self-containment criterion (CLAUDE.md 2026-08-17) is the audit question form; corpus 2026-09-12 fixing amendment (payload authorship shares blind spots) is stage 2's motivating rule
 blocked-by: decision does the staged Codex pilot get GO as proposed in statiker-58 on 2026-09-12 (stages 0-2 now, stage 3 parked)
+
+## st-39
+grade: READY
+requirement: BACKLOG.md deletion pass: superseded carriers of migrated repos are DELETED, banners interim (operator decision 2026-09-12, verified at dotfiles docs/directives/2026-09-12-dotfiles-drainage-arc.md:27-42 by statiker-58; statiker named there as bannered interim d773e12, deletion ours since our sessions hold the copy)
+goal: general-maintenance
+write-set: BACKLOG.md,ITEMS.md,CLAUDE.md
+done-criterion: BACKLOG.md deleted; every ITEMS.md evidence slot citing BACKLOG.md:NNN re-rooted to carry pinned blob a115998c inline (resolving via git cat-file -p a115998c) BEFORE the delete; inbound-reference triage stated as command plus hits in the deletion commit; deletion record in CLAUDE.md (the laws file) naming the cat-file resolution path with a negative control shown — the dispatch-guards worked pattern
+evidence: live line-cited ranges that must be re-rooted first, per statiker-f7 at the release gate: st-10 :279-317, st-12 :478-494, st-13 :495-523, st-15 :556-591, st-16 :592-602, st-17 :603-629, st-19 :646-662; freeze banner d773e12 held 983 lines so all currently resolve; lifecycle lc-86 (migrate deletes-with-record by default) is the tool half, booked in the drainage directive
+blocked-by: evidence grep -q "^## st-21" /home/g/dev/Gunther-Schulz/statiker/ITEMS-DONE.md && grep -q "^## st-22" /home/g/dev/Gunther-Schulz/statiker/ITEMS-DONE.md
