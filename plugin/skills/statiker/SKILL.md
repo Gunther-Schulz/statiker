@@ -237,10 +237,10 @@ run's next operator touchpoint rather than reconstructing the
 delta from memory — and
 records — on the MISMATCH only, carrying the SERVED version (the
 header keeps the version that wrote it) — the BARE label line
-`SKILL: statiker <version>` in the body region: below the first
-`## ` heading, standing alone, never inside a tag-first entry
-line (above the first heading is the head region, where nothing
-parses as an entry), surfaced
+`SKILL: statiker <version>` in the body region — after the head
+region ends (below, the head-region boundary and its
+`## Requirement head` exception), standing alone, never inside a
+tag-first entry line — surfaced
 with the header's version as `skill_versions` in sweep and closure
 verdicts (attribution, never a gate): the `Skill:` line is pinned
 surface — Status and Phase are the only mutable fields — so a header
@@ -347,8 +347,10 @@ checked well before the cap: the ZERO-LANDED tripwire (`tripwire
 --tracker <path> [--threshold <n>]`; TRIPWIRE_FIRES when at least
 `<n>` resolved attack rounds exist yet neither a landing annotation
 nor a V-line does anywhere; `<n>` comes from the arming carrier
-above — named at arming time, never hardcoded, never guessed, and
-no source naming one is TRIPWIRE_SILENT with reason "unarmed")
+above — named at arming time, never hardcoded, never guessed; a
+header field naming `tripwire` with no usable value refuses
+(USAGE_ERROR), and only a Budget line carrying no `tripwire` field
+at all is TRIPWIRE_SILENT with reason "unarmed")
 and the NON-CONTRACTING trend grade (The attack) — BOTH route to the
 NARROWING route (The attack), never to another same-form round.
 
@@ -538,12 +540,13 @@ still blocks. DETECTION is wider than validity by design: the lint
 detects would-be machine tokens positionally, never by word-search,
 and anything detected that fails the exact literal lints as a
 near-miss violation; validity never relaxes; the detection surfaces,
-their exclusions (quoted lines and the requirement head above the
-first `## ` heading parse NO entries — operator words and report
-quotes never register), and each violation's class and repair form
-are settled in the executable spec (The tools) — the verdict NAMES
-them and the desk composes repairs from the verdict, never from
-memory; the lint is a tripwire over the observed slip space, not the
+their exclusions (quoted lines and the head region — routinely the
+file's own first `## ` heading — parse NO entries — operator words
+and report quotes never register), and each violation's class and
+repair form are settled in the executable spec (The tools) — the
+verdict NAMES them and the desk composes repairs from the verdict,
+never from memory; the lint is a tripwire over the observed slip
+space, not the
 guarantee — the contract is the literal, a slip beyond the patterns
 is desk error. DEFANG lint is separate and scans the WHOLE file: an
 undefanged bracketed tag literal holds the sweep wherever it sits,
@@ -618,9 +621,10 @@ schedule (a round is whatever investigation the design needed); the
 FIRST `## ` heading closes the head region — above it nothing parses
 as an entry, and a tracker with no `## ` heading parses NO entries,
 silently. One exception: a first heading titled `## Requirement head`
-(case-insensitive) does not close the region — it runs through to the
-NEXT `## ` heading, or EOF when none follows, parsing no entries
-throughout exactly as the plain case does.
+(case-insensitive; the whole heading line, not a heading merely
+beginning with the phrase) does not close the region — it runs
+through to the NEXT `## ` heading, or EOF when none follows, parsing
+no entries throughout exactly as the plain case does.
 
 ## The loop
 
