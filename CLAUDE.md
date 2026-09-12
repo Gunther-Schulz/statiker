@@ -425,6 +425,45 @@
   ~70 findings, mostly record archaeology (F140's 750 sweep
   holds), the measured cost of paying repair inside the run.
 
+- **Maintenance arcs open against a named consumer
+  (operator-settled 2026-09-12).** A post-run maintenance arc
+  opens only against a named consuming seam — the next scheduled
+  run, or an explicit arc-close the operator opens — and drains
+  the harvest carriers in ONE batch sized to that seam. Between
+  harvest-close and that trigger, findings accumulate in their
+  carriers (OBSERVATIONS pre-formulated entries, items) and no
+  build lane dispatches. Extends the 2026-09-11 release-batching
+  decision one level up: releases batch to run seams, the ARC
+  batches to a consumer. Basis: the 2026-09-10..12 burst — 201
+  commits, 5 review rounds, 4 repair laps, 3 same-day pin moves,
+  no consuming run live at any point — while the mint-timing
+  convention already prices the wait as free (mint-now and
+  mint-at-seam reach the next run at the same moment).
+
+- **Aggregate-justified programs pilot before their first full
+  lap (operator-settled 2026-09-12).** Any multi-lap program
+  whose justification is a projected aggregate (a line count,
+  coverage, a ratio) runs a pre-registered sample probe first,
+  and the projection is re-signed on the sample's measured error
+  before the first full lap dispatches — or the program stops.
+  Provenance: the compression pass — lap A's rewrite targets
+  overran one-sidedly (14 of 15 over, ~25%), refuting the
+  ~1100–1200 projection only after the full build + review +
+  repair were spent; a 10–15 clause pre-registered sample would
+  have bought the same refutation at roughly a tenth of the cost
+  (LEDGER 2026-09-12; decision memo 7f55223).
+
+- **Mint form is priced in the batch plan (operator-settled
+  2026-09-12).** A mint's brief states its form — tool-backed
+  (the mechanism and its battery land with it) or
+  prose-mechanism — and a batch containing prose-mechanism mints
+  budgets one repair lap into its seam plan. Basis: the 0283 mint
+  batch took three review rounds and three repair laps before
+  releasing (0.2.84→0.2.86); the 0.2.78 review recorded the same
+  split (tool+battery-backed changes survive review, fresh prose
+  mechanisms draw the blockers); repair lanes carried 40 of ~90
+  lane commits in the 2026-09-10..12 burst.
+
 ## Verify
 
 ```bash
