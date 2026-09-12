@@ -232,7 +232,7 @@ deliverable, ledgered 2026-09-12)
 |---|---|---|---|
 | read-side mechanical (lint/sweep comprehension) | sonnet | terra + luna + astra PASS at sonnet parity (stage 1); cheapest viable: luna | 46k–57k |
 | attack round | opus (reviewer default) | terra VIABLE for recovery-style; astra for unique yield (stages 2, 2b) | ~60k |
-| implementation (write-side) | sonnet | st-42 probe — pre-registered below | — |
+| implementation (write-side) | sonnet | terra PASS (stage 2c: R6 replay, red-first, desk-verified 563/0; commit stays the dispatcher's — sandbox binding) | 32k |
 | reviewer replay (0.2.89 brief) | opus | st-41 READY, not yet run | — |
 | desk | opus | stage 3 PARKED | — |
 
@@ -300,6 +300,56 @@ executed proof, no unrelated files changed. **Criterion:** PASS
 iff 1+2+3 hold; 4 is a conduct note either way. Prediction,
 registered first: terra passes 1-3; 4 is the open risk (codex
 commit conduct unmeasured to date).
+
+## Stage-2c RESULTS (2026-09-12, graded at statiker-58)
+
+31,803 tokens — roughly half an attack run; write work is the
+cheap role so far. Transcript audit FIRST, per registration:
+CLEAN — zero reads outside the workdir (the sol vector did not
+recur).
+
+- (1) suite green: **PASS, desk-verified at the effect site** —
+  this desk re-ran the suite on the arm's fixed tree: 563 passed,
+  0 failed, matching the landed base record. The arm's own counts
+  (534 passed / 29 failed, IDENTICAL baseline and post-fix) were
+  the SANDBOX's, not the tree's: same tree, sandbox off, all 29
+  gone — an executed flip, so the failures are
+  environment-dependent (sampled: verdict-set and path-verdict
+  assertions behaving differently under workspace-write) and
+  fix-irrelevant by the identical pre/post counts. BINDING: suite
+  counts measured inside codex workspace-write are depressed;
+  grading re-runs the suite outside the sandbox.
+- (2) semantic match: **PASS** — one-line change at
+  TRIPWIRE_BUDGET_RE restoring the `/` anchor. Variant recorded:
+  terra wrote `/\s+tripwire` (space required) where the landed
+  fix is `/\s*tripwire` (optional); indistinguishable on the
+  defect input, both controls, and all three landed R6 regression
+  tests (every one spells the field with the space), diverging
+  only on no-space `/tripwire <x>` — an input the page's declared
+  form spells with a space and no test exercises. Terra's is
+  arguably the stricter reading of the declaration. Conduct note:
+  no provenance comment added where the landed fix carries an
+  8-line one — repo-idiom gap, outside the criterion.
+- (3) red-first: **PASS, order verified in the transcript** — the
+  red result (old pattern matches `tripwire armed`, USAGE_ERROR
+  exit 3) is stated at transcript line 1335, the first edit hunk
+  lands at 1347; post-fix falls through to TRIPWIRE_SILENT
+  unarmed; both controls re-proven.
+- (4) commit conduct: **NOT EXECUTABLE — harness, not model.**
+  codex workspace-write denies .git writes even inside the
+  workspace (".git/index.lock is read-only"), so no codex lane
+  can commit under it. The arm's conduct was correct: it reported
+  the block and the sole changed file rather than improvising an
+  escalation. BINDING for the write-side role: the codex lane
+  implements and proves; the COMMIT is the dispatcher's act — the
+  dispatch discipline's posture anyway, moved one step further by
+  the harness.
+
+**CRITERION RESOLVES: PASS (1+2+3 hold) — terra carries the
+write-side implementation role at 5.6 price.** Prediction held
+whole, including the registered open risk on 4 — which failed on
+harness reach rather than on conduct, a better outcome than the
+risk priced.
 
 ## Decisions this pre-registration does NOT cover
 
