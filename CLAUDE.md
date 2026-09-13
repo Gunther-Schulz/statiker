@@ -320,7 +320,16 @@
   gate is this class, whatever register it is written in (the
   0.2.78 review's lesson, same day the split was settled: a
   "conduct prose" clause drew 2 BLOCKING findings, both in the
-  record forms it implied); (3) operator call. Review form unchanged:
+  record forms it implied); (3) operator call. TIGHTENED
+  2026-09-13 (operator decision; the composition of this bullet
+  with the 2026-09-11 release-batching rule, made explicit so no
+  session re-derives an interim review out of trigger (1)):
+  reviews attach to PIN MOVES only, and pin moves only at
+  consuming seams (a run about to start, arc close) — no interim
+  review is owed however large the accumulated delta, and an
+  oversized delta splits the ONE seam review into parallel class
+  lanes (machine-read semantics / conduct prose), never into an
+  extra seam. Review form unchanged:
   brief carries the diff since the last REVIEWED state, the full
   skill text, and the question, never the author's reasoning;
   every finding gets a recorded disposition before release.
