@@ -10600,3 +10600,46 @@ design rather than by accident: the forcing point does not delegate
 its own catcher to a reference file.
 
 Payload 0.2.97 -> 0.2.98.
+
+### Closing the review's open (c): git off PATH is fail-CLOSED, executed
+
+The reviewer left two items unexercised in slot (c), one of them a
+silent-path worry about the new helper: `git_validated_dot_git`'s
+`except OSError: return False` would make the as-named containment
+half answer "no repo anywhere" on a stack with no `git`. Settled here
+by exercise rather than left booked as an unknown.
+
+ARRANGEMENT (the second one — the first was invalid and is recorded
+below): a real git repo, `--out` aimed INSIDE it, run twice with the
+only difference being git's reachability.
+
+  git ON PATH  -> ARTIFACT_IN_REPO, route halt, no artifact written
+  git OFF PATH -> PATH_OUTSIDE_REPO, route halt, no artifact written
+
+So the degradation is a HALT, not a silent pass: tracker resolution
+needs git and fails closed BEFORE containment is reached, and the
+OSError branch is never the deciding reader. Nothing to book.
+
+THE FIRST ARRANGEMENT WAS INVALID, recorded because it is the same
+class this session already paid for once today. `PATH=$T/bin` with an
+empty `bin` removed `python3` along with `git`, so the run died at
+"command not found" and proved nothing about containment. The axis
+claimed (git present/absent) was not the axis varied (the whole
+toolchain). Identical in shape to the TMPDIR control that put its
+"relocated" temp dir back under `/tmp` — a control that reads as
+conclusive precisely because the setup LOOKS like it isolates one
+variable. What exposed it here was that the failure was loud; the
+TMPDIR one was silent, which is why that one cost a retracted booking
+and this one cost a re-run.
+
+The corpus rule this instantiates, now with two same-day firings: a
+result carries only the variables its run reproduced, and the
+unreproduced variable is where the wrong answer hides. The cheap
+guard both times would have been the same — state the premise check's
+OUTPUT (is python3 present? is git absent?) before reading the result,
+rather than assuming the environment edit did what it was written to
+do.
+
+Still not exercised, and left as the reviewer named it: a
+foreign-owned (different uid) checkout. It needs another user account
+and this desk cannot construct one.
