@@ -25,7 +25,13 @@ overriding context-independence (PLAN.md, Ecosystem composition):
 - **dispatch skill** (`dispatch-guards:dispatch`): the brief form and
   decision-completeness test (§1), report form + brief tails (§2,
   `references/forms.md`). Load it before the first dispatch (a hook
-  enforces the load).
+  enforces the load). Where the stack cannot load it — no skill
+  system, so no hook and no enforcement either —
+  `references/dispatch-forms.md` (under this skill's base directory)
+  is the binding source: read it before the first dispatch, and the
+  forcing points that cite the skill above cite it instead. Its
+  absence is SILENT, which is why the substitute ships: nothing
+  checks a brief against a form that is not there.
 - **executor skill** (`dispatch-guards:executor`): conduct of briefed
   work — every EXECUTION brief cites it; verifier and attack briefs
   never do (a fresh context briefed with conduct-of-building material

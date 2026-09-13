@@ -10447,3 +10447,90 @@ MINT FORM: prose-mechanism, so its batch budgets one repair lap
 review lap and ONE release at arc close — no interim seam.
 
 Payload 0.2.94 -> 0.2.95.
+
+## 2026-09-13 — st-59 mint: a codex-side home for the brief and report forms
+
+INCIDENT / PROVENANCE. The executed installability check, leg B
+(dev-notes/codex-only-certification-2026-09-13.md). statiker registers
+no hooks of its own — `plugin/hooks/hooks.json` is `{}` — so on a codex
+stack the dependency that matters is `dispatch-guards:dispatch`, and
+THREE forcing points cite it for material no codex stack can load:
+:712 forcing point 2's decision-completeness test ("the dispatch skill
+§1 definition is the test, not a feeling" — unreachable, so the test
+reverts to exactly the feeling the sentence forbids), :992 forcing
+point 3's question and read-only tail, :1308 forcing point 4's brief
+form. Nothing checks a brief against a form that is not there, so the
+break is silent at all three. Self-containment criterion: a silent
+break in a mechanism OF THE RUN is skill-owned, and forcing points 2,
+3 and 4 are the run.
+
+SHAPE, read against the existing instance rather than invented. The
+page had already solved this exact shape once, for its other declared
+dependency: the operator corpus's absence is covered by
+`references/evidence.md`, loaded only where the host stack carries no
+corpus. `references/dispatch-forms.md` is that file's sibling, and the
+Composition bullet gains the same sentence its corpus neighbour
+carries. The three forcing-point sites are NOT edited: the fallback is
+stated once at the declaration point, which is where the corpus
+precedent states it, and a second statement at each site would be the
+multi-location divergence this repo presses reviewers to hunt.
+
+WHAT THE DISTILLATE DELIBERATELY DROPS: the channel and harness half —
+mailbox lanes, named-vs-unnamed dispatch, the Agent tool's schema.
+That material describes a tool a codex stack does not have, and
+shipping it would be ceremony in the tenet-3 sense. What survives is
+decision-completeness, the brief's mandatory parts, the
+attack/verifier exception, the read-only tail with its head-position
+rule, the report slots, and the external-state provenance grade.
+
+VERIFIED, EXECUTED — not asserted. A gpt-5.6-terra desk on a bare
+install, told there is no skill system and no hook, was asked to
+prepare the attack dispatch and to name which source gave it the form.
+It read `references/dispatch-forms.md` (105 references in its
+transcript), cited it BY FILE AND SECTION ("The two briefs that are NOT
+this form", "The read-only tail"), and composed a brief that opens with
+the read-only clause at the block's HEAD — the specific thing that
+section teaches and the thing a tail-position paste loses. It correctly
+took the attack QUESTION from SKILL.md and only the FORM from the
+substitute. Before this file existed, that same seam had no source at
+all.
+
+TENET CHECK against PLAN.md's live list — all nine enumerated.
+
+1. Investigation-led design — NOT APPLICABLE. Payload content, no
+   design loop runs here.
+2. Sufficiency = dispatchable — PASS, and this tenet is the item's own
+   subject: the file makes forcing point 2's test READABLE on a stack
+   where it previously resolved to nothing.
+3. Anti-skim, thin in ceremony never in forcing points — PASS, and the
+   drop list above is this tenet applied: the channel material is
+   ceremony on this stack and was cut, the forcing-point material is
+   not and was kept.
+4. Cost asymmetry — NOT APPLICABLE.
+5. Autonomy north star — PASS. A desk that cannot reach the form does
+   not fail loudly; it improvises, and a human would have to notice.
+   The substitute removes that seat.
+6. Economics — PASS, PRICED: 6,676 bytes of DISCLOSED reference, loaded
+   only on a stack lacking the skill, plus 7 lines of always-loaded
+   page text at the Composition declaration. The three forcing-point
+   sites cost nothing because they were not touched.
+7. Convergence circuit — PASS. Forcing points 3 and 4 are two of the
+   circuit's three surfaces; a brief composed without its form is how
+   the circuit admits ungradeable work.
+8. Medium tenet — PASS AS PROSE. The forms ARE prose by nature — a
+   brief's decision-completeness is a judgment about a document, and
+   the dispatch skill itself carries them as prose for the same reason.
+   No predicate here is computable: "is this brief decision-complete"
+   has no mechanical answer, which is precisely why the page makes it a
+   stop rule rather than a check.
+9. Placement — PASS. Precedent line: follows
+   `plugin/skills/statiker/references/evidence.md`, judged sound — same
+   trigger (a declared dependency the stack cannot load), same load
+   rule (unloaded where the real source exists), same declaration site.
+
+MINT FORM: prose, but NOT the prose-mechanism class that budgets a
+repair lap — it introduces no token, hold code or predicate, and adds
+no rule the page did not already carry. It makes existing rules
+reachable.
+
+Payload 0.2.96 -> 0.2.97.
