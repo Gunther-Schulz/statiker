@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 30
+added: 31
 compacted: 0
 
 ## st-10
@@ -299,3 +299,12 @@ write-set: plugin/skills/statiker/SKILL.md,plugin/skills/statiker/scripts/statik
 done-criterion: UNKNOWN — set once the scope decision is answered; if a degraded mode is wanted, its shape (tracker outside the repo, no lock commits, record carried elsewhere) is designed then, and if clean refusal is correct the entry closes as a recorded drop with that reason
 evidence: SKILL.md read in full 2026-09-13: the preflight verdicts, the LOCK pathspec composition, unit-start/unit-commit, and Close's pin over the tracker; the placement gap-fill entry in PLAN (2026-08-26 (4)/(4b), decided as skill work 2026-09-10) for the external-codebase evidence
 blocked-by: decision must statiker also run where it cannot commit, or is it for repos the operator owns and clean refusal elsewhere is correct
+
+## st-52
+grade: PARKED
+requirement: the PROFESSIONAL STANDARD derivation is the run's self-declared 'first and largest design act' and is the thinnest thing in the payload: three examples in a parenthesis, marked (hypothesis) — 'a size and complexity budget, no unjustified abstractions, a threat model where inputs cross trust boundaries'. Everything else a competent shop would require rests on whatever the model happens to think, unexamined and ungraded. This is a METHOD slot, not lens content: the lens question was killed 2026-08-05 and re-declined 2026-09-13 on the pstack comparison, and this survives that decline because it is the slot the content would enter through, not the content
+goal: general-maintenance
+write-set: plugin/skills/statiker/SKILL.md
+done-criterion: UNKNOWN — the shape is undecided and the options differ in kind: widen the derivation's own guidance, make the derived standard an attackable object in its own right (the attack already grades decomposition faithfulness but not the standard the head was derived against), or leave it thin deliberately and record why
+evidence: SKILL.md lines 418-433 read verbatim 2026-09-13; PLAN 'Lenses: none at birth' and the 2026-08-10 lineage entry on depreciation slopes; dev-notes/pstack-comparison-2026-09-13.md section 9d-bis, which names this slot as one of the two places design content would attach
+blocked-by: evidence a firing, or the trial datum — a run whose head omitted a requirement a competent shop would have derived, visible as a late reconciliation, an escaped defect the head never asked about, or an operator correction at close
