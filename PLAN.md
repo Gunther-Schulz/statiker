@@ -1021,6 +1021,20 @@ second home for anything below.
    output path (`.cursor/skills/verify-<app>/`), so adapting is a
    real option and the cheaper arm. Deciding it needs one worked case,
    not more reading.
+   **THE WORKED CASE, booked as part of this consideration (operator,
+   this date — not now, but recorded so it is not re-derived):** run
+   her recipe ONCE, by hand, against one real repo with a drivable
+   surface — `btb` or the GIS pipeline, never a corpus repo — and read
+   what it emits. That is what settles the build-versus-adapt fork,
+   and it is the one move here needing NO gate: no payload change, no
+   answer to `st-48`, no mint. What to look for when it runs: whether
+   the five interview axes ask the right questions of a repo that is
+   not an Electron desktop app; how much of the emitted CLI is
+   generic versus fitted; whether the feature map's four headings
+   survive a surface that is not a UI; and what the interview fails to
+   ask that this shop's work needs. Those four observations ARE the
+   fork's decision basis — adapt if the interview transfers, build if
+   it does not.
    Gate: C inherits ITEMS `st-48`'s scope question (does the payload
    demand a harness exist, or stay apparatus-agnostic and inherit the
    host repo's checks) — and note that RUNNING the recipe once against
