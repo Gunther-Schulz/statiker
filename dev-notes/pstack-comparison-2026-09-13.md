@@ -440,8 +440,29 @@ exercised — per feature: sub-feature ids, how a user reaches it, the
 exact driving commands, and the gotchas — with the coverage rule
 "a proof that drives one convenient entry point is incomplete when the
 map lists others". Statiker's R-lines enumerate REQUIREMENTS; the
-feature map enumerates SURFACES. Different denominators, and only one
-of the two systems has both.
+feature map enumerates SURFACES. Different denominators — and NEITHER
+system has both, which an earlier draft of this line got wrong by
+crediting pstack with a requirement enumeration it does not have.
+Exactly:
+
+- REQUIREMENTS = what must be true. statiker derives them at the head
+  (INTENT + professional standard), numbers them, and FP5 returns a
+  verdict PER R-LINE with NOT EXERCISED mandated. pstack's nearest
+  equivalents are the exit predicate ("state the exit condition as a
+  checkable predicate before the first iteration") and
+  multi-phase-plan's fixed unit/live/perf box triple — one condition
+  and one fixed triple, neither derived per requirement nor
+  individually verdicted. statiker is far ahead here.
+- SURFACES = what can be touched. pstack's feature map lists them per
+  feature with the route and the driving commands. statiker has no
+  surface enumeration; its nearest equivalent runs a phase earlier, as
+  the attack's blast-radius clause (executed search for co-consumers
+  of every surface the design changes).
+
+The two coverage questions are different and neither implies the
+other. "Did every R-line get a verdict" cannot see a requirement met
+on one surface and broken on another. "Did the proof drive every
+surface the map lists" cannot see a requirement nobody wrote down.
 
 **(b) Inner loop versus outer gate — the structural difference.** Her
 stated purpose: "verification means that an agent can verify its own
@@ -449,8 +470,26 @@ work. It can keep going until it succeeds at its task, because it can
 now close the loop without you being the bottleneck." That is an INNER
 loop the implementing agent runs against itself, many times, before
 anything is graded. FP5 is an OUTER gate: one isolated fresh context,
-after the work, once. statiker has no inner verification loop at all —
-the implementing unit gets whatever the repo happens to provide.
+after the work, once.
+
+Narrowed, because "statiker has no inner loop at all" (an earlier
+draft of this line) is too strong: FP4 carries a per-unit inner CHECK
+— the red-first pin, EXECUTED and recorded as a committed red arm or
+the red run's pasted output, each unit committing green. What statiker
+lacks is not a check but the two things that make pstack's inner half
+a LOOP: an apparatus for exercising a running system, and an
+iterate-until-observably-correct cadence against it. statiker's inner
+check is test-shaped and fires once per unit; pstack's is
+behaviour-shaped and fires as often as the agent needs.
+
+The two halves fail in opposite directions, which is why neither
+substitutes for the other. An inner loop's oracle is SELF-CHOSEN — the
+agent decides when it is satisfied — so a loop can converge
+confidently on the wrong target with every iteration confirming it
+(same-parentage, at loop grain). An outer gate cannot catch what it
+never exercises, which is why NOT EXERCISED is a mandated answer here
+rather than an omission. The loop reduces what arrives at the gate;
+the gate keeps the loop honest about the target.
 These are not competitors and the comparison should not be read as
 one; the outer gate is not made redundant by an inner loop (it is what
 catches a loop that converged on the wrong target), and the inner loop
