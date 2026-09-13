@@ -78,10 +78,31 @@ positioned as always-on "AI teammates" for people who want to hand off
 users and teams, not an enterprise-only tier.
 
 ## 5. Explicit boundary — what can't be established from the public surface
-- Whether "Grokbot"/"Grok Bot" is a Cursor (Anysphere) product, an xAI
+
+[Update 2026-09-13, same desk: the first two bullets below are ANSWERED by
+primary testimony — the author's own talk (archived with header correction
+at `poteto-talk-transcript-2026-09-13.md`): Grokbot is a Cursor product,
+launched ~2026-09-12, and "Dune" is the codename of the architecture built
+for it. Two additions from operator-supplied stills of the talk video:
+(1) a Dune docs page exists — "Agent-friendly architecture", whose
+"Contract" section enumerates the agent defaults the architecture is
+designed to survive: copy the nearest working pattern; edit the file
+already open; choose the shortest path that compiles; avoid deleting code
+whose callers are not visible; follow the requested implementation even
+when it conflicts with a system invariant — so Dune carries internal
+documentation, not just talk mentions. (2) The talk venue shows SpaceX
+branding, and the transcript has the author saying "we" of a Grok 4.6
+announcement (machine-garbled passage) — so the xAI/SpaceX association in
+the web surface may trace to a real event or partnership rather than pure
+content-farm fabrication; the entity verdict is unchanged and the
+association itself stays ungraded. The remaining bullets stand.]
+
+- [ANSWERED — see update above] Whether "Grokbot"/"Grok Bot" is a Cursor
+  (Anysphere) product, an xAI
   (SpaceXAI) product integrated into Cursor, or something else — direct
   fetches of what present as primary pages contradict each other.
-- Whether "Dune" is Cursor's own architecture/product at all, versus Lauren
+- [ANSWERED — see update above] Whether "Dune" is Cursor's own
+  architecture/product at all, versus Lauren
   Tan's personal internal tooling (pstack/poteto-mode plugin) she built for
   herself and uses to drive whatever cloud-agent backend she has access to —
   no primary source (her tweet, a Cursor blog post) using the word "Dune"
