@@ -463,5 +463,16 @@ amended-evidence: 2026-09-13 EXECUTED 2026-09-13. An empty directory /tmp/.git e
 closed-reason: 2026-09-13 Both textual_repo_top copies now validate the candidate with 'git rev-parse --resolve-git-dir', so the tools agree with git about what a repository is. DEVIATION FROM THIS ITEM'S OWN NAMED COMMAND, recorded rather than smoothed: the criterion said '--show-toplevel or equivalent', and a literal swap would have fixed the reported case by BREAKING the property the function exists for — a cwd-based read resolves the path's links, which is exactly the spelling the as-named half checks. --resolve-git-dir takes the path as an argument and never changes directory. Predicate probed against four cases before it was written: real .git dir recognized, empty refused, linked-worktree .git FILE recognized, dangling refused. Red-first with the fail-open control: two tests RED on the old code, the linked-worktree control GREEN on old and new, since this refusal is fail-SAFE and the only way to get it wrong is to open it. Suite 580 passed.
 closed-ref: bc5ccd63d4244ca11b33f0c55bf1083c3d3749f1
 
+## st-59
+grade: DONE
+requirement: Forcing points 2, 3 and 4 cite dispatch-guards:dispatch for material a codex-only stack cannot load (SKILL.md :712 the READY decision-completeness test, :992 the attack question + read-only tail, :1308 the impl brief form + executor citation); the break is silent — nothing checks a brief against an absent form. Basis: executed installability check, dev-notes/codex-only-certification-2026-09-13.md, LEG B self-containment finding.
+goal: tend
+write-set: plugin/skills/statiker/references/,plugin/skills/statiker/SKILL.md
+done-criterion: A codex-side home exists for the brief/tail/decision-completeness material the three forcing points cite, on the references/evidence.md pattern (loaded only when the host stack lacks the skill), OR the page declares the degradation loud at each of the three sites. Verified by re-running the leg B arrangement with the dispatch dependency absent and the arm able to cite a reachable source at each forcing point.
+evidence: statiker ships no hooks of its own: plugin/hooks/hooks.json registers {} (stop guard unregistered, R11 hold). The corpus dependency already has this fix shape as its precedent: references/evidence.md covers the corpus absence; the dispatch dependency has no equivalent.
+blocked-by: NONE
+closed-reason: 2026-09-13 references/dispatch-forms.md ships as evidence.md's sibling — same trigger (a declared dependency the stack cannot load), same load rule, same declaration site; the three forcing-point sites are deliberately NOT edited, the fallback stated once at Composition where the precedent states it. The distillate drops the channel/harness half, which describes a tool codex does not have. VERIFIED EXECUTED: a gpt-5.6-terra desk on a bare install, told there is no skill system and no hook, was asked to prepare the attack dispatch and to name its form's source — it read the new file, cited it by file AND section, and opened its brief with the read-only clause at the block's HEAD, the specific thing that section teaches. It took the attack QUESTION from SKILL.md and only the FORM from the substitute. Nine-tenet check in OBSERVATIONS; suite 580 passed. Payload 0.2.97.
+closed-ref: c023ac0ac3bbd7338d9b0f010f1385763ae029e2
+
 ## Archive (pre-migration)
 
