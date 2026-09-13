@@ -1178,6 +1178,19 @@ second home for anything below.
    seam. Boundary on both: her generator assumes a drivable surface,
    so this reaches code with a UI or CLI and reaches corpus work not
    at all.
+   **RE-GRADED (operator, 2026-09-13): this sits ON the north star's
+   path, not beside it.** The desk first read the apparatus as a
+   nice-to-have borrowed from a faster shop. That reading assumed an
+   attended run. The north star is "build X" returning good enough
+   with the human out of the loop by default (the 2026-08-08 autonomy
+   entry), and an unattended run has no one to watch a video and
+   notice the result looks wrong — so the machinery must be able to
+   SEE whether the work works, or the goal is unreachable at the
+   verify end whatever the design layer does upstream. For her the
+   harness is a throughput multiplier because she is present; for an
+   unattended statiker it is a precondition. Scheduling consequence:
+   this outranks the compression-pass candidates it was listed
+   beside, and the wan2gp worked case is its cheapest first move.
 
 Explicitly NOT taken, recorded so a later reader does not re-open
 them: lazy loading (whole-to-whole statiker is ~4x smaller — a
@@ -1188,6 +1201,45 @@ pstack's verification epistemics (statiker is ahead — importing would
 be a downgrade). The pattern: everything worth taking is OPERATIONAL
 (instruments, apparatus, enforcement placement); nothing EPISTEMIC is,
 which is section 9e's asymmetry as a shopping list.
+
+## Per-forcing-point ablation — a consideration, NOT a decision (operator, 2026-09-13)
+
+**The goal restated by the operator, this date, and it re-scopes what
+evidence counts:** the design is never going to be the operator's —
+statiker exists so that "build X" returns the best design the models
+can produce, and that result is what gets accepted. So the question is
+not IF unattended design works; the counterfactual is not an
+expert-authored design, and no comparison against one is informative.
+The only informative comparisons are RELATIVE: statiker's design
+against the bare model's, and statiker's design against statiker
+minus one forcing point.
+
+**The instrument that follows, and the record does not have it.** Each
+forcing point earns its place by one test — does REMOVING it make the
+design worse. Searched repo-wide this date: "ablation" occurs in
+`dev-notes/OBSERVATIONS.md` in two OTHER senses (software-factory as
+the unrun comparison arm, 2026-08-08; corpus-ablation, whether the
+global corpus already carries a behavior, 2026-08-10). Per-forcing-
+point ablation is absent — a real absence, the search carrying a
+positive control. The residue hypothesis measures whether the LAYER
+shifts the defect distribution left; ablation is what would say WHICH
+forcing point does it, and where the run is paying for ceremony.
+
+Not designed here, deliberately: an ablation arm is real experimental
+work (what is held fixed, how a design is graded worse, how many runs
+before a difference means anything — the statistical-finding rule
+applies), and the confound caveat already recorded above bites it too
+(no bare-model arm exists on this stack; the control ran under the
+operator's corpus). Consider at: the trial's design seam, beside arm
+B's grading.
+
+**Consequence for the comparand work, recorded so it is not
+re-litigated:** pstack is retired from the DESIGN question entirely.
+Not a counter-example to FP3, not even a control arm for it — its
+author never delegates the design, so her practice carries no
+information about a delegated one. She remains the live comparand for
+the half she does delegate: implementation and verification, which is
+where consideration 5 sits and where she is ahead.
 
 ## Horizon consideration — NOT a decision (operator, 2026-08-05)
 
