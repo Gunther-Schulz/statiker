@@ -1,0 +1,31 @@
+```json
+{
+  "answers": [
+    {"n": 1, "verdict": "LINT_CLEAN", "route": "proceed", "obligation": "no-new-booking", "repair": ""},
+    {"n": 2, "verdict": "LINT_VIOLATIONS", "route": "repair-from-verdict", "obligation": "compose-repair-and-rerun", "repair": "header rewrite: invalid status enum value 'ready'"},
+    {"n": 3, "verdict": "SWEEP_CLEAN", "route": "proceed", "obligation": "no-new-booking", "repair": ""},
+    {"n": 4, "verdict": "SWEEP_HOLDS", "route": "repair-from-verdict", "obligation": "compose-repair-and-rerun", "repair": "status line: append new tag-first line under same id"},
+    {"n": 5, "verdict": "CLOSURE_VOID", "route": "barred", "obligation": "nothing-to-book", "repair": ""},
+    {"n": 6, "verdict": "CLOSURE_ABSENT", "route": "barred", "obligation": "nothing-to-book", "repair": ""},
+    {"n": 7, "verdict": "UNIT_HELD", "route": "barred", "obligation": "nothing-to-book", "repair": ""},
+    {"n": 8, "verdict": "CLOSURE_RECORD_MALFORMED", "route": "repair-from-verdict", "obligation": "compose-repair-and-rerun", "repair": "supersede-whole: restate under same id with 'corrects line 12', re-carry tag and scope"},
+    {"n": 9, "verdict": "SUSTAIN_DENIED", "route": "barred", "obligation": "nothing-to-book", "repair": ""},
+    {"n": 10, "verdict": "SUSTAIN_OK", "route": "proceed", "obligation": "no-new-booking", "repair": ""},
+    {"n": 11, "verdict": "TRIPWIRE_FIRES", "route": "narrow", "obligation": "route-to-narrowing", "repair": ""},
+    {"n": 12, "verdict": "TRIPWIRE_SILENT", "route": "proceed", "obligation": "no-new-booking", "repair": ""},
+    {"n": 13, "verdict": "USAGE_ERROR", "route": "halt", "obligation": "halt-and-book-verbatim", "repair": ""},
+    {"n": 14, "verdict": "TRACKER_UNREADABLE", "route": "halt", "obligation": "halt-and-book-verbatim", "repair": ""},
+    {"n": 15, "verdict": "VERIFY_COPY_STALE", "route": "triage", "obligation": "desk-judgment-at-triage", "repair": ""},
+    {"n": 16, "verdict": "PREFLIGHT_OK", "route": "proceed", "obligation": "no-new-booking", "repair": ""},
+    {"n": 17, "verdict": "PREFLIGHT_UNPINNABLE_TRACKER", "route": "surface", "obligation": "surface-to-operator", "repair": ""},
+    {"n": 18, "verdict": "SEAL_PATH", "route": "proceed", "obligation": "no-new-booking", "repair": ""},
+    {"n": 19, "verdict": "PATH_OUTSIDE_REPO", "route": "halt", "obligation": "halt-and-book-verbatim", "repair": ""},
+    {"n": 20, "verdict": "UNIT_GATE_BLOCKED", "route": "halt", "obligation": "halt-and-book-verbatim", "repair": ""},
+    {"n": 21, "verdict": "UNIT_NO_DIFF_VS_HEAD", "route": "triage", "obligation": "desk-judgment-at-triage", "repair": ""},
+    {"n": 22, "verdict": "LOCK_CHECK_DROPS", "route": "book-and-continue", "obligation": "book-f-line-and-continue", "repair": ""},
+    {"n": 23, "verdict": "UNIT_COMMITTED_EXTRAS", "route": "book-and-continue", "obligation": "book-f-line-and-continue", "repair": ""},
+    {"n": 24, "verdict": "PINNED_REWRITTEN", "route": "surface", "obligation": "surface-to-operator", "repair": ""},
+    {"n": 25, "verdict": "PROBE_A_UNROUTED_TEST_VERDICT", "route": "unrouted", "obligation": "halt-and-book-verbatim", "repair": ""}
+  ]
+}
+```

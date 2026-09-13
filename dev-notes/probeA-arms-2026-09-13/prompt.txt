@@ -1,0 +1,201 @@
+You are acting as the DESK of a development-process tool called statiker. The desk drives a run and must take the correct disposition from each tool verdict it receives.
+
+Below is the authoritative specification section (the "Route vocabulary" page section). It is the only spec you get, and it is complete for this task. Read it carefully.
+
+======================= SPEC BEGINS =======================
+### Route vocabulary
+
+A verdict's token is the FAIL-CLOSED member of its page
+dispositions: the one that books and halts wherever this page's
+own seams treat the same verdict name differently. A seam may be
+more permissive than its token only through an explicit sentence
+at that seam; the token itself never under-states the obligation,
+so a desk reading only the token is never unsafe.
+
+Every verdict line carries a `route` field — the tool's own stamp,
+one lookup against a closed eight-token vocabulary; the desk reads
+it rather than re-deriving a verdict's disposition from its name. A
+route token names the desk's seam-invariant disposition class — the
+(record obligation, resolver, continuation) triple — never the
+seam- or mode-specific conduct, which stays this page's principle
+per class:
+
+- `proceed` — the asked act succeeded or the state answer permits
+  the next act; the invoking seam's own conduct consumes the
+  verdict's fields. No new booking obliged by the route (a seam's
+  own duty — landing annotation, quote-in-brief, quote-at-round-
+  open — stays that seam's principle, each with a mechanical
+  backstop where one exists).
+- `book-and-continue` — the act LANDED or the answer stands, AND
+  the verdict carries a finding: booked as a `record:` F-line (or
+  the drop supersede form) from the verdict line, work continuing.
+- `repair-from-verdict` — the record needs a mechanical repair the
+  verdict itself names (violation lines with class and repair form,
+  an embedded gate verdict, an undispositioned set); compose the
+  repair from the verdict, re-run the gate. Judgment residue the
+  verdict names returns to the desk.
+- `barred` — the tool worked and its answer is "not now / not
+  this": the asked action is denied by run state already in the
+  record. Nothing to book (the state IS the record), no transaction
+  failed; resolution is the run's own machinery (the hold entry,
+  the closure re-derivation, waiting on the gate).
+- `narrow` — the verdict routes to the attack's NARROWING route,
+  never another same-form round (The attack keeps narrowing as
+  principle; the token carries the destination on the verdict line
+  itself).
+- `halt` — the seam stops; the verdict line is booked verbatim as a
+  `record:` F-line; nothing landed UNLESS the verdict carries
+  `shas`/`sha` — routed like HALT_RESIDUE_PERSISTS, kept above;
+  attended, the operator's clearing reply re-enters; unattended,
+  the seam's own close rule applies.
+- `surface` — operator ground: no desk resolution exists (a
+  tampered pin, an unpinnable tracker). It carries `halt`'s booking
+  obligation (the verdict line books verbatim as a `record:`
+  F-line) AND routes the resolution to the operator rather than the
+  desk. Attended it leads the next prompt; unattended the run takes
+  the seam's terminal disposition (FAILED / rides the close).
+  Distinct from `halt` by resolver: a halt's clearing can be desk
+  work on provenance; surface never.
+- `triage` — the verdict is complete evidence for a desk judgment
+  between dispositions this page names (stale-copy harmless vs
+  re-run; contention provenance; the residue check). Judgment stays
+  prose; the token tells the desk it is AT a judgment seam and
+  where its dispositions live.
+
+The unrouted verdict: emission never fails on a registry gap — a
+verdict name the registry lacks stamps `route: "unrouted"`. A
+verdict whose `route` field is absent, unknown, or `unrouted` is a
+HALT for the seam that ran it, booked from the verdict line —
+fail-closed, the same catch-all above.
+
+The two-route rule: where a verdict line carries an embedded
+verdict (the git tool's `gate` field), the OUTER verdict's route
+governs the seam; an embedded verdict's own route is evidence about
+the inner call, never a second instruction.
+
+Unit briefs carry the git tool's ABSOLUTE path and its invocation
+lines — the tool is the shared implementation, so no lock-procedure
+text is ever expanded into a brief. The record tool is DESK-only: no
+attack or verify brief ever cites it (those contexts' independence is
+the point). Provenance and red-first suites: the source repo's
+tools/test_statiker_git.py and tools/test_statiker_record.py.
+
+At run start, before any design work: `preflight --tracker <path>`;
+PREFLIGHT_OK proceeds (also reports any in-progress operation,
+informational here). Preflight runs a DEDICATED index-reading
+repo-health read — a corrupt index halts here, before any work rests
+on it (mid-run corruption surfaces at whatever seam meets it);
+strictness is the health read's alone — every other read keeps its
+DOCUMENTED exit semantics: a non-error exit (the ignore check's
+not-ignored) is an answer, an error exit of any read still halts.
+
+PREFLIGHT_UNPINNABLE_TRACKER = the repo ignores the tracker path and
+can never pin this run's record — surfaced to a present operator
+before further work; unattended the run closes FAILED at minimal
+cost (Close, Status written FAILED); any other preflight verdict
+surfaces the same way. The `state-gate` subcommand (STATE_CLEAN /
+STATE_IN_PROGRESS) is the re-entry instrument: an attended halt's
+clearing reply is verified by it before the halted procedure
+re-runs.
+
+
+======================== SPEC ENDS ========================
+
+Below are 25 real verdict lines emitted by the tools. For EACH one, answer three things:
+
+1. `route` — the route token this verdict carries. Read it; do not re-derive it from the verdict's name.
+2. `obligation` — the desk's record obligation for that route class, as EXACTLY ONE of these eight literal strings:
+   "no-new-booking"            (the route obliges no new booking; the seam's own conduct consumes the verdict)
+   "book-f-line-and-continue"  (booked as a record: F-line from the verdict line, work continues)
+   "compose-repair-and-rerun"  (compose the mechanical repair from the verdict, re-run the gate)
+   "nothing-to-book"           (the tool worked and the answer is not-now/not-this; the state IS the record)
+   "route-to-narrowing"        (routes to the narrowing route, never another same-form round)
+   "halt-and-book-verbatim"    (the seam stops; the verdict line books verbatim as a record: F-line)
+   "surface-to-operator"       (carries the halt booking obligation AND routes resolution to the operator, not the desk)
+   "desk-judgment-at-triage"   (complete evidence for a desk judgment between dispositions the page names)
+3. `repair` — ONLY where the route is the repair route: a one-line description of the repair you would compose from this verdict, naming the repair token you would use. For every other route, the empty string "".
+
+Answer for ALL 25 verdicts. If a verdict's route field is absent, unknown, or not one of the eight tokens, answer according to the spec — read the spec's rule for that case carefully and do not guess.
+
+======================= BATTERY BEGINS =======================
+### VERDICT 1
+STATIKER-RECORD VERDICT: {"verdict": "LINT_CLEAN", "route": "proceed", "status": "in-progress", "phase": "investigate-design", "late_intent": [], "entries": 2, "head_boundary": 8, "mode": null, "budget": null}
+
+### VERDICT 2
+STATIKER-RECORD VERDICT: {"verdict": "LINT_VIOLATIONS", "route": "repair-from-verdict", "violations": [{"code": "status-enum", "line": 2, "text": "ready", "repair": "header rewrite: Status and Phase are the record's one mutable surface — no repair token reaches them"}], "status": "ready", "phase": "implement", "late_intent": [], "entries": 0, "head_boundary": 6, "mode": null, "budget": null}
+
+### VERDICT 3
+STATIKER-RECORD VERDICT: {"verdict": "SWEEP_CLEAN", "route": "proceed", "clause_dispositions": {}, "r_lines": 0, "skill_versions": [{"line": 4, "version": "0.2.33"}], "irreversible_units": [], "exempt_holds": [], "retro_holds": [], "status": "in-progress", "phase": "investigate-design", "late_intent": [], "entries": 2, "head_boundary": 8, "mode": null, "budget": null}
+
+### VERDICT 4
+STATIKER-RECORD VERDICT: {"verdict": "SWEEP_HOLDS", "route": "repair-from-verdict", "violations": [{"code": "pending-latest", "line": 9, "text": "F1 latest line is [PENDING]", "repair": "status line: append a new tag-first line under the same id — a repair token never changes status"}], "clause_dispositions": {}, "r_lines": 0, "skill_versions": [{"line": 4, "version": "0.2.33"}], "irreversible_units": [], "exempt_holds": [], "retro_holds": [], "status": "in-progress", "phase": "investigate-design", "late_intent": [], "entries": 1, "head_boundary": 8, "mode": null, "budget": null}
+
+### VERDICT 5
+STATIKER-RECORD VERDICT: {"verdict": "CLOSURE_VOID", "route": "barred", "scopeless": [{"line": "F9 [INVALIDATED] the premise died", "lineno": 12}], "late_intent": [], "entries": 4, "head_boundary": 8, "r_lines": 0, "mode": null, "skill_versions": [{"line": 4, "version": "0.2.33"}], "irreversible_units": []}
+
+### VERDICT 6
+STATIKER-RECORD VERDICT: {"verdict": "CLOSURE_ABSENT", "route": "barred", "last_a": "A1 [BIT]", "design_amending": ["D1"], "late_intent": [], "entries": 3, "head_boundary": 8, "r_lines": 0, "mode": null, "skill_versions": [{"line": 4, "version": "0.2.33"}], "irreversible_units": []}
+
+### VERDICT 7
+STATIKER-RECORD VERDICT: {"verdict": "UNIT_HELD", "route": "barred", "unit": "U2", "holds": ["D9 [AUTO-ACCEPTED] unit U2 held: x.txt"], "declared_write_set": [], "late_intent": [], "entries": 5, "head_boundary": 8, "r_lines": 0, "mode": null, "skill_versions": [{"line": 4, "version": "0.2.33"}], "irreversible_units": []}
+
+### VERDICT 8
+STATIKER-RECORD VERDICT: {"verdict": "CLOSURE_RECORD_MALFORMED", "route": "repair-from-verdict", "violations": [{"code": "tag-enum", "line": 12, "text": "- D2 [BOGUS] some line — basis: y", "repair": "supersede-whole: restate under the same id with `corrects line 12`; tag and scope re-carried where they parsed"}], "late_intent": [], "entries": 4, "head_boundary": 8, "r_lines": 0, "mode": null, "skill_versions": [{"line": 4, "version": "0.2.33"}], "irreversible_units": []}
+
+### VERDICT 9
+STATIKER-RECORD VERDICT: {"verdict": "SUSTAIN_DENIED", "route": "barred", "round": "A1", "record_class": ["F1", "F2"], "live_round": null, "status": "in-progress", "phase": "investigate-design", "late_intent": [], "entries": 4, "head_boundary": 8, "mode": null, "budget": null}
+
+### VERDICT 10
+STATIKER-RECORD VERDICT: {"verdict": "SUSTAIN_OK", "route": "proceed", "round": "A1", "substance": ["F1"], "record_class": [], "live_round": null, "status": "in-progress", "phase": "investigate-design", "late_intent": [], "entries": 3, "head_boundary": 8, "mode": null, "budget": null}
+
+### VERDICT 11
+STATIKER-RECORD VERDICT: {"verdict": "TRIPWIRE_FIRES", "route": "narrow", "reason": "fires", "rounds": 8, "threshold": 5, "landed": false, "v_lines": 0, "status": "in-progress", "phase": "investigate-design", "late_intent": [], "entries": 24, "head_boundary": 8, "mode": null, "budget": null}
+
+### VERDICT 12
+STATIKER-RECORD VERDICT: {"verdict": "TRIPWIRE_SILENT", "route": "proceed", "reason": "silent", "rounds": 8, "threshold": 5, "landed": true, "v_lines": 0, "status": "in-progress", "phase": "investigate-design", "late_intent": [], "entries": 24, "head_boundary": 8, "mode": null, "budget": null}
+
+### VERDICT 13
+STATIKER-RECORD VERDICT: {"verdict": "USAGE_ERROR", "route": "halt", "error": "--threshold must be >= 1 (0 given)"}
+
+### VERDICT 14
+STATIKER-RECORD VERDICT: {"verdict": "TRACKER_UNREADABLE", "route": "halt", "path": "no-such-dir/t.md", "error": "the tracker's directory does not exist: /tmp/claude-1000/-home-g-dev-Gunther-Schulz-statiker/b386f1ec-44ea-4170-96d7-5a5cfe7605d1/scratchpad/probeA/r-tracker-unreadable/no-such-dir"}
+
+### VERDICT 15
+STATIKER-RECORD VERDICT: {"verdict": "VERIFY_COPY_STALE", "route": "triage", "read_sha": "302bfee727585cb3a93f435a392300c879d503a7", "head_sha": "7779967b8e98cd4fabde43b1d5914e3c8763f646", "commits": [{"sha": "7779967b8e98cd4fabde43b1d5914e3c8763f646", "subject": "mid-leg booking"}], "touched_paths": ["booking.txt"]}
+
+### VERDICT 16
+STATIKER-GIT VERDICT: {"verdict": "PREFLIGHT_OK", "route": "proceed", "tracker": ".clippy/runs/t.md", "ops": [], "branch": "main", "worktree": false}
+
+### VERDICT 17
+STATIKER-GIT VERDICT: {"verdict": "PREFLIGHT_UNPINNABLE_TRACKER", "route": "surface", "tracker": ".clippy/runs/t.md", "ops": [], "branch": "main", "worktree": false, "note": "the repo ignores the tracker path: the run cannot pin its record here — surface before any design work"}
+
+### VERDICT 18
+STATIKER-GIT VERDICT: {"verdict": "SEAL_PATH", "route": "proceed", "repo_key": "g-seal-path-a8ded536", "tracker": ".clippy/runs/t.md", "round": "A3", "seal": "/tmp/claude-1000/-home-g-dev-Gunther-Schulz-statiker/b386f1ec-44ea-4170-96d7-5a5cfe7605d1/scratchpad/probeA/fakehome/.local/state/statiker/seals/g-seal-path-a8ded536/t.md.A3.seal", "queue": "/tmp/claude-1000/-home-g-dev-Gunther-Schulz-statiker/b386f1ec-44ea-4170-96d7-5a5cfe7605d1/scratchpad/probeA/fakehome/.local/state/statiker/seals/g-seal-path-a8ded536/t.md.A3.queue", "paths": "/tmp/claude-1000/-home-g-dev-Gunther-Schulz-statiker/b386f1ec-44ea-4170-96d7-5a5cfe7605d1/scratchpad/probeA/fakehome/.local/state/statiker/seals/g-seal-path-a8ded536/t.md.A3.paths", "artifact": "/tmp/claude-1000/-home-g-dev-Gunther-Schulz-statiker/b386f1ec-44ea-4170-96d7-5a5cfe7605d1/scratchpad/probeA/fakehome/.local/state/statiker/artifacts/g-seal-path-a8ded536/t.md.A3.artifact", "report": "/tmp/claude-1000/-home-g-dev-Gunther-Schulz-statiker/b386f1ec-44ea-4170-96d7-5a5cfe7605d1/scratchpad/probeA/fakehome/.local/state/statiker/seals/g-seal-path-a8ded536/t.md.A3.report", "comparison": "/tmp/claude-1000/-home-g-dev-Gunther-Schulz-statiker/b386f1ec-44ea-4170-96d7-5a5cfe7605d1/scratchpad/probeA/fakehome/.local/state/statiker/seals/g-seal-path-a8ded536/t.md.A3.comparison"}
+
+### VERDICT 19
+STATIKER-GIT VERDICT: {"verdict": "PATH_OUTSIDE_REPO", "route": "halt", "path": "link.py", "resolved_from": {"named": "/tmp/claude-1000/-home-g-dev-Gunther-Schulz-statiker/b386f1ec-44ea-4170-96d7-5a5cfe7605d1/scratchpad/probeA/g-path-outside/link.py", "real": "/tmp/claude-1000/-home-g-dev-Gunther-Schulz-statiker/b386f1ec-44ea-4170-96d7-5a5cfe7605d1/scratchpad/probeA/ext/real.py"}}
+
+### VERDICT 20
+STATIKER-GIT VERDICT: {"verdict": "UNIT_GATE_BLOCKED", "route": "halt", "gate": {"verdict": "UNIT_DISPATCHABLE", "route": "proceed", "unit": "U1", "amendments": [{"line": "D9 [AUTO-ACCEPTED] unit U1 gap: no write-set decided", "lineno": 11}], "declared_write_set": [], "late_intent": [], "entries": 4, "head_boundary": 7, "r_lines": 0, "mode": null, "skill_versions": [], "irreversible_units": []}, "reason": "empty declared write-set: an undeclared unit cannot start"}
+
+### VERDICT 21
+STATIKER-GIT VERDICT: {"verdict": "UNIT_NO_DIFF_VS_HEAD", "route": "triage", "write_set": ["src.txt"]}
+
+### VERDICT 22
+STATIKER-GIT VERDICT: {"verdict": "LOCK_CHECK_DROPS", "route": "book-and-continue", "drops": [{"path": "art.txt", "reason": "collision", "porcelain": "M "}], "adds": [".clippy/runs/t.md"], "pathspec": [".clippy/runs/t.md", "art.txt"]}
+
+### VERDICT 23
+STATIKER-GIT VERDICT: {"verdict": "UNIT_COMMITTED_EXTRAS", "route": "book-and-continue", "write_set": ["a*.txt"], "sha": "ad20951e1708df74d52216896a78870839905700", "extras": ["abc.txt"]}
+
+### VERDICT 24
+STATIKER-RECORD VERDICT: {"verdict": "PINNED_REWRITTEN", "route": "surface", "sha": "5e53d7e586f9530218ca493209493dac8b7ab298", "tracker": "t.md", "first_divergent_line": 9, "evidence": "pinned: '- F1 [PENDING] awaiting leg — basis: dispatched' — current: '- F1 [VERIFIED] awaiting leg — basis: dispatched'"}
+
+### VERDICT 25
+STATIKER-RECORD VERDICT: {"verdict": "PROBE_A_UNROUTED_TEST_VERDICT", "route": "unrouted", "note": "probe-A fail-closed unrouted line: a verdict name absent from statiker_emit.ROUTES, produced by calling the running finish() emitter directly"}
+======================== BATTERY ENDS ========================
+
+Output ONLY a JSON object, no prose around it, of exactly this shape:
+
+{"answers": [{"n": 1, "verdict": "...", "route": "...", "obligation": "...", "repair": ""}, ...]}
+
+One entry per verdict, `n` matching the VERDICT number above, all 25 present. If you are unsure about an entry, still answer it — but say so by setting `repair` to the text "UNSURE: <why>" on that entry only if the route is not the repair route. Do not omit entries.

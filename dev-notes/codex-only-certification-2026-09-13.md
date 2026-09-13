@@ -308,6 +308,86 @@ cannot be fitted to whatever arrives:
    than capability, and conduct is what the two vendors' measured
    profiles most differ on.
 
+## PROBE A RESULTS (2026-09-13, graded at statiker-c8) — CEILING:
+## an ARRANGEMENT finding, NOT a model verdict
+
+**All three arms scored perfectly. The probe does not discriminate.**
+
+    arm                        (a) TOKEN   (b) OBLIGATION   floor   criterion
+    gpt-6-astra   (codex)      25/25 1.00  25/25 1.00       held    PASS
+    sonnet        (claude)     25/25 1.00  25/25 1.00       held    PASS
+    haiku         (claude)     25/25 1.00  25/25 1.00       held    PASS
+
+Column (c), repair composition, saturates too: all three arms composed
+all three repair-route repairs substantively correctly, including the
+hard one (supersede-whole, restate under the same id with `corrects
+line 12`, re-carrying tag and scope). haiku's answers are terser and
+drop the re-run step and a line number; that is a texture difference
+with no pre-registered rubric behind it, three items across three arms,
+and it is recorded as noise, NOT as a finding.
+
+Cost: astra 9,063 tokens. The Claude arms' usage was not captured —
+`claude -p` printed none to stderr and the arms were not re-run to
+collect it. Recorded as a measurement gap rather than estimated.
+
+**EVERY REGISTERED PREDICTION ABOUT THIS PROBE IS REFUTED**, and in the
+same direction for all three arms. Predicted astra (b) 0.50-0.70,
+actual 1.00. Predicted sonnet (b) 0.70-0.85, actual 1.00. Predicted
+haiku (a) 0.85-0.95 with at least one FAIL-OPEN, actual 1.00 with the
+floor held. Cross-vendor prediction (1) — sonnet beats astra on the
+obligation column — is REFUTED: they tied at ceiling. Prediction (2),
+a high tie on the token column, HELD but certifies little, since
+everything tied everywhere.
+
+**The verdict this licenses, and the one it does not.** Recorded as an
+ARRANGEMENT finding on the stage-1 precedent, where the pre-registered
+validity gate existed for the opposite direction (a floor too low means
+the probe measures page-spec completeness, not model competence, and no
+model verdicts are read from an invalid arrangement). The symmetric
+CEILING gate is what this registration lacked, and its absence is the
+design error: three arms at 1.00 across two vendors and three tiers
+cannot separate anything, so NO (role, model) certification for the
+desk role may be read from this probe — not for codex, not for haiku.
+Agreement on an axis where the instrument saturates is
+could-not-verify, never confirmation.
+
+**Why it saturated — the cause, not the arithmetic.** The obligation
+enum is a pure function of the route (an 8-to-8 mapping), and the route
+is printed verbatim in the verdict line, so once the spec section was
+supplied the whole task reduced to extracting a field and doing an
+8-way lookup from text in the prompt. Column (b) was intended to test
+contract APPLICATION and instead re-tested column (a). The risk was
+visible at design time and was proceeded past — the registration's own
+limitation clause already said a battery tests disposition SELECTION
+and not sustained conduct under momentum; the probe turned out narrower
+still.
+
+**What it DOES establish, which is about the PAGE rather than about any
+model.** Every arm read the route token correctly on the cases where
+the verdict's NAME points elsewhere — UNIT_GATE_BLOCKED routing `halt`,
+CLOSURE_ABSENT routing `barred`, UNIT_COMMITTED_EXTRAS routing
+`book-and-continue`, UNIT_NO_DIFF_VS_HEAD routing `triage` — and every
+arm halted on the unrouted case. That is evidence FOR the route
+vocabulary's own design claim, that "a desk reading only the token is
+never unsafe": the token is usable by every tier tested, haiku
+included. It is not evidence that any of them can hold a desk.
+
+**Recommendation: do NOT redesign and re-run probe A in this arc.** The
+desk role's real difficulty is sustained conduct under momentum — the
+skim-and-build failure the forcing points exist to catch — which a
+verdict battery cannot reach by construction. Reaching it needs a live
+scripted run, which is stage 3, parked by the operator. No outcome of a
+sharpened probe A would move the pay decision, which turns on whether
+codex carries the mechanical and verify roles at price; probe B is that
+question and is ready. Sufficiency: the probe whose outcome would flip
+the verdict is B, not a second A.
+
+**The scorer.** `tools/score_probeA.py`, red-first before any arm was
+scored: control (a perfect answer set) green, mutant 1 (one route
+flipped) drops the token column, mutant 2 (the fail-closed verdict
+answered `no-new-booking`) BREACHES the floor. So the saturation is the
+probe's reach, not a scorer that cannot fail.
+
 If (1) and (2) both hold, the economic reading is narrow and specific:
 codex buys nothing over sonnet on contract-bearing desk work and ties
 it on mechanical reading — so the pay case would have to rest on price
