@@ -963,6 +963,39 @@ deliberate, the booked compression pass brings it back down
   neither record settles. Registered as the sharpest external
   challenge to FP3 on file; consumer, the trial's grading and any
   future FP3 fire-rate review.
+  **AND THE RESOLUTION, forced out by the shortcut question
+  (operator asked what her solution IS; same date).** She has two
+  solutions and they cover different classes. For
+  IMPLEMENTATION-shaped shortcuts: environment design rather than
+  agent discipline — do not fight the disposition, redirect it. "The
+  shortest path is the best path … that plays exactly to how agents
+  love to write code … so why not make that the best way to solve the
+  problem?"; feature-colocated directories so copying the neighbour is
+  correct; hard gates for the remainder, since rules and skills "are
+  very very soft" while CI red is "a hard constraint where the agent
+  can't just write crappy code"; and the standing conversion rule,
+  "instead of me commenting on the PR, how do I turn this into a lint
+  rule? … Or how do I even categorically eliminate this problem
+  entirely?" That is a strong answer, and it is why the
+  self-cancelling-signal objection at (ii) does not bite her in Dune.
+  For DESIGN-shaped shortcuts — a convenient mechanism rather than a
+  right one, a missed consumer, wrong scope — no lint exists and she
+  claims none. Her answer there is that SHE DOES THE ARCHITECTURE:
+  "it's more important to spend my time on architecture, choosing the
+  right data structures, and thinking about how the systems I build
+  will work together. My agents fill in the implementation details"
+  (Part 2), and in the talk, being the codebase's "gardener and
+  maintainer" across roughly 600 PRs of her own refactoring.
+  **So FP3 and her refusal are not in conflict: statiker has an
+  adversarial design gate because statiker DELEGATES the design to an
+  agent; she has none because she has not delegated the thing it
+  would grade.** The disagreement dissolves into a scope difference,
+  and the open question narrows with it — not "is adversarial design
+  review worth it" but "is it worth it FOR A DELEGATED DESIGN", which
+  is the only case statiker is built for and a case her practice does
+  not test. Consumer: the trial's grading, which should stop reading
+  her as a counter-example to FP3 and start reading her as a system
+  that never enters FP3's domain.
   (ii) **She has a design falsifier, and it is empirical and
   DOWNSTREAM.** `/architect`'s "Scrap when the design is wrong … If
   the same workaround appears across unrelated call sites, or if the
