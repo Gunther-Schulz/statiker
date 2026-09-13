@@ -85,6 +85,42 @@ impl@codex: terra
 # the codex-only verify seam is gated on the st-54 refusal
 # rather than on this entry.
 #
+# ---------------------------------------------------------------
+# THE PER-(role, codex-tier) CELL TABLE — the codex-only
+# assignment answer. Every cell is stated. An UNMEASURED cell
+# means nobody has run it, NOT that it is fine; reading an empty
+# cell as safe is the mistake this table exists to prevent.
+#
+#   role                luna          terra         astra
+#   ----                ----          -----         -----
+#   read-side           PASS          PASS          PASS
+#   attack              UNMEASURED    certified     certified
+#   implementation      UNMEASURED    certified     UNMEASURED
+#   reviewer            UNMEASURED    FAIL 0/10     FAIL 1/10
+#   verify (FP5)        safe 2/9      safe 6/9      safe 3/9
+#   desk                UNMEASURED    UNMEASURED    UNMEASURED
+#
+# read-side: stage 1, all three at sonnet parity; cheapest viable
+#   luna. attack: astra for cross-vendor unique yield, terra for
+#   recovery (stages 2/2b); luna never run at this role.
+#   implementation: terra only (stage 2c); the other two are not
+#   failures, they are unrun. reviewer: EXCLUDED as a class, above.
+#   verify: probe B, 2026-09-13 — all three held the honesty floor,
+#   none fabricates; the numbers are requirements RESOLVED of 9.
+#   desk: probe A SATURATED (three arms at ceiling separate
+#   nothing), so it certifies no tier either way; stage 3 parked.
+#
+# ASSIGNMENT READING for a codex-only stack, from the verify row:
+# the leg goes to TERRA. The row is INVERTED against tier order —
+# the mid tier resolves twice what the top tier does and three
+# times the cheapest — and the cost runs the same way: luna spent
+# 69,525 tokens to resolve 2, astra 37,390 to resolve 3, terra
+# 53,179 to resolve 6. The cheapest tier is the most expensive per
+# resolved requirement, by more than an order of magnitude. So the
+# pilot's "volume is roughly tier-invariant per role" holds for
+# attack and read-side and NOT here: do not pick a codex tier for
+# verify by price.
+#
 # Read-side/discovery legs (no register class here — statiker
 # resolves discovery via the stack's routing table): luna, terra
 # and astra measured at sonnet parity, recorded in the dispatch

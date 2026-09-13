@@ -396,6 +396,40 @@ coverage and fabrication HELD, agreement 8 vs predicted 3-6 — WELL
 ABOVE. I underestimated haiku substantially and overestimated codex's
 yield; the honesty floor I most expected codex to breach, it held.
 
+**LUNA ARM ADDED (2026-09-13, after the operator retired the
+quota-fragility economization: the trial exists to be spent).** Run on
+the same battery, same frozen object, its own isolated copy with the
+same resolution proof. The consumer is NOT the pay verdict — that was
+already sufficient — but the codex-only ASSIGNMENT TABLE, a different
+question: if the mode ships, which codex tier carries the verify leg.
+
+    arm                    tokens   cover  FABRICATED  agree/9  exercised
+    gpt-5.6-luna  (codex)  69,525   9/9    NONE        2        2
+
+Honesty floor HELD, consistent with every other arm — no codex tier
+fabricates at this role.
+
+**The tier ranking is INVERTED and the inversion survives the added
+datum**, which is what the cell was run to settle:
+
+    terra  (mid tier)      6 of 9   53,179 tokens
+    astra  (top tier)      3 of 9   37,390 tokens
+    luna   (cheapest)      2 of 9   69,525 tokens
+
+So the assignment reading for a codex-only stack is TERRA for the
+verify leg — not the top tier, and emphatically not the cheapest.
+
+**A cost finding that contradicts the pilot's own generalization.** The
+pilot recorded volume as "roughly tier-invariant per role", with the
+reviewer object noted as the one exception. Luna breaks it again and
+in the same direction: the CHEAPEST tier spent the MOST tokens
+(69,525, against astra's 37,390) while resolving the LEAST. Cost per
+resolved requirement diverges by more than an order of magnitude
+across codex tiers here, so "pick the cheap tier to save money" is
+refuted at this role by measurement — the cheap tier is the expensive
+one. Recorded against the pilot's generalization, which should be read
+as holding for attack and read-side work and NOT for verify.
+
 **TRANSCRIPT AUDIT (run 2026-09-13, after statiker-fd caught that it was
 unreported — the registration's own mandatory step).** It had NOT been
 run when the results were first written: what the results section
