@@ -427,5 +427,16 @@ evidence: PLAN.md 'Steal considerations' consideration 5, 'THE WORKED CASE' pass
 blocked-by: NONE
 closed-reason: 2026-09-13 worked case read and verdict recorded: ADAPT-BY-EXTENDING — the interview structure transfers, the question set gains a sixth axis and four repo-shaped questions; record at dev-notes/wan2gp-worked-case-2026-09-13.md, verdict at PLAN consideration 5's fork paragraph
 
+## st-51
+grade: DROPPED
+requirement: statiker's machinery assumes a git repo it may COMMIT TO: the LOCK commit, unit START/COMMIT, the close pin, and a tracker at .clippy/runs/ that the repo does not ignore. Several real settings do not grant that — a client repo where run deliberation must not enter their history, a foreign repo worked through a fork or an unpushable branch, a change with no repo at all. The known handled case is a refusal, not a degradation: PREFLIGHT_UNPINNABLE_TRACKER surfaces to a present operator and unattended 'closes FAILED at minimal cost' (SKILL.md, The tools). The bite is that the payload's OWN evidence puts statiker's highest value exactly there — the placement tenet cites declined PRs on external codebases, where maintainers refuse convention-ignoring work regardless of correctness
+goal: general-maintenance
+write-set: plugin/skills/statiker/SKILL.md,plugin/skills/statiker/scripts/statiker_git.py
+done-criterion: UNKNOWN — set once the scope decision is answered; if a degraded mode is wanted, its shape (tracker outside the repo, no lock commits, record carried elsewhere) is designed then, and if clean refusal is correct the entry closes as a recorded drop with that reason
+evidence: SKILL.md read in full 2026-09-13: the preflight verdicts, the LOCK pathspec composition, unit-start/unit-commit, and Close's pin over the tracker; the placement gap-fill entry in PLAN (2026-08-26 (4)/(4b), decided as skill work 2026-09-10) for the external-codebase evidence
+blocked-by: NONE
+amend-reason: 2026-09-13 operator answered the scope decision: keep parked, refusal correct meanwhile, revisit after trial validation
+amended-blocked-by: 2026-09-13 evidence the trial validates the core loop (operator 2026-09-13: clean refusal is CORRECT for the trial phase; the degraded mode is designed only after that validation, its priority rising with the shareable-stack work df-171 drives)
+
 ## Archive (pre-migration)
 
