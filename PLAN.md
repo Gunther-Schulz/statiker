@@ -971,6 +971,33 @@ deliberate, the booked compression pass brings it back down
   implementation contact, where statiker's is death by fresh reader
   before implementation. Both kill wrong designs; they differ in when
   and at what cost.
+  **QUALIFIER (operator, same date — the objection that decides how
+  much (ii) is worth): implementation is exactly when shortcuts and
+  shortsighted decisions are made, and her falsifier's signal is
+  emitted by the actor most disposed to suppress it.** Her own words
+  on that actor: agents "like to take shortcuts … they'll find the
+  quickest way to solve the problem". Worse than a weak signal, it is
+  a SELF-CANCELLING one: each `any` cast is simultaneously the
+  evidence that the architecture is wrong and the act that relieves
+  the pressure which would have proved it — and it becomes precedent
+  for the next call site, by her own encode-lessons rule that "agents
+  copy whatever the surrounding code already does and a weaker guard
+  becomes the next template". What rescues her falsifier is not
+  pstack: it is DUNE. Where `any`, cross-directory imports and the
+  rest are CI failures, the shortcut is unavailable, so the pressure
+  has nowhere to go except into "this architecture is wrong". So (ii)
+  is a property of her CODEBASE, not of her method — the same
+  assumed-repo finding as the compression correction (§3 of the
+  comparison), one level down. In a repo without those gates her
+  design falsifier detects nothing, and nothing independent reads the
+  design during implementation: `/architect`'s "surfaces the
+  discrepancy" is the implementing agent's own report about its own
+  work. STATIKER'S ANSWER to the same problem is structural and
+  already in the payload: implementation makes no design decisions, a
+  gap is reported and never bridged, and a unit-local gap decision
+  lands as `- D<n> [AUTO-ACCEPTED] unit U<k> gap:` — tagged, surfaced,
+  enumerated at close. Consumer: the FP3 challenge above, which this
+  qualifier bounds.
   (iii) **CORRECTION to this date's medium-tenet disambiguation.**
   That clause said code "REPLACES the design step" for her. Part 2
   refutes it: "The truth is that I do plan, but I do so through
