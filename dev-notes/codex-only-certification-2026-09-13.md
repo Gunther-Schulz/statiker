@@ -233,3 +233,83 @@ oversight. Homes: `plugin/skills/statiker/defaults/models` and
 Certification is per (role, model): a pass never infers down the
 ladder, and a fail one tier down certifies nothing about the tier
 above.
+
+## AMENDMENT — Claude comparison arms (registered 2026-09-13, still
+## before any scored arm dispatches)
+
+Added on statiker-fd's directive, operator-prompted. NO scored arm had
+dispatched when this was written, so the criteria above remain
+pre-registered for every arm including these; the comparison arms
+inherit them unchanged and add no new probe, no new metric, no
+widening.
+
+**Arms added.** sonnet and haiku, ONE leg each per probe — four small
+legs. Opus arms are deliberately SKIPPED: the reviewer default is
+already register-certified and no decision hangs on re-measuring it.
+
+**Why the comparison is the right shape.** The operator's question is
+not "is codex good" but "is codex worth paying for", which is
+comparative by construction: codex's candidate role in this stack is
+cheap mechanical execution, so its competitors are the tiers that would
+otherwise carry that load — sonnet and haiku — never opus. An absolute
+codex score answers a question nobody asked.
+
+**Shared coordinates.** Same battery, same answer keys, same honesty
+floor, same criteria. The axis actually VARIED is vendor-and-tier,
+which is the axis the decision turns on; this is what makes the
+comparison a comparison rather than two numbers side by side.
+
+**Budget read (owed by the directive, and it changes the answer).** The
+four legs do NOT crowd out the codex arms, because they do not draw on
+the same pool: the codex arms spend the operator's codex trial quota,
+the Claude arms spend the Claude account (83% weekly, resetting
+tomorrow). The only real contention inside the Claude pool is desk
+turns against legs, not legs against codex. Estimated leg cost from the
+pilot's measured volumes: probe A ~20-40k per leg (reading 25 verdict
+lines and answering); probe B ~60-120k per leg (a real verify run that
+executes checks — the stage-2d reviewer replays ran 83k and 115k). So
+~160-320k Claude tokens for all four. Verdict: RUN ALL FOUR. Had the
+pools been shared, the codex arms would have won — they are the
+certification, the comparison is garnish.
+
+**Haiku's status, named rather than assumed.** Haiku carries
+register-certified classes and nothing else by default, and neither
+probe's role is a certified haiku class. These legs therefore run as
+MEASUREMENT, not as certified execution: their results feed the
+register rather than presupposing it. A haiku failure here certifies
+nothing beyond haiku, and a haiku pass is evidence toward a
+certification it does not itself grant.
+
+**Predictions, registered first.**
+
+Probe A, sonnet: (a) token 0.95-1.00, (b) obligation 0.70-0.85,
+(c) repair 0.60-0.80; clears the fail-closed floor.
+Probe A, haiku: (a) 0.85-0.95, (b) 0.45-0.65, (c) 0.35-0.55; I expect
+at least one FAIL-OPEN on a fail-closed case.
+
+Probe B, sonnet: 9/9 coverage, 0 fabricated met, agreement 6-8 of 9.
+Probe B, haiku: 9/9 coverage, 0-2 fabricated met, agreement 3-6 of 9.
+
+**The discriminating cross-vendor predictions** — these are the ones
+the decision reads, and they are registered so a post-hoc reading
+cannot be fitted to whatever arrives:
+
+1. sonnet BEATS astra on the OBLIGATION column (b). Contract reading is
+   codex's measured weakness (stage-2d) and the Claude tiers' relative
+   strength; if this fails, the stage-2d generalization is narrower
+   than the register currently claims and the reviewer exclusion
+   deserves a re-look.
+2. sonnet ties astra on the TOKEN column (a), both high. Both are
+   structural lookups, and stage 1 already measured codex at sonnet
+   parity on read-side work; a gap either way here contradicts stage 1
+   on a new object.
+3. The Claude arms clear the HONESTY floor on probe B and at least one
+   codex arm does not. Declining to claim coverage is conduct rather
+   than capability, and conduct is what the two vendors' measured
+   profiles most differ on.
+
+If (1) and (2) both hold, the economic reading is narrow and specific:
+codex buys nothing over sonnet on contract-bearing desk work and ties
+it on mechanical reading — so the pay case would have to rest on price
+per token and on the cross-vendor blind-spot yield already measured at
+stage 2, not on capability at these two roles.
