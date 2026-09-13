@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 40
+added: 41
 compacted: 0
 
 ## st-10
@@ -347,4 +347,13 @@ goal: general-maintenance
 write-set: plugin/skills/statiker/scripts/statiker_record.py,tools/test_statiker_record.py,plugin/skills/statiker/SKILL.md
 done-criterion: Either the deviation carries a machine-readable form the record tool can count (so a run that resolved an uncertified tier and wrote no line is detectable), or the repo records why it stays undetectable and prose-backed. If a form is minted it is red-first and DISCRIMINATING: RED on a tracker whose verify leg ran uncertified with no line, GREEN with the line, and green on a tracker where the tier IS certified so the check does not fire on legitimate runs. That last control is the point — the mechanism bar is what keeps this prose today.
 evidence: 0.2.97 seam review F9, EXECUTED by the reviewer as a fixture pair through statiker_record.py sweep: WITH a declared-deviation F-line -> SWEEP_CLEAN; WITHOUT it, same tracker with the citation repaired so nothing else moves -> SWEEP_CLEAN, field set byte-identical, no verdict carrying a deviation field. Reported for symmetry rather than as a regression: the attack seam's pre-existing clause has the identical property, so st-54 inherited a gap rather than opening one.
+blocked-by: NONE
+
+## st-62
+grade: READY
+requirement: defaults/models:13-16 states a resolution rule the page does not carry — 'A harness resolves only its own ecosystem's entries; a class's entries under another ecosystem are that stack's certification record, not this harness's resolution input.' The page's attack-tier resolution says only 'the first entry the harness can dispatch'. No behaviour diverges today, but operational text now lives in a data file, against the repo's single-home rule. Record: 0.2.97 seam review F8, statiker-c8 2026-09-13.
+goal: tend
+write-set: plugin/skills/statiker/SKILL.md,plugin/skills/statiker/defaults/models
+done-criterion: The ecosystem-resolution rule lives in ONE home. Either the page carries it and the register cites the page, or the repo records that the register is the declared home for its own resolution semantics and the single-home rule is scoped accordingly. Verified by a search over the governed set showing exactly one statement of the rule.
+evidence: 0.2.97 seam review F8, both sides read by the reviewer: register lines 13-16 (new in the 0.2.92-0.2.94 batch) against the page's attack-tier resolution passage. Graded MINOR by the reviewer — the two agree in practice, so this is a placement defect and not a behaviour one.
 blocked-by: NONE
