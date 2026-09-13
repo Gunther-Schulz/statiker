@@ -1164,11 +1164,26 @@ second home for anything below.
    exist") never needs answering. The desk's reading is that this is
    the right shape; recorded as a reading, not a decision, since the
    `st-48` question is the operator's.
-   **The fork, undecided:** BUILD our own generator, or ADAPT hers —
-   her SKILL.md is portable in substance, Cursor-specific only in its
-   output path (`.cursor/skills/verify-<app>/`), so adapting is a
-   real option and the cheaper arm. Deciding it needs one worked case,
-   not more reading.
+   **The fork — RESOLVED on the worked case (desk verdict,
+   2026-09-13): ADAPT-BY-EXTENDING.** The wan2gp read
+   (`dev-notes/wan2gp-worked-case-2026-09-13.md`, st-53) shows the
+   interview's STRUCTURE transfers — ask the repo, axes, a surface
+   map, prove-before-handover — while her QUESTION SET does not
+   survive contact whole: wan2gp answers Run heavily and Observe
+   narrowly, never built Drive-as-CLI, and nothing plays the
+   feature map's role (the piece ad-hoc growth never produced,
+   confirming the generator's value). What her Electron-shaped set
+   lacks for this repo: surface plurality (four launched apps, no
+   owned source), a keep-the-checkout-clean driving constraint,
+   GPU-residency isolation, a mandatory human-review step for A/V
+   evidence (two measured false-clean incidents), and a SIXTH axis
+   for experiment design (baseline/control/pre-registered
+   criteria). So: take her generator's skeleton, extend the
+   question set — build only the extension, not the frame. The
+   original fork text stands above in history (git); prior wording:
+   "BUILD our own generator, or ADAPT hers … Deciding it needs one
+   worked case, not more reading." The worked case has now decided
+   it.
    **OUTPUT FORM — operator decision, 2026-09-13: a CLI is NOT the
    mandated output.** The emitted artifact is "some tooling and maybe
    a skill", shaped per project; her Electron CLI is one realization,

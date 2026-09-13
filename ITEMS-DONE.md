@@ -417,5 +417,15 @@ evidence: SKILL.md 'Verify (forcing point 5)' read 2026-09-13; pstack create-ver
 blocked-by: NONE
 blocker-moot: does statiker's scope include commissioning or requiring per-repo verification apparatus, or does FP5 stay apparatus-agnostic and inherit whatever the repo's own verify section provides
 
+## st-53
+grade: DONE
+requirement: the wan2gp worked case from PLAN consideration 5: read ~/wan2gp's ad-hoc verification tooling against pstack's create-verification-skill output shape — the four reads listed there ARE the build-vs-adapt decision basis for the generator
+goal: general-maintenance
+write-set: dev-notes (new worked-case record),PLAN.md (consideration 5, the build-vs-adapt fork)
+done-criterion: the four PLAN questions answered with quotes from wan2gp's own files (which of the five interview axes it answers and which it never asked; what form its tooling took unprescribed; whether anything plays the feature map's role; what the interview must ask that her Electron-shaped set does not), recorded in dev-notes, and the build-vs-adapt recommendation stated on that basis at PLAN consideration 5
+evidence: PLAN.md 'Steal considerations' consideration 5, 'THE WORKED CASE' passage (operator, 2026-09-13, booked bed8323/3f79749); ~/wan2gp named by the operator as the existing artifact
+blocked-by: NONE
+closed-reason: 2026-09-13 worked case read and verdict recorded: ADAPT-BY-EXTENDING — the interview structure transfers, the question set gains a sixth axis and four repo-shaped questions; record at dev-notes/wan2gp-worked-case-2026-09-13.md, verdict at PLAN consideration 5's fork paragraph
+
 ## Archive (pre-migration)
 

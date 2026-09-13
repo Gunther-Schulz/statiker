@@ -303,12 +303,3 @@ write-set: plugin/skills/statiker/SKILL.md
 done-criterion: UNKNOWN — the shape is undecided and the options differ in kind: widen the derivation's own guidance, make the derived standard an attackable object in its own right (the attack already grades decomposition faithfulness but not the standard the head was derived against), or leave it thin deliberately and record why
 evidence: SKILL.md lines 418-433 read verbatim 2026-09-13; PLAN 'Lenses: none at birth' and the 2026-08-10 lineage entry on depreciation slopes; dev-notes/pstack-comparison-2026-09-13.md section 9d-bis, which names this slot as one of the two places design content would attach
 blocked-by: evidence a firing, or the trial datum — a run whose head omitted a requirement a competent shop would have derived, visible as a late reconciliation, an escaped defect the head never asked about, or an operator correction at close
-
-## st-53
-grade: READY
-requirement: the wan2gp worked case from PLAN consideration 5: read ~/wan2gp's ad-hoc verification tooling against pstack's create-verification-skill output shape — the four reads listed there ARE the build-vs-adapt decision basis for the generator
-goal: general-maintenance
-write-set: dev-notes (new worked-case record),PLAN.md (consideration 5, the build-vs-adapt fork)
-done-criterion: the four PLAN questions answered with quotes from wan2gp's own files (which of the five interview axes it answers and which it never asked; what form its tooling took unprescribed; whether anything plays the feature map's role; what the interview must ask that her Electron-shaped set does not), recorded in dev-notes, and the build-vs-adapt recommendation stated on that basis at PLAN consideration 5
-evidence: PLAN.md 'Steal considerations' consideration 5, 'THE WORKED CASE' passage (operator, 2026-09-13, booked bed8323/3f79749); ~/wan2gp named by the operator as the existing artifact
-blocked-by: NONE
