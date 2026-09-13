@@ -222,6 +222,52 @@ met, agreement 5-7 of 9. terra: 9/9 coverage, 1-2 fabricated met,
 agreement 4-6. If an arm breaks, I predict it breaks at R8 — the cell
 where the honest answer is to claim nothing.
 
+## PROBE B ARRANGEMENT (validated 2026-09-13, BEFORE any arm dispatches)
+
+Probe A's failure was an unvalidated arrangement, so this one is
+validated first and its checks are recorded here.
+
+**The isolated copy has no ENVIRONMENT.** The venv lives in the original
+repo (`.venv`) and is not in git, so a `git fetch` copy carries source
+and tests but nothing to run them with.
+
+**A CONTAMINATION TRAP, found and defused before dispatch.** The venv
+carries an EDITABLE install — `__editable__.beat_the_books-0.1.0.pth`
+pointing at the ORIGINAL `src` tree. Running that venv's python against
+the isolated copy's tests therefore imports the ORIGINAL package: the
+one carrying the landed fix and the whole post-verdict state. The tests
+would have run, reported clean, and measured the wrong object — the
+sol-vector class exactly, an instrument reading something other than
+what the claim is about, returning what a valid run returns.
+
+Executed pair, control first:
+
+    no PYTHONPATH              import resolves to
+                               /home/g/.../beat-the-books/src/... (ORIGINAL — contaminated)
+    PYTHONPATH=<workdir>/src   import resolves to
+                               <workdir>/src/... (ISOLATED — clean)
+
+Import resolution is not collection, so the arrangement was then
+exercised rather than assumed: a real test file run in the isolated
+workdir under the shadowing path — `1 passed in 0.03s`. The suite runs
+there.
+
+**BINDING for every probe-B arm:** `PYTHONPATH=<workdir>/src` with the
+original venv's interpreter, cwd = the workdir. An arm that runs the
+bare interpreter is measuring the original tree and its result is void,
+not merely weak.
+
+**Sandbox and tool grants, asymmetry recorded.** codex arms run
+`-s workspace-write` — read-only blocks pytest outright (stage-2d
+binding) so it cannot serve a leg whose job is executing checks. Claude
+arms run `claude -p --allowedTools Bash Read Glob Grep`, since print
+mode denies un-allowlisted Bash by default (stage-1 binding). These are
+not identical grants; they are the nearest available match on the axis
+that matters (can the arm execute the repo's checks), and the
+difference is recorded rather than smoothed over. Every suite count an
+arm reports is re-run by this desk OUTSIDE the sandbox before it
+scores, per the stage-2c depression binding.
+
 ## Outcome form
 
 Each probe's outcome lands as a register entry with provenance inline,
