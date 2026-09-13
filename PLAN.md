@@ -1241,6 +1241,51 @@ information about a delegated one. She remains the live comparand for
 the half she does delegate: implementation and verification, which is
 where consideration 5 sits and where she is ahead.
 
+## What makes statiker unique — operator's positioning claim (2026-09-13)
+
+**The claim, operator's words compressed:** the differences from pstack
+are what make statiker distinct, and the same holds against the other
+dev systems compared over the past months. In the domain being aimed
+at — full A-to-Z automated "build feature X" — no one else appears to
+be attempting it. Recorded as a POSITIONING claim with its basis and
+its decay, not as a settled fact.
+
+**Stated precisely, because the loose form is refutable and the precise
+one is not.** "Nobody automates feature delivery end to end" is false —
+autonomous coding products attempt exactly that, and cloud-agent
+harnesses ship PRs without a human touching the code (landscape sweep
+2026-08-14; not re-verified this date, so: unverified as of now). What
+the record supports is narrower and is the actual claim:
+**no compared system puts an INDEPENDENT DESIGN-CERTIFICATION GATE in
+front of an unattended end-to-end run.** Everyone either keeps a human
+at the design seam, or has no design seam to gate.
+
+**Basis, four independent looks, none run for this claim:**
+- software-factory, full text read 2026-08-08: four mandatory approval
+  gates, "no unattended path"; the human is the convergence authority.
+- spec-kit / Kiro, 2026-09-10: requirements → design → tasks with human
+  approval at each, "revise-per-user-answer" — the shape statiker's
+  autonomy entry adopted AGAINST.
+- pstack, read whole 2026-09-13: unattended paths exist and are
+  deliberately capped (benny draft-PR only, autopilot-stack refuses to
+  merge), and the design is not delegated at all — the author does the
+  architecture personally.
+- literature sweep 2026-09-10, Area 9: "adversarial pre-implementation
+  design review" returned an EXPLICIT CONFIRMED ZERO with a positive
+  control proving the instrument live (`dev-notes/literature.md`).
+
+**The decay, stated because an absence claim over a moving field is the
+class that rots quietly:** these looks cover PUBLISHED methodologies;
+an internal system would not appear in any of them, and the field ships
+monthly. The claim's honest form carries its date.
+
+**Falsifier, pre-registered:** a system that runs unattended end-to-end
+AND grades its design independently before implementation exists. One
+instance kills the uniqueness claim — and would be the most valuable
+comparand yet, since it would be the first real control arm for the
+question the trial is actually asking. Re-check at each fire-rate
+review, and whenever a new comparand is read (st-47's series included).
+
 ## Horizon consideration — NOT a decision (operator, 2026-08-05)
 
 When statiker is validated, CONSIDER lifting its framework from it
