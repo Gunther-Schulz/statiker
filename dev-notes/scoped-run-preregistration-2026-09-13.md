@@ -574,3 +574,60 @@ arm 1's state.
    archiving each before its reset.
 4. Grade all three together, never incrementally.
 5. st-63 needs its contract decision before it can be built.
+
+## 13. THE OBJECT'S PREMISE DIED MID-RUN — and what that bought
+
+lc-61 CLOSED in the real lifecycle repo at `13dd4bb` on 2026-09-13,
+while this run was measuring it. §1 registered it as grade READY; that
+premise is dead. Recorded rather than quietly corrected, because a
+stored brief executed without re-reading its premises runs on the world
+as of its grade date.
+
+WHAT THIS DOES NOT BREAK: the clone is frozen pre-closure, so arms 2
+and 3 face exactly the object arm 1 faced, and the withheld criterion
+in §1 remains the right baseline FOR THE CLONE. The comparison is
+intact.
+
+WHAT IT CHANGES: the real repo's criterion was RE-ANCHORED before
+closing — from "kind sweep returns CLEAN" (anchored to a mutating
+population, met-and-re-broken twice) to "CLEAN and not re-broken by the
+next directive written". So the criterion this run withholds is the
+version the repo itself later judged defective. That is worth stating
+plainly at grading time: an arm reaching the registered criterion has
+reached a target its own repo superseded, and an arm reaching PAST it
+toward durability should not be marked down for it.
+
+WHAT IT BUYS, unplanned and better than anything the arrangement could
+have built: an INDEPENDENT expert answer to the same problem, produced
+by lifecycle's own drain desk with no knowledge of this run. The two
+disagree at the decisive field. The drain desk read `home:
+plugin/skills` as DELIBERATE and used the placeholder's absence from
+the sweep as its discriminating control, declaring a second kind and
+citing the resolver's single-`*` limit (retire.py:416-417) as the
+reason not to widen. The statiker desk read the same field as simply
+WRONG and would correct it. Verified at source at this desk: the
+declaration says `plugin/skills`, `workflows.py` resolves
+`plugin/workflows`, and `plugin/skills` has no functional referent in
+`plugin/cli/`.
+
+Booked as lifecycle **lc-127**, blocked on the decision, with both
+readings and the source verification — not adjudicated here, because
+each desk's control is derived from the behaviour in question and
+picking either side on its own reasoning is the same-parentage error.
+
+For grading: the drain desk's closure is a strong external baseline,
+but it is NOT a clean ceiling arm. It held information the statiker
+desk never had (the resolver limit) and answered a different,
+re-anchored criterion. Use it as corroboration and contrast, never as a
+score.
+
+### One guard firing, recorded because it worked
+
+Booking lc-127 into lifecycle — a PUBLIC repo — was blocked by that
+repo's own leak scan: `FINDING foreign-path ITEMS.md line 746`. I had
+put a machine-local absolute archive path into an item body bound for
+public history. The commit was dropped (explicit hash, never `HEAD~1`;
+confirmed first that `origin/main` was exactly its parent, so the reset
+was sized to my own commit alone) and re-made with a repo-relative
+pointer; the re-push scanned clean. No rule is minted: the lesson is
+already a mechanism, and the mechanism fired.
