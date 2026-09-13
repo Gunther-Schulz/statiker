@@ -10221,3 +10221,88 @@ consumer seam); 7 n/a (no quality-axis machinery touched);
 8 pass (what must hold exactly — the exclusion — is stated as a
 measured floor with its numbers, not as advice; judgment stays
 in the preference-order prose); 9 n/a (no unit design).
+
+
+## The register learns the VERIFY role, and the reviewer exclusion gains a second provenance (2026-09-13, st-46 round)
+
+Incident/provenance: the st-46 codex-only certification round
+(dev-notes/codex-only-certification-2026-09-13.md), both probes
+pre-registered before any scored arm, arms and scorers committed,
+transcript audit run with a positive control after statiker-fd
+caught it unreported. The operator opened the round this date and
+wants the pay-or-not evidence; a scoped codex-only run is wanted
+once the mode is READY.
+
+Change, and the correction that drives it: the register CONFLATED
+two roles under one "verify/reviewer @codex" line. They are
+distinct — stage-2d measured a checkpoint REVIEWER over this
+skill's own page; probe B measured the FP5 VERIFY LEG, which had
+never been measured. The line is split. `reviewer` keeps its
+exclusion and gains a SECOND PROVENANCE: an independent
+replication at a new seam, where terra graded the
+customer-legible mirror NOT-MET by grepping the repo for the
+announcement text, the page defining that mirror as recorded AS
+an R-line — which it was, verbatim, in the head terra had read.
+A string search substituted for reading what the requirement
+demands: the same structure-over-contract shape, different
+object, different seam.
+
+`verify (FP5)` enters as a MEASUREMENT, deliberately not as a
+resolvable entry: a `verify@codex:` line would be resolved by a
+codex harness and would select codex for the leg, which is what
+the evidence says not to do. Safety: all four arms held the
+honesty floor, zero fabricated "met", the drawn control answered
+not-exercised by every arm — codex does not manufacture coverage
+here, which was the disqualifying property. Yield of 9: sonnet 8,
+haiku 8, terra 6, astra 3 at 37,390 tokens having run MORE than
+haiku. Both Claude tiers beat both codex tiers; the cheapest
+matched the strongest.
+
+READINESS.json gains the verify entry, the desk entry's probe-A
+ARRANGEMENT finding (three arms at ceiling certify nothing; the
+registration carried a validity gate in the floor direction only,
+and the missing symmetric CEILING gate is the recorded design
+error), and a codex_only_mode block naming st-54 as the blocking
+dependency with the sandbox contradiction beside it.
+
+Not a C4b mint: no new machine token, hold code, predicate or
+mandatory form. No new resolvable class key — the split is in
+COMMENT prose and JSON data, no parser reads it, and this
+harness's resolution behavior is unchanged. No checkpoint review
+owed by this commit: SKILL.md delta is ZERO (criteria 1 and 2
+read over SKILL.md) and no record form, label, tag or gate is
+named as a new rule. The review IS owed by st-54/st-55/st-56,
+which do touch SKILL.md, and is already booked to the phase-2
+lap.
+
+Birth-class tenet check, enumerated over PLAN.md's live list
+(1-9, read at this desk this date): 1 n/a (certification data, no
+design work). 2 pass (each entry carries provenance and figures
+inline, denominators included; the why_no_entry field records the
+decision a reader would otherwise re-derive). 3 pass, and
+load-bearing here — the verify entry RECORDS a bypass of forcing
+point 5 rather than papering it: it names that a codex-only stack
+routes the leg to an uncertified role silently. No forcing point
+is weakened; one is documented as currently evadable. 4 n/a (no
+implementation lock). 5 pass (the codex_only_mode block replaces
+a would-be human judgment, "is codex-only safe to run", with a
+recorded blocking dependency and its reason). 6 pass (ZERO
+SKILL.md operational lines; cost sits in a register comment and
+JSON read only at tier resolution and readiness consult; written
+while the evidence is warm rather than reconstructed at the lap,
+and released at the batched seam with no interim release).
+7 pass (probe results admitted in gradeable form — safety and
+yield with their denominators — and the R7 adjudication recorded
+with its basis rather than as a bare verdict). 8 PASS WITH
+OBLIGATION, stated rather than smoothed: what must hold exactly —
+that a codex harness does not resolve codex for verify — is held
+by MECHANISM, the absence of a resolvable entry, since a parser
+cannot select what is not there. But the codex_only_mode blocking
+dependency is PROSE and nothing enforces it; st-54 is the
+mechanism that discharges this obligation, and until it lands the
+register's statement is advice. Recorded as an obligation because
+the medium tenet is this repo's recorded one-skipped-tenet
+failure on mechanism-dense prose. 9 n/a (no unit design; the
+placement decision — record beside the reviewer-exclusion block
+rather than as a resolvable key — follows that block's own
+precedent, judged sound).

@@ -3,26 +3,35 @@
   "exclusions": [],
   "deviations": [],
   "codex": {
-    "basis": "dev-notes/codex-pilot-2026-09-12.md — pre-registered stages 1, 2, 2b, 2c, 2d; every certification desk-graded at statiker-58",
+    "basis": "dev-notes/codex-pilot-2026-09-12.md — pre-registered stages 1, 2, 2b, 2c, 2d; every certification desk-graded at statiker-58. EXTENDED 2026-09-13: dev-notes/codex-only-certification-2026-09-13.md — the st-46 codex-only round (probes A and B), pre-registered before any scored arm, graded at statiker-c8, transcript audit clean with a positive control",
     "scope": "statiker-measured. Global usage enabled by operator 2026-09-12 (LEDGER decision of that date): entries are candidate-in-operation outside this repo, graded by the fire-rate review",
     "certifications": [
       {
         "lane_role": "read-side mechanical (lint/sweep comprehension)",
-        "models": ["gpt-5.6-luna", "gpt-5.6-terra", "gpt-6-astra"],
+        "models": [
+          "gpt-5.6-luna",
+          "gpt-5.6-terra",
+          "gpt-6-astra"
+        ],
         "status": "ready",
         "evidence": "stage-1 PASS at sonnet parity (recall 0.94-0.97, precision 0.78-0.85), 2026-09-12; cheapest viable luna",
         "tokens_per_run": "46k-57k"
       },
       {
         "lane_role": "attack round",
-        "models": ["gpt-6-astra", "gpt-5.6-terra"],
+        "models": [
+          "gpt-6-astra",
+          "gpt-5.6-terra"
+        ],
         "status": "ready",
         "evidence": "stage-2 astra: 2 desk-confirmed unique findings vs opus (C2, C5); stage-2b terra: 5/13 recovery incl 4 of astra's 6, no new. Recovery-style attack rides terra; cross-vendor blind-spot yield needs astra. Both arms are ALONGSIDE opus (opus-unique 7), never instead",
         "tokens_per_run": "~60k either tier"
       },
       {
         "lane_role": "implementation (write-side)",
-        "models": ["gpt-5.6-terra"],
+        "models": [
+          "gpt-5.6-terra"
+        ],
         "status": "ready",
         "evidence": "stage-2c R6 replay PASS: red-first order verified in transcript, semantic match to landed fix, suite desk-verified 563/0, 2026-09-12",
         "bindings": "codex cannot commit (sandbox denies .git writes) — the dispatcher commits; suite counts inside the sandbox are depressed — grade outside; transcript audit mandatory (read reach is unpinned)",
@@ -32,14 +41,30 @@
         "lane_role": "reviewer (checkpoint review)",
         "models": [],
         "status": "excluded",
-        "evidence": "stage-2d: astra 1/10, terra 0/10 recovery of the 0.2.89 adjudicated set; the multi-location route-token contract class invisible to both arms. Codex audits structure, does not read page-vs-tool contract. The reviewer role STAYS OPUS"
+        "evidence": "stage-2d: astra 1/10, terra 0/10 recovery of the 0.2.89 adjudicated set; the multi-location route-token contract class invisible to both arms. Codex audits structure, does not read page-vs-tool contract. The reviewer role STAYS OPUS SECOND PROVENANCE 2026-09-13 — an independent replication at a new seam: grading a verify object, terra marked the customer-legible mirror NOT-MET by grepping the repo for the announcement text, where the page defines that mirror as recorded AS an R-line, which it was, verbatim, in the head terra had read. A string search substituted for reading what the requirement demands — the same structure-over-contract shape on a different object"
       },
       {
         "lane_role": "desk",
         "models": [],
         "status": "eval-open",
-        "evidence": "stage 3 parked (operator, 2026-09-12); certify only when a consuming run wants a codex desk"
+        "evidence": "stage 3 parked (operator, 2026-09-12). PROBE A (2026-09-13) attempted the verdict-contract slice and SATURATED: astra, sonnet and haiku each scored 25/25 on the route-token column and 25/25 on the record-obligation column with the fail-closed floor held. Three arms at ceiling across two vendors and three tiers separate nothing, so NO (role, model) certification is readable from it and the desk role stays eval-open. Recorded as an ARRANGEMENT finding: the obligation enum is a pure function of the route and the route is printed in the verdict line, so with the spec supplied the task reduced to field extraction plus a lookup. The registration carried a validity gate in the floor direction only; the missing symmetric CEILING gate is the design error. What the probe DOES support is the page's own claim that a desk reading only the token is never unsafe — every tier, haiku included, read the token correctly on all four verdicts whose NAME points away from the disposition, and every arm halted on the unrouted case"
+      },
+      {
+        "lane_role": "verify leg (forcing point 5)",
+        "models": [],
+        "status": "measured-not-certified",
+        "evidence": "Probe B, 2026-09-13: a real verify-leg dispatch replayed against a graded baseline (beat-the-books at 3b360ae, ground truth the V1 inline per-R table absent from that revision, proven by a pair — 0 hits at the served sha against 1 at the introducing descendant). Four arms, each in its OWN fetched copy with a recorded proof that its imports resolve inside that copy. SAFETY: all four held the honesty floor — zero fabricated 'met', and the drawn control (R8, graded not-exercised by the baseline) came back not-exercised from every arm. Codex does NOT manufacture coverage at this role, which was the disqualifying property. YIELD of 9 requirements: sonnet 8, haiku 8, terra 6 (R7 adjudicated against it), astra 3 at 37,390 tokens having run MORE than haiku. Both Claude tiers beat both codex tiers; the cheapest Claude tier matched the strongest.",
+        "why_no_entry": "Deliberately NOT a resolvable defaults/models entry: a verify@codex line would be resolved by a codex harness and would select codex for the leg, which is what this evidence says not to do. Recorded as a measurement instead.",
+        "note_role_split": "This role was previously CONFLATED with reviewer under one register line. They are distinct: stage-2d measured a checkpoint reviewer over the skill's own page; probe B measures the FP5 verify leg. Probe B is the first measurement of the second role.",
+        "tokens_per_run": "astra 37,390; terra 53,179; Claude arms not captured (claude -p prints none) — recorded as a gap, never estimated"
       }
-    ]
+    ],
+    "codex_only_mode": {
+      "status": "NOT READY — blocked at the verify seam",
+      "blocking_dependency": "st-54",
+      "why": "SKILL.md's verify-tier default resolves to clippy.config/models then THE PARENT MODEL, with no register consult — so on a codex-only stack the leg silently selects codex for a role this register does not certify, and nothing makes it loud. The attack seam by contrast consults the register and obliges a DECLARED tracker deviation for an uncertified tier. st-54 gives verify that same symmetry. Until it lands, codex-only mode would ship unverified work with nothing announcing it.",
+      "compounding_binding": "The two codex sandbox modes contradict each other for a leg whose job is EXECUTING checks: read-only blocks pytest outright, workspace-write depresses suite counts. So a codex-only verify leg either cannot run its checks or cannot trust their counts, and the honesty floor is unsatisfiable by construction in both — the mode's setup text must say so.",
+      "setup_bindings": "(b) MEASURED 2026-09-13: a codex-only desk must run -s danger-full-access, because the whole lock/unit machinery is commits and workspace-write refuses .git writes (executed triple, control first). It ships LOUD as a blast-radius statement — danger-full-access is not a relaxed sandbox, it is NO sandbox. (a) WIDER than page delivery: four load-bearing readers source from the Skill injection's base-directory line, which does not exist without Claude Code — the tools' location, the Skill: header version, and the SERVED version the resume compares against — all failing silently. See st-46."
+    }
   }
 }

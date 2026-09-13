@@ -46,12 +46,44 @@ attack@codex: terra
 # skill's references/codex-routing.md, canonical.
 impl@codex: terra
 
-# verify/reviewer @codex: EXCLUDED BY MEASUREMENT 2026-09-12 —
-# not merely absent. astra recovered 1/10 and terra 0/10 known
+# reviewer @codex: EXCLUDED BY MEASUREMENT 2026-09-12 — not
+# merely absent. astra recovered 1/10 and terra 0/10 known
 # review defects on this skill's own text (same pilot record,
 # Stage-2d RESULTS); the route-token class was invisible to
 # both. No @codex entry may be added for a reviewer-role class
 # without a fresh probe clearing that measured floor.
+# SECOND PROVENANCE 2026-09-13, an independent replication at a
+# new seam: grading a verify object, terra marked the
+# customer-legible mirror NOT-MET by grepping the repo for the
+# announcement text, where the page defines that mirror as
+# recorded AS an R-line — which it was, verbatim, in the head
+# terra had read. A string search substituted for reading what
+# the requirement demands: the same structure-over-contract
+# shape, on a different object, at a different seam
+# (dev-notes/codex-only-certification-2026-09-13.md, probe B).
+#
+# verify (FP5) @codex: SAFE BUT UNCOMPETITIVE — measured
+# 2026-09-13, and recorded as a measurement rather than as a
+# resolvable entry ON PURPOSE: a `verify@codex:` line would be
+# RESOLVED by a codex harness and would select codex for the
+# leg, which is what this evidence says not to do. The role is
+# distinct from reviewer above and had never been measured; the
+# register previously conflated the two under one line.
+# Probe B replayed a real verify-leg dispatch against a graded
+# baseline, four arms, each in its own isolated copy, transcript
+# audit clean with a positive control. SAFETY: every arm held
+# the honesty floor — zero fabricated "met", and the drawn
+# control (a requirement the baseline graded not-exercised) came
+# back not-exercised from all four. Codex does not manufacture
+# coverage at this role. YIELD, of 9 requirements: sonnet 8,
+# haiku 8, terra 6 (one adjudicated against it), astra 3 — the
+# strongest codex tier resolved fewest while running MORE than
+# haiku did (37,390 tokens). Both Claude tiers beat both codex
+# tiers and the CHEAPEST Claude tier matched the strongest, so
+# the case for codex at this role cannot rest on capability.
+# A codex-only stack has no Claude tier to prefer, which is why
+# the codex-only verify seam is gated on the st-54 refusal
+# rather than on this entry.
 #
 # Read-side/discovery legs (no register class here — statiker
 # resolves discovery via the stack's routing table): luna, terra
