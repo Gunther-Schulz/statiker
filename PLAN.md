@@ -965,6 +965,49 @@ second home for anything below.
    same-parentage error one level up. No new carrier; this line is a
    pointer to that sequencing.
 
+5. **A VERIFICATION-SKILL CAPABILITY — build one like hers, or adapt
+   hers** (operator, 2026-09-13; the FP5 apparatus gap, §7a and §9d.2
+   of the comparison). Two shapes, considered together because the
+   first is what produces the evidence the second needs.
+   **B — surface the absence.** Close's LEAVINGS section carries three
+   classes and every one of them is something that EXISTED; there is
+   no class for the instrument that was ABSENT. B adds a fourth: an
+   R-line whose FP5 verdict was NOT EXERCISED *for want of a means to
+   exercise it*, enumerated with the same operator-filled disposition
+   slot the other three carry. Domain-general by construction — a
+   corpus run enumerates zero. Licensed by the sentence already in
+   Close: "statiker owns the run and its record, SURFACING is
+   run-conduct, FILING is the environment's."
+   **C — the generator.** Not a harness per run: a repo-scoped
+   generator run ONCE, which is how pstack does it. The desk's
+   mispricing on first pass was per-run; corrected.
+   **BASELINE FOR SCOPE (operator decision, this date): pstack's
+   `create-verification-skill`, taken as the scope reference rather
+   than re-derived.** Its scope, read at the mirror 2026-09-13 and
+   archived with its code blocks at
+   `dev-notes/poteto-guide-pt1-2026-08-31.md`: a five-axis interview
+   of the REPO not the user (surface / run / drive / observe /
+   isolate); six mandatory generated sections (Launch, Doctor, Drive,
+   Evidence, Cleanup, Helpers); a feature map with four verbatim
+   headings (`Sub-features`, `How to get to it (user POV)`,
+   `Driving it with <harness>`, `Gotchas`); a prove-before-handover
+   step ("A generated skill that was never executed is a draft, not a
+   deliverable"); and a separate maintenance loop.
+   **The fork, undecided:** BUILD our own generator, or ADAPT hers —
+   her SKILL.md is portable in substance, Cursor-specific only in its
+   output path (`.cursor/skills/verify-<app>/`), so adapting is a
+   real option and the cheaper arm. Deciding it needs one worked case,
+   not more reading.
+   Gate: C inherits ITEMS `st-48`'s scope question (does the payload
+   demand a harness exist, or stay apparatus-agnostic and inherit the
+   host repo's checks) — and note that RUNNING the recipe once against
+   a repo needs NO payload change and no answer to that question, so
+   the two are separable. B is a payload clause and takes the
+   birth-class rule: consider at the firing, or at the compression
+   seam. Boundary on both: her generator assumes a drivable surface,
+   so this reaches code with a UI or CLI and reaches corpus work not
+   at all.
+
 Explicitly NOT taken, recorded so a later reader does not re-open
 them: lazy loading (whole-to-whole statiker is ~4x smaller — a
 loading question the compression pass owns, never a size lesson); the
