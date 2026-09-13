@@ -1231,9 +1231,11 @@ second home for anything below.
    beside, and the wan2gp worked case is its cheapest first move.
 
 Explicitly NOT taken, recorded so a later reader does not re-open
-them: lazy loading (whole-to-whole statiker is ~4x smaller — a
-loading question the compression pass owns, never a size lesson); the
-feature map wholesale (the scope question is ITEMS `st-48`); cloud
+them: lazy loading (whole-to-whole statiker is ~2x smaller
+[recount 2026-09-13, declared dependencies counted; doc §9b] — a
+loading question the compression pass owns, never a size lesson);
+the feature map wholesale (the scope question is ITEMS `st-48`);
+cloud
 agents over worktrees (a claim about Cursor's infrastructure);
 pstack's verification epistemics (statiker is ahead — importing would
 be a downgrade). The pattern: everything worth taking is OPERATIONAL

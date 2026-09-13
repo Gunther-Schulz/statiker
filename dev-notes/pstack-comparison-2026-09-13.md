@@ -36,10 +36,14 @@ exists. Every adversarial instrument pstack owns — `interrogate`'s four
 model families, `arena`'s cross-judge, shipping's per-PR verdict —
 grades an artifact that has already been built.
 
-**The one thing pstack has that statiker should want:** an explicit
-ranking of enforcement mechanisms with prose at the bottom, and the
-discipline of pushing every recurring rule down that ranking into the
-repo it governs.
+**What pstack has that statiker should want** (re-extracted 2026-09-13
+after §9; the earlier lead named only the enforcement ranking): first
+the verification APPARATUS — the generator that builds a repo a
+drivable, rerunnable interface plus its surface map (§7a; re-graded
+by the operator as on the north star's path: an unattended run must
+be able to SEE whether the work works) — then the enforcement ranking
+with prose at the bottom, the lever clause, and the rest of §9e's
+operational column.
 
 ---
 
@@ -164,7 +168,11 @@ rather than threatening it: here is a mature, heavily-instrumented
 system whose every check sits downstream of the design, built by a
 practitioner who rejects the design layer on principle. Its stated
 rationale, from the root README: `i don't believe in planning. the best
-spec is code.`
+spec is code.` [CORRECTED 2026-09-13, Part 2: the zero stands, its
+reading narrows — she does design ("I do plan, but I do so through
+code"), and what she refuses is adversarial review of ABSTRACT PLANS,
+a stated refusal with her reasons, not the absence of a design step;
+see PLAN's Part-2 entry (2026-09-13) and §9's corrections.]
 
 ---
 
@@ -364,13 +372,24 @@ about the rule, not about either system.
   fire-rate retirement. Theirs is more conservative; ours is more
   autonomous.
 - **The design medium.** `i don't believe in planning. the best spec is
-  code.` **Flagged, because this corpus adopted that slogan** (PLAN,
-  2026-09-10: "the medium tenet is poteto's slogan, adopted by you").
-  The slogan is shared and the conclusions are opposite: pstack uses
-  code *instead of* a design layer; statiker uses code *as* a design
-  medium where prose cannot hold a specification exactly. Same sentence,
-  two systems, and a reader who meets it in both will read a convergence
-  that is not there. Worth a clause wherever the tenet is stated.
+  code.` [CORRECTED 2026-09-13, twice, after this doc first shipped.
+  Provenance: the earlier text here cited "(PLAN, 2026-09-10: 'the
+  medium tenet is poteto's slogan, adopted by you')" — that citation
+  was false: the sentence was a 2026-09-10 chat remark that reached no
+  carrier (git log -S confirms the phrase enters PLAN only with the
+  2026-09-13 disambiguation), and the medium tenet was minted
+  2026-08-08 from two measured prose failures, a month before pstack
+  was read (PLAN.md, the 2026-08-08 medium-tenet entry's
+  DISAMBIGUATION clause). Substance, from guide Part 2: she does
+  design, and her medium is also code ("The truth is that I do plan,
+  but I do so through code" — readme-first, type-signature sketches,
+  prototypes), so the earlier "code *instead of* a design layer" was
+  wrong too; the surviving difference is the GRADER — statiker attacks
+  the coded design with a fresh context before implementation, she
+  falsifies it empirically on contact with implementation. What
+  stands: same slogan, two systems, and a reader meeting it in both
+  will read a convergence that is not there — the disambiguation
+  clause at the tenet's own site (PLAN.md) is the standing answer.]
 
 ---
 
@@ -528,6 +547,12 @@ as the unopened files in §1, not new material that arrived afterward.
 
 ## 9. The comparison re-made with BOTH sides read (supersedes the one-sided claims above)
 
+(Section numbers are stable ids — ITEMS st-48/st-49/st-50, PLAN
+entries and a dotfiles item cite them — so this section keeps its
+number although it sits before §8: the corrections stand beside the
+sections they correct, and §8's confounds still bound everything
+here, §9 included.)
+
 Everything above §9 compared a fully-read pstack against a statiker
 known from section headings, line counts, FP5 and PLAN excerpts. The
 payload has now been read in full — `SKILL.md` 1,808 lines, plus
@@ -560,10 +585,13 @@ more machine-checked enforcement over its own METHOD than pstack has
 over its.** pstack's real tools — `watch-pr`, `orch.ts`,
 `check-plan.mjs`, `worktree-audit.sh`, ~6,576 lines — cluster on
 status polling, bookkeeping and one plan linter; its method compliance
-is prose and self-report throughout. statiker's tools gate the method
-itself, and its own text says the contract lives in the battery: "a
-divergence is graded against the battery, never against this page's
-wording."
+is prose and self-report throughout. [Bound, added 2026-09-13: this
+sentence is UNVERIFIED at tool level — the ~6,576 backing lines (§1)
+are unread, and a method-enforcing check could live there
+unannounced; established for the markdown corpus only.] statiker's
+tools gate the method itself, and its own text says the contract
+lives in the battery: "a divergence is graded against the battery,
+never against this page's wording."
 
 So the axis is not process-versus-repo. It is **which layer each
 system was willing to mechanize**: pstack mechanized the GOVERNED
@@ -581,17 +609,43 @@ Both numbers are right and the comparison is between different objects.
 |---|---|---|
 | always loaded | 143 (`poteto-mode/SKILL.md`) | 1,808 (whole payload) |
 | loadable on demand | ~7,400 more markdown | ~70 (`references/evidence.md`, only where no operator corpus) |
-| total prose | ~7,572 | ~1,880 |
+| bare-stack dependency set (Composition clause: dispatch skill + its forms/routing refs, executor skill, evidence.md) | n/a | 1,999 |
+| total prose | ~7,572 | ~3,807 |
 | backing code | ~6,576 lines | 2 scripts + their batteries |
 
-**Whole-to-whole, statiker is roughly four times SMALLER.** pstack's
-advantage is entirely lazy loading, which is what the 2026-09-10 entry
-correctly identified as the architecture. A typical pstack task loads
-the router plus one playbook plus a few principle leaves — on the
-order of 300 lines, not 143 and not 7,572. That is the honest
-comparand for the compression pass: roughly 5×, not 12×, and it is an
-argument about LOADING, never about total corpus size, where statiker
-already wins.
+[RECOUNT 2026-09-13 — declared dependencies counted. The original
+"total prose" statiker figure (~1,880) summed only the payload
+(1,808) plus evidence.md (~70) — the substitute this repo's
+Composition clause loads only where no operator corpus is present.
+That undercounts the general case: statiker's declared bare-stack
+dependency set is dispatch/SKILL.md (1,107) +
+dispatch/references/forms.md (425) + dispatch/references/routing.md
+(198) + executor/SKILL.md (199) + evidence.md (70) = 1,999 (`wc -l`,
+2026-09-13, dispatch-guards 0.11.14). Two more files load only
+conditionally and are excluded from this sum: codex-routing.md (87,
+loaded only where `codex` is installed) and worktree/SKILL.md (202,
+loaded only before worktree use). The operator corpus itself is NOT
+counted — evidence.md is its declared bare-stack substitute, and
+evidence.md IS counted above.
+
+Arithmetic: statiker total prose = 1,808 + 1,999 = 3,807. New
+whole-to-whole ratio: 7,572 / 3,807 ≈ 1.99 — the verdict still favors
+statiker, but the margin drops from ~4× to roughly TWO times, not
+four; the sentence below is rewritten accordingly. The "roughly 5×,
+not 12×" sentence that follows is a different comparison (statiker's
+always-loaded 1,808 against a typical pstack task's ~300-line load,
+which the paragraph itself calls "an argument about LOADING, never
+about total corpus size") — neither of its two inputs changes under
+this recount, so it stands unrewritten.]
+
+**Whole-to-whole, statiker is roughly two times SMALLER, not four.**
+pstack's advantage is entirely lazy loading, which is what the
+2026-09-10 entry correctly identified as the architecture. A typical
+pstack task loads the router plus one playbook plus a few principle
+leaves — on the order of 300 lines, not 143 and not 7,572. That is
+the honest comparand for the compression pass: roughly 5×, not 12×,
+and it is an argument about LOADING, never about total corpus size,
+where statiker already wins.
 
 ### 9c. CORRECTION — pstack is not without a decomposition step, but statiker's is stronger and earlier
 
