@@ -310,3 +310,83 @@ Skill-lint blocking=0 over all three shipped skill files; suite 582
 passed. The desk that runs this must be a FRESH session — a running
 session serves the version it resolved at its own start (repo
 CLAUDE.md: a release during a live run means the desk restarts).
+
+---
+
+## 9. ARM SERIALIZATION — the gap this pre-registration had, closed
+   before dispatch (statiker-c8, 2026-09-13, after the operator's
+   authorization landed)
+
+The operator's authorization scopes the run to ONE working copy. The
+arrangement has THREE desk arms. §§1-8 never said how three desks share
+one copy, and nothing would have caught it until two arms collided in
+the same tree — so it is settled here, before the first dispatch.
+
+**Arms run SERIALLY in the one authorized clone, with a verified total
+reset between them.** No sibling copies, no nesting inside the clone:
+either would put a working copy on a path the authorization does not
+name.
+
+### The reset, and its red-first proof (executed 2026-09-13)
+
+    git -C <clone> reset --hard e06be63 && git -C <clone> clean -xfdq
+
+Proven rather than assumed, because a reset that silently did nothing
+is indistinguishable from a clean one:
+
+| step | result |
+|---|---|
+| baseline tree | `2ffe2895810eea15c062aaedd48fc339ca00b1a7` |
+| mutation: probe file + ITEMS.md edit, COMMITTED | `cc0ec63` landed |
+| after reset: HEAD / tree | `e06be63` / `2ffe2895...` identical |
+| after reset: dirty entries / probe file | 0 / gone |
+| defect still reproduces | `FINDING ... 3 tracked file(s)`, exit 2 |
+
+The probe commit LANDING first is what makes this discriminate: over a
+clone nothing had dirtied, the same three lines would print the same
+green having undone nothing.
+
+### Archive BEFORE reset — else the grading has nothing to read
+
+The reset discards exactly what the run produces: statiker's record IS
+the commit log, so resetting an arm away destroys the object of columns
+3 and 4 and the honesty floor. Each arm's whole tree is copied to
+`/home/g/dev/local/statiker-run-2026-09-13-lc61-arms/<arm>/` BEFORE the
+reset, and the copy — not memory of it — is what the post-run audit
+reads. An arm whose archive is missing or empty is UNGRADEABLE and
+reported as such, never scored from its own report.
+
+### Arm order: THE CEILING ARM FIRST
+
+sonnet, then terra, then astra. The ceiling arm is not a candidate and
+its absence VOIDS both codex columns — that is precisely probe A's
+recorded failure, where three arms scored 25/25 and certified nothing.
+So the arm whose loss costs the most is banked first; a session that
+dies after arm 1 leaves a measurable ceiling and no measurement, which
+is recoverable, where the reverse leaves two scores against no ceiling,
+which is not.
+
+The contamination this order would otherwise invite is closed by
+construction: **all three arm briefs are written, verbatim identical,
+BEFORE arm 1 dispatches** — differing only in the harness lines each
+tier needs. Reading arm 1's output therefore cannot shape arm 2's
+brief, because arm 2's brief already exists. The brief is
+`dev-notes/scoped-run-arm-brief-2026-09-13.md`, committed before the
+first dispatch; its commit hash predating every arm's is the check.
+
+### The version self-check — a Claude arm must prove what it serves
+
+The sonnet arm loads statiker through the skill system, so it resolves
+a PIN, and a stale pin is silent: the arm would run 0.2.92 — missing
+st-54's certification duty, missing the dispatch forms, carrying the
+containment bug that kills forcing point 3 with a cause nobody would
+look for — and report conduct graded against text it never had.
+
+So the sonnet arm's brief demands, as its first act, the base-directory
+line from its own skill injection, reported verbatim. It must resolve
+`.../plugins/cache/statiker/statiker/0.2.98`. Anything else and the arm
+HALTS and reports rather than running — an unfakeable check, because
+the path comes from the injection and from nowhere the arm can compose.
+The codex arms need no such check and cannot have one: they are handed
+the payload path and the version by hand, which is the README's stated
+codex gap, not a defect of this run.
