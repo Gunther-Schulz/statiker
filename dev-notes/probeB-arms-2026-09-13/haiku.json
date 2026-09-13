@@ -1,0 +1,74 @@
+```json
+{
+  "verdicts": [
+    {
+      "r": "R1",
+      "verdict": "met",
+      "commands": ["python -m pytest tests/unit/resolution/test_normal_resolver_swap_handicap_sign.py::test_swapped_case_stores_canonical_side_handicap -v"],
+      "evidence": "tests/unit/resolution/test_normal_resolver_swap_handicap_sign.py::test_swapped_case_stores_canonical_side_handicap PASSED [100%]\n\nAssertion within test (line 128-130): home_handicap == Decimal('1.5')\nAssertion (line 132-134): away_handicap == Decimal('-1.5')\n\nThe test verifies that for a swapped market with raw home handicap -1.5, after only the position relabel (HOME<->AWAY), the stored HOME outcome carries +1.5 (the raw AWAY-position line, now in HOME position), which is the canonical side's line.",
+      "note": "Verified via red-first test that stores canonical HOME handicap for crosswise markets"
+    },
+    {
+      "r": "R2",
+      "verdict": "met",
+      "commands": ["git show 07acf5a9 -- src/beat_the_books/resolution/normal_resolver.py | grep -A 20 'Apply swap correction'", "python -m pytest tests/unit/resolution/ -q"],
+      "evidence": "Deleted lines 656-666 from normal_resolver.py:\n\n-                # Apply swap correction to outcome handicap if needed\n-                corrected_outcome_handicap = outcome.handicap\n-                if (\n-                    is_swapped\n-                    and provider_market.market_type == MarketType.SPREAD\n-                    and outcome.handicap is not None\n-                ):\n-                    corrected_outcome_handicap = -outcome.handicap\n-                    logger.debug(...)\n\nChanged line 664 from:\n-                    handicap=corrected_outcome_handicap,\nTo:\n+                    handicap=outcome.handicap,\n\nAll 52 resolution tests pass, confirming the writer no longer applies the double correction",
+      "note": "Per-outcome handicap negation block removed; writer now stores outcome.handicap directly"
+    },
+    {
+      "r": "R3",
+      "verdict": "not-exercised",
+      "commands": [],
+      "evidence": "The record at F67 explicitly states: 'The parent's F137 is the live lead and is deliberately NOT decided here: it records that the upsert's on-conflict set carries `handicap` and `total`, so re-observed rows may re-heal on every poll cycle, which would mean the writer fix alone repairs every row the system still sees. Whether that holds, and what it leaves unrepaired, is this run's investigation — and it is what decides whether this unit is reversible at all.'\n\nVerified the upsert ON CONFLICT includes handicap in set_ clause (src/beat_the_books/infrastructure/database/repositories/core.py line ~610), enabling self-healing, but whether re-observed rows actually self-heal is a prod observation that C2 forbids (commit locally, never push).",
+      "note": "R3 disposition deliberately deferred to prod observation; C2 constraint prevents pushing required for measurement"
+    },
+    {
+      "r": "R4",
+      "verdict": "met",
+      "commands": ["python -m pytest tests/unit/resolution/test_normal_resolver_swap_handicap_sign.py::test_swapped_case_stores_canonical_side_handicap -v"],
+      "evidence": "Test assertion at lines 136-138:\nassert home_handicap + away_handicap == Decimal('0'), (\n    'stored handicaps must be exact complements'\n)\n\nWith home_handicap=Decimal('1.5') and away_handicap=Decimal('-1.5'), sum equals 0. Test PASSED, confirming complementarity survives the fix.",
+      "note": "Complementary-pair constraint verified: home + away = 0 held before (both sides had opposite's line, so still summed to 0), and holds after (now canonical correct values)"
+    },
+    {
+      "r": "R5",
+      "verdict": "met",
+      "commands": ["python -m pytest tests/unit/resolution/test_normal_resolver_swap_handicap_sign.py -v"],
+      "evidence": "tests/unit/resolution/test_normal_resolver_swap_handicap_sign.py::test_swapped_case_stores_canonical_side_handicap PASSED [ 25%]\ntests/unit/resolution/test_normal_resolver_swap_handicap_sign.py::test_control_unswapped_case_stores_raw_handicap PASSED [ 50%]\ntests/unit/resolution/test_normal_resolver_swap_handicap_sign.py::test_swapped_case_market_signature_unaffected PASSED [ 75%]\ntests/unit/resolution/test_normal_resolver_swap_handicap_sign.py::test_swapped_case_stored_home_handicap_matches_signature_line PASSED [100%]\n\n4 passed in 0.24s\n\nTest file includes red-first proof comment (lines 173-178): 'A string comparison discriminates nothing here... only the Decimal comparison actually catches the sign defect.' The test discriminates by checking Decimal(sig_line) == home_handicap, not string equality.",
+      "evidence": "Red-first pin created; test documents defect (swapped case produces wrong sign before fix), includes positive control (unswapped case), verifies market signature invariance, and uses Decimal comparison to discriminate from string comparison (which would not catch the defect)"
+    },
+    {
+      "r": "R6",
+      "verdict": "met",
+      "commands": ["grep 'uq_odds_market_outcome' src/beat_the_books/infrastructure/database/models/core.py", "grep -A 8 'on_conflict_do_update' src/beat_the_books/infrastructure/database/repositories/core.py"],
+      "evidence": "UNIQUE constraint on (market_id, outcome_position) at src/beat_the_books/infrastructure/database/models/core.py line 492:\n    UniqueConstraint('market_id', 'outcome_position', name='uq_odds_market_outcome')\n\nON CONFLICT upsert at src/beat_the_books/infrastructure/database/repositories/core.py:\nstmt = stmt.on_conflict_do_update(\n    constraint='uq_odds_market_outcome',\n    set_={\n        'odds_value': stmt.excluded.odds_value,\n        'timestamp': stmt.excluded.timestamp,\n        'handicap': stmt.excluded.handicap,\n        'total': stmt.excluded.total,\n        'outcome_id': stmt.excluded.outcome_id,\n    },\n)\n\nFail-closed: duplicate writes detected at database constraint level; idempotency for re-observed entities guarded by ON CONFLICT handler.",
+      "note": "Money-path fail-closed by database constraint + upsert guard; no in-code dedup decision; writer fix only removes second correction"
+    },
+    {
+      "r": "R7",
+      "verdict": "met",
+      "commands": ["git show 07acf5a9 | head -20"],
+      "evidence": "Commit message:\n\nfix(resolution): store canonical-side handicap for crosswise spread markets\n\nFor a market whose provider lists the teams swapped, the resolver\napplied the swap correction twice: the position relabel already moves\neach outcome across (HOME<->AWAY), then a per-outcome negation flipped\nthe handicap back on top of that -- composing to the opposite side's\nline on every stored row. Delete the second (per-outcome) correction;\nthe position relabel alone is the correct fix. Pin with a red-first\nunit test exercising the exact defect (swapped case, control, market\nsignature invariance, and stored-line-equals-signature-line compared\nas Decimals -- a string comparison was verified not to discriminate).\n\nMessage reads as: double-correction defect, single fix (remove second correction), pinned with test. No jargon in the defect description.",
+      "note": "Commit message clearly describes the defect and fix; announcement-ready without reading this record"
+    },
+    {
+      "r": "R8",
+      "verdict": "not-exercised",
+      "commands": [],
+      "evidence": "R8 requires: 'Before: the parent's executed probe joined venue markets to Pinnacle's on (game_id, market_signature) and compared the `outcome_position='home'` handicaps, returning `crosswise: 46 pairs, 0 agree, 46 sign-flipped`. After: that same probe reads ZERO sign-flipped on BOTH positions with the straight control still clean.'\n\nThis is a prod query comparing stored odds against live Pinnacle market data. C2 constraint forbids pushing this code to prod (commit locally, never push), so the SUCCESS METRIC measurement cannot be executed. The fix is verified locally via the red-first test, but prod-side metric requires live data access and a deployed state.",
+      "note": "Prod measurement not exercisable without deployment; C2 constraint (commit locally, never push) makes this R-line unobtainable"
+    },
+    {
+      "r": "R9",
+      "verdict": "met",
+      "commands": ["git show 07acf5a9 --stat"],
+      "evidence": "fix(resolution): store canonical-side handicap for crosswise spread markets\n\n src/beat_the_books/resolution/normal_resolver.py   |  16 +-\n .../test_normal_resolver_swap_handicap_sign.py     | 191 +++++++++++++++++++++\n 2 files changed, 193 insertions(+), 14 deletions(-)\n\nOnly two files touched: one existing file (defect repair + docstring update), one new test file. No new modules, no new configuration knobs, no new abstractions. Repair scoped to the negation site only. All deletions are from the defect-producing block.",
+      "note": "Change is defect repair (removed double-correction) + red-first test; no new module, abstraction, or configuration"
+    }
+  ],
+  "suite": {
+    "ran": true,
+    "command": "python -m pytest tests/unit/resolution/ -q",
+    "output_tail": "....................................................                     [100%]\n52 passed in 18.92s"
+  }
+}
+```
