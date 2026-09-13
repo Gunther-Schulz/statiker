@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 25
+added: 26
 compacted: 0
 
 ## st-10
@@ -254,3 +254,12 @@ write-set: dev-notes (new pre-registered probe record),plugin/skills/statiker/de
 done-criterion: Both probes pre-registered (criterion before any arm dispatches) and resolved: (1) DESK arm — a codex model drives a small scripted statiker run graded against a known-good desk transcript, the criterion keyed to verdict-contract conduct (route-token reading, repair composition from verdicts) since that is the measured codex weakness; (2) VERIFY arm — per-R-line grading on a finished unit against a graded baseline. Each outcome lands as a register entry with provenance inline OR a measured exclusion with its floor stated (the Stage-2d form). Plus the two codex-only setup bindings written where a bare-machine user reads them: page delivery without skill injection (hand-fed SKILL.md), and sandbox config for .git writes (workspace-write denies them; the desk's lock/unit machinery is commits).
 evidence: dev-notes/codex-pilot-2026-09-12.md stages 0-2d (stage 3 parked by design); Stage-2d reviewer exclusion astra 1/10 terra 0/10 — the adjacent adverse measurement the desk probe must be designed around; 0.2.92 register entries e5f1ff4
 blocked-by: decision operator opens the codex-only testing round (deferred first-hand 2026-09-12)
+
+## st-47
+grade: READY
+requirement: pstack's guide series is a REPEATING external comparand for the booked compression pass — Part 1 already moved the NON-STEAL reading (PLAN.md, 2026-09-13 entry)
+goal: general-maintenance
+write-set: PLAN.md
+done-criterion: each published part read at its own source, and its delta recorded as a dated PLAN.md comparand entry under Post-plan decisions — including a one-line 'nothing new for the pass' where that is the finding; the item closes when the series ends or the compression pass lands, whichever comes first
+evidence: Part 1, 'Verification is all you need', x.com/poteto/article/2094457600259842065, read 2026-09-13; local mirror /home/g/dev/reference/cursor-plugins/pstack at HEAD 7366ac1 (2026-09-09); PLAN.md 2026-09-13 entry
+blocked-by: evidence Part 2 of the pstack series published
