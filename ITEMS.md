@@ -265,6 +265,8 @@ evidence: Part 1, 'Verification is all you need', x.com/poteto/article/209445760
 blocked-by: evidence Part 2 of the pstack series published
 amend-reason: 2026-09-13 st-47's blocker still named Part 2, which this arc already read and booked; the live trigger is Part 3
 amended-blocked-by: 2026-09-13 evidence Part 3 of the pstack series published (Part 2 found and consumed 2026-09-13 — its delta is PLAN's Part-2 entry, source archived at dev-notes/poteto-guide-pt2-2026-09-10.md)
+amend-reason: 2026-09-13 the stored trigger was PROSE in a predicate slot ('Part 3 of the pstack series published (...)') — /bin/sh exit 2, the reserved BROKEN code, so the item read as ordinary waiting forever. Re-keyed to the computable consumption event: part 3 exists for this repo when its archive file lands in dev-notes (the same landing act parts 1-2 took, poteto-guide-pt2-2026-09-10.md); the operator supplying the transcript is what creates the file, so the predicate goes loud at exactly the moment the item is workable
+amended-blocked-by: 2026-09-13 evidence ls /home/g/dev/Gunther-Schulz/statiker/dev-notes/poteto-guide-pt3* 2>/dev/null | grep -q .
 
 ## st-49
 grade: NEW
