@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 26
+added: 27
 compacted: 0
 
 ## st-10
@@ -263,3 +263,12 @@ write-set: PLAN.md
 done-criterion: each published part read at its own source, and its delta recorded as a dated PLAN.md comparand entry under Post-plan decisions — including a one-line 'nothing new for the pass' where that is the finding; the item closes when the series ends or the compression pass lands, whichever comes first
 evidence: Part 1, 'Verification is all you need', x.com/poteto/article/2094457600259842065, read 2026-09-13; local mirror /home/g/dev/reference/cursor-plugins/pstack at HEAD 7366ac1 (2026-09-09); PLAN.md 2026-09-13 entry
 blocked-by: evidence Part 2 of the pstack series published
+
+## st-48
+grade: NEW
+requirement: FP5 judges verification but assumes the means exist: it names 'the real checks — tests, probes, renders, at the altitude where the work takes effect' and specifies the verdict discipline, while pstack invests in the APPARATUS that does the exercising (a project-local driving CLI plus a maintained feature map) and in keeping it current. Basis: dev-notes/pstack-comparison-2026-09-13.md and a read of SKILL.md FP5 (103 lines) this date
+goal: general-maintenance
+write-set: UNKNOWN
+done-criterion: UNKNOWN — set when the scope question below is answered
+evidence: SKILL.md 'Verify (forcing point 5)' read 2026-09-13; pstack create-verification-skill + maintain-verification-skill + feature-map-example, read same date; comparison doc sections 3 and 7
+blocked-by: decision does statiker's scope include commissioning or requiring per-repo verification apparatus, or does FP5 stay apparatus-agnostic and inherit whatever the repo's own verify section provides
