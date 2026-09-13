@@ -645,6 +645,59 @@ intake.
    not a defect — but it is the largest raw difference between the two
    corpora and it was invisible while only one side was read.
 
+### 9d-bis. CORRECTION — "code craft is not comparable" was the wrong axis, and the right one is already decided in this repo
+
+Earlier sections split pstack's corpus by SUBJECT — code taste versus
+process — and set the code half aside as not comparable. Operator's
+objection, 2026-09-13, and it holds: most of that half is not taste, it
+is DESIGN CONTENT — what shape the thing should be — which is the
+output of FP2 and is exactly the part she does personally ("choosing
+the right data structures, and thinking about how the systems I build
+will work together", Part 2). `model-the-domain`,
+`foundational-thinking`, `boundary-discipline`, `type-system-discipline`,
+`separate-before-serializing-shared-state` are design content, not
+formatting preference. So the honest axis is **design METHOD versus
+design CONTENT**: statiker has method and almost no content; pstack has
+thin method and substantial content. That is the sharper form of this
+whole comparison.
+
+**And the content question is not open here — it was decided and
+killed, with evidence.** PLAN, "Lenses: none at birth, fire-born
+thereafter": no upfront lens list, no lens pass, "lens" is not an
+artifact class. Killing evidence, the 2026-08-05 acceptance-run cycles:
+"ad-hoc investigation found everything; the lens pass echoed
+bookkeeping." SKILL.md carries it as a standing clause ("No lens list,
+no lens pass"), and PLAN's tier architecture says where the function
+went: "brief-writing IS where lens-judgment lives now."
+
+**Her principle layer IS a lens set by this repo's own test** — the
+corpus's ethic/lens split routes "when doing X, watch for Y" to project
+files, and her principles carry exactly that shape in their test
+clauses ("The sign that you skipped this is a new feature that grows an
+existing if/else chain by one more branch"). So the content is not
+missing from statiker by oversight; it is routed elsewhere by a
+recorded decision.
+
+**Why hers survives the depreciation argument and statiker's would
+not — the assumed-repo pattern, third instance today.** The lineage
+register (2026-08-10) states the slope: "enumerated checklists age
+fastest (the unlisted variant slips through), epistemics slowest —
+which is statiker's no-lens design bet restated." Her checklists do not
+age, because she runs a DAILY maintenance loop over them and a codebase
+whose CI enforces what they say. statiker has neither and cannot assume
+either: it runs over GIS pipelines, corpus text and prose, where "make
+illegal states unrepresentable" does not even parse. Same finding as
+§3 (compression) and as the design-falsifier qualifier: what looks like
+her method carrying the weight is her codebase carrying it.
+
+**Where content WOULD attach if ever wanted, and it is per-project,
+never the payload:** the requirement head's professional-standard
+derivation (currently three examples in a parenthesis, marked
+`(hypothesis)` — a size and complexity budget, no unjustified
+abstractions, a threat model at trust boundaries) and the attack's
+question set. Both are per-domain slots; the corpus already says
+lens-shaped content lives in project files.
+
 ### 9e. Standing summary, both sides read
 
 **statiker has, pstack has no equivalent:** a mandatory independent
