@@ -79,6 +79,17 @@ Codex legs run as:
 does NOT mean the call succeeded: read the output for API errors
 before believing any result.
 
+**Run every codex leg with its working directory INSIDE the clone.**
+Codex refuses to start outside a trusted directory: measured
+2026-09-13, the same invocation from a scratch directory that is not a
+git repository dies with `Not inside a trusted directory and
+--skip-git-repo-check was not specified`, exit 1, having contacted no
+model. It is a startup refusal, not a model answer, and from inside a
+leg's output it reads like the tier failing the task. Inside the clone
+both tiers answer normally (`gpt-5.6-terra` and `gpt-6-astra` each
+returned their exact smoke token, exit 0, clone left at 0 dirty
+entries).
+
 Any leg whose model the shipped register leaves uncertified for that
 role is recorded in your tracker as a DECLARED deviation, naming the
 role and the tier. Declared, it proceeds; silent, it is a defect.

@@ -390,3 +390,66 @@ the path comes from the injection and from nowhere the arm can compose.
 The codex arms need no such check and cannot have one: they are handed
 the payload path and the version by hand, which is the README's stated
 codex gap, not a defect of this run.
+
+## 10. WHAT THE HOLD BOUGHT — arm 1's halt, and the legs exercised
+   before the run crossed to them (2026-09-13)
+
+**Arm 1 (ceiling, sonnet) HALTED before any work.** Its first act
+reported its own injection line: `.../statiker/statiker/0.2.92/...`,
+not the released 0.2.98. No tracker, no commits, no fallback read.
+
+Cause, from the harness hook's own text quoted by the arm as testimony:
+the pin moved at 16:28:44, after this context's baseline, so the Skill
+load serves the PREVIOUSLY RESOLVED version. A dispatched subagent
+inherits its parent's resolution — "fresh context" does not imply
+"current version". Full entry and the pre-formulated CLAUDE.md
+amendment: OBSERVATIONS, this date, commit 1436847.
+
+This is a CATCH, not a setback: the arm would otherwise have run the
+whole loop on a page missing st-54 and carrying st-57's containment
+defect, and reported desk conduct graded against text it never held.
+Nothing would have failed.
+
+THE HOLD, to the amended discipline (dotfiles routing.md f55e508,
+verified at the file with a positive control, not taken on the relay):
+- GRAIN: the ceiling arm alone. The codex arms read the page as a file
+  and resolve no pin; they are unaffected.
+- RELEASE EVENT: the operator's `/reload-plugins`, plus a re-dispatched
+  ceiling arm reporting 0.2.98 on its own first line. Not a time-word.
+- PREMISE: that a subagent of this session cannot reach 0.2.98. A
+  re-dispatch still reporting 0.2.92 KILLS that premise and re-opens
+  the hold rather than inheriting it.
+
+REJECTED, recorded because it was tempting and would have looked like
+progress: dissolving the block by having every arm read the page as a
+file from the released cache. The codex arms lack a skill system BY
+NATURE — that is the condition under test, and the certification claim
+is about the STACK — while the ceiling exists to show what a
+well-equipped desk reaches on this object. It would have removed the
+blocker by weakening the thing the ceiling measures.
+
+ALSO REJECTED: running a codex arm out of order to fill the window.
+Ceiling-first exists because the ceiling's absence voids both codex
+columns; spending one while the ceiling is blocked inverts that
+protection for the appearance of progress.
+
+### The legs, exercised in the receiver's environment before crossing
+
+A procedure crossing to another executor is exercised first, in THEIR
+environment. Executed 2026-09-13:
+
+| probe | result |
+|---|---|
+| `command -v codex` | `/usr/bin/codex`, codex-cli 0.154.0 |
+| terra, from a non-git scratch dir | **exit 1**, `Not inside a trusted directory and --skip-git-repo-check was not specified` |
+| astra, same | **exit 1**, same refusal |
+| terra, cwd inside the clone | `TERRA_SMOKE_OK`, exit 0 |
+| astra, cwd inside the clone | `ASTRA_SMOKE_OK`, exit 0 |
+| clone after both | `e06be63`, 0 remotes, 0 dirty |
+
+The refusal is a STARTUP refusal that contacts no model, and from
+inside a leg's output it reads like the tier failing its task — a leg
+lost to it would have been graded as a codex weakness. The binding is
+now in the arm brief: every codex leg runs with its cwd inside the
+clone. The brief change lands before any arm has produced data, so the
+all-arms-identical property is intact.
