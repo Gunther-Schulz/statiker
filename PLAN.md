@@ -393,6 +393,22 @@ deliberate, the booked compression pass brings it back down
   fact. The 0.2.49 executable-spec release is the embodiment.
   Single-home stands: SKILL.md remains the only operational TEXT;
   the change is design ORDER, not homes.
+  [DISAMBIGUATION, operator decision 2026-09-13, occasioned by the
+  full pstack read (`dev-notes/pstack-comparison-2026-09-13.md`):
+  pstack's root README states "i don't believe in planning. the best
+  spec is code" as its rationale for shipping NO design layer. That
+  sentence and this tenet look like one idea and are opposites. Here,
+  code is the design MEDIUM for the exactly-holding slice — the thing
+  the attack then grades at that altitude, with prose keeping
+  judgment; there, code REPLACES the design step, and nothing grades
+  a design because no design artifact exists to grade. Provenance,
+  stated because the resemblance invites the wrong one: this tenet
+  was minted 2026-08-08 from two measured prose failures (the git
+  machinery, the record grammar), a month before pstack was read; it
+  is not adopted from it, and a 2026-09-10 chat sentence calling it
+  "poteto's slogan, adopted by you" was loose framing that reached no
+  carrier. Consumer: any session meeting both sentences — st-47 will
+  bring more of that series.]
 
 - 2026-08-08, operator GO: **the convergence-circuit tenet WIDENED
   — gradeable form is the admission condition.** The circuit
