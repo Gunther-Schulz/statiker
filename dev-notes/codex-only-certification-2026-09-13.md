@@ -648,3 +648,123 @@ codex buys nothing over sonnet on contract-bearing desk work and ties
 it on mechanical reading — so the pay case would have to rest on price
 per token and on the cross-vendor blind-spot yield already measured at
 stage 2, not on capability at these two roles.
+
+---
+
+## READINESS STEP 1 — the executed installability check (registered 2026-09-13, before dispatch)
+
+statiker-fd's specification: an executed check, "a codex desk actually
+loads the page and runs statiker_record.py", not an assumption riding
+the run's setup; a mechanism whose absence in codex is SILENTLY lossy
+is a self-containment finding to surface, not to patch quietly.
+
+LEG A (run, result below): the two scripts executed standalone in a
+bare directory. NOTE ON ITS ARRANGEMENT, recorded because it bounds
+what leg A proves: the first bare copy carried SKILL.md, scripts/ and
+defaults/ only — it dropped `references/`, which the page names as the
+binding evidence source on a corpus-less stack, and it carried
+`__pycache__` a real install does not ship. Leg A's claim is about the
+SCRIPTS, which were invoked directly, so the omission does not reach
+it; leg B runs against a faithful copy of the whole payload.
+
+LEG B — the desk half. CLAIM UNDER TEST: a codex desk, handed the
+payload directory and a record task, operates the forcing point
+THROUGH THE TOOL rather than by hand.
+
+Arrangement: `codex exec -s workspace-write` at terra (the certified
+impl tier), cwd = a fresh git repo holding a minimal tracker. The arm
+is told where the payload sits and NOTHING about how the tool is
+invoked — because that is exactly what a codex stack has: a directory,
+and no Skill injection to name it. Three page sites (:43-44, :223,
+:316) resolve the tool location through "the Skill injection's
+base-directory line", a mechanism codex does not have.
+
+PRE-REGISTERED OUTCOMES:
+  PASS          — the transcript shows a real `statiker_record.py`
+                  invocation AND the verdict line written into the
+                  record is byte-identical to the tool's own stdout.
+  FAIL (loud)   — the arm reports it cannot locate or run the tool.
+                  Loud absence: gracefully degrading, per the
+                  self-containment criterion.
+  FAIL (silent) — the arm grades the record by its own reading and
+                  writes a verdict-shaped line no tool emitted. This
+                  is the lossy class: the forcing point evaporates
+                  with no signal, and a desk-side reader cannot tell
+                  the record from a real one.
+
+DISCRIMINATOR (run at the desk, post-hoc, over the arm's final t.md):
+re-run the tool and compare its stdout against what the arm recorded.
+A silent failure and a pass are indistinguishable from the arm's own
+report, which is why the comparison is executed rather than read.
+
+### LEG B RESULTS (executed 2026-09-13)
+
+ARM: gpt-5.6-terra, `codex exec -s workspace-write`, 58,051 tokens.
+Prompt: the payload's path, the working copy, and the task — no
+instruction on how to invoke the tool.
+
+VERDICT: **PASS** on the pre-registered criterion.
+
+- The arm READ the page (transcript shows SKILL.md lines 43-46 and the
+  tool section retrieved) and resolved the tool path from it.
+- It RAN the tool for real:
+  `python3 <payload>/scripts/statiker_record.py lint --tracker t.md`,
+  twice, in the working copy.
+- It recorded the verdict as an F-line carrying the verbatim line as
+  its basis.
+
+DISCRIMINATOR, executed at the desk: the tracker was restored to the
+state the arm graded (`git show HEAD:t.md`, written back IN-REPO) and
+the tool re-run. The desk's verdict line and the arm's recorded basis
+are BYTE-IDENTICAL (429 bytes each). So the record carries a real
+tool verdict, not a reconstruction.
+
+ARRANGEMENT NOTE, recorded because it bounds the claim: the first
+discriminator run wrote the restored tracker OUTSIDE the repo and the
+tool correctly halted with PATH_OUTSIDE_REPO — containment firing, not
+a result. The comparison above is the corrected in-repo run.
+
+WHAT THIS PROBE DOES NOT ESTABLISH: the arm was TOLD where the payload
+sits, so the arrangement did not exercise the page's own
+tool-resolution wording (":43-44, the Skill injection's base-directory
+line names it"). That wording is Claude-Code-specific but not lossy —
+a codex desk that read the page necessarily knows the path it read it
+from — so it is recorded as a wording finding, not a self-containment
+defect.
+
+### SELF-CONTAINMENT FINDING — the brief forms have no codex-side home
+
+Surfaced, not patched, per statiker-fd's instruction.
+
+statiker ships NO hooks of its own: `plugin/hooks/hooks.json` registers
+`{}` (the stop guard is unregistered groundwork held out at R11). So
+the hook question reduces entirely to the EXTERNAL dependency the
+Composition section declares.
+
+Three FORCING POINTS cite `dispatch-guards:dispatch` for material a
+codex stack cannot load — there is no skill system and no hook:
+
+  :712  FP2, the [READY] stop rule — "the dispatch skill §1 definition
+        is the test, not a feeling". Unreachable, the test reverts to
+        exactly the feeling the sentence forbids.
+  :992  FP3, the attack — the question and read-only tail from
+        `references/forms.md`. Unreachable, the attack lane's return
+        channel and read-only boundary go unspecified.
+  :1308 FP4, implementation — brief per §1, tail per §2, citing the
+        executor skill. All three unreachable.
+
+THE BREAK IS SILENT in every case: nothing checks a brief against a
+form that is not there, so the desk writes something brief-shaped and
+the lane runs. By the self-containment criterion (CLAUDE.md,
+operator-settled 2026-08-17) a silent break inside the run and its
+record is SKILL-OWNED — and these are mechanisms of the run, not of
+filing: forcing points 2, 3 and 4 are the run.
+
+The page already solved the SAME shape for its other declared
+dependency: the operator corpus's absence is covered by
+`references/evidence.md`, loaded when the host stack carries no
+corpus. That is the existing instance the fix should be read against —
+a sibling distillate, not a new concept.
+
+Booked as st-59. NOT patched here: the fix is payload content at a
+release seam, and releases gate through statiker-fd.
