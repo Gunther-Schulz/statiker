@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 27
+added: 28
 compacted: 0
 
 ## st-10
@@ -272,3 +272,12 @@ write-set: UNKNOWN
 done-criterion: UNKNOWN — set when the scope question below is answered
 evidence: SKILL.md 'Verify (forcing point 5)' read 2026-09-13; pstack create-verification-skill + maintain-verification-skill + feature-map-example, read same date; comparison doc sections 3 and 7
 blocked-by: decision does statiker's scope include commissioning or requiring per-repo verification apparatus, or does FP5 stay apparatus-agnostic and inherit whatever the repo's own verify section provides
+
+## st-49
+grade: NEW
+requirement: statiker's payload never tells a run to prefer a rerunnable instrument over hand-work, though the desk that built statiker followed exactly that rule (two tools plus their battery as the executable spec). pstack states it with a self-falsifying test: build the tool that does or proves the work, and if you cited the principle and there is no codemod, script, generator or delegate skill in the diff, you did not apply it. Gap 1 of 4 in dev-notes/pstack-comparison-2026-09-13.md section 9d
+goal: general-maintenance
+write-set: UNKNOWN
+done-criterion: UNKNOWN — the clause text, and whether SKILL.md is even its home rather than the compression pass declining it, are composed at mint time from the firing incident
+evidence: pstack principle-build-the-lever, read 2026-09-13; SKILL.md read in full same date, no counterpart in The loop, Stop rule or Implementation; PLAN 2026-09-13 entry item (v)
+blocked-by: evidence a real firing — a statiker run where hand-work was redone or went unchecked because no lever was built, logged in dev-notes/OBSERVATIONS.md
