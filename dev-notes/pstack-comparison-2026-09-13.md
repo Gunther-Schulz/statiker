@@ -403,6 +403,78 @@ about the rule, not about either system.
 - The worktrees-vs-cloud-agents recommendation from Part 1 of the guide
   series. It is a claim about Cursor's infrastructure.
 
+### 7a. The verification asymmetry, stated exactly (added after a full read of Part 1's code blocks and of FP5)
+
+An earlier draft of this comparison said statiker's verification is the
+uncomfortable half because FP5 is 103 lines against pstack's whole
+verification layer. That was a line count standing in for a read, and it
+is wrong in the direction it implies. FP5's 103 lines carry per-R-line
+verdicts with NOT EXERCISED as a mandated third answer, a fresh context
+that did not build the work, the check's own output rather than a
+launcher's exit status, a four-class finding taxonomy (WORK / DESIGN /
+REQUIREMENT / INSTRUMENT) whose class scopes the re-verification, and a
+computable staleness gate against a recorded read-start sha. On
+verification EPISTEMICS statiker is ahead — pstack has "Inconclusive is
+not a pass" and "suspect the observation method" as prose, with no
+per-requirement coverage table and no route for an instrument defect.
+Its patch-id freshness check is the one place it matches, and that is a
+genuine convergence (§5.12), not an advantage.
+
+The real asymmetry is APPARATUS, and it is two things.
+
+**(a) pstack builds the means of exercising; FP5 assumes they exist.**
+FP5 names "the real checks — tests, probes, renders, at the altitude
+where the work takes effect" and specifies how to judge them.
+`create-verification-skill` produces the thing that does the exercising:
+a project-local CLI, roughly thirty verbs across inspection (`info`,
+`snapshot`, `screenshot`, `components`), navigation, interaction
+(`click`, `aria-click`, `type`, `press`, `eval`, `feature-flag`),
+performance (`trace`, `profile`, `perf-metrics`, `wait-settle`),
+streaming (`console`, `network-log`) and health (`doctor`, `cleanup`),
+with stated design properties for an agent consumer — composable
+(Ousterhout's deep modules), `--dry-run` on anything destructive,
+subcommands for gradual disclosure, "error messages should be very
+descriptive and tell the agent what it should do instead", rich
+`--help`, JSON output. Beside it the feature map enumerates what CAN be
+exercised — per feature: sub-feature ids, how a user reaches it, the
+exact driving commands, and the gotchas — with the coverage rule
+"a proof that drives one convenient entry point is incomplete when the
+map lists others". Statiker's R-lines enumerate REQUIREMENTS; the
+feature map enumerates SURFACES. Different denominators, and only one
+of the two systems has both.
+
+**(b) Inner loop versus outer gate — the structural difference.** Her
+stated purpose: "verification means that an agent can verify its own
+work. It can keep going until it succeeds at its task, because it can
+now close the loop without you being the bottleneck." That is an INNER
+loop the implementing agent runs against itself, many times, before
+anything is graded. FP5 is an OUTER gate: one isolated fresh context,
+after the work, once. statiker has no inner verification loop at all —
+the implementing unit gets whatever the repo happens to provide.
+These are not competitors and the comparison should not be read as
+one; the outer gate is not made redundant by an inner loop (it is what
+catches a loop that converged on the wrong target), and the inner loop
+is not made redundant by the gate (it is what stops defects reaching
+it). pstack has both, weighted to the inner one. statiker has one.
+This is the sharpest single thing on offer from the whole read, and it
+is booked as st-48 rather than decided here, because whether the
+payload may DEMAND a driving harness exist is a scope question about
+what statiker is for.
+
+**Boundary, so this does not transfer further than it holds.** Her
+apparatus is domain-coupled: it needs an application with a drivable
+surface, and she says so — "the harder your tech stack is to debug and
+control, the more difficult it will be to use agents productively",
+with the striking corollary that she would "unironically suggest…
+choosing a different tech stack" for debuggability. FP5 is
+domain-general and runs over corpus work, prose, and design artifacts
+where there is no app to drive. On code with a UI she is ahead on
+apparatus; off it, there is nothing to be ahead of.
+
+**Provenance note.** Part 1 is dated 2026-08-31 — ten days BEFORE the
+2026-09-10 comparison. It was available and unread then, the same class
+as the unopened files in §1, not new material that arrived afterward.
+
 **Open, and honestly open.**
 
 - Whether statiker's design layer earns its cost *at the attended point*
