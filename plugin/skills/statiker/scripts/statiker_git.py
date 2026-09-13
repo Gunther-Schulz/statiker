@@ -351,6 +351,27 @@ def git_toplevel(cwd):
     return os.fsdecode(p.stdout.strip()) if p.returncode == 0 else None
 
 
+def git_validated_dot_git(p: str) -> bool:
+    """Whether git itself calls `p` a git directory — the fix for the
+    existence-keyed containment defect (st-57, observed live
+    2026-09-13: an empty `/tmp/.git` made the tools call `/tmp` a repo
+    while `git -C /tmp rev-parse --show-toplevel` said "fatal: not a
+    git repository", and a desk whose scratch sat under it could not
+    dispatch an attack round at all).
+
+    `--resolve-git-dir` is used rather than `--show-toplevel` BECAUSE
+    it takes the path as an argument and never changes directory: a
+    cwd-based read resolves the path's links, which is exactly the
+    spelling the as-named walk exists to check. It accepts both `.git`
+    forms — the directory, and the linked worktree's `.git` FILE — and
+    refuses a stray, empty or dangling one."""
+    try:
+        return subprocess.run(["git", "rev-parse", "--resolve-git-dir", p],
+                              capture_output=True).returncode == 0
+    except OSError:
+        return False
+
+
 def textual_repo_top(path: str):
     """The nearest ancestor carrying a `.git`, walking `path` AS
     NAMED — the as-named half of the must-be-outside probe. A
@@ -358,7 +379,10 @@ def textual_repo_top(path: str):
     resolves its links, which is exactly the spelling under test."""
     cur = os.path.normpath(path)
     while True:
-        if os.path.lexists(os.path.join(cur, ".git")):
+        cand = os.path.join(cur, ".git")
+        # lexists first: a cheap guard so git is spawned only for
+        # ancestors that actually carry a `.git` entry
+        if os.path.lexists(cand) and git_validated_dot_git(cand):
             return cur
         parent = os.path.dirname(cur)
         if parent == cur:

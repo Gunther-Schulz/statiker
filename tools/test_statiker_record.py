@@ -4123,6 +4123,77 @@ class TestES7Containment(PinnedFixture):
         self.assertFalse((target / "a.md").exists(),
                          "halt must precede the write")
 
+    # ------------------------------------------------ st-57
+    # The as-named walk accepted ANY `.git` entry by existence, so a
+    # stray or malformed one made the tool call a directory a repo
+    # that git itself refuses. Observed live 2026-09-13: an empty
+    # /tmp/.git made `filter` halt ARTIFACT_IN_REPO for a scratch path
+    # under /tmp, while `git -C /tmp rev-parse --show-toplevel` said
+    # "fatal: not a git repository". The attack forcing point writes
+    # its pinned artifact outside every repo BY DESIGN, so a desk
+    # whose scratch sits under such a path cannot dispatch an attack
+    # round at all.
+    #
+    # The repair defers to git WITHOUT changing directory
+    # (`rev-parse --resolve-git-dir`): a cwd-based read resolves the
+    # path's links, which is the very spelling the as-named half
+    # exists to check — so `--show-toplevel` would have fixed this
+    # case by breaking the one
+    # test_out_named_inside_a_repo_halts_even_when_it_resolves_out
+    # guards. The last two tests here are the CONTROLS that keep the
+    # repair from turning a fail-SAFE refusal fail-open.
+
+    def test_an_empty_git_directory_above_the_out_path_is_not_a_repo(self):
+        sha = self.committed_repo(HEADER + "- F1 [VERIFIED] kept — basis: y\n")
+        target = self.outdir()
+        (target / ".git").mkdir()
+        sub = target / "scratch"
+        sub.mkdir()
+        p = tool(["filter", "--tracker", "t.md", "--sha", sha,
+                  "--out", str(sub / "a.md")], cwd=str(self.dir))
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "ARTIFACT_WRITTEN",
+                         "git refuses to call an empty .git a repository; "
+                         "the tool must agree")
+        self.assertTrue((sub / "a.md").exists())
+
+    def test_a_dangling_git_file_above_the_out_path_is_not_a_repo(self):
+        sha = self.committed_repo(HEADER + "- F1 [VERIFIED] kept — basis: y\n")
+        target = self.outdir()
+        (target / ".git").write_text("gitdir: /nonexistent/nowhere\n")
+        sub = target / "scratch"
+        sub.mkdir()
+        p = tool(["filter", "--tracker", "t.md", "--sha", sha,
+                  "--out", str(sub / "a.md")], cwd=str(self.dir))
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "ARTIFACT_WRITTEN")
+
+    def test_a_linked_worktrees_git_FILE_above_the_out_path_still_halts(self):
+        # CONTROL, green before and after: a linked worktree carries
+        # `.git` as a FILE, not a directory. A repair that keyed on
+        # directory-ness, or that resolved through the real path only,
+        # would read this real repo as no repo and let the artifact
+        # land inside a checkout.
+        sha = self.committed_repo(HEADER + "- F1 [VERIFIED] kept — basis: y\n")
+        target = self.outdir()
+        wt = target / "wt"
+        subprocess.run(["git", "worktree", "add", "-q", "--detach",
+                        str(wt), sha], cwd=self.dir,
+                       env={**os.environ, "GIT_CONFIG_GLOBAL": "/dev/null"},
+                       capture_output=True, check=True)
+        # no worktree-remove cleanup: both the worktree and the repo
+        # holding its registration are tmpdirs the fixture rmtrees,
+        # and a cleanup registered here runs AFTER that teardown
+        self.assertTrue((wt / ".git").is_file(), "fixture premise")
+        sub = wt / "scratch"
+        sub.mkdir()
+        p = tool(["filter", "--tracker", "t.md", "--sha", sha,
+                  "--out", str(sub / "a.md")], cwd=str(self.dir))
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "ARTIFACT_IN_REPO")
+        self.assertFalse((sub / "a.md").exists(),
+                         "halt must precede the write")
+
     def test_out_naming_an_existing_directory_is_a_usage_error(self):
         # ES-11: IsADirectoryError routes USAGE_ERROR, consistent with
         # its missing-parent sibling — at base it died INTERNAL_ERROR
