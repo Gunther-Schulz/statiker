@@ -880,6 +880,42 @@ deliberate, the booked compression pass brings it back down
   arm, no baseline stated. Recorded so a later reader does not
   promote them; they are evidence for nothing here.
 
+- 2026-09-13, meta session: **THE FULL PSTACK COMPARISON, read against
+  the whole corpus** — `dev-notes/pstack-comparison-2026-09-13.md`
+  (129 files, every markdown file in the plugin plus the non-markdown
+  under two slices; ~6,576 lines of backing scripts detected and NOT
+  read, which bounds every TOOL claim in it). Read that file; this
+  entry carries only what it decides for this repo.
+  (i) CORRECTION to the 2026-09-10 lead: the two systems do NOT hold
+  opposite trust models. pstack refuses self-report in nearly this
+  corpus's own words ("Safe means a verdict from an agent that did not
+  write the code. CI green is not a verdict"). The real axis is WHEN
+  independence arrives — pstack after the code exists, statiker before.
+  (ii) The structural zero, now established over the whole corpus
+  rather than a ten-file read: pstack has no mandatory independent
+  grader of a DESIGN before implementation exists; `architect`'s
+  default is "proceed directly to implementation... No human
+  checkpoint" and `interrogate` is opt-in there. This SUPPORTS the
+  residue hypothesis structurally — a mature system whose every check
+  sits downstream of the design — and is the cleanest external
+  comparand it has.
+  (iii) CORRECTION to this date's earlier NON-STEAL complication: the
+  compression is bought by neither executor-trust alone nor the lever
+  alone, but by an ASSUMED REPO whose hard gates already exist (Dune's
+  CI, unpublished). Nothing to import, which rescues the original
+  verdict on better grounds.
+  (iv) The lattice premise is refuted (LEDGER, this date;
+  `dev-notes/poteto-talk-transcript-2026-09-13.md`). The
+  agent-tokens-versus-human-minutes drift argument loses its basis on
+  that axis and is NOT to be repeated until re-derived — named as open
+  in the comparison, §7.
+  (v) New candidate for the compression pass, beside the MOVE TO A
+  LEVER exit named earlier this date: the SELF-FALSIFYING CITATION
+  shape — "If you cited it and there is no codemod, script, generator,
+  or delegate skill in the diff, you didn't apply it" — a rule naming
+  the artifact whose absence disproves its own application. No mint
+  without a firing; recorded as evidence for the pass.
+
 ## Horizon consideration — NOT a decision (operator, 2026-08-05)
 
 When statiker is validated, CONSIDER lifting its framework from it
