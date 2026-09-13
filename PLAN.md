@@ -708,6 +708,13 @@ deliberate, the booked compression pass brings it back down
   competent — which is the very trade the trial exists to
   measure; importing it would beg the trial's question, not
   answer it.
+  [COMPLICATED by the author's own account, 2026-09-13 (the
+  Part-1 entry below): a SECOND purchase mechanism is visible in
+  the mirror's own text — an enforcement moved out of prose into
+  a runnable project-local artifact — which is not
+  executor-trust and does not beg the trial's question. The
+  "most of" quantifier is unestablished in either direction; the
+  pass grades what it takes per cut, never wholesale.]
   CONFOUND CAVEAT (operator, this date): the trial has NO
   bare-model arm and cannot have one here — the control arm ran
   under the operator's extensive global corpus (its own doc says
@@ -791,6 +798,70 @@ deliberate, the booked compression pass brings it back down
   incidents, architecture debt) — the kind split applied to
   time, sized per setting by defect cost, asset lifetime,
   requirement stability, and novelty density.
+
+- 2026-09-13, meta session: **PSTACK PART 1 — the verification
+  layer, and a second purchase for its compression** (consumer:
+  the booked compression pass, same as the 2026-09-10 comparand
+  entry above; and the pstack-series item in ITEMS). Source:
+  poteto's own guide series, Part 1, "Verification is all you
+  need" (x.com/poteto/article/2094457600259842065, read this
+  date). The series is announced as continuing — a Part 2 and
+  "over the next few weeks" — so this comparand REPEATS and is
+  booked rather than read once.
+  WHAT IS ACTUALLY NEW. Little of the machinery: the local
+  mirror at HEAD 7366ac1 (2026-09-09) already carries
+  `create-verification-skill`, `maintain-verification-skill`,
+  `swarm`, `principle-build-the-lever` and a ten-file
+  `docs/guide` — the 2026-09-10 entry above read the router and
+  the 23 principles, not this layer. What the article adds is
+  the author's account of WHY the layer exists, plus operating
+  detail the plugin text does not carry: a per-app driving CLI
+  as the first investment, the Feature Map as "materialized
+  memory", cloud fan-out preferred over worktrees, and routines
+  that auto-reproduce user reports from a feedback channel.
+  THE LOAD-BEARING UPDATE — the NON-STEAL line above is
+  complicated, not overturned. Read at the mirror this date:
+  `principle-build-the-lever/SKILL.md` ("build the tool that
+  does it or proves it ... instead of working by hand"; "the
+  tool is one artifact a reviewer can read and rerun";
+  "Applying this principle produces a file. If you cited it and
+  there is no codemod, script, generator, or delegate skill in
+  the diff, you didn't apply it") and
+  `create-verification-skill/SKILL.md` §3, which moves the app
+  knowledge an agent would otherwise carry in prose into a
+  maintained `features/` map. So pstack buys its compression
+  TWICE: once by trusting the executor — the trade the trial
+  exists to measure, still not importable — and once by MOVING
+  AN ENFORCEMENT OUT OF PROSE INTO A RUNNABLE ARTIFACT, which
+  is not executor-trust at all, and is the corpus's own
+  mechanism bar (a hand-derivation is unfinished while the
+  check that would have produced it does not exist).
+  CONSEQUENCE for the pass: the cut criterion booked above —
+  cut what does not bill human minutes — gains a THIRD exit
+  beside cut and keep, MOVE TO A LEVER: text whose absence
+  would bill human minutes but whose work a tool can do or
+  prove leaves the page without the guarantee leaving with it.
+  Per cut, never wholesale; the self-containment disqualifier
+  still binds, and a lever shipped with the payload is a
+  payload asset rather than a cut.
+  CONVERGENCE, a third instance beside the two the 2026-09-10
+  entry names: `create-verification-skill` §4 — "A generated
+  skill that was never executed is a draft, not a
+  deliverable" — is the red-first / instrument-proof rule
+  reached independently, at skill grain rather than check
+  grain.
+  NON-TRANSFER, named so a later reader does not carry it: the
+  article recommends AGAINST git worktrees for parallelism (a
+  local machine's storage, a ~10-agent ceiling) in favour of
+  Cursor cloud agents on snapshotted machines. That is
+  setting-bound — a claim about their infrastructure, not about
+  worktrees — and leaves the dispatch-guards worktree ladder
+  untouched.
+  GRADE on the article's numbers: 2,000 PRs/month, hundreds of
+  PRs/day into Grok @Bot, "100-1000x your whole team's output"
+  are the author's own unmeasured claims — no instrument, no
+  arm, no baseline stated. Recorded so a later reader does not
+  promote them; they are evidence for nothing here.
 
 ## Horizon consideration — NOT a decision (operator, 2026-08-05)
 
