@@ -10756,3 +10756,71 @@ release; drain seam, the retirement quota's pass. Immediate consumer is
 this run — the ceiling arm cannot proceed until the operator reloads.
 
 No payload change rides this entry.
+
+CONFIRMED, same date, closing the loop on the entry above: after the
+operator ran `/reload-plugins` in the DISPATCHING session, a freshly
+dispatched desk reported
+`/home/g/.claude/plugins/cache/statiker/statiker/0.2.98/skills/statiker`
+on its own first line. So the reload in the parent DOES re-point what
+that session subsequently dispatches, and the fix for the inherited-pin
+class is a reload in the dispatcher, not only a new session. The
+premise that a subagent of a stale session cannot reach the new pin is
+now disproven for the post-reload case and stands only for the
+pre-reload one — recorded because the hold that rested on it was
+released by this measurement, not by waiting.
+
+## 2026-09-13 — a HALTED lane stays registered, and reads to its successor as a live co-writer
+
+INCIDENT + BASIS: the ceiling arm's first dispatch halted at the version
+gate holding nothing — no tracker, no commits, no legs. I reloaded the
+pin, dispatched a replacement against the same working copy, and left
+the halted one in the roster. The replacement passed its version gate
+(0.2.98) and then REFUSED TO WRITE, reporting that a teammate named
+`sonnet-lc61-desk-a` was listed as active carrying a byte-identical
+brief — same requirement, same single write boundary, and the same
+sentence "you are the SOLE writer in that clone — there is no co-writer
+and no shared index". It halted rather than guess, and it was right to:
+from where it stood, an idle desk that halted holding nothing and a
+live co-writer mid-run are the same observation.
+
+CLASS: residue at a lane's halt. A halt is not a retirement — the lane
+stops working and stays REGISTERED, and every downstream reader of the
+roster sees a live participant. The brief's sole-writer guarantee is
+the thing that decays: it was TRUE when written and became unverifiable
+the moment a second desk was pointed at the same path, and nothing in
+the halt path notices, because a halted lane's whole virtue is that it
+did nothing.
+
+WHY IT WOULD HAVE BEEN COSTLY EITHER WAY: a successor that BELIEVES the
+sole-writer sentence proceeds into what it must treat as a two-writer
+race on one git index — the exact hazard statiker's record model (one
+lock commit per advance, append-only tracker, one index) exists never
+to face. A successor that DISBELIEVES it halts and costs a round trip.
+There is no third reading available to the successor, which is why the
+defect belongs to the dispatcher and not to either desk.
+
+WHAT CAUGHT IT: nothing mechanical. The successor's own refusal did,
+under the brief's "halting at a genuine gap is correct conduct and is
+graded as such" clause — a line written to protect against
+completion-pressure, catching a dispatcher error instead. Worth
+recording that the clause paid off in a direction it was not aimed.
+
+THE PRE-FORMULATED RULE, for the drain pass: re-dispatching a lane
+against a working copy a previous lane was pointed at includes STANDING
+THE PREVIOUS LANE DOWN and verifying its absence from the roster BEFORE
+the successor is told the copy is uncontended — the sole-writer sentence
+is a claim about the roster at the successor's start, not about the
+dispatcher's intent at brief-write time. Where the stand-down cannot be
+verified, the successor is told what it will see and why, rather than
+handed a guarantee it can falsify in one read.
+
+GENERAL FORM: an exclusivity guarantee in a brief is a statement about
+the world AT THE RECEIVER'S START, and it is the dispatcher who moves
+that world between writing and starting. Guarantees about contention
+are re-established at dispatch time, never inherited from the brief
+that first stated them.
+
+CONSUMER: the next session re-dispatching a halted lane against a held
+working copy; drain seam, the retirement quota's pass.
+
+No payload change rides this entry.
