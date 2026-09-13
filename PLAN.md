@@ -963,6 +963,44 @@ deliberate, the booked compression pass brings it back down
   neither record settles. Registered as the sharpest external
   challenge to FP3 on file; consumer, the trial's grading and any
   future FP3 fire-rate review.
+  **WHY THE OBJECTION MISSES THE ATTACK AS SPECIFIED, and how to tell
+  if it stops missing it (operator asked whether grading design
+  quality is even possible; 2026-09-13).** It is not, directly.
+  "Is this design good" is a prediction about the future — how cheap
+  it stays to change, how many defects it hosts, whether it survives
+  the next requirement — and none of that is observable when the
+  design is made. There is no oracle, competent readers disagree, and
+  a model grading it is judgment grading judgment (the reviewer-panel
+  finding above: frontier panels carry ~2 independent votes). Design
+  quality is a LATENT variable, measured only through its
+  consequences — which is exactly what the objective function names
+  (rounds-to-landed plus the class split, in the ablation entry
+  below).
+  **The attack does not grade design quality, and that is the whole
+  defence.** Read what the brief block actually commissions: the
+  design's FIT to the recorded requirement; the soundness of the
+  factual BASES it cites; whether the decomposition is a faithful and
+  professionally complete reading of the INTENT; and who else consumes
+  each surface the design changes, established by executed search or
+  full source-chain trace. Every one of those has an answer. None is a
+  quality judgment. Her failure mode — "hallucinating theoretical
+  risks, inventing complex edge cases to protect against problems that
+  will never happen" — is what a reviewer produces when asked to grade
+  QUALITY, because with no oracle, invention is the only thing left.
+  The reach-matched-evidence clause forbids precisely that output, so
+  her objection is TRUE of design review in general and FALSE of the
+  attack as specified.
+  **The tripwire that keeps it false, and it is nearly free.** The
+  defence holds only while findings stay fit-and-basis shaped. If
+  attack findings drift toward "this feels architecturally weak" —
+  quality claims with no reach-matched evidence — her objection
+  becomes true of statiker too. Every finding is already classified
+  with a basis at return, so the drift is detectable in material the
+  record already holds: a rising share of findings whose basis is the
+  reviewer's judgment about goodness rather than a cited requirement,
+  a cited basis, or an executed search. Candidate measure at the next
+  FP3 fire-rate review; no mint without a firing.
+
   **AND THE RESOLUTION, forced out by the shortcut question
   (operator asked what her solution IS; same date).** She has two
   solutions and they cover different classes. For
