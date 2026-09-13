@@ -1292,6 +1292,40 @@ applies), and the confound caveat already recorded above bites it too
 operator's corpus). Consider at: the trial's design seam, beside arm
 B's grading.
 
+**A FORMAL GRADING PROTOCOL WAS CONSIDERED AND DECLINED (operator,
+2026-09-13) — recorded so a future session does not rebuild it.** The
+desk proposed blind comparative grading, an outputs-only judge briefed
+without knowing a system exists, a pre-registered unit-SELECTION rule,
+and sample-size math. Declined as disproportionate, and the reasoning
+is the part worth keeping: a rigorous trial earns its cost only where
+the result would change what happens next, and here it would not — a
+"statiker does not work" verdict does not end the project, because the
+alternative is the operator being the design authority personally,
+which is the constraint the system exists to answer. The realistic
+outcomes are CONTINUE and CONTINUE-WITH-FEWER-FORCING-POINTS, and only
+the second needs evidence, which is ABLATION rather than a controlled
+experiment. Unit selection needed no fix either: "next up, or a
+specific one where there is urgency" is already an unbiased rule —
+what arrives, not what suits.
+**The ceiling here, and it is enough:** count what the tracker already
+records (a counted measure needs an honest instrument, not an unbiased
+grader — and instrument honesty is red-first checkable), plus one
+pre-registered criterion sentence written before an arm runs (done
+once already, the 2026-08-08 kill-question's "criterion recorded
+before any arm dispatches").
+**The fallback if a JUDGED measure is ever wanted:** FP5's own shape,
+not new machinery — its brief minus the tracker, plus both arms'
+artifacts. Note why FP5 itself cannot serve directly: it grades one
+run against its OWN requirement head and cannot express a comparison;
+its brief carries the tracker, so the verifier is blind to the builder
+but not to the method; and only arm A has one at all, so using it
+as-is would grade the arms with unequal instruments. A brief edit, not
+a project.
+**Irreducible, to be stated in any write-up rather than controlled
+for:** the operator chose the objective function, and a different
+system would have suggested a different one. One person cannot remove
+that, and naming it is the honest handling.
+
 **Consequence for the comparand work, recorded so it is not
 re-litigated:** pstack is retired from the DESIGN question entirely.
 Not a counter-example to FP3, not even a control arm for it — its
