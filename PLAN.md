@@ -1080,6 +1080,33 @@ deliberate, the booked compression pass brings it back down
   empirically on contact. The disambiguation clause is amended
   accordingly at its own site.
 
+- 2026-09-13, meta session: **THE GROKBOT-SPACE COMPARANDS — the
+  author's whole line read, the positioning falsifier re-checked**
+  (operator ask; full record
+  `dev-notes/grokbot-space-comparison-2026-09-13.md`, raw evidence
+  archived beside it). What this entry carries for the repo: the
+  positioning claim SURVIVES its sharpest test yet — noodle, the
+  same author's orchestration engine, runs unattended end-to-end
+  with auto-merge and still grades no design before implementation
+  (its quality stage reviews completed work; nobody independent
+  attacks the schedule agent's orders). Second instrument, same
+  verdict as pstack. Her constant across four artifacts is now
+  measured: mechanism-maximal, epistemics-thin at every layer —
+  noodle types the write boundary (AllowPrimaryCheckout bool) and
+  ships NO closing report; brainmaxxing mechanizes injection and
+  index-sync and carries zero provenance. Noodle plan 119
+  independently derives three of this stack's rules (edit-gated
+  always-loaded corpora, base_hash staleness pins, binary
+  non-gameable evals) — convergence evidence, discounted for
+  shared authorship. Steal considerations gated in the record's
+  own section; the one booked carrier is the ruminate-class
+  transcript miner (dotfiles item, this date). Grokbot itself is
+  source-unreadable and its web surface content-farm contaminated
+  — the talk stays the primary source, the bound stated in the
+  record. Consumer: the positioning record, ethos/lifecycle design
+  items, any future orchestration-engine question; st-47's series
+  discipline applies if her line publishes further.
+
 ## Steal considerations from pstack — NOT decisions (operator, 2026-09-13)
 
 Recorded as considerations, not commitments: what the full two-sided
