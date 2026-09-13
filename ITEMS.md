@@ -366,3 +366,5 @@ write-set: plugin/skills/statiker/scripts/statiker_record.py,tools/test_statiker
 done-criterion: a scopeless D-line appended after a terminal A-line can be corrected by a later same-id scoped restatement, red-first on the lc-61 tracker: closure --unit U1 over that exact record returns CLOSURE_ABSENT with design_amending D9-D12 today and clears after the fix, with an unrepaired control still barred
 evidence: run tracker .clippy/runs/2026-09-13-lc61-workflow-templates-home.md (44 entries) in the run clone; re-run at this desk reproduced the recorded verdict exactly
 blocked-by: NONE
+amend-reason: 2026-09-13 regrade: the absence names a design decision this desk does not hold, so READY overstated it — dispatchable-by-construction is false while the contract question is open
+amended-blocked-by: 2026-09-13 decision is supersede-by-restatement permitted at all, or is the position scan's over-correction behaviour the intended contract? The tool's own comment calls it deliberate, so a fix without this call ratifies the mechanism instead of deriving from the requirement
