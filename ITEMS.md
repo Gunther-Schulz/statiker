@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 29
+added: 30
 compacted: 0
 
 ## st-10
@@ -290,3 +290,12 @@ write-set: plugin/skills/statiker/scripts/statiker_record.py,plugin/skills/stati
 done-criterion: UNKNOWN — the predicate is chosen at mint from what the firing shows; two candidates carried below, and a firing may indicate neither
 evidence: statiker_record.py read 2026-09-13, lines 1206-1212 (basis-missing) and the module docstring at 113; SKILL.md attack brief block read same date; PLAN 2026-09-13 Part-2 delta entry, the objection-misses-the-attack clause. Two candidates recorded there: (1) BASIS-SHAPE lint — the grammar already declares four allowed basis kinds (file:line, executed command, entry id, the literal unverified), so requiring at least one shape token would catch free-prose bases while passing judgment findings, whose reach is a cited id or line; (2) DRIFT MEASURE over finding classes — a rising share of findings whose basis is a goodness judgment rather than a cited requirement, cited basis or executed search
 blocked-by: evidence a firing — an attack round whose findings drift into quality claims without reach-matched evidence, or a desk round trip spent completing an invented risk, logged in dev-notes/OBSERVATIONS.md
+
+## st-51
+grade: PARKED
+requirement: statiker's machinery assumes a git repo it may COMMIT TO: the LOCK commit, unit START/COMMIT, the close pin, and a tracker at .clippy/runs/ that the repo does not ignore. Several real settings do not grant that — a client repo where run deliberation must not enter their history, a foreign repo worked through a fork or an unpushable branch, a change with no repo at all. The known handled case is a refusal, not a degradation: PREFLIGHT_UNPINNABLE_TRACKER surfaces to a present operator and unattended 'closes FAILED at minimal cost' (SKILL.md, The tools). The bite is that the payload's OWN evidence puts statiker's highest value exactly there — the placement tenet cites declined PRs on external codebases, where maintainers refuse convention-ignoring work regardless of correctness
+goal: general-maintenance
+write-set: plugin/skills/statiker/SKILL.md,plugin/skills/statiker/scripts/statiker_git.py
+done-criterion: UNKNOWN — set once the scope decision is answered; if a degraded mode is wanted, its shape (tracker outside the repo, no lock commits, record carried elsewhere) is designed then, and if clean refusal is correct the entry closes as a recorded drop with that reason
+evidence: SKILL.md read in full 2026-09-13: the preflight verdicts, the LOCK pathspec composition, unit-start/unit-commit, and Close's pin over the tracker; the placement gap-fill entry in PLAN (2026-08-26 (4)/(4b), decided as skill work 2026-09-10) for the external-codebase evidence
+blocked-by: decision must statiker also run where it cannot commit, or is it for repos the operator owns and clean refusal elsewhere is correct
