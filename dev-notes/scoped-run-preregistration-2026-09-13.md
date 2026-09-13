@@ -631,3 +631,32 @@ confirmed first that `origin/main` was exactly its parent, so the reset
 was sized to my own commit alone) and re-made with a repo-relative
 pointer; the re-push scanned clean. No rule is minted: the lesson is
 already a mechanism, and the mechanism fired.
+
+### CAUTION on §12's resume step 1 — it conflicts with §9, and the
+### conflict is not the successor's to resolve silently
+
+§12 says to fix the brief's wrong verify baseline before arm 2. §9 says
+all three arms run a VERBATIM IDENTICAL brief, and arm 1 already ran on
+the wrong baseline. Both cannot hold. A successor following §12 without
+reading §9 would break all-arms-identical and not notice.
+
+The two readings, with what each costs:
+
+- FIX IT: arms 2 and 3 get a correct baseline, and arm 1's brief differs
+  from theirs in one slot. The comparison gains an uncontrolled
+  variable — but only in the verify leg's expectation, and arm 1
+  demonstrably ignored the wrong number rather than being steered by it.
+- LEAVE IT: identity holds, and the codex arms inherit an expected
+  result that is false and that three of its four reds are MY doing (the
+  flattened history). An expectation the executor bends its work to
+  satisfy is the costliest line in a brief, and codex arms are less
+  likely than arm 1 to challenge it — so they would be marked down for
+  failures the arrangement caused.
+
+MY READING, for whoever decides: FIX IT, and record arm 1 as having run
+under the defective slot. Corrupting the measurement with a known-false
+expectation is worse than one documented asymmetry in a slot the
+affected arm provably disregarded. But it is a change to a
+pre-registered arrangement after one arm has data, which is exactly the
+class that should not be settled by the desk that made the mistake —
+route it to the judgment holder.
