@@ -10688,3 +10688,71 @@ desk; drain seam, the retirement quota's pass. Also standing in the run
 record at fd's instruction, for any future codex-desk clone.
 
 No payload change rides this entry.
+
+## 2026-09-13 — a dispatched desk serves the pin its PARENT resolved, and only an advisory line says so
+
+INCIDENT + BASIS: the scoped lc-61 run's ceiling arm, dispatched from
+this session minutes after the 0.2.92 -> 0.2.98 pin move, reported its
+own injection line as its first act:
+
+    Base directory for this skill:
+    /home/g/.claude/plugins/cache/statiker/statiker/0.2.92/skills/statiker
+
+It halted with no work started, no tracker, no commits. The harness's
+own hook text, quoted by the arm as testimony rather than derived:
+"plugin 'statiker' pin moved 2026-09-13 16:28:44+0000, after this
+context's baseline: this Skill load serves the PREVIOUSLY RESOLVED
+version, not the pinned one."
+
+CLASS: a release/reload seam this repo's existing rule does not reach.
+CLAUDE.md already says a release during a live run means the DESK
+SESSION restarts, and gives the mechanism — the old skill text already
+sits loaded in that desk's context. A dispatched subagent is the case
+that mechanism does not describe: it holds NO previously loaded text,
+it resolves the skill fresh at spawn, and it still gets the old version,
+because what it inherits is the PARENT's resolution baseline rather than
+the parent's loaded text. The existing rule's stated cause is therefore
+narrower than the effect, and a reader reasoning from the cause
+concludes — correctly by that cause, wrongly in fact — that a fresh
+subagent is safe.
+
+WHY IT WOULD HAVE BEEN SILENT: nothing fails. The arm would have run
+the whole loop on 0.2.92 — no st-54 certification duty, no
+dispatch-forms substitute, and carrying the containment defect st-57
+fixed, which kills forcing point 3 with a cause nobody would think to
+look for. Its report would then have graded a desk's conduct against
+page text that desk never held, and the grading would have read as a
+clean measurement. The hook DOES print an advisory at the call site,
+but an advisory only works on a reader already asking the question.
+
+WHAT CAUGHT IT: a brief demanding the arm report its own injection's
+base-directory line VERBATIM as its first act, and halt on any other
+version. That is un-fakeable by construction — the path comes from the
+injection and from nowhere the arm can compose — and it cost one line.
+This is the repo's own existing convention doing its job: CLAUDE.md's
+"the fresh desk confirms its served version from the Skill injection's
+base-directory line before the next forcing point." The datum is that
+it fires on a lane nobody had applied it to.
+
+THE PRE-FORMULATED RULE, for the drain pass, as an AMENDMENT to
+CLAUDE.md's existing release-during-a-run bullet rather than a sibling
+(the existing sentence already owns this seam and is merely stated in
+terms of one mechanism): the pin a session serves is fixed at that
+session's own baseline and is INHERITED BY EVERYTHING IT DISPATCHES, so
+a release invalidates the dispatching session too, not only a running
+desk — a subagent desk spawned after a pin move serves the pre-move
+version with nothing failing. Any dispatched lane whose conduct the
+skill governs states its served version as its first reported line and
+halts on a mismatch.
+
+GENERAL FORM: where a version is resolved once per context and
+INHERITED, "fresh context" stops implying "current version" — and every
+rule written about staleness in terms of LOADED TEXT misses the
+inheriting case, because the inheritor has no loaded text to be stale.
+The check belongs on what the context SERVES, never on how it got it.
+
+CONSUMER: the next session that dispatches a statiker desk across a
+release; drain seam, the retirement quota's pass. Immediate consumer is
+this run — the ceiling arm cannot proceed until the operator reloads.
+
+No payload change rides this entry.
