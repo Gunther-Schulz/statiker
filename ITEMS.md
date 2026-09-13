@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 28
+added: 29
 compacted: 0
 
 ## st-10
@@ -281,3 +281,12 @@ write-set: UNKNOWN
 done-criterion: UNKNOWN — the clause text, and whether SKILL.md is even its home rather than the compression pass declining it, are composed at mint time from the firing incident
 evidence: pstack principle-build-the-lever, read 2026-09-13; SKILL.md read in full same date, no counterpart in The loop, Stop rule or Implementation; PLAN 2026-09-13 entry item (v)
 blocked-by: evidence a real firing — a statiker run where hand-work was redone or went unchecked because no lever was built, logged in dev-notes/OBSERVATIONS.md
+
+## st-50
+grade: PARKED
+requirement: the reach-matched-evidence clause is the whole defence against the failure poteto names for pre-implementation review (hallucinated theoretical risks, invented edge cases), and NOTHING mechanizes it. Verified at the tool, not the prose: statiker_record.py enforces basis PRESENCE (basis-missing) and basis LIVENESS (basis-cites-invalidated), and its own docstring scopes itself out of the rest — 'Judgment stays with the desk: ... basis reach. The sweep names that residue in its evidence lines; a clean verdict here is the computable slice only.' A finding reading 'this design is architecturally fragile — basis: the design reads fragile' passes every mechanical check in the tool
+goal: general-maintenance
+write-set: plugin/skills/statiker/scripts/statiker_record.py,plugin/skills/statiker/SKILL.md
+done-criterion: UNKNOWN — the predicate is chosen at mint from what the firing shows; two candidates carried below, and a firing may indicate neither
+evidence: statiker_record.py read 2026-09-13, lines 1206-1212 (basis-missing) and the module docstring at 113; SKILL.md attack brief block read same date; PLAN 2026-09-13 Part-2 delta entry, the objection-misses-the-attack clause. Two candidates recorded there: (1) BASIS-SHAPE lint — the grammar already declares four allowed basis kinds (file:line, executed command, entry id, the literal unverified), so requiring at least one shape token would catch free-prose bases while passing judgment findings, whose reach is a cited id or line; (2) DRIFT MEASURE over finding classes — a rising share of findings whose basis is a goodness judgment rather than a cited requirement, cited basis or executed search
+blocked-by: evidence a firing — an attack round whose findings drift into quality claims without reach-matched evidence, or a desk round trip spent completing an invented risk, logged in dev-notes/OBSERVATIONS.md
