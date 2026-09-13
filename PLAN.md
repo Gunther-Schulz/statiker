@@ -932,6 +932,49 @@ deliberate, the booked compression pass brings it back down
   the artifact whose absence disproves its own application. No mint
   without a firing; recorded as evidence for the pass.
 
+## Steal considerations from pstack — NOT decisions (operator, 2026-09-13)
+
+Recorded as considerations, not commitments: what the full two-sided
+read (`dev-notes/pstack-comparison-2026-09-13.md`) says is worth
+taking, each with the gate that stops it landing today. Enumerated BY
+REFERENCE where a carrier already holds it — this section mints no
+second home for anything below.
+
+1. **The lever clause** — prefer a rerunnable instrument over
+   hand-work, with pstack's self-falsifying test attached. Carrier:
+   ITEMS `st-49`, PARKED. Gate: the birth-class rule — comparand
+   evidence is not a firing, and placement is unsettled until one.
+   Consider at: the firing, or the compression pass, whichever first.
+2. **The self-falsifying citation SHAPE** — a rule naming the artifact
+   whose absence disproves its own application, independent of the
+   lever's content. Carrier: the 2026-09-13 comparand entry above,
+   item (v), consumer the compression pass. Gate: no mint without a
+   firing. Consider at: the compression seam.
+3. **The enforcement RANKING** — unrepresentable state → lint/CI →
+   canonical helper → runtime check → prose, with its reason ("agents
+   copy whatever the surrounding code already does and a weaker guard
+   becomes the next template"). NOT a statiker item: its home is the
+   operator corpus's mechanism bar, which says whether to mechanize
+   and never how. Carrier: a dotfiles item, pointer only from here.
+   Gate: the admission test wants an incident; a comparand is not one.
+4. **A lint class for the PRECEDENT LINE** — the payload's one
+   unmechanized machine token, and the file says so. Already
+   sequenced: field-test on run 3, mint at the compression seam with
+   that datum (the placement gap-fill entry above). Gate: jumping the
+   field test would mint a hold code without its evidence — the
+   same-parentage error one level up. No new carrier; this line is a
+   pointer to that sequencing.
+
+Explicitly NOT taken, recorded so a later reader does not re-open
+them: lazy loading (whole-to-whole statiker is ~4x smaller — a
+loading question the compression pass owns, never a size lesson); the
+feature map wholesale (the scope question is ITEMS `st-48`); cloud
+agents over worktrees (a claim about Cursor's infrastructure);
+pstack's verification epistemics (statiker is ahead — importing would
+be a downgrade). The pattern: everything worth taking is OPERATIONAL
+(instruments, apparatus, enforcement placement); nothing EPISTEMIC is,
+which is section 9e's asymmetry as a shopping list.
+
 ## Horizon consideration — NOT a decision (operator, 2026-08-05)
 
 When statiker is validated, CONSIDER lifting its framework from it
