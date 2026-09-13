@@ -400,8 +400,14 @@ deliberate, the booked compression pass brings it back down
   sentence and this tenet look like one idea and are opposites. Here,
   code is the design MEDIUM for the exactly-holding slice — the thing
   the attack then grades at that altitude, with prose keeping
-  judgment; there, code REPLACES the design step, and nothing grades
-  a design because no design artifact exists to grade. Provenance,
+  judgment; there — AMENDED 2026-09-13 on Part 2, which refutes the
+  first reading of this clause: she designs too, and her medium is
+  also code ("The truth is that I do plan, but I do so through
+  code" — readme-first, type-signature sketches, prototypes), so the
+  difference is NOT the medium but the GRADER: statiker attacks the
+  coded design with a fresh context before implementation, she
+  falsifies it empirically on contact with implementation and scraps
+  it. Provenance,
   stated because the resemblance invites the wrong one: this tenet
   was minted 2026-08-08 from two measured prose failures (the git
   machinery, the record grammar), a month before pstack was read; it
@@ -932,6 +938,50 @@ deliberate, the booked compression pass brings it back down
   the artifact whose absence disproves its own application. No mint
   without a firing; recorded as evidence for the pass.
 
+- 2026-09-13, meta session: **PSTACK GUIDE PART 2 — the design-grader
+  zero is a STATED REFUSAL, not an omission** (st-47's delta entry;
+  source archived at `dev-notes/poteto-guide-pt2-2026-09-10.md`,
+  published ~2026-09-10; Part 3 not published as of this date).
+  Three findings, one of them a correction to a clause minted earlier
+  today.
+  (i) **The refusal, verbatim:** "It's also why I never bother with
+  reviewing abstract plans adversarially. The agents start
+  hallucinating theoretical risks, and inventing complex edge cases to
+  protect against problems that will never happen. Don't overcook your
+  plans when they're still abstract: let the agent answer open
+  questions on its own through prototyping and verifying its own
+  work." So the comparison's §2b zero stands as a FACT and changes
+  status: pstack has no pre-implementation adversarial grader because
+  its author considered one and argues against it. That is an attack
+  on forcing point 3's premise from a practitioner at volume, and it
+  is owed an answer rather than a note. The answer this record can
+  give today: her stated failure mode — hallucinated theoretical risk
+  — is exactly what statiker's reach-matched-evidence clause exists to
+  refuse ("a verdict without reach-matched evidence is labeled
+  unmeasured and leaves its question open"), so the two are arguing
+  about whether that clause WORKS, which is an empirical question
+  neither record settles. Registered as the sharpest external
+  challenge to FP3 on file; consumer, the trial's grading and any
+  future FP3 fire-rate review.
+  (ii) **She has a design falsifier, and it is empirical and
+  DOWNSTREAM.** `/architect`'s "Scrap when the design is wrong … If
+  the same workaround appears across unrelated call sites, or if the
+  types require escape hatches like `any` or forced casts, that is
+  empirical proof that the architecture is wrong." Design death by
+  implementation contact, where statiker's is death by fresh reader
+  before implementation. Both kill wrong designs; they differ in when
+  and at what cost.
+  (iii) **CORRECTION to this date's medium-tenet disambiguation.**
+  That clause said code "REPLACES the design step" for her. Part 2
+  refutes it: "The truth is that I do plan, but I do so through
+  code" — readme-driven development, type-signature sketches,
+  prototypes. She designs, and her design medium IS code, which is
+  much CLOSER to the medium tenet than the clause allowed. The
+  surviving difference is not the medium but the GRADER: statiker
+  attacks the coded design with a fresh context, she falsifies it
+  empirically on contact. The disambiguation clause is amended
+  accordingly at its own site.
+
 ## Steal considerations from pstack — NOT decisions (operator, 2026-09-13)
 
 Recorded as considerations, not commitments: what the full two-sided
@@ -1021,20 +1071,44 @@ second home for anything below.
    output path (`.cursor/skills/verify-<app>/`), so adapting is a
    real option and the cheaper arm. Deciding it needs one worked case,
    not more reading.
-   **THE WORKED CASE, booked as part of this consideration (operator,
-   this date — not now, but recorded so it is not re-derived):** run
-   her recipe ONCE, by hand, against one real repo with a drivable
-   surface — `btb` or the GIS pipeline, never a corpus repo — and read
-   what it emits. That is what settles the build-versus-adapt fork,
-   and it is the one move here needing NO gate: no payload change, no
-   answer to `st-48`, no mint. What to look for when it runs: whether
-   the five interview axes ask the right questions of a repo that is
-   not an Electron desktop app; how much of the emitted CLI is
-   generic versus fitted; whether the feature map's four headings
-   survive a surface that is not a UI; and what the interview fails to
-   ask that this shop's work needs. Those four observations ARE the
-   fork's decision basis — adapt if the interview transfers, build if
-   it does not.
+   **OUTPUT FORM — operator decision, 2026-09-13: a CLI is NOT the
+   mandated output.** The emitted artifact is "some tooling and maybe
+   a skill", shaped per project; her Electron CLI is one realization,
+   not the form. Her own generator agrees and the article overstates
+   it: `create-verification-skill` step 1 says prefer EXISTING
+   harnesses — "Playwright/Cypress specs, expect scripts, PTY
+   helpers, curl-able endpoints, a debug port. Only then pick a
+   generic recipe: browser/CDP for web and Electron, a tmux/PTY
+   harness for CLI/TUI, plain HTTP for services." The CLI is her
+   fallback for a live interactive surface with no existing harness.
+   **The invariant to keep is the PROPERTY, never the shape:** a
+   stable, rerunnable, machine-readable interface to the system under
+   test, testable by the repo's own suite. Where a CLI earns itself:
+   a live process with SESSION STATE driven through many small
+   sequential interactions, and self-documenting `--help` so the
+   verbs need no skill text (the one CLI argument that is also a
+   compression argument). Where it is overkill: no session, no
+   interaction — a pipeline, a library, a batch job — where the
+   existing test runner or a script is the tooling and a CLI is a
+   layer over nothing.
+   **ADOPT-BY-TUNING, not wholesale (operator, same date):** the core
+   idea worth taking is a SKILL THAT CREATES the harness; her
+   specifics are pointers, graded per repo.
+   **THE WORKED CASE, booked as part of this consideration (operator
+   — not now, but recorded so it is not re-derived).** Better than a
+   fresh generation, and named by the operator: `~/wan2gp` already
+   grew something of this kind AD HOC. Read that first and compare it
+   against her generator's output shape — a natural experiment with
+   the artifact already in hand, and it costs no generation run. What
+   to read for: which of her five interview axes wan2gp's ad-hoc
+   thing answers and which it never asked; what form its tooling took
+   when nobody prescribed a CLI; whether anything plays the feature
+   map's role (an enumeration of surfaces) or whether that is the
+   piece ad-hoc growth never produces; and what the interview would
+   have to ask that her Electron-shaped question set does not. Those
+   four ARE the build-versus-adapt decision basis — adapt if the
+   interview transfers, build if it does not. Gate: none. No payload
+   change, no `st-48` answer, no mint.
    Gate: C inherits ITEMS `st-48`'s scope question (does the payload
    demand a harness exist, or stay apparatus-agnostic and inherit the
    host repo's checks) — and note that RUNNING the recipe once against
