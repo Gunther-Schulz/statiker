@@ -993,6 +993,29 @@ second home for anything below.
    `Driving it with <harness>`, `Gotchas`); a prove-before-handover
    step ("A generated skill that was never executed is a draft, not a
    deliverable"); and a separate maintenance loop.
+   **WHAT THE VALUE ACTUALLY IS (operator, this date, sharpening the
+   desk's framing):** the asset is not a harness and not a
+   general-purpose one either — it is a GENERATOR that interviews a
+   specific project and emits a harness fitted to THAT project's
+   requirements. Her own word for it is meta-skill. Three consequences
+   follow and none of them followed from "statiker should get a
+   harness". (i) It is Build-the-Lever applied one level up: build the
+   tool that builds the tool. (ii) It is precisely the portable slice
+   of an enforcement layer that is otherwise unshippable — Dune's CI
+   cannot be open-sourced and the generator can, which is why the
+   generator is the published part. (iii) The hard-won content is the
+   INTERVIEW, not the emitted CLI: knowing to ask whether two
+   instances can run side by side, what evidence a surface can
+   capture, and to prefer the repo's existing harnesses before any
+   generic recipe. A CLI is easy; the question set is the distillate.
+   **Consequence for scope, and it may dissolve `st-48`:** a generator
+   is a SIBLING SKILL a repo runs once, not statiker payload. If it
+   lives outside, statiker stays apparatus-agnostic — FP5 keeps
+   saying "the real checks" and simply FINDS the harness the repo now
+   has — and the scope question ("may the payload demand a harness
+   exist") never needs answering. The desk's reading is that this is
+   the right shape; recorded as a reading, not a decision, since the
+   `st-48` question is the operator's.
    **The fork, undecided:** BUILD our own generator, or ADAPT hers —
    her SKILL.md is portable in substance, Cursor-specific only in its
    output path (`.cursor/skills/verify-<app>/`), so adapting is a
