@@ -1639,7 +1639,15 @@ belongs in its
 scratchpad (the read-only tail's provision), never the repo. Model per
 `clippy.config/models` (`verify:` class) when present, else the
 parent model; an unreadable models file halts the dispatch, the
-parse error recorded as a finding. The leg-return seam: receiving a
+parse error recorded as a finding.
+The certification duty binds this resolution exactly as it binds
+the attack's (The attack): the resolved tier is checked against the
+skill's shipped `defaults/models`, and one the register leaves
+uncertified for the verify role — or records EXCLUDED there —
+verifies as a DECLARED deviation in the tracker, never silently. An
+excluded tier does not bar the leg; it obliges the line, so a stack
+carrying no certified tier still verifies, loudly.
+The leg-return seam: receiving a
 verify leg's report, the desk runs verify-gate and appends the
 V-line in the SAME TURN — a per-R verdict has no gate-legible form
 until the V-line lands, and a pause between the leg's return and

@@ -10364,3 +10364,86 @@ a codex-only run would have died at forcing point 3 with a cause nobody
 would look for.
 
 No payload change rides this entry.
+
+## 2026-09-13 — st-54 mint: the verify seam gains the attack seam's certification duty
+
+INCIDENT / PROVENANCE. statiker-c8 phase-1 digest #1, graded ACCEPTED
+by statiker-fd the same date. SKILL.md's verify model sentence resolved
+`clippy.config/models` (`verify:` class) then THE PARENT MODEL, with no
+register consult anywhere — while the attack seam 500 lines above
+(:1108-1119) consults the shipped `defaults/models` and obliges an
+uncertified tier to attack as a DECLARED deviation in the tracker,
+never silently. One duty, present at one of the two seams that need it.
+The bite is codex-only mode: with no Claude tier in the stack, the
+verify leg resolves to the parent model — codex — for a role the
+register records EXCLUDED BY MEASUREMENT, and nothing says a word.
+Class: the multi-location divergence CLAUDE.md names as where to press.
+
+PLACEMENT BASIS (amendment discipline, the search before the edit).
+Governed set: `SKILL.md` + `references/*.md`. Scan over that set for
+the concept, whitespace-normalized because the corpus is hard-wrapped
+at 69 columns and a line-based phrase search is blind across the wrap:
+`declared deviation` — ONE instance, the attack seam. `certif` — the
+attack seam plus one unrelated evidence.md line. `defaults/models` —
+the attack seam alone. INSTRUMENT NOTE: the first scan was line-based
+`grep` and returned ZERO for `DECLARED deviation` over a known
+positive — the phrase spans the wrap at :1117-1118. The zero was
+exposed by the positive control, not by suspicion; without it the scan
+would have read as "the concept lives nowhere" and licensed a mint
+that duplicated an existing rule.
+
+SHAPE, and why it is a citation rather than a copy. The concept has
+exactly one home, so restating it at the verify seam would mint a
+second body of one meaning — the duplication class that produces
+precisely the multi-location divergence this item exists to close. The
+edit therefore CITES the attack's sentence ("binds this resolution
+exactly as it binds the attack's (The attack)") and states only what
+the verify seam adds: the EXCLUDED case, and that exclusion obliges
+the line rather than barring the leg — so a stack carrying no
+certified tier still verifies, loudly. That disambiguation is the one
+genuinely new sentence; without it "excluded" reads as a halt, which
+would strand codex-only mode entirely.
+
+TENET CHECK against PLAN.md's live list — all nine enumerated.
+
+1. Investigation-led design — NOT APPLICABLE. Page conduct text, no
+   design loop runs here.
+2. Sufficiency = dispatchable — PASS. The clause names the artifact a
+   compliant desk writes (a deviation line in the tracker), so a brief
+   citing it needs nothing further decided.
+3. Anti-skim, thin in ceremony never in forcing points — PASS. This
+   adds nothing to forcing point 5's ceremony; it closes a silent
+   fail-open in the dispatch that forcing point already makes.
+4. Cost asymmetry — NOT APPLICABLE. No design/implementation boundary
+   in reach.
+5. Autonomy north star — PASS. The deviation line is the record's own
+   surfacing; it replaces a human noticing the tier was wrong, and
+   needs no seat to fire.
+6. Economics — PASS, PRICED: seven lines of operational text at the
+   seam. Cheaper alternatives considered and rejected — a general
+   tier-resolution rule would need a home 500 lines from either seam,
+   where a load-bearing default de-binds (skill-craft: scope cue lands
+   at or before the default), and creating that section is the new
+   machinery st-54's criterion forbids.
+7. Convergence circuit — PASS. The duty sits inside verify, one of the
+   circuit's three surfaces, and makes tier provenance gradeable in
+   the record rather than lost in the dispatch.
+8. Medium tenet — PASS AS PROSE, with the reason named rather than
+   assumed. The predicate is NOT computable from the record: the only
+   evidence of which tier ran the leg IS the deviation line the rule
+   demands, so a checker would have to read the thing whose absence it
+   is checking for. Worse, the register carries no `verify:` class
+   entry at all (deliberately — a resolvable entry would SELECT codex
+   for the leg), so an uncertified-tier predicate fires on every run
+   including every legitimate one: the mechanism bar's false-fire
+   floor, unmet. Prose is correct here, exactly as it is correct at
+   the attack seam this mirrors.
+9. Placement — PASS. Precedent line: follows `SKILL.md:1108-1119` (the
+   attack's tier resolution), judged sound — it is the rule being
+   cited, not worked around.
+
+MINT FORM: prose-mechanism, so its batch budgets one repair lap
+(CLAUDE.md, mint form priced in the batch plan). Rides phase 2's ONE
+review lap and ONE release at arc close — no interim seam.
+
+Payload 0.2.94 -> 0.2.95.
