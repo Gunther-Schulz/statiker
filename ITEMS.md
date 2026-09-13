@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 38
+added: 39
 compacted: 0
 
 ## st-10
@@ -329,4 +329,13 @@ goal: general-maintenance
 write-set: plugin/skills/statiker/SKILL.md,dev-notes/OBSERVATIONS.md,plugin/.claude-plugin/plugin.json
 done-criterion: The Verify section's isolation passage gains the environment half it currently lacks: a verify leg dispatched against an isolated copy states how the copy's own code is RESOLVED, and the dispatching desk verifies resolution by execution before the leg's result counts — the executed form being an import (or equivalent) whose printed path lies inside the copy, with the un-shadowed control showing the original path. Scope is the page's existing carve-out passage, which today declares by-product PATHS and says nothing about interpreter or package resolution; this is an extension of that passage, not new machinery. Verifier: criterion-2 fresh-context opus checkpoint review before the pin moves (the clause names a dispatch-time obligation), plus the OBSERVATIONS mint entry enumerating PLAN's nine tenets. Mint form: PROSE-MECHANISM, so its batch budgets one repair lap. Rides phase 2's one review lap and one release at arc close.
 evidence: EXECUTED 2026-09-13 during probe-B arrangement validation, control first. Object: beat-the-books fetched at 3b360ae into a scratch workdir. The venv (not in git, so absent from any fetch copy) carries __editable__.beat_the_books-0.1.0.pth pointing at the ORIGINAL src tree. Executed pair: with no PYTHONPATH, 'import beat_the_books' resolves to /home/g/dev/Gunther-Schulz/beat-the-books/src/beat_the_books/__init__.py — the ORIGINAL, carrying the landed fix and the post-verdict record; with PYTHONPATH=<workdir>/src it resolves inside the workdir. Arrangement then EXERCISED rather than assumed: a real test file run in the isolated tree under the shadowing path returned '1 passed in 0.03s'. Why this is skill-owned rather than environmental: the failure is SILENT — the leg runs, the suite passes, the per-R table fills in, and every number is about a tree the leg was never meant to grade. The self-containment criterion names verify isolation explicitly as the skill's own, and its bounding clause (SURFACING is run-conduct, FILING is the environment's) leaves this inside: what is owed is the leg's own statement of how its copy resolves, not a destination or a repo convention.
+blocked-by: NONE
+
+## st-60
+grade: READY
+requirement: OPUS at the verify role (forcing point 5) is UNMEASURED, and opus is this site's default desk tier — so the st-54 certification duty fires a declared-deviation line on most real runs here. A true fire, not a false one, but a high-rate one: the register carries sonnet 8/9 and haiku 8/9 from probe B and no opus arm exists. Record: 0.2.97 seam review F2, statiker-c8 2026-09-13.
+goal: general-maintenance
+write-set: plugin/skills/statiker/defaults/models,dev-notes
+done-criterion: Either an opus verify-leg arm is run against probe B's own graded baseline and its result lands as a register entry with provenance inline (the Stage-2d/probe-B form), OR the register records a reasoned position on why opus stays unlisted and the deviation line on an opus desk is accepted as standing cost. Pre-registered before the arm dispatches, per the repo's comparison convention.
+evidence: 0.2.97 seam review F2, executed by the reviewer: grep -cE '^\s*verify(@[a-z]+)?:' over the register returned 0 before this lap, so the duty fired in every state of the world. Repaired by adding verify: haiku and verify: sonnet on probe B's measured evidence (both 8/9, honesty floor held, transcript audit clean with a positive control). Opus was deliberately NOT added: probe B ran no opus arm, and inventing a certification is the one thing the register's provenance bar forbids.
 blocked-by: NONE
