@@ -238,3 +238,75 @@ measure luna at the desk, does not generalize across object kinds, and
 n=1 holds decision-grade under the trial rule ONLY for what the
 criterion resolves — never for weakening a safety floor, which the
 same rule puts out of its own reach.
+
+---
+
+## 7. THE CLONE, AS ACTUALLY BUILT (executed 2026-09-13, after fd's GO)
+
+PATH: `/home/g/dev/local/statiker-run-2026-09-13-lc61`
+
+Placed under `local/` per `dev/README.md`'s layout rule (`local/` = no
+own place; nothing new at top level). The first attempt put it at
+`~/dev` top level and was moved — recorded because the path is what
+the operator's authorization line names, and it changed.
+
+WHAT WAS DONE TO IT, and why each step was needed:
+
+1. **Cloned from the real repo, then the REMOTE REMOVED.** `git remote
+   -v` is empty. Under `danger-full-access` a desk has the operator's
+   own push rights; an origin pointing at the real lifecycle checkout
+   is a path back into it. Verified after removal.
+
+2. **lc-61's whole block deleted from `ITEMS.md`** (4,066 chars). The
+   desk receives the REQUIREMENT as its run intent, not a carrier
+   entry to drain — so the object is a problem, which is what forcing
+   point 1 is for. Deleting the block rather than blanking one slot
+   avoids the second contamination: an item visibly missing its
+   done-criterion tells the desk it is being probed.
+
+3. **History FLATTENED** — `.git` removed, re-initialised, one commit
+   of the current tree. Deleting the block from the tree alone would
+   have left the criterion in the history, and `git log -p ITEMS.md`
+   is an ordinary thing for a desk to run. Realism cost: the desk
+   cannot read this repo's history. Accepted and recorded rather than
+   discovered later.
+
+VERIFIED, with the positive control the absence claim requires:
+
+```
+tree hits for the criterion text            0
+history hits (git log -S)                   0
+POSITIVE CONTROL, a string known present    5   ("unregistered_persisted_thing")
+```
+
+The control is what makes the two zeros mean absence rather than a
+dead pattern. Same instrument discipline as probe B's transcript
+audit.
+
+KNOWN RESIDUE, graded and left in place: `lc-61` is still NAMED once,
+at `docs/directives/2026-09-13-drain-desk-handoff.md:43` — "`lc-60`
+and `lc-61` re-grounded and pulled from the dispatch set rather than
+built on stale premises". It carries NO criterion content: nothing
+about claim-versus-exempt, nothing about the population. Left in place
+because removing it would be tampering with unrelated text, and quoted
+here so the post-run audit can account for it rather than rediscover
+it.
+
+THE DEFECT REPRODUCES IN THE CLONE, executed:
+`FINDING [unregistered_persisted_thing] 3 tracked file(s) resolve to
+no registered kind` — the three-file population the pre-registration
+depends on is intact.
+
+POST-RUN AUDIT, owed before any arm is graded: the probe-B form — each
+arm's transcript searched for the withheld criterion's text, with a
+positive control proving the search reaches that transcript at all.
+A cribbed baseline presents exactly as honest agreement.
+
+## 8. RELEASE STATE AT KICKOFF
+
+Pin MOVED 2026-09-13: 0.2.92 -> 0.2.98, `gitCommitSha`
+c4fb6874bebc6ba2e82e226c68173a244625602b, equal to the pushed HEAD.
+Skill-lint blocking=0 over all three shipped skill files; suite 582
+passed. The desk that runs this must be a FRESH session — a running
+session serves the version it resolved at its own start (repo
+CLAUDE.md: a release during a live run means the desk restarts).
