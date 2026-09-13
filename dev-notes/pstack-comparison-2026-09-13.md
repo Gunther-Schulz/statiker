@@ -280,7 +280,10 @@ is user-visible. That is irreversibility as the one mandatory pause,
 applied with more care than the 2026-09-10 entry credited.
 
 **Named gap.** Which path produced the 20 automerged PRs is
-**not established**. The talk does not say, and Grok @Bot routines,
+**not established**. The talk does not say, and Grokbot routines
+[entity corrected 2026-09-13: Grokbot, the Cursor multi-agent
+product whose repo receives the PRs — "Grok @Bot" was this doc's
+mis-parse of the transcript],
 `shipping`, and a bespoke arrangement are all consistent with it. Do not
 map the talk's automerge onto `shipping.md` without evidence.
 

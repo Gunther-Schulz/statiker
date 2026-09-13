@@ -5,8 +5,14 @@ supplied by the operator 2026-09-13 as `~/Downloads/transcript.txt` and copied
 here verbatim so the citations in PLAN.md resolve after the download is gone.
 Speaker is pstack's author. Timestamps are the transcript's own; the text is
 machine-transcribed and carries its errors (e.g. "Potato" for poteto, "PAC"/"P
-stack"/"Pstack" for pstack, "Grockbot"/"graphbot" for Grok @Bot, "Maine" for
+stack"/"Pstack" for pstack, "Grockbot"/"graphbot" for Grokbot, "Maine" for
 main, "fable size" for a model-size aside).
+[Correction 2026-09-13, same desk: this header first glossed the name as
+"Grok @Bot". The talk's own context (00:02:04, 00:34:53, 00:40:58) settles
+it: Grokbot is a Cursor PRODUCT — multi-agent orchestration, per-agent
+identities, launched ~2026-09-12 — and "Dune" is the codename of the
+architecture built for it ("Next.js for Electron apps, designed for agents
+to write"). The quoted transcript bytes below are untouched.]
 
 Quoted material — exempt from the English-only rule as source text, and NOT to
 be corrected in place: quotes cited elsewhere must match these bytes.
