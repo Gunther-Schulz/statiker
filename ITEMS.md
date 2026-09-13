@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 37
+added: 38
 compacted: 0
 
 ## st-10
@@ -337,3 +337,12 @@ evidence: EXECUTED 2026-09-13. An empty directory /tmp/.git existed (0 entries, 
 blocked-by: NONE
 amend-reason: 2026-09-13 the evidence slot as first written was CORRUPTED by shell command substitution: backticks inside a double-quoted argument executed the two git commands and substituted their OUTPUT in place of the command text, so the slot read a bare "fatal:" and a bare "true" where the commands belonged. Restated whole with the commands quoted as text. The corruption was the recording tool faithfully storing what the shell handed it, not a carrier fault
 amended-evidence: 2026-09-13 EXECUTED 2026-09-13. An empty directory /tmp/.git existed (0 entries, created that day). The command "git -C /tmp rev-parse --show-toplevel" returned "fatal: not a git repository", and from inside a scratch dir "git rev-parse --is-inside-work-tree" returned the same fatal. But statiker_record.py filter, asked to write an artifact to a path under /tmp/claude-1000/..., halted: STATIKER-RECORD VERDICT {verdict ARTIFACT_IN_REPO, route halt, repo "/tmp", error "attack artifact must land outside every repo"}. So the tool called /tmp a repo while git refused to. Operationally significant beyond tidiness: the attack forcing point writes its pinned artifact OUTSIDE every repo by design, so a desk whose scratch sits under such a path cannot dispatch an attack round at all. NOT the cause of the 29 suite failures — ruled out separately by re-running with TMPDIR outside /tmp
+
+## st-59
+grade: READY
+requirement: Forcing points 2, 3 and 4 cite dispatch-guards:dispatch for material a codex-only stack cannot load (SKILL.md :712 the READY decision-completeness test, :992 the attack question + read-only tail, :1308 the impl brief form + executor citation); the break is silent — nothing checks a brief against an absent form. Basis: executed installability check, dev-notes/codex-only-certification-2026-09-13.md, LEG B self-containment finding.
+goal: tend
+write-set: plugin/skills/statiker/references/,plugin/skills/statiker/SKILL.md
+done-criterion: A codex-side home exists for the brief/tail/decision-completeness material the three forcing points cite, on the references/evidence.md pattern (loaded only when the host stack lacks the skill), OR the page declares the degradation loud at each of the three sites. Verified by re-running the leg B arrangement with the dispatch dependency absent and the arm able to cite a reachable source at each forcing point.
+evidence: statiker ships no hooks of its own: plugin/hooks/hooks.json registers {} (stop guard unregistered, R11 hold). The corpus dependency already has this fix shape as its precedent: references/evidence.md covers the corpus absence; the dispatch dependency has no equivalent.
+blocked-by: NONE
