@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 32
+added: 33
 compacted: 0
 
 ## st-10
@@ -296,3 +296,12 @@ write-set: plugin/skills/statiker/SKILL.md
 done-criterion: UNKNOWN — the shape is undecided and the options differ in kind: widen the derivation's own guidance, make the derived standard an attackable object in its own right (the attack already grades decomposition faithfulness but not the standard the head was derived against), or leave it thin deliberately and record why
 evidence: SKILL.md lines 418-433 read verbatim 2026-09-13; PLAN 'Lenses: none at birth' and the 2026-08-10 lineage entry on depreciation slopes; dev-notes/pstack-comparison-2026-09-13.md section 9d-bis, which names this slot as one of the two places design content would attach
 blocked-by: evidence a firing, or the trial datum — a run whose head omitted a requirement a competent shop would have derived, visible as a late reconciliation, an escaped defect the head never asked about, or an operator correction at close
+
+## st-54
+grade: READY
+requirement: FP5 verify-tier default routes to THE PARENT MODEL with no register consult, so a codex-only stack silently selects a role defaults/models records as EXCLUDED BY MEASUREMENT — SKILL.md:1639-1641 against the attack seam's contrasting form at :1108-1119 — record: statiker-c8 phase-1 digest #1, 2026-09-13, graded ACCEPTED by statiker-fd same date
+goal: general-maintenance
+write-set: plugin/skills/statiker/SKILL.md,dev-notes/OBSERVATIONS.md,plugin/.claude-plugin/plugin.json
+done-criterion: SKILL.md's Verify model sentence (:1639-1641) gains the symmetry the attack seam already carries: resolution consults the skill's shipped defaults/models as :1108-1119 does, and a verify tier resolved without a certification — or one the register records EXCLUDED — runs as a DECLARED deviation in the tracker, never silently. No new token and no new machinery: the attack seam's existing sentence is the model, per statiker-fd's approved shape. Verifier: criterion-2 fresh-context opus checkpoint review passed before the pin moves (the clause NAMES a record form, a tracker deviation line, so CLAUDE.md review trigger (2) binds), plus an OBSERVATIONS mint entry enumerating PLAN's nine tenets pass/fail/not-applicable. Mint form: PROSE-MECHANISM, so its batch budgets one repair lap (CLAUDE.md, mint form priced in the batch plan). Rides phase 2's ONE review lap and ONE release at arc close — no interim seam.
+evidence: statiker-c8 phase-1 digest #1 (2026-09-13). SKILL.md:1639-1641 — verify model is clippy.config/models verify: class when present, else THE PARENT MODEL; no register consult anywhere. SKILL.md:1108-1119 — the attack's contrasting form: resolves through the shipped defaults/models and obliges an uncertified tier to attack as a DECLARED deviation in the tracker, never silently. defaults/models and READINESS.json — verify/reviewer@codex EXCLUDED BY MEASUREMENT, astra 1/10 terra 0/10, stage-2d, dev-notes/codex-pilot-2026-09-12.md. One defect at two locations: the class CLAUDE.md's checkpoint bullet names as where to press. Self-containment criterion: absence silently ships unverified work, therefore skill-owned.
+blocked-by: NONE
