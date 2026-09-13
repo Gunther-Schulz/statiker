@@ -812,13 +812,30 @@ deliberate, the booked compression pass brings it back down
   mirror at HEAD 7366ac1 (2026-09-09) already carries
   `create-verification-skill`, `maintain-verification-skill`,
   `swarm`, `principle-build-the-lever` and a ten-file
-  `docs/guide` — the 2026-09-10 entry above read the router and
-  the 23 principles, not this layer. What the article adds is
+  `docs/guide`. What the 2026-09-10 entry above rests on is
+  NARROWER than that entry reads — established this date by an
+  exhaustive sweep of that session's own file reads: it opened
+  `README.md`, `poteto-mode/SKILL.md`, `architect`,
+  `interrogate`, `tdd`, `reflect`, `why`, `show-me-your-work`,
+  `principle-prove-it-works` and `docs/guide/08-principles.md`,
+  plus directory sizings — and never opened
+  `create-verification-skill`, `maintain-verification-skill`,
+  `principle-build-the-lever`, or nine of the ten guide
+  chapters. Its "23 principle skills" is a DIRECTORY-LISTING
+  claim, not a read. That is precisely why the NON-STEAL verdict
+  could stand: the files carrying the second purchase mechanism
+  are the ones that were never opened. What the article adds is
   the author's account of WHY the layer exists, plus operating
   detail the plugin text does not carry: a per-app driving CLI
-  as the first investment, the Feature Map as "materialized
+  as the first investment, the feature map as "materialized
   memory", cloud fan-out preferred over worktrees, and routines
   that auto-reproduce user reports from a feedback channel.
+  Naming note for a later reader: the article's `/control-app`
+  is not a pstack skill and is absent from the mirror — it is
+  the author's own instance of what
+  `create-verification-skill` GENERATES (`.cursor/skills/
+  verify-<app>/`), so the generator is the comparand, never
+  that name.
   THE LOAD-BEARING UPDATE — the NON-STEAL line above is
   complicated, not overturned. Read at the mirror this date:
   `principle-build-the-lever/SKILL.md` ("build the tool that
