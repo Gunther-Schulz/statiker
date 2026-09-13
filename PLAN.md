@@ -1225,6 +1225,27 @@ positive control. The residue hypothesis measures whether the LAYER
 shifts the defect distribution left; ablation is what would say WHICH
 forcing point does it, and where the run is paying for ceremony.
 
+**THE MEASURE, settled by the operator's restatement of the goal
+(2026-09-13): "I have an ask, a feature, an issue; I want
+well-designed, architecturally sound, manageable code out, with the
+fewest fixing rounds possible."** That names the objective function,
+and it makes the ablation far cheaper to design than the desk first
+priced it: the measure is NOT an abstract grade of design quality —
+which is the hard, arguable, expensive thing — but ROUNDS-TO-LANDED,
+which is countable and already registered as an instrument
+(rounds-per-landed-unit, baseline 6, in the residue-hypothesis entry
+above). The residue hypothesis IS this goal in falsifiable form:
+residue reaching the after-phase is fixing rounds.
+**But the count alone is a gameable metric and must never travel
+alone.** A run that ships something wrong and never notices scores
+BEST on rounds-to-landed — the check that cannot fail, in this
+record's own terms. So the ablation's measure is the PAIR the residue
+hypothesis already carries: rounds-to-landed AND the per-finding class
+split of what remains. Fewer rounds with the expensive classes
+(wrong mechanism, missed consumer, silent path, wrong scope) surviving
+into the after-phase is a WORSE result, not a better one, and only the
+pair can say so.
+
 Not designed here, deliberately: an ablation arm is real experimental
 work (what is held fixed, how a design is graded worse, how many runs
 before a difference means anything — the statistical-finding rule
