@@ -10534,3 +10534,69 @@ no rule the page did not already carry. It makes existing rules
 reachable.
 
 Payload 0.2.96 -> 0.2.97.
+
+## 2026-09-13 — 0.2.97 seam review: the repair lap, and F10's owed disposition
+
+The review returned HOLD THE PIN: 5 SUBSTANTIVE, 5 MINOR, 0 BLOCKING,
+every finding in the delta's two binding TEXT surfaces. The mechanism
+half — scripts, grammar, route registry — came back clean and
+mutation-proved, including an independent replay of st-57's red-first
+claim (pre-fix helper restored: 2 failed, 578 passed, exactly the two
+targets, the linked-worktree control green).
+
+### F10's owed disposition, written now rather than left missing
+
+Commit 98a187c ("register: per-(role, codex-tier) cell table; luna
+verify measured, ranking INVERTED") carried +36 lines of shipped
+register with no OBSERVATIONS entry and no mint/no-mint line in its
+message, while every sibling in the carried set has one. NOT A MINT
+under C4b: it introduces no machine token, hold code, predicate or
+mandatory form — it is a comment table in a data file, read by people
+and by no parser. What it DID introduce was two defects the review
+then found (F3's arithmetic, F4's prose/table contradiction), which is
+the argument for the disposition habit rather than against it: the
+gate that was skipped is the one whose enumeration would have re-read
+the numbers.
+
+### The lesson that generalizes — a distillate written from a window
+
+F1 is the entry worth keeping. `references/dispatch-forms.md` was
+written to carry the canonical report form faithfully, and it dropped
+canonical slot (g), "what was NOT verified (honest residue)",
+renumbering (h) into its place. CAUSE, executed and specific: the
+source was read with `sed -n '8,60p'`; the slot enumeration continues
+at line 69. The window closed mid-list and nothing in the output said
+so.
+
+CLASS: a partial view read as its whole body — paraphrase drift at the
+construction site rather than the citation site, committed inside the
+one file whose entire purpose is faithful transcription. The tell was
+already IN the artifact and unread: the file inherited the sentence
+"(c), (d), (e) and (g) are where an inference passes for an
+observation", which is true when (g) is the honest residue and false
+of a read list, since a read list carries its evidence by
+construction. The file contradicted itself and the contradiction was
+the drift's own signature.
+
+PRE-FORMULATED RULE, for the drain pass: when a distillate is written
+from a source, the ENUMERATION's end is established before the
+distillate is written — the last member read against the source's own
+terminator, never against the read window's end. A windowed read
+returns exactly what a complete read returns, which is why nothing
+prompts the check. The cheap form: re-read the enumeration from its
+last member forward, and compare member COUNTS between source and
+distillate.
+
+CONSUMER: the next session writing a reference distillate in this
+repo; drain seam, the retirement quota's pass.
+
+### Why the honesty-floor half held anyway, recorded so it is not read as luck
+
+FP5 keeps its own non-event catcher — the per-R NOT EXERCISED demand
+lives in the page, not in the substitute — so the RUN-level residue
+question survived F1 intact. What was lost was the UNIT-report slot.
+The page's redundancy is what bounded the cost, and it bounded it by
+design rather than by accident: the forcing point does not delegate
+its own catcher to a reference file.
+
+Payload 0.2.97 -> 0.2.98.

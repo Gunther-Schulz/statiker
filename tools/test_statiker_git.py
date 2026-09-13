@@ -1936,6 +1936,47 @@ class TestWorktreeAddEveryRepoContainment(GitFixture):
                                 text=True, check=True).stdout
         self.assertEqual(status, "", "sibling B's tree was polluted")
 
+    # ---------------------------------------------------- st-57
+    # The git-side half of the containment repair shipped with NO test
+    # of its own: the record battery gained three, this one gained
+    # none. Proved by mutation at the 0.2.97 seam review (F5) —
+    # forcing git_validated_dot_git to return True, which restores the
+    # exact pre-fix existence-only defect on THIS side, left the whole
+    # suite green at 580 passed. Nothing watched a regression back to
+    # the over-refusal the fix removed, and that over-refusal is what
+    # costs a desk its entire forcing point 3.
+    #
+    # This test is that watcher. It goes RED under `return True` and
+    # RED under the pre-fix `lexists`-only line; its sibling above,
+    # test_symlink_spelling_into_the_repo_halts, is what goes red in
+    # the FAIL-OPEN direction. The pair is what makes the predicate
+    # two-sided.
+
+    def test_worktree_add_under_a_stray_empty_git_is_not_blocked(self):
+        sha = self.git("rev-parse", "HEAD").stdout.strip()
+        outside = Path(self._tmp.name) / "outside-with-stray"
+        outside.mkdir()
+        (outside / ".git").mkdir()          # git refuses to call this a repo
+        self.assertEqual(
+            subprocess.run(["git", "-C", str(outside), "rev-parse",
+                            "--show-toplevel"], env=self.env,
+                           capture_output=True).returncode, 128,
+            "fixture premise: git itself must refuse this directory")
+        p = self.tool("worktree-add", "--sha", sha,
+                      "--path", str(outside / "wt"))
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "WORKTREE_ADDED", v)
+
+    def test_worktree_add_under_a_dangling_git_file_is_not_blocked(self):
+        sha = self.git("rev-parse", "HEAD").stdout.strip()
+        outside = Path(self._tmp.name) / "outside-with-dangling"
+        outside.mkdir()
+        (outside / ".git").write_text("gitdir: /nonexistent/nowhere\n")
+        p = self.tool("worktree-add", "--sha", sha,
+                      "--path", str(outside / "wt"))
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "WORKTREE_ADDED", v)
+
     def test_symlink_spelling_into_the_repo_halts(self):
         # F2: `link/wt` (link -> a real outside dir) used to read
         # WORKTREE_ADDED — the as-named walk reaches this repo's own

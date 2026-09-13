@@ -424,7 +424,7 @@ pilot recorded volume as "roughly tier-invariant per role", with the
 reviewer object noted as the one exception. Luna breaks it again and
 in the same direction: the CHEAPEST tier spent the MOST tokens
 (69,525, against astra's 37,390) while resolving the LEAST. Cost per
-resolved requirement diverges by more than an order of magnitude
+resolved requirement diverges by roughly 4x
 across codex tiers here, so "pick the cheap tier to save money" is
 refuted at this role by measurement — the cheap tier is the expensive
 one. Recorded against the pilot's generalization, which should be read

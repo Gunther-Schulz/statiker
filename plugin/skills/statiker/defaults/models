@@ -62,6 +62,29 @@ impl@codex: terra
 # shape, on a different object, at a different seam
 # (dev-notes/codex-only-certification-2026-09-13.md, probe B).
 #
+# verify: sonnet, haiku — CERTIFIED 2026-09-13 by probe B, the same
+# record the @codex measurement below rests on: a real verify-leg
+# dispatch replayed against a graded baseline, each arm in its own
+# isolated copy, transcript audit clean with a positive control. Both
+# resolved 8 of 9 requirements and both held the honesty floor, the
+# drawn control coming back not-exercised. The CHEAPEST Claude tier
+# matched the strongest, so haiku carries this role at haiku's price.
+#
+# THIS CLASS IS CERTIFICATION INPUT, NOT RESOLUTION INPUT. The verify
+# seam resolves clippy.config/models then the parent model (SKILL.md,
+# Verify) — it does not pick from here. These entries exist so the
+# seam's certification duty DISCRIMINATES: without a single verify
+# entry the duty fired on every run on every stack, which is the
+# fire-on-a-non-defect shape that trains the override reflex.
+verify: haiku
+verify: sonnet
+#
+# OPUS AT THIS ROLE IS UNMEASURED and is deliberately not listed.
+# Probe B ran sonnet and haiku; no opus arm exists. A desk whose
+# parent model is opus therefore still owes its declared deviation
+# line — a TRUE fire, not a false one, and the honest state of the
+# evidence. Booked as the measurement gap it is (st-60).
+#
 # verify (FP5) @codex: SAFE BUT UNCOMPETITIVE — measured
 # 2026-09-13, and recorded as a measurement rather than as a
 # resolvable entry ON PURPOSE: a `verify@codex:` line would be
@@ -76,10 +99,14 @@ impl@codex: terra
 # control (a requirement the baseline graded not-exercised) came
 # back not-exercised from all four. Codex does not manufacture
 # coverage at this role. YIELD, of 9 requirements: sonnet 8,
-# haiku 8, terra 6 (one adjudicated against it), astra 3 — the
-# strongest codex tier resolved fewest while running MORE than
-# haiku did (37,390 tokens). Both Claude tiers beat both codex
-# tiers and the CHEAPEST Claude tier matched the strongest, so
+# haiku 8, terra 6 (one adjudicated against it), astra 3. OF THE
+# PROBE'S FOUR GRADED ARMS astra resolved fewest, and it ran the
+# full unit suite where haiku did not — WORK, not tokens; the
+# Claude arms' token usage was never captured and is not
+# estimated. Across ALL codex tiers luna is the floor at 2/9 —
+# see the cell table below, which is the complete statement.
+# Both Claude tiers beat every codex tier and the CHEAPEST
+# Claude tier matched the strongest, so
 # the case for codex at this role cannot rest on capability.
 # A codex-only stack has no Claude tier to prefer, which is why
 # the codex-only verify seam is gated on the st-54 refusal
@@ -97,7 +124,7 @@ impl@codex: terra
 #   attack              UNMEASURED    certified     certified
 #   implementation      UNMEASURED    certified     UNMEASURED
 #   reviewer            UNMEASURED    FAIL 0/10     FAIL 1/10
-#   verify (FP5)        safe 2/9      safe 6/9      safe 3/9
+#   verify (FP5)        2/9 UNAUDIT   safe 6/9      safe 3/9
 #   desk                UNMEASURED    UNMEASURED    UNMEASURED
 #
 # read-side: stage 1, all three at sonnet parity; cheapest viable
@@ -105,8 +132,13 @@ impl@codex: terra
 #   recovery (stages 2/2b); luna never run at this role.
 #   implementation: terra only (stage 2c); the other two are not
 #   failures, they are unrun. reviewer: EXCLUDED as a class, above.
-#   verify: probe B, 2026-09-13 — all three held the honesty floor,
-#   none fabricates; the numbers are requirements RESOLVED of 9.
+#   verify: probe B, 2026-09-13 — the numbers are requirements
+#   RESOLVED of 9. TERRA and ASTRA held the honesty floor under a
+#   transcript audit with a positive control. LUNA did NOT: it was
+#   an addendum arm run after the audit and is absent from it, so
+#   its cell reads UNAUDIT — its 2/9 is a yield figure and NOT a
+#   safety claim. Reading it as safe is the mistake the paragraph
+#   above warns about, one row down.
 #   desk: probe A SATURATED (three arms at ceiling separate
 #   nothing), so it certifies no tier either way; stage 3 parked.
 #
@@ -116,7 +148,8 @@ impl@codex: terra
 # times the cheapest — and the cost runs the same way: luna spent
 # 69,525 tokens to resolve 2, astra 37,390 to resolve 3, terra
 # 53,179 to resolve 6. The cheapest tier is the most expensive per
-# resolved requirement, by more than an order of magnitude. So the
+# resolved requirement, by roughly 4x (34,762 vs 8,863 tokens per
+# resolved requirement). So the
 # pilot's "volume is roughly tier-invariant per role" holds for
 # attack and read-side and NOT here: do not pick a codex tier for
 # verify by price.

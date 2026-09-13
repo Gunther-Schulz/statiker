@@ -2,10 +2,11 @@
 
 On a stack without the dispatch skill (`dispatch-guards:dispatch`),
 this file is the binding source of the forms the Composition section
-cites. Three forcing points depend on them — forcing point 2's test of
-what "dispatchable" means, and the briefs forcing points 3 and 4
-dispatch — and nothing checks a brief against a form that is not
-there, so their absence is silent. On a stack that carries the skill,
+cites. FOUR forcing points depend on them — forcing point 2's test of
+what "dispatchable" means, the briefs forcing points 3 and 4 dispatch,
+and forcing point 5's verify brief, which takes the read-only tail —
+and nothing checks a brief against a form that is not there, so their
+absence is silent. On a stack that carries the skill,
 that skill wins and this file stays unloaded.
 
 Distilled from that skill's §1 and §2. The channel and harness
@@ -75,11 +76,19 @@ require deciding anything, the design is not done.
 An attack lane's brief carries, at the HEAD of its block and not the
 tail: the lane writes NOTHING in the repo under attack — its probe
 scratch belongs in its own scratch directory — and it reports findings
-as text rather than as files. A binding clause at the end of an
-invariant block reads as transport plumbing; the very property that
-should make a pasted tail a guarantee, being identical every time, is
-what makes it skimmed. Open the block with it, and name its
-consequence.
+as text rather than as files.
+
+A binding clause at the end of an invariant block reads as transport
+plumbing; the very property that should make a pasted tail a
+guarantee, being identical every time, is what makes it skimmed. Open
+the block with it, and name its consequence.
+
+The page CARVES OUT of that absolute, and a tail composed from this
+file alone would be contradicted by the page it serves: a lane whose
+probes must execute the repo's own checks carries that carve-out —
+single-design attack rounds and the verify brief both do. The
+carve-out is stated in the brief AFTER the pasted tail and GOVERNS ON
+CONFLICT. Paste the tail, then the carve-out; the later text wins.
 
 ## The report form
 
@@ -104,7 +113,8 @@ Every slot appears; "none" is an answer, silence is not:
   (e) findings worth turning into a rule or test
   (f) files touched and commit hashes, established from the RECORD
       rather than from memory
-  (g) what was actually read, against the brief's grounding basis
+  (g) what was NOT verified — the honest residue
+  (h) sources actually read, of those the brief named
 
 **Every report line asserting the state of something OUTSIDE the
 executor's own work — a file it did not write, a mechanism, another
