@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 39
+added: 40
 compacted: 0
 
 ## st-10
@@ -338,4 +338,13 @@ goal: general-maintenance
 write-set: plugin/skills/statiker/defaults/models,dev-notes
 done-criterion: Either an opus verify-leg arm is run against probe B's own graded baseline and its result lands as a register entry with provenance inline (the Stage-2d/probe-B form), OR the register records a reasoned position on why opus stays unlisted and the deviation line on an opus desk is accepted as standing cost. Pre-registered before the arm dispatches, per the repo's comparison convention.
 evidence: 0.2.97 seam review F2, executed by the reviewer: grep -cE '^\s*verify(@[a-z]+)?:' over the register returned 0 before this lap, so the duty fired in every state of the world. Repaired by adding verify: haiku and verify: sonnet on probe B's measured evidence (both 8/9, honesty floor held, transcript audit clean with a positive control). Opus was deliberately NOT added: probe B ran no opus arm, and inventing a certification is the one thing the register's provenance bar forbids.
+blocked-by: NONE
+
+## st-61
+grade: READY
+requirement: The DECLARED-deviation duty at both the attack and verify seams has a readable form and NO detector: a complying desk writes an ordinary entry that lints clean, and a non-complying desk is indistinguishable by any tool — sweep returns SWEEP_CLEAN with a byte-identical field set either way. The close's prose is the only backstop and it is composed from memory. Record: 0.2.97 seam review F9, statiker-c8 2026-09-13.
+goal: general-maintenance
+write-set: plugin/skills/statiker/scripts/statiker_record.py,tools/test_statiker_record.py,plugin/skills/statiker/SKILL.md
+done-criterion: Either the deviation carries a machine-readable form the record tool can count (so a run that resolved an uncertified tier and wrote no line is detectable), or the repo records why it stays undetectable and prose-backed. If a form is minted it is red-first and DISCRIMINATING: RED on a tracker whose verify leg ran uncertified with no line, GREEN with the line, and green on a tracker where the tier IS certified so the check does not fire on legitimate runs. That last control is the point — the mechanism bar is what keeps this prose today.
+evidence: 0.2.97 seam review F9, EXECUTED by the reviewer as a fixture pair through statiker_record.py sweep: WITH a declared-deviation F-line -> SWEEP_CLEAN; WITHOUT it, same tracker with the citation repaired so nothing else moves -> SWEEP_CLEAN, field set byte-identical, no verdict carrying a deviation field. Reported for symmetry rather than as a regression: the attack seam's pre-existing clause has the identical property, so st-54 inherited a gap rather than opening one.
 blocked-by: NONE
