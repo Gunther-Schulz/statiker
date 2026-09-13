@@ -90,6 +90,23 @@ both tiers answer normally (`gpt-5.6-terra` and `gpt-6-astra` each
 returned their exact smoke token, exit 0, clone left at 0 dirty
 entries).
 
+**If a codex leg dies of CREDIT EXHAUSTION, stop — do not re-dispatch
+that leg to a Claude model.** Bring the run to a clean seam: finish or
+back out whatever is in flight so the tree is not left mid-state,
+record in the tracker exactly where the run stands and which leg died
+of what, and report. The run resumes later; it does not continue on a
+substitute tier, because a leg silently answered by a different model
+than the record names makes the whole record unreadable.
+
+Tell the two refusals apart before you act, because they look alike and
+one of them is already explained: a TRUSTED-DIRECTORY refusal names
+`--skip-git-repo-check` and is a setup fault you fix by running from
+inside the clone; a CREDIT refusal names quota, billing or rate limits
+and is the stop above. If you genuinely cannot tell which you are
+looking at, treat it as the stop and say so — a wrong guess toward
+stopping costs a pause, and a wrong guess toward continuing costs the
+run's readability.
+
 Any leg whose model the shipped register leaves uncertified for that
 role is recorded in your tracker as a DECLARED deviation, naming the
 role and the tier. Declared, it proceeds; silent, it is a defect.

@@ -453,3 +453,38 @@ lost to it would have been graded as a codex weakness. The binding is
 now in the arm brief: every codex leg runs with its cwd inside the
 clone. The brief change lands before any arm has produced data, so the
 all-arms-identical property is intact.
+
+## 11. HOLD RELEASED, and the codex-exhaustion stop (2026-09-13)
+
+RELEASE EVENT, first half: the operator ran `/reload-plugins` in the
+orchestrating session — "Reloaded: 9 plugins · 22 skills · 7 agents ·
+25 hooks". Second half is unmet until a re-dispatched ceiling arm
+reports 0.2.98 on its own first line; until then the premise stands
+unfalsified rather than disproven, and the arm itself is the probe —
+it halts at near-zero cost exactly as it did at 0.2.92.
+
+CODEX-EXHAUSTION STOP, operator decision relayed by fd and verified at
+the artifact (dotfiles f749dd2, LEDGER.md lines 382-383, not taken on
+the relay): if codex credits run out while the interim substitution is
+in force, there is NO fallback to Claude for the substituted lane
+classes — the affected session takes a clean close and work resumes at
+the next credit reset.
+
+The population this bites here is the terra and astra legs. Bound into
+the arm brief rather than held at this desk, because the desk is who
+meets the refusal and a desk meeting an unexplained leg failure
+improvises around it — that is column 3's whole subject. The brief now
+carries the stop AND the discriminator, since the two refusals wear the
+same shape: a trusted-directory refusal names `--skip-git-repo-check`
+and is a setup fault; a credit refusal names quota or billing and is
+the stop. Ambiguity resolves toward stopping, and the asymmetry is
+stated so the desk can see why: stopping wrongly costs a pause,
+continuing wrongly costs the record's readability, because a leg
+answered by a tier the record does not name makes every verdict in it
+unattributable.
+
+The ceiling arm is untouched by the substitution — it was never a
+substituted lane, and fd confirmed no narrower reading was intended.
+
+Both amendments land before any arm has produced data, so
+all-arms-identical still holds.
