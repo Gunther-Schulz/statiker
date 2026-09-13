@@ -487,6 +487,151 @@ as the unopened files in §1, not new material that arrived afterward.
 
 ---
 
+## 9. The comparison re-made with BOTH sides read (supersedes the one-sided claims above)
+
+Everything above §9 compared a fully-read pstack against a statiker
+known from section headings, line counts, FP5 and PLAN excerpts. The
+payload has now been read in full — `SKILL.md` 1,808 lines, plus
+`scripts/statiker_git.py` and `scripts/statiker_record.py` as its
+executable spec. Three claims above are corrected here, and four gaps
+appear that neither one-sided read could see.
+
+### 9a. CORRECTION — "their gates are in the repo, yours are in the process" understated statiker badly
+
+statiker's gates are not prose. They are two tools emitting a closed
+eight-token route vocabulary, and the desk is bound to the token:
+`sweep` (the [READY] blocking set), `closure` / `closure --unit` (the
+unit dispatch gate), `pinned` (byte-exact append-only against the lock
+sha — "an in-place TAG rewrite reads clean to every positional gate;
+the pin diff is the one thing it cannot fool"), `verify-gate` (copy
+staleness against a recorded read-start sha), `sustain` (the
+never-sustain round-open gate, re-deriving the prior round's finding
+classes independent of its A-line summary), `tripwire` (the
+zero-landed progress breaker), `waves` (the write-set partition —
+"disjointness is computed, never eyeballed"), `trend` (per-round
+F-line counts with a trajectory verdict), `lock-check` / `lock-commit`
+/ `unit-start` / `unit-commit` (git transactions with collision and
+contention verdicts). Fail-closed is the default by construction: "a
+verdict whose `route` field is absent, unknown, or `unrouted` is a
+HALT for the seam that ran it", and "ANY verdict no section names is a
+halt".
+
+Measured against the same axis §3 applied to pstack: **statiker has
+more machine-checked enforcement over its own METHOD than pstack has
+over its.** pstack's real tools — `watch-pr`, `orch.ts`,
+`check-plan.mjs`, `worktree-audit.sh`, ~6,576 lines — cluster on
+status polling, bookkeeping and one plan linter; its method compliance
+is prose and self-report throughout. statiker's tools gate the method
+itself, and its own text says the contract lives in the battery: "a
+divergence is graded against the battery, never against this page's
+wording."
+
+So the axis is not process-versus-repo. It is **which layer each
+system was willing to mechanize**: pstack mechanized the GOVERNED
+CODEBASE and left its method to prose; statiker mechanized its METHOD
+and leaves the governed codebase to the host repo. Both left exactly
+one layer soft, and they chose different ones.
+
+### 9b. CORRECTION — the size comparison was framed on the wrong denominators
+
+The 2026-09-10 entry read pstack as "a working existence proof for the
+compression pass": ~143 always-loaded lines against statiker's 1,710.
+Both numbers are right and the comparison is between different objects.
+
+| | pstack | statiker |
+|---|---|---|
+| always loaded | 143 (`poteto-mode/SKILL.md`) | 1,808 (whole payload) |
+| loadable on demand | ~7,400 more markdown | ~70 (`references/evidence.md`, only where no operator corpus) |
+| total prose | ~7,572 | ~1,880 |
+| backing code | ~6,576 lines | 2 scripts + their batteries |
+
+**Whole-to-whole, statiker is roughly four times SMALLER.** pstack's
+advantage is entirely lazy loading, which is what the 2026-09-10 entry
+correctly identified as the architecture. A typical pstack task loads
+the router plus one playbook plus a few principle leaves — on the
+order of 300 lines, not 143 and not 7,572. That is the honest
+comparand for the compression pass: roughly 5×, not 12×, and it is an
+argument about LOADING, never about total corpus size, where statiker
+already wins.
+
+### 9c. CORRECTION — pstack is not without a decomposition step, but statiker's is stronger and earlier
+
+§2b said pstack's design layer exists but is ungraded. Complete
+statement now that both are read: statiker gauges WRITE-SET SPAN at
+requirement-head composition, before any cycle spends — "intake
+re-derives the unit set from the entries' write boundaries and the
+current world — slicing an oversized entry AND batching under-sized
+siblings whose write-sets overlap", with an architecture-scale item
+seeding as a DECOMPOSITION run whose output is unit-sized backlog
+entries. The attack then grades decomposition as a mandated question.
+pstack's nearest equivalent is `architect`'s "at least two
+structurally distinct candidates" and `sequence-verifiable-units`.
+Neither is graded by anything independent, and neither fires at
+intake.
+
+### 9d. The four gaps only a two-sided read shows
+
+1. **statiker has no LEVER clause.** pstack's strongest
+   self-falsifying rule — build the tool that does or proves the work,
+   and "if you cited it and there is no codemod, script, generator, or
+   delegate skill in the diff, you didn't apply it" — has no statiker
+   counterpart. The irony is sharp: statiker's own development
+   produced two substantial tools and an executable spec, so the desk
+   that WROTE statiker follows this rule while the payload never tells
+   a run to. Nothing in the loop, the stop rule, or implementation
+   says prefer a rerunnable instrument over hand-work. Candidate, and
+   the strongest single import on offer.
+2. **statiker has no surface enumeration, and its substitute is
+   earlier rather than absent.** pstack's feature map lists what CAN
+   be exercised; statiker's R-lines list what MUST hold. The nearest
+   statiker equivalent runs at the attack instead — "Attack the BLAST
+   RADIUS — for each surface the design changes … who else consumes or
+   shares it, established by executed search". So consumer discovery
+   happens at design time here and surface enumeration at verify time
+   there. Complementary, not redundant, and neither system has both.
+3. **The precedent line is the payload's one unmechanized machine
+   token, and the file says so:** "carries no lint class yet — unread
+   by any mechanized check, the design record and the brief are its
+   only enforcement." That is exactly the placement discipline §7's
+   code-craft discussion lands on, sitting at the softest spot in an
+   otherwise heavily gated record grammar.
+4. **Task-shape coverage.** pstack carries 23 playbooks — perf,
+   forensics (runtime and trace), visual parity, refactoring,
+   prototype, hillclimb, investigation, session pickup, pause safely.
+   statiker is ONE loop for one task shape: a development task with a
+   design worth attacking. Its `prototype` equivalent is the SPIKE
+   clause (a discovery leg building in its own scratchpad, returning
+   measurements); it has no perf, forensics or visual-parity shape at
+   all. Whether that is a gap or correct scope is a scope question,
+   not a defect — but it is the largest raw difference between the two
+   corpora and it was invisible while only one side was read.
+
+### 9e. Standing summary, both sides read
+
+**statiker has, pstack has no equivalent:** a mandatory independent
+grader of a design before code exists (FP3); mechanized gates over its
+own method (§9a); an append-only record with byte-exact
+tamper-evidence; verification epistemics — per-R verdicts, NOT
+EXERCISED as a mandated answer, the WORK/DESIGN/REQUIREMENT/INSTRUMENT
+taxonomy scoping re-verification; mechanical non-progress breakers
+(`tripwire`, `trend` → NARROWING); decomposition at intake; and a
+provenance-and-retirement discipline for its own clauses (fire-born,
+`(hypothesis)`, fire-rate cuts).
+
+**pstack has, statiker has no equivalent:** the apparatus for
+exercising a running app, and its upkeep loop; an inner verification
+loop the implementer runs against itself; lazy loading; the lever
+clause; a surface enumeration; code-craft content and the enforcement
+ranking that pushes it into the governed repo; and breadth across 23
+task shapes.
+
+**Neither is a subset of the other, and the two lists are not
+symmetrical in kind:** statiker's column is mostly EPISTEMIC — how a
+claim earns its standing — and pstack's is mostly OPERATIONAL — what
+the agent can actually do and how much it costs to load. That is the
+cleanest statement of the difference the whole read supports, and it
+is why "which is better" stays ill-posed.
+
 ## 8. Confounds
 
 - **Unlimited tokens.** From the talk: `I work at an AI lab where we
