@@ -254,6 +254,8 @@ write-set: dev-notes (new pre-registered probe record),plugin/skills/statiker/de
 done-criterion: Both probes pre-registered (criterion before any arm dispatches) and resolved: (1) DESK arm — a codex model drives a small scripted statiker run graded against a known-good desk transcript, the criterion keyed to verdict-contract conduct (route-token reading, repair composition from verdicts) since that is the measured codex weakness; (2) VERIFY arm — per-R-line grading on a finished unit against a graded baseline. Each outcome lands as a register entry with provenance inline OR a measured exclusion with its floor stated (the Stage-2d form). Plus the two codex-only setup bindings written where a bare-machine user reads them: page delivery without skill injection (hand-fed SKILL.md), and sandbox config for .git writes (workspace-write denies them; the desk's lock/unit machinery is commits).
 evidence: dev-notes/codex-pilot-2026-09-12.md stages 0-2d (stage 3 parked by design); Stage-2d reviewer exclusion astra 1/10 terra 0/10 — the adjacent adverse measurement the desk probe must be designed around; 0.2.92 register entries e5f1ff4
 blocked-by: decision operator opens the codex-only testing round (deferred first-hand 2026-09-12)
+amend-reason: 2026-09-13 the operator opened the round this date (LEDGER decision line); sequenced first in the statiker-c8 arc
+amended-blocked-by: 2026-09-13 NONE
 
 ## st-47
 grade: READY
