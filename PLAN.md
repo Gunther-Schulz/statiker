@@ -1381,6 +1381,24 @@ comparand yet, since it would be the first real control arm for the
 question the trial is actually asking. Re-check at each fire-rate
 review, and whenever a new comparand is read (st-47's series included).
 
+## The trust-distribution thesis — the program in one line (operator, 2026-09-13)
+
+Persisted on the operator's grading ("worth persisting", this date's
+meta session). pstack's author does not trust LLMs less overall; she
+DISTRIBUTES trust differently — implementation delegated, design and
+skill-edits withheld to her own hand. This stack's program is to
+replace each withheld-trust point with a verification structure so
+the trust can be extended instead: FP3 does it for design (the
+fresh-context attack replaces the operator as design authority),
+skill-craft's sc-8 pipeline does it for skill prose (register lint +
+fresh-context clause gate replace the hand prune), and the FP5
+apparatus consideration does it for seeing whether work works (the
+north-star re-grade). Consumer: the trial's grading and every future
+comparand read — the comparison question is never "who trusts more"
+but "which withheld-trust points has each system converted, and at
+what verification cost". The pstack comparison's corrected axis
+(§2b, WHEN independence arrives) is this thesis's first instance.
+
 ## Horizon consideration — NOT a decision (operator, 2026-08-05)
 
 When statiker is validated, CONSIDER lifting its framework from it

@@ -266,15 +266,6 @@ blocked-by: evidence Part 2 of the pstack series published
 amend-reason: 2026-09-13 st-47's blocker still named Part 2, which this arc already read and booked; the live trigger is Part 3
 amended-blocked-by: 2026-09-13 evidence Part 3 of the pstack series published (Part 2 found and consumed 2026-09-13 — its delta is PLAN's Part-2 entry, source archived at dev-notes/poteto-guide-pt2-2026-09-10.md)
 
-## st-48
-grade: NEW
-requirement: FP5 judges verification but assumes the means exist: it names 'the real checks — tests, probes, renders, at the altitude where the work takes effect' and specifies the verdict discipline, while pstack invests in the APPARATUS that does the exercising (a project-local driving CLI plus a maintained feature map) and in keeping it current. Basis: dev-notes/pstack-comparison-2026-09-13.md and a read of SKILL.md FP5 (103 lines) this date
-goal: general-maintenance
-write-set: UNKNOWN
-done-criterion: UNKNOWN — set when the scope question below is answered
-evidence: SKILL.md 'Verify (forcing point 5)' read 2026-09-13; pstack create-verification-skill + maintain-verification-skill + feature-map-example, read same date; comparison doc sections 3 and 7
-blocked-by: decision does statiker's scope include commissioning or requiring per-repo verification apparatus, or does FP5 stay apparatus-agnostic and inherit whatever the repo's own verify section provides
-
 ## st-49
 grade: NEW
 requirement: statiker's payload never tells a run to prefer a rerunnable instrument over hand-work, though the desk that built statiker followed exactly that rule (two tools plus their battery as the executable spec). pstack states it with a self-falsifying test: build the tool that does or proves the work, and if you cited the principle and there is no codemod, script, generator or delegate skill in the diff, you did not apply it. Gap 1 of 4 in dev-notes/pstack-comparison-2026-09-13.md section 9d
@@ -301,6 +292,8 @@ write-set: plugin/skills/statiker/SKILL.md,plugin/skills/statiker/scripts/statik
 done-criterion: UNKNOWN — set once the scope decision is answered; if a degraded mode is wanted, its shape (tracker outside the repo, no lock commits, record carried elsewhere) is designed then, and if clean refusal is correct the entry closes as a recorded drop with that reason
 evidence: SKILL.md read in full 2026-09-13: the preflight verdicts, the LOCK pathspec composition, unit-start/unit-commit, and Close's pin over the tracker; the placement gap-fill entry in PLAN (2026-08-26 (4)/(4b), decided as skill work 2026-09-10) for the external-codebase evidence
 blocked-by: decision must statiker also run where it cannot commit, or is it for repos the operator owns and clean refusal elsewhere is correct
+amend-reason: 2026-09-13 operator answered the scope decision: keep parked, refusal correct meanwhile, revisit after trial validation
+amended-blocked-by: 2026-09-13 evidence the trial validates the core loop (operator 2026-09-13: clean refusal is CORRECT for the trial phase; the degraded mode is designed only after that validation, its priority rising with the shareable-stack work df-171 drives)
 
 ## st-52
 grade: PARKED

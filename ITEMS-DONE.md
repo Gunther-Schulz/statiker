@@ -407,5 +407,15 @@ blocked-by: NONE
 closed-reason: 2026-09-12 All four fixes landed red-first by the sonnet lane (dispatch of this date, brief d85de28), each red independently reproduced before the fix, controls green, suite 566->571 passed, 0 failed, 0 skipped at close, desk re-run confirming 571/0. A2's build caught its own parentage-class near-miss (startswith validated a renamed heading; fixed to exact set membership, recorded in a0353fe). Batch rides manifest 0.2.90 (5acc95a, pin held): the ONE fresh-context opus checkpoint review is owed at the release seam before the pin moves — CLAUDE.md criterion (2) is the standing observer (A1 touches machine-read semantics, A4 page text).
 closed-ref: eb2e081, a0353fe, 84039ba, d3aa57d
 
+## st-48
+grade: DROPPED
+requirement: FP5 judges verification but assumes the means exist: it names 'the real checks — tests, probes, renders, at the altitude where the work takes effect' and specifies the verdict discipline, while pstack invests in the APPARATUS that does the exercising (a project-local driving CLI plus a maintained feature map) and in keeping it current. Basis: dev-notes/pstack-comparison-2026-09-13.md and a read of SKILL.md FP5 (103 lines) this date
+goal: general-maintenance
+write-set: UNKNOWN
+done-criterion: UNKNOWN — set when the scope question below is answered
+evidence: SKILL.md 'Verify (forcing point 5)' read 2026-09-13; pstack create-verification-skill + maintain-verification-skill + feature-map-example, read same date; comparison doc sections 3 and 7
+blocked-by: NONE
+blocker-moot: does statiker's scope include commissioning or requiring per-repo verification apparatus, or does FP5 stay apparatus-agnostic and inherit whatever the repo's own verify section provides
+
 ## Archive (pre-migration)
 
