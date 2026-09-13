@@ -10643,3 +10643,48 @@ do.
 Still not exercised, and left as the reviewer named it: a
 foreign-owned (different uid) checkout. It needs another user account
 and this desk cannot construct one.
+
+## 2026-09-13 — the throwaway clone that was not throwaway
+
+INCIDENT, executed and self-caught at setup: the clone cut for the
+scoped codex run
+(`/home/g/dev/local/statiker-run-2026-09-13-lc61`) carried its
+`origin` — `git remote -v` showed fetch and push both pointing at the
+real `Gunther-Schulz/lifecycle` checkout. The whole point of the clone
+is that a desk running under `--sandbox danger-full-access` cannot
+reach the real repo; an origin is precisely that reach, restored by
+`git clone`'s default and by nothing anyone decided.
+
+CLASS: a protective measure whose own default defeats it. The Q5
+design said "a throwaway clone on a path holding nothing else, never
+the real repo" and was ACCEPTED at that wording by the judgment desk —
+the sentence is true and complete about the FILESYSTEM PATH and silent
+about the network path out of it. Isolation was reasoned about in one
+dimension, and `git`'s default supplied the other.
+
+WHY NOTHING WOULD HAVE REPORTED IT: the desk would not have pushed on
+purpose. The exposure needs only an ordinary `git push` inside what the
+desk correctly believes is a scratch copy — the failure arrives through
+CORRECT conduct, which is why no guard in the run's own machinery
+watches for it. Nothing in statiker checks a working copy's remotes,
+and a sandbox that would have blocked the push is the one thing the
+mode cannot have.
+
+THE RULE, minted into README's codex section beside the blast-radius
+statement it amends (amendment over addition — the existing sentence
+already tells the reader to use a throwaway clone, and this is the half
+that sentence was missing): cut the clone's remote and VERIFY it with
+`git remote -v` before the desk starts.
+
+GENERAL FORM, stated because a rule reused without its mechanism is
+uncheckable at the next seam: where isolation is the safety property,
+it is enumerated over every CHANNEL the isolated thing has — path,
+remote, credentials, network, shared state — not over the one channel
+that motivated it. The motivating channel is the one that gets
+checked; the others inherit their tool's defaults.
+
+CONSUMER: the next session cutting a working copy for an unsandboxed
+desk; drain seam, the retirement quota's pass. Also standing in the run
+record at fd's instruction, for any future codex-desk clone.
+
+No payload change rides this entry.

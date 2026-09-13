@@ -81,6 +81,14 @@ machinery that makes the forcing points binding is exactly the
 machinery the safe sandbox blocks. Run it in a throwaway clone or a
 container, never against a working copy you cannot lose.
 
+**And cut the clone's remote.** A clone keeps `origin` pointing at the
+repo it came from, and with no sandbox the desk holds your own push
+rights — so the "throwaway" copy still has a live path back into the
+original. `git remote remove origin` in the clone, verified with `git
+remote -v`, before the desk starts. Measured 2026-09-13: the first
+clone cut for a scoped codex run carried its origin, and nothing in
+the setup would have reported it.
+
 Two further facts a codex stack must supply by hand, because Claude
 Code's skill system supplies them and codex has none:
 
