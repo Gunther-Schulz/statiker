@@ -10306,3 +10306,61 @@ failure on mechanism-dense prose. 9 n/a (no unit design; the
 placement decision — record beside the reviewer-exclusion block
 rather than as a resolvable key — follows that block's own
 precedent, judged sound).
+
+
+## The invalid control: a variation that never varied (2026-09-13, st-58 retracted)
+
+Incident: this desk reported the repo's declared verify gate RED (29
+failed / 548 passed) as a phase-2 release blocker, statiker-fd decided
+a repair lap on it, and the finding did not exist. The gate is green,
+577 passed. Every failure was a stray empty /tmp/.git, which the tools'
+containment check reads as a repository where git refuses to (the real
+defect, st-57).
+
+THE SHAPE, which is the reusable part. The booking's central claim was
+"not caused by /tmp/.git", and its basis was: re-run with TMPDIR
+relocated, counts unchanged. But the relocation target was a path
+inside this session's own scratchpad, and that scratchpad IS under
+/tmp. The control never left the directory it was built to escape. So
+the identical counts were guaranteed by construction, and the report
+presented that guarantee as evidence of independence.
+
+This is the unvaried-axis error wearing a control's clothes. The corpus
+already names it for two measurements that agree on an axis NEITHER
+varied; here there was one measurement and one "control" that varied
+nothing, which is the same defect with a smaller n and a more
+convincing costume, because a control is BELIEVED by construction. The
+cheap discriminator, missing and owed: state what the control's
+variable actually resolved TO and check it against the thing being
+escaped. One echo of the resolved path would have killed it.
+
+THE CONFIRMATION READ ON TOP. The cause had already been printed by
+this desk's own first live tool call: STATIKER-RECORD VERDICT
+ARTIFACT_IN_REPO with repo "/tmp". It was read past because the
+conclusion was already formed. A verdict naming the cause is exactly
+what a formed conclusion stops you seeing.
+
+THE LABEL READ, third layer. Told that the repo's records said "suite
+577", this desk reasoned that 548+29=577 and therefore "577" might be
+the test COUNT rather than a green claim. It was 577 PASSING, as
+written. Reading a label as a WEAKER claim than it makes is the same
+drift class as reading one as stronger, and it arrives disguised as
+scepticism.
+
+WHAT BOUNDED THE COST, worth keeping (statiker-fd's reading): the
+decision taken on the phantom was BLOCKING (hold the release) rather
+than BUILDING. No lane was ever dispatched against it. A repair lap
+ordered immediately would have spent real lanes on nothing, and the
+blocking shape is what made the retraction cheap. Where a finding is
+fresh and its control is single-source, prefer the blocking
+disposition until a second instrument agrees.
+
+WHAT SURVIVED the retraction and was not dropped with it: the
+interpreter attribution (pacman dates python 3.14.7 to 2026-08-13, a
+month before the recorded green, so drift was correctly excluded) and
+st-57, the real defect, re-priced upward because a stray .git above any
+temp tree silently reddens filter, worktree and seal-path together, and
+a codex-only run would have died at forcing point 3 with a cause nobody
+would look for.
+
+No payload change rides this entry.
