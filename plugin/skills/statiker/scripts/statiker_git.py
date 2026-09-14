@@ -298,6 +298,23 @@ def is_index_lock_error(stderr: str) -> bool:
     return "index.lock" in stderr
 
 
+def literal_pathspec(rel: str) -> str:
+    """Wrap a repo-relative path in git's `:(literal)` pathspec magic
+    (st-55, probe-A battery, 2026-09-13): every path this tool hands
+    to git after `--` is otherwise a BARE pathspec, and git expands
+    `*`, `?` and `[` in a bare pathspec as glob wildcards rather than
+    matching them literally — a declared write-set token that was
+    ALSO a real filename, `a*.txt`, matched and swept an UNDECLARED
+    tracked `abc.txt` into a unit commit at readback (real verdict:
+    UNIT_COMMITTED_EXTRAS, extras ["abc.txt"]). `:(literal)` has no
+    effect on a path carrying none of those bytes, so wrapping every
+    pathspec unconditionally at its one construction point is a no-op
+    for the ordinary case and closes the class for every call site at
+    once, rather than special-casing the three named characters where
+    they happen to have been noticed."""
+    return f":(literal){rel}"
+
+
 def nearest_existing_ancestor(p: str):
     """The path itself if it exists (a broken symlink counts — git
     commits one as the link file), else the first ancestor that does,
@@ -673,20 +690,38 @@ class Repo:
 
     # -- path facts ---------------------------------------------------------
     def is_tracked(self, rel):
-        return self.git("ls-files", "--error-unmatch", "--", rel,
-                        check=False).returncode == 0
+        return self.git("ls-files", "--error-unmatch", "--",
+                        literal_pathspec(rel), check=False).returncode == 0
 
     def is_ignored(self, rel):
+        # `check-ignore` REJECTS pathspec magic outright ("pathspec
+        # magic not supported by this command: 'literal'", exit 128) —
+        # st-55 measured this the hard way: wrapping it made every
+        # ignored path silently read as not-ignored, since is_ignored
+        # only tests `returncode == 0` and a magic-rejection exit is
+        # nonzero same as a clean "not ignored" answer would not be
+        # (both nonzero, but for opposite reasons — the caller cannot
+        # tell them apart without inspecting stderr, which nothing
+        # here does). It is also not part of the vulnerability class:
+        # this command evaluates ONE given path against ignore rules
+        # rather than selecting matches from the working tree, so a
+        # bare pathspec here does not sweep in extra files the way
+        # add/commit/status/ls-files/log do — left unwrapped.
         return self.git("check-ignore", "-q", "--", rel,
                         check=False).returncode == 0
 
     def in_head(self, rel):
+        # <rev>:<path> object-spec syntax, not a pathspec: git resolves
+        # this as a literal tree lookup already, no glob interpretation
+        # happens here — literal_pathspec's magic prefix would only be
+        # read as part of the path string and never applies.
         return self.git("cat-file", "-e", f"HEAD:{rel}",
                         check=False).returncode == 0
 
     def porcelain(self, paths):
         raw = self.git("status", "--porcelain=v1", "-z",
-                       "--untracked-files=all", "--", *paths).stdout
+                       "--untracked-files=all", "--",
+                       *[literal_pathspec(p) for p in paths]).stdout
         return parse_porcelain_z(raw)
 
     def check_symlink_leaf(self, rels):
@@ -760,7 +795,8 @@ class Repo:
                    index_lock_present=self.git_path("index.lock").exists())
 
     def add_with_retry(self, rel):
-        self._index_write_with_retry(["add", "--", rel], "ADD_FAILED")
+        self._index_write_with_retry(
+            ["add", "--", literal_pathspec(rel)], "ADD_FAILED")
 
     def dry_run_add(self, rel):
         """Containment and git-ACCEPTABILITY are separate questions
@@ -768,7 +804,8 @@ class Repo:
         — a path beyond a symbolic link is the attack-11 recipe. The
         refusal surfaces at the earliest seam that knows the path, so
         the lock check answers it instead of the commit."""
-        p = self.git("add", "--dry-run", "--", rel, check=False)
+        p = self.git("add", "--dry-run", "--", literal_pathspec(rel),
+                     check=False)
         if p.returncode != 0:
             err = (p.stderr.decode(errors="replace")
                    + p.stdout.decode(errors="replace")).strip()
@@ -776,7 +813,8 @@ class Repo:
 
     def commit_with_retry(self, message, pathspec):
         p = self._index_write_with_retry(
-            ["commit", "-m", message, "--", *pathspec], "COMMIT_FAILED")
+            ["commit", "-m", message, "--",
+             *[literal_pathspec(p) for p in pathspec]], "COMMIT_FAILED")
         sha = self._sha_from_commit_output(p.stdout)
         say(f"commit landed: {sha}")
         return sha
@@ -1047,7 +1085,8 @@ def cmd_unit_commit(repo, args):
                           "to) HEAD",
                    start_sha=args.start_sha)
     foreign = repo.git("log", "--oneline",
-                       f"{args.start_sha}..HEAD", "--", *rels, check=False)
+                       f"{args.start_sha}..HEAD", "--",
+                       *[literal_pathspec(r) for r in rels], check=False)
     if foreign.stdout.strip():
         raise Halt("UNIT_START_MISMATCH",
                    reason="a foreign commit touched the declared "

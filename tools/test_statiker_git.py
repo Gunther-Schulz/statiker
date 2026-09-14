@@ -568,6 +568,38 @@ class TestLockCommit(GitFixture):
         blob = self.git("show", "HEAD:art.txt").stdout
         self.assertEqual(blob, "worktree v2\n")
 
+    def test_glob_lock_set_path_matches_only_itself(self):
+        # st-55, probe-A battery (2026-09-13): the field defect. A
+        # lock-set token that is ALSO a real literal filename carrying
+        # a git pathspec glob metacharacter ('a*.txt') used to be
+        # handed to git as a BARE pathspec — git expands it as a glob
+        # at commit time, sweeping an UNDECLARED tracked file the glob
+        # also matches ('abc.txt') into the lock commit. The fix wraps
+        # every pathspec this tool hands to git in `:(literal)` magic
+        # (Repo.add_with_retry / commit_with_retry) at its one
+        # construction point, so 'a*.txt' now matches only itself.
+        # Discriminating pair: this lands ONLY 'a*.txt' plus the
+        # tracker (defect fixture, corrected), while
+        # test_lock_commit_takes_worktree_content above — an ordinary
+        # glob-free path — is unaffected (control), and
+        # TestLockCheck.test_directory_path_halts stays green
+        # (regression: the fix touches no directory-check code).
+        self.write("abc.txt", "v1\n")
+        self.git("add", "abc.txt")
+        self.git("commit", "-m", "abc v1")
+        self.write("a*.txt", "mine\n")
+        self.write("abc.txt", "v2 unrelated dirt\n")   # NOT in the lock-set
+        self.write(self.TRACKER, self.GATE_CLEAN_TRACKER)
+        v = self.verdict(self.tool(
+            "lock-commit", "--tracker", self.TRACKER,
+            "--lock-set", "a*.txt", "-m", "lock"))
+        self.assertEqual(v["verdict"], "LOCK_COMMITTED", v)
+        self.assertEqual(self.head_paths(), {self.TRACKER, "a*.txt"})
+        self.assertEqual(self.git("show", "HEAD:a*.txt").stdout, "mine\n")
+        # the undeclared edit stays exactly where the operator left it
+        status = self.git("status", "--porcelain", "--", "abc.txt").stdout
+        self.assertEqual(status.strip(), "M abc.txt")
+
     def test_relock_unchanged_inherited_path_is_noop(self):
         # attack-4 B3: an unchanged inherited path is legitimately
         # absent from --stat; its absence is not a readback failure.
@@ -767,6 +799,43 @@ class TestUnitCommit(GitFixture):
         self.assertIn("never-made.txt", v["paths"])
         self.assertEqual(self.git("rev-parse", "HEAD").stdout.strip(), head)
         self.assertNotEqual(p.returncode, 0)
+
+    def test_glob_write_set_token_matches_only_itself(self):
+        # st-55, probe-A battery (2026-09-13): the field defect. A
+        # declared write-set token that is ALSO a real literal
+        # filename containing a git pathspec glob metacharacter
+        # ('a*.txt') used to be handed to git as a bare pathspec — git
+        # expanded it at commit time rather than matching it
+        # literally, and an UNDECLARED tracked file the glob also
+        # matches ('abc.txt') rode into the unit commit (real verdict
+        # observed pre-fix: UNIT_COMMITTED_EXTRAS, extras ["abc.txt"]).
+        # The fix wraps every pathspec this tool hands to git in
+        # `:(literal)` magic at its one construction point
+        # (Repo.is_tracked/add_with_retry/commit_with_retry and the
+        # foreign-commit check in cmd_unit_commit), so 'a*.txt' now
+        # matches only itself. Discriminating pair: this lands ONLY
+        # 'a*.txt' (defect fixture, corrected) while test_green_commit
+        # above — an ordinary glob-free path — is unaffected (control),
+        # and test_directory_write_set_halts (TestUnitStart) plus
+        # TestLockCheck.test_directory_path_halts stay green
+        # (regression: the fix touches no directory-check code).
+        self.write("abc.txt", "v1\n")
+        self.git("add", "abc.txt")
+        self.git("commit", "-m", "abc v1")
+        tracker = self.unit_tracker({"U1": ["a*.txt"]})
+        start_sha = self.head_sha()
+        self.write("a*.txt", "mine\n")                 # the unit's own file
+        self.write("abc.txt", "v2 undeclared edit\n")  # NOT in the write-set
+        p = self.tool("unit-commit", "--tracker", tracker, "--unit", "U1",
+                      "--start-sha", start_sha, "-m", "unit U1")
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "UNIT_COMMITTED", p.stdout + p.stderr)
+        self.assertEqual(self.head_paths(), {"a*.txt"})
+        self.assertEqual(self.git("show", "HEAD:a*.txt").stdout, "mine\n")
+        # the undeclared edit stays exactly where the operator left it —
+        # never silently folded into the landed commit
+        status = self.git("status", "--porcelain", "--", "abc.txt").stdout
+        self.assertEqual(status.strip(), "M abc.txt")
 
     def test_contention_blocked_after_capped_retries(self):
         # attack-5 N3: capped, spaced retries; persistent index.lock →
@@ -1114,6 +1183,17 @@ class TestPureFunctions(unittest.TestCase):
         self.assertEqual(name, "UNIT_COMMITTED_RESIDUE")
         name, d = self.m.unit_committed_verdict("s1", set(), [])
         self.assertEqual(name, "UNIT_COMMITTED")
+
+    def test_literal_pathspec_wraps_with_git_literal_magic(self):
+        # st-55: the pure construction point — every pathspec this
+        # tool hands to git is wrapped, whether or not it happens to
+        # carry a glob metacharacter (a no-op for the ordinary case).
+        self.assertEqual(self.m.literal_pathspec("a*.txt"),
+                         ":(literal)a*.txt")
+        self.assertEqual(self.m.literal_pathspec("a.txt"),
+                         ":(literal)a.txt")
+        self.assertEqual(self.m.literal_pathspec("dir/a[bc]?.txt"),
+                         ":(literal)dir/a[bc]?.txt")
 
     def test_queue_spent_grammar(self):
         # P1(2): a queue is SPENT when its LAST NON-BLANK line matches
