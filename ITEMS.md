@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 50
+added: 51
 compacted: 0
 
 ## st-12
@@ -328,3 +328,12 @@ write-set: plugin/skills/statiker/scripts/statiker_record.py,tools/test_statiker
 done-criterion: OPENS ON A PROBE, NOT A DESIGN, because one unrun check decides which of two different items this is. The probe: the code is OWNER-CONDITIONED (:693-738, :701 keying the violation on whether its line is still an owning line id), so run a tracker carrying an undefanged tag literal through sweep, then supersede or invalidate the OWNING entry and re-run. IF the hold drops, there IS a clearing route and this item is a DOCUMENTATION gap: the page names the route at the sweep passage and the item closes there, no tool change. IF the hold stands, the class is real and done means a sanctioned clearing route exists for a form defect whose only alternative is abandoning a sound run, designed against the reason the code is unexemptible in the first place, which is that no OPERATOR declaration may silence it. A repair the DESK performs on its own line is not an operator declaration, and that distinction is the design seam. Either branch red-first, and the probe result is recorded whichever way it lands
 evidence: Both closed routes read at the source this date, not inferred: UNEXEMPTIBLE_CODES at :315 with the comment stating a silencing declaration would void the rule, and the RETRO mint gate at :362 pinning the code to 0.2.33 so no line written today is retro-eligible. The third route is the unrun probe above. Incident: scoped run arm 2, 2026-09-14, loop remainder lost
 blocked-by: NONE
+
+## st-72
+grade: READY
+requirement: the lifecycle plugin's ledger verb commits its carrier WHOLESALE: `ledger add decision` stages and commits LEDGER.md entire, so any pending hand edit to that file rides into the verb's commit under a message that does not describe it. Two adjacent observations from the same episode: (b) the verb's commits carry no AI attribution trailer, against the standing convention, because the tool composes its own message; (c) the 300-char --answer cap is CORRECT behaviour, recorded as context and NOT as a defect claim — it refused a 2118-char answer with 'a body wearing a reason's clothes', which is right, and the sizing consequence falls on directive authors. Booked on statiker-e8's directive 2026-09-14; foreign boundary per the st-68 precedent
+goal: general-maintenance
+write-set: ANOTHER REPO: lifecycle (/home/g/dev/Gunther-Schulz/lifecycle) — plugin/cli/lifecycle_core/verbs.py, the ledger-decision commit path, plus that repo's own test battery
+done-criterion: the lifecycle desk has landed ONE of three repair directions, or declined with a reason — this desk does not choose among them: commit by a pathspec of the lines the verb itself wrote; refuse to commit when the carrier is dirty on entry; or document the wholesale-commit contract so callers stage deliberately. (b) is a one-line message change if that repo wants the convention; (c) needs nothing
+evidence: INCIDENT, verified at the artifact 2026-09-14 at this desk: a hand-appended `fact:` line to statiker LEDGER.md (the carrier's own .claude/lifecycle.json declares `session` a writer for ledger lines, and the verb has no fact form) was absorbed by the verb's commit 03ce106 'lifecycle: ledger decision'. Read back with git show --stat: 1 file changed, 2 insertions — both lines mine and intended, nothing else swept, so NO DAMAGE in this instance. The hazard is the general shape, where the absorbed edit is another writer's or is not yet meant to land. Attribution half read off the same commit: no Co-Authored-By trailer
+blocked-by: decision which of the three repair directions the lifecycle desk takes, decided by whoever holds that repo's write boundary
