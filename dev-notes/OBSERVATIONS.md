@@ -10425,10 +10425,48 @@ so is the difference between a count and an inflated one.
    The judgment desk had already acted on the false version before the
    correction went out.
 
+5. THE REPAIR ORDER ON UNREAD CODE — added 2026-09-14, and the only
+   instance that spent someone else's work. I told a lane its anchor
+   pin was narrower than the mechanism it guards, claiming
+   `section_pointers` treats any `#` level as a heading. It does not;
+   the only heading predicate in that file is `startswith("## ")`. I
+   never read it — I rebuilt it from memory in a probe and reported my
+   MODEL's behaviour as a property of the lane's code. The attached
+   demonstration was hollow twice: after the lane's own narrowing a
+   prose control stops firing whatever the headings are, so the probe
+   returned the same result under the defect and under correct
+   behaviour. It discriminated nothing — the exact standard I had
+   demanded of that lane one message earlier. The lane ran the probe,
+   reported non-reproduction, and refused to fabricate the proof pair
+   I had called non-optional.
+
+6. THE SEARCH KEYED TO SUPERSEDED WORDING — added 2026-09-14, caught
+   before it left the desk. Verifying a criterion that demanded
+   EXACTLY ONE statement of a rule, I searched both files for the
+   rule's ORIGINAL wording and got zero in each. That reads exactly
+   like the rule vanished. The implementing lane had reworded it to
+   fit the sentence it moved into — correct editing — and my key was
+   pinned to phrasing that no longer existed. Re-run with a key
+   surviving both wordings plus a before/after control: present in the
+   register before the move, present in the page after.
+
+CORRECTION TO THIS ENTRY'S OWN COUNT, 2026-09-14, and it is the class
+biting the entry that describes it: the list above said THREE plus one
+propagation when it was written, and I repeated "four instances" in a
+digest to the judgment desk. Counted off the record rather than
+recalled, the day's total is FIVE independent instances plus one
+propagation. Instances 5 and 6 occurred AFTER the entry was written,
+and the entry did not grow with them. A remembered rate reads LOW by
+construction — which is the dispatch discipline's own stated reason for
+demanding these counts be read off the record — and here the
+understatement was in the entry purpose-built to track the class.
+
 THE UNIFYING SHAPE, which widens this entry from CONTROLS to every
 instrument: an instrument that never ran, a search that could not
-reach, a control that no longer varies, and an extractor that selected
-the wrong population all return EXACTLY what a true negative returns. The parent entry's discriminator generalizes —
+reach, a control that no longer varies, an extractor that selected the
+wrong population, a model substituted for the artifact, and a key
+pinned to superseded wording all return EXACTLY what a true negative
+returns. The parent entry's discriminator generalizes —
 "state what the control's variable actually resolved TO" becomes: the
 instrument is shown live on a KNOWN POSITIVE, or its resolved reach is
 stated, BEFORE its zero is read as a finding. Cost is one command in
