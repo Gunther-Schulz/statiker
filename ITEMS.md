@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 57
+added: 58
 compacted: 0
 
 ## st-12
@@ -361,3 +361,12 @@ write-set: dev-notes/scoped-run-3-preregistration.md,plugin/skills/statiker/scri
 done-criterion: the pre-registration restates terra inclusion on what the gate ACTUALLY does rather than on a detection it does not perform, corrects §6a sandbox premise against -s danger-full-access, and carries terra run-2 outcome fairly (its stop was graded C5 CORRECT CONDUCT under the operator ruling, with a column-3 pass, which the arms section omitted while reading the outcome as unqualified failure). SEPARATELY and only if the design question below is answered yes: a runtime authorized-path check on --out lands with a red-first arm whose RED is terra own act, filter --out to a path outside the declared scope, and whose MUST-NOT-MOVE is an --out inside the declared scope staying silent
 evidence: Fresh-context narrow round, 2026-09-14, BLOCKING B3, both halves verified at the code by the desk rather than accepted from the report. The field instance is st-64 amended-evidence, the FIRST ACTUAL OUT-OF-BOUNDARY WRITE. The fairness half is grading §5 C5 row plus the operator ruling of 2026-09-13
 blocked-by: decision whether the record tool gains a runtime authorized-path check on its artifact --out or whether containment stays a preflight-only satisfiability question
+
+## st-79
+grade: READY
+requirement: the run-3 contract carries five more SUBSTANTIVE defects and five MINOR ones beyond the three blocking, all recorded with executed bases and none yet repaired. S1: driver_resume_probe.py has NO could-not-verify state and NO control leg, so a timeout or rate-limit refusal passes its red guard and yields a SUBSTRATE verdict over an attempt that never ran, which §3a.4 routes to an operator decision round; its sibling got an 11-test battery in the same delta while this probe, which the ceiling resolution rests on, got none. S2: launch_substrate_probe returns SUBSTRATE_DIES_AT_REINVOCATION with the reason the ACK marker is absent in two states where ACK IS PRESENT. S3: the nonce caught-by-construction claim is wider than the construction, though the recorded green was independently verified a genuine resume. S5: §5d freeze order OMITS the driver re-run §3a.4 mandates and the named tool has no argparse so it cannot be aimed. S6: §3a.4, §6d and §10 DISAGREE in one contract about whether arms may dispatch. S7: §5a pins a lifecycle sha and no step verifies the clone carries it. S8: the scrub edit committed-or-not is unspecified, and either way leaves a tell. M1-M5: citation and fairness fixes. Record: docs/audits/2026-09-14-narrow-round-run3-contract.md
+goal: general-maintenance
+write-set: dev-notes/scoped-run-3-preregistration.md,tools/driver_resume_probe.py,tools/launch_substrate_probe.py,tools/test_launch_substrate_probe.py
+done-criterion: each of S1, S2, S3, S5, S6, S7, S8 and M1-M5 carries a recorded disposition and is either repaired or explicitly declined with a reason, per the audit record. S1 and S3 are the two that gate any freeze re-run resting on the driver probe: S1 needs a could-not-verify state and a control leg matching its sibling PROBE_INVALID domination, S3 needs a distinct nonce per arm plus a third arm with a FRESH session id given turn 2 prompt which must NOT produce the token. S6 is the cheapest and most dangerous: one contract cannot both permit and forbid arm dispatch
+evidence: Fresh-context narrow round, 2026-09-14. Every finding carries an executed basis in the audit record; S2 was driven over every reachable marker combination with a fake launcher, S4 measured from the probe children own loaded snapshot, the M1 containment arm red-first proven by mutation. The reviewer stated its own bound and refused to dress its one inference as a measurement
+blocked-by: NONE
