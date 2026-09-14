@@ -1620,7 +1620,15 @@ carries the tracker, the code, and the question — read-only tail,
 no executor cite, one named carve-out stated in the brief AFTER
 the pasted tail and governing on conflict: executing the repo's
 checks writes their normal by-products (caches, build dirs) —
-still no commits, no tracker writes. The carve-out DECLARES the
+still no commits, no tracker writes. The carve-out also states
+how the copy's OWN CODE resolves: an editable install elsewhere
+on the host silently redirects an import to the ORIGINAL tree,
+and the leg would grade that tree while reporting clean.
+Resolution is EXECUTED, never assumed — an import (or
+equivalent) run in the isolated copy prints a path inside the
+copy, an un-shadowed control alongside it prints the original
+path, and the dispatching desk checks the pair before the leg's
+result counts (st-56). The carve-out DECLARES the
 repo checks' by-product paths, and the declaration with each path's
 pre-existence (present or absent) is observed AND written at
 dispatch, before the round runs, to that round's `paths` species
