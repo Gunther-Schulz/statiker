@@ -11036,6 +11036,85 @@ settled here: this is an observation with a real incident, not a mint.
 
 No payload change rides this entry.
 
+DRAIN DISPOSITION, 2026-09-14 (statiker-1f, the maintenance arc this
+entry named as the consumer of its mint question; delegated mint
+authority, operator first-hand in this session 2026-09-14: "statiker-e8
+[b4f94c] also drives this session for the MAINTENANCE ARC"): MINTED in
+the NARROW form the entry pre-formulated, and the general form is
+declined HERE on WRONG TRUTH-LEVEL rather than on absent evidence — the
+named decline ground the admission bar demands.
+
+WHY THE GAP IS REAL AT THE ARTIFACT, read rather than recalled. SKILL.md
+:1232-1244 does say "append as the quoted block the record tool
+produces" — the duty is named. What sits beside it is the complete
+output form: "every line begins `>`, a blank line a BARE `>`, the block
+ending at the first line not beginning `>`; bracketed tag literals
+defanged — brackets dropped, lowercased in place — with the defanged
+names listed after a semicolon in the composed first line". That is
+enough to hand-reproduce, and arm 2's desk did exactly that. What the
+passage never states is the CONSEQUENCE that separates the two routes:
+an undefanged literal arriving by hand holds the sweep for the run's
+life with no route token able to reach it. The desk had the duty
+sentence AND the recipe, and the recipe was cheaper at the moment of
+use. Naming the duty is therefore measured insufficient — this entry's
+incident IS that measurement — so the mint is the consequence sentence,
+not a stronger restatement of the duty.
+
+THE TWO REALIZING WRITES, both booked rather than done, each with the
+absence that parks it named and graded real-now:
+
+(1) PAYLOAD, statiker SKILL.md at the quote passage: the one
+consequence sentence. Booked as st-69. The absence is a SEAM, not a
+decision: the pin moved to 0.2.99 minutes ago and the release-batching
+convention cuts a release at a run start or an arc close, so a payload
+edit landing now would buy its own review round and pin move for one
+sentence with no run to consume it. It rides the next run seam, where
+the review round it needs is already being spent.
+
+(2) GENERAL FORM: NOT statiker's to hold. "Where a sanctioned
+mechanism's OUTPUT is fully described, the description competes with
+the mechanism, and the competition is won by whichever is cheaper at
+the moment of use" is a rule about writing documents whose reader is an
+agent mid-execution — skill-craft's truth-level, every project, not
+this one. Minting it here would put it below its truth-level, where it
+gets re-learned by every other skill repo. Booked as st-70 with the
+foreign write boundary named, since skill-craft is another repo and
+outside this desk's authorized copies.
+
+WHAT THIS DISPOSITION DOES NOT CLAIM: that a mechanism was considered
+and refused on cost. It was considered and refused on the BAR. The
+detection predicate would have to be "the page describes a tool's
+output form precisely enough to hand-reproduce", which is a judgment
+over prose, not a computable predicate — the fires-on-a-non-defect
+shape. The adjacent computable slice is a different question and a
+different defect: the hold this incident produced was LOUD and
+correctly raised; what made the run unrecoverable is that no route
+token could clear it. That is a hold-with-no-clearing-route class,
+which this entry's incident is evidence for and which no item yet
+carries. BOOKED as st-71 — my first draft of this paragraph named the
+class and declined to book it "because the next run's desk meets it in
+operation", which is the two-exits rule's own refuted shape: writing
+that sentence cost what the booking costs, so the absence was never
+real.
+
+THE PREMISE UNDER IT, CHECKED AT THE SOURCE RATHER THAN CARRIED FROM
+THE LANE THAT REPORTED IT. "No token able to reach it" is TRUE for the
+route the desk would reach for first: statiker_record.py:315 reads
+`UNEXEMPTIBLE_CODES = {"tag-literal-in-body", "pending-latest"}`, so
+SWEEP_EXEMPT cannot net this hold by construction, and the comment
+above it says why — a declaration that could silence it would void the
+rule. The second route is closed too for a line written today:
+`tag-literal-in-body` is RETRO-mint-gated at 0.2.33 (:362), so retro
+grading exempts only lines predating that version. What I have NOT
+established, and it is the discriminator for whoever takes st-71: the
+code is also OWNER-CONDITIONED (:693-738, :701 keying on whether the
+violation's line is still an owning line id), and whether superseding
+or invalidating the owning entry drops the hold is a question the
+source can answer and I did not run. If it does, there IS a clearing
+route and the class is a documentation gap rather than a design one;
+if it does not, the class is real. Booked with that pair named, so the
+item opens on a probe rather than on a re-derivation.
+
 ## 2026-09-14 — a same-id fix is INERT until its structural sibling is
 ## fixed too: a fire-rate datum for the corpus sibling-sweep clause
 
