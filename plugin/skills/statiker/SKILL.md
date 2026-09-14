@@ -1615,7 +1615,13 @@ statement PER FINDING repaired in-round: whether its red state
 exists RE-EXECUTABLY (Implementation's recorded forms — a committed
 red arm or the red run's pasted output) — NOT EXERCISED otherwise, a
 docstring-only red run being formally compliant and unattackable
-short of this leg. The V-line's evidence
+short of this leg. The brief demands the same statement for
+every F/D/R line appended after the last resolved A-line:
+whether its scope opener matches its body kind — a
+`record:`-scoped or `unit U<k>`-scoped line whose body decides
+a design question or justifies a boundary is a FINDING, not a
+bookkeeping or per-unit line — NOT EXERCISED otherwise (C4a).
+The V-line's evidence
 carries the per-R table; PASSED is recordable only with every
 R-line met or its non-exercise carried as a named
 [AUTO-ACCEPTED]. `(hypothesis)` The verify brief
