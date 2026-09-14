@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 49
+added: 50
 compacted: 0
 
 ## st-12
@@ -319,3 +319,12 @@ write-set: ANOTHER REPO: skill-craft (github.com/Gunther-Schulz/skill-craft) —
 done-criterion: skill-craft carries the rule, and the shape is decided here so the receiving desk verifies rather than derives: it is an AMENDMENT to skill-craft existing enforcement guidance, not a new bullet, because the un-fakeable-artifact rule there already reasons about what a consumer can produce without doing the work — this is its mirror, what a consumer can produce INSTEAD of invoking the mechanism. The clause states the test a describing passage must pass: name the failure mode of the hand-built look-alike, and where it fails terminally either drop the description or state the terminal consequence beside it. Provenance travels with it: the statiker arm-2 incident, one keystroke from the sanctioned route, penalty terminal and unrecoverable
 evidence: One incident, real and costed: statiker scoped run arm 2, 2026-09-14, lost the remainder of its loop. Transfer beyond statiker is argued rather than assumed — the mechanism is that a describing passage and its mechanism compete on cost at the moment of use, which holds for any skill document whose reader executes under momentum, and statiker is merely where it was first measured. Marked as ONE observation: the reach past this case is hypothesis, validated by use, per skill-craft own two-paths rule
 blocked-by: decision does skill-craft take this as its own item, or does statiker keep it as a cross-repo booking naming the foreign write boundary? The design is decided; only the venue is open
+
+## st-71
+grade: READY
+requirement: A tag-literal-in-body hold may have NO clearing route, which turns a form defect on one tracker line into a terminal run failure. Verified at source: the code sits in UNEXEMPTIBLE_CODES (statiker_record.py:315), so SWEEP_EXEMPT cannot net it by design, and it is RETRO-mint-gated at 0.2.33 (:362), so retro grading exempts only lines older than that. Arm 2 of the scoped run halted on exactly this with its design locked and sound. Record: dev-notes/OBSERVATIONS.md 2026-09-14, the look-alike quote block entry DRAIN DISPOSITION, premise paragraph
+goal: tend
+write-set: plugin/skills/statiker/scripts/statiker_record.py,tools/test_statiker_record.py,plugin/skills/statiker/SKILL.md
+done-criterion: OPENS ON A PROBE, NOT A DESIGN, because one unrun check decides which of two different items this is. The probe: the code is OWNER-CONDITIONED (:693-738, :701 keying the violation on whether its line is still an owning line id), so run a tracker carrying an undefanged tag literal through sweep, then supersede or invalidate the OWNING entry and re-run. IF the hold drops, there IS a clearing route and this item is a DOCUMENTATION gap: the page names the route at the sweep passage and the item closes there, no tool change. IF the hold stands, the class is real and done means a sanctioned clearing route exists for a form defect whose only alternative is abandoning a sound run, designed against the reason the code is unexemptible in the first place, which is that no OPERATOR declaration may silence it. A repair the DESK performs on its own line is not an operator declaration, and that distinction is the design seam. Either branch red-first, and the probe result is recorded whichever way it lands
+evidence: Both closed routes read at the source this date, not inferred: UNEXEMPTIBLE_CODES at :315 with the comment stating a silencing declaration would void the rule, and the RETRO mint gate at :362 pinning the code to 0.2.33 so no line written today is retro-eligible. The third route is the unrun probe above. Incident: scoped run arm 2, 2026-09-14, loop remainder lost
+blocked-by: NONE
