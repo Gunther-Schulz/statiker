@@ -347,11 +347,36 @@
   with the 2026-09-11 release-batching rule, made explicit so no
   session re-derives an interim review out of trigger (1)):
   reviews attach to PIN MOVES only, and pin moves only at
-  consuming seams (a run about to start, arc close) — no interim
+  consuming seams — no interim
   review is owed however large the accumulated delta, and an
   oversized delta splits the ONE seam review into parallel class
   lanes (machine-read semantics / conduct prose), never into an
-  extra seam. Review form unchanged:
+  extra seam.
+  AMENDED 2026-09-14 (operator decision, four clauses; supersedes
+  the 2026-09-13 tightening's reading of "arc close" as a seam).
+  (a) CONSUMPTION-ONLY SEAMS: a review is owed only where a pin
+  move is about to be CONSUMED — a run starting, or a deliberate
+  operator release. An arc close with no consumer is NOT a seam;
+  such a close BOOKS the deferred review-plus-release onto the
+  consuming run's own item, so the obligation is met from the
+  carrier rather than from the next desk's memory. Measured the
+  day it was settled: a review was scheduled off a consumerless
+  arc close, caught by the operator and not by the desk.
+  (b) THE FLOOR: exactly one fresh-context review stands between
+  accumulated payload work and any real run, never economized —
+  a saved review moves defect discovery into the run, where it
+  costs money and arms (run 2's grading is the evidence).
+  (c) DELTA SCOPE: an eve review covers only the delta since the
+  last CONSUMED review; banked findings are never re-reviewed.
+  (d) FOUNDATION HOLD, judgment-shaped: where new work is about
+  to BUILD ON unreviewed machine-read semantics, the desk may
+  pull the review forward for exactly that layer, the hold named
+  with its basis like any other. Motivating instance: the
+  containment gate's symlink blocking finding sat in the very
+  mechanism the next round was about to build against, and the
+  review ran first by sequencing luck — this clause makes it
+  order instead.
+  Review form unchanged:
   brief carries the diff since the last REVIEWED state, the full
   skill text, and the question, never the author's reasoning;
   every finding gets a recorded disposition before release.
