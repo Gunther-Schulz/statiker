@@ -150,7 +150,72 @@ What is re-established by MY OWN reads rather than inherited:
 
 ### Compaction events — statiker-7e
 
-None observed yet. Same per-event form as above.
+**C1 — 2026-09-14 14:30:59+0200 · trigger `auto` · THE TRIAL'S FIRST
+OBSERVED COMPACTION.**
+
+- **Hook line: PRESENT.** `~/.local/state/claude/compactions.jsonl`
+  gained a matching line. My session id appears. VERBATIM:
+
+      {"ts": "2026-09-14T14:30:59+0200", "session_id": "cf735b45-a8e3-49e7-8eb7-61c77e355b17", "cwd": "/home/g/dev/Gunther-Schulz/statiker", "trigger": "auto"}
+
+  FIELD NAMES, as the log actually writes them: `ts`, `session_id`,
+  `cwd`, `trigger`. Four. No summary body, as designed.
+  Session-id match confirmed against my own transcript path
+  (`~/.claude/projects/-home-g-dev-Gunther-Schulz-statiker/cf735b45-a8e3-49e7-8eb7-61c77e355b17.jsonl`),
+  not read off the log's own claim.
+
+- **P1's DISCRIMINATING TEST: RESOLVED, hook FIRES.** The prediction
+  registered before the event ("a line appearing in compactions.jsonl
+  confirms it; absence refutes it") is executed, not modelled. The
+  kickoff premise "the hook postdates your session start and will not
+  fire here" is now refuted on BOTH legs — the configuration mtime
+  argument and the event itself. The trial has two independent
+  instruments over one quantity from here on.
+
+- **NO DIVERGENCE between the instruments.** Hook log: exactly one
+  line for this session. This manual carrier: exactly one event. The
+  file's other line (14:25:09, session `f7394e04`, trigger `manual`)
+  belongs to a DIFFERENT session in the same cwd — recorded here so a
+  reader counting lines does not read 2 as this arm's count.
+
+- **Trigger `auto` is consistent with the 300k flag** and is not proof
+  of it: the hook records the trigger KIND, never the threshold that
+  produced it. The launch flag is separately executed — re-read this
+  turn from my own ppid's `/proc/<pid>/cmdline`:
+  `/opt/claude-code/bin/claude --autocompact 300000`.
+
+- **WHAT I NOTICE CHANGED.** No verbatim recall of the session's
+  earlier turns — tool outputs, the exact wording of statiker-e8's
+  messages, and my own prior reasoning survive only as the summary's
+  paraphrase. The operator's delegation survives verbatim because the
+  summary quoted it as such. What was NOT lost: every carrier on disk.
+
+- **FAIL CRITERION: NOT FIRED, and the check was deliberate rather
+  than incidental.** The compaction landed mid-task, between gathering
+  the run-2 premises and writing the pre-registration file — the worst
+  seam for it. I wrote the draft FROM THE SUMMARY, then re-executed
+  every load-bearing premise in it against the carriers before letting
+  it ship. All survived: lifecycle HEAD `2b41491`; the two
+  `skips the veto` hits at `verbs.py:398` and `:848` with the
+  zero-returning control; the write-set's two files; the
+  `cost_test_veto` / `cost_test_unverified` anchors at
+  `prove-rows.py:100,105` and `refusals.py:923,937`; the five-command
+  Verify block with `-t .` gone; `test_hook_modes.py:355`'s `REFS`;
+  and the tripwire pair (FIRES at 2 / SILENT at 9) byte-identical to
+  the pre-compaction run.
+  ONE imprecision was found and corrected in the draft, and it is
+  recorded as a datum rather than waved through: the summary carried
+  `cost_test`'s return shape as two tokens over `:392-402` with the
+  caller branching at `:840-846`; the source shows THREE tokens
+  (`unverified`/`clear`/`veto`) over `:388-405`, branches at `:840`
+  and `:843`, override at `:848`. Substance unchanged, extent
+  understated. This is the paraphrase-drift shape at exactly the grain
+  the trial is watching — caught by the standing re-read, which is the
+  protocol working rather than the protocol being unnecessary.
+  HONEST BOUND: this reads as "no divergence found under a deliberate
+  re-check", never as "compaction is lossless". The re-check is what
+  produced the finding; without it the understated extent would have
+  shipped.
 
 Floor read (the incompressible depth with the skill resident),
 recorded when the operator's `/context` readout lands: PENDING.
