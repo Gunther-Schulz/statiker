@@ -299,9 +299,13 @@ def selftest():
     """Exercise the VERDICT logic on constructed leg sets, including the
     two false greens. Costs no child process, so the instrument stays
     checkable without spending the thing it measures."""
-    def legs(cap, bg, ctl):
+    def legs(cap, bg, ctl, inconclusive=False):
+        bg_leg = {"leg": "background-resume", "pass": bg}
+        if inconclusive:
+            bg_leg["inconclusive"] = True
+            bg_leg["inconclusive_reason"] = "selftest: constructed"
         return [{"leg": "capability", "pass": cap},
-                {"leg": "background-resume", "pass": bg},
+                bg_leg,
                 {"leg": "single-turn-control", "pass": ctl}]
     cases = [
         (legs(True, True, True), "SUBSTRATE_SURVIVES_REINVOCATION"),
@@ -310,6 +314,16 @@ def selftest():
         # the control dominates: a broken probe never reports a finding
         (legs(True, False, False), "PROBE_INVALID"),
         (legs(True, True, False), "PROBE_INVALID"),
+        # THE THIRD ANSWER must be reachable from the HAND-RUN selftest,
+        # not only from pytest: the freeze executor runs THIS by hand
+        # immediately before a live run, so a could-not-verify path
+        # covered only in the battery is unexercised exactly where it is
+        # most load-bearing.
+        (legs(True, False, True, inconclusive=True), "PROBE_INCONCLUSIVE"),
+        # and it must not outrank the two dominations above it
+        (legs(True, False, False, inconclusive=True), "PROBE_INVALID"),
+        (legs(False, False, True, inconclusive=True),
+         "SUBSTRATE_UNFIT_CAPABILITY"),
     ]
     bad = 0
     for l, want in cases:
@@ -317,8 +331,9 @@ def selftest():
         mark = "ok " if got == want else "FAIL"
         if got != want:
             bad += 1
+        inc = "inc " if l[1].get("inconclusive") else "    "
         print(f"  {mark} cap={l[0]['pass']!s:5} bg={l[1]['pass']!s:5} "
-              f"ctl={l[2]['pass']!s:5} -> {got} (want {want})")
+              f"ctl={l[2]['pass']!s:5} {inc}-> {got} (want {want})")
     print("selftest: PASS" if not bad else f"selftest: {bad} FAILED")
     return 1 if bad else 0
 
