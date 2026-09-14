@@ -11330,3 +11330,47 @@ reading of its own change, which is the same-parentage error.
 
 NOT DISPOSITIONED HERE and not needed: st-62 (relocation, no new
 token/predicate/form — the reviewer concurs).
+
+## 2026-09-14 — st-55 is NOT a C4b mint: the disposition, and the two
+## senses of "mint form" that make it look like one
+
+Surfaced by the RELEASE GATE's own re-ask rather than by the review —
+the gate's standard is every mint in the carried set showing its record,
+and enumerating the ten payload commits found st-55 carrying none while
+its own item slot says "Mint form: TOOL-BACKED". Recorded because a
+silent non-mint call is indistinguishable from a skipped one, and
+because the gate is the last place this is cheap.
+
+THE APPARENT CONFLICT: st-55's slot declares a mint form, which reads as
+the item calling itself a mint. It is not the same axis. CLAUDE.md uses
+"mint form" in the BATCH-PRICING sense — "a mint's brief states its form
+(tool-backed or prose-mechanism), and a batch containing prose-mechanism
+mints budgets one repair lap into its seam plan". That vocabulary exists
+to price a LAP. C4b's mint test is a different question entirely: does
+the change introduce a new machine token, hold code, predicate or
+mandatory form? The two words coincide and the axes do not.
+
+DISPOSITION: NOT A C4b MINT. fe4ecb6 introduces no verdict token (the
+lane deliberately declined to mint HALT_PATHSPEC_GLOB precisely because
+that WOULD have been one, and said so), no hold code, no predicate a
+desk must satisfy, and no mandatory form — the desk writes write-sets
+exactly as before. It is a behaviour repair: paths handed to git are
+literalized so a declared token stops matching undeclared files.
+
+PROVENANCE IS PRESENT, which is what the birth-class rule actually
+demands: st-55's item evidence slot carries the executed probe halves
+(the control-first lint probe at a1365f1 establishing the record side
+does NOT reject the metacharacters) and the field incident from the
+probe-A battery build. The rule says no provenance, no patch; the
+provenance lives in the carrier rather than in this file, which is where
+a tool-backed repair's evidence belongs.
+
+THE GENERAL FORM, since the next batch will hit it: a repair whose
+mechanism and battery land together is priced as tool-backed and graded
+as not-a-mint, and those are two different sentences about it. Reading
+the pricing word as the grading word books a provenance obligation the
+C4b test does not impose — or, in the other direction, lets a real mint
+pass because its form was called tool-backed.
+
+CONSUMER: the release gate's re-ask, which found this one; and the next
+batch plan that writes "Mint form:" into a slot.
