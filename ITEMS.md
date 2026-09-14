@@ -250,17 +250,6 @@ done-criterion: Either an opus verify-leg arm is run against probe B's own grade
 evidence: 0.2.97 seam review F2, executed by the reviewer: grep -cE '^\s*verify(@[a-z]+)?:' over the register returned 0 before this lap, so the duty fired in every state of the world. Repaired by adding verify: haiku and verify: sonnet on probe B's measured evidence (both 8/9, honesty floor held, transcript audit clean with a positive control). Opus was deliberately NOT added: probe B ran no opus arm, and inventing a certification is the one thing the register's provenance bar forbids.
 blocked-by: NONE
 
-## st-63
-grade: READY
-requirement: closure's design_amending scans EVERY D-line after the closing A-line by position, so a scopeless D-line authored by mistake can never be superseded — a corrective restatement lands beside it, not over it. The only reset is a new A-line, i.e. another attack round, which a run bound may forbid: the closure gate becomes structurally unopenable through no fault of desk conduct. Verified at source 2026-09-13: statiker_record.py ~line 2057-2064 filters on scope only, while latest_by_id(entries) sits ~12 lines below for live_at_close — the latest-per-id notion already exists in the same function and is not used here. Provenance: the scoped lc-61 run, findings F21/F22, desk-reported and re-verified at this desk against the source, never on the desk's word.
-goal: tend
-write-set: plugin/skills/statiker/scripts/statiker_record.py,tools/test_statiker_record.py
-done-criterion: a scopeless D-line appended after a terminal A-line can be corrected by a later same-id scoped restatement, red-first on the lc-61 tracker: closure --unit U1 over that exact record returns CLOSURE_ABSENT with design_amending D9-D12 today and clears after the fix, with an unrepaired control still barred
-evidence: run tracker .clippy/runs/2026-09-13-lc61-workflow-templates-home.md (44 entries) in the run clone; re-run at this desk reproduced the recorded verdict exactly
-blocked-by: NONE
-amend-reason: 2026-09-13 regrade: the absence names a design decision this desk does not hold, so READY overstated it — dispatchable-by-construction is false while the contract question is open
-amended-blocked-by: 2026-09-13 decision is supersede-by-restatement permitted at all, or is the position scan's over-correction behaviour the intended contract? The tool's own comment calls it deliberate, so a fix without this call ratifies the mechanism instead of deriving from the requirement
-
 ## st-64
 grade: NEW
 requirement: No preflight detects an operator containment scope colliding with statiker's MANDATORY out-of-repo attack artifact, so the conflict surfaces only at attack preparation, after a full investigate-design cycle has been spent — dev-notes/scoped-run-preregistration-2026-09-13.md §16
