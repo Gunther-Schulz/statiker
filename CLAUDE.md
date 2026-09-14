@@ -30,7 +30,13 @@
   a REPAIR DISPOSITION that introduces a new machine token, hold
   code, predicate or mandatory form IS a mint, and the provenance
   bar and the tenet check bind it exactly as they bind content
-  that presents as one. It escapes by COSTUME: a repair does not
+  that presents as one. FORM in C4b names the INTRODUCTION axis
+  ONLY — whether a machine token, hold code, predicate or
+  mandatory form is being introduced, deciding whether the
+  provenance bar and tenet check bind — and is unrelated to the
+  batch-pricing bullet's tool-backed/prose split ("Mint form is
+  priced in the batch plan", below). It escapes by COSTUME: a
+  repair does not
   look like an addition, so neither gate fires. Distinguish a new
   token/predicate/form from a repair restoring an EXISTING
   predicate's stated reach, which is not a mint. Incident: RN-b/B1,
@@ -482,7 +488,11 @@
   2026-09-12).** A mint's brief states its form — tool-backed
   (the mechanism and its battery land with it) or
   prose-mechanism — and a batch containing prose-mechanism mints
-  budgets one repair lap into its seam plan. Basis: the 0283 mint
+  budgets one repair lap into its seam plan. FORM in this bullet
+  names the BATCH-PRICING axis ONLY — which build shape the batch
+  budgets for — and says nothing about C4b's mint test (above): a
+  slot reading "Mint form: TOOL-BACKED" makes no C4b claim about
+  the item. Basis: the 0283 mint
   batch took three review rounds and three repair laps before
   releasing (0.2.84→0.2.86); the 0.2.78 review recorded the same
   split (tool+battery-backed changes survive review, fresh prose
