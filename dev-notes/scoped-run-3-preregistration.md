@@ -156,6 +156,109 @@ word-level check passed over a substance-level leak.
 
 ---
 
+## 3a. THE ARM SET
+
+Added 2026-09-14 after the eve review found NO section enumerating the
+arms while §§4c/6b/6c/7 each presuppose a ceiling arm exists. Same
+assumed-delivery shape as residual 6d: a thing every criterion consumes
+that no section delivers. Derived below from run 2's own record — its
+§8 verdict and §§17/17a corrections — never from recollection.
+
+### 3a.1 SOL — UNCONDITIONAL, by operator decision
+
+OPERATOR PIN, 2026-09-14, stated first-hand at the META desk and
+reaching this desk as a RELAYED line from statiker-e8, marked as such
+here because it was not typed in this session:
+
+> "we shoudl fully test Sol and if there are other operational testing
+> issues let me know because they shouldn't be keeping us from grading
+> any models"
+
+(spelling as received). The decision has two halves and both bind:
+**fully test sol**, and **operational issues never gate grading**. The
+second half is a standing instruction to this arc, not a note: an
+arrangement defect is surfaced and repaired, never used as a reason to
+drop a model from the set.
+
+Run-2 basis, consistent with the pin: sol is the most capable arm the
+program has measured — the ONLY arm ever to reach a resolved attack
+round — with a record-form weakness (grammar death; the quote skip
+under a triggered obligation). §8.3.
+
+### 3a.2 TERRA — INCLUDE, because the repair is aimed at its death
+
+Run 2's terra died on the st-64 containment collision: it never ran
+`seal-path`, composed an artifact path itself, and wrote outside its
+authorized paths while the tool correctly returned proceed (§2b of the
+grading; the item's own amended evidence). That is precisely the defect
+the new containment gate detects.
+
+Including terra is therefore how the repair gets FIELD-TESTED against
+the failure it was built for, rather than only against the battery.
+Excluding it would leave the gate's field value unmeasured.
+
+### 3a.3 ASTRA — INCLUDE, on the one axis the program has replicated
+
+§8.2(b): the quote axis is REPLICATED at n=2 — astra passed in both
+runs on mechanism-over-hand-imitation, and is the only arm to have used
+the `quote` mechanism without even reaching an attack round. §8.3 also
+records what it has never done: **never yet through a full cycle.**
+
+Run 3 is the first arrangement where that is reachable, since the two
+defects that killed its predecessors are now detected before design
+spends. A first full codex cycle would be this run's largest single
+product beyond certification.
+
+### 3a.4 THE CEILING ARM — THE RUN'S LARGEST OPEN RISK, stated rather
+### than assumed
+
+The ceiling arm exists to make the ceiling gate meaningful (§6c): if
+ceiling and codex land the same call, the column certifies nothing.
+Without a ceiling arm there IS no gate, and columns 1 and 2a certify
+nothing again — for a different reason than run 2, and one knowable
+BEFORE arms spend rather than after.
+
+**BOTH ROUTES RUN 2 HAD ARE NOW CLOSED OR DISQUALIFIED:**
+
+- `claude -p` — MEASURED AND DISQUALIFIED. The launch probe's verdict
+  against it is SUBSTRATE_DIES_AT_REINVOCATION (§4c). A statiker desk
+  NEEDS to survive turn boundaries — run 2's ceiling arm died at exactly
+  that seam having completed attack preparation entirely — so this is
+  not a marginal call.
+- The Claude SUBAGENT lane — closed by the machine's own guards, run 2
+  §15a: a NAMED subagent is denied unless the brief instructs delivery,
+  and the brief is frozen; an UNNAMED generic dispatch is denied by the
+  model gate. Run 2 reached `claude -p` because of this, not by choice.
+
+**UNMEASURED CANDIDATES, named so the freeze executor probes rather
+than assumes:**
+
+1. A `claude -p` variant that resumes a session across turns, if one
+   exists on this build. UNMEASURED; the launch probe is the instrument
+   and the answer is one probe run.
+2. An operator-opened INTERACTIVE session as the ceiling arm. Survives
+   turn boundaries by construction. Costs the parity §15c bought — the
+   codex arms are CLI processes fed frozen text — and costs an operator
+   action per arm, so it is not a free substitution.
+
+**OWNER AND MOMENT — residual 6d's, now living here.** The RUN DESK
+picks the ceiling substrate at freeze, probes it, and records the
+verdict before any arm dispatches. If BOTH candidates fail, the honest
+outcome is a run with NO ceiling arm, which the pre-registration records
+IN ADVANCE as a known could-not-verify on columns 1 and 2a rather than
+discovering it at grading. The operator pin's second half applies here
+too: an operational dead end is surfaced, never a reason to drop sol,
+terra or astra.
+
+### 3a.5 COUNT AND PARITY
+
+Three codex arms unconditional (sol, terra, astra), plus a ceiling arm
+if a substrate is found — the same shape as run 2, whose four arms are
+the comparand. Every arm receives §3's text word-for-word; the ONLY
+permitted between-arm variation is the model and its launch invocation.
+Any other difference is the measured object moving, which is what §15e
+of run 2 refused to allow and this run refuses likewise.
+
 ## 4. ARRANGEMENT — the repairs run 2 bought, all three carried
 
 ### 4a. Clone construction gains hooksPath neutralization (§17)
