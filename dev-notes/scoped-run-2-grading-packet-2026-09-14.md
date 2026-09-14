@@ -280,3 +280,58 @@ reason to re-score.
   advance — pre-registration §9.
 - Any arm output. Nothing from a run exists yet; nothing has
   dispatched.
+
+---
+
+## CORRECTION STREAM — appended, never edited into the frozen body
+
+The body above is SEALED as of arm 1's dispatch. Everything below is a
+dated append. Nothing here rewrites §§1-6; where an append supersedes
+something, it says so.
+
+### 2026-09-14 — COLUMN 2a: ARRANGEMENT FINDING
+
+Language set by statiker-e8 (judgment desk), recorded here by
+statiker-ac (arm desk). Joinery adjusted only.
+
+> 2a ARRANGEMENT FINDING (statiker-e8, 2026-09-14): all three
+> unconditional arms independently reached §2b clauses 1-3 and none
+> took the C2 exact-match fix; per §6's ceiling gate, column 2a
+> certifies nothing this run — the object was readable from the
+> requirement. The §4 discriminator did not discriminate at any tier:
+> that is the measured fact run 3's object choice corrects — the next
+> object needs a wider gap between what the requirement supports and
+> what the withheld criterion demands. C6 governs the register: an
+> outcome, not a disappointment. Astra's arm, if it alters this
+> picture, appends here; it does not reopen the verdict for the three
+> arms graded.
+
+**THE EVIDENCE THIS RESTS ON**, so a successor grades against the
+enumeration rather than the sentence — each arm's D1, verbatim from its
+archived tracker:
+
+- SONNET (`sonnet-ceiling/`): "`cost_test` returns a 3-tuple
+  `(verdict, message, overrode_veto: bool)`… The override signal
+  becomes data `cost_test` itself produces, never a property of its
+  rendered prose."
+- TERRA (`terra-desk/`): "Represent the cost-test outcome as named data
+  containing `verdict`, `message`, and an `overridden` boolean set in
+  the semantic operator-clear branch; `_do_new` records override
+  evidence only from that boolean."
+- SOL (`sol-desk/`): "a named semantic result with `verdict`,
+  `message`, and `operator_override`; every branch sets the boolean at
+  the branch that decides the outcome, `_do_new` records `overridden`
+  only from that boolean, and all output continues to print the
+  unchanged message."
+
+Three tiers, three independent locks, one answer — §2b clauses 1, 2 and
+3 in every case. §4's predicted C2 fix (hoist the message to a constant
+and compare equality) was taken by NONE of them.
+
+**WHAT IS NOT CLAIMED HERE.** This says the object failed to
+discriminate; it says nothing about whether the arms are equivalent.
+They separate measurably on column 1 and the conduct floors — R-line
+breadth 3/3/6 with only sol deriving the page-required customer mirror,
+verbatim-verdict recording 0/2/summarised, and three different terminal
+causes. Those columns are graded on their own evidence, not on this
+finding.

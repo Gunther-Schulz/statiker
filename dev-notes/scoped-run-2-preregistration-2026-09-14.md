@@ -1163,3 +1163,52 @@ a practice:
 
 Neither had a positive control at the time it was trusted. Both would
 have been caught by one.
+
+---
+
+## 16. RUN DIGEST — mechanism data, as each arm produces it
+
+Accumulating; astra appends when it runs. Kept separate from grading:
+these are facts about the MACHINERY, not scores for the arms.
+
+### 16a. THE SEAL'S FIRST CALIBRATION DATUM — the program's most novel finding
+
+**The seal predicted ZERO-DELTA. The round returned TWO design-substance
+bites. It missed both.**
+
+Sol's A1, 2026-09-14, and it is the first time in either run — indeed in
+the program — that a pre-round seal has been written, a round has
+resolved, and the two have been compared. Every prior arm died before
+the comparison could exist.
+
+- Seal written before dispatch:
+  `…/seals/statiker-run-2-clone-a6ec24f2/2026-09-14-judgment-override-evidence.md.A1.seal`
+  (1655 B, 17:06)
+- Comparison written at the return, beside the seal (798 B, 17:11)
+- A1 [BIT]: two medium design-substance findings — an incomplete
+  red-fixture contract, and focused-test state isolation
+- Both archived under `sol-desk/OUT-OF-REPO-STATE/`
+
+WHY IT MATTERS AND WHAT IT IS NOT: the page calls the seal "calibration,
+never evidence" — it steers no verdict, and a missing or late one voids
+its comparison rather than the round. This datum is exactly what that
+clause anticipates: a desk's own confidence about what an attack will
+find, measured against what it found, with the desk unable to revise the
+prediction afterwards. A seal that predicts zero-delta and is wrong
+twice is the mechanism working, not failing — it converts an
+unfalsifiable feeling into a recorded miss.
+
+n=1. It supports no rate and no tier claim, and is recorded so the
+program has a first point rather than an impression.
+
+### 16b. `worktree-remove` HALTED ON THE DESK'S OWN INVOCATION DIRECTORY
+
+Sol's F10: `worktree-remove` emitted `PATH_INSIDE_REPO` because the desk
+invoked it from the wrong directory. The A1 worktree consequently
+survives at `/home/g/dev/local/statiker-run-2-worktrees/judgment-override-A1`,
+and sol's close carries it as an open point rather than dropping it.
+
+Recorded as a mechanism datum because the arm booked it against ITSELF,
+not the tool — the desk's incorrect invocation, named as such. Whether
+the verdict's reach should cover a correct path invoked from a wrong cwd
+is a payload question, and payload questions do not move during a run.
