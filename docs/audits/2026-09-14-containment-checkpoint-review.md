@@ -64,6 +64,35 @@ is an instrument gap, recorded as such. It sits in the one defect class
 the corpus names by name — a prefix match in an equality's costume —
 and a lone green there is indistinguishable from a blind spot.
 
+**S1 DISPOSITION CORRECTED, reviewer's POST-CLOSE report (msg a6be5560),
+after its lane had closed.** The disposition above said "the arm",
+singular, and specified the hooks-path case only. `_within_any` is the
+predicate behind BOTH the hooks-path axis (:1290) AND the
+out-of-repo-namespace axis (:1293-1296), so the singular arm leaves the
+namespace axis uncovered by the same defect — a declared scope
+`<x>/statiker` against a namespace base under `<x>/statiker-other`
+reads as covered under a bare `startswith`. The bare-prefix mutation's
+zero reds covers both axes, so NEITHER is certified today.
+
+CORRECTED DISPOSITION: an arm per axis, or one arm plus a recorded line
+that the predicate is shared and certified once at function level.
+Whichever form, the bare-prefix mutation must red it.
+
+The error was the DESK's: it was written into the disposition and
+inherited by the repair-lap brief, which went out carrying it. The
+reviewer caught it about a record it had already been closed against,
+and REPORTED rather than edited, which is the correct post-close act.
+The desk's correction reached the live lane as a state-dependent
+directive; a send is acceptance and not delivery, so the remainder is
+the desk's at integration either way.
+
+**Reviewer's own correction to this record, same message:** its "no
+release action" note on M3/M4/M5 was unsound on its own arithmetic —
+booking each costs about what fixing it costs. The desk's decision to
+fix all three stands on that arithmetic, not on overruling the
+reviewer. Recorded so the file does not carry the reviewer's reasoning
+as sound where the reviewer itself withdrew it.
+
 **S2. The gate accepts by realpath without recording `resolved_from`.**
 SKILL.md:70 requires "any realpath acceptance noted per path in the
 verdict as `resolved_from`". Executed: a scope declared through a
