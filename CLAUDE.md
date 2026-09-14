@@ -52,7 +52,23 @@
 - **Carrier transition (2026-09-10, operator GO).** Work items live
   in `ITEMS.md` under the lifecycle plugin's tool
   (`.claude/lifecycle.json`; bookings via `lifecycle item add`,
-  never hand-edited). `BACKLOG.md` is NOT retired: it remains the
+  never hand-edited). The DECISION path is the same shape and is
+  stated here because it fails differently: a decision that clears
+  an item's blocker is recorded via `lifecycle ledger add decision
+  --question <the blocker's text VERBATIM>`, never as a
+  hand-written LEDGER line. The gate resolves a decision blocker by
+  QUESTION-SLOT EQUALITY, so a line that NAMES the question
+  ("st-63's contract question → PERMIT") instead of restating it
+  leaves the item blocked while the ledger reads answered — a
+  silent failure, where a hand-edited item is at least visible as
+  one. Incident pair, 2026-09-14: commit 89fd565 recorded the
+  operator's st-63 decision in prose and `item waves` still
+  reported the item held back in the operator's court; the
+  re-record through the verb cleared it, schedulable 10 -> 11. The
+  same mismatch made 69 of 99 decision-blocked items permanently
+  unanswerable in a sibling carrier (lc-40). Rephrase the QUESTION
+  at the MINT, never at the answer.
+  `BACKLOG.md` is NOT retired: it remains the
   body store the migrated entries point into (blob `a115998c`),
   read-only: the last arc still recorded there (P29's run
   bookkeeping, st-11) closed at the 0.2.86 release, 2026-09-11.
