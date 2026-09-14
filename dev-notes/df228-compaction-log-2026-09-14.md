@@ -217,5 +217,71 @@ OBSERVED COMPACTION.**
   produced the finding; without it the understated extent would have
   shipped.
 
-Floor read (the incompressible depth with the skill resident),
-recorded when the operator's `/context` readout lands: PENDING.
+## Floor read — CLOSED, and the instrument CHANGED
+
+**The `/context` step is REMOVED from the protocol entirely**
+(statiker-e8 under its drive, 2026-09-14; basis: the operator reports
+`/context`'s itemized split unreliable). It was never a good
+instrument for this: it measures what a rendered panel says, where the
+question is what the API actually billed. The replacement is the
+TRANSCRIPT'S OWN USAGE FIELDS, which are the billing record.
+
+**MEASURED HERE, not relayed.** statiker-e8 read ~131k from my
+transcript and reported it. I re-measured at my own transcript rather
+than record a peer's figure — a relayed number is testimony, and the
+corpus grades it as such whoever sends it. Method: parse
+`~/.claude/projects/-home-g-dev-Gunther-Schulz-statiker/cf735b45-a8e3-49e7-8eb7-61c77e355b17.jsonl`,
+take assistant rows carrying `message.usage`, and sum
+`input_tokens + cache_read_input_tokens + cache_creation_input_tokens`
+per turn — the full re-billed prefix, which is the quantity the depth
+discipline actually prices.
+
+| reading | turn | prefix tokens |
+|---|---|---|
+| PEAK, last turn before compaction | 2026-09-14T12:29:28Z | **266,628** |
+| FLOOR, first turn after compaction | 2026-09-14T12:31:02Z | **128,092** |
+
+**FLOOR = 128,092.** DIVERGENCE from the relayed ~131k is ~3k, ~2.3%.
+Recorded rather than smoothed over, and the likely cause named: the
+prefix grows every turn (the turns immediately after the floor read
+141,906 then 150,076), so ~131k is consistent with a reading taken one
+or two turns later. Two instruments, one quantity, agreeing to within
+a turn's growth — the divergence is about WHICH TURN, not about the
+measurement. My figure is the one anchored to a stated turn.
+
+**THE TRIGGER DATUM — the better finding, and it was not asked for.**
+The flag is `--autocompact 300000`. Compaction fired with the prefix
+measured at **266,628 — 88.9% of the flag value**, not at 300k. That
+matches the documented unset-default behaviour (triggers near 90% of
+the window) with the flag SETTING the window rather than setting a
+hard trip point. So the flag's number is a window, and the usable
+headroom under it is ~89%. Executed, not modelled: both numbers come
+from the billing record above.
+
+Reduction across the event: 266,628 → 128,092, i.e. the compaction
+shed ~52% of the prefix.
+
+## Standing conduct for this arm — statiker-e8, 2026-09-14
+
+**The deliberate post-compact re-check is now the trial's conduct
+rule, not merely my own practice.** Graded on C1's showing: after any
+compaction, every load-bearing claim is re-executed against the
+carrier on disk before it ships, and the re-execution is what gets
+recorded — not the reassurance that nothing seemed wrong. C1's
+extent-understatement was found by exactly this and by nothing else.
+
+## Writer-claim question — CLOSED
+
+I flagged earlier that another writer (session `119d5609`) held the
+statiker working copy 8 minutes before my commit, and verified at the
+artifact that nothing of theirs was absorbed. The identity is now
+settled: statiker-e8 reports it is **not** that session (it is
+`f7394e04` — which matches the 14:25:09 `manual` line in
+`compactions.jsonl`), and that `119d5609`'s records show start 14:16,
+statiker cwd, opus, transcript stopped 14:19 — by strong inference the
+exited predecessor **statiker-39**, whose own start this carrier
+records as 14:16:04.
+
+Marked as INFERENCE from session records, not a content read. The
+operative consequence is the same either way and it is what I acted
+on: a stale claim, no live co-writer, proceed without holds.

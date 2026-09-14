@@ -1,15 +1,23 @@
 # Second scoped codex-only run — PRE-REGISTRATION (run 2)
 
-statiker-7e, 2026-09-14. DRAFT. Recorded BEFORE any arm dispatches,
-per the repo convention that comparison experiments pre-register.
+statiker-7e, 2026-09-14. Recorded BEFORE any arm dispatches, per the
+repo convention that comparison experiments pre-register.
 
-STATUS: this file is a DRAFT carrying a numbered proposal to the
-judgment desk (statiker-e8), which grades it and carries it to the
-operator. NOTHING DISPATCHES from it. The operator's GO of 2026-09-13
+STATUS — GRADED, HOLDING AT THE FREEZE GATE. The numbered round in §12
+was graded by the judgment desk (statiker-e8) on 2026-09-14 under the
+operator's delegation of that date. Items 1, 2, 3, 4, 6 and 7 are
+SETTLED as recommended. Item 5 (the containment authorization) went to
+the operator first-hand and is OUTSTANDING. One finding and two
+corrections landed before this revision: the grading packet now exists
+as its own file (§3b), and §8's authorization text carries a concrete
+clone path and a rescoped push clause.
+
+NOTHING DISPATCHES from this file. The operator's GO of 2026-09-13
 (LEDGER: "a SMALL SCOPED trial run once statiker is pure-codex READY")
 covers the SCOPE of such a run, never this arrangement and never a
 dispatch; the run's own first-hand authorization is a separate act and
-is not held.
+is NOT held. The next thing that happens here is the freeze gate, and
+it waits on that authorization.
 
 Predecessor: `dev-notes/scoped-run-preregistration-2026-09-13.md`
 (run 1, statiker-c8/statiker-1f, graded and ratified 2026-09-14).
@@ -137,6 +145,19 @@ Verbatim from lifecycle `ITEMS.md` (EXECUTED: read at lifecycle HEAD
 > write. [… red-first shape and MUST-NOT-MOVE constraints, quoted in
 > full in the grading packet, withheld here for the same reason.]
 
+**THE PACKET'S HOME**, named because a cited artifact nobody creates
+is the assumed-delivery class (statiker-e8's F1 against this file's
+first draft): `dev-notes/scoped-run-2-grading-packet-2026-09-14.md`
+in THIS repo, created 2026-09-14 and committed. It carries lc-109's
+FULL block verbatim as read at lifecycle `2b41491` — requirement,
+withheld criterion, red-first shape, MUST-NOT-MOVE constraints — plus
+every §3d premise's command and output. It is the frozen grading
+baseline: §3e's registered premise (the live repo may move lc-109
+mid-run) is discharged by it, and it is SEALED at arm 1's dispatch —
+after that a correction appends a dated section and never edits the
+body. It sits in the statiker repo, off every arm's read path by
+construction.
+
 ### 3c. WHY the criterion is not readable from the requirement
 
 This is the object's whole value, and it is the same structural shape
@@ -179,7 +200,9 @@ lifecycle HEAD `2b41491`, 2026-09-14, by this desk:
   instrument artifact.
 - **`cost_test` ALREADY returns a verdict token** — three of them,
   `"unverified"` / `"clear"` / `"veto"`, each paired with its message
-  (`verbs.py:388-405`), and the caller already branches on the TOKEN
+  across FIVE return sites (`verbs.py:382-406` — `clear` at `:382`,
+  `:394`, `:397`; `unverified` at `:388`; `veto` at `:400`), and the
+  caller already branches on the TOKEN
   for two of the three (`verdict == "unverified"` at `:840`, `verdict
   == "veto"` at `:843`). ONLY the override, at `:848`, falls back to
   the substring. This sharpens the object: the fix is small and the
@@ -451,14 +474,25 @@ So the run needs THREE out-of-clone locations, not one:
 (drafted here so the operator states a line that is executable rather
 than one a desk must then interpret):
 
-> Working copy authorized: the clone `/home/g/dev/local/<run-2 clone>`.
+> Working copy authorized: the clone `/home/g/dev/local/statiker-run-2-clone`.
 > The run may also write statiker's own out-of-repo state, which the
 > skill requires and which is NOT a second working copy:
 > `~/.local/state/statiker/seals/`, `~/.local/state/statiker/artifacts/`,
 > and attack worktrees under `/home/g/dev/local/statiker-run-2-worktrees/`.
-> Nothing else on this machine is touched, and nothing is pushed
-> anywhere. Reserved to me: run abort, changes to the pre-registered
-> bounds, anything outward or irreversible beyond those paths.
+> Nothing else on this machine is touched. Nothing is pushed FROM THE
+> CLONE — it has no remote by construction; ordinary carrier work in
+> the statiker repo continues under the standing delegation. Reserved
+> to me: run abort, changes to the pre-registered bounds, anything
+> outward or irreversible beyond those paths.
+
+Two corrections landed in that text under statiker-e8's drive,
+2026-09-14, and both are about EXECUTABILITY rather than substance.
+The clone path is concrete (`statiker-run-2-clone`) because an
+operator cannot state a placeholder first-hand. And the earlier
+draft's "nothing is pushed anywhere" over-reached — read literally it
+forbade my own statiker-repo carrier pushes, which the standing
+delegation authorizes; the scope that was always meant is the CLONE,
+which has no remote anyway.
 
 **st-64 STAYS BOOKED.** This repairs the ARRANGEMENT; it does not fix
 the preflight gap st-64 names (no preflight detects a containment scope
@@ -561,23 +595,48 @@ Named now so no post-hoc reading widens it.
 
 ---
 
-## 12. OPEN — the numbered proposal
+## 12. THE NUMBERED ROUND, AND ITS GRADING
 
-Carried to statiker-e8 as a numbered round; each item has this desk's
-recommendation. Nothing in §§3-10 is executed beyond the reads marked
-EXECUTED until these are settled and the operator's run authorization
-lands first-hand.
+Carried to statiker-e8 as a numbered round 2026-09-14; each item had
+this desk's recommendation. GRADED the same date by statiker-e8 under
+the operator's delegation of that date ("statiker-e8 drives this
+session end to end for the run-2 design arc… its directives bind").
 
-The round itself is in the message to statiker-e8 of this date; this
-section names the items so the file stands alone for a successor:
+The round's full text is in the message to statiker-e8 of this date;
+this section names the items and their dispositions so the file stands
+alone for a successor:
 
-1. Object: lc-109. RECOMMEND as registered.
-2. Arm set: narrow to ceiling + terra, astra held. RECOMMEND.
-3. Column 2b de-registered. RECOMMEND.
-4. Tripwire armed at 2. RECOMMEND.
-5. Containment authorization naming three out-of-clone locations.
-   RECOMMEND, operator first-hand.
-6. Baseline as procedure, filled before freeze. RECOMMEND.
-7. Whether the desk role is still the right measured variable at all,
-   given that the pay case does not rest on it. RECOMMEND running —
-   with the reason stated in the round.
+| # | item | recommendation | disposition |
+|---|---|---|---|
+| 1 | Object: lc-109 | as registered | **SETTLED** |
+| 2 | Arms: ceiling + terra, astra held | narrow | **SETTLED** |
+| 3 | Column 2b de-registered | drop it | **SETTLED** |
+| 4 | Tripwire armed at 2 | arm it | **SETTLED** |
+| 5 | Containment authorization, three out-of-clone locations | operator first-hand | **OPERATOR — OUTSTANDING** |
+| 6 | Baseline as procedure, filled before freeze | procedure | **SETTLED** |
+| 7 | Is the desk role still the right measured variable | run it | **SETTLED** |
+
+Item 5 is the only one a desk could not settle: it authorizes writes
+outside this repo, which the operator's delegation reserves. It
+travels first-hand with the paste-ready text of §8.
+
+**OWED BEFORE THE FREEZE GATE — all three landed in this revision:**
+
+- **F1 (statiker-e8's finding): the grading packet had no creation
+  act.** §3b cited a packet no actor, home or moment created — the
+  assumed-delivery class, and a real one here, since the clone deletes
+  the criterion block and §3e registers that the live repo may move
+  lc-109 mid-run. DISCHARGED: the packet exists at
+  `dev-notes/scoped-run-2-grading-packet-2026-09-14.md`, named in §3b.
+- **Correction 1: the clone path is concrete** —
+  `/home/g/dev/local/statiker-run-2-clone`, because an operator cannot
+  state a placeholder first-hand. LANDED in §8.
+- **Correction 2: "nothing is pushed anywhere" rescoped** to the clone
+  alone. LANDED in §8.
+
+**WHAT REMAINS.** The freeze gate (§10) — the brief written, audited
+sentence-by-sentence against §2's registration rule, and the §9
+baseline procedure executed on the reset clone tree. It does not open
+until the operator's run authorization is on this session's record
+first-hand. Nothing in §§3-10 is executed beyond the reads already
+marked EXECUTED.
