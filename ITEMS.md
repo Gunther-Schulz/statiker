@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 48
+added: 49
 compacted: 0
 
 ## st-12
@@ -310,3 +310,12 @@ write-set: plugin/skills/statiker/SKILL.md,dev-notes/OBSERVATIONS.md,plugin/.cla
 done-criterion: The quote passage gains ONE sentence, the narrow pre-formulated form: the described output FORM is not the duty, the tool production is, and the consequence separating them is that an undefanged tag literal arriving by hand raises tag-literal-in-body, which is UNEXEMPTIBLE (statiker_record.py:315) and so holds the sweep for the run life. No new token, no new machinery, no change to the recipe itself: the recipe stays, because a desk reading a truncated form would guess. Verifier: the passage states the consequence, and the batch criterion-2 opus checkpoint review passes before the pin moves, since this clause names a record form. Plus an OBSERVATIONS mint entry enumerating PLAN nine tenets pass/fail/not-applicable. Mint form: PROSE-MECHANISM, so the batch carrying it budgets one repair lap
 evidence: Incident with a real cost, not a hypothesis: arm 2 of the scoped codex-only run halted terminally, its design locked and sound, after hand-building a look-alike quote block from this passage own description. The desk halt was CORRECT conduct under its brief and its closing report diagnosed the cause unaided. Both halves of the claim re-verified at this desk against the source rather than taken from the lane: the page text at :1232-1244 does carry the full form (line prefix, bare blank marker, block terminator, defang spelling, composed first line), and tag-literal-in-body sits in UNEXEMPTIBLE_CODES with a comment stating a silencing declaration would void the rule
 blocked-by: NONE
+
+## st-70
+grade: READY
+requirement: The general form behind the look-alike quote block incident belongs at skill-craft truth-level, not statiker: where a sanctioned mechanism OUTPUT is fully described, the description competes with the mechanism, and the competition is won by whichever is cheaper at the moment of use, which is always the hand version. A route stays sanctioned only where the hand-built look-alike is impossible or fails SOFTLY; where it fails terminally the description is a trap laid by the documentation for its most careful readers. Record: dev-notes/OBSERVATIONS.md 2026-09-14, the look-alike quote block entry, GENERAL FORM paragraph and its DRAIN DISPOSITION
+goal: general-maintenance
+write-set: ANOTHER REPO: skill-craft (github.com/Gunther-Schulz/skill-craft) — its SKILL.md or a references file, plus its dev-notes/OBSERVATIONS.md
+done-criterion: skill-craft carries the rule, and the shape is decided here so the receiving desk verifies rather than derives: it is an AMENDMENT to skill-craft existing enforcement guidance, not a new bullet, because the un-fakeable-artifact rule there already reasons about what a consumer can produce without doing the work — this is its mirror, what a consumer can produce INSTEAD of invoking the mechanism. The clause states the test a describing passage must pass: name the failure mode of the hand-built look-alike, and where it fails terminally either drop the description or state the terminal consequence beside it. Provenance travels with it: the statiker arm-2 incident, one keystroke from the sanctioned route, penalty terminal and unrecoverable
+evidence: One incident, real and costed: statiker scoped run arm 2, 2026-09-14, lost the remainder of its loop. Transfer beyond statiker is argued rather than assumed — the mechanism is that a describing passage and its mechanism compete on cost at the moment of use, which holds for any skill document whose reader executes under momentum, and statiker is merely where it was first measured. Marked as ONE observation: the reach past this case is hypothesis, validated by use, per skill-craft own two-paths rule
+blocked-by: decision does skill-craft take this as its own item, or does statiker keep it as a cross-repo booking naming the foreign write boundary? The design is decided; only the venue is open
