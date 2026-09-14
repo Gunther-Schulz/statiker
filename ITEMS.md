@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 56
+added: 57
 compacted: 0
 
 ## st-12
@@ -352,3 +352,12 @@ write-set: dev-notes/scoped-run-3-preregistration.md
 done-criterion: the pre-registration either gives the codex arms an equivalent driven arrangement AND equalises the corpus load, or carries BOTH asymmetries as a declared deviation stating exactly what §6c gate can and cannot certify under them. §3a.5 sentence that the ONLY permitted between-arm variation is model and launch invocation must change either way, since it is false as written. Verifier: no claim in the document asserts parity that the arrangement does not deliver, and a reader can tell from the document alone which columns survive the asymmetry
 evidence: Fresh-context narrow round, 2026-09-14, BLOCKING B2 plus SUBSTANTIVE S4. The transfer tell: §3a.4 applies the parity argument to the candidate it REJECTS and not to the one it SELECTS. S4 measured at the artifact from the probe children own instructions attachment; the corpus load is cwd-independent, so the desk contamination fix (move the probe out of the repo) could not reach it. Stated in both directions by the reviewer: axis 1 RESULT is STRONGER than the document claims since the context held the matching-semantics rule and still did not produce the near-miss; the DESCRIPTION is wrong
 blocked-by: decision whether run 3 equalises the two arm asymmetries or declares them as deviations with the certification consequence named
+
+## st-78
+grade: READY
+requirement: the run-3 reason for including terra is REFUTED AT THE CODE, and §6a write-side premise is false for this run own launcher. The containment gate is preflight-time satisfiability ONLY (statiker_git.py:1274-1366, three axes over the declared scope, then never again); terra actual act, filter --out /tmp/invalid, goes through statiker_record.py:2752-2761 ARTIFACT_IN_REPO which consults NO containment scope, so terra exact act returns proceed in run 3 exactly as in run 2. Verified at the desk: 2 mentions of containment in the record tool against 27 in the git tool. SECOND HALF: §6a rests on codex sandbox pinning WRITES while this run launcher is -s danger-full-access, which run 2 §15d calls NO sandbox, and §6a residual is scoped to READS so nothing covers the class that fired in the field. Record: docs/audits/2026-09-14-narrow-round-run3-contract.md, B3
+goal: general-maintenance
+write-set: dev-notes/scoped-run-3-preregistration.md,plugin/skills/statiker/scripts/statiker_record.py,tools/test_statiker_record.py
+done-criterion: the pre-registration restates terra inclusion on what the gate ACTUALLY does rather than on a detection it does not perform, corrects §6a sandbox premise against -s danger-full-access, and carries terra run-2 outcome fairly (its stop was graded C5 CORRECT CONDUCT under the operator ruling, with a column-3 pass, which the arms section omitted while reading the outcome as unqualified failure). SEPARATELY and only if the design question below is answered yes: a runtime authorized-path check on --out lands with a red-first arm whose RED is terra own act, filter --out to a path outside the declared scope, and whose MUST-NOT-MOVE is an --out inside the declared scope staying silent
+evidence: Fresh-context narrow round, 2026-09-14, BLOCKING B3, both halves verified at the code by the desk rather than accepted from the report. The field instance is st-64 amended-evidence, the FIRST ACTUAL OUT-OF-BOUNDARY WRITE. The fairness half is grading §5 C5 row plus the operator ruling of 2026-09-13
+blocked-by: decision whether the record tool gains a runtime authorized-path check on its artifact --out or whether containment stays a preflight-only satisfiability question
