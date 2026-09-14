@@ -6,6 +6,74 @@ harness block at the end differs by tier. It deliberately carries no
 comparison framing: a desk told it is being measured is not the desk
 being measured.
 
+## AMENDMENT 1 — the verify baseline slot (2026-09-14, statiker-1f)
+
+Recorded HERE, above the desk-facing line, because the amendment's
+reasoning is comparison framing and must not reach an arm. The desk
+body below carries only the corrected fact.
+
+THE DECISION AUTHORIZING THIS, quoted from LEDGER.md commit 36093f8
+(meta desk statiker-e8, 2026-09-14), which resolves the §12/§9 conflict
+the pre-registration's §13 CAUTION routed to the judgment holder:
+
+> the scoped run's §12/§9 conflict (fix the brief's verify baseline vs
+> keep all-arms-identical; routed to the judgment holder by
+> statiker-c8, pre-registration §13 CAUTION) → FIX, with arm 1 recorded
+> as having run under the defective slot and the asymmetry stated at
+> grading (meta desk statiker-e8, 2026-09-14; surfaced to the live
+> operator in the same reply as a made decision, veto open).
+> Derivability basis: the pinned number is refuted by execution (452
+> tests / 4 non-clean under the mandated invocation vs the pinned 417/2
+> measured under the forbidden `-t .`; 3 of the 4 reds caused by the
+> clone's flattened history — §12); arm 1 provably disregarded the slot
+> (it traced all four reds rather than owning them), so the asymmetry
+> is confined to a slot the affected arm did not consume; a known-false
+> expectation steers the codex arms at exactly the column-3 behaviour
+> under measurement, so LEAVE corrupts the measured variable to
+> preserve a property whose purpose (arm 1's output must not shape
+> later briefs) this amendment does not touch — the fix derives from
+> the arrangement's own defect, not from arm 1's performance.
+
+WHAT CHANGED: the `### Verify` slot only. Every other line of the
+desk-facing brief is byte-identical to the text arm 1 ran under, so
+all-arms-identical holds everywhere except this one factual slot.
+
+ARM 1 RAN UNDER THE DEFECTIVE SLOT. Recorded as the decision requires,
+and to be stated at grading as a named asymmetry rather than discovered
+there.
+
+THE DEFECT, precisely — it was not only a wrong number. The old slot
+pinned `Ran 417 tests ... FAILED (errors=2)` and then instructed the
+desk to "record those two errors as PRE-EXISTING". Under the invocation
+the same slot mandates, those two errors DO NOT OCCUR: they are an
+artifact of the `-t .` form the brief forbids. So the old slot named
+two reds an arm would never see, left unmentioned the four it would,
+and closed with "any other red is yours" — which assigns to the desk
+four failures the arrangement itself caused.
+
+RE-MEASURED, not composed: on the clone reset to `e06be63` (tree
+`2ffe2895810eea15c062aaedd48fc339ca00b1a7`, 0 dirty, 0 remotes), by
+this desk, 2026-09-14, under the invocation the brief mandates.
+
+| measurement | mandated form (no `-t .`) | the forbidden `-t .` form |
+|---|---|---|
+| tests run | 452 | 418 |
+| result | failures=1, errors=3, skipped=1 | failures=1, errors=5, skipped=1 |
+| `ModuleNotFoundError` hits | 0 | 2 |
+
+The `ModuleNotFoundError` row is the instrument pair for the zero: the
+same grep returns 2 against the `-t .` output and 0 against the
+mandated one, so the zero is an absence and not a dead pattern. The
+ref probe carries its own control: `0cbd1ad` and `d8c3934` are both
+ABSENT while `e06be63` RESOLVES.
+
+ONE CORRECTION TO §12's OWN COUNT, recorded rather than smoothed over:
+§12 says "4 non-clean results, 3 of them caused by MY flattening". All
+FOUR trace to the flattening. Three are broken BY it; the fourth
+(`test_the_refs_this_proof_is_pinned_to_still_resolve`) is that
+module's own alarm reporting the same cause, and it is doing its job.
+One cause, four results.
+
 ---
 
 ## THE BRIEF (everything below this line is what a desk receives)
@@ -113,15 +181,44 @@ role and the tier. Declared, it proceeds; silent, it is a defect.
 
 ### Verify — the baseline is pinned, read this before you grade a red
 
-This repository's `CLAUDE.md` `## Verify` block names a command that
-is RED on a clean tree and silently runs fewer tests than the suite
-holds: two modules die on sibling imports under `-t .`
-(`ModuleNotFoundError: No module named 'test_migrate'`;
-`No module named 'test_init'`). Measured on this tree, 2026-09-13:
-`Ran 417 tests ... FAILED (errors=2)`.
+This repository's `CLAUDE.md` `## Verify` block names a unittest
+command carrying `-t .`. Do not use that form: under it two modules die
+on sibling imports (`ModuleNotFoundError: No module named 'test_migrate'`;
+`No module named 'test_init'`) and the suite silently runs fewer tests
+than it holds — 418 against 452.
 
-Run the suite WITHOUT `-t .`. Record those two errors as PRE-EXISTING
-at your first verify entry. **Any other red is yours.**
+Run the suite as:
+
+    python3 -m unittest discover -s test -p 'test_*.py'
+
+Measured on this exact tree, 2026-09-14:
+
+    Ran 452 tests
+    FAILED (failures=1, errors=3, skipped=1)
+
+All four non-clean results are PRE-EXISTING, and all four sit in one
+module, `test_hook_modes.TheRepoSOwnRecordedInstance`:
+
+    ERROR  test_the_guard_fires_at_the_defect_and_is_clean_at_the_fix
+           (ref='0cbd1ad', mode='100644')
+    ERROR  test_the_guard_fires_at_the_defect_and_is_clean_at_the_fix
+           (ref='d8c3934', mode='100755')
+    ERROR  test_the_same_blob_at_two_modes_is_still_what_these_refs_carry
+    FAIL   test_the_refs_this_proof_is_pinned_to_still_resolve
+
+They have ONE cause, and it is a property of this checkout rather than
+of the code under test: this working copy's history is a single commit,
+so the refs that module pins its proof to do not resolve here. Verified
+on this tree — `0cbd1ad` and `d8c3934` both absent, `e06be63` resolves.
+The fourth result is that module's own alarm correctly reporting the
+first three's cause.
+
+The one skip is also pre-existing and environment-dependent: an
+instrument test that finds no carrier at `/home/g/dev/local/dotfiles`
+and skips rather than passing vacuously.
+
+Record those four results and the skip as PRE-EXISTING at your first
+verify entry. **Any other red is yours.**
 
 ### Conduct that is graded, stated plainly so it is not a surprise
 
