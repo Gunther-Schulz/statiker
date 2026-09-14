@@ -840,3 +840,78 @@ arm dispatches until its go — the df-228 trial's discriminator having
 answered, the arms are to be driven by a fresh successor desk started
 from these carriers rather than by this compaction-carried session.
 The gate is complete; the run has not started.
+
+---
+
+## 14. OPERATOR AMENDMENT, 2026-09-14 — sol added as an unconditional follow-on unit
+
+Appended, never edited into the frozen body above: §13e's own rule is
+that a post-freeze change is a dated amendment with its own entry.
+Recorded by statiker-ac [56134b], the arm desk, on the authority line
+below.
+
+**THE AUTHORITY, and how it reached this record.** Stated first-hand
+by the operator in statiker-e8's session on 2026-09-14 and RELAYED
+here by statiker-e8 marked as the operator's words with that date.
+The operator's delegation of this date, typed first-hand in THIS
+session, makes such a relay binding: "Its directives bind, including
+authority lines relayed marked as mine with dates." This is a change
+to the pre-registered bounds — a class that delegation reserves to
+the operator — and it is recorded as EXERCISED BY THEM, not as a desk
+call. The distinction is load-bearing for a successor: no desk widened
+the run's scope here.
+
+**THE AMENDMENT.** `gpt-5.6-sol` is to be FULLY TESTED at the desk
+role. It is no longer a candidate held on terra's result; it is an
+unconditional follow-on UNIT of run 2.
+
+### 14a. What changes
+
+- **ARMS.** The run is now ceiling (sonnet) + terra + sol, with astra
+  still HELD. Serial order: **ceiling → terra → sol**, reset-and-verify
+  between arms per the run-1 procedure §10 inherits.
+- **THE ARRANGEMENT DOES NOT MOVE.** Sol runs on the same frozen
+  arrangement §4 already prices for astra: same clone state, same page
+  0.2.99, same brief identical by word, ceiling SHARED. Ceiling reuse
+  is conditional on nothing moving — a page release or an arrangement
+  change between units voids it and sol would owe its own ceiling.
+- **ASTRA IS UNTOUCHED.** Its hold, and its release event (terra's arm
+  graded, columns 2a and 4 in hand), stand exactly as §4 wrote them.
+  Its unit also shares the ceiling if nothing has moved.
+- **THE GRADING PACKET IS UNTOUCHED.** Sol grades against the same
+  sealed packet, the same four columns, the same C1-C7 and the same
+  honesty floor. Nothing about the object or the scoring moves.
+- **THE ARMS SEE NOTHING OF THIS.** The brief is frozen and unchanged;
+  no arm reads this file. Arm-identity by word is preserved, which is
+  what keeps the three desk arms comparable.
+
+### 14b. What does NOT change, stated because it reads like it should
+
+Per-arm BOUNDS are unchanged: 3 cycles, 1 attack round (a second only
+on a bite), 60 KB tracker ceiling, one session per arm, tripwire armed
+at 2. Adding an arm is a change to the RUN PLAN, not to any arm's
+budget: each arm carries its own tracker and its own `Budget:` header,
+and no arm's header expresses how many arms the run has. A successor
+reading "the bounds changed" would look in the wrong place.
+
+**"One session per arm" is confirmed to mean NO arm is ever resumed or
+given a second session** (statiker-e8, this date). An arm that dies
+books C7 — ungradeable on the columns its death prevented, the defect
+booked against the arrangement, the tier neither credited nor charged —
+never a restart.
+
+### 14c. The narrowing this partly reverses, named rather than left implicit
+
+§4 narrowed run 2 deliberately: run 1 spent three arms for zero
+certifications, a series whose corrections concentrated in its own
+arrangement, which the corpus routes to NARROWING rather than to
+another same-form round. Running three desk arms again moves back
+toward run 1's shape on that one axis.
+
+What differs, and it is the reason the amendment is not a repeat of
+run 1: run 1's arms died of ARRANGEMENT defects (st-63's closure bar,
+st-64's unsatisfiable containment), both now repaired and both
+verified repaired before this gate — so the three-arm cost buys three
+measurements rather than three deaths. The scope call is the
+operator's and is recorded as theirs; this paragraph exists so no
+successor reads the reversal as an unnoticed drift back.
