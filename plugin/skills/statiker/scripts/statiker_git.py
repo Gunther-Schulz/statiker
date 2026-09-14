@@ -1277,11 +1277,44 @@ def cmd_preflight(repo, args):
                hooks_path=hooks_path_field,
                out_of_repo_required=out_of_repo_required)
 
+    # checkpoint review 2026-09-14, M3: an empty declared scope
+    # resolved silently to the repo root (_abs_repo_relative joins "."
+    # onto the top) — a coercion nobody asked for, echoed verbatim into
+    # a verdict the desk books as fact.
+    if any(not c for c in args.containment):
+        raise Halt("USAGE_ERROR",
+                   error="--containment value must not be empty")
+
     # three containment axes, ALL checked — every failing axis
     # collected before the verdict, never a first-fail halt, so the
     # desk gets one round rather than one hold per axis.
-    scope_reals = [os.path.realpath(_abs_repo_relative(str(repo.top), c))
+    #
+    # B1 (checkpoint review 2026-09-14, BLOCKING): the worktree-parent
+    # axis below tests each declared scope for ITSELF via
+    # enclosing_repo, which already composes the real-and-as-named
+    # pair Repo.outside uses — so it takes the AS-NAMED form
+    # (scope_named), never a pre-realpathed one: feeding it an
+    # already-resolved path collapses enclosing_repo's own named_anc
+    # walk onto the real one, losing the as-named half exactly the way
+    # Repo.outside never does. The other two axes are must-be-INSIDE
+    # checks and stay on the real form (scope_reals) — unchanged.
+    #
+    # S2: wherever a scope's real form differs from its named form,
+    # the divergence is noted in RESOLVED — finish() attaches it as
+    # `resolved_from` (line ~175), the same convention rel() and
+    # outside() already keep for an acceptance made on a resolved
+    # path; an exemption here would be a special case with nothing
+    # behind it.
+    scope_named = [_abs_repo_relative(str(repo.top), c)
                   for c in args.containment]
+    scope_reals = []
+    for named in scope_named:
+        real = os.path.realpath(named)
+        if real != named:
+            note = {"named": named, "real": real}
+            if note not in RESOLVED:
+                RESOLVED.append(note)
+        scope_reals.append(real)
 
     axes = []
     if not hooks_inside and not _within_any(hooks_real, scope_reals):
@@ -1295,7 +1328,7 @@ def cmd_preflight(repo, args):
                          "note": f"the {label} namespace base sits "
                                  f"outside every declared containment "
                                  f"scope"})
-    if not any(enclosing_repo(s) is None for s in scope_reals):
+    if not any(enclosing_repo(n) is None for n in scope_named):
         axes.append({
             # SET-LEVEL axis: no single declared path is the offender —
             # the scope as a whole admits no legal parent. `path` is

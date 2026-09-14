@@ -17,6 +17,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 SCRIPT = REPO_ROOT / "plugin" / "skills" / "statiker" / "scripts" / "statiker_git.py"
@@ -514,12 +515,144 @@ class TestPreflightContainment(GitFixture):
         self.assertEqual(v["verdict"], "PREFLIGHT_CONTAINMENT_HOLD", v)
         self.assertEqual(v["route"], "surface", v)
 
+    # -- B1: the worktree-parent axis loses the as-named half on realpath-
+    # only input (checkpoint review 2026-09-14, BLOCKING). A symlinked
+    # scope whose target sits outside every repo used to clear the axis
+    # on its REAL form alone while `worktree-add` still refuses any path
+    # under it via the AS-NAMED walk (Repo.outside's own probe) — the
+    # discriminating pair the reviewer executed, reproduced here as an
+    # arm plus its control.
+
+    def test_B1_worktree_parent_axis_fires_through_symlinked_scope(self):
+        outside = Path(self._tmp.name) / "b1-outside"
+        outside.mkdir()
+        link = self.repo / "link-out"
+        link.symlink_to(outside)
+        v = self.verdict(self.tool(
+            "preflight", "--tracker", self.TRACKER,
+            "--containment", str(link)))
+        self.assertEqual(v["verdict"], "PREFLIGHT_CONTAINMENT_HOLD", v)
+        self.assertIn("worktree-parent", self.axis_names(v), v)
+
+    def test_B1_control_genuinely_outside_dir_clears_worktree_parent(self):
+        # the control that proves the fix DISCRIMINATES rather than just
+        # fires more often: no symlink anywhere, so real and as-named
+        # agree and the scope legitimately clears the axis, at base and
+        # after the fix alike.
+        outside = Path(self._tmp.name) / "b1-control-outside"
+        outside.mkdir()
+        v = self.verdict(self.tool(
+            "preflight", "--tracker", self.TRACKER,
+            "--containment", str(outside)))
+        self.assertNotIn("worktree-parent", self.axis_names(v), v)
+
+    # -- S1: _within_any's prefix-match defect has no arm (SUBSTANTIVE).
+    # Shipped code is correct (startswith(s + os.sep)); this pins it
+    # against a sibling directory sharing the scope's own name as a
+    # prefix, which a bare startswith(s) would wrongly accept.
+
+    def test_S1_hooks_axis_rejects_sibling_directory_sharing_prefix(self):
+        base = Path(self._tmp.name) / "s1-prefix"
+        base.mkdir()
+        scope = base / "scope"
+        scope.mkdir()
+        evil = base / "scope-evil"
+        evil.mkdir()
+        self.git("config", "core.hooksPath", str(evil))
+        v = self.verdict(self.tool(
+            "preflight", "--tracker", self.TRACKER,
+            "--containment", str(scope)))
+        self.assertEqual(v["verdict"], "PREFLIGHT_CONTAINMENT_HOLD", v)
+        self.assertIn("hooks-path", self.axis_names(v), v)
+
+    # -- S2: realpath acceptance goes unrecorded (SUBSTANTIVE). A scope
+    # declared through a symlink that clears an axis must carry
+    # `resolved_from` with both spellings — the same convention rel()
+    # and Repo.outside already keep, via the shared RESOLVED list
+    # finish() auto-attaches.
+
+    def test_S2_resolved_from_recorded_for_symlinked_scope_clearing_axis(self):
+        # cover the namespace axes too, so the symlinked scope's own
+        # acceptance is the only thing left to prove — the same
+        # full-coverage shape test_unchecked_axes_stated_on_an_ok_with_
+        # containment_declared already uses.
+        base = self.verdict(self.tool(
+            "preflight", "--tracker", self.TRACKER))
+        seals = base["out_of_repo_required"]["seals"]
+        artifacts = base["out_of_repo_required"]["artifacts"]
+        hooks_outside = Path(self._tmp.name) / "s2-hooks-outside"
+        hooks_outside.mkdir()
+        self.git("config", "core.hooksPath", str(hooks_outside))
+        link = Path(self._tmp.name) / "s2-link"
+        link.symlink_to(hooks_outside)
+        v = self.verdict(self.tool(
+            "preflight", "--tracker", self.TRACKER,
+            "--containment", str(link),
+            "--containment", seals,
+            "--containment", artifacts))
+        self.assertEqual(v["verdict"], "PREFLIGHT_OK", v)
+        named_expected = os.path.normpath(str(link))
+        real_expected = os.path.realpath(named_expected)
+        self.assertNotEqual(named_expected, real_expected,
+                            "fixture premise: the two spellings must differ")
+        resolved = v.get("resolved_from", [])
+        match = [r for r in resolved if r.get("named") == named_expected]
+        self.assertEqual(len(match), 1, v)
+        self.assertEqual(match[0]["real"], real_expected, v)
+
+    # -- M3: an empty --containment value silently meant the repo root
+    # (MINOR) — reject it instead.
+
+    def test_M3_empty_containment_value_is_usage_error(self):
+        p = self.tool(
+            "preflight", "--tracker", self.TRACKER, "--containment", "")
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "USAGE_ERROR", v)
+        self.assertEqual(p.returncode, 3, v)
+
+    # -- M4: the repo-root-relative convention has no arm (MINOR) —
+    # already-correct behaviour, pinned as a regression guard.
+
+    def test_M4_containment_dot_resolves_to_repo_root(self):
+        v = self.verdict(self.tool(
+            "preflight", "--tracker", self.TRACKER,
+            "--containment", "."))
+        self.assertEqual(v["verdict"], "PREFLIGHT_CONTAINMENT_HOLD", v)
+        self.assertIn("worktree-parent", self.axis_names(v), v)
+
+    # -- M5: linked-worktree hooks_path.inside is False by construction
+    # (MINOR) — already-correct, documented rather than changed.
+
+    def test_M5_linked_worktree_hooks_path_reports_outside_and_worktree_true(self):
+        wt = Path(self._tmp.name) / "m5-wt"
+        self.git("worktree", "add", "--detach", str(wt), "HEAD")
+        p = subprocess.run(
+            [sys.executable, str(SCRIPT), "preflight",
+             "--tracker", self.TRACKER],
+            cwd=wt, env=self.env, capture_output=True, text=True,
+            timeout=60)
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "PREFLIGHT_OK", v)
+        self.assertTrue(v["worktree"], v)
+        self.assertFalse(v["hooks_path"]["inside"], v)
+        self.assertTrue(v["hooks_path"]["path"].endswith("hooks/pre-commit"), v)
+
 
 class TestEnclosingRepoHelper(unittest.TestCase):
     """enclosing_repo(path) — the containment predicate factored out of
     Repo.outside so a containment SCOPE path (never a provisioning
     path's parent) can be tested for itself. Function-level red/green,
-    same certification style as TestPureFunctions."""
+    same certification style as TestPureFunctions.
+
+    M2 (checkpoint review 2026-09-14): this class calls enclosing_repo
+    IN-PROCESS, and the git subprocesses it spawns (git_toplevel,
+    git_validated_dot_git via textual_repo_top) pass no `env` of their
+    own — unlike every other class here, which drives the tool as a
+    SUBPROCESS already launched under hermetic_env(). Left alone they
+    inherit this test process's real environment and this machine's
+    real git config. `self.enclosing_repo()` patches os.environ for the
+    duration of the call so this class is hermetic like every other —
+    test-side only, no `env` parameter added to the payload helper."""
 
     def setUp(self):
         sys.path.insert(0, str(SCRIPT.parent))
@@ -531,20 +664,24 @@ class TestEnclosingRepoHelper(unittest.TestCase):
         sys.path.remove(str(SCRIPT.parent))
         self._tmp.cleanup()
 
+    def enclosing_repo(self, path):
+        with mock.patch.dict(os.environ, hermetic_env(), clear=True):
+            return self.m.enclosing_repo(path)
+
     def test_a_repo_directory_reports_itself_as_enclosing(self):
         d = Path(self._tmp.name) / "r"
         d.mkdir()
         env = hermetic_env()
         subprocess.run(["git", "init", "-q", "-b", "main"], cwd=d,
                        env=env, check=True)
-        result = self.m.enclosing_repo(str(d))
+        result = self.enclosing_repo(str(d))
         self.assertIsNotNone(result, "a repo's own directory encloses itself")
         self.assertEqual(os.path.realpath(result), os.path.realpath(str(d)))
 
     def test_a_plain_directory_reports_none(self):
         d = Path(self._tmp.name) / "plain"
         d.mkdir()
-        self.assertIsNone(self.m.enclosing_repo(str(d)))
+        self.assertIsNone(self.enclosing_repo(str(d)))
 
     def test_a_subdirectory_of_a_repo_reports_the_repo_top(self):
         d = Path(self._tmp.name) / "r2"
@@ -553,7 +690,7 @@ class TestEnclosingRepoHelper(unittest.TestCase):
         env = hermetic_env()
         subprocess.run(["git", "init", "-q", "-b", "main"], cwd=d,
                        env=env, check=True)
-        result = self.m.enclosing_repo(str(sub))
+        result = self.enclosing_repo(str(sub))
         self.assertIsNotNone(result)
         self.assertEqual(os.path.realpath(result), os.path.realpath(str(d)))
 
