@@ -1206,12 +1206,19 @@ class TestSkillSectionPointersResolve(unittest.TestCase):
                 f"{(name, phrase)}")
 
     def test_generic_pass_dedups_a_dangling_pointer_occurring_twice(self):
-        # st-45 dedup nit: the generic branch's dedup runs against
-        # `found`, which the branch itself now appends into mid-loop
-        # — a dangling pair occurring twice verbatim on the page must
-        # still land in `unresolved` exactly once, not twice (and not
-        # zero times: its own duplication is what pushes its
-        # page-wide phrase count above the >1 threshold).
+        # M3 (arc-close review, 2026-09-14): RE-LABELED — this is a
+        # regression guard for the `generic_seen` dedup structure,
+        # not evidence of a caught defect. Measured green against
+        # the PRE-fix predicate too (the old branch already deduped
+        # via `if (name, phrase) in found`), so it does not
+        # discriminate the st-45 dedup change it was originally
+        # framed as proving. Kept because it still pins real
+        # behavior worth guarding: a dangling pair occurring twice
+        # verbatim on the page must land in `unresolved` exactly
+        # once, not twice (and not zero times: its own duplication
+        # is what pushes its page-wide phrase count above the >1
+        # threshold) — `generic_seen` is what a future refactor of
+        # this branch could silently break.
         text = (SKILL.read_text()
                 + '\n(Bogus Name, "a fabricated phrase repeated twice")\n'
                 + '\n(Bogus Name, "a fabricated phrase repeated twice")\n')

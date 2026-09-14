@@ -1840,6 +1840,27 @@ class TestES11GitResidue(GitFixture):
         self.assertIn("symbolic link", v["error"])
         self.assertNotEqual(p.returncode, 0)
 
+    def test_add_failed_error_field_sheds_the_literal_pathspec_magic(self):
+        # M2 (arc-close review, 2026-09-14): git echoes the wrapped
+        # pathspec back inside its own error text — dry_run_add's
+        # `:(literal)` magic (literal_pathspec) rode into the
+        # ADD_FAILED verdict's free-text `error` field verbatim,
+        # measured as "fatal: pathspec ':(literal)linkdir/x.txt' is
+        # beyond a symbolic link". `path` already carries the clean
+        # spelling and no handshake field is touched, but the desk
+        # books the verdict line verbatim into the tracker, so a
+        # spelling the desk never typed would enter the record.
+        (self.repo / "realdir").mkdir()
+        (self.repo / "realdir" / "x.txt").write_text("run content\n")
+        os.symlink("realdir", self.repo / "linkdir")
+        self.write(self.TRACKER, self.GATE_CLEAN_TRACKER)
+        p = self.tool("lock-check", "--tracker", self.TRACKER,
+                      "--lock-set", "linkdir/x.txt")
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "ADD_FAILED")
+        self.assertNotIn(":(literal)", v["error"], v)
+        self.assertIn("linkdir/x.txt", v["error"], v)
+
     def test_preflight_health_read_halts_on_a_corrupt_index(self):
         # the attacker's GIT_ERROR recipe: at base preflight passed
         # CLEAN over a corrupt index (every read check=False) and the

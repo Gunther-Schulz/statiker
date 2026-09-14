@@ -1621,7 +1621,7 @@ exists RE-EXECUTABLY (Implementation's recorded forms — a committed
 red arm or the red run's pasted output) — NOT EXERCISED otherwise, a
 docstring-only red run being formally compliant and unattackable
 short of this leg. The brief demands the same statement for
-every F/D/R line appended after the last resolved A-line:
+every F/D/R line appended after the last A-line:
 whether its scope opener matches its body kind — a
 `record:`-scoped or `unit U<k>`-scoped line whose body decides
 a design question or justifies a boundary is a FINDING, not a
@@ -1671,7 +1671,10 @@ which need none (The attack); an attacker's own probe scratch
 belongs in its
 scratchpad (the read-only tail's provision), never the repo. Model per
 `clippy.config/models` (`verify:` class) when present, else the
-parent model; an unreadable models file halts the dispatch, the
+parent model — resolving only entries under the harness's own
+ecosystem, the same st-62 ecosystem-resolution rule (The attack)
+that binds tier resolution generally, not the attack tier alone;
+an unreadable models file halts the dispatch, the
 parse error recorded as a finding.
 The certification duty binds this resolution exactly as it binds
 the attack's (The attack): the resolved tier is checked against the

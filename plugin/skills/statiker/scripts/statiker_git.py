@@ -809,6 +809,16 @@ class Repo:
         if p.returncode != 0:
             err = (p.stderr.decode(errors="replace")
                    + p.stdout.decode(errors="replace")).strip()
+            # M2 (arc-close review, 2026-09-14): git echoes the
+            # pathspec back inside its own error text, so the
+            # `:(literal)` magic this tool adds at construction
+            # (literal_pathspec) rides into the free-text `error`
+            # field verbatim — a spelling the desk never typed,
+            # brushing the page's own byte policy once the desk
+            # books the verdict line into the tracker. `path=rel`
+            # already carries the clean spelling; strip the magic
+            # from `error` too rather than mint a second one.
+            err = err.replace(":(literal)", "")
             raise Halt("ADD_FAILED", path=rel, error=err)
 
     def commit_with_retry(self, message, pathspec):
@@ -1176,6 +1186,12 @@ def cmd_preflight(repo, args):
     # started on a repo no later seam could commit to. Strictness is
     # this read's alone — the ignore and tracked reads keep their
     # documented exit semantics, where a non-error exit is an answer.
+    # Unwrapped by measurement, like is_ignored's and in_head's own
+    # exemptions above: this read only checks the exit code (a
+    # nonzero here IS the corrupt-index signal), and `ls-files -z --
+    # 'a*.txt'` exits 0 whether or not the glob matches, so a bare
+    # pathspec here cannot sweep extra paths INTO an answer nothing
+    # reads.
     repo.git("ls-files", "-z", "--", tracker_rel)
     ops = repo.ops_in_progress()
     branch, worktree = repo.branch_state()          # E-H: field, not gate
