@@ -10363,12 +10363,15 @@ temp tree silently reddens filter, worktree and seal-path together, and
 a codex-only run would have died at forcing point 3 with a cause nobody
 would look for.
 
-### ADDENDUM 2026-09-14 (statiker-1f) — THREE MORE IN ONE DESK-DAY, and
+### ADDENDUM 2026-09-14 (statiker-1f) — THREE MORE IN ONE DESK-DAY,
+### one of which produced a fourth finding downstream, and
 ### the class generalizes past controls to every instrument
 
-Merged here rather than minted as siblings: same class, three costumes.
-All three are MINE, on one desk, in one day — which is the fire-rate
-datum, not the individual slips.
+Merged here rather than minted as siblings: same class, three costumes
+plus one PROPAGATION. All are MINE, on one desk, in one day — which is
+the fire-rate datum, not the individual slips. The list is numbered 1-4
+but instance 2 is what instance 4 caused, not a separate failure; saying
+so is the difference between a count and an inflated one.
 
 1. THE ABSENCE CLAIM. I searched two locations for arm 1's transcript
    (this session's scratchpad, its task-output dir), found nothing, and
@@ -10379,14 +10382,18 @@ datum, not the individual slips.
    looked and silent about everywhere else, and the search's REACH was
    never stated.
 
-2. THE FIXTURE THAT STOPPED TESTING. st-45's criterion names three
-   prose cases that must NOT fire its check. Recovered from the session
-   records and re-run: all three now pass with NO fix at all, because
-   two of their names ("Implementation", "The attack") have since
-   become real headings, which routes them to the resolving path. The
-   criterion is now vacuously satisfiable. Nothing failed; the fixture
-   simply stopped exercising the thing it was built for — and it would
-   have read as a green control for whoever next built against it.
+2. THE DERIVED FALSE FINDING — kept in the list, but it is NOT a
+   fourth independent instance: it is what instance 4 PRODUCED, and
+   that propagation is the point. From the (wrongly) recovered cases I
+   concluded "st-45's controls have gone inert, a fixture that stopped
+   testing", delivered it to the judgment desk, and it shaped that
+   desk's disposition before the correction went out. The conclusion
+   was sound reasoning over a corrupt input: the three items really do
+   pass without a fix — because they are the page's own resolved
+   pointers, which is not evidence about the criterion's controls at
+   all. An instrument error one layer down does not announce itself as
+   one layer up; it arrives as a finding with clean reasoning attached,
+   and the reasoning is what gets checked.
 
 3. THE DEAD RED-FIRST INSTRUMENT. Verifying a lane's fix, I extracted
    the pre-fix implementation to a scratch dir and ran it against the
@@ -10397,10 +10404,31 @@ datum, not the individual slips.
    my narration of it. Re-run with the sibling modules present, the red
    is real (exit 2 CLOSURE_ABSENT vs exit 0 UNIT_DISPATCHABLE).
 
+4. THE EXTRACTOR THAT SELECTED THE WRONG POPULATION — added later the
+   same day, and it happened WHILE THIS ENTRY WAS BEING WRITTEN, which
+   is the sharpest thing in it. To recover st-45's three control cases
+   I ran a `(Name, "phrase")` regex over the review transcript, got
+   exactly three distinct hits, and reported them recovered. They were
+   not the reviewer's additions: they were THREE OF THE PAGE'S OWN FOUR
+   REAL POINTERS, present in the transcript because the page text was
+   in it. The count matching the expected three is what sold it. The
+   discriminator I never ran is one line — is this already ON the page?
+   Run afterwards: 4 of 4 transcript occurrences are page content, ZERO
+   are candidate additions. So the controls were never recovered, and
+   the derived claim that they were VACUOUS was unfounded — though the
+   defect class is separately confirmed live by three FRESH prose cases
+   against a known positive.
+   Its own class within the class: Grounding already names it — a
+   self-built extractor is the INSTRUMENT, and its BOUNDARY CHOICE is
+   the basis, never its output. The boundary here was "matches the
+   pointer shape", when the question was "was ADDED by the reviewer".
+   The judgment desk had already acted on the false version before the
+   correction went out.
+
 THE UNIFYING SHAPE, which widens this entry from CONTROLS to every
 instrument: an instrument that never ran, a search that could not
-reach, and a control that no longer varies all return EXACTLY what a
-true negative returns. The parent entry's discriminator generalizes —
+reach, a control that no longer varies, and an extractor that selected
+the wrong population all return EXACTLY what a true negative returns. The parent entry's discriminator generalizes —
 "state what the control's variable actually resolved TO" becomes: the
 instrument is shown live on a KNOWN POSITIVE, or its resolved reach is
 stated, BEFORE its zero is read as a finding. Cost is one command in
