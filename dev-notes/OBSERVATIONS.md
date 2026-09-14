@@ -10363,6 +10363,63 @@ temp tree silently reddens filter, worktree and seal-path together, and
 a codex-only run would have died at forcing point 3 with a cause nobody
 would look for.
 
+### ADDENDUM 2026-09-14 (statiker-1f) — THREE MORE IN ONE DESK-DAY, and
+### the class generalizes past controls to every instrument
+
+Merged here rather than minted as siblings: same class, three costumes.
+All three are MINE, on one desk, in one day — which is the fire-rate
+datum, not the individual slips.
+
+1. THE ABSENCE CLAIM. I searched two locations for arm 1's transcript
+   (this session's scratchpad, its task-output dir), found nothing, and
+   wrote "UNRECOVERABLE ... no copy reached disk" into a DELIVERED
+   record. Both transcripts were on disk the whole time, in the
+   harness's own project directory under the dead parent session.
+   Refuted by a peer's probe, not by me. The zero was true of where I
+   looked and silent about everywhere else, and the search's REACH was
+   never stated.
+
+2. THE FIXTURE THAT STOPPED TESTING. st-45's criterion names three
+   prose cases that must NOT fire its check. Recovered from the session
+   records and re-run: all three now pass with NO fix at all, because
+   two of their names ("Implementation", "The attack") have since
+   become real headings, which routes them to the resolving path. The
+   criterion is now vacuously satisfiable. Nothing failed; the fixture
+   simply stopped exercising the thing it was built for — and it would
+   have read as a green control for whoever next built against it.
+
+3. THE DEAD RED-FIRST INSTRUMENT. Verifying a lane's fix, I extracted
+   the pre-fix implementation to a scratch dir and ran it against the
+   real artifact to establish the red. It failed on `import
+   statiker_emit`, emitted NO verdict, exited 1 — and my own summary
+   line announced "the red, established by ME not by the lane"
+   regardless. Caught by re-reading the command's actual output against
+   my narration of it. Re-run with the sibling modules present, the red
+   is real (exit 2 CLOSURE_ABSENT vs exit 0 UNIT_DISPATCHABLE).
+
+THE UNIFYING SHAPE, which widens this entry from CONTROLS to every
+instrument: an instrument that never ran, a search that could not
+reach, and a control that no longer varies all return EXACTLY what a
+true negative returns. The parent entry's discriminator generalizes —
+"state what the control's variable actually resolved TO" becomes: the
+instrument is shown live on a KNOWN POSITIVE, or its resolved reach is
+stated, BEFORE its zero is read as a finding. Cost is one command in
+each of the three cases above.
+
+THE COSTUME THAT IS NEW HERE, and it is the reason #1 shipped: a false
+absence rode as a CONFESSED LIMITATION ("unrecoverable, stated rather
+than left as a gap"). That register reads as diligence, so it draws no
+scrutiny — a declared gap and a false absence claim are indistinguish-
+able in tone. The parent entry's "a control is BELIEVED by
+construction" has a sibling: a confessed limitation is believed by
+register.
+
+CAUGHT BY: (1) a peer's refutation probe — not self-caught; (2) a
+known-positive run I made a habit of after (1); (3) my own re-read of
+output against narration. The trend across the day is the point: after
+the first was caught FOR me, the next two were caught BY me, both
+before anything rested on them.
+
 No payload change rides this entry.
 
 ## 2026-09-13 — st-54 mint: the verify seam gains the attack seam's certification duty
@@ -10910,5 +10967,57 @@ evidence and must not be re-derived there), and the next maintenance lap
 against its named consuming seam. The MINT question — whether any of
 this becomes payload — belongs to that maintenance arc and is NOT
 settled here: this is an observation with a real incident, not a mint.
+
+No payload change rides this entry.
+
+## 2026-09-14 — a same-id fix is INERT until its structural sibling is
+## fixed too: a fire-rate datum for the corpus sibling-sweep clause
+
+INCIDENT + BASIS: maintenance-arc wave 1, lane sonnet-st63-record,
+commit 33913d8. st-63's authorized fix was scoped to ONE cited site —
+`design_amending`'s post-closing scan in statiker_record.py, with the
+operator's decision naming that behaviour and the item's own evidence
+citing that line range. Applied there alone, the fix did NOT clear the
+item's own red-first artifact: it swapped CLOSURE_ABSENT for
+CLOSURE_VOID, because a SIBLING gate a few lines below (the general
+post-closure scopeless scan feeding CLOSURE_VOID) carries the IDENTICAL
+per-line-not-per-id defect and independently bars the same D-lines. The
+sibling was invisible to the original investigation because
+design_amending's verdict fired FIRST in the control flow and masked
+it.
+
+WHY IT WOULD HAVE BEEN SILENT — and this is the part worth the entry: a
+fix landing at the cited site with its own passing unit tests reads as
+complete. The item's done-criterion ("clears after the fix") is what
+exposed the inertness, and only because that criterion was anchored to
+a REAL artifact rather than to the check's own fixtures. Against
+constructed fixtures alone the single-site fix would have gone green.
+
+THE CORPUS CLAUSE THIS IS A FIRE-RATE DATUM FOR, named so the fire-rate
+review finds it: Grounding's dependents/members rule, the SECOND firing
+moment added 2026-09-14 — "the members question has a second firing
+moment, at a defect-class FIND: the artifact carrying the found
+instance is itself the first member population. The same function or
+file is swept for siblings of the class before its enumeration closes,
+the found instance the sweep's positive control." This incident is that
+clause firing on its own terms, in a repo, within a day of its mint:
+the carrying FILE held the second member, the found instance was
+available as the sweep's positive control, and the enumeration had
+closed at one because a decision record named one.
+
+THE CHEAP SWEEP, executed by the lane and worth carrying as the
+clause's concrete form here: grep the PREDICATE SHAPE, not the symbol —
+`classify_scope` / `scope ==` occurrences lacking a `latest[...]`
+liveness guard. One cited site is never proof there is only one.
+
+GENERAL FORM: where a decision record names the site of a defect, it
+names where the defect was FOUND, never the extent of its class. A fix
+derived from the citation inherits the citation's enumeration, and the
+enumeration was somebody's reading rather than a sweep.
+
+CONSUMER: the corpus fire-rate review for the sibling-sweep clause
+(this is a datum, not a mint); and the next lane in this repo fixing a
+predicate-shaped defect from a cited line range. Drain seam: the
+retirement quota's pass.
 
 No payload change rides this entry.
