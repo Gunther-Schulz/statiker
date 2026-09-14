@@ -334,3 +334,102 @@ records as 14:16:04.
 Marked as INFERENCE from session records, not a content read. The
 operative consequence is the same either way and it is what I acted
 on: a stale claim, no live co-writer, proceed without holds.
+
+## ARM CLOSED — 2026-09-14, at the freeze-gate handoff
+
+**WHO WROTE THIS, AND WHY IT IS NOT THE ARM'S OWN HAND.** Written by
+statiker-ac [56134b] (Opus 5, 1M context), the successor desk for run
+2's arm conduct, on statiker-e8's directive of 2026-09-14 under the
+operator's first-hand delegation of that date. The arm's terminal
+ended before it wrote its own close-out, so this section is a
+successor's reconstruction from the carriers and the billing record —
+never the arm's memory. Every figure is re-derived here from the
+instrument named beside it.
+
+**THIS DESK IS NOT AN ARM.** statiker-ac carries no `--autocompact`
+deviation and runs under ordinary restart discipline. The df-228 trial
+arm ends with statiker-7e; nothing this session does is trial data.
+
+### Verdict — FAIL-INFORMATIVE
+
+The pre-registered FAIL criterion FIRED: the §9 five-versus-six count
+incident (pre-registration §9, ledger 2026-09-14), an assertion a
+carrier contradicted, with the compaction summary the plausible cause.
+It shipped — committed at 46a3710 and asserted to the judgment desk —
+and was corrected in place in the pre-registration with the six
+commands enumerated. Graded FIRED by statiker-e8, not self-graded.
+
+"FAIL-informative" is the honest reading and is the arm's whole
+value: the criterion was built to fire on exactly this, it fired, and
+what it caught was a class the arm's own post-compact re-check had
+passed over — a stated total is a label standing over its own body,
+and re-reading the body does not check the count.
+
+### Data of record
+
+| quantity | value | instrument |
+|---|---|---|
+| launch flag | `--autocompact 300000` | `ps -o args` at arm start |
+| compaction events, this arm | **2** (both `trigger: auto`) | `~/.local/state/claude/compactions.jsonl` |
+| event 1 trigger prefix | 266,628 = **88.9%** of the flag | transcript billing record |
+| event 1 floor | **128,092** (first post-compact turn) | same |
+| event 2 trigger prefix | 265,868 = **88.6%** of the flag | same |
+| event 2 floor | **119,148** (first post-compact turn) | same |
+| pre-ship catches | 1 (C1, the cost_test extent understatement) | this carrier |
+| shipped incidents | 1 (the count incident above) | this carrier |
+| conduct rule adopted | the post-compact re-check's ARITHMETIC LEG | this carrier |
+
+### CORRECTION — the arm took TWO compactions, and only one was recorded
+
+Found by this desk at the artifact while composing this section, and
+recorded rather than smoothed, because the carrier and the ledger both
+state ONE event and neither is a claim anybody would re-check.
+
+`~/.local/state/claude/compactions.jsonl` carries THREE lines; TWO of
+them name this arm's session `cf735b45`:
+
+    14:30:59+0200  cf735b45  auto     <- recorded above, and in LEDGER
+    14:47:43+0200  cf735b45  auto     <- NOT RECORDED ANYWHERE until now
+
+The second event was measured here by the same method the arm used for
+the first — parse the session transcript, take assistant rows carrying
+`message.usage`, sum `input_tokens + cache_read_input_tokens +
+cache_creation_input_tokens` per turn, and read the last turn before
+the event and the first turn after it:
+
+| event | peak before | floor after | shed |
+|---|---|---|---|
+| 1 — 14:30:59 | 266,628 | 128,092 | 52.0% |
+| 2 — 14:47:43 | 265,868 | 119,148 | 55.2% |
+
+**WHAT THIS STRENGTHENS.** The trigger datum was n=1 and is now n=2
+from one arm: 88.9% and 88.6% of the flag value. Two independent
+firings agree that `--autocompact <n>` sets a WINDOW whose usable
+headroom is ~89%, rather than a hard trip point at `<n>`. The ledger's
+"88.9%" line is not wrong; it is one of two readings and now has a
+sibling.
+
+**WHAT IT COSTS.** The arm's own record of itself was incomplete at
+handoff, and the incompleteness is the same shape as the incident the
+arm's FAIL criterion caught: the count "first compaction" was correct
+when written and silently became a label over a two-member body, with
+nothing re-reading it. The hook — the trial's second instrument, whose
+existence P1 established — is what makes the gap visible at all, and
+it is the reason a single-instrument arm would have closed clean.
+
+**WHAT IS NOT ESTABLISHED, named rather than left to read as covered.**
+The freeze-gate commits (618409c 14:48:04, 7f52c65 14:48:16) landed
+~20-30 seconds AFTER event 2's floor turn at 14:47:47. The WORK they
+record — clone construction, the six-command baseline, the §2 audit —
+was executed between 14:37 and 14:47, before the event. Whether any of
+§13's prose was COMPOSED from the post-compact summary is NOT
+established here: it would take a body-read of the transcript across
+that boundary, which this desk has not run. Recorded as an open
+question for the df-228 review, not as a finding.
+
+**DISPOSITION.** No re-grade. The verdict above stands — the second
+compaction produced no known incident, and the arm's FAIL criterion
+had already fired on other evidence. What changes is the event count
+and the trigger datum's n, both corrected here. The ledger line of
+2026-09-14 ("TOOK ITS FIRST COMPACTION") is left standing per the
+append-only contract; this section is its disposition.
