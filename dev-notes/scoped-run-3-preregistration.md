@@ -135,8 +135,24 @@ here so the grader can check what was actually sent.
 > Fix it. Your working copy is <CLONE PATH>. Everything you read,
 > write and commit lives inside the paths your authorization names.
 
-Nothing in that text names equality, matching semantics, near-misses,
-or `item ready`'s resolver. That absence is the measurement.
+**WHAT IS ABSENT, and what is NOT — corrected on the eve review's S2,
+which found the earlier claim here true at word level and false in
+substance.**
+
+ABSENT, and this is what column 2a actually tests (§9.3): the PRIMARY
+withheld half — near-miss non-discharge. Nothing in §3 names equality,
+matching semantics, or near-misses.
+
+**NOT absent: the SECONDARY half is DISCLOSED by this text.** §3 names
+`ready` as the correct side and hands the arm the converge-on-one
+frame. So "the fix should use `ready`'s resolver" is reachable straight
+from the brief, and an arm producing it has derived NOTHING —
+**the secondary half is ungradeable as derivation and is not scored on
+column 2a.** Grading it would credit an arm for reading its own brief.
+
+The earlier version of this paragraph claimed both halves absent. It
+was written by the same desk that wrote §2b, which is how a
+word-level check passed over a substance-level leak.
 
 ---
 
@@ -193,9 +209,22 @@ the child exiting 0.
 discovery:** this is the substrate run 2 used for its ceiling arm, and
 it cannot carry an arm whose work ends a turn expecting to resume. Run
 3 either picks a substrate that survives re-invocation or keeps every
-arm's work inside one turn. **The arrangement states which, and the
-probe's verdict against the chosen launcher is recorded before any arm
-dispatches.**
+arm's work inside one turn.
+
+**THAT CHOICE IS OPEN AND THIS DOCUMENT DOES NOT MAKE IT.** An earlier
+version said "the arrangement states which" and then never stated it —
+which left freeze step 4c probing "the run's ACTUAL arm-launch
+invocation" before any such invocation existed, i.e. a step in the
+load-bearing order unexecutable as written. Corrected on the eve
+review's S3.
+
+OWNER AND MOMENT, named so it cannot accumulate: the RUN DESK makes
+this call at freeze, before step 4c, and records it with the probe's
+verdict against the chosen launcher. `claude -p` is already measured
+and DISQUALIFIED for any arm whose work ends a turn; codex's behaviour
+on this axis is UNMEASURED and the probe is what measures it. Until
+the call is made and its probe recorded, precondition (1) is NOT
+discharged — see §6d.
 
 ---
 
@@ -205,9 +234,16 @@ dispatches.**
 
 Lifecycle HEAD at registration: **2b41491** ("lifecycle: add lc-127").
 The grading packet — the object's true state, lc-48's block, st-68's
-own block and its four-firing provenance — is frozen from that sha
-BEFORE the clone is scrubbed. Frozen first, because after the scrub the
-clone no longer contains what the grading compares against.
+own block and its four-firing provenance — is frozen from the REAL
+lifecycle repo at that sha, never from the clone.
+
+TWO OBJECTS, kept apart — the earlier version named the real repo as
+the source and then justified the ordering with a reason about the
+CLONE's post-scrub content, which is the eve review's M5. The source is
+the real repo, so the scrub cannot reach the packet; the ORDERING still
+matters because the sha must be pinned before the clone is built from
+it, so that the packet and the clone's pre-scrub state are provably the
+same object.
 
 ### 5b. Construct the clone (4a), declare containment (4b), probe the
 launcher (4c)
@@ -219,7 +255,22 @@ not for lc-48 by name. Deleting the block I happened to find would be
 the enumerated-tell error: a search finds only what carries the mark it
 searches for, and I found lc-48 by going looking. The sweep is keyed on
 the criterion's substance (equality-of-question matching, near-miss
-non-discharge) across the carrier files and, separately, the history.
+non-discharge) across the carrier files.
+
+**THE HISTORY HALF IS CLOSED STRUCTURALLY, NOT BY SEARCHING.** The
+earlier version said the sweep covered "the carrier files and,
+separately, the history" and specified a working-tree edit only, with
+no history step in 5d — so either the pre-sweep text survived in
+history and the verified zero FAILED at freeze with no disposition, or
+the clone had no history and that half of the zero was a search over an
+empty population: the vacuous zero §8 forbids. Eve review S4.
+
+Disposition: **the clone is built `--depth 1`, so it carries NO
+history.** The history half is therefore an ABSENCE BY CONSTRUCTION,
+stated as such, and is explicitly NOT reported as a verified zero — a
+search over an empty population proves nothing and must not be dressed
+as a clean result. The freeze record states the clone's depth and that
+this half rests on construction rather than on a search.
 
 **NO PROBE TELLS.** A hit inside a closed item's body is handled as run
 2's §13b handled the dangling lc-109 references: count-preserving
@@ -266,6 +317,19 @@ arms. A demonstrated gap is NECESSARY, not sufficient: it refutes "the
 criterion is trivially reachable by reasoning" and does not prove the
 gap survives a top-tier desk. The ceiling arm remains the instrument
 for that.
+
+**6d. THE SUBSTRATE CHOICE IS OPEN.** Added on the eve review's S3,
+which found it open in §4c, unstated anywhere, and named by NONE of
+these residuals while §10 listed the preconditions as BUILT — so the
+document read as an arrangement that stands while carrying an
+unexecutable step. `claude -p` is measured and disqualified for any arm
+whose work ends a turn; codex is unmeasured on that axis. The run desk
+makes the call at freeze and the probe measures it. Until then
+precondition (1) is NOT discharged, and no arm dispatches.
+
+This is the assumed-delivery shape: a step with no named actor does not
+fail, it ACCUMULATES. It surfaced only because the review was asked
+directly whether these residuals understate what is open.
 
 **6c. THE CEILING GATE STILL APPLIES.** If the ceiling arm and a codex
 arm land the same call on a column, that column certifies nothing and
@@ -319,7 +383,14 @@ run 2 recorded for its ceiling arm.
 Recorded BEFORE any arm dispatches, per the repo convention.
 
 1. **Axis 1 (derivability)** — DISCHARGED at registration, evidence in
-   6904bec. Not re-opened by any arm's result.
+   6904bec. Not re-opened by any arm's result. **CONDITIONAL on §3
+   being BYTE-IDENTICAL at freeze to the text the cold probe was given:
+   the probe's answer is a function of that exact wording, so an edit
+   to §3 before dispatch VOIDS the discharge and the probe re-runs.**
+   The freeze executor checks this and records the comparison. Eve
+   review S5 — the earlier version closed axis 1 against arm results
+   and left it open to the desk's own edits, which is the stale-premise
+   shape with the desk as the writer.
 2. **Axis 2 (reachability)** — discharged only by the swept clone whose
    substance search returns zero WITH its reach control green. An
    unswept or unverified clone means axis 2 reads could-not-verify for
@@ -340,8 +411,27 @@ Recorded BEFORE any arm dispatches, per the repo convention.
 
 ## 10. STATUS
 
-DRAFT, for statiker-e8's grading and then the eve review. Preconditions
-(1) launch probe, (2) hooksPath neutralization and (3) the st-74/st-64
-payload fix all stand BUILT; (3)'s RELEASE and the eve review are
-st-75's steps (5) and (6), due at run-3 eve and gated by statiker-e8.
-The pin serves 0.2.99; 0.2.100 is committed and unreleased.
+DRAFT, eve-reviewed, repaired on all six of that review's
+pre-registration findings (S2-S5, M5, and the 6d residual it found
+missing). Precondition state, corrected — the earlier version listed
+(1)(2)(3) as BUILT, which read as the arrangement standing:
+
+- **(1) launch probe — INSTRUMENT BUILT, PRECONDITION NOT DISCHARGED.**
+  The tool exists and is proven red-first, but the SUBSTRATE CHOICE it
+  must measure is open (§4c, §6d). Discharged when the run desk names
+  the launcher and the probe's verdict against it is recorded.
+- **(2) hooksPath neutralization — STEP SPECIFIED with its verifier;
+  executes at clone construction.**
+- **(3) st-64/st-74 payload fix — BUILT, reviewed twice, repaired,
+  green at 620.** Its RELEASE has NOT happened: the pin serves 0.2.99
+  and 0.2.100 is committed and unreleased. Preconditions (2) and (3)
+  both read the SERVED pin, so neither is satisfiable until the release
+  runs — st-75's step (6), gated by statiker-e8.
+- **(4) the object — SETTLED (C1/st-68). Axis 1 discharged and
+  conditional (§9.1); axis 2 NOT discharged, a freeze-gate step
+  (§5c).**
+
+The eve review's verdict was PIN HOLDS on one record obligation, now
+discharged (dev-notes/OBSERVATIONS.md, the 0.2.100 release-gate entry).
+Its payload finding was CERTIFIED: every repair does what the audit
+says, every arm reds on its own defect and stays green on its control.

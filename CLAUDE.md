@@ -367,7 +367,16 @@
   a saved review moves defect discovery into the run, where it
   costs money and arms (run 2's grading is the evidence).
   (c) DELTA SCOPE: an eve review covers only the delta since the
-  last CONSUMED review; banked findings are never re-reviewed.
+  last REVIEWED STATE — the sha the previous review's brief carried,
+  which is also what the form paragraph below names; banked findings
+  are never re-reviewed. Read REVIEWED, never "consumed": a review
+  can be banked without any run having consumed it, and the two
+  readings pick different deltas exactly then. Wording corrected
+  2026-09-14 on the eve review's M4, which found this clause and the
+  form paragraph naming one slot two ways — this repo's own
+  slot-taught-under-two-names shape, inside one bullet, written
+  while amending the rules file. The SUBSTANCE the operator
+  authorized is unchanged; only the name is made single.
   (d) FOUNDATION HOLD, judgment-shaped: where new work is about
   to BUILD ON unreviewed machine-read semantics, the desk may
   pull the review forward for exactly that layer, the hold named
