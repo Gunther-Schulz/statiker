@@ -565,6 +565,30 @@ class TestPreflightContainment(GitFixture):
         self.assertEqual(v["verdict"], "PREFLIGHT_CONTAINMENT_HOLD", v)
         self.assertIn("hooks-path", self.axis_names(v), v)
 
+    def test_S1_namespace_axis_rejects_sibling_directory_sharing_prefix(self):
+        # S1 CORRECTED (checkpoint review, reviewer's post-close report,
+        # msg a6be5560): _within_any is the ONE predicate behind BOTH
+        # the hooks-path axis (above) and this out-of-repo-namespace
+        # axis, so the singular hooks-path arm leaves this axis
+        # uncovered by the identical bare-prefix defect. A declared
+        # scope that is the seals base's own directory name MINUS its
+        # trailing "-<hash>" suffix is a bare-startswith prefix of the
+        # real seals base without being its parent (no path separator
+        # follows the shared prefix).
+        base = self.verdict(self.tool(
+            "preflight", "--tracker", self.TRACKER))
+        seals = base["out_of_repo_required"]["seals"]
+        prefix_scope, sep, suffix = seals.rpartition("-")
+        self.assertTrue(sep and suffix,
+                        f"fixture premise: a hashed suffix, got {seals!r}")
+        v = self.verdict(self.tool(
+            "preflight", "--tracker", self.TRACKER,
+            "--containment", prefix_scope))
+        self.assertEqual(v["verdict"], "PREFLIGHT_CONTAINMENT_HOLD", v)
+        ns_paths = {a["path"] for a in v["axes"]
+                   if a["axis"] == "out-of-repo-namespace"}
+        self.assertIn(seals, ns_paths, v)
+
     # -- S2: realpath acceptance goes unrecorded (SUBSTANTIVE). A scope
     # declared through a symlink that clears an axis must carry
     # `resolved_from` with both spellings — the same convention rel()
