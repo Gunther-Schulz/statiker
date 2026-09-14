@@ -1070,7 +1070,29 @@ def section_pointers(text):
     the `## Implementation` heading in an in-memory copy of the page
     dropped `found` from 4 to 2 with `unresolved` still empty — the two
     pointers naming it vanished silently. Fixed: they land in
-    `unresolved` (found stays 4)."""
+    `unresolved` (found stays 4).
+
+    st-45: the generic pass above could not tell a pointer from an
+    ordinary capitalized parenthetical quoting its own prose — a
+    fresh `(Note, "the desk decides this one")`-shaped sentence has a
+    name that is not a current heading either, and read as dangling.
+    FIX: a pointer's phrase lives in its TARGET section, so it occurs
+    on the page more than once (once at the pointer site, once where
+    it is quoted from); prose quoting its own words occurs exactly
+    once, at the pointer-shaped site itself. The generic branch
+    appends a pair only when its normalized phrase's page-wide count
+    exceeds 1. No second assertion is added and no existing property
+    is dropped: the repo's own fixture (`(forms at Close, "no such
+    phrase on this page")`) names a CURRENT heading (`Close`), so it
+    is caught by the known-names pass above and never reaches the
+    generic branch at all — narrowing the generic branch cannot drop
+    it. Dedup fixed alongside: the generic branch used to dedup
+    against `found`, which now also accumulates the generic branch's
+    own appends mid-loop, so a dangling pair occurring twice on the
+    page (identical name and phrase) counted once by accident of
+    iteration order. `generic_seen` makes that dedup explicit — one
+    entry per distinct (name, phrase) pair, independent of how many
+    raw occurrences the regex finds."""
     def norm(s):
         return re.sub(r"\s+", " ", s).strip()
     sections, cur, buf = {}, None, []
@@ -1099,15 +1121,27 @@ def section_pointers(text):
     # A2's own pass: any pointer-shaped occurrence whose name is not a
     # current heading at all — the known-names pattern above can never
     # find these (its alternation IS the current heading-name set), so
-    # they are found generically and, being nameless-to-the-page by
-    # construction, are unresolved on sight.
+    # they are found generically. st-45: a name absent from the page's
+    # headings is necessary but not sufficient for "dangling pointer"
+    # — ordinary prose matches the same shape. A real pointer's phrase
+    # occurs more than once on the page (the pointer site, plus the
+    # target section body it quotes); prose quoting its own words
+    # occurs exactly once, at the pointer-shaped site itself. Counted
+    # once per distinct (name, phrase) pair via `generic_seen`,
+    # regardless of how many raw occurrences the regex finds.
     generic = re.compile(r'([A-Z][A-Za-z0-9 /_-]*?),\s*"([^"]+)"\)')
+    generic_seen = set()
     for name, phrase in generic.findall(normalized):
-        if (name, phrase) in found:
+        pair = (name, phrase)
+        if pair in found or pair in generic_seen:
             continue
-        if name not in names_set:
-            found.append((name, phrase))
-            unresolved.append((name, phrase))
+        generic_seen.add(pair)
+        if name in names_set:
+            continue
+        if normalized.count(norm(phrase)) <= 1:
+            continue
+        found.append(pair)
+        unresolved.append(pair)
     return found, unresolved
 
 
@@ -1125,6 +1159,55 @@ class TestSkillSectionPointersResolve(unittest.TestCase):
                 + '\n(forms at Close, "no such phrase on this page")\n')
         _, unresolved = section_pointers(text)
         self.assertIn(("Close", "no such phrase on this page"), unresolved)
+
+    def test_generic_pass_ignores_ordinary_prose_parentheticals(self):
+        # st-45: the generic pass (any capitalized name + quoted
+        # phrase whose name is not a current heading) could not tell
+        # a dangling pointer from ordinary prose sharing the same
+        # shape — reproduced at HEAD before the fix: each of these
+        # three, appended singly, turned unresolved from 0 to 1.
+        # ANCHOR PIN: these are valid controls only while their names
+        # are NOT page headings — that is exactly how the item's
+        # original three controls went silently inert (two of their
+        # names became real headings between the item's opening and
+        # this fix). Asserted here so a future heading addition fails
+        # this loudly instead of going quiet.
+        text = SKILL.read_text()
+        headings = {line[3:].strip() for line in text.split("\n")
+                    if line.startswith("## ")}
+        names_set = {re.split(r"[:(]", h)[0].strip() for h in headings}
+        controls = [
+            ("Note", "the desk decides this one"),
+            ("Measured twice", "the lane halted correctly"),
+            ("Convention", "a verdict carries its basis"),
+        ]
+        for name, phrase in controls:
+            self.assertNotIn(
+                name, names_set,
+                f"control name {name!r} is now a page heading — this "
+                f"control is dead, replace it with a fresh one")
+            _, unresolved = section_pointers(
+                text + f'\n({name}, "{phrase}")\n')
+            self.assertEqual(
+                unresolved, [],
+                f"ordinary prose read as a dangling pointer: "
+                f"{(name, phrase)}")
+
+    def test_generic_pass_dedups_a_dangling_pointer_occurring_twice(self):
+        # st-45 dedup nit: the generic branch's dedup runs against
+        # `found`, which the branch itself now appends into mid-loop
+        # — a dangling pair occurring twice verbatim on the page must
+        # still land in `unresolved` exactly once, not twice (and not
+        # zero times: its own duplication is what pushes its
+        # page-wide phrase count above the >1 threshold).
+        text = (SKILL.read_text()
+                + '\n(Bogus Name, "a fabricated phrase repeated twice")\n'
+                + '\n(Bogus Name, "a fabricated phrase repeated twice")\n')
+        _, unresolved = section_pointers(text)
+        self.assertEqual(
+            unresolved.count(
+                ("Bogus Name", "a fabricated phrase repeated twice")),
+            1, unresolved)
 
     def test_a_renamed_heading_orphans_its_pointers_into_unresolved(self):
         # st-44 (A2): the two pointers naming "Implementation" must not
