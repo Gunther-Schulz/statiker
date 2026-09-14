@@ -1104,3 +1104,62 @@ tracker, so it carries little weight — but it is the same class as the
 count incident this run's own FAIL criterion fired on (§9), and a run
 studying that class should not pass over an instance of it in its own
 ceiling arm.
+
+### 15g. `find` IS bfs, AND ITS `-newermt` FAILS SILENTLY — surfaced to meta
+
+SURFACED TO THE META DESK (statiker-e8) 2026-09-14 for the operator
+round, with a recommendation to mint into the corpus environment module
+alongside the existing ugrep binding. This desk does not touch the
+corpus; this section is the evidence body a mint would cite.
+
+**THE BINDING.** `command -v find` resolves to **bfs 4.1.1**, not GNU
+find. bfs does not accept GNU's relative form for `-newermt`: it errors,
+writes nothing to stdout, and — with stderr suppressed, which is the
+ordinary way such a probe is written — an EMPTY RESULT reads as a
+verified absence.
+
+**THE MEASURED TRIPLE**, run against a file whose mtime was known to be
+seven minutes old at the time of measurement:
+
+    find <dir> -type f -newermt '-40 minutes'  2>/dev/null   ->  0   WRONG (silent failure)
+    find <dir> -type f -mmin -40                             ->  6   correct
+    find <dir> -type f -newer <reference-file>               ->  6   correct
+
+Six is the true count, independently confirmed by `ls` at each of the
+two directories.
+
+**WHAT IT COST HERE, stated because the binding is worth what its
+incident shows.** This desk reported to the judgment desk, as fact, that
+"no run-2 seal, queue or artifact was ever written" and that the ceiling
+arm "never reached its pinned artifact". BOTH FALSE. Sonnet had written
+its pre-round seal (1591 B) and its pinned artifact (7957 B, byte-equal
+to its own tracker) to the correct authorized paths before it died. The
+corrected reading is materially better for that arm: it completed attack
+preparation ENTIRELY and died only at the re-invocation boundary. The
+claim was caught by this desk and corrected before any grading language
+was composed on it.
+
+**CLASS.** Identical to the environment module's existing ugrep entry —
+a tool that is not the one its name implies, failing in a way that is
+shaped exactly like a clean negative. The generalizable half is already
+corpus (an unproven instrument's silence is not evidence; a zero holds
+only behind a positive control), so no second rule is proposed; what is
+new and site-specific is WHICH BINARY `find` is here and WHICH PREDICATE
+lies.
+
+**THIS DESK'S TWO INSTRUMENT FAILURES THIS RUN, both the same shape**,
+recorded together because one instance reads as bad luck and two read as
+a practice:
+
+1. Transcript counts of `statiker_git.py`, `lock-check`, `STATIKER-GIT
+   VERDICT` and `PREFLIGHT_UNPINNABLE_TRACKER` taken as raw string
+   matches over a session transcript — contaminated, because SKILL.md
+   contains those literals and the arm had READ the page. Caught before
+   delivery by the tell that one "verdict" came back with page line
+   numbers attached. Re-measured on parsed `tool_use` blocks.
+2. The bfs `-newermt` zero above. NOT caught before delivery; caught
+   afterwards, only because a later question was answered with `ls`
+   instead.
+
+Neither had a positive control at the time it was trusted. Both would
+have been caught by one.
