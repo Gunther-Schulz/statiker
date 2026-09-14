@@ -1625,7 +1625,7 @@ every F/D/R line appended after the last A-line:
 whether its scope opener matches its body kind — a
 `record:`-scoped or `unit U<k>`-scoped line whose body decides
 a design question or justifies a boundary is a FINDING, not a
-bookkeeping or per-unit line — NOT EXERCISED otherwise (C4a).
+bookkeeping or per-unit line — NOT EXERCISED otherwise (st-10 C4a).
 The V-line's evidence
 carries the per-R table; PASSED is recordable only with every
 R-line met or its non-exercise carried as a named
