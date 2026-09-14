@@ -1297,12 +1297,19 @@ def cmd_preflight(repo, args):
                                  f"scope"})
     if not any(enclosing_repo(s) is None for s in scope_reals):
         axes.append({
+            # SET-LEVEL axis: no single declared path is the offender —
+            # the scope as a whole admits no legal parent. `path` is
+            # null rather than the declared list joined into a string:
+            # a delimited rendering of a set reads as one path to every
+            # later consumer, and the set already travels unflattened
+            # in this verdict's own `containment` field.
             "axis": "worktree-parent",
-            "path": ", ".join(args.containment),
+            "path": None,
             "note": "the page mandates attack worktrees outside every "
                     "repo; no declared containment path lies outside "
                     "every repo, so no legal worktree parent exists in "
-                    "scope"})
+                    "scope — see this verdict's containment field for "
+                    "the declared set"})
 
     # the coverage boundary is stated, never implied: whichever
     # worktree PATH the desk eventually chooses under a legal parent

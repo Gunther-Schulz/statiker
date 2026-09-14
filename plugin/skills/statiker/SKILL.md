@@ -211,6 +211,33 @@ STATE_IN_PROGRESS) is the re-entry instrument: an attended halt's
 clearing reply is verified by it before the halted procedure
 re-runs.
 
+Containment is DECLARED, never inferred: `--containment <path>`,
+repeatable, names the run's authorized filesystem scope. Undeclared,
+preflight REPORTS and gates nothing — the effective pre-commit hooks
+path as git itself resolves it (never the config string, which leaves
+tilde expansion to the reader) with whether it lands inside the
+working copy, and the seal and artifact namespace roots this run will
+require. A global hooks path pointing outside every working copy is
+an ordinary machine configuration, so a hold that fired on it
+unconditionally would fire on non-defects and train the override
+reflex every guard dies of.
+
+Declared, those same facts GATE. Three axes are checked together, so
+one verdict carries every failure. The resolved hooks path lands
+inside the working copy or inside a declared path. Each required
+namespace root lands inside a declared path. At least one declared
+path lies outside every repo: the attack worktree is mandated
+outside every repo, so a scope of only in-repo paths is
+unsatisfiable before a single cycle spends.
+PREFLIGHT_CONTAINMENT_HOLD names each failing axis and routes
+surface. Widening a containment scope is the operator's.
+
+What the gate does not reach is stated on every containment-declared
+verdict rather than left implied — the attack worktree's actual PATH
+is desk-chosen at attack preparation, so the gate establishes that a
+legal parent EXISTS in scope and never that the desk will choose one;
+`worktree-add` halts on the path itself.
+
 ## The record (forcing point 1)
 
 Append-only tracker at `.clippy/runs/<yyyy-mm-dd>-<slug>.md` —

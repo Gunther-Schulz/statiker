@@ -652,6 +652,17 @@ def run_battery(git_script, record_script, root):
         ("git", "preflight", ["preflight", "--tracker", TRACKER_REL],
          repo, None, None),
         ("git", "preflight", ["preflight"], repo, None, None),
+        # st-74/st-64: drives PREFLIGHT_CONTAINMENT_HOLD. The declared
+        # scope is the repo itself, which fires two axes at once under
+        # battery_env: HOME=/nonexistent puts the seal and artifact
+        # roots outside the declared path (out-of-repo-namespace), and
+        # the repo is a repo, so no declared path lies outside every
+        # repo (worktree-parent). Driven rather than frozen into
+        # UNDRIVEN_REMAINDER — the verdict IS reachable, and freezing a
+        # reachable verdict hides it from this file's own reach check.
+        ("git", "preflight", ["preflight", "--tracker", TRACKER_REL,
+                              "--containment", str(repo)],
+         repo, None, None),
         ("git", "lock-check", ["lock-check", "--tracker", TRACKER_REL],
          repo, None, None),
         ("git", "lock-check", ["lock-check", "--tracker", TRACKER_REL,
