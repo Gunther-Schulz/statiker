@@ -348,6 +348,216 @@ class TestF6BranchStateAndLinkedWorktree(GitFixture):
         self.assertTrue(v["worktree"], v)
 
 
+# -------------------------------------------------- st-74/st-64 containment
+#
+# The desk's own preflight now names two facts on EVERY PREFLIGHT_OK
+# (hooks_path, out_of_repo_required) and, when `--containment` is
+# declared, checks three axes against it (hooks-path,
+# out-of-repo-namespace, worktree-parent), collecting every failing
+# axis into ONE PREFLIGHT_CONTAINMENT_HOLD rather than halting on the
+# first. TEST ISOLATION: this machine carries a GLOBAL
+# core.hooksPath (dotfiles' pre-commit dispatcher) — every arm here
+# runs through GitFixture's hermetic_env (GIT_CONFIG_GLOBAL/
+# GIT_CONFIG_SYSTEM pinned to /dev/null already), so a repo-LOCAL
+# `git config core.hooksPath` is what each arm actually varies, never
+# this machine's own setting.
+
+class TestPreflightContainment(GitFixture):
+    TRACKER = ".clippy/runs/t.md"
+
+    def axis_names(self, v):
+        return {a["axis"] for a in v.get("axes", [])}
+
+    # -- MNM: must-not-fire controls, checked first ---------------------
+
+    def test_MNM1_no_containment_declared_is_always_ok(self):
+        # the control that matters most: an ordinary run on THIS
+        # machine (global hooksPath resolving outside every repo)
+        # must never hold when --containment was never asked for
+        hooks_outside = Path(self._tmp.name) / "hooks-outside-mnm1"
+        hooks_outside.mkdir()
+        self.git("config", "core.hooksPath", str(hooks_outside))
+        v = self.verdict(self.tool("preflight", "--tracker", self.TRACKER))
+        self.assertEqual(v["verdict"], "PREFLIGHT_OK", v)
+        self.assertNotIn("axes", v)
+        self.assertNotIn("containment", v)
+        self.assertNotIn("unchecked_axes", v)
+
+    def test_MNM2_no_hooks_path_configured_is_inside(self):
+        v = self.verdict(self.tool("preflight", "--tracker", self.TRACKER))
+        self.assertEqual(v["verdict"], "PREFLIGHT_OK", v)
+        self.assertTrue(v["hooks_path"]["inside"], v)
+        self.assertTrue(
+            v["hooks_path"]["path"].endswith("hooks/pre-commit"), v)
+
+    def test_MNM3_hooks_path_resolving_inside_own_tree_is_inside(self):
+        (self.repo / ".githooks").mkdir()
+        self.git("config", "core.hooksPath", ".githooks")
+        v = self.verdict(self.tool("preflight", "--tracker", self.TRACKER))
+        self.assertEqual(v["verdict"], "PREFLIGHT_OK", v)
+        self.assertTrue(v["hooks_path"]["inside"], v)
+
+    # -- A: hooks-path axis ----------------------------------------------
+
+    def test_A1_hooks_axis_outside_uncovered_holds(self):
+        hooks_outside = Path(self._tmp.name) / "hooks-outside-a1"
+        hooks_outside.mkdir()
+        self.git("config", "core.hooksPath", str(hooks_outside))
+        v = self.verdict(self.tool(
+            "preflight", "--tracker", self.TRACKER,
+            "--containment", str(self.repo)))
+        self.assertEqual(v["verdict"], "PREFLIGHT_CONTAINMENT_HOLD", v)
+        self.assertFalse(v["hooks_path"]["inside"], v)
+        self.assertIn("hooks-path", self.axis_names(v), v)
+
+    def test_A2_hooks_axis_inside_clone_clears(self):
+        (self.repo / ".githooks").mkdir()
+        self.git("config", "core.hooksPath", ".githooks")
+        v = self.verdict(self.tool(
+            "preflight", "--tracker", self.TRACKER,
+            "--containment", str(self.repo)))
+        self.assertNotIn("hooks-path", self.axis_names(v), v)
+
+    # -- B: out-of-repo-namespace axis ------------------------------------
+
+    def test_B1_namespace_axis_names_seals_and_artifacts(self):
+        v = self.verdict(self.tool(
+            "preflight", "--tracker", self.TRACKER,
+            "--containment", str(self.repo)))
+        self.assertEqual(v["verdict"], "PREFLIGHT_CONTAINMENT_HOLD", v)
+        ns_paths = {a["path"] for a in v["axes"]
+                   if a["axis"] == "out-of-repo-namespace"}
+        self.assertEqual(
+            ns_paths,
+            {v["out_of_repo_required"]["seals"],
+             v["out_of_repo_required"]["artifacts"]}, v)
+
+    def test_B2_namespace_axis_clears_with_both_roots_declared(self):
+        # namespace paths computed from the SAME function under test
+        # (a no-containment preflight), never hardcoded
+        base = self.verdict(self.tool(
+            "preflight", "--tracker", self.TRACKER))
+        seals = base["out_of_repo_required"]["seals"]
+        artifacts = base["out_of_repo_required"]["artifacts"]
+        v = self.verdict(self.tool(
+            "preflight", "--tracker", self.TRACKER,
+            "--containment", str(self.repo),
+            "--containment", seals,
+            "--containment", artifacts))
+        self.assertNotIn("out-of-repo-namespace", self.axis_names(v), v)
+
+    # -- C: worktree-parent axis -------------------------------------------
+
+    def test_C1_worktree_parent_axis_fires_with_only_in_repo_scope(self):
+        v = self.verdict(self.tool(
+            "preflight", "--tracker", self.TRACKER,
+            "--containment", str(self.repo)))
+        self.assertEqual(v["verdict"], "PREFLIGHT_CONTAINMENT_HOLD", v)
+        self.assertIn("worktree-parent", self.axis_names(v), v)
+
+    def test_C2_worktree_parent_axis_clears_with_an_outside_dir(self):
+        outside = Path(self._tmp.name) / "attack-parent-c2"
+        outside.mkdir()
+        v = self.verdict(self.tool(
+            "preflight", "--tracker", self.TRACKER,
+            "--containment", str(self.repo),
+            "--containment", str(outside)))
+        self.assertNotIn("worktree-parent", self.axis_names(v), v)
+
+    # -- coverage boundary: unchecked_axes ---------------------------------
+
+    def test_unchecked_axes_stated_on_a_hold(self):
+        v = self.verdict(self.tool(
+            "preflight", "--tracker", self.TRACKER,
+            "--containment", str(self.repo)))
+        self.assertEqual(v["verdict"], "PREFLIGHT_CONTAINMENT_HOLD", v)
+        self.assertEqual(v["unchecked_axes"],
+                         ["attack-worktree-parent-choice"], v)
+
+    def test_unchecked_axes_stated_on_an_ok_with_containment_declared(self):
+        base = self.verdict(self.tool(
+            "preflight", "--tracker", self.TRACKER))
+        seals = base["out_of_repo_required"]["seals"]
+        artifacts = base["out_of_repo_required"]["artifacts"]
+        outside = Path(self._tmp.name) / "full-coverage"
+        outside.mkdir()
+        v = self.verdict(self.tool(
+            "preflight", "--tracker", self.TRACKER,
+            "--containment", str(self.repo),
+            "--containment", seals,
+            "--containment", artifacts,
+            "--containment", str(outside)))
+        self.assertEqual(v["verdict"], "PREFLIGHT_OK", v)
+        self.assertEqual(v["unchecked_axes"],
+                         ["attack-worktree-parent-choice"], v)
+
+    def test_containment_field_echoes_declared_paths_as_given(self):
+        v = self.verdict(self.tool(
+            "preflight", "--tracker", self.TRACKER,
+            "--containment", str(self.repo)))
+        self.assertEqual(v["containment"], [str(self.repo)], v)
+
+    # -- registry: the new name resolves and routes surface ---------------
+
+    def test_registry_arm_containment_hold_routes_surface(self):
+        sys.path.insert(0, str(SCRIPT.parent))
+        try:
+            import statiker_emit
+            self.assertEqual(
+                statiker_emit.ROUTES.get("PREFLIGHT_CONTAINMENT_HOLD"),
+                "surface")
+        finally:
+            sys.path.remove(str(SCRIPT.parent))
+        v = self.verdict(self.tool(
+            "preflight", "--tracker", self.TRACKER,
+            "--containment", str(self.repo)))
+        self.assertEqual(v["verdict"], "PREFLIGHT_CONTAINMENT_HOLD", v)
+        self.assertEqual(v["route"], "surface", v)
+
+
+class TestEnclosingRepoHelper(unittest.TestCase):
+    """enclosing_repo(path) — the containment predicate factored out of
+    Repo.outside so a containment SCOPE path (never a provisioning
+    path's parent) can be tested for itself. Function-level red/green,
+    same certification style as TestPureFunctions."""
+
+    def setUp(self):
+        sys.path.insert(0, str(SCRIPT.parent))
+        import statiker_git
+        self.m = statiker_git
+        self._tmp = tempfile.TemporaryDirectory()
+
+    def tearDown(self):
+        sys.path.remove(str(SCRIPT.parent))
+        self._tmp.cleanup()
+
+    def test_a_repo_directory_reports_itself_as_enclosing(self):
+        d = Path(self._tmp.name) / "r"
+        d.mkdir()
+        env = hermetic_env()
+        subprocess.run(["git", "init", "-q", "-b", "main"], cwd=d,
+                       env=env, check=True)
+        result = self.m.enclosing_repo(str(d))
+        self.assertIsNotNone(result, "a repo's own directory encloses itself")
+        self.assertEqual(os.path.realpath(result), os.path.realpath(str(d)))
+
+    def test_a_plain_directory_reports_none(self):
+        d = Path(self._tmp.name) / "plain"
+        d.mkdir()
+        self.assertIsNone(self.m.enclosing_repo(str(d)))
+
+    def test_a_subdirectory_of_a_repo_reports_the_repo_top(self):
+        d = Path(self._tmp.name) / "r2"
+        sub = d / "sub" / "deeper"
+        sub.mkdir(parents=True)
+        env = hermetic_env()
+        subprocess.run(["git", "init", "-q", "-b", "main"], cwd=d,
+                       env=env, check=True)
+        result = self.m.enclosing_repo(str(sub))
+        self.assertIsNotNone(result)
+        self.assertEqual(os.path.realpath(result), os.path.realpath(str(d)))
+
+
 # ---------------------------------------------------------------- lock check
 
 class TestLockCheck(GitFixture):
@@ -1642,15 +1852,23 @@ class TestAttack10NonUtf8RepoDir(GitFixture):
         d = self.bad_repo()
 
         def run(*args):
+            # bytes, not text=True (st-74/st-64): preflight's new
+            # out_of_repo_required field embeds repo_key(), which
+            # carries the repo directory's own basename verbatim — the
+            # fixture's non-UTF-8 byte now reaches THIS subcommand's
+            # verdict line too, correctly, at the byte level
+            # (ensure_ascii=False + say()'s surrogateescape encode);
+            # text=True's strict UTF-8 decode is the wrong reader for
+            # it, same class this test class exists to name.
             return subprocess.run(
                 [sys.executable, str(SCRIPT), *args], cwd=str(d),
-                env=self.env, capture_output=True, text=True, timeout=60)
+                env=self.env, capture_output=True, timeout=60)
 
         def check(expected, *args, prep=None):
             if prep is not None:
                 prep()
             p = run(*args)
-            v = self.verdict(p)
+            v = self.verdict_raw(p)
             self.assertEqual(v["verdict"], expected,
                              f"{' '.join(args)} -> {v}")
 

@@ -44,7 +44,7 @@ ROUTE_VOCABULARY = frozenset({
 })
 
 ROUTES = {
-    # ---- git tool (43 emitted names) ----
+    # ---- git tool (44 emitted names) ----
     # proceed (9)
     "PREFLIGHT_OK": "proceed",
     "STATE_CLEAN": "proceed",
@@ -66,8 +66,12 @@ ROUTES = {
     "STATE_IN_PROGRESS": "barred",
     # triage (1)
     "UNIT_NO_DIFF_VS_HEAD": "triage",
-    # surface (1)
+    # surface (2)
     "PREFLIGHT_UNPINNABLE_TRACKER": "surface",
+    # st-74/st-64: only the operator can resolve a containment scope
+    # that fails to cover the run's hooks/namespace/worktree-parent
+    # requirements — same shape as PREFLIGHT_UNPINNABLE_TRACKER above.
+    "PREFLIGHT_CONTAINMENT_HOLD": "surface",
     # halt (26; UNIT_GATE_BLOCKED, BLOCKED_CONTENTION and UNIT_COLLISION
     # moved here 0.2.89 fix — the fail-closed floor, dev-notes/
     # OBSERVATIONS.md "0.2.89 checkpoint-review dispositions")

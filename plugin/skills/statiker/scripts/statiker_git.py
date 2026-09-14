@@ -8,7 +8,12 @@ Subcommands (each prints evidence lines, then exactly one final line
 `STATIKER-GIT VERDICT: {json}` — the desk books that line verbatim):
 
   state-gate                        report in-progress git operations
-  preflight   --tracker P           run-start checks (tracker pinnable)
+  preflight   --tracker P [--containment P ...]
+                                    run-start checks (tracker pinnable);
+                                    always names hooks_path and
+                                    out_of_repo_required; --containment
+                                    gates three axes against them (see
+                                    PREFLIGHT_CONTAINMENT_HOLD)
   lock-check  --tracker P [--lock-set P ...]
                                     LOCK steps 0-3, read-only
   lock-commit --tracker P [--lock-set P ...] [--drop P ...] -m MSG
@@ -407,6 +412,23 @@ def textual_repo_top(path: str):
         cur = parent
 
 
+def enclosing_repo(path: str):
+    """The enclosing repo's toplevel for `path` ITSELF, or None — the
+    same real-path (git_toplevel) and as-named (textual_repo_top)
+    probes `Repo.outside` composes over a provisioning path's PARENT,
+    reused here directly on a given path (st-74/st-64, preflight
+    containment): a containment SCOPE path is tested for itself —
+    is IT inside some repo — never for what its parent contains.
+    `Repo.outside` still walks from the parent for its own documented
+    reason (the provisioning path itself does not exist yet); this
+    function is the one home both call into, so the walk is written
+    once."""
+    real = os.path.realpath(path)
+    real_anc = nearest_existing_ancestor(real) or real
+    named_anc = nearest_existing_ancestor(path) or path
+    return git_toplevel(real_anc) or textual_repo_top(named_anc)
+
+
 def main_toplevel_real(repo):
     """The MAIN checkout's toplevel REAL path, even when invoked from
     inside a linked worktree: `--git-common-dir` names the shared
@@ -460,19 +482,27 @@ def queue_is_spent(text: str) -> bool:
     return bool(QUEUE_SPENT_RE.match(lines[-1]))
 
 
-def seal_namespace_paths(key: str, tracker_filename: str, round_: str):
-    """Every species' full path (P1, this function's own derivation +
-    the invented-homes pin): XDG state, never `~/.claude/` (that path
-    shape draws permission dialogs on every access). The ARTIFACT
-    species lives in its OWN namespace, `artifacts/<key>/`, beside —
-    never inside — `seals/<key>/` (opus release review H7,
-    2026-08-16): the artifact path travels to the attacker in the
-    brief, and a path inside the seal directory hands the attacker
-    that round's seal and queue — the two files the seal rule and the
-    append freeze exist to keep from it."""
+def seal_namespace_roots(key: str):
+    """The two BASE directories every species resolves under (P1, this
+    function's own derivation + the invented-homes pin): XDG state,
+    never `~/.claude/` (that path shape draws permission dialogs on
+    every access). The ARTIFACT species lives in its OWN namespace,
+    `artifacts/<key>/`, beside — never inside — `seals/<key>/` (opus
+    release review H7, 2026-08-16): the artifact path travels to the
+    attacker in the brief, and a path inside the seal directory hands
+    the attacker that round's seal and queue — the two files the seal
+    rule and the append freeze exist to keep from it. Single home for
+    both `seal_namespace_paths` (below) and preflight's containment
+    gate (st-74/st-64), which reads these two bases directly as the
+    run's `out_of_repo_required`."""
     root = Path(os.path.expanduser("~/.local/state/statiker"))
-    seal_base = root / "seals" / key
-    artifact_base = root / "artifacts" / key
+    return root / "seals" / key, root / "artifacts" / key
+
+
+def seal_namespace_paths(key: str, tracker_filename: str, round_: str):
+    """Every species' full path — see `seal_namespace_roots` for the
+    two base directories this derivation builds on."""
+    seal_base, artifact_base = seal_namespace_roots(key)
     stem = f"{tracker_filename}.{round_}"
     return {species: str(
         (artifact_base if species == "artifact" else seal_base)
@@ -627,10 +657,13 @@ class Repo:
         real_p = os.path.realpath(p)
         if p == str(self.top) or real_p == top:
             raise Halt("PATH_INSIDE_REPO", path=path_arg)
-        real_parent = os.path.dirname(real_p) or "."
-        real_anc = nearest_existing_ancestor(real_parent) or real_parent
+        # walked from the PARENT, never the target itself: a
+        # provisioning path does not exist yet (worktree-add) or is
+        # itself a valid linked repo by the time worktree-remove meets
+        # it again (enclosing_repo's own docstring) — the parent is
+        # what must sit outside every repo.
         named_parent = os.path.dirname(p) or "."
-        enclosing = git_toplevel(real_anc) or textual_repo_top(named_parent)
+        enclosing = enclosing_repo(named_parent)
         if enclosing:
             detail = {"path": path_arg, "repo": enclosing}
             if real_p != p:
@@ -1171,6 +1204,27 @@ def cmd_state_gate(repo, args):
     finish("STATE_CLEAN", 0, ops=[])
 
 
+def _abs_repo_relative(top: str, path_arg: str) -> str:
+    """Normalize `path_arg` to an absolute path, repo-root-relative
+    when given as relative — the same input convention `Repo.rel`/
+    `Repo.outside` use — WITHOUT `rel()`'s containment requirement: a
+    declared containment SCOPE path is legitimately OUTSIDE the repo
+    (the worktree-parent axis's whole point), so this never halts on
+    PATH_OUTSIDE_REPO the way `rel()` does."""
+    return os.path.normpath(os.path.join(top, path_arg))
+
+
+def _within_any(real_path: str, scope_reals) -> bool:
+    return any(real_path == s or real_path.startswith(s + os.sep)
+              for s in scope_reals)
+
+
+UNCHECKED_WORKTREE_PARENT_NOTE = (
+    "the actual worktree path is desk-chosen at attack preparation and "
+    "validated only by worktree-add; this gate proves a legal parent "
+    "EXISTS in scope, never that the desk will choose it")
+
+
 def cmd_preflight(repo, args):
     tracker_rel = repo.rel(args.tracker)
     # the tracker names a FILE: a directory path answered PREFLIGHT_OK
@@ -1196,12 +1250,80 @@ def cmd_preflight(repo, args):
     ops = repo.ops_in_progress()
     branch, worktree = repo.branch_state()          # E-H: field, not gate
     if not repo.is_tracked(tracker_rel) and repo.is_ignored(tracker_rel):
+        # the more fundamental refusal: an unpinnable run never reaches
+        # the containment question at all
         finish("PREFLIGHT_UNPINNABLE_TRACKER", 2, tracker=tracker_rel,
                ops=ops, branch=branch, worktree=worktree,
                note="the repo ignores the tracker path: the run cannot "
                     "pin its record here — surface before any design work")
+
+    # st-74/st-64: two facts named on EVERY PREFLIGHT_OK, containment
+    # declared or not — the desk sees them before any design work.
+    top_real = os.path.realpath(str(repo.top))
+    hooks_real = os.path.realpath(str(repo.git_path("hooks/pre-commit")))
+    hooks_inside = (hooks_real == top_real
+                    or hooks_real.startswith(top_real + os.sep))
+    hooks_path_field = {"path": hooks_real, "inside": hooks_inside}
+
+    main_top_real = main_toplevel_real(repo)
+    key = repo_key(main_top_real)
+    seal_base, artifact_base = seal_namespace_roots(key)
+    out_of_repo_required = {"seals": str(seal_base),
+                            "artifacts": str(artifact_base)}
+
+    if not args.containment:
+        finish("PREFLIGHT_OK", 0, tracker=tracker_rel, ops=ops,
+               branch=branch, worktree=worktree,
+               hooks_path=hooks_path_field,
+               out_of_repo_required=out_of_repo_required)
+
+    # three containment axes, ALL checked — every failing axis
+    # collected before the verdict, never a first-fail halt, so the
+    # desk gets one round rather than one hold per axis.
+    scope_reals = [os.path.realpath(_abs_repo_relative(str(repo.top), c))
+                  for c in args.containment]
+
+    axes = []
+    if not hooks_inside and not _within_any(hooks_real, scope_reals):
+        axes.append({"axis": "hooks-path", "path": hooks_real,
+                     "note": "the resolved pre-commit hook path sits "
+                             "outside every declared containment scope"})
+    for label, base in (("seals", seal_base), ("artifacts", artifact_base)):
+        base_real = os.path.realpath(str(base))
+        if not _within_any(base_real, scope_reals):
+            axes.append({"axis": "out-of-repo-namespace", "path": str(base),
+                         "note": f"the {label} namespace base sits "
+                                 f"outside every declared containment "
+                                 f"scope"})
+    if not any(enclosing_repo(s) is None for s in scope_reals):
+        axes.append({
+            "axis": "worktree-parent",
+            "path": ", ".join(args.containment),
+            "note": "the page mandates attack worktrees outside every "
+                    "repo; no declared containment path lies outside "
+                    "every repo, so no legal worktree parent exists in "
+                    "scope"})
+
+    # the coverage boundary is stated, never implied: whichever
+    # worktree PATH the desk eventually chooses under a legal parent
+    # is validated only by worktree-add itself, at that later seam.
+    unchecked_axes = ["attack-worktree-parent-choice"]
+
+    if axes:
+        finish("PREFLIGHT_CONTAINMENT_HOLD", 2, tracker=tracker_rel,
+               ops=ops, branch=branch, worktree=worktree,
+               hooks_path=hooks_path_field,
+               out_of_repo_required=out_of_repo_required,
+               containment=args.containment, axes=axes,
+               unchecked_axes=unchecked_axes,
+               unchecked_note=UNCHECKED_WORKTREE_PARENT_NOTE)
     finish("PREFLIGHT_OK", 0, tracker=tracker_rel, ops=ops,
-           branch=branch, worktree=worktree)
+           branch=branch, worktree=worktree,
+           hooks_path=hooks_path_field,
+           out_of_repo_required=out_of_repo_required,
+           containment=args.containment,
+           unchecked_axes=unchecked_axes,
+           unchecked_note=UNCHECKED_WORKTREE_PARENT_NOTE)
 
 
 HALT_EXIT = 2
@@ -1245,6 +1367,7 @@ def main():
 
     p = sub.add_parser("preflight")
     p.add_argument("--tracker", required=True)
+    p.add_argument("--containment", action="append", default=None)
 
     p = sub.add_parser("lock-check")
     p.add_argument("--tracker", required=True)
