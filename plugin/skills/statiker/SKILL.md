@@ -1359,13 +1359,18 @@ terminal [BIT] round's own findings may all discharge without
 touching a single D-line, and the gate reads that as SATISFIED, the
 same predicate as ZERO-DELTA from there; one design-amending
 disposition — a SCOPELESS D-class line landing after the [BIT]
-A-line (a `record:`-opened D-line is bookkeeping, never amending; a
-`unit U<k>`-scoped D-line, the `held:` form included, is a PER-UNIT
-concern the ordinary unit-held machinery below already reads,
-identically to ZERO-DELTA) — keeps it SHUT, the over-correction
-case; F118: the presence-reading gate forced an operator deviation
-to ship a unit whose round's five findings none amended the
-design). Absent either, this is the
+A-line and still LIVE for its id, read latest-per-id rather
+than by position (a `record:`-opened D-line is bookkeeping,
+never amending; a `unit U<k>`-scoped D-line, the `held:` form
+included, is a PER-UNIT concern the ordinary unit-held
+machinery below already reads, identically to ZERO-DELTA) —
+keeps it SHUT, the over-correction case; a later same-id
+restatement carrying a `record:`/`unit U<k>` scope resolves
+it (st-63), while a DIFFERENT id's restatement resolves
+nothing for that id — only a new A-line clears closure
+across ids; F118: the presence-reading gate forced an
+operator deviation to ship a unit whose round's five
+findings none amended the design). Absent either, this is the
 normal state during a reopened design; dispatch waits. UNIT_HELD
 bars that unit on its
 unresolved hold entry; UNIT_UNKNOWN halts on an id no live
