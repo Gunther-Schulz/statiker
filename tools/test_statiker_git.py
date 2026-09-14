@@ -644,6 +644,32 @@ class TestPreflightContainment(GitFixture):
         self.assertEqual(v["verdict"], "PREFLIGHT_CONTAINMENT_HOLD", v)
         self.assertIn("worktree-parent", self.axis_names(v), v)
 
+    # -- M1 (eve-review, 2026-09-14): the M4 arm above invokes from
+    # cwd == self.repo, the ONE directory where repo-root-relative and
+    # cwd-relative resolution of a --containment value are
+    # indistinguishable. Invoking from a SUBDIRECTORY discriminates:
+    # _abs_repo_relative joins a relative value onto the REPO ROOT
+    # (repo.top), the same convention Repo.rel/Repo.outside use, never
+    # onto the process cwd.
+
+    def test_M1_containment_relative_value_resolves_repo_root_relative(self):
+        sub = self.repo / "nested" / "sub"
+        sub.mkdir(parents=True)
+        # repo-root-relative: normpath(join(repo.top, "../out")) lands
+        # one level ABOVE the repo — legitimately outside it, which is
+        # the worktree-parent axis's whole point, so the axis must NOT
+        # fire. A cwd-relative resolution (abspath("../out") from `sub`)
+        # would instead land at repo.top/nested/out, INSIDE the repo,
+        # and wrongly fire the axis — the mutation this arm is red
+        # against (recorded in the closing report).
+        p = subprocess.run(
+            [sys.executable, str(SCRIPT), "preflight",
+             "--tracker", self.TRACKER, "--containment", "../out"],
+            cwd=sub, env=self.env, capture_output=True, text=True,
+            timeout=60)
+        v = self.verdict(p)
+        self.assertNotIn("worktree-parent", self.axis_names(v), v)
+
     # -- M5: linked-worktree hooks_path.inside is False by construction
     # (MINOR) — already-correct, documented rather than changed.
 

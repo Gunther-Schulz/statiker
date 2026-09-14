@@ -31,9 +31,9 @@ the boundary reasoning where the tool sits rather than in a chat log):
      executor will meet". This probe is that rule with one invocation
      filled in, so it is an instance rather than a sibling rule.
 
-THE TWO FALSE GREENS THIS PROBE REFUSES TO KEY ON. Both are available,
-both look like the obvious anchor, and both report a dead substrate as
-a live one:
+THE THREE FALSE GREENS THIS PROBE REFUSES TO KEY ON. All three are
+available, all three look like the obvious anchor, and all three
+report a dead substrate as a live one:
 
   - THE CHILD'S EXIT CODE. Run 2's arm exited rc=0 while dying
     mid-task. A launcher reports that the run happened, never what it
@@ -42,10 +42,26 @@ a live one:
     the parent that spawned it, so the background work COMPLETES even
     when the substrate cannot be re-invoked. Keying on it reads a dead
     substrate as healthy.
+  - THE CHILD'S COMPLIANCE WITH THE FORCED-TURN-END INSTRUCTION
+    (eve-review, 2026-09-14 — v2 ships the fix). v1 forced the turn end
+    with prompt text alone. A child that ignores that text and polls
+    in-foreground for its own background marker still lands ACK
+    without ever needing re-invocation, and the leg passed GREEN on a
+    substrate v1's own header already said this leg exists to catch —
+    the defect moved from structural (any substrate) to
+    compliance-dependent (only a substrate whose child obeys the
+    prompt), never removed. v2 adds a marker the child writes
+    IMMEDIATELY after backgrounding the sleep — before the turn ends,
+    never after waiting for it — and compares its mtime against the
+    detached marker's: a compliant child's marker predates the
+    background completion, an in-foreground poller's does not.
 
-The discriminator is the marker only the CHILD can write AFTER the
-backgrounded work finished: it requires the substrate to still be there
-to act a second time. That is the arm-1 failure exactly.
+The discriminator for substrate death is the marker only the CHILD can
+write AFTER the backgrounded work finished: it requires the substrate
+to still be there to act a second time. That is the arm-1 failure
+exactly. The discriminator for COMPLIANCE — a separate question this
+leg cannot answer with a substrate verdict, and does not try to — is
+below.
 
 Run:  python3 tools/launch_substrate_probe.py --launcher-file CMD.txt
       python3 tools/launch_substrate_probe.py --selftest
@@ -111,11 +127,23 @@ def leg_background_resume(launcher, work):
     """THE LEG THAT DISCHARGES THE PRECONDITION. Red-first case: run 2's
     arm 1, which completed its whole task and died at re-invocation.
 
-    Two markers, and only one of them discriminates:
-      BG  — written by a DETACHED process. Can survive the child, so its
-            presence alone says nothing about the substrate.
-      ACK — written by the CHILD, after the backgrounded work finished.
-            Requires the substrate to still exist to act a second time.
+    THREE markers. Two discriminate substrate death; the third
+    discriminates whether the other two can be trusted at all:
+      BG        — written by a DETACHED process. Can survive the child,
+                  so its presence alone says nothing about the substrate.
+      ACK       — written by the CHILD, after the backgrounded work
+                  finished. Requires the substrate to still exist to act
+                  a second time.
+      TURN_END  — written by the CHILD as its LAST act immediately after
+                  backgrounding the sleep, before ending its turn —
+                  never after waiting for BG. A child that instead polls
+                  in-foreground for BG before "ending its turn" writes
+                  TURN_END no earlier than BG, and that ordering is the
+                  eve-review 2026-09-14 fix: v1 keyed only on ACK, so a
+                  non-compliant child that waits in-turn for its own
+                  background marker still landed ACK without ever
+                  needing re-invocation, reporting the compliance-
+                  dependent green as a genuine substrate survival.
 
     THE TURN END IS FORCED, and this leg is worthless without it —
     measured, both arms, 2026-09-14, the first version of this probe:
@@ -129,20 +157,40 @@ def leg_background_resume(launcher, work):
     "can the child wait", not "can the child be re-invoked", and reports
     the substrate that killed run 2's arm 1 as fit. The first version of
     this probe shipped that defect and its green is what exposed it.
+    "Forced" in a prompt is a request, not a guarantee, though: a child
+    that silently ignores the instruction and polls anyway reproduces
+    the exact same BG=YES ACK=YES rc=0 the unforced prompt produced —
+    v2's whole reason for existing is that this ordering check catches
+    what the forced wording alone cannot enforce.
 
     Note the RED arm loses BG too: with the turn ended, the backgrounded
     task dies with its parent before landing its own marker. The child
     still exits rc=0 — which is why the exit code is not consulted.
+
+    A THIRD leg outcome exists beside pass/fail: INCONCLUSIVE. Two
+    routes produce it, neither a substrate verdict:
+      - the launcher itself times out (rc is None) — no result, and a
+        timeout rendered as SUBSTRATE_DIES_AT_REINVOCATION is
+        could-not-verify wearing a confirmed-dead costume (eve-review
+        M2: `verdict()` v1 read a bare `rc=None` timeout as this leg's
+        ordinary fail path, no different from a substrate that ran to
+        completion and produced no ACK);
+      - TURN_END is present but not before BG — the compliance failure
+        above. The lifecycle question was never exercised, so this is
+        not a finding about the substrate, it is a finding about the
+        run: the child did not end its turn as instructed.
     """
     bg = os.path.join(work, "BG_DONE")
     ack = os.path.join(work, "ACK_AFTER_BG")
+    turn_end = os.path.join(work, "TURN_END")
     prompt = os.path.join(work, "prompt_bg.txt")
     with open(prompt, "w") as f:
         f.write(
             f"Do exactly this:\n"
             f"1. Start a BACKGROUND shell task that sleeps {SLEEP_S} "
             f"seconds and then writes the text BGDONE into {bg}.\n"
-            f"2. Then END YOUR TURN immediately. Do not wait, do not "
+            f"2. Write the text TURNEND into {turn_end} as your LAST "
+            f"act, then END YOUR TURN immediately. Do not wait, do not "
             f"poll, do not sleep in the foreground.\n"
             f"3. You will be re-invoked when the background task "
             f"completes. ONLY THEN, write the text ACKED into {ack}.\n")
@@ -158,16 +206,48 @@ def leg_background_resume(launcher, work):
 
     bg_present = os.path.exists(bg)
     ack_present = os.path.exists(ack)
+    turn_end_present = os.path.exists(turn_end)
+    turn_end_mtime = os.path.getmtime(turn_end) if turn_end_present else None
+    bg_mtime = os.path.getmtime(bg) if bg_present else None
+    ordering_ok = bool(turn_end_present and bg_present
+                       and turn_end_mtime < bg_mtime)
+
+    inconclusive = False
+    inconclusive_reason = None
+    if rc is None:
+        inconclusive = True
+        inconclusive_reason = (
+            f"the launcher itself timed out after its {CHILD_TIMEOUT_S}s "
+            "budget before this leg could be exercised: no result, never "
+            "a substrate death")
+    elif turn_end_present and bg_present and not ordering_ok:
+        inconclusive = True
+        inconclusive_reason = (
+            "TURN_END was written no earlier than BG_DONE: the child did "
+            "not end its turn before the backgrounded work finished, so "
+            "the re-invocation lifecycle question was never exercised")
+
     return {
         "leg": "background-resume",
-        "pass": bool(ack_present),
+        "pass": bool(ack_present and ordering_ok),
+        "inconclusive": inconclusive,
+        "inconclusive_reason": inconclusive_reason,
         "child_rc": rc,
         "child_elapsed_s": round(child_elapsed, 1),
-        "detail": {"bg_marker": bg_present, "ack_marker": ack_present},
-        "note": ("ACK is the discriminator. BG alone means the DETACHED "
-                 "process outlived the child, which a dead substrate also "
-                 "produces; child_rc is not consulted — run 2's arm exited "
-                 "rc=0 while dying mid-task"),
+        "detail": {"bg_marker": bg_present, "ack_marker": ack_present,
+                   "turn_end_marker": turn_end_present,
+                   "turn_end_mtime": turn_end_mtime, "bg_mtime": bg_mtime,
+                   "ordering_ok": ordering_ok},
+        "note": ("pass requires ACK present AND TURN_END present AND "
+                 "TURN_END strictly earlier than BG_DONE. BG alone means "
+                 "the DETACHED process outlived the child, which a dead "
+                 "substrate also produces; ACK alone (no ordering check) "
+                 "is the compliance-dependent green this leg no longer "
+                 "trusts; child_rc is not consulted for pass/fail — run "
+                 "2's arm exited rc=0 while dying mid-task — but rc=None "
+                 "(a launcher timeout) and a reversed TURN_END/BG_DONE "
+                 "ordering both route to `inconclusive` instead of a "
+                 "pass/fail verdict"),
     }
 
 
@@ -201,7 +281,12 @@ def verdict(legs):
     if not by["capability"]["pass"]:
         return ("SUBSTRATE_UNFIT_CAPABILITY",
                 "the child cannot write or commit; lifecycle untested")
-    if not by["background-resume"]["pass"]:
+    bg_leg = by["background-resume"]
+    if bg_leg.get("inconclusive"):
+        return ("PROBE_INCONCLUSIVE",
+                 bg_leg.get("inconclusive_reason")
+                 or "the background-resume leg could not be exercised")
+    if not bg_leg["pass"]:
         return ("SUBSTRATE_DIES_AT_REINVOCATION",
                 "capability legs pass and the ACK marker is absent: this "
                 "is run 2 arm 1's death exactly — work backgrounded for a "
