@@ -10824,3 +10824,91 @@ CONSUMER: the next session re-dispatching a halted lane against a held
 working copy; drain seam, the retirement quota's pass.
 
 No payload change rides this entry.
+
+## 2026-09-14 — the look-alike quote block: one keystroke from the
+## sanctioned route, and the penalty is terminal
+
+INCIDENT + BASIS: the scoped lc-61 run's arm 2 (terra as desk) ended
+FAILED without dispatching a single implementation, attack or verify
+leg. It locked a sound design (D1: correct the workflow-templates
+`home` from `plugin/skills` to `plugin/workflows`), then pasted the
+record tool's own verdict into its tracker as a HAND-BUILT `> ` quote
+block. That verdict text carries the literal `STATIKER-RECORD VERDICT`.
+The tag-literal lint held on it; the offending line is bare prose that
+parses no entry id, so the hold is OWNER-CONDITIONED and unreachable by
+any `corrects line <n>` token; the tracker is append-only, so the line
+cannot be edited. Terminal deadlock. Tracker line 34 in the archive at
+`/home/g/dev/local/statiker-run-2026-09-13-lc61-arms/terra-desk`,
+`.clippy/runs/2026-09-14-workflow-placeholder.md`; the desk's own close
+entry states it.
+
+VERIFIED AT SOURCE at the meta/orchestrating desk, never taken on the
+running desk's word: `statiker_record.py:701-704` and
+`repair_class():728-741` — owner `None` returns `"unreachable",
+REPAIR_INTENT_HOLD`. The tool did exactly what it is designed to do.
+`SKILL.md:1229-1231` names the route the desk skipped: "append as the
+quoted block THE RECORD TOOL PRODUCES — `quote --label "A<n> quotes"`,
+raw text on stdin ... bracketed tag literals defanged". `quote` is a
+real subcommand (`statiker_record.py:3127`, `cmd_quote`).
+
+CLASS: a sanctioned route whose LOOK-ALIKE is reachable by hand, where
+the hand version's failure is terminal rather than corrective. This is
+NOT the page failing to state the rule — the page states it plainly, and
+that is what makes the entry worth writing rather than a page bug worth
+booking.
+
+WHY IT BITES A CAREFUL DESK, which is the part that matters: the
+sanctioned output has a DISTINCTIVE, DESCRIBED shape — `> Superseded —
+<label>`, every line `>`, a bare `>` for blanks. A desk that has read
+the page can reproduce that shape perfectly by hand, and terra did:
+its first lines read `> Superseded — Cycle 1 kind sweep baseline`,
+exactly right. Nothing about the hand-built block looks wrong, to its
+author or to a reader, because the only difference is provenance —
+whether the bytes came from `quote` or from the desk. The defang is the
+one thing `quote` adds that the eye does not supply, and it is invisible
+by construction until the lint fires. So the page's own description of
+the tool's output doubles as a recipe for counterfeiting it, and
+compliance and its counterfeit are indistinguishable on the page.
+
+WHY THE PENALTY IS THE SHARP EDGE: every other record fault in this
+class routes to a repair token. This one routes to a hold that no token
+reaches, on a record that forbids editing. So the single most ordinary
+slip — pasting a verdict the way a careful person pastes a verdict —
+converts a healthy run into an unrecoverable one, with the design
+already locked and sound. Arm 2 lost the entire remainder of its loop to
+it.
+
+WHAT CAUGHT IT: nothing mechanical at the desk. The desk's own halt
+did, correctly, under the brief's "halting at a genuine gap and
+reporting it is CORRECT conduct" clause — and its closing report
+diagnosed the cause itself: "verbatim tool-verdict text needs the
+record tool's `quote` output, including its defanging, before it is
+appended to a tracker." Worth recording that the desk reached the right
+diagnosis from the verdict text alone.
+
+THE PRE-FORMULATED TEXT, for the drain pass to apply or discard with a
+one-line reason — deliberately the NARROW form, since the broad one
+(mechanising the quote path) is a payload change this entry does not
+argue for: where the page describes a tool's output FORM precisely
+enough to hand-reproduce, it names in the same breath that the form is
+not the duty — the tool's production is — and states the one
+consequence that separates them, here that an undefanged literal
+arriving by hand holds the sweep for the run's life with no token able
+to reach it. A described output shape is a counterfeiting recipe
+wherever the described half is the visible half and the load-bearing
+half is not.
+
+GENERAL FORM: where a sanctioned mechanism's OUTPUT is fully described,
+the description competes with the mechanism, and the competition is won
+by whichever is cheaper at the moment of use — the hand version, always.
+A route stays sanctioned only where the hand-built look-alike is either
+impossible or fails SOFTLY; where it fails terminally, the description
+is a trap laid by the documentation for its most careful readers.
+
+CONSUMER: the joint grading round for this run (it is arm 2's column-4
+evidence and must not be re-derived there), and the next maintenance lap
+against its named consuming seam. The MINT question — whether any of
+this becomes payload — belongs to that maintenance arc and is NOT
+settled here: this is an observation with a real incident, not a mint.
+
+No payload change rides this entry.
