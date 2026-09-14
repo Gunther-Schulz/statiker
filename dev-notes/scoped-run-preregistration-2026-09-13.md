@@ -660,3 +660,92 @@ affected arm provably disregarded. But it is a change to a
 pre-registered arrangement after one arm has data, which is exactly the
 class that should not be settled by the desk that made the mistake —
 route it to the judgment holder.
+
+## 14. APPENDED CORRECTION — the §12 baseline finding, sharpened and
+##     recounted (2026-09-14, statiker-1f)
+
+APPENDED, never edited in place. This is a pre-registered record and
+the sequence is the point: §12's figure stands where it was written and
+this section supersedes it, so a reader sees both and their order.
+
+The §12/§9 conflict was resolved FIX by the judgment holder (meta desk
+statiker-e8, LEDGER.md 36093f8, 2026-09-14); the brief's amendment
+quoting that decision is commit 3aea0e9. This section carries only what
+EXECUTION found that §12 did not.
+
+### 14a. The count: all FOUR reds are the flattening's, not three
+
+§12 says "452 tests with 4 non-clean results, 3 of them caused by MY
+flattening of the clone's history". Measured on the clone reset to
+e06be63, 2026-09-14, all four are:
+
+    ERROR  test_the_guard_fires_at_the_defect_and_is_clean_at_the_fix
+           (ref='0cbd1ad', mode='100644')
+    ERROR  test_the_guard_fires_at_the_defect_and_is_clean_at_the_fix
+           (ref='d8c3934', mode='100755')
+    ERROR  test_the_same_blob_at_two_modes_is_still_what_these_refs_carry
+    FAIL   test_the_refs_this_proof_is_pinned_to_still_resolve
+
+All four sit in `test_hook_modes.TheRepoSOwnRecordedInstance`. Three are
+broken BY the flattening; the fourth is that module's own alarm
+correctly reporting the other three's cause, and it is working rather
+than failing. One cause, four results. Verified with its control:
+`0cbd1ad` and `d8c3934` both ABSENT in the clone, `e06be63` RESOLVES.
+
+### 14b. The sharper defect: the slot named reds that CANNOT occur
+
+This is the half §12 did not reach, and it matters more than the count.
+
+The old slot pinned `Ran 417 tests ... FAILED (errors=2)`, named the two
+`ModuleNotFoundError` errors, and instructed the desk to "record those
+two errors as PRE-EXISTING at your first verify entry". But those two
+errors are an artifact of the `-t .` form — the very form the same slot
+forbids. Under the mandated invocation they DO NOT OCCUR.
+
+So the slot did three wrong things at once, and only the first was
+visible as a wrong number:
+
+  1. it pinned a count measured under the forbidden invocation;
+  2. it directed the desk to record as pre-existing two reds that
+     cannot appear under the invocation it mandates — phantom
+     dispositions, which an obliging desk would have to either invent
+     or silently drop;
+  3. it left the four reds that DO appear unmentioned, then closed with
+     "Any other red is yours" — assigning to the desk four failures the
+     arrangement itself caused.
+
+Measured both ways on the reset tree, 2026-09-14:
+
+| measurement | mandated (no `-t .`) | forbidden (`-t .`) |
+|---|---|---|
+| tests run | 452 | 418 |
+| result | failures=1, errors=3, skipped=1 | failures=1, errors=5, skipped=1 |
+| `ModuleNotFoundError` hits | 0 | 2 |
+
+The 2-versus-0 row is the instrument pair: the same grep finds the
+pattern under `-t .` and not under the mandated form, so the zero is an
+absence and not a dead pattern. §1's own figure of 417 does not
+reproduce on this clone either — the `-t .` form yields 418 here, which
+is consistent with §1's number having been measured somewhere the
+pinned refs still resolved.
+
+### 14c. What this does to the arrangement
+
+Nothing that the FIX decision did not already price. Arm 1 ran under the
+defective slot and is recorded as such; the asymmetry is confined to
+this one factual slot and is stated at grading. Arms 2 and 3 run under
+the corrected slot. Every other line of the desk-facing brief is
+byte-identical across all three arms — verified at the diff, 8 lines
+removed and all inside the Verify slot, not asserted from intent.
+
+### 14d. The general form, since the class outlives this run
+
+An expected-result line in a brief is a PREMISE the executor does not
+establish, and it was measured under conditions the brief does not
+carry. Here the measuring invocation and the mandated invocation
+differed, and the slot itself is where the two met without anyone
+comparing them. A pinned expectation is re-measured under the exact
+invocation the brief mandates, on the exact tree the executor will
+meet — or it is not pinned at all. The failure is silent in the
+direction that matters: a desk that trusts the number owns failures it
+did not cause, and its record then reads as a desk that broke things.
