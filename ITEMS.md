@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 43
+added: 44
 compacted: 0
 
 ## st-10
@@ -377,3 +377,12 @@ write-set: UNKNOWN
 done-criterion: A run whose stated working-copy scope excludes the out-of-repo artifact path is told so BEFORE investigate-design spends, rather than at attack preparation; red-first on arm 3's own case — the check goes red against that run's stated scope and green against a scope that permits the XDG artifact path
 evidence: Arm 3 (astra) of the scoped lc-61 run halted FAILED at attack preparation with ARTIFACT_IN_REPO, route halt, error 'attack artifact must land outside every repo (tree-claim briefs assert tree == lock commit)'. Verified at source at the grading desk, not taken on the desk's word: statiker_record.py:2728 emits that verdict with that exact error text, and the desk's cited range 2678-2730 is accurate. The arm's own candidate lesson, quoted: 'preflight should detect conflict between an operator's clone-only filesystem scope and statiker's mandatory out-of-repository attack artifact before design work.' NOT desk error — conduct was correct throughout (one declared containment probe, refusal taken, stopped with no substitution of paths, tiers or tools). Arm 1 met the same contradiction and breached containment instead, writing an out-of-clone worktree and artifacts to the XDG state dir. Archive: /home/g/dev/local/statiker-run-2026-09-13-lc61-arms/astra-desk
 blocked-by: decision which stage owns the containment-vs-artifact conflict check, and whether an operator containment scope is expressible in a form a preflight can read
+
+## st-65
+grade: NEW
+requirement: A comparison run's registration must be EXECUTED against the world it describes before any arm dispatches; both measurement failures of the scoped lc-61 run were arrangement defects, not model results (dev-notes/scoped-run-preregistration-2026-09-13.md §§14,16)
+goal: general-maintenance
+write-set: UNKNOWN
+done-criterion: The next comparison run's registration carries, before its first arm dispatches, an executed-check record: every expected-result line re-measured under the invocation the brief mandates on the tree the executor will meet, and every scope or containment sentence checked against the mechanisms the run will actually invoke, each with its command and output
+evidence: Two independent defects in one run, same shape, both caught only after arms had spent. (1) §14: the brief pinned 'Ran 417 tests ... FAILED (errors=2)' and instructed the desk to record those two errors as PRE-EXISTING, but they cannot occur under the invocation the same slot mandates; it named phantom reds, omitted the four real ones, and closed with 'any other red is yours', assigning four arrangement-caused failures to the desk. Re-measured on the reset tree: 452 tests, failures=1 errors=3 skipped=1. (2) §16: 'Everything the run reads, writes and commits lives inside that path' is unsatisfiable against the page's own attack design, which forces the artifact outside every repo (statiker_record.py:2728). Arm 3 halted obeying the brief; arm 1 breached containment obeying the page. Cost: column 1 unmeasurable, column 2a lost on one arm, and one of three arms terminated by the arrangement itself
+blocked-by: decision which carrier holds the executed-registration rule: CLAUDE.md trial convention, pre-registration checklist section, or mechanism (routed to the maintenance arc by statiker-e8 on 2026-09-14)
