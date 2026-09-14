@@ -1241,6 +1241,46 @@ class TestSkillSectionPointersResolve(unittest.TestCase):
             ]),
             unresolved)
 
+    # S1 (arc-close review, 2026-09-14): a whole section DELETED —
+    # heading and body together — drops `found` silently, and the
+    # rename test above cannot catch it: renaming only touches the
+    # heading line, so the phrase still sits in the (now headingless)
+    # body and the generic pass's page-wide count stays > 1, landing
+    # it in `unresolved`. Deleting the body too removes the phrase's
+    # only other occurrence, so the generic pass's own
+    # `if normalized.count(...) <= 1: continue` guard skips it, and
+    # the known-names pattern never saw it either (its alternation is
+    # built from the current heading set, which no longer has the
+    # deleted heading). The pointer vanishes from both `found` and
+    # `unresolved` at once. Measured: deleting `## Stop rule` (heading
+    # + its ~260-line body) drops found from 4 to 3 with unresolved
+    # staying empty.
+    #
+    # RE-PIN PROCEDURE, when the page legitimately gains or drops a
+    # quoted section pointer: re-run `section_pointers` against the
+    # live page (e.g. the one-liner in this docstring's sibling
+    # tests), read the new `found` list against the diff that
+    # changed it — confirm the added/removed entry is the one the
+    # edit intended, not a side effect — and replace GOLDEN_POINTERS
+    # below with that new sorted list. Never hand-edit a single entry
+    # in GOLDEN_POINTERS without that rerun: a hand-patched golden
+    # list is the restated-basis this pin exists to replace.
+    GOLDEN_POINTERS = sorted([
+        ("Implementation", "Disjoint is a write-set answer"),
+        ("The attack", "That closes design"),
+        ("Stop rule",
+         "Each unit design also carries the PRECEDENT LINE"),
+        ("Implementation",
+         "A missing decision, file, or value is reported as a gap"),
+    ])
+
+    def test_pointer_inventory_is_pinned(self):
+        found, _ = section_pointers(SKILL.read_text())
+        self.assertEqual(
+            sorted(found), self.GOLDEN_POINTERS,
+            f"pointer inventory drifted from the pinned set — "
+            f"found: {sorted(found)}")
+
 
 class TestVerdictParity(unittest.TestCase):
     def test_every_skill_named_verdict_is_emitted(self):
