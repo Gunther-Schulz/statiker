@@ -1924,6 +1924,36 @@ class TestAttack7Findings(RecordFixture):
         v = self.closure(body, unit="U2")
         self.assertEqual(v["verdict"], "CLOSURE_VOID")
 
+    def test_premise_kill_of_a_live_entry_ignores_later_same_id_lines(self):
+        # S2 (arc-close review, 2026-09-14): the safety boundary st-63
+        # deliberately left alone. The scopeless branch a few lines
+        # below this one reads `latest[e.id] is e` — a later same-id
+        # restatement (record:/unit U<k> scope) resolves it. This
+        # INVALIDATED-of-a-live-entry branch has NO such guard: it
+        # fires on ANY post-closure [INVALIDATED] line for an id that
+        # was live at the closure, whichever position in `post` it
+        # occurs at, and `continue`s past scope classification
+        # entirely — a same-id line appended AFTER it, however scoped
+        # or tagged, never gets a chance to supersede it. Pinning this
+        # so the guard is never silently extended to reach this
+        # branch too, which would let the exact same-id restatement
+        # that legitimately clears a scopeless line also clear a
+        # premise-kill.
+        body = (CLOSED
+                + "- D1 [INVALIDATED] record: the shared parser never "
+                  "existed — basis: F9\n"
+                + "- D1 [COMMITTED] record: repaired somehow — "
+                  "basis: probe\n")
+        v = self.closure(body)
+        self.assertEqual(v["verdict"], "CLOSURE_VOID", v)
+        body_unit_scope = (CLOSED
+                + "- D1 [INVALIDATED] record: the shared parser never "
+                  "existed — basis: F9\n"
+                + "- D1 [COMMITTED] unit U1 repaired somehow — "
+                  "basis: probe\n")
+        v2 = self.closure(body_unit_scope)
+        self.assertEqual(v2["verdict"], "CLOSURE_VOID", v2)
+
     def test_dead_entry_record_bookkeeping_still_allowed(self):
         # the N1 check's boundary: bookkeeping over an ALREADY-dead
         # entry (the skill's prescribed re-disposition form) must not
