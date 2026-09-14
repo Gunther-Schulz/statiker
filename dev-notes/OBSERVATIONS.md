@@ -11594,3 +11594,130 @@ CONSUMER: the next C4b mint's batch plan (the write-set member above
 is now a known slot, not a discovery), and the fire-rate review, which
 should ask whether the declaration-as-switch shape generalizes past
 containment.
+
+## 2026-09-14 — RELEASE-GATE RECORD for 0.2.100: the C4b call on the M3
+## refusal, and the carried-set re-ask over the whole pin interval
+
+Written because the eve review found it ABSENT and graded the absence
+BLOCKING: `git diff --stat afef58b..HEAD -- dev-notes/OBSERVATIONS.md`
+returned empty against a delta that changed payload code and page text.
+CLAUDE.md:15 makes that mechanical — an unrecorded check is a skipped
+check — and the 0.2.100 mint's own entry (above, 7ea73fc) was written
+against the PRE-repair payload, which the repair lap then changed.
+
+### Part 1 — the C4b call on the M3 repair: IT IS A MINT
+
+WHAT IT IS: `statiker_git.py:1284-1286` refuses an empty `--containment`
+value with USAGE_ERROR, where the empty string previously resolved
+silently to the repo root and was echoed into a verdict the desk books
+as an F-line.
+
+WHY IT IS THE BOUNDARY CASE, stated with the contrary reading rather
+than asserted one way. C4b binds a repair disposition that introduces a
+new machine token, hold code, predicate or mandatory form. This adds NO
+token — USAGE_ERROR is pre-existing, in the registry and at five page
+seams. The contrary reading is real and was weighed: `--containment
+<path>` already states its predicate (a PATH), an empty string was never
+a path, so the refusal RESTORES the flag's stated reach — and a repair
+restoring an existing predicate's stated reach is explicitly NOT a mint.
+
+WHY IT IS CALLED A MINT ANYWAY: the change is observable to a caller.
+An invocation that previously succeeded now fails, so a mandatory form
+lands on operator-supplied input — a declared scope value must be
+non-empty. CLAUDE.md names this exact shape by sha ("e19116d's
+fail-closed floor adds no token name but does add a mandatory form, and
+whether it fires is a desk judgment"), which is the rule saying the
+desk must DECIDE rather than that the answer is obvious. Decided
+FAIL-CLOSED, consistent with this repo's own posture: the tenet check
+costs little, a missed mint is what C4b exists to prevent, and a
+boundary called the permissive way is how the 0.2.86 release came to
+carry eleven unrecorded mints.
+
+THE OTHER TWO REPAIRS ARE CLEAN NON-MINTS, and the split is the useful
+half of the judgment (reading confirmed by the eve review): B1 (the
+worktree-parent axis taking the as-named path) and S2 (recording
+`resolved_from`) each restore a reach SKILL.md:65-70 ALREADY mandated —
+"outside only when named and real form agree", and "any realpath
+acceptance noted per path in the verdict as `resolved_from`". Neither
+introduces anything; both make the code match a predicate the page
+already stated. So M3 was the only live C4b question in the lap.
+
+INCIDENT PROVENANCE: eve review MINOR M3, 2026-09-14 — executed, the
+empty value resolving to the repo root and echoed as `containment: [""]`
+with three axes firing. Found by a fresh-context reviewer on the
+delta, not in the field; recorded as review-found rather than
+field-found, which is a weaker provenance class and is stated as such.
+
+#### The tenet check — all nine, each marked
+
+1. INVESTIGATION-LED DESIGN — NOT APPLICABLE. A one-line refusal on a
+   reviewer-executed finding; no design round.
+2. SUFFICIENCY = DISPATCHABLE — PASS. The lane implemented it from one
+   sentence and generalized it correctly (below), making no design call.
+3. ANTI-SKIM — PASS. It removes a silent coercion at an existing
+   forcing point rather than adding ceremony.
+4. COST ASYMMETRY — PASS. An empty scope declaration is caught at
+   preflight, before any cycle spends, rather than surfacing as a
+   nonsense containment verdict a desk books.
+5. AUTONOMY NORTH STAR — PASS. It replaces a human noticing that a
+   verdict's `containment` field reads `[""]`.
+6. ECONOMICS — PASS, priced. One predicate on an argument already
+   parsed; no round, no extra call.
+7. CONVERGENCE CIRCUIT — PASS. The refusal enters the record as a
+   verdict line like any other, gradeable by a later reader.
+8. MEDIUM TENET — PASS, reasoned rather than ticked, per this repo's
+   record that it is the tenet historically skipped on mechanism-dense
+   mints. What must hold exactly is that a declared scope value names
+   something; that is a computable predicate, and it is mechanized with
+   its own red-first arm (`test_M3_empty_containment_value_is_usage_error`,
+   red on dropping :1284-1286, one arm, verified by the eve review's
+   mutation). No judgment remainder: an empty string is empty.
+9. PLACEMENT — PASS. Precedent line: follows the existing argument
+   validation in `cmd_preflight`, judged sound — same function, same
+   stage, same verdict vocabulary. No new section.
+
+BETTER THAN SPECIFIED, recorded as a lane credit: the brief named the
+single-value case (`--containment ""`); the lane generalized to ANY
+empty entry in a multi-value declaration (`any(not c for c in
+args.containment)`). Same fix in its complete form.
+
+### Part 2 — THE CARRIED-SET RE-ASK, over the whole pin interval
+
+CLAUDE.md:22 obliges the RELEASING desk to re-ask the tenet check over
+the pin's whole carried set — every mint between the INSTALLED pin and
+the released version, never only the mints a handoff names. Provenance:
+the 0.2.86 release, where eleven carried mints had no record and the
+gap was found at the release gate.
+
+INSTALLED PIN: 0.2.99. RELEASED VERSION: 0.2.100. The interval's
+enumeration, derived from the payload diff 0.2.99..HEAD rather than
+from memory:
+
+1. **The containment gate** (st-74/st-64) — `--containment`,
+   `hooks_path` and `out_of_repo_required` fields, and
+   PREFLIGHT_CONTAINMENT_HOLD. MINT. Record EXISTS and is complete:
+   this file, 2026-09-14 entry, all nine tenets marked individually,
+   tenet 8 reasoned. Written pre-repair; the repairs below are what
+   this entry re-asks over.
+2. **The M3 empty-value refusal** — MINT. Recorded in Part 1 above.
+3. **B1, the worktree-parent as-named pair** — NOT a mint (restores
+   SKILL.md:65-70's stated reach). Reasoning in Part 1.
+4. **S2, `resolved_from` recording** — NOT a mint (restores
+   SKILL.md:70's stated convention). Reasoning in Part 1.
+5. **M1, the page's coverage-boundary narrowing** — NOT a mint: it
+   NARROWS a claim to what the predicate establishes, introducing
+   nothing. It did move PREFLIGHT_OK into the multi-location
+   population, checked by the eve review at both seams: :197 gives a
+   disposition agreeing with the token, :236 assigns none, so the
+   seams do not differ and the fail-closed floor does not engage.
+6. **M2, M4, M5** — test-side only, no payload semantics.
+7. **The CLAUDE.md review-cadence amendment** — not payload, outside
+   the pin's carried set; operator-authorized first-hand this date.
+
+**RE-ASK VERDICT: the carried set is TWO mints, both now recorded with
+their nine tenets. No mint in the 0.2.99..0.2.100 interval lacks a
+record.**
+
+CONSUMER: the release gate itself, which re-asks this at the pin move;
+and the next releasing desk, which inherits the enumeration form rather
+than re-deriving it.
