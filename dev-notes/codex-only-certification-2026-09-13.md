@@ -768,3 +768,71 @@ a sibling distillate, not a new concept.
 
 Booked as st-59. NOT patched here: the fix is payload content at a
 release seam, and releases gate through statiker-fd.
+
+## SCOPED RUN DESK-ROLE DATA (2026-09-14, graded at statiker-1f,
+## ratified by statiker-e8) — NO CERTIFICATION IS READABLE
+
+Follow-on data from the scoped codex-only run on lifecycle lc-61, whose
+full registration, grading record and arrangement findings live in
+`dev-notes/scoped-run-preregistration-2026-09-13.md` (§§1-17). Recorded
+HERE so the pay record has one home, per this file's own results
+convention.
+
+THE HEADLINE FOR THE PAY QUESTION: no (role, model) certification for
+the DESK role is readable from this run, for terra or for astra. This
+is the second consecutive desk-role probe to return no certification —
+probe A returned none through saturation, this one through a different
+route — and the two failures have DIFFERENT causes, which matters more
+than the shared outcome.
+
+WHY NOTHING IS READABLE, per column:
+- Column 1 (stop-rule placement): the measuring EVENT never occurred.
+  No arm declared [READY] — arm 1 barred by CLOSURE_ABSENT (st-63), arm
+  2 dead at the record gate on its own error, arm 3 halted at attack
+  preparation by an arrangement defect. This is a stronger negative
+  than probe A's saturation: there the arms answered identically, here
+  none answered.
+- Column 2b (population): SATURATED, and pre-empted at registration —
+  the brief instructs the very behaviour the column tested ("what the
+  repository currently does is established by running the repository's
+  own tools"). An arrangement finding, the same class as probe A's.
+- Column 2a (the decision): measured on an arm-PAIR only. Arms 1 and 2
+  reached the claim call; arm 3 had the discriminating fact and was
+  stopped before deciding.
+
+WHAT IS READABLE, both at n=1 per tier and neither sufficient for a
+certification:
+1. VERDICT-CONTRACT CONDUCT held three-for-three, AGAINST THE PRIOR.
+   The registered expectation was that codex would not hold here — the
+   structure-over-contract weakness replicated twice (stage-2d, probe
+   B's R7). No arm improvised past a halt. Weight honestly: arms 2 and
+   3 passed on HALT conduct with little opportunity to improvise, since
+   both died early; only arm 1 exercised sustained repair-from-verdict
+   work. Real, but thin.
+2. THE TWO CODEX TIERS SEPARATE ON RECORD DISCIPLINE, in astra's
+   favour, and the separator is mechanism-versus-hand-imitation. Astra
+   produced its quoted evidence with the page's `quote` tool
+   (QUOTE_BLOCK, defanged), marked a carried baseline as reported
+   rather than executed, and flagged unprompted that committing its own
+   tracker would change the population it had measured. Terra
+   hand-built blocks that imitate the tool's output form — indis-
+   tinguishable on the page, and the undefanged literal it carried
+   ended its run in an unrepairable hold.
+
+PAY READING, stated narrowly: this run does not move the desk-role
+question in either direction on capability, because the arrangement
+prevented the measurement twice. What it adds to the pay case is a
+QUALITATIVE tier split inside codex on record discipline, and a first
+datum that codex desks stop rather than bridge when a tool halts them.
+Both want replication on an arrangement that does not stop its own
+arms.
+
+METHOD DEBT THIS RUN PROVES, and it is the transferable lesson: BOTH
+measurement failures here were arrangement defects, not model results —
+a pinned verify baseline measured under an invocation the brief forbids
+(§14), and a containment sentence unsatisfiable against the page's own
+attack design (§16). The next comparison run's registration is executed
+against the world it describes BEFORE an arm is dispatched: every
+expected result re-measured under the mandated invocation on the
+mandated tree, and every scope sentence checked against the mechanisms
+the run will actually invoke.
