@@ -209,8 +209,19 @@ defects that killed its predecessors are now detected before design
 spends. A first full codex cycle would be this run's largest single
 product beyond certification.
 
-### 3a.4 THE CEILING ARM — THE RUN'S LARGEST OPEN RISK, stated rather
-### than assumed
+### 3a.4 THE CEILING ARM — SUBSTRATE FOUND AND MEASURED (was the run's
+### largest open risk; closed 2026-09-14 by the resume-driver probe)
+
+**RESOLVED.** The ceiling arm's substrate is `claude -p` driven across
+turns by an external re-invoker (`--session-id` on the first call,
+`--resume` thereafter), measured working WITH CONTEXT below. The
+no-ceiling-arm branch does NOT fire, the operator decision round it
+would have required is NOT owed, and columns 1 and 2a keep their gate.
+
+The section below is kept in full rather than trimmed to the answer:
+it records what was closed, what was wrongly called closed before it,
+and the two routes that remain shut — a successor asking "why this
+substrate?" needs the eliminations, not just the winner.
 
 The ceiling arm exists to make the ceiling gate meaningful (§6c): if
 ceiling and codex land the same call, the column certifies nothing.
@@ -248,40 +259,52 @@ name risks honestly. Caught by statiker-e8, 2026-09-14.
 **UNMEASURED CANDIDATES, named so the freeze executor probes rather
 than assumes:**
 
-1. **THE RESUME-DRIVER — OPEN, PENDING PROBE, and the first thing to
-   try.** An external detached process (the `setsid`/`nohup`
-   arrangement the codex arms already use) re-invokes `claude -p
+1. **THE RESUME-DRIVER — PROBED, AND IT WORKS. This is the ceiling
+   arm's substrate.** An external process re-invokes `claude -p
    --resume <session-id>` after each turn ends, converting the
-   turn-boundary death into a survivable series. This sits BETWEEN
-   "a -p child dies at turn end" and "no dispatchable substrate", and
-   the probe's current verdict does not reach it. A probe leg is
-   cheaper than a wrong absence in a contract for a live run: the
-   driver form is probed before any absence is claimed.
+   turn-boundary death into a survivable series.
+
+   MEASURED 2026-09-14, `tools/driver_resume_probe.py`, the
+   discriminating pair both arms executed:
+
+       UNAIDED : ack=False, rc=0                     <- RED, as required
+       DRIVEN  : ack=True, token reproduced verbatim <- resumed WITH CONTEXT
+
+   THE NONCE IS WHAT MAKES THE GREEN MEAN "RESUMED". Turn 1 is given a
+   token and told to write nothing; turn 2 is asked for the token it
+   was given. A driver that silently starts a FRESH session each time
+   would write the marker and fail the token — that false green is
+   caught by construction rather than by the reader noticing. And the
+   unaided arm must be RED or the pair distinguishes nothing; the
+   probe refuses a verdict when it is not.
+
+   So the ceiling arm is DISPATCHABLE, and §4c's constraint is met by
+   the driver rather than by keeping arm work inside one turn.
 2. An operator-opened INTERACTIVE session as the ceiling arm. Survives
    turn boundaries by construction. Costs the parity §15c bought — the
    codex arms are CLI processes fed frozen text — and costs an operator
    action per arm, so it is not a free substitution.
 
-**OWNER AND MOMENT — residual 6d's, now living here.** The RUN DESK
-picks the ceiling substrate at freeze, probes it, and records the
-verdict before any arm dispatches. ORDER: probe the resume-driver
-FIRST, since it preserves the parity §15c bought and costs no operator
-attention; the interactive session is the fallback, not the first
-reach.
+**OWNER AND MOMENT — residual 6d's, now living here, and DISCHARGED at
+registration rather than deferred to freeze.** The substrate question
+is answered: the resume-driver, measured. What remains at freeze is a
+RE-RUN, not a decision — `tools/driver_resume_probe.py` against the
+run's ACTUAL driver arrangement, since a probe of a substitute
+invocation measures a substrate the run will not use. The run desk
+records that verdict before any arm dispatches.
 
-**IF THE PROBES FAIL, THAT FINDING TRAVELS TO THE OPERATOR AS A
-DECISION ROUND BEFORE ARMS SPEND** — through the judgment desk, per the
-usual form, each option with a recommendation beside it. It is scope,
-not arrangement: running without a ceiling gate CHANGES WHAT RUN 3
-CERTIFIES, and the operator's standing pin is that operational issues
-are surfaced rather than silently allowed to gate grading. Expected
-options: run with the certification consequence named; an
-operator-attended interactive ceiling session, whose cost is the
-operator's attention AND a change in the arm's nature, stated as such;
-or a further driver probe if the question is still open. The one
-disposition NOT available is discovering it at grading.
+**IF THE FREEZE RE-RUN FAILS** — the driver working here is not the
+same claim as the run's own arrangement working — **that finding
+travels to the OPERATOR as a decision round BEFORE arms spend**,
+through the judgment desk, each option with a recommendation beside it.
+It is scope, not arrangement: running without a ceiling gate CHANGES
+WHAT RUN 3 CERTIFIES. Options then: run with the certification
+consequence named; an operator-attended interactive ceiling session,
+whose cost is the operator's attention AND a change in the arm's
+nature, stated as such; or repair the driver arrangement and re-probe.
+The one disposition NOT available is discovering it at grading.
 
-Either way the pin's second half binds: an operational dead end is
+The operator's pin binds on either path: an operational dead end is
 surfaced, never a reason to drop sol, terra or astra.
 
 ### 3a.5 COUNT AND PARITY
