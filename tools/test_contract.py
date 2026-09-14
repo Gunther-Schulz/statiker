@@ -1039,6 +1039,21 @@ class TestRuntimeVerdictBattery(unittest.TestCase):
             self.assertNotIn("GATE_UNREADABLE", r["verdicts"], r)
 
 
+def page_heading_names(text):
+    """Every `## `-level heading's own name on the page — the part
+    before any `:` or `(` — the ONE definition of "current heading"
+    for this page. `section_pointers` and its own test battery both
+    read this function rather than each restating the `## ` check, so
+    the two heading-name sets cannot drift apart (st-45: the item's
+    original three anchor-pin controls died silently when two of
+    their names became real headings — a second, independently
+    hand-written heading-detection predicate in the test is exactly
+    the kind of copy that could itself have drifted from the real
+    one, matching one heading level and missing another)."""
+    return {re.split(r"[:(]", line[3:].strip())[0].strip()
+            for line in text.split("\n") if line.startswith("## ")}
+
+
 def section_pointers(text):
     """Every quoted section pointer on the page, and the unresolved ones.
 
@@ -1105,9 +1120,8 @@ def section_pointers(text):
             buf.append(line)
     if cur is not None:
         sections[cur] = norm(" ".join(buf))
-    names = sorted({re.split(r"[:(]", h)[0].strip() for h in sections},
-                   key=len, reverse=True)
-    names_set = set(names)
+    names_set = page_heading_names(text)
+    names = sorted(names_set, key=len, reverse=True)
     normalized = norm(text)
     found = []
     if names:
@@ -1173,9 +1187,7 @@ class TestSkillSectionPointersResolve(unittest.TestCase):
         # this fix). Asserted here so a future heading addition fails
         # this loudly instead of going quiet.
         text = SKILL.read_text()
-        headings = {line[3:].strip() for line in text.split("\n")
-                    if line.startswith("## ")}
-        names_set = {re.split(r"[:(]", h)[0].strip() for h in headings}
+        names_set = page_heading_names(text)
         controls = [
             ("Note", "the desk decides this one"),
             ("Measured twice", "the lane halted correctly"),
