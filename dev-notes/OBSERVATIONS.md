@@ -11228,3 +11228,105 @@ which is the correct disposition and is why it is written here.
 CONSUMER: the arc-close checkpoint review, which reads this entry as
 the mint's tenet record; and the release gate, whose re-ask runs over
 the pin's whole carried set.
+
+## 2026-09-14 — st-56 mint: the verify carve-out gains an EXECUTED
+## resolution check, with its un-shadowed control
+
+PAYLOAD CHANGE, commit 9eb30c1. Written after the arc-close review
+found it MISSING — the review's S3: exactly one mint record existed in
+the carried set (st-10's C4a) while st-56 adds a new MANDATORY form of
+the same shape. The asymmetry inside one wave is the tell, and it is
+mine: I wrote C4a's record and never asked the same question of st-56.
+Recorded now rather than at the release gate, so the gate's re-ask
+finds it present instead of writing it.
+
+INCIDENT PROVENANCE: statiker-c8's probe-B arrangement validation,
+2026-09-13. Verify-leg isolation said nothing about ENVIRONMENT
+resolution, so an editable install elsewhere on the host silently
+redirects an isolated leg's import to the ORIGINAL tree — the leg then
+grades the wrong object while reporting clean. A verify leg that grades
+the wrong tree and reports green is the worst shape the loop has: it
+consumes the forcing point's cost and returns an answer about something
+else.
+
+WHAT LANDED: "Resolution is EXECUTED, never assumed — an import (or
+equivalent) run in the isolated copy prints a path inside the copy, an
+un-shadowed control alongside it prints the original path, and the
+dispatching desk checks the pair before the leg's result counts."
+
+### The tenet check — all nine, each marked
+
+1. INVESTIGATION-LED DESIGN — NOT APPLICABLE. The design was settled
+   at the probe-B validation that produced the incident; this is its
+   landing.
+2. SUFFICIENCY = DISPATCHABLE — PASS. The clause names the executed
+   form, the control, and who checks the pair. A desk executing it
+   makes no further decision.
+3. ANTI-SKIM — PASS. It closes a hole in forcing point 5 rather than
+   adding ceremony around it: isolation was already demanded, and the
+   clause supplies the half that made the demand checkable.
+4. COST ASYMMETRY — PASS. The check runs before the leg's result
+   counts, so a mis-resolved leg is caught at dispatch rather than
+   after implementation has rested on its green.
+5. AUTONOMY NORTH STAR — PASS. It replaces a human seat: without it,
+   only a person noticing an odd path in a log would catch the
+   redirect.
+6. ECONOMICS — PASS, priced. Two commands per verify leg (the import
+   and its control), against a failure mode that costs the whole leg
+   plus everything built on it.
+7. CONVERGENCE CIRCUIT — PASS. The resolution enters the record in
+   gradeable form — a printed path and its control — rather than as a
+   desk assurance.
+8. MEDIUM TENET — PASS, and this is the tenet that decides the item, so
+   it gets the reasoning rather than a mark. "Whatever must hold
+   exactly is designed as mechanism with a red-first battery; prose
+   holds judgment." What must hold exactly here is WHICH TREE the leg
+   resolved, and the clause does NOT leave that to judgment: it
+   mandates an EXECUTION (an import printing its path) with a
+   DISCRIMINATING CONTROL beside it (the un-shadowed run printing the
+   original). That is the red-first pair in prose's clothing — the
+   pair, not the assurance, is what the desk checks. The judgment
+   remainder is only whether the printed path lies inside the copy,
+   which is a string comparison a reader performs correctly. So the
+   exactly-holding half IS mechanized, at the only place it can be:
+   inside the leg's own environment, where no repo-side checker can
+   reach.
+9. PLACEMENT — PASS. It lands INSIDE the existing carve-out passage,
+   which already declared by-product paths, rather than opening a new
+   section. Precedent line: follows the verify carve-out, judged sound.
+
+## 2026-09-14 — st-63's page rule is NOT a mint: the recorded
+## disposition, with the authority its reach derives from
+
+Recorded because C4b is prose precisely so boundary calls like this are
+the desk's, and a silent non-mint call is indistinguishable from a
+skipped one. The arc-close review raised it as needing a disposition
+either way (its S3); this is that disposition.
+
+THE QUESTION: commit 676a6eb states a predicate reading on the page —
+a scopeless post-closure line still LIVE for its id keeps closure shut,
+a later same-id restatement resolves it, a different id's resolves
+nothing. Does that introduce a new predicate (a mint under C4b) or
+restore an existing one's stated reach (not a mint)?
+
+DISPOSITION: NOT A MINT. C4b's own boundary sentence draws the line —
+"distinguish a new token/predicate/form from a repair restoring an
+EXISTING predicate's stated reach, which is not a mint" — and this is
+the second. The same-id supersession contract already existed in the
+record model as the st-35 [INVALIDATED] disarm; what 33913d8 did was
+make the closure gates read it, and what 676a6eb did was make the page
+say what the gates now do. No token, hold code, predicate or mandatory
+form is introduced by either.
+
+THE AUTHORITY THE REACH DERIVES FROM, cited so this call is CHECKABLE
+later rather than merely asserted: the operator's contract decision of
+2026-09-14, recorded in LEDGER.md — the meta desk's prose entry at
+commit 89fd565 and the verb re-record through `ledger add decision`
+that actually cleared st-63's blocker. That decision is what settles
+that supersede-by-restatement was always the contract rather than a new
+permission, and therefore what makes this a repair rather than a mint.
+Without that citation the non-mint call would rest on the desk's
+reading of its own change, which is the same-parentage error.
+
+NOT DISPOSITIONED HERE and not needed: st-62 (relocation, no new
+token/predicate/form — the reviewer concurs).
