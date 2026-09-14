@@ -915,3 +915,120 @@ verified repaired before this gate — so the three-arm cost buys three
 measurements rather than three deaths. The scope call is the
 operator's and is recorded as theirs; this paragraph exists so no
 successor reads the reversal as an unnoticed drift back.
+
+---
+
+## 15. ARRANGEMENT AMENDMENT, 2026-09-14 — the ceiling arm's substrate
+
+Dated amendment, appended never edited. Recorded by statiker-ac before
+arm 1 dispatched; approved by statiker-e8 (judgment desk) this date.
+**The BRIEF TEXT IS UNCHANGED** — what moves is the arrangement's
+delivery mechanism, which §13d's audit does not govern, so the §2 audit
+is NOT reopened.
+
+### 15a. The contradiction that forced it
+
+The ceiling arm was to be a Claude subagent lane, as run 1's was. That
+is no longer dispatchable on this machine, and the two exits are shut
+against each other:
+
+- A NAMED subagent sits in the mailbox lane — no completion
+  notification, its final text reaches no one — so
+  `dispatch-guards/brief-reminder` DENIES it unless the BRIEF instructs
+  delivery. The brief is frozen; a channel line in the Claude arm's
+  copy and not the codex arms' is the measured object moving between
+  arms.
+- An UNNAMED generic dispatch is denied by `agent-model-gate`. Read at
+  the source rather than inferred: `ENFORCED_TYPES = {"general-purpose",
+  "Explore", "Plan", "claude", None, ""}` (agent-model-gate.py:133).
+  Types outside that set bypass the gate but are all pinned
+  specialists — the nearest, claude-code-guide, carries Bash, Read,
+  WebFetch and WebSearch with no Write, Edit or Skill. None can be a
+  statiker desk.
+
+This is st-64's shape one grain over: obeying the frozen brief and
+obeying the machine's guards were incompatible acts. It was found by
+EXECUTING the dispatch, not by modelling it — the second time this run
+that executing a registered step surfaced what the step did not
+anticipate (§13b was the first).
+
+### 15b. GUARD-SET DRIFT SINCE RUN 1 — an arrangement-environment finding
+
+Established, not assumed. Run 1's brief carries NO report-channel line
+either (grep: zero hits for SendMessage / report-channel / mailbox),
+and run 1's ceiling-arm transcripts are named `desk-a2` and `desk-a` —
+names that do not start with `<model>-` and that today's name rule
+would deny outright. So the guard set CHANGED between run 1 and run 2.
+
+Recorded as what it is: dotfiles-side evolution of the dispatch-guards
+plugin, NOT a statiker defect and NOT booked here — this desk's write
+boundary does not reach that repo. Noted for the harvest. Its
+consequence for this run is the substrate change below; its consequence
+for run COMPARABILITY is that run 1's ceiling arm and run 2's ran on
+different substrates, which is stated rather than smoothed.
+
+### 15c. The substrate, and why the cost is already sunk
+
+**The ceiling arm runs as a CLI PROCESS** — `claude -p --model sonnet`
+fed the identical frozen text — which is the exact structural analogue
+of the codex arms' `codex exec -m <model> "<brief>"`. No brief change,
+no Agent guard involved, and the closing report returns as process
+stdout exactly as a codex arm's does.
+
+The ceiling-reuse cost §4 prices is ALREADY SUNK and this change adds
+none: §4 records that run 1's banked ceiling cannot be reused for run 2
+at all, because it was measured under 0.2.98 carrying the st-63 bug. So
+the substrate change costs nothing that was not already gone, and it
+BUYS parity run 1 never had — all three desk arms become CLI processes
+fed identical text and returning stdout, where run 1 mixed a subagent
+ceiling against CLI codex arms.
+
+### 15d. The permission posture — EXERCISED, and the narrowest one passed
+
+The arm needs write capability, the analogue of the codex legs'
+`-s danger-full-access` (§4: "it is NO sandbox"). The posture was
+PROBED narrowest-first on a throwaway target in this desk's own
+scratchpad — never the clone — and every result read at the artifact
+rather than off the child's claim, since a child model reporting
+success is testimony like any other.
+
+**SHIPPED POSTURE: `--permission-mode acceptEdits`. No bypass.**
+
+Probe 1 — two legs, one file written through the Bash tool and one
+through the Write tool: both markers PRESENT with correct contents,
+exit 0.
+
+Probe 2 — the ARM'S ACTUAL WORKLOAD rather than a toy, because a
+posture that passes a trivial write proves nothing about git: a
+throwaway git repo, then Bash-with-redirection, a Write-tool file,
+`git add` + `git commit`, and a `python3 -c` invocation. Verified at
+the artifact: `made.txt`=hello, `written.md`=WRITTEN, `py.txt`=42, and
+the repo carries TWO commits with the probe's own commit present.
+Exit 0.
+
+**CONSEQUENCE, recorded because it decides an authority question:**
+`--dangerously-skip-permissions` / `bypassPermissions` was NEVER
+exercised and is NOT the shipped posture. The scoped form sufficed, so
+the machine-wide manual-mode pin (an operator decision, environment
+module) is untouched and no permission escalation was taken on any
+desk's authority. The question of whether a bypass was derivable from
+the run authorization became moot before it had to be answered — which
+is the cheapest way for an authority question to end.
+
+`--restricted` was read and rejected on its own documentation: it
+removes Bash, which a desk conducting codex legs cannot do without.
+
+### 15e. Declared deviation, carried into the tracker
+
+The frozen brief does not conform to the dispatch skill's §1 brief
+form: no §2 tail block, no executor-skill cite, no scratch assignment,
+no base-commit check. That is the FREEZE, deliberate, not an oversight
+— the brief predates this desk and is identical by word for every arm.
+It travels as a DECLARED deviation rather than being repaired into
+conformance, because repairing it is the one act that would void the
+comparison.
+
+Arm stdout is captured to this desk's own scratchpad for now. The arm
+ARCHIVE location (run 1 used a sibling `-arms/` directory) is NOT in
+this desk's authorized path list and is raised with the judgment desk
+before the archive step, not assumed from run 1's precedent.
