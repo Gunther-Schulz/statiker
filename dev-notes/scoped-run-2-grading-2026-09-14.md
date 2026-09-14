@@ -377,3 +377,61 @@ The grader's three instrument failures are recorded in the grading itself
 (§7). Every grade rests on an executed control, and cells an instrument
 could not reach read could-not-verify. **The verdict inherits those
 bounds.**
+
+---
+
+## 9. CLOSE-OUT NOTES — terminal state of the run's artifacts
+
+### 9a. THE CLONE STAYS AS-IS — ruling, statiker-e8, 2026-09-14
+
+`/home/g/dev/local/statiker-run-2-clone` is left holding **astra's
+terminal state, UNRESET**, deliberately and on the judgment desk's
+ruling. Three grounds, recorded so no successor "tidies" it:
+
+1. Astra never committed. Its record therefore exists in exactly two
+   places — that working tree, and the verified `astra-desk/` archive.
+   A reset would destroy one of the two copies of the last arm's only
+   live state.
+2. There is no next arm. The reset exists to hand a clean tree to a
+   successor arm; none is coming.
+3. Run 3 builds a FRESH clone by its own construction step (§10, now
+   with §17's hooks-path neutralization), so it inherits nothing from
+   this one either way.
+
+A successor finding this clone dirty should read it as the run's final
+state, not as an unfinished cleanup.
+
+### 9b. WHERE EVERYTHING LIVES
+
+- Archives: `/home/g/dev/local/statiker-run-2-arms/{sonnet-ceiling,
+  terra-desk,sol-desk,astra-desk}/` — each whole tree, each verified
+  byte-identical to its clone at archive time, each with its stdout,
+  stderr and dispatch stamp. `sol-desk/OUT-OF-REPO-STATE/` additionally
+  carries its seal, comparison, spent queue and pinned artifact, since
+  sol's is the only gradeable attack machinery the program has produced.
+- Out-of-repo run state: `~/.local/state/statiker/{seals,artifacts}/
+  statiker-run-2-clone-a6ec24f2/` — sonnet's seal and artifact, sol's
+  full set. Worktrees parent empty; both attack worktrees removed at
+  their resets.
+- `/tmp` swept and classified at close: no arm breach; every new entry
+  traced to other sessions' tooling, with a positive control confirming
+  the search reaches.
+
+### 9c. ITEM DISPOSITIONS FROM THIS RUN
+
+- **st-73 CLOSED DONE** (refs 0c5d9a9, 9104f9f) — overtaken by
+  execution: it booked sol as a candidate to run, sol ran, and its
+  done-criterion is satisfied at the artifact.
+- **st-74 BOOKED** — the hooks-path containment gap, payload class,
+  release-gated.
+- **st-64** — second field face banked on its item; still parked on its
+  own decision blocker.
+
+**st-68's moot-inversion defect did NOT fire on st-73's close**, and the
+reason is worth recording so its absence is not read as a fix: that
+defect fires on closing an item whose DECISION blocker was answered, and
+st-73 carried `blocked-by: NONE`. No trigger, not a repair. st-68 stands
+with its two recorded firings.
+
+Carrier conservation after the close: items 29 + done 45 = 74 against
+baseline 21 + added 53 = 74 — CLEAN, nothing left by a non-closure path.
