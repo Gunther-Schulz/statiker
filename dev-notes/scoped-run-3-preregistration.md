@@ -218,7 +218,9 @@ Without a ceiling arm there IS no gate, and columns 1 and 2a certify
 nothing again — for a different reason than run 2, and one knowable
 BEFORE arms spend rather than after.
 
-**BOTH ROUTES RUN 2 HAD ARE NOW CLOSED OR DISQUALIFIED:**
+**THE TWO ROUTES AS RUN 2 USED THEM ARE CLOSED OR DISQUALIFIED** — and
+that is a claim about those two forms ONLY, not about the substrate
+question as a whole; a third form is open and unprobed (below):
 
 - `claude -p` — MEASURED AND DISQUALIFIED. The launch probe's verdict
   against it is SUBSTRATE_DIES_AT_REINVOCATION (§4c). A statiker desk
@@ -230,12 +232,31 @@ BEFORE arms spend rather than after.
   and the brief is frozen; an UNNAMED generic dispatch is denied by the
   model gate. Run 2 reached `claude -p` because of this, not by choice.
 
+**WHAT THE PROBE ACTUALLY MEASURED — its reach, stated because the
+absence claim is bounded by it.** Each leg invokes the launcher ONCE
+(`_run(launcher…)`, one call per leg) with no external re-invocation.
+So the verdict establishes that an **UNAIDED** `-p` child loses work
+that needs a second turn. It establishes NOTHING about a child driven
+across turns from outside.
+
+An earlier version of this section read as though the substrate
+question were closed. It was not: the claim rested on a narrower
+measurement than it asserted — the same assurance-wider-than-predicate
+shape this arc has produced repeatedly, here in the section written to
+name risks honestly. Caught by statiker-e8, 2026-09-14.
+
 **UNMEASURED CANDIDATES, named so the freeze executor probes rather
 than assumes:**
 
-1. A `claude -p` variant that resumes a session across turns, if one
-   exists on this build. UNMEASURED; the launch probe is the instrument
-   and the answer is one probe run.
+1. **THE RESUME-DRIVER — OPEN, PENDING PROBE, and the first thing to
+   try.** An external detached process (the `setsid`/`nohup`
+   arrangement the codex arms already use) re-invokes `claude -p
+   --resume <session-id>` after each turn ends, converting the
+   turn-boundary death into a survivable series. This sits BETWEEN
+   "a -p child dies at turn end" and "no dispatchable substrate", and
+   the probe's current verdict does not reach it. A probe leg is
+   cheaper than a wrong absence in a contract for a live run: the
+   driver form is probed before any absence is claimed.
 2. An operator-opened INTERACTIVE session as the ceiling arm. Survives
    turn boundaries by construction. Costs the parity §15c bought — the
    codex arms are CLI processes fed frozen text — and costs an operator
@@ -243,12 +264,25 @@ than assumes:**
 
 **OWNER AND MOMENT — residual 6d's, now living here.** The RUN DESK
 picks the ceiling substrate at freeze, probes it, and records the
-verdict before any arm dispatches. If BOTH candidates fail, the honest
-outcome is a run with NO ceiling arm, which the pre-registration records
-IN ADVANCE as a known could-not-verify on columns 1 and 2a rather than
-discovering it at grading. The operator pin's second half applies here
-too: an operational dead end is surfaced, never a reason to drop sol,
-terra or astra.
+verdict before any arm dispatches. ORDER: probe the resume-driver
+FIRST, since it preserves the parity §15c bought and costs no operator
+attention; the interactive session is the fallback, not the first
+reach.
+
+**IF THE PROBES FAIL, THAT FINDING TRAVELS TO THE OPERATOR AS A
+DECISION ROUND BEFORE ARMS SPEND** — through the judgment desk, per the
+usual form, each option with a recommendation beside it. It is scope,
+not arrangement: running without a ceiling gate CHANGES WHAT RUN 3
+CERTIFIES, and the operator's standing pin is that operational issues
+are surfaced rather than silently allowed to gate grading. Expected
+options: run with the certification consequence named; an
+operator-attended interactive ceiling session, whose cost is the
+operator's attention AND a change in the arm's nature, stated as such;
+or a further driver probe if the question is still open. The one
+disposition NOT available is discovering it at grading.
+
+Either way the pin's second half binds: an operational dead end is
+surfaced, never a reason to drop sol, terra or astra.
 
 ### 3a.5 COUNT AND PARITY
 
