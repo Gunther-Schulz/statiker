@@ -10,10 +10,9 @@
 # the submitting PR. No provenance, no entry. Entries are
 # ecosystem-scoped; bare classes bind the Claude ecosystem, other
 # ecosystems extend as <class>@<ecosystem> once a certified probe
-# exists there (codex, 2026-09-12, below). A harness resolves only
-# its own ecosystem's entries; a class's entries under another
-# ecosystem are that stack's certification record, not this
-# harness's resolution input.
+# exists there (codex, 2026-09-12, below). Resolution across
+# ecosystems is SKILL.md's rule (The attack, st-62) — not
+# restated here.
 #
 # Format: <class>: <model> per line, preference order; # comments.
 

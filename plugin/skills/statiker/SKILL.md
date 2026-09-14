@@ -1116,8 +1116,11 @@ Attack tier: a ROLE, resolved in order — `clippy.config/models`
 skill's shipped `defaults/models` (under this skill's base
 directory: the certified-attack register, every entry carrying
 its probe-then-certify provenance inline) the harness can
-dispatch, else the strongest model available to the harness as
-a fresh context. Certification comes from the PLAN.md
+dispatch — resolving only entries under the harness's OWN
+ecosystem; a class's entries under another ecosystem are that
+stack's certification record, never this harness's resolution
+input (st-62) — else the strongest model available to the
+harness as a fresh context. Certification comes from the PLAN.md
 probe-then-certify step, recorded in the register or the
 stack's own config/ledger; a tier resolved without one — the
 terminal fallback by construction — attacks as a DECLARED
