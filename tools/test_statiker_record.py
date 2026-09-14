@@ -787,6 +787,104 @@ class TestP27DesignConsequenceClosure(RecordFixture):
         self.assertEqual(v_u2["verdict"], "UNIT_DISPATCHABLE", v_u2)
 
 
+class TestSt63SameIdSupersedeByRestatement(RecordFixture):
+    """st-63 (F21/F22, lc-61; operator decision LEDGER.md 2026-09-14,
+    commit 89fd565): a scopeless D-line appended by mistake after a
+    terminal [BIT] A-line is correctable by a later SAME-ID restatement
+    carrying a `record:`/`unit U<k>` scope — design_amending now reads
+    latest-per-id, not per-line (red on the pre-fix tool: verified
+    directly against arm 1's archived tracker, 44 entries,
+    `.clippy/runs/2026-09-13-lc61-workflow-templates-home.md` in
+    statiker-run-2026-09-13-lc61-arms/sonnet-ceiling, before this
+    change — CLOSURE_ABSENT, design_amending ["D9","D10","D11","D12"];
+    after — UNIT_DISPATCHABLE). The position scan is RETAINED across
+    DISTINCT ids: a different id's restatement never resolves another
+    id's entry, and only a new A-line resets that.
+
+    Fixing this surfaced a SIBLING instance of the identical bug in the
+    scopeless-post-closure CLOSURE_VOID gate a few lines below
+    design_amending (same file, same function, same per-line-not-
+    per-id shape) — without also resolving it there, design_amending's
+    own fix could never actually clear closure (the archived tracker
+    swapped CLOSURE_ABSENT for CLOSURE_VOID on the untouched sibling
+    gate before that gate was fixed too). Both gates are covered here."""
+
+    # ---------------------------------------------------- design_amending
+
+    def test_same_id_restatement_resolves_scopeless_design_amending(self):
+        body = (
+            "- D1 [COMMITTED] the design — basis: probe\n"
+            "- A1 [DISPATCHED] round 1 — basis: brief\n"
+            "- F1 [VERIFIED] a real design defect — basis: report\n"
+            "- A1 [BIT] one finding — basis: report\n"
+            "- D2 [COMMITTED] the design must change — basis: F1\n"
+            "- D2 [COMMITTED] record: restated (corrective scoping): "
+            "the design must change — basis: F1\n")
+        v = self.closure(body)
+        self.assertEqual(v["verdict"], "CLOSURE_LIVE", v)
+
+    def test_unrepaired_scopeless_design_amending_still_bars(self):
+        # discriminating control: no restatement at all — unaffected
+        body = (
+            "- D1 [COMMITTED] the design — basis: probe\n"
+            "- A1 [DISPATCHED] round 1 — basis: brief\n"
+            "- F1 [VERIFIED] a real design defect — basis: report\n"
+            "- A1 [BIT] one finding — basis: report\n"
+            "- D2 [COMMITTED] the design must change — basis: F1\n")
+        v = self.closure(body)
+        self.assertEqual(v["verdict"], "CLOSURE_ABSENT", v)
+        self.assertEqual(v["design_amending"], ["D2"])
+
+    def test_cross_id_restatement_does_not_resolve_design_amending(self):
+        # discriminating control: the position scan is retained across
+        # DISTINCT ids — D3's restatement never resolves D2
+        body = (
+            "- D1 [COMMITTED] the design — basis: probe\n"
+            "- A1 [DISPATCHED] round 1 — basis: brief\n"
+            "- F1 [VERIFIED] a real design defect — basis: report\n"
+            "- A1 [BIT] one finding — basis: report\n"
+            "- D2 [COMMITTED] the design must change — basis: F1\n"
+            "- D3 [COMMITTED] record: restated (cross-id, wrong id): "
+            "the design must change — basis: F1\n")
+        v = self.closure(body)
+        self.assertEqual(v["verdict"], "CLOSURE_ABSENT", v)
+        self.assertEqual(v["design_amending"], ["D2"])
+
+    # ------------------------------------- sibling CLOSURE_VOID gate
+
+    def test_same_id_restatement_resolves_closure_void_scopeless_line(self):
+        body = (CLOSED +
+                "- F9 [VERIFIED] a scopeless post-closure finding — "
+                "basis: probe\n"
+                "- F9 [VERIFIED] record: restated (corrective scoping): "
+                "a scopeless post-closure finding — basis: probe\n")
+        v = self.closure(body)
+        self.assertEqual(v["verdict"], "CLOSURE_LIVE", v)
+
+    def test_unrepaired_closure_void_scopeless_line_still_voids(self):
+        # discriminating control: no restatement — same as the
+        # pre-existing test_scopeless_post_closure_line_voids, restated
+        # here with a live (non-INVALIDATED) tag for symmetry with the
+        # repaired case above
+        body = (CLOSED +
+                "- F9 [VERIFIED] a scopeless post-closure finding — "
+                "basis: probe\n")
+        v = self.closure(body)
+        self.assertEqual(v["verdict"], "CLOSURE_VOID", v)
+        self.assertIn("F9", v["scopeless"][0]["line"])
+
+    def test_cross_id_restatement_does_not_resolve_closure_void(self):
+        # discriminating control: F10's restatement never resolves F9
+        body = (CLOSED +
+                "- F9 [VERIFIED] a scopeless post-closure finding — "
+                "basis: probe\n"
+                "- F10 [VERIFIED] record: restated (cross-id, wrong "
+                "id): a scopeless post-closure finding — basis: probe\n")
+        v = self.closure(body)
+        self.assertEqual(v["verdict"], "CLOSURE_VOID", v)
+        self.assertIn("F9", v["scopeless"][0]["line"])
+
+
 # --------------------------------------------------------------------- waves
 
 class TestWaves(RecordFixture):

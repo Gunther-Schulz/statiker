@@ -2029,6 +2029,7 @@ def cmd_closure(args):
         finish("CLOSURE_ABSENT", 2,
                last_a=f"{closing.id} [{closing.tag}]", **late)
     design_amending = []
+    latest = latest_by_id(entries)
     if closing.tag == "BIT":
         # P27 (BACKLOG; run-2 A6, F118): design CONSEQUENCE, not
         # finding PRESENCE — a terminal [BIT] round whose disposition
@@ -2036,7 +2037,8 @@ def cmd_closure(args):
         # whatever the findings' own count or severity) grades the
         # closure SATISFIED, the same predicate as ZERO-DELTA from
         # here; one design-amending disposition (any D-class line
-        # after this A-line) keeps it SHUT — the over-correction case.
+        # after this A-line, once resolved per-id below) keeps it
+        # SHUT — the over-correction case.
         # Completes P20's record-class half (that gate reads FINDING
         # class at round-open; this one reads DISPOSITION consequence
         # at closure) — the presence-reading gate forced an operator
@@ -2049,15 +2051,33 @@ def cmd_closure(args):
         # closure) and a `unit U<k>`-scoped D-line (the `held:` form
         # included) is a PER-UNIT concern the general unit_lines/
         # UNIT_HELD machinery below already reads, identically to
-        # ZERO-DELTA — only a SCOPELESS D-line is a genuine
-        # over-correction that keeps the whole closure shut. Net
-        # effect: the terminal-BIT branch grades by the SAME predicate
-        # as ZERO-DELTA, which is what this page's own prose already
-        # promised.
-        design_amending = [e for e in entries
-                          if e.lineno > closing.lineno and e.cls == "D"
-                          and classify_scope(e.body)[0] not in
-                          ("record", "unit")]
+        # ZERO-DELTA — only a SCOPELESS D-line still LIVE for its id
+        # is a genuine over-correction that keeps the whole closure
+        # shut. Net effect: the terminal-BIT branch grades by the SAME
+        # predicate as ZERO-DELTA, which is what this page's own prose
+        # already promised.
+        #
+        # st-63 (F21/F22, lc-61; operator decision, LEDGER.md
+        # 2026-09-14): read per ID, latest-line-wins, not per LINE — a
+        # scopeless D-line appended by mistake is correctable by a
+        # later same-id restatement carrying a `record:`/`unit U<k>`
+        # scope, the same same-id supersede-by-restatement contract
+        # `latest_by_id` already carries elsewhere on this page (the
+        # st-35 [INVALIDATED] disarm, waves_over_units above). The
+        # position scan is RETAINED across DISTINCT ids: only an id
+        # with a D-line of its own after this A-line is a candidate at
+        # all, and no OTHER id's restatement can resolve it — a new
+        # A-line is still the only cross-id reset. (Superseded: this
+        # was previously read as a deliberate per-line scan with no
+        # same-id resolution — the paragraph above, before this
+        # change.)
+        post_d_ids = {e.id for e in entries
+                     if e.lineno > closing.lineno and e.cls == "D"}
+        design_amending = sorted(
+            (latest[id_] for id_ in post_d_ids
+             if classify_scope(latest[id_].body)[0] not in
+             ("record", "unit")),
+            key=lambda e: e.lineno)
         if design_amending:
             finish("CLOSURE_ABSENT", 2,
                    last_a=f"{closing.id} [{closing.tag}]",
@@ -2067,7 +2087,6 @@ def cmd_closure(args):
     else:
         say(f"closure: {closing.id} [ZERO-DELTA] at line {closing.lineno}")
 
-    latest = latest_by_id(entries)
     post = [e for e in entries
             if e.lineno > closing.lineno and e.cls in ("F", "D", "R")]
     # latest line per id AT the closure — the live set the closure
@@ -2090,7 +2109,19 @@ def cmd_closure(args):
                               "why": "invalidates an entry live at "
                                      "the closure"})
             continue
-        if scope == "scopeless":
+        # st-63 (F21/F22 follow-on, discovered verifying the
+        # design_amending fix above, NOT itself in the operator's
+        # cited line range — flagged for review): this VOID gate has
+        # the identical position-scan-not-latest-per-id shape as
+        # design_amending did, so a same-id corrective restatement of
+        # a scopeless line left the ORIGINAL occurrence in `post`
+        # still voiding closure even after design_amending resolved
+        # the id — the design_amending fix could never actually clear
+        # closure without this one. `latest[e.id] is e` is the same
+        # liveness guard `held` (below) already applies to unit_lines
+        # for the identical reason — only the id's current line
+        # counts, a superseded one does not.
+        if scope == "scopeless" and latest[e.id] is e:
             scopeless.append({"line": f"{e.id} [{e.tag}] {e.body}",
                               "lineno": e.lineno})
         elif scope == "unit":
