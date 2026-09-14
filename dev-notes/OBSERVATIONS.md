@@ -11049,3 +11049,64 @@ predicate-shaped defect from a cited line range. Drain seam: the
 retirement quota's pass.
 
 No payload change rides this entry.
+
+## 2026-09-14 — st-61 POSITION: the declared-deviation duty stays
+## PROSE-BACKED, because the detector's own input does not exist
+
+This entry IS st-61's deliverable, not a note about it: the item's
+done-criterion resolves to "the repo RECORDS why it stays undetectable
+and prose-backed", and this is that record.
+
+THE DUTY. At both the attack and verify seams, a desk that resolves a
+tier the shipped register leaves uncertified — or records EXCLUDED —
+must write a DECLARED deviation line in the tracker. The duty is real
+and currently has NO detector: a complying desk writes an ordinary
+entry that lints clean, and a non-complying desk is indistinguishable
+by any tool, because `sweep` returns SWEEP_CLEAN with a byte-identical
+field set either way. The close's prose is the only backstop, and it is
+composed from memory.
+
+THE DECISION, 2026-09-14, statiker-1f desk pass, ratified by
+statiker-e8: PROSE-BACKED. Not deferred, not "mechanism later" —
+decided, with the reason below, because the mechanism bar answers it.
+
+THE BASIS, read at the artifact rather than argued. The mechanism bar
+admits a check only where its trigger is a computable predicate with
+near-zero false fires. The predicate here is "a run resolved an
+uncertified tier AND wrote no deviation line", and its FIRST TERM does
+not exist in machine-readable form. The record tool's verdict field set
+is: verdict, route, status, phase, entries, head_boundary, r_lines,
+skill_versions, budget, mode, clause_dispositions, violations,
+late_intent, irreversible_units, exempt_holds, retro_holds. There is no
+LEG TIER among them. Which tier a leg actually resolved at appears only
+as PROSE inside entry bodies — arm 1's tracker records it as "via codex
+exec -m gpt-6-astra". A counter would therefore have to parse prose to
+learn what it is checking, which is the fires-on-a-non-defect shape the
+bar exists to refuse, and a guard that fires on legitimate work trains
+the override reflex that kills it.
+
+WHY NOT JUST ADD THE FIELD: making the predicate computable means
+minting a new MANDATORY record form. Under this repo's own C4b rule
+that is a mint in its own right, carrying the provenance bar and the
+tenet check — a cost st-61 never priced and cannot absorb as an
+implementation detail of itself.
+
+WHAT WOULD RE-OPEN IT, named so this decision is not permanent by
+default: a machine-readable leg-tier field arriving for ANOTHER reason.
+The moment one exists, the counter becomes cheap, its trigger becomes a
+computable predicate over a real field, the bar is met, and st-61 is
+re-decidable on those terms. Whoever adds such a field should expect
+this entry to fire.
+
+GENERAL FORM: "mechanize it or record why not" is not a free choice
+between equals. It is decided by whether the predicate's INPUTS exist,
+and that is a readable fact about the record format rather than a
+judgment about how much the duty matters. Asking the question in that
+order — inputs first, desirability second — is what kept this from
+becoming an unpriced mint wearing a checker's clothes.
+
+CONSUMER: the next desk asked to detect a conduct duty in this record
+format, and the fire-rate review if a leg-tier field ever lands. Drain
+seam: the retirement quota's pass.
+
+No payload change rides this entry.
