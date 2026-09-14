@@ -232,8 +232,10 @@ unsatisfiable before a single cycle spends.
 PREFLIGHT_CONTAINMENT_HOLD names each failing axis and routes
 surface. Widening a containment scope is the operator's.
 
-What the gate does not reach is stated on every containment-declared
-verdict rather than left implied — the attack worktree's actual PATH
+What the gate does not reach is stated on every verdict the gate
+itself returns — PREFLIGHT_OK under a declared scope, and the hold —
+rather than left implied. An earlier refusal returns before the gate
+runs and carries none of it. The attack worktree's actual PATH
 is desk-chosen at attack preparation, so the gate establishes that a
 legal parent EXISTS in scope and never that the desk will choose one;
 `worktree-add` halts on the path itself.
