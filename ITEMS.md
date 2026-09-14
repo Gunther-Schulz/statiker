@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 55
+added: 56
 compacted: 0
 
 ## st-12
@@ -343,3 +343,12 @@ write-set: dev-notes/scoped-run-3-preregistration.md,dev-notes/run-3-object-cand
 done-criterion: the cold-probe prompt is committed VERBATIM as §9.1 named comparand, and §9.1 is restated over the requirement PARAGRAPHS rather than over byte-identity with a differently-purposed text. NOT a re-run: the probe ask was HARDER than the arm (it asked directly for acceptance criteria) and still did not produce the near-miss, so the measurement stands and only the specification of what it protects was wrong. Verifier: the restated §9.1 names a comparand that EXISTS in a committed artifact, and a freeze executor can perform the comparison the clause demands
 evidence: Fresh-context narrow round, 2026-09-14, BLOCKING B1. Prompt recovered from the probe child own transcript at ~/.claude/projects/-tmp-statiker-probe-neutral-3TKE/74fcb57f-3c96-466d-8f40-76d8faa9ec2f.jsonl; divergence shown verbatim on both the tail and the shared half. Absence of the comparand established with a positive control. Full record docs/audits/2026-09-14-narrow-round-run3-contract.md
 blocked-by: NONE
+
+## st-77
+grade: READY
+requirement: run-3 ceiling arm substrate BREAKS the parity §15c bought, and §3a.5 asserts it does not. The ceiling arm becomes a SERIES driven by an external re-invoker with unspecified policy, attached to ONE arm, on the exact axis run 2 ceiling arm died on; codex arms are one process fed frozen text with their re-invocation axis UNMEASURED, and no driver is specified anywhere. COMPOUNDED by narrow-round S4, a SECOND parity break: the ceiling arm loads the operator global corpus (nine files, cwd-INDEPENDENT, 153966 bytes as the probe children loaded it) including the prefix-match rule that is the nearest neighbour of the withheld criterion, which no codex arm receives. Under §6c a non-collision produced by one arm having apparatus the others lack would read as TIER SEPARATION, which is run 3 own failure mode. Record: docs/audits/2026-09-14-narrow-round-run3-contract.md, B2 and S4
+goal: general-maintenance
+write-set: dev-notes/scoped-run-3-preregistration.md
+done-criterion: the pre-registration either gives the codex arms an equivalent driven arrangement AND equalises the corpus load, or carries BOTH asymmetries as a declared deviation stating exactly what §6c gate can and cannot certify under them. §3a.5 sentence that the ONLY permitted between-arm variation is model and launch invocation must change either way, since it is false as written. Verifier: no claim in the document asserts parity that the arrangement does not deliver, and a reader can tell from the document alone which columns survive the asymmetry
+evidence: Fresh-context narrow round, 2026-09-14, BLOCKING B2 plus SUBSTANTIVE S4. The transfer tell: §3a.4 applies the parity argument to the candidate it REJECTS and not to the one it SELECTS. S4 measured at the artifact from the probe children own instructions attachment; the corpus load is cwd-independent, so the desk contamination fix (move the probe out of the repo) could not reach it. Stated in both directions by the reviewer: axis 1 RESULT is STRONGER than the document claims since the context held the matching-semantics rule and still did not produce the near-miss; the DESCRIPTION is wrong
+blocked-by: decision whether run 3 equalises the two arm asymmetries or declares them as deviations with the certification consequence named
