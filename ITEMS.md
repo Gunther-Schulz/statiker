@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 42
+added: 43
 compacted: 0
 
 ## st-10
@@ -368,3 +368,12 @@ evidence: run tracker .clippy/runs/2026-09-13-lc61-workflow-templates-home.md (4
 blocked-by: NONE
 amend-reason: 2026-09-13 regrade: the absence names a design decision this desk does not hold, so READY overstated it — dispatchable-by-construction is false while the contract question is open
 amended-blocked-by: 2026-09-13 decision is supersede-by-restatement permitted at all, or is the position scan's over-correction behaviour the intended contract? The tool's own comment calls it deliberate, so a fix without this call ratifies the mechanism instead of deriving from the requirement
+
+## st-64
+grade: NEW
+requirement: No preflight detects an operator containment scope colliding with statiker's MANDATORY out-of-repo attack artifact, so the conflict surfaces only at attack preparation, after a full investigate-design cycle has been spent — dev-notes/scoped-run-preregistration-2026-09-13.md §16
+goal: general-maintenance
+write-set: UNKNOWN
+done-criterion: A run whose stated working-copy scope excludes the out-of-repo artifact path is told so BEFORE investigate-design spends, rather than at attack preparation; red-first on arm 3's own case — the check goes red against that run's stated scope and green against a scope that permits the XDG artifact path
+evidence: Arm 3 (astra) of the scoped lc-61 run halted FAILED at attack preparation with ARTIFACT_IN_REPO, route halt, error 'attack artifact must land outside every repo (tree-claim briefs assert tree == lock commit)'. Verified at source at the grading desk, not taken on the desk's word: statiker_record.py:2728 emits that verdict with that exact error text, and the desk's cited range 2678-2730 is accurate. The arm's own candidate lesson, quoted: 'preflight should detect conflict between an operator's clone-only filesystem scope and statiker's mandatory out-of-repository attack artifact before design work.' NOT desk error — conduct was correct throughout (one declared containment probe, refusal taken, stopped with no substitution of paths, tiers or tools). Arm 1 met the same contradiction and breached containment instead, writing an out-of-clone worktree and artifacts to the XDG state dir. Archive: /home/g/dev/local/statiker-run-2026-09-13-lc61-arms/astra-desk
+blocked-by: decision which stage owns the containment-vs-artifact conflict check, and whether an operator containment scope is expressible in a form a preflight can read
