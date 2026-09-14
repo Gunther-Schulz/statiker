@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 45
+added: 46
 compacted: 0
 
 ## st-10
@@ -408,3 +408,12 @@ write-set: UNKNOWN
 done-criterion: Either closure emits the post-closure F/D/R population as a verdict field so C4a-s demand reads its input from the tool rather than from a hand derivation, or the repo records why that demand is the exception to SKILL.md:490-s standard. If a field is minted it is red-first and DISCRIMINATING: RED on a tracker carrying a record-scoped post-closure line that no current field reports, GREEN once the field carries it, and green on a tracker with no post-closure lines so the field does not fire on ordinary runs
 evidence: Arc-close checkpoint review, 2026-09-14, finding M4, read at docs/audits/2026-09-14-arcclose-review.md: closure computes exactly that set internally as the post variable but emits only scopeless (on VOID) and amendments (unit-scoped, on UNIT_DISPATCHABLE); a record-scoped post-closure line lands in NO verdict field. Not invisible, since a verifier can derive it from the pasted tracker, but the page-s own standard for a comparable case is explicit that the tool finds them: SKILL.md:490, said of late INTENT lines, "the tool, never memory or conversation, finds them". The wording half of M4 (the page calling one anchor "last resolved A-line" in sustain-s vocabulary while closure anchors on the final a_lines entry) rides the arc-close repair lap and is NOT this item
 blocked-by: decision is the post-closure F/D/R population a new verdict field (a C4b mint with its own provenance and tenet cost) or a recorded exception to the page-s tool-finds-them standard at SKILL.md:490
+
+## st-67
+grade: NEW
+requirement: The phrase "mint form" names two unrelated axes in this repo and the collision cost the release gate an enumeration round: CLAUDE.md uses it for BATCH PRICING (tool-backed vs prose-mechanism, deciding whether a batch budgets a repair lap) while C4b uses "form" for the MINT TEST (does the change introduce a new machine token, hold code, predicate or mandatory form). An item slot reading "Mint form: TOOL-BACKED" therefore reads as the item calling itself a mint when it is saying nothing about C4b at all
+goal: general-maintenance
+write-set: UNKNOWN
+done-criterion: The collision is closed at the source rather than in a reader-s head: either the batch-pricing use is renamed in CLAUDE.md so one phrase names one axis, or C4b and the batch-pricing bullet each state which axis they mean where they use it. Verified by a search over the governed set showing no remaining use of the phrase that could be read for the other axis
+evidence: Release gate, 2026-09-14: enumerating the ten payload commits of the carried set found st-55 with no mint record while its slot declared "Mint form: TOOL-BACKED". Neither the arc-close checkpoint review nor the handoff named it; the gate re-ask did. Dispositioned NOT a C4b mint (dev-notes/OBSERVATIONS.md, this date) because fe4ecb6 introduces none of the four introducers, the lane having deliberately declined HALT_PATHSPEC_GLOB precisely because that WOULD have been one. The cost was one enumeration round at the gate, and the next desk writing or reading a "Mint form:" slot pays it again. Ratified as a real finding by statiker-e8 this date
+blocked-by: decision rename the batch-pricing use of "mint form" or disambiguate both uses in place, which is rule-text work reserved to the judgment desk
