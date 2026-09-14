@@ -1032,3 +1032,16 @@ Arm stdout is captured to this desk's own scratchpad for now. The arm
 ARCHIVE location (run 1 used a sibling `-arms/` directory) is NOT in
 this desk's authorized path list and is raised with the judgment desk
 before the archive step, not assumed from run 1's precedent.
+
+**RESOLVED, 2026-09-14 — OPERATOR, FIRST-HAND IN THIS DESK'S SESSION:**
+`/home/g/dev/local/statiker-run-2-arms/` is authorized. It joins the
+clone and the three out-of-clone namespaces as this run's write set,
+and it is the archive home for every arm: arm stdout, the arm's own
+copy of the clone at its terminal state, per the archive-before-reset
+procedure §10 inherits from run 1.
+
+Provenance grade, because this one matters for a successor: this is the
+operator's own line typed in THIS session, not a relay and not run-1
+precedent read forward. The distinction is the same one §14 draws — a
+desk never widens its own authorized paths, and this desk did not: it
+named the gap, held the write, and the operator closed it.
