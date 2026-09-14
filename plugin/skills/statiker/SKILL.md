@@ -1323,9 +1323,12 @@ compliant and unattackable. The closure
 read runs through the record tool at each dispatch —
 `closure --tracker <path> --unit U<k>`
 (without `--unit`: CLOSURE_LIVE / CLOSURE_VOID over the whole
-record): CLOSURE_VOID bars every unit — a scopeless line, or a
-post-closure [INVALIDATED] line for an entry LIVE at the
-closure whatever its opener (the mis-scoped premise-kill);
+record): CLOSURE_VOID bars every unit — a scopeless line still
+LIVE for its id (a later same-id restatement carrying
+`record:`/`unit U<k>` scope resolves it, st-63; a different
+id's restatement resolves nothing), or a post-closure
+[INVALIDATED] line for an entry LIVE at the closure whatever
+its opener (the mis-scoped premise-kill);
 CLOSURE_RECORD_MALFORMED bars every unit the same way — an
 entry-shaped line broke the grammar, and the entry set the
 closure computes is unsound until repaired. Repair is
@@ -1386,7 +1389,9 @@ listed amendments — never the raw criterion. The criterion the
 tool computes — its semantics are what the desk WRITES so the
 read comes out true: unit U<k> may dispatch when the tracker's
 last A-line is `[ZERO-DELTA]` and no F, D, or R line appended
-after that A-line (post-closure) is SCOPELESS — a scopeless line
+after that A-line (post-closure) is SCOPELESS and still LIVE
+for its id — a later same-id restatement carrying
+`record:`/`unit U<k>` scope resolves it (st-63) — such a line
 voids the whole closure
 (and a re-lock's new entries void a stale closure, The attack);
 a line whose body OPENS `unit U<k>` voids nothing — it RE-OPENS
@@ -1793,7 +1798,10 @@ The disposition line RE-CARRIES its `out-of-scope: ` opener (or
 opens `record: ` where the disposition is desk bookkeeping) — a bare
 `— exported: <ref>` or `— dropped: <reason>` opening reads scopeless
 and voids the WHOLE closure, the same trap the cleared-hold line's
-warning names (Implementation).
+warning names (Implementation) — resolvable, like any scopeless
+line, only by a later same-id restatement carrying
+`record:`/`unit U<k>` scope (st-63), never by editing the bare
+line in place.
 The close REPORT itself carries a LEAVINGS section enumerating three
 classes: (1) out-of-scope findings — the mechanical gate above, the
 one class that is a run artifact proper; (2) instruments and probes
