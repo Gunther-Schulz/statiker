@@ -11110,3 +11110,83 @@ format, and the fire-rate review if a leg-tier field ever lands. Drain
 seam: the retirement quota's pass.
 
 No payload change rides this entry.
+
+## 2026-09-14 — st-10 C4a mint: the verify brief demands a scope-opener
+## vs body-kind statement per post-closure line
+
+PAYLOAD CHANGE, commit 57b6a0d. This entry is the mint record the
+birth-class rule requires, and it carries the tenet check the repo's
+CLAUDE.md makes mandatory — enumerated, never recalled, because a
+tenet set carried in memory is the restated-basis class and the one
+tenet skipped is historically the one that would have caught the
+blockers (release-review round 3, 2026-08-16).
+
+INCIDENT PROVENANCE: P28 — repairs mint defects, closure prose is
+fresh attack surface, five recorded incidents across the trial
+(BACKLOG.md:279-317). The 0.2.89 release gate SPLIT P28's CONFIRM
+branch three ways rather than minting it whole; C4b landed in CLAUDE.md
+on its own incident (RN-b/B1), C4c did not mint and waits on an
+instrument that can discriminate, and C4a is this. The defect it
+addresses: the closure predicate trusts the desk's own unattacked
+self-classification of a post-closure line totally.
+
+WHAT LANDED: the verify brief now demands, per F/D/R line appended
+after the last resolved A-line, a statement of whether its scope opener
+matches its body kind — a record-scoped or unit-scoped line whose body
+decides a design question or justifies a boundary being a FINDING, and
+NOT EXERCISED otherwise. It sits beside the existing per-finding
+red-record sentence.
+
+### The tenet check — all nine, each marked
+
+1. INVESTIGATION-LED DESIGN — NOT APPLICABLE. C4a is the remainder of
+   an already-settled design pass (statiker-ba, 9209367); no new design
+   loop opened.
+2. SUFFICIENCY = DISPATCHABLE — PASS. The clause states what the brief
+   must demand and what the two outcomes are; it adds no decision the
+   executing desk must make for itself.
+3. ANTI-SKIM — PASS. It strengthens forcing point 5's demand list
+   rather than adding ceremony around it; nothing is made optional.
+4. COST ASYMMETRY — PASS, and this is the tenet C4a most directly
+   serves: it moves the scope-opener judgment to the point where the
+   brief is written, before implementation rests on a misclassified
+   line, rather than leaving it to be discovered at closure.
+5. AUTONOMY NORTH STAR — PASS. It replaces a human seat: the
+   self-classification the closure predicate currently trusts is what a
+   reviewer would otherwise have to re-read by hand.
+6. ECONOMICS — PASS, at a cost stated rather than waved. It adds one
+   demand to an existing list (no new round, no new seam) and prices
+   as a handful of corpus lines on the page's most-edited section.
+7. CONVERGENCE CIRCUIT — PASS. The demand admits the classification in
+   GRADEABLE form — per line, with a named NOT EXERCISED outcome — so
+   it enters the record→attack→verify circuit rather than sitting as
+   unfalsifiable prose.
+8. MEDIUM TENET — PASS AS PROSE, and the reasoning is recorded because
+   this is the tenet the repo's own record shows gets skipped on
+   prose-dense mints. The tenet says whatever must hold EXACTLY is a
+   mechanism with a red-first battery, and prose holds judgment. Half
+   this predicate is computable — the record tool already parses scope
+   openers (`record:`, `unit U<k>`) as CASE-SENSITIVE LITERALS. The
+   other half is not: whether a line's BODY decides a design question
+   or justifies a boundary is a reading of meaning, and a checker over
+   it would fire on legitimate lines, which is the shape that trains
+   the override reflex. So the judgment half is correctly prose, and
+   the mechanizable half is already mechanized elsewhere. A mechanism
+   here would be a checker whose predicate nobody could satisfy.
+9. PLACEMENT — PASS. The clause lands in the Verify demand list beside
+   the per-finding red-record sentence it parallels — the existing
+   instance of the same concept — rather than opening a new passage.
+   Precedent line: follows the verify demand list, judged sound.
+
+### What this mint does NOT close
+
+st-10's done-criterion also names CLAUDE.md review criterion (2): the
+clause NAMES a record form, so a fresh-context opus checkpoint review
+binds before the pin moves. That review is the ARC-CLOSE gate held at
+the judgment desk and is NOT discharged here. The lane that landed the
+page text raised its absence as a gap rather than assuming it covered,
+which is the correct disposition and is why it is written here.
+
+CONSUMER: the arc-close checkpoint review, which reads this entry as
+the mint's tenet record; and the release gate, whose re-ask runs over
+the pin's whole carried set.
