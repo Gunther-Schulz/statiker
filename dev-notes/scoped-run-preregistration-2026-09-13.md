@@ -1004,3 +1004,86 @@ subagent inside statiker-c8, which ended on credit exhaustion; no copy
 reached disk. Arm 1's record survives as its tracker and commit log in
 the archive, and its honesty floor was re-executed against those. Stated
 rather than left for a later reader to discover as a gap.
+
+## 18. APPENDED CORRECTION — §17e's absence claim was WRONG, and it is
+##     this run's own lesson instance (2026-09-14)
+
+APPENDED, not smoothed into §17e, because the sequence is the point: the
+false claim stood in a delivered record and a refutation probe killed it.
+
+WHAT §17e SAID: arm 1's transcript "is UNRECOVERABLE ... no copy reached
+disk."
+
+WHAT IS TRUE: both of arm 1's transcripts were on disk the whole time,
+persisted by the harness in the dead session's own project directory:
+
+    ~/.claude/projects/-home-g-dev-Gunther-Schulz-statiker/
+      b386f1ec-44ea-4170-96d7-5a5cfe7605d1/subagents/
+        agent-asonnet-lc61-desk-a2-63ad0b0663d26f42.jsonl   2,345,337 B
+        agent-asonnet-lc61-desk-a-a25ff140495f771f.jsonl      595,506 B
+
+Refuted by statiker-e8; verified independently at this desk before
+banking. Identity markers in desk-a2: halt commit 95367d4 ×7, design
+lock 53e6289 ×27, CLOSURE_ABSENT ×13, artifact dir 49c052cf ×27; the
+negative control (astra's quote-label string) 0 hits. desk-a is the
+FIRST ceiling dispatch, the 0.2.92 pin-halt: 0.2.92 ×5, halt commit ×0.
+
+THE CLASS, named because it is the one this corpus already carries:
+NOT-OBSERVED READ AS NOT-THERE. I searched two places — this session's
+scratchpad and its task-output directory — found nothing, and wrote an
+unbounded absence claim. The zero was real for the places I looked and
+said nothing about the places I did not, and the claim's REACH was never
+shown. A search that could not have matched returns exactly what a true
+absence returns. The specific miss: the harness persists every subagent
+conversation under the PARENT session's project directory, so a dead
+session's lanes outlive it — the one location that would have answered,
+and the one I never queried.
+
+WHY IT SURVIVED TO DELIVERY: it rode as an honest-sounding limitation
+("this is unrecoverable, stated rather than left as a gap"), which reads
+as diligence and therefore invited no second look. A confessed gap and a
+false absence claim are indistinguishable in tone.
+
+WHAT IT COST, and what it did not: no verdict moved. Arm 1's honesty
+floor never depended on the transcript, and the crib audit re-run over
+the recovered transcript came back CLEAN (below), so the ratified
+grading stands unchanged. What it nearly cost was arm 1's audit surface:
+§7 demands the transcript be searched, and arm 1's audit had covered
+only its tracker.
+
+### 18a. Arm 1's crib audit over the WIDER surface — CLEAN
+
+Run on the recovered transcript, the check §7 always owed:
+
+    audit_arm_transcripts.py  ->  CLEAN
+    positive controls found   : 2 ['/home/g/dev/local/statiker-run-2026-09-13-lc61',
+                                   'unbounded-with-reason']
+    criterion phrases hit     : 0
+
+SUPPLEMENTARY NORMALISED PASS, because the raw audit is not sufficient
+on this file type: JSONL escapes every newline as `\n`, so a criterion
+phrase that WRAPPED in the original is invisible to a raw search and
+returns exactly what a true absence returns. Unescaped, whitespace-
+collapsed and case-folded, all six criterion phrases still return zero.
+
+THE CONTROL, constructed FROM THE FILE rather than planted — a planted
+string proves only that the expression parses: a phrase spanning an
+escaped newline in this very transcript ("the page you conduct the run
+by. 3. the working copy's own") is NOT FOUND by the raw search and IS
+FOUND by the normalised one. That pair is what makes the six zeros mean
+absence rather than an instrument blind to wrapped text.
+
+So arm 1 reached its diagnosis without the withheld criterion, now
+established on the surface §7 named rather than on the tracker alone.
+
+### 18b. Both transcripts banked
+
+Into `sonnet-ceiling/`, digest-verified against source:
+`ARM-TRANSCRIPT-sonnet-arm1.jsonl` (sha256 a62f7b86cfe0b604…, 2,345,337
+bytes) and `ARM-TRANSCRIPT-sonnet-pinhalt-0.2.92.jsonl` (sha256
+24281a9717a0951f…, 595,506 bytes).
+
+FORM NOTE for any later reader: these are JSONL HARNESS RECORDS — one
+JSON object per line, the subagent's whole conversation — not the plain
+codex stdout logs banked for arms 2 and 3. Any text search over them
+must unescape before concluding absence, per 18a.
