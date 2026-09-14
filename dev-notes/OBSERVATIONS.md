@@ -11453,3 +11453,144 @@ pass because its form was called tool-backed.
 
 CONSUMER: the release gate's re-ask, which found this one; and the next
 batch plan that writes "Mint form:" into a slot.
+
+## 2026-09-14 — st-74/st-64 mint: preflight gains a DECLARED containment
+## scope, and the declaration is what converts two facts into gates
+
+PAYLOAD CHANGE, commits 768404a (mechanism + battery, sonnet lane) and
+b76a30f (page passage, battery row, axis-schema ruling — desk). Built
+in the run-3 preparation arc under statiker-e8's drive, on the
+operator's first-hand delegation of this date.
+
+INCIDENT PROVENANCE — two field firings in ONE run, opposite halves of
+one gap, both verified at the artifact rather than taken on an arm's
+word. Run 2 arm 2 (terra) executed `filter --out /tmp/invalid`: the
+tool returned ARTIFACT_WRITTEN route proceed, CORRECTLY, because /tmp
+satisfies the page's rule that the artifact sits outside every
+repository — while /tmp was not among the brief's three authorized
+out-of-clone paths. The page PERMITTED what the operator's containment
+scope FORBADE and nothing between them detected it. Cost as booked: a
+full investigate-design cycle spent, design locked at 818d5c5, the arm
+closed FAILED. Run 2 arm 4 (astra) met the sibling case one layer down
+— `core.hooksPath` resolving outside the authorized repo, so the most
+routine act the page mandates, a commit, executes a script from a
+repository the containment scope forbids — and REFUSED before locking,
+by hand, being the only arm of four to read the machine's config.
+Three arms committed through it unknowingly.
+
+WHAT LANDED: `--containment <path>`, repeatable, declaring the run's
+authorized filesystem scope; `hooks_path` and `out_of_repo_required`
+reported on every PREFLIGHT_OK; and PREFLIGHT_CONTAINMENT_HOLD (route
+surface) collecting every failing axis when a scope IS declared.
+
+THE MEASUREMENT THAT SHAPED IT, and it is the reason this is not the
+item as booked. st-74's done-criterion said a hooks path resolving
+OUTSIDE is surfaced. Four arms run in scratch before any design:
+
+    this repo, as it stands        -> dotfiles/git/hooks/pre-commit   OUTSIDE
+    FRESH repo, machine defaults   -> dotfiles/git/hooks/pre-commit   OUTSIDE
+    same + local in-clone hooks    -> <clone>/.githooks/pre-commit    INSIDE
+    no core.hooksPath at all       -> .git/hooks/pre-commit           INSIDE
+
+The second arm was not in the item's evidence and it kills the
+unconditional form: the setting is GLOBAL, so every repo on this
+machine resolves outside, and an unconditional hold would fire on
+every ordinary run here. That is a check firing on a non-defect, which
+trains the override reflex that kills guards. Hence the declaration as
+the switch — undeclared the facts inform, declared they bar. The
+battery carries that control as MNM1 (no --containment on a repo whose
+hooks path resolves outside -> PREFLIGHT_OK, never a hold).
+
+THE THIRD AXIS came from statiker-e8's reach challenge and is the half
+this desk had missed: the page mandates attack worktrees outside every
+repo, and the source says that path is desk-chosen at attack
+preparation (SEAL_SPECIES has no worktree member; cmd_worktree_add
+takes --path, validated only by repo.outside at add time). The PATH is
+not knowable at preflight. Its SATISFIABILITY is: if no declared path
+lies outside every repo, no legal worktree parent exists in scope at
+all. That is run 2's containment (the clone alone) failing at
+declaration time instead of at attack preparation. The residue is
+stated on every containment-declared verdict rather than implied —
+the gate establishes a legal parent EXISTS, never that the desk will
+choose it.
+
+### The tenet check — all nine, each marked
+
+1. INVESTIGATION-LED DESIGN — PASS. The four-arm probe ran BEFORE the
+   design was composed, and its second arm changed the design's shape
+   rather than confirming it. The reach challenge then added a third
+   axis the desk had not derived.
+2. SUFFICIENCY = DISPATCHABLE — PASS, WITH A RECORDED MISS. The lane
+   executed the mechanism and its battery making no design decision,
+   which is the test. But it surfaced THREE underspecifications
+   (per-axis `path` semantics for a set-level axis; whether the
+   unchecked note was per-item or a sibling field; and the write-set
+   omission below). A brief needing three clarifications was not
+   decision-complete, and the miss is the desk's, not the lane's.
+3. ANTI-SKIM — PASS. It closes a hole at an existing forcing point
+   rather than adding a new one: preflight already ran before design
+   work; this gives it the containment question it could not ask.
+4. COST ASYMMETRY — PASS, and this is the item's own predicate. The
+   collision surfaced at attack preparation, after a full cycle had
+   spent. It now surfaces before the first cycle spends.
+5. AUTONOMY NORTH STAR — PASS. It replaces the seat astra occupied by
+   hand. One arm of four read the config and refused; the other three
+   committed through the same gap unknowingly, which is exactly the
+   distribution a mechanism exists to flatten.
+6. ECONOMICS — PASS, priced. One extra git read and three predicates,
+   once per run, and only where a scope is declared. Against a
+   measured cost of one full investigate-design cycle per firing, twice
+   in one run.
+7. CONVERGENCE CIRCUIT — PASS. The facts enter as verdict FIELDS the
+   record carries, gradeable by a later reader, rather than as a desk
+   assurance that containment was considered.
+8. MEDIUM TENET — PASS, and it gets reasoning rather than a mark,
+   because this repo records it as the tenet historically skipped on
+   mechanism-dense mints. "Whatever must hold exactly is designed as
+   mechanism with a red-first battery; prose holds judgment." What
+   must hold exactly is the three containment predicates, and none is
+   left to judgment: each is computed from the resolved path and the
+   declared set, with 16 red-first arms plus a contract battery row.
+   The judgment remainder is the operator's — what scope to declare —
+   which is authority, not a predicate, and correctly stays outside
+   the mechanism. Red-first was executed against a STATED GREEN
+   BASELINE (596 passed, 0 failed) before any edit, and the lane
+   disclosed three VACUOUS passes in its red run rather than reporting
+   13 reds: two arms asserted an axis was absent and passed only
+   because --containment was still a usage error. That disclosure is
+   what makes the red-first claim gradeable.
+9. PLACEMENT — PASS. Precedent line: follows the existing
+   PREFLIGHT_UNPINNABLE_TRACKER surfacing in the preflight passage,
+   judged sound. Same stage, same route class (surface — operator
+   ground), same paragraph. No new section.
+
+### Two findings this mint produced, neither about its own content
+
+A MINT'S WRITE-SET HAS A MANDATORY MEMBER NOBODY LISTS: the reach
+detector over the thing being minted. tools/test_contract.py holds a
+driven-or-frozen contract — every verdict either script can emit is
+exercised by a battery row or frozen in UNDRIVEN_REMAINDER with a
+stated reason — so a new machine token is structurally coupled to that
+file. This desk derived the write-set TWICE (at booking, then
+correcting an under-declaration it had just criticised) and missed it
+both times. The mechanism: a write-set join asks where the change
+LANDS, and a reach detector is not where the change lands — it is what
+notices the change exists. The lane derived the same defect
+independently from the other direction ("a narrow write set cannot
+satisfy the contract"), and two independent derivations of one shape
+are why it is recorded rather than filed as one lane's note. Same
+family as the corpus dependents-search rule: a sweep keyed on the
+members already in hand returns exactly those.
+
+THE PAGE AND THE BATTERY ROW ARE COUPLED, which is not obvious and
+cost a re-read to establish: test_every_emitted_verdict_is_driven_or_frozen
+compares an AST scan against OBSERVED verdicts, so it fires the moment
+a token exists; test_every_observed_verdict_is_routed_in_skill iterates
+BATTERY ROWS only, so it is silent until a row drives the verdict, and
+then demands SKILL.md name it literally. Landing either alone trades
+one red for another. Both land in one commit.
+
+CONSUMER: the next C4b mint's batch plan (the write-set member above
+is now a known slot, not a discovery), and the fire-rate review, which
+should ask whether the declaration-as-switch shape generalizes past
+containment.
