@@ -298,6 +298,17 @@ one. Booked to open on that probe rather than on a re-derivation.
 Enumerated from the record. Silence over this list is what stands; any
 one re-opens on the operator's word whenever noticed.
 
+**DISPOSITION, 2026-09-14: this list did not pass by silence.** The
+judgment desk (statiker-e8) gave all seven a deliberate pass — items 1
+and 2 RATIFIED with their reasons stated back, item 3 CORRECTED in
+place below, items 4-7 passed. Recorded because a seam digest that was
+actually READ is a different object from one that merely went
+unchallenged, and a future reader cannot tell them apart from the list
+alone. Item 1's ratification carries its own reason worth keeping: the
+fresh-context round this batch owed was the arc-close review, already
+spent on the substance, and a second fresh round over the bookkeeping
+is the round the re-entry rule refuses.
+
 1. **Nine closures graded at the artifact by this desk alone**, rather
    than re-verified by a fresh context. Basis: each criterion resolved to
    an executable check (a grep, a test name, a suite run), and mechanical
@@ -306,9 +317,25 @@ one re-opens on the operator's word whenever noticed.
    re-blocked. The alternative — parking it — would have put a decided
    question back in the operator's queue as undecided.
 3. **CLAUDE.md rule-text edits treated as taking the operator
-   first-hand**, which is this desk's own reading and is what holds st-67
-   and shapes st-69/st-70's venue reasoning. Not an operator instruction;
-   a conservative reading of the delegation's reserved list.
+   first-hand** — what holds st-67 and shapes st-69/st-70's venue
+   reasoning. **CORRECTED 2026-09-14 at the seam digest's own pass, and
+   the correction is about the AUTHORITY, not the practice.** I wrote
+   this as a conservative reading of the delegation's RESERVED LIST.
+   That attribution is wrong. The reserved list does not cover in-repo
+   rule text: `CLAUDE.md` sits inside an authorized copy. What actually
+   binds is this session's own channel rule — a PEER directive is never
+   the authorization for a `CLAUDE.md` or config edit, and the judgment
+   desk's directives are peer messages, however binding they are within
+   the delegation's scope. Checked against this session's standing
+   constraint rather than accepted on the peer's word: it states exactly
+   that. The practice was therefore CORRECT in effect for every case it
+   shaped, and every such case stands. **Why the distinction is
+   load-bearing and not bookkeeping:** an operator who later widens the
+   reserved list changes nothing here, because the channel rule is not
+   the reserved list. A successor reading this entry in its original
+   wording would conclude the constraint had lifted, and would take a
+   peer's directive as authorization for a rules-file edit — which is
+   the one shape that would let a desk widen its own authority.
 4. **The false ledger line left standing with a correcting line appended**
    rather than edited out. Basis: the ledger's append-only contract, where
    a later line superseding an earlier one is the native mechanism, and
