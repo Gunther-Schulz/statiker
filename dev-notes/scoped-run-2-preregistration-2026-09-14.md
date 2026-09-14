@@ -511,15 +511,40 @@ meet — or it is not pinned at all.
 **WHAT CHANGED SINCE RUN 1, EXECUTED**: lifecycle's `## Verify` block no
 longer carries the `-t .` form that caused run 1's whole baseline
 confusion. Read at lifecycle HEAD `2b41491`, 2026-09-14, it now names
-five commands, the first being `python3 -m unittest discover -s test -p
+SIX commands, the first being `python3 -m unittest discover -s test -p
 'test_*.py'` — the honest form run 1 had to mandate AGAINST the repo's
 own documentation. So the mandated invocation and the repo's documented
 invocation are now the same, and that entire failure class is gone.
 
-**CONSEQUENCE FOR SCOPE**: the verify surface is five commands, not
+> **CORRECTED AT THE FREEZE GATE, 2026-09-14 — and the correction is
+> itself a df-228 datum.** Every earlier revision of this section said
+> FIVE commands. The count is SIX, established by extracting the block
+> and numbering it rather than by reading it again:
+> `awk` the fenced block out of the clone's `CLAUDE.md`, strip comments
+> and blanks, `nl`. The wrong number came from the compaction summary,
+> which wrote "five commands" above a list of six, and it survived my
+> post-compact re-read because I re-read the BLOCK and never recounted
+> it — a stated total standing as a label over its own body, which is
+> the one reader arithmetic catches and prose does not. It SHIPPED: it
+> was in the committed file and in the report to the judgment desk.
+> Reported to statiker-e8 as a FAIL-criterion firing, graded there, not
+> self-graded down here.
+
+**CONSEQUENCE FOR SCOPE**: the verify surface is SIX commands, not
 one. Per st-48 (FP5 stays apparatus-agnostic and inherits whatever the
 repo's verify section provides), the brief mandates the repo's own
-Verify block AS WRITTEN and does not re-scope it.
+Verify block AS WRITTEN and does not re-scope it — which is why the
+miscount did not reach the arms: what the brief hands them is the
+block, never this file's count of it.
+
+The six, numbered as extracted:
+
+1. `python3 -m unittest discover -s test -p 'test_*.py'`
+2. `python3 plugin/cli/lifecycle --test`
+3. `python3 tools/prove-rows.py`
+4. `python3 plugin/cli/lifecycle audit`
+5. `node --test test/absence-scan.test.mjs`
+6. `node tools/absence-scan.mjs --git-range ..HEAD`
 
 **THE BASELINE IS A PROCEDURE HERE, NOT A NUMBER** — PENDING, and
 deliberately so. Filling a number into this draft would repeat run 1's
@@ -527,7 +552,7 @@ defect one level up: any number measured now is measured on a tree that
 does not yet exist. The procedure, executed after the clone is built and
 reset and BEFORE arm 1 dispatches:
 
-1. Run each of the five Verify commands on the reset clone tree.
+1. Run each of the six Verify commands on the reset clone tree.
 2. Record each one's full output — counts, skips, and every non-clean
    result by name.
 3. For every red, establish its CAUSE at the source before pinning it,
@@ -640,3 +665,178 @@ baseline procedure executed on the reset clone tree. It does not open
 until the operator's run authorization is on this session's record
 first-hand. Nothing in §§3-10 is executed beyond the reads already
 marked EXECUTED.
+
+**SUPERSEDED BY §13.** The authorization landed first-hand 2026-09-14
+and the gate is now EXECUTED. §13 is the record of it.
+
+---
+
+## 13. THE FREEZE GATE — EXECUTED 2026-09-14
+
+Opened on the operator's first-hand run authorization of this date,
+which named the clone, the three out-of-clone namespaces, the push
+scope and the reserved list, and permitted dispatch once this gate
+passes and the grading packet exists. The packet existed and was
+committed before the gate opened (e48b24c).
+
+### 13a. CLONE CONSTRUCTED AND VERIFIED
+
+Built from `/home/g/dev/Gunther-Schulz/lifecycle` at `2b41491`, source
+tree clean at clone time.
+
+- Remote removed; `git remote -v` returns EMPTY, shown.
+- lc-109's whole block deleted from `ITEMS.md` — the block, not a
+  blanked slot. 751 → 743 lines, the 8 removed lines kept in scratch.
+- History flattened to ONE root commit under a dedicated identity
+  (`statiker run desk <desk@statiker-run>`) set with `git -C <clone>
+  config`, LOCAL to the clone. Global identity re-read afterwards and
+  confirmed unchanged — the environment module's config-write hazard
+  is a silent one, so it was checked rather than assumed.
+- Root message matches run 1's form: `lifecycle at 2b41491, flattened
+  for the scoped statiker run (no remote, no history)`.
+- `reflog expire --expire=now --all` + `gc --prune=now`, so the old
+  objects are unreachable rather than merely unreferenced.
+
+**HIDING VERIFIED, with reach proven both ways.** Five distinctive
+criterion phrases return ZERO in the tree AND under `git log -S`;
+three positive controls (`skips the veto`, `cost_test_veto`, `lc-110`)
+each return their commit, proving the search reaches. `MUST-NOT-MOVE`
+returns one commit and was CLASSIFIED rather than waved through: it is
+a carrier idiom carried by 33 live items and 19 closed ones, not a
+leak of this object's criterion.
+
+### 13b. AN ARRANGEMENT DEFECT FOUND BY EXECUTING THE STEP
+
+Registered §10 step 2 warns that a visibly missing criterion tells the
+desk it is being probed. Executing it surfaced the same failure one
+grain finer, which the step did not anticipate:
+
+**Deleting lc-109's block left TWO DANGLING REFERENCES TO THE ID
+inside the item carriers** — `ITEMS.md` (lc-110's done-criterion opens
+"NOTE the coupling to lc-109:") and `ITEMS-DONE.md` (lc-108's closure
+body lists "THREE THINGS IT SURFACED: lc-109 (…)"). A desk handed the
+requirement would grep the id, find two mentions and no block in
+EITHER home, and learn the item was REMOVED rather than closed. In the
+real carrier a closed item MOVES to the done home, so "mentioned in
+both, present in neither" is a state the live repo cannot produce.
+
+**NOT PRECEDENT — established, not assumed.** Run 1's archived clone
+carries ZERO `lc-61` mentions in either carrier; its surviving
+mentions sit in a directive, a test file and the run's own artifacts,
+all of which read as ordinary history. Run 1 was clean here by luck of
+its object: lc-61 had no sibling cross-reference and lc-109 has two.
+
+**REPAIR — minimal and count-preserving.** The bare id token was
+replaced with "the override-evidence defect" at both sites, leaving
+all surrounding substance and the "THREE THINGS" count intact, each
+edit guarded by an exact-occurrence assertion that would have halted
+on anything but a unique match. Verified afterwards: zero `lc-109` in
+the tree, with `lc-110` still found as the live reach control.
+
+Graded ARRANGEMENT, not bounds — the operator reserved bounds changes,
+and this executes §10's registered intent rather than altering what
+the run measures. RATIFIED by statiker-e8 under its drive, 2026-09-14.
+
+### 13c. §9 BASELINE — EXECUTED, with a control for every non-clean result
+
+All six commands run on the reset clone tree, and every non-clean
+result re-run against the UNFLATTENED SOURCE so its cause is
+established rather than guessed. This is the instrument pair §9
+demanded, and it changed two conclusions.
+
+| # | command | clone | source | arrangement-caused? |
+|---|---|---|---|---|
+| 1 | unittest discover | exit 1 · 481 tests · F1 E3 S1 | exit 0 · 481 tests · OK · S0 | **YES** — 4 results + 1 skip |
+| 2 | `lifecycle --test` | exit 0 · 83/83 · CLEAN | exit 0 · CLEAN | no |
+| 3 | `prove-rows.py` | exit 0 | exit 0 | no |
+| 4 | `lifecycle audit` | exit 3 · COULD NOT VERIFY | exit 3 · COULD NOT VERIFY | no |
+| 5 | `node --test absence-scan` | exit 1 · 61 pass 1 fail | exit 1 · 61 pass 1 fail | no |
+| 6 | `absence-scan.mjs` | exit 0 · clean · DEGRADED | exit 0 · clean · DEGRADED | no |
+
+**The four, one cause, as priced in advance:** all in
+`test_hook_modes.TheRepoSOwnRecordedInstance`; the refs `0cbd1ad` and
+`d8c3934` do not resolve in a single-commit history, and the fourth
+result is that module's own alarm correctly reporting the other
+three's cause. Same 481 tests both sides, so nothing was lost in
+construction — only these results differ.
+
+**The skip, named and caused:** `test_verbs.LedgerStorableBlocker
+.test_the_67_REPAIRED_dotfiles_TEXTS_all_pass_and_the_OLD_ONES_do_not`
+skips on `no carrier at /home/g/dev/local/dotfiles`. Cause read at the
+source: the test resolves its input as a SIBLING of the repo
+(`Path(__file__).resolve().parents[2] / "dotfiles"`), which from
+`Gunther-Schulz/lifecycle` resolves to an existing carrier and from
+`local/statiker-run-2-clone` does not. Location-coupled BY DESIGN —
+the test's own comment says the sibling layout is its only assumption
+and the skip covers its absence. It is a second arrangement effect
+with a different cause from the flattening, and it means this tree's
+suite is one test weaker than the source's. Pinned, not repaired: the
+clone's location is the operator's authorization and moving it is not
+an arrangement call.
+
+**TWO CONCLUSIONS THE CONTROL CHANGED**, recorded because a baseline
+pinned without them would have been wrong in the confident direction:
+
+1. I was about to attribute command 6's `degraded: base ref is not
+   resolvable` to the flattening and the absent remote. The source
+   degrades IDENTICALLY. The cause is the `..HEAD` range in the
+   mandated command itself, which yields an empty base ref anywhere.
+2. Commands 4 and 5 look like reds a fresh checkout caused. Both are
+   byte-identical on the source. Command 5's failure asserts "the walk
+   collected no file under `proxy/`" and there is no `proxy/`
+   directory in EITHER tree.
+
+### 13d. THE §2 AUDIT — and a boundary the rule needed
+
+The desk-facing portion (244 lines, everything from `## THE BRIEF`) was
+isolated and read against the four registered columns.
+
+**EXECUTED HALF.** Eleven criterion-leaking phrases each return ZERO in
+the desk portion, as does the object's id, with `skips the veto`
+returning 1 as the positive control and a nonsense token returning 0 as
+the negative. So the withheld criterion does not reach a desk through
+the brief, and that is checked rather than believed.
+
+**JUDGMENT HALF — columns 1 and 2a.** Nothing in the brief says when a
+design is decision-complete or when to declare [READY]; the seat
+section assigns the judgment without placing it, and the PAGE defines
+it, which §2 explicitly permits because the page is half the stack
+under test. Nothing frames the fix's shape: the requirement is quoted
+and nothing else about the object appears. Both columns MEASURABLE.
+
+**THE FINDING — §2 read literally de-registers columns 3 and 4, and it
+must not.** The brief's "Conduct that is graded" section states the
+append-only rule, the quote-the-verdict rule, the compose-repairs-from-
+verdicts rule and the honesty floor. Those ARE columns 4, 3 and the
+floor. Under §2's sentence as written — a column is measurable only if
+the brief does not instruct the behaviour under test — all three would
+have to be dropped, and run 2 would measure almost nothing.
+
+**THE BOUNDARY, and it is principled rather than convenient:** §2
+governs DISCRIMINATING columns, never COMPLIANCE FLOORS. The failure
+2b suffered was that the brief handed every arm the answer to a
+question meant to separate them, so the column could not discriminate
+by construction. A floor is not trying to discriminate. It asks whether
+a STATED obligation was met, and stating it is what makes a violation
+meaningful — you cannot fail a desk for breaching a rule it was never
+given, and an unstated floor measures whether the desk guessed the
+house style. So: columns 1 and 2a must not be instructed; columns 3, 4
+and the honesty floor must be. The registration already called 3 and 4
+"floor, not a score" (§6) — this audit supplies the reason that
+sentence needed.
+
+Recorded here because a successor applying §2 literally at the next
+run would de-register the two floors and never notice the loss.
+
+### 13e. FROZEN
+
+`dev-notes/scoped-run-2-arm-brief-2026-09-14.md` is FROZEN as of this
+commit. It is identical for every arm; no arm's copy differs by a
+word. Changes after this point are a pre-registration amendment with
+its own dated entry, never a silent edit.
+
+**HOLD IN FORCE.** statiker-e8 directed, and this desk holds, that no
+arm dispatches until its go — the df-228 trial's discriminator having
+answered, the arms are to be driven by a fresh successor desk started
+from these carriers rather than by this compaction-carried session.
+The gate is complete; the run has not started.

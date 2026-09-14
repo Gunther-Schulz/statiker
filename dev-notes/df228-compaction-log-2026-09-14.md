@@ -261,6 +261,55 @@ from the billing record above.
 Reduction across the event: 266,628 → 128,092, i.e. the compaction
 shed ~52% of the prefix.
 
+## FAIL CRITERION — FIRED, 2026-09-14, at the freeze gate
+
+Reported to statiker-e8 immediately, per protocol. Recorded as FIRED
+rather than as a second datum, because self-grading a criterion down
+at the moment it fires is exactly what the criterion exists to stop.
+The grading is the judgment desk's; the report is mine.
+
+**THE CLAIM:** "lifecycle's Verify block names FIVE commands" and "the
+verify surface is five commands, not one" — pre-registration §9, in
+three places.
+
+**THE CARRIER CONTRADICTS IT:** the block names SIX. Established by
+extracting and numbering rather than by re-reading — `awk` the fenced
+block out of the clone's `CLAUDE.md`, strip comment and blank lines,
+`nl`. Six lines out.
+
+**THE COMPACTION SUMMARY IS THE PLAUSIBLE CAUSE:** it carried the
+sentence "It now names five commands:" immediately above a list of
+SIX. I copied the number and inherited the error.
+
+**WHY IT SURVIVED MY POST-COMPACT RE-READ, which is the part worth
+having.** I did re-read the Verify block this session — it is quoted
+in full in my own earlier tool output — and the miscount still
+shipped. Re-reading a body does not check a COUNT of that body: the
+number is a label standing over its own enumeration, and the only
+reader that catches it is arithmetic. My C1 re-check swept executed
+premises (greps, line numbers, file sizes, tool verdicts) and every
+one of those is self-checking when re-run. A stated total is not. So
+the re-check's reach was narrower than its green suggested, and this
+is the reach question turned on my own instrument.
+
+**IT SHIPPED.** Committed at 46a3710, pushed, and asserted to the
+judgment desk in the report of this date. That is what separates it
+from C1's extent-understatement, which was caught before delivery.
+Pre-ship catch = datum; post-ship assertion = incident.
+
+**BLAST RADIUS, measured rather than asserted:** the arms never see
+this file. The brief mandates the repo's own Verify block AS WRITTEN
+(st-48), so what reaches a desk is the block itself, not my count of
+it. No arm could have inherited the error, and no bound, column or
+criterion depends on the number. Corrected in place at §9 with the
+six enumerated.
+
+**CONSEQUENCE ADOPTED, not merely noted:** the post-compact re-check
+gains an explicit arithmetic leg — every stated TOTAL, COUNT or
+"N things" in anything composed from a summary is re-derived from its
+own enumeration before the claim ships, never re-read. Added because
+the existing re-check demonstrably passed over this one.
+
 ## Standing conduct for this arm — statiker-e8, 2026-09-14
 
 **The deliberate post-compact re-check is now the trial's conduct
