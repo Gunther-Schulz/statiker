@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 51
+added: 52
 compacted: 0
 
 ## st-12
@@ -337,3 +337,12 @@ write-set: ANOTHER REPO: lifecycle (/home/g/dev/Gunther-Schulz/lifecycle) — pl
 done-criterion: the lifecycle desk has landed ONE of three repair directions, or declined with a reason — this desk does not choose among them: commit by a pathspec of the lines the verb itself wrote; refuse to commit when the carrier is dirty on entry; or document the wholesale-commit contract so callers stage deliberately. (b) is a one-line message change if that repo wants the convention; (c) needs nothing
 evidence: INCIDENT, verified at the artifact 2026-09-14 at this desk: a hand-appended `fact:` line to statiker LEDGER.md (the carrier's own .claude/lifecycle.json declares `session` a writer for ledger lines, and the verb has no fact form) was absorbed by the verb's commit 03ce106 'lifecycle: ledger decision'. Read back with git show --stat: 1 file changed, 2 insertions — both lines mine and intended, nothing else swept, so NO DAMAGE in this instance. The hazard is the general shape, where the absorbed edit is another writer's or is not yet meant to land. Attribution half read off the same commit: no Co-Authored-By trailer
 blocked-by: decision which of the three repair directions the lifecycle desk takes, decided by whoever holds that repo's write boundary
+
+## st-73
+grade: READY
+requirement: gpt-5.6-sol is to be FULLY TESTED at the desk role as an unconditional follow-on UNIT of run 2, not a candidate held on terra: operator amendment of 2026-09-14, recorded at dev-notes/scoped-run-2-preregistration-2026-09-14.md section 14
+goal: general-maintenance
+write-set: dev-notes/scoped-run-2-preregistration-2026-09-14.md
+done-criterion: the sol desk arm has run to a terminal state on the run-2 frozen arrangement — same clone state, same page 0.2.99, same brief identical by word — and is graded on columns 1, 2a, 3 and 4 against the sealed grading packet and the pre-registered C1-C7 plus the honesty floor, with its result recorded in the pre-registration grading section. SCHEDULING, not condition: it runs as the run-2 follow-on unit AFTER terra, serial order ceiling then terra then sol, reset-and-verify between arms. Ceiling reuse is conditional on no arrangement or page change; a page release or arrangement change between units voids the shared ceiling and sol owes its own. A C7 death is a completed outcome, not a failure to run: ungradeable on the columns the death prevented, the defect booked against the arrangement, the tier neither credited nor charged
+evidence: PROVENANCE CHAIN, stated in full because the authority travelled: the operator stated it first-hand in statiker-e8 session on 2026-09-14 and statiker-e8 relayed it to this desk marked as the operator words with that date; the operator delegation typed first-hand in this session makes such a relay binding. It is a bounds change, a class the delegation reserves to the operator, and is recorded as exercised BY them. SUBSTANCE: the 2026-09-12 codex pilot disqualified the SCORE of sol, not the model — it found and ran the repo own tools, oracle conduct that may be desk-appropriate rather than contaminating, since desk work is not a blind comprehension test; ladder economics per pre-registration section 4 cheapest-adequate premise. Supersedes the earlier held-candidate form directed in statiker-e8 GO message point 5, which never landed as an entry
+blocked-by: NONE
