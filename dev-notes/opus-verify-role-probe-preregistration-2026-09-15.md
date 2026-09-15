@@ -129,3 +129,53 @@ The ground truth is GRADER-ONLY and never travels to the arm.
 - Token cost will not be captured for a Claude arm (`claude -p` prints
   none). Recorded as a gap, never estimated — the same gap probe B
   recorded for sonnet and haiku.
+
+---
+
+## ARRANGEMENT VALIDATION — RESULTS, executed 2026-09-15 BEFORE the brief
+
+All four checks run at the artifact. The workdir is
+`<scratchpad>/btb-opus`, a clone of the local `beat-the-books` checked
+out at the pinned sha.
+
+**0. The workdir is the pinned object, verified not assumed.**
+`git -C <workdir> rev-parse HEAD` →
+`3b360ae03224af0190ce5ddfd99ca4a6d69ebceb`. Tracker present at
+`.clippy/runs/2026-08-16-canonical-frame-sign-repair-statiker.md`.
+
+**1-2. THE CONTAMINATION TRAP IS STILL LIVE.** Re-checked rather than
+assumed defused, because probe B's finding is a fact about a state that
+could have changed:
+`.venv/lib/python3.13/site-packages/__editable__.beat_the_books-0.1.0.pth`
+is present in the original repo's venv and still points at the original
+`src` tree.
+
+**3. THE CONTROL PAIR, executed, and it reproduces probe B's exactly:**
+
+    no PYTHONPATH               -> /home/g/dev/Gunther-Schulz/beat-the-books/
+                                   src/beat_the_books/__init__.py   (ORIGINAL)
+    PYTHONPATH=<workdir>/src    -> <workdir>/src/beat_the_books/
+                                   __init__.py                      (ISOLATED)
+
+Both halves ran. The pair is what makes the isolation a measurement
+rather than an intention: without the control, a green suite in the
+workdir is indistinguishable from a green suite measuring the original
+tree.
+
+**4. IMPORT RESOLUTION IS NOT COLLECTION**, so the arrangement was
+exercised rather than inferred from step 3: a real test file
+(`tests/unit/config/test_replay_cache_floor.py`) run in the isolated
+workdir under the shadowing variable returned **5 passed in 0.06s**.
+
+INSTRUMENT NOTE, recorded because it cost a round and is the local
+shell's own hazard: the first attempt globbed `tests/test_*.py`, which
+matched nothing under zsh (the tests are nested), left the path
+argument EMPTY, and so ran the WHOLE suite — which hit an unrelated
+collection error in `test_vpn_rotation.py`. An empty argument silently
+widening a command's scope is the same class as the false zeros this
+program keeps paying for: the command succeeded at something other than
+what was asked.
+
+**BINDING for the arm:** `PYTHONPATH=<workdir>/src`, cwd the workdir.
+
+Arrangement VALIDATED. The arm may now be briefed.
