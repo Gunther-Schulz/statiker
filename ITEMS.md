@@ -133,7 +133,7 @@ evidence: run 3 V2 PASSED 21/21 zero-delta (d1b8ce85); st-27 original done-crite
 blocked-by: evidence false  # the next statiker run reaching a V1 -> repairs -> V2 cycle with a non-DESIGN repair; no run live at the 0.2.86 release gate (3 trackers FAILED/COMPLETE/COMPLETE)
 
 ## st-33
-grade: PARKED
+grade: READY
 requirement: st-29 lap C (compression pass, close): a last conduct-prose tighten, the Birth-class declaration amended to post-pass posture, and the size target RE-DERIVED from the measured post-lap-B residue per the operator-concurred booking (OBSERVATIONS.md:4438-4448, 'the number is an outcome, not a gate'); the disclosure decision (design §5) recorded — record: docs/directives/2026-09-11-st29-compression-design-statiker-fb.md §2, §3 lap C, §5
 goal: tend
 write-set: plugin/skills/statiker/SKILL.md, PLAN.md (Size target supersession entry), CLAUDE.md (Verify block note), dev-notes/OBSERVATIONS.md
@@ -150,6 +150,8 @@ amend-reason: 2026-09-12 the 2026-09-12 Option A amend cleared this item's st-32
 amended-evidence: 2026-09-12 as amended 2026-09-12 (fb SS2's projections are dead as premises; the live one is lap B's re-measured ~1440), PLUS the number lap C must actually quote: the measured residue at the 0.2.89 release is 1706 operational lines (CLAUDE.md Verify awk, run at the release gate 2026-09-12, up from 1689 at cb36f6d because the review's repair lap added +17). Every projection in this item's chain is now superseded by a measurement at a real seam, which is what the operator-concurred booking asked for ('the number is an outcome, not a gate')
 amend-reason: 2026-09-12 the retype had to be an APPENDED amendment, not a base-slot rewrite: item park rewrote the base blocked-by line while st-33 still carried a later amended-blocked-by NONE from the Option A amend, and latest-line-wins meant the untyped value still governed. The carrier check kept firing and was right to. Recorded because the failure shape is the corpus paraphrase-drift class in a carrier: the base slot read correct while the line that decides read NONE
 amended-blocked-by: 2026-09-12 decision which clauses lap C conduct-prose tighten actually changes, now that the standard is readability rather than a line budget (operator Option A, 2026-09-12), with the stage-1 clause table as its measured input
+promote-reason: 2026-09-15 tighten-scope blocker answered via the verb this date: SKILL.md :995 and :919 only, :1147 excluded with its C4b e19116d-shaped reason. Design decided on docs/audits/2026-09-15-lapC-tighten-scope.md at 8d73d35, whose scope, exclusions and per-sentence line anchors make the entry executable by a fresh context
+promoted-by: 2026-09-15 statiker-9c (driving/judgment desk) on statiker-4b phase-1 analysis; recorded by statiker-4b, the executing desk
 
 ## st-36
 grade: PARKED
