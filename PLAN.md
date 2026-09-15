@@ -198,14 +198,29 @@ evidence there.
 
 ## Size target
 
-80–150 lines of operational text. If it grows past that, something
-is being restated that should be cited, or a patch landed without
-provenance.
-[Hard reading SUPERSEDED — the count is a stabilization TARGET,
-not a live gate: trial-phase fire-born accretion above it is
-deliberate, the booked compression pass brings it back down
-(SKILL.md Birth-class declaration; Begehung R2 staleness note,
-2026-08-16).]
+**RETIRED 2026-09-15 — there is no line target, and nothing below
+this paragraph is in force.** The measured number is 1793
+operational lines, and the substance — the measurement, its basis,
+and why the figure is irreducible by restatement, re-homing or
+rewording — lives in the Size-target supersession entry of
+2026-09-15 under Post-plan decisions. The one route that can still
+move it is st-83 (MOVE-TO-A-LEVER). A reader arriving here with a
+count in hand reads that entry before treating any number as debt.
+
+Superseded text, kept because this file is the design record and
+its history is the point — not a live claim:
+
+> 80–150 lines of operational text. If it grows past that,
+> something is being restated that should be cited, or a patch
+> landed without provenance.
+>
+> [Hard reading SUPERSEDED — the count is a stabilization TARGET,
+> not a live gate: trial-phase fire-born accretion above it is
+> deliberate, the booked compression pass brings it back down
+> (SKILL.md Birth-class declaration; Begehung R2 staleness note,
+> 2026-08-16).] — itself now stale in both halves: the compression
+> pass CLOSED at st-33, and the Birth-class declaration it points
+> at no longer carries a target.
 
 ## Birth process
 
