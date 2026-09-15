@@ -11811,3 +11811,85 @@ NO TENET FAILS AND NONE IS NOT-APPLICABLE.
 CONSUMER: the st-79 tool lane's build (this entry is its lock), and
 the next release gate's carried-set re-ask, which will find this mint
 in the interval and demand exactly this record.
+
+### AMENDMENT, 2026-09-15 — a SECOND mint component this lock did not
+### anticipate: `{SESSION_ARGS}`, a new MANDATORY FORM
+
+Recorded at the diff, which is where C4b calls are made. The lock above
+anticipated ONE component, the `PROBE_INVALID` token, and specified the
+aiming interface as the sibling's single `{PROMPT_FILE}` placeholder.
+The lane deviated with cause: this probe's whole subject is
+`--session-id` / `--resume`, needed PER INVOCATION by the driven and
+fresh arms, and the sibling's single-placeholder form has no slot for
+it. So `--launcher-file` now requires TWO placeholders, and `main()`
+REFUSES with a usage error if either is missing (verified at the
+committed blob afaf046, lines ~108 and ~328).
+
+**THAT IS A NEW MANDATORY FORM, and C4b binds the introduction axis
+whether or not a token name is added.** It is the e19116d shape the
+rule deliberately keeps as prose — a change adding no token but adding
+a form — and the call here is that it FIRES. The launcher file is a
+contract a freeze executor must satisfy, and the repair changed what
+that contract demands. Recording it as a component of this same mint
+rather than a separate entry: one repair, one lock, two components.
+
+DESK NOTE ON THE DEVIATION ITSELF: the design lock was MINE and it was
+wrong — I specified the sibling's interface without asking whether the
+sibling's interface could express this probe's subject. The lane's
+critique pass and its deviation are what caught it. The precedent rule
+(tenet 9) is satisfied by DEPARTING from the sibling here with the
+departure stated, not by matching it.
+
+TENET CHECK for this component, all nine enumerated from PLAN.md's live
+list read at the artifact, not carried over from the check above — the
+components are different objects and a copied verdict would be the
+restated-basis class inside the very entry that warns about it:
+
+1. **Investigation-led design — PASS**, though not by this desk: the
+   need surfaced from the lane's grounding read of the sibling, before
+   its first build call.
+2. **Sufficiency = dispatchable — FAIL, and it is recorded as a fail.**
+   The brief was NOT decision-complete on this point: it named an
+   interface that could not express the probe's own subject, so the
+   executor had to make a design decision the dispatcher should have
+   made. The lane surfaced it rather than bridging silently, which is
+   the correct executor behaviour under a defective brief; the defect
+   was the dispatcher's.
+3. **Anti-skim — PASS.** No forcing point touched. The refusal on a
+   missing placeholder ADDS a check where there was none.
+4. **Cost asymmetry — PASS, narrowly and late.** The decision was
+   locked before the code landed, but at the lane's initiative rather
+   than at design time; the cost of the miss was one deviation round,
+   not a rewrite.
+5. **Autonomy — PASS.** The refusal means a malformed launcher file
+   fails loudly at the freeze executor's hand instead of producing a
+   run whose arms were aimed wrong.
+6. **Economics — PASS.** One placeholder and one guard; the
+   counterfactual is a freeze-time run with the session arguments
+   silently absent, which would measure an UNAIDED child while
+   reporting on a driven one — the exact false green this probe exists
+   to prevent.
+7. **Convergence circuit — PASS.** Lands with the battery and the
+   selftest that already cover the verdict logic.
+8. **Medium tenet — PASS, and it is the deciding one again.** What
+   must hold exactly is that a launcher file lacking either placeholder
+   never runs: a computable predicate, so mechanism. Implemented as a
+   refusal, not as prose in a docstring.
+9. **Placement — PASS, by stated DEPARTURE.** Precedent line: departs
+   from `tools/launch_substrate_probe.py`'s single-placeholder form,
+   with the reason recorded in the file's own docstring — the sibling's
+   interface cannot express a per-invocation session argument, which
+   this probe's subject requires. Tenet 9 asks for the precedent line,
+   not for conformity.
+
+ONE FAIL (tenet 2), and it is the dispatcher's, not the mint's. The
+mint stands; the brief that preceded it did not.
+
+RESIDUE CARRIED TO FREEZE, from the lane's own honest slot (g): the
+`{SESSION_ARGS}` contract was never exercised end to end against a real
+launcher and child. NARROWED at this desk 2026-09-15 — the substitution
+helper `_aim` was exercised directly against the committed blob, both
+placeholders and the unaided arm's empty-session-args case, with a
+control; substitution is proven, the end-to-end child invocation is
+not. The freeze-time driver re-run (§5d step 10 of the run-3
+pre-registration) is where that closes.
