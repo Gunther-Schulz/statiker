@@ -155,6 +155,34 @@ the probes ran. This desk first reported the live figure against a
 claim about the snapshot: a different object, verified and reported as
 agreement.
 
+> **CORRECTION, 2026-09-15 (statiker-d4, st-77 arc; confirmed
+> independently at statiker-9c).** The two figures above are on
+> DIFFERENT COORDINATES, and the gap between them is a unit artifact,
+> not drift. Measured at the probe child's own instructions attachment
+> (`~/.claude/projects/-tmp-statiker-probe-neutral-3TKE/74fcb57f-….jsonl`,
+> the `instructions` record, nine files) and at the live files:
+>
+>     snapshot as the child loaded it : 153,968 chars / 155,102 bytes
+>     live corpus, 2026-09-15         : 153,977 chars / 155,111 bytes
+>
+> **155,111 is a BYTE count** (confirmed by a second desk's independent
+> `cat | wc` over the same nine files). **153,966 is not** — it sits 2
+> off the snapshot's CHARACTER count. So the ~1,145 difference this
+> paragraph attributes to the 17:58 and 18:11 module edits is chars
+> measured against bytes. **TRUE drift snapshot→live is 9 bytes.**
+> The 2-unit residual between 153,966 and the measured 153,968 is
+> UNACCOUNTED — the original file set may have differed slightly; it
+> is flagged rather than smoothed.
+>
+> This finding's SUBSTANCE is unaffected and was re-verified with
+> controls both ways: nine files, loaded cwd-independently, reaching
+> the ceiling arm and no codex arm; the matching-semantics neighbours
+> present in the snapshot; "question-slot" and "near-miss" absent. The
+> stronger-direction claim stands. Corrected in place rather than
+> appended elsewhere, so the superseded figure is not what the next
+> reader of this section takes as the position; git preserves the
+> original. Body and provenance: candidates round §A.4.
+
 **S5 — §5d's freeze order OMITS the driver re-run §3a.4 mandates, and
 the named tool cannot be aimed at anything.** `driver_resume_probe.py`
 has no argparse: model hardcoded, both prompts and invocations
