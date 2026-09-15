@@ -9,6 +9,68 @@ itself measures.
 
 Run: python3 -m pytest tools/test_driver_resume_probe.py -q
      (also collected by the whole-suite run: python3 -m pytest tools/ -q)
+
+THE RED-FIRST ARRANGEMENT, recorded here because a proof's basis is the
+ARRANGEMENT -- which side was old, and where the expectations came from
+-- and this one's discriminating half was produced in a session
+scratchpad that no longer exists. Carried into the artifact by the
+dispatching desk after the lane's report was booked, 2026-09-15.
+
+TWO FORMS WERE RUN, and only the second discriminates.
+
+Form 1, LITERAL: this battery committed alone (08a71af) against the
+real pre-repair file, which was then restored into the working tree and
+run. Result: 10 failed, every one
+`AttributeError: module 'driver_resume_probe' has no attribute
+'verdict'`. REAL BUT NON-DISCRIMINATING -- extracting verdict() was
+itself the repair's first item, so the old file has no such function
+and the must-not-move case does NOT pass in this form. Recorded as
+uninformative rather than dressed as a red.
+
+Form 2, RECONSTRUCTED: the pre-repair decision branch
+(`git show 08a71af:tools/driver_resume_probe.py`, lines 94-110)
+transcribed as a pure function, print/return-code pairs replaced by
+(token, rc) tuples, no branching logic altered. Verified faithful by
+the dispatching desk against that blob -- branch order, conditions and
+return codes match on all four arms; the sole divergence, `.get()` for
+`[]` on token_correct, is strictly more permissive and unreachable in
+every case run:
+
+    def old_verdict(u, d):
+        if u["ack"]:
+            return ("OLD_LEG_MEANS_NOTHING", 2)
+        if d["ack"] and d.get("token_correct"):
+            return ("OLD_DRIVER_WORKS", 0)
+        if d["ack"] and not d.get("token_correct"):
+            return ("OLD_FALSE_GREEN", 1)
+        return ("OLD_DOES_NOT_CARRY", 1)
+
+FIDELITY CONTROL, run BEFORE the cases and passed -- without it the
+reconstruction is an instrument authored by the same hand as the code
+it grades:
+    old_verdict({'ack': False}, {'ack': True, 'token_correct': True})
+      -> ('OLD_DRIVER_WORKS', 0)
+matching the module docstring's recorded real measurement of
+2026-09-14 (UNAIDED ack=False rc=0 / DRIVEN ack=True token_correct=True
+-> DRIVER WORKS, rc 0).
+
+OUTCOME, in three-way language because two-way would hide the third
+answer this very repair exists to make sayable:
+
+    1 both arms rc=None          old: DOES_NOT_CARRY -> RED
+    7 nonzero rc, one leg only   old: DRIVER_WORKS   -> RED
+    3 control leg failed         no such leg in old  -> COULD-NOT-VERIFY
+    5 fresh arm reproduced nonce no such leg in old  -> COULD-NOT-VERIFY
+    2 genuine green              old: DRIVER_WORKS   -> PASS-BY-COINCIDENCE
+    4 unaided ACK                old: equivalent     -> PASS-BY-COINCIDENCE
+    6 ACK + wrong token          old: FALSE_GREEN    -> PASS-BY-COINCIDENCE
+
+Cases 1 and 7 are the true red: the rc blindness this repair fixes.
+Cases 3 and 5 are could-not-verify, NOT passes -- old code had no leg
+to be right or wrong about, and that structural absence is itself the
+evidence the gap was real. Cases 2/4/6 land on the same token for
+reasons unrelated to the repair and are NOT evidence the old code was
+sound.
 """
 import sys
 import unittest
