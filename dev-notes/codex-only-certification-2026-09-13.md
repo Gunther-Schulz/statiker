@@ -189,6 +189,33 @@ reach, and the real repo carrying V1 sits on this disk. A transcript
 audit for reads outside the workdir is MANDATORY before any score
 counts.
 
+**TWO THINGS A REPLAYER MUST KNOW, added 2026-09-15 from the st-60
+opus replay — here, beside the step, because a replayer loads this
+paragraph and not the wave record.**
+
+**(a) `clone` IS NOT A SUBSTITUTE FOR THE SHA FETCH, and the
+difference is invisible to every content check.** A `git clone` plus
+`checkout <sha>` carries DESCENDANTS, so `5c691ce` becomes reachable
+and the answers are one `git show` away. Measured on exactly that
+mistake: `git cat-file -t 5c691ce` returned `commit`. The CHECKOUT was
+clean — zero V1 hits at the pinned sha — so a tracker grep passes
+either way, and the mandatory read audit above does NOT cover it
+because a `git show` of a descendant is a read INSIDE the workdir. The
+discriminating check is OBJECT ABSENCE: `git cat-file -t 5c691ce` must
+FAIL, and reachable-commit count drops (3970 against 4105 on the
+broken copy). Run it after building the workdir, before briefing any
+arm.
+
+**(b) A SHA-FETCH COPY DOES NOT REPRODUCE THIS RECORD'S SUITE
+COUNTS.** F122 records "3,032 passed ... NO failures"; a fetched copy
+gives 3,017 passed / 1 failed / 1 skipped / 14 errors, every failure
+and error in `tests/unit/providers/azuro/` from a missing
+`dictionaries/` directory — an UNTRACKED data directory a fetch cannot
+carry. Identical either side of the change, so not a regression and
+not an arm's finding. Stated here so the next replay does not read a
+structural gap as evidence: the baseline counts and a replayed copy
+disagree BY CONSTRUCTION.
+
 **Metric.**
 
     (i)   COVERAGE   a verdict returned for every one of R1-R9.
