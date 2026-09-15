@@ -12146,3 +12146,62 @@ TENET CHECK against PLAN.md's live list, all nine enumerated:
    its site did not already have.
 
 NO FAILS.
+
+## 2026-09-15 — the gap between two protections: a clean checkout is not a clean object store
+
+INCIDENT + BASIS: building st-60's isolated workdir for the opus
+verify-role arm, I used `git clone --no-checkout` plus `checkout
+<sha>`. Probe B's arrangement specifies `git init` plus `git fetch
+<repo> <sha>`, and states its reason: a sha fetch transfers the commit
+and its ANCESTORS ONLY, so
+`5c691cea2fa2b1618b9959b2adc0a9091303bc01` — the commit carrying V1 and
+the per-requirement ground truth — is absent BY CONSTRUCTION, being a
+DESCENDANT of the pinned sha. A clone carries descendants. Measured on
+my first workdir: `git cat-file -t 5c691ce` returned `commit`. The
+answer key was one `git show` away from the arm about to be graded.
+
+Caught BEFORE the arm ran, by reading probe B's brief section rather
+than its results table.
+
+CLASS: **a defect sitting in the GAP between two independent
+protections, where each protection is sound and neither one's surface
+shows it.**
+
+WHY NEITHER HALF SEES IT, which is the transferable part:
+
+- THE CHECKOUT WAS CLEAN. Zero V1 hits in the tracker at the pinned
+  sha. Every working-tree inspection — grep, read, diff — passes. The
+  leak lives in the OBJECT STORE, which no content search of the
+  working tree reaches.
+- THE READ AUDIT WOULD NOT HAVE FIRED EITHER. Probe B makes a
+  transcript audit for OUT-OF-WORKDIR reads mandatory, and it is the
+  protection nominally covering "the arm found the answer". But a `git
+  show` of a descendant commit is a read INSIDE the workdir. The audit
+  is correctly scoped and still blind here.
+
+So the two protections are each sound, each stated, and the defect
+falls between their edges. Neither is wrong; the gap is.
+
+THE DISCRIMINATING READ, and it is the only one that separates the
+states: OBJECT ABSENCE, not content absence. `git cat-file -t <answer
+sha>` must FAIL; reachable-commit count drops (3970 after the rebuild
+against 4105 before, the 135 descendants excluded). A tracker grep
+returns the same clean zero either way, which is what makes it the
+wrong instrument here — the false-zero shape this program keeps
+paying for, one layer down from where it usually bites.
+
+MINT TRIAGE: **no corpus mint, and no new mechanism.** Probe B's spec
+already carries the construction AND its stated reason, and the reason
+is exactly what let this be caught by READING it rather than by
+suffering it. A rule whose rationale travels with it is what made the
+catch possible — recorded here as evidence for stating reasons in
+specs, not as an argument for a new rule. Driving-desk triage,
+2026-09-15: OBSERVATIONS is the right home for the costume; the
+corpus already carries the underlying instrument-reach class.
+
+WHAT I WOULD HAVE SHIPPED: an arm whose result was uninterpretable in
+the direction that flatters it. A high agreement score would have been
+indistinguishable from a good verifier and from one that read the
+answers, and nothing in the recorded evidence would have let a later
+reader tell which — the measurement would have entered the register as
+a certification.
