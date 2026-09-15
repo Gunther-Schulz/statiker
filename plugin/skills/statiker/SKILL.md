@@ -917,15 +917,15 @@ whatever else the operator touched under it (the tool halts on
 one). The design phase edits no other repo file, so the tracker
 is normally the whole pathspec.
 (b) The judgment instrument the tool cannot run: re-read each
-lock-set artifact against the entry that produced it — the
+lock-set artifact against the entry that produced it. The
 tool's collision check reads staged operator state (porcelain
-column one), but two states it cannot attribute need this
-re-read: column-two divergence on run-produced content, and
-every UNTRACKED add (the tool adds any surviving untracked
-pathspec path — an operator draft sitting where a lock-set line
-points is caught only by this re-read); what it misses rides
-into the commit — the attack
-round's probes are the backstop, the residue named, not hidden.
+column one). Two states it cannot attribute need this re-read:
+column-two divergence on run-produced content, and every
+UNTRACKED add (the tool adds any surviving untracked pathspec
+path — an operator draft sitting where a lock-set line points
+is caught only by this re-read). What it misses rides into the
+commit — the attack round's probes are the backstop, the
+residue named, not hidden.
 (c) `lock-check --tracker <path> [--lock-set <path> …]`.
 Verdict routes: LOCK_GATE_HOLDS — the consulted sweep verdict's
 blocking set is non-empty AND Status is NOT on the close path
@@ -993,15 +993,15 @@ the unit rules' meanings — USAGE_ERROR, GIT_ERROR,
 INTERNAL_ERROR) halts the lock uncommitted, verdict line booked
 as a `record:` F-line, routed like HALT_STATE.
 Everything outside the pathspec is operator state — never
-committed, never unstaged, never restaged; desk scratch belongs in
+committed, never unstaged, never restaged. Desk scratch belongs in
 the desk's own scratchpad, never the repo (the attacker rule's
-counterpart, Verify); a brief asserting the tree claim (The attack's
+counterpart, Verify). A brief asserting the tree claim (The attack's
 freeze scope) names every tracked surface the claim cannot cover as
-an exclusion — the drop and extras lists above are that list's
+an exclusion: the drop and extras lists above are that list's
 mechanical floor, and an operator-modified tracked path outside
-every lock-set path joins through the same rule; the attacker reads
-an excluded path as outside the frozen surface, evidence of nothing;
-a brief that never asserts the claim needs no exclusions. A
+every lock-set path joins through the same rule. The attacker reads
+an excluded path as outside the frozen surface, evidence of nothing.
+A brief that never asserts the claim needs no exclusions. A
 re-derived design re-enters here: new [READY], new sweep, new lock
 commit.
 
@@ -1883,9 +1883,10 @@ tripwire.
 
 ## Birth-class declaration
 
-At birth this file was enforcement structure + bindings only —
-zero capability patches. ~150 operational lines is the
-stabilization TARGET, not the live count: this phase accretes
-fire-born structure above it deliberately, and the compression
-pass owed at stabilization (booked in dev-notes) brings it back
-down. A patch landed without provenance is still the tripwire.
+Enforcement structure + bindings, with fire-born and hypothesis
+patches (above) the only admitted additions. A patch landed
+without provenance is the tripwire.
+
+No line target governs this file. Its mass is machine semantics,
+deliberately in that medium, so the count moves by precipitation
+into mechanism and never by a budget (PLAN.md, Size target).

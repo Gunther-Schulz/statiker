@@ -1423,6 +1423,70 @@ comparand yet, since it would be the first real control arm for the
 question the trial is actually asking. Re-check at each fire-rate
 review, and whenever a new comparand is read (st-47's series included).
 
+- 2026-09-15, statiker-4b under statiker-9c: **SIZE TARGET
+  SUPERSEDED — the measured number is 1793 operational lines**
+  (CLAUDE.md Verify awk, run at lap C's own seam over SKILL.md at
+  this date's tighten). PLAN.md's birth-era 80–150 is formally
+  ABANDONED, and the compression pass closes having recorded an
+  honest number rather than reached a budgeted one (operator
+  Option A, 2026-09-12).
+  WHY THE NUMBER IS WHAT IT IS — three independent measurements,
+  none of which was looking for the others' answer, all returning
+  the same structure: (i) the stage-1 clause table
+  (`docs/audits/2026-09-12-st32-lapB-clause-dispositions.md`) —
+  the page's mass is predicates, write-side templates and seam
+  conduct, of which 66 lines of 510 precipitate into the route
+  registry; (ii) the phase-0 DISJOINTNESS finding
+  (`docs/audits/2026-09-15-phase0-split-question-analysis.md`) —
+  the material a mechanism protects and the material only some
+  branches reach are disjoint sets, so no piece qualifies for
+  progressive disclosure; (iii) lap C's own readability pass
+  (`docs/audits/2026-09-15-lapC-tighten-scope.md`) — of 53 genuine
+  run-on sentences, 50 carry a machine token, a flag, or two or
+  more verdict names, leaving 2 sentences (193 words) in scope.
+  The page is not large because it is restatement, badly homed, or
+  badly written. It is large because it is machine semantics, and
+  the medium tenet says that is the correct medium for it.
+  CONSEQUENCE: the number moves by MECHANISM or not at all — st-83
+  (MOVE-TO-A-LEVER) is where that route now lives, and it is the
+  only booked work that can change this figure. A future session
+  reading 1793 as debt should read st-83 first.
+
+- 2026-09-15, operator: **"Single-home by design" RE-OPENED and
+  RE-AFFIRMED — on a new basis, recorded so the history stays
+  honest.** The operator re-opened it this date asking whether the
+  page splits into an always-loaded core plus consuming-seam
+  reference files, the goal being better lazy loading. That is
+  NEW evidence of a kind the original decision never weighed: the
+  2026-08-07 decision and its narrow amendment rest on DRIFT (no
+  spec layer, no render chain), never on loading economics.
+  Re-opening on it was legitimate.
+  The answer is NO, decided by statiker-9c on the phase-0
+  analysis, operator veto open. The re-affirmation stands on the
+  DISJOINTNESS finding, NOT on the original drift rationale: a
+  disclosed reference needs to be both branch-specific and loud
+  when unloaded, and on this page those two properties never
+  co-occur — the 169 nb a lint code protects is loaded by every
+  branch anyway, while the 509 nb only some branches reach has no
+  code at all. SKILL.md:1604 states the consequence in the page's
+  own words: a held unit reaches Verify invisible to every gate.
+  WHAT THIS ENTRY IS FOR: a later session must not re-open the
+  question on the drift argument and take its refutation for a
+  refutation of single-home. Drift is no longer the load-bearing
+  reason. The loading-economics reason was heard, measured, and
+  answered, and the goal behind it survives in st-83.
+  DISCLOSURE (design §5's three branch-gated candidates —
+  RETRO-netting ~25 lines, batched-trip attack machinery ~40,
+  version-mismatch resume ~30) is DECIDED NO-DISCLOSURE by the
+  same finding, checked per candidate rather than transferred:
+  version-mismatch resume is desk conduct no gate enforces (the
+  page says `skill_versions` is "attribution, never a gate"), so
+  an unloaded copy lets an older desk proceed over a newer
+  record — silent and serious; batched-trip machinery is desk
+  conduct with no tool behind it — silent; RETRO-netting is the
+  softest case, since the tool nets regardless and only the
+  desk's reading of `retro_holds` degrades. None qualifies.
+
 ## The trust-distribution thesis — the program in one line (operator, 2026-09-13)
 
 Persisted on the operator's grading ("worth persisting", this date's

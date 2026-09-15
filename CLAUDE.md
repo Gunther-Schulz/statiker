@@ -547,11 +547,41 @@ python3 -m pytest tools/ -q     # the WHOLE suite: the lane
                                 # alone verify less than they read
 awk '/^---$/{c++} c>=2' plugin/skills/statiker/SKILL.md | grep -vc '^$'
                                 # operational (non-blank body) lines —
-                                # trial metric, printed for the record;
-                                # ≤ ~150 (PLAN.md size target) is the
-                                # STABILIZATION EXIT criterion, not a
-                                # live gate: the count accretes
-                                # fire-born until the booked
-                                # compression pass (dev-notes)
+                                # trial metric, printed for the record.
+                                # 1793 at the lap-C seam 2026-09-15;
+                                # the compression pass CLOSED there and
+                                # 80-150 is formally abandoned (PLAN.md,
+                                # Size target supersession, that date).
+                                # There is no line GATE and no line exit
+                                # criterion: three independent
+                                # measurements found the mass is machine
+                                # semantics, which the medium tenet says
+                                # belongs in that medium. The number
+                                # moves by MECHANISM or not at all —
+                                # st-83 is the only booked work that can
+                                # move it, so read st-83 before reading
+                                # this count as debt
+python3 ~/.claude/plugins/cache/skill-craft-marketplace/skill-craft/2.2.8/tools/register_lint.py \
+  --band 52 30 plugin/skills/statiker/SKILL.md
+                                # PROSE-FORM band, statiker's own and
+                                # MACHINE-DERIVED (2026-09-15): caps are
+                                # ceil(measured x 1.10) over the page at
+                                # that seam — 46.8 words/sentence and
+                                # 26.9 em dashes/1000w — a 10% drift
+                                # tolerance. The tool's DEFAULT band
+                                # (19.0 / 5.3) is pstack-derived and is
+                                # NOT this corpus's: the tool says the
+                                # band is a property of the corpus, and
+                                # adopting a comparand's house style is
+                                # what would import a preference
+                                # (PLAN.md NON-STEAL, 2026-09-13).
+                                # Proven at declaration, both controls:
+                                # green on the page (exit 0), RED on a
+                                # drift simulation joining 100 sentence
+                                # boundaries (65.2 w/s vs cap 52,
+                                # exit 1). Re-derive the band only with
+                                # a recorded decision — a band quietly
+                                # widened to fit new prose grades
+                                # nothing
 ls plugin/skills/                # payload inventory: statiker only
 ```

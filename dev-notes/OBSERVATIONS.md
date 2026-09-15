@@ -12205,3 +12205,114 @@ indistinguishable from a good verifier and from one that read the
 answers, and nothing in the recorded evidence would have let a later
 reader tell which — the measurement would have entered the register as
 a certification.
+
+## 2026-09-15 — st-33 lap C: the compression pass closes on an honest number, and the number is 1793
+
+Lap C executed by statiker-4b under the operator's first-hand
+delegation of this date, statiker-9c driving and grading. Closes the
+st-29 compression pass per operator Option A (2026-09-12): the pass
+stopped being a size programme, so lap C's job was to record an
+honest number rather than reach a budgeted one.
+
+**WHAT LANDED.** Two sentences tightened (SKILL.md :919 and :995),
+the Birth-class declaration amended to post-pass posture, PLAN.md
+carrying the Size-target supersession entry and the single-home
+re-affirmation, CLAUDE.md's Verify block re-derived. Verifiers, own
+output: 656 passed / 0 failed (twice — once after the tighten, once
+after the full delta); operational lines 1793 before and after, the
+tighten being 14 insertions against 14 deletions.
+
+**THE MEASURED SCOPE, and why it was two sentences and not 53.**
+skill-craft's `register_lint.py` grades the page at 46.8 words per
+sentence against a default cap of 19.0. Of 53 genuine run-on
+sentences (>=80 words, list artifacts removed), **50 carry a machine
+token, a CLI flag, or two or more verdict names** — not tighten
+material under the medium tenet, where rewording a predicate is a
+mint under C4b rather than a readability pass. Three were conduct
+prose; one of those (:1147, the attack-tier resolution order) was
+EXCLUDED because a resolution order is behaviour in prose's
+clothing — the e19116d boundary shape C4b already records. Scope:
+:995 and :919. Record:
+`docs/audits/2026-09-15-lapC-tighten-scope.md`.
+
+**SEMANTIC PRESERVATION, checked rather than asserted.** A word-level
+diff of the whole page across the tighten returns seven non-equal
+runs, all punctuation, plus exactly ONE dropped content word: the
+connective "but" at :922, whose contrast survives as a sentence
+boundary. Every other content word is byte-identical. Effect on the
+edited text alone (skill-craft's prescribed unit): 64.7 -> 20.2 words
+per sentence, longest sentence 101 -> 46 words.
+
+**A FINDING DELIBERATELY NOT FIXED — the ambiguous pronoun at :926.**
+"what it misses rides into the commit": the antecedent is ambiguous
+between the tool's collision check and the desk's re-read. The
+mechanism forces the re-read reading (if the check's own misses rode
+into the commit, the re-read would do nothing), but that resolution
+is a READING, not a re-punctuation. Resolving it silently inside a
+tighten is how a substantive change ships in a readability costume,
+so the pronoun was preserved unchanged and the ambiguity is booked
+here for the phase-2 review to disposition. The tighten is therefore
+provably semantics-free, which is what makes its review cheap.
+
+**MINT TRIAGE — C4b: this lap MINTS NOTHING, and the reading is
+recorded because an unrecorded check is a skipped check.** The
+tighten introduces no machine token, hold code, predicate or
+mandatory form (it is re-punctuation, evidenced by the word-level
+diff above). The Birth-class amendment introduces none either: it
+DROPS a target statement and states the current posture. Neither is
+the "repair disposition introducing a form" shape C4b was minted
+for. No tenet check is therefore owed for the payload delta. The
+release gate still re-asks over the pin's WHOLE carried set
+(0.2.99 -> the release version), which this entry does not discharge.
+
+**PRUNE-GATE CLAUSE DISPOSITION** for the Birth-class declaration,
+owed because a prune drops text already in force and no lint sees a
+dropped obligation: (1) "at birth this file was enforcement
+structure + bindings only" -> REWORDED to present tense, naming both
+admitted patch classes; (2) "~150 operational lines is the
+stabilization TARGET" -> **ABSENT, deliberately** — st-33's
+done-criterion requires the target dropped and PLAN.md now carries
+its supersession; (3) "this phase accretes fire-born structure above
+it deliberately" -> REWORDED into the admitted-additions clause;
+(4) "the compression pass owed at stabilization brings it back down"
+-> **ABSENT, deliberately** — the pass has closed, and an obligation
+stated as owed after it is discharged is stale text; (5) "a patch
+landed without provenance is still the tripwire" -> KEPT. No
+load-bearing clause is ABSENT or WEAKENED without its reason.
+
+**THE BAND (CLAUDE.md Verify), machine-derived and proven at
+declaration.** statiker now lints its own prose against its own band
+rather than the tool's pstack-derived default, because the tool
+states in its own help that the band is a property of the CORPUS —
+adopting a comparand's house style is what would import a preference
+(PLAN.md NON-STEAL). Derivation: cap = ceil(measured x 1.10) over
+the page at this seam — 46.8 w/s and 26.9 em dashes/1000w — giving
+`--band 52 30`, a 10% drift tolerance. **Both controls run**: green
+on the page (exit 0), and RED on a drift simulation joining 100
+sentence boundaries (65.2 w/s against cap 52, exit 1). A band that
+had never gone red would be an unproven instrument; this one has.
+Named residual: the band does NOT discriminate pre- from post-tighten
+(both green) — it is a drift detector, not a tighten verifier, and
+saying so here stops a later reader reading its green as proof the
+tighten worked.
+
+**THE INSTRUMENT FINDING, discharged at its own home.**
+`register_lint.py` reads a terminatorless bulleted list as ONE
+sentence: the page's reported worst offender (229 words at :611) is
+the entry-template list, and another such artifact sits INSIDE the
+attack question block that ships verbatim into every brief. A scope
+taken from the instrument's headline would have opened lap C by
+rewriting the one block the page forbids rewriting. Booked in the
+OWNING repo as skill-craft **sc-11** (commit 6ad0601) by the driving
+desk — not left as a note in this repo's audit, which would have
+been the sibling-carrier non-discharge.
+
+**WHAT THE NUMBER MEANS.** 1793 is not a failure to compress. Three
+independent measurements — the stage-1 clause table, the phase-0
+disjointness finding, and this lap's 50-of-53 — each looking for a
+different thing, all return the same structure: the page's mass is
+machine semantics, which the medium tenet places in that medium
+deliberately. The figure moves by precipitation into mechanism or
+not at all, and st-83 (MOVE-TO-A-LEVER) is the only booked work that
+can move it. A future reader treating 1793 as debt should read st-83
+before acting.
