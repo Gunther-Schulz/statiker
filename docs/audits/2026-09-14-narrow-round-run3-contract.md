@@ -119,6 +119,27 @@ bundles marker and turn end into ONE step. The recorded 0.2.100 verdict
 is unaffected (the genuine red row has NEITHER marker), and v2 cannot
 flip a v1 red since it only adds failure and inconclusive routes.
 
+> **CORRECTION, 2026-09-15 (statiker-d4, st-79 repair lane).** There
+> are **THREE** such states, not two, and this finding's own claim to
+> have executed "over every reachable marker combination" is what the
+> third one refutes. The repair lane drove all ten reachable
+> `(bg, ack, turn_end)` states through `leg_background_resume()` and
+> found `bg=F ack=T turn_end=T` carrying the IDENTICAL defect shape —
+> DIES with "the ACK marker is absent" while ACK is present.
+>
+> CONFIRMED AT THIS DESK by reading the pre-repair code rather than by
+> re-running the lane's probe: the `elif turn_end_present and
+> bg_present` gate cannot fire when `bg_present` is False, `ordering_ok`
+> is then False, `pass` is False, and the verdict falls through to the
+> hardcoded absent-ACK reason. The same reading confirms the two states
+> named above.
+>
+> The repair covers all three. This correction stands in place so the
+> next reader does not take "two" as the population — the finding was
+> right about the defect and wrong about its extent, which is the more
+> dangerous half to inherit, since an exhaustiveness claim is what stops
+> anyone looking again.
+
 **S3 — the nonce's "caught by construction" claim is wider than the
 construction; the recorded measurement is sound.** Both arms use the
 SAME nonce and both prompts persist in the cwd-keyed transcript store,
