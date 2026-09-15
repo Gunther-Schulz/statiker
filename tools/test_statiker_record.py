@@ -3496,6 +3496,55 @@ class TestHarvest2CorrectsReachClass(RecordFixture):
         v = self.sweep(body)
         self.assertEqual(v["verdict"], "SWEEP_CLEAN", v)
 
+    def test_corrects_nothing_text_carries_no_unexpanded_placeholder(self):
+        # 0.2.101 review, MAJOR 1: REPAIR_INTENT_HOLD gained an `{n}`
+        # placeholder, and apply_supersession interpolates the template
+        # into its complaint with no .format — so `{n}` reached the
+        # emitted verdict. That line books VERBATIM as a `record:`
+        # F-line, so the placeholder lands in the permanent record and
+        # a desk composing from the complaint writes an invalid token.
+        # The assertion is on what must NOT appear: a presence check
+        # catches one breaking, an absence check catches it DEGRADING.
+        header = HEADER.replace(
+            "INTENT — do the thing.",
+            "INTENT — make the thing [PASSED] when it works.")
+        n = self.lineno_of("", "[PASSED] when it works", header=header)
+        v = self.sweep(
+            f"- F1 [VERIFIED] record: corrects line {n} — basis: y\n",
+            header=header)
+        self.assertEqual(v["verdict"], "SWEEP_HOLDS", v)
+        complaint = next(x for x in v["violations"]
+                         if x["code"] == "corrects-nothing")
+        self.assertNotIn("{n}", complaint["text"], complaint)
+        self.assertIn(f"corrects line {n}", complaint["text"], complaint)
+
+    def test_a_bracketed_literal_does_not_satisfy_the_defang_presence(self):
+        # 0.2.101 review, MAJOR 2: correcting_entry_defangs refuses a
+        # correcting entry carrying its OWN literal via defang_text,
+        # which is CASE-SENSITIVE, while the presence test runs over
+        # correcting_body.lower() — so `[Pending]` passed the refusal
+        # AND satisfied \bpending\b through the bracketed text itself.
+        # The docstring's own third refusal states the opposite: the
+        # match is word-anchored, "nor by a bracketed literal surviving
+        # elsewhere on the line". This restores that stated reach.
+        header = HEADER.replace(
+            "INTENT — do the thing.",
+            "INTENT — make the thing [PASSED] when it works.")
+        n = self.lineno_of("", "[PASSED] when it works", header=header)
+        bracketed = self.sweep(
+            f"- F1 [VERIFIED] record: corrects line {n}, it reads "
+            "[Passed] there — basis: y\n", header=header)
+        self.assertEqual(bracketed["verdict"], "SWEEP_HOLDS", bracketed)
+        self.assertIn("tag-literal-in-body",
+                      self.violation_codes(bracketed), bracketed)
+        # control, the sanctioned form: a real defang still clears, so
+        # the arm above is the bracket being refused and not the route
+        # having died
+        defanged = self.sweep(
+            f"- F1 [VERIFIED] record: corrects line {n}, the literal "
+            "there reads passed — basis: y\n", header=header)
+        self.assertEqual(defanged["verdict"], "SWEEP_CLEAN", defanged)
+
 
 class TestHarvest2WriteSetPathField(RecordFixture):
     """begehung-harvest 2, finding 3 (tier2-without.md part 5/7): the

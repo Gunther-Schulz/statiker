@@ -199,13 +199,14 @@ evidence there.
 ## Size target
 
 **RETIRED 2026-09-15 — there is no line target, and nothing below
-this paragraph is in force.** The measured number is 1793
-operational lines, and the substance — the measurement, its basis,
-and why the figure is irreducible by restatement, re-homing or
-rewording — lives in the Size-target supersession entry of
-2026-09-15 under Post-plan decisions. The one route that can still
-move it is st-83 (MOVE-TO-A-LEVER). A reader arriving here with a
-count in hand reads that entry before treating any number as debt.
+this paragraph is in force.** The measured number, its basis, and
+why the figure is irreducible by restatement, re-homing or
+rewording live in the Size-target supersession entry of 2026-09-15
+under Post-plan decisions — which is the number's ONE home, so that
+a count and the body it counts cannot part company here. The one
+route that can still move it is st-83 (MOVE-TO-A-LEVER). A reader
+arriving with a count in hand reads that entry before treating any
+number as debt.
 
 Superseded text, kept because this file is the design record and
 its history is the point — not a live claim:
@@ -1439,12 +1440,20 @@ question the trial is actually asking. Re-check at each fire-rate
 review, and whenever a new comparand is read (st-47's series included).
 
 - 2026-09-15, statiker-4b under statiker-9c: **SIZE TARGET
-  SUPERSEDED — the measured number is 1793 operational lines**
-  (CLAUDE.md Verify awk, run at lap C's own seam over SKILL.md at
-  this date's tighten). PLAN.md's birth-era 80–150 is formally
+  SUPERSEDED — the measured number is 1801 operational lines**
+  (CLAUDE.md Verify awk, run over SKILL.md at the state released
+  this date, after lap C's tighten AND the checkpoint review's
+  repair lap; it read 1793 at the tighten alone, and the +8 is the
+  review's own repairs). PLAN.md's birth-era 80–150 is formally
   ABANDONED, and the compression pass closes having recorded an
   honest number rather than reached a budgeted one (operator
   Option A, 2026-09-12).
+  THIS ENTRY IS THE NUMBER'S ONE HOME, and it says so because the
+  figure already drifted once inside this very lap: 1793 was
+  written into three carriers at the tighten, and the repair lap
+  moved the body under all three. Re-derive from the awk at every
+  edit of either; never carry it, and never restate it in a second
+  carrier — the other two now point here instead.
   WHY THE NUMBER IS WHAT IT IS — three independent measurements,
   none of which was looking for the others' answer, all returning
   the same structure: (i) the stage-1 clause table
@@ -1465,7 +1474,7 @@ review, and whenever a new comparand is read (st-47's series included).
   CONSEQUENCE: the number moves by MECHANISM or not at all — st-83
   (MOVE-TO-A-LEVER) is where that route now lives, and it is the
   only booked work that can change this figure. A future session
-  reading 1793 as debt should read st-83 first.
+  reading the count as debt should read st-83 first.
 
 - 2026-09-15, operator: **"Single-home by design" RE-OPENED and
   RE-AFFIRMED — on a new basis, recorded so the history stays

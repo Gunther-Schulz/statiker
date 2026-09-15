@@ -548,10 +548,16 @@ python3 -m pytest tools/ -q     # the WHOLE suite: the lane
 awk '/^---$/{c++} c>=2' plugin/skills/statiker/SKILL.md | grep -vc '^$'
                                 # operational (non-blank body) lines —
                                 # trial metric, printed for the record.
-                                # 1793 at the lap-C seam 2026-09-15;
-                                # the compression pass CLOSED there and
-                                # 80-150 is formally abandoned (PLAN.md,
-                                # Size target supersession, that date).
+                                # The awk above prints the LIVE number;
+                                # no figure is restated here, because a
+                                # count in a second carrier drifts from
+                                # the body it counts (it did, inside the
+                                # 2026-09-15 lap itself). The number's
+                                # one home, with its basis: PLAN.md,
+                                # the Size-target supersession entry of
+                                # 2026-09-15. The compression pass
+                                # CLOSED there and 80-150 is formally
+                                # abandoned.
                                 # There is no line GATE and no line exit
                                 # criterion: three independent
                                 # measurements found the mass is machine

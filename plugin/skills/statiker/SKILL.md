@@ -427,8 +427,10 @@ one lint-legal quote form is exactly what the attack filter
 drops); verbatim binds the words, not tag literals or layout — a
 bracketed tag literal inside the operator's text is defanged
 exactly as report quotes are, the mutation noted beside the line
-(undefanged it holds every later sweep, correctly, for the run's
-life); derived requirements as long as needed, numbered `R<n>.` —
+(undefanged it holds every later sweep, correctly, until a
+correcting entry defangs it — an INTENT line parses no entry, so
+it clears the owner-less way, below); derived requirements as long
+as needed, numbered `R<n>.` —
 never dash-led `- R<n>` (the amendment form);
 verify reads this head plus its R-lines, not the conversation.
 
@@ -587,9 +589,14 @@ is desk error. DEFANG lint is separate and scans the WHOLE file: an
 undefanged bracketed tag literal holds the sweep wherever it sits,
 in INTENT enforcing the hand-defang duty; write the literal or
 expect the lint to say so.
-The hold clears one way, wherever the literal sits: an appended
-`record: corrects line <n>` whose body CARRIES the defanged literal.
-A token that only names the line clears nothing.
+Clearing splits on OWNERSHIP, the same split the repair classes
+take (Implementation). On a line that parses NO entry — the header,
+INTENT, bare prose, a quoted line — the hold clears one way: an
+appended `record: corrects line <n>` whose body CARRIES the
+defanged literal; a token that only names the line clears nothing.
+On an entry-OWNED line the ordinary bookkeeping token sheds it,
+carrying no defanged literal. So SWEEP_CLEAN says the holds are
+discharged, never that every literal on the page was defanged.
 
 Beside the write-set declarator: a correction appended under a
 write-set declarator's own id, whose latest EARLIER line for that id
@@ -798,8 +805,8 @@ everything outside still firing) — legitimacy belongs to the cited
 authorization; exemptible holds are FORM DEBT only. Defang-class
 holds (`tag-literal-in-body`) are never exemptible — the tool
 refuses the netting — because an undefanged tag literal holds every
-later sweep correctly until a correcting entry defangs it (The
-record); LIVE-WORK
+later sweep correctly until a correcting entry clears it by its
+own route (The record, the ownership split); LIVE-WORK
 holds (`pending-latest`) are never exemptible — a netting reaching
 the no-[PENDING] gate would unlock [READY], the closing
 [ZERO-DELTA], and the Verify dispatch in one line; `exempt_holds` is
@@ -923,8 +930,8 @@ column one). Two states it cannot attribute need this re-read:
 column-two divergence on run-produced content, and every
 UNTRACKED add (the tool adds any surviving untracked pathspec
 path — an operator draft sitting where a lock-set line points
-is caught only by this re-read). What it misses rides into the
-commit — the attack round's probes are the backstop, the
+is caught only by this re-read). What the RE-READ misses rides
+into the commit — the attack round's probes are the backstop, the
 residue named, not hidden.
 (c) `lock-check --tracker <path> [--lock-set <path> …]`.
 Verdict routes: LOCK_GATE_HOLDS — the consulted sweep verdict's
@@ -1264,7 +1271,8 @@ recorded as the F-line's evidence — before the round's A-line lands.
 
 The form below is the tool's OUTPUT, never a second route.
 A hand-built block raises `tag-literal-in-body` on the first literal
-its builder misses. No exemption nets that hold (The record).
+its builder misses. No exemption nets that hold (Stop rule, the
+defang-class clause).
 Report quotes the desk retains are pasted, never paraphrased (the
 defang is the one sanctioned mutation), and append as the quoted
 block the record tool produces — `quote --label "A<n> quotes"`, raw

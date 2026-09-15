@@ -982,7 +982,18 @@ def correcting_entry_defangs(target_text: str, correcting_body: str):
     _, own = defang_text(correcting_body)
     if own:
         return False
-    low = correcting_body.lower()
+    # The `own` refusal above runs defang_text, whose TAG_LITERAL_RE is
+    # CASE-SENSITIVE (uppercase tags only), while the presence test runs
+    # over a lowercased body — so `[Pending]` passed the refusal and then
+    # satisfied \bpending\b THROUGH ITS OWN BRACKETED TEXT. The third
+    # refusal this docstring states ("nor by a bracketed literal
+    # surviving elsewhere on the line") was therefore false as written,
+    # and SWEEP_CLEAN read as the defang duty discharged by a line still
+    # carrying a literal. Bracketed tag-shaped tokens are stripped
+    # case-insensitively before the test, so presence must be satisfied
+    # by defanged prose and nothing else. Restores the stated reach; it
+    # adds no predicate (0.2.101 review, MAJOR 2).
+    low = re.sub(r"\[[A-Za-z][A-Za-z -]*\]", " ", correcting_body).lower()
     return all(re.search(r"\b" + re.escape(n) + r"\b", low) for n in names)
 
 
@@ -1515,11 +1526,24 @@ def apply_supersession(entries, violations, line_ids, line_parse):
                 shed.add(n)
                 bookkeeping.add(e.lineno)
             else:
+                # The repair FORMS carry `{n}`/`{code}` placeholders and
+                # are templates, never finished text. annotate_repairs
+                # formats them (the `repair` field); this site did not,
+                # because the form it names carried no placeholder until
+                # st-71 gave REPAIR_INTENT_HOLD an `{n}`. The two
+                # consumption sites must share one contract or the next
+                # placeholder leaks here again — and this line books
+                # VERBATIM as a `record:` F-line, so a leak lands in the
+                # permanent record. `n` is the violated line the form's
+                # advice tells the desk to name, which is this branch's
+                # own target.
                 complaints.append(
                     {"code": "corrects-nothing", "line": e.lineno,
                      "text": f"{e.id}: `corrects line {n}` names a "
                              f"violation no repair token reaches — "
-                             f"{declared}"})
+                             + declared.format(
+                                 n=n,
+                                 code="/".join(violated[n]))})
     # P37: a defective attempt's own repair-pin violation sheds once
     # ANY corrects-token against the same target succeeded cleanly.
     for n, pin_complaints in pending_pin_complaints:
