@@ -12316,3 +12316,48 @@ deliberately. The figure moves by precipitation into mechanism or
 not at all, and st-83 (MOVE-TO-A-LEVER) is the only booked work that
 can move it. A future reader treating 1793 as debt should read st-83
 before acting.
+
+## 2026-09-15 — the release gate's check grain: a record lands BESIDE its change, not inside it
+
+Captured at statiker-9c's call during the 0.2.101 release gate, because
+the next gate-runner meets this and the correction does not survive in
+anyone's memory.
+
+**THE INCIDENT.** Running the carried-set re-ask (CLAUDE.md birth-class
+discipline: every mint between the installed pin and the released
+version shows its record before the pin moves), the check was run
+PER COMMIT — for each payload commit, does that commit carry a tenet
+record. `9f72ee4` (st-60, the `verify: opus` register row) came back
+with none, and was one step from being booked as a missing record.
+
+**WHY THAT WAS WRONG.** st-60's records sit in ADJACENT commits —
+`533f55c` (the OBSERVATIONS entry), `4f08fd4` and `0f09b9f` (the
+pre-registrations). In this repo a record commonly lands BESIDE its
+change rather than inside it, and per-change attribution is the reason:
+the repo deliberately splits records from changes so each commit
+carries one thing. The check grain was finer than the thing it graded.
+
+**THE FAILURE SHAPE, which is why it is worth a line.** A per-unit
+check whose unit is finer than its object returns a confident FALSE
+ABSENCE, and a false absence reads exactly like a real gap — the gate
+would have reported a missing record against a commit whose record
+exists three commits away, and the repair would have been to write a
+record that already existed. Nothing in the output distinguishes the
+two; what caught it was asking why a well-run item would have no
+record AT ALL before booking the finding.
+
+**THE LENS for the next gate-runner:** the carried-set re-ask reads a
+commit's NEIGHBOURHOOD, never the commit alone — the item id is the
+better key than the commit sha, since `git log --grep=<id>` returns the
+change and its records together. The verdict here survived the
+correction (`9f72ee4` is genuinely NOT a mint: the `verify:` class key
+already existed at `9f72ee4^`, so it adds a data row under an existing
+resolution order — no new token, class key, predicate or mandatory
+form). The method did not survive, and the method is what repeats.
+
+**NO CORPUS MINT — duplicate home.** The dispatch skill already carries
+the general form at entry grain ("Opening a stored ENTRY means the
+entry PLUS its neighbours: a re-grade is commonly written as an
+ADJACENT record rather than an in-place edit"). This is that same class
+one domain over, at commit grain. The corpus needs nothing; this repo's
+gate-runner needed the instance, which is what this entry is.
