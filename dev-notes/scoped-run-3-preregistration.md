@@ -990,11 +990,27 @@ the freeze is driven from.
 12. ARM DISPATCH — and only after the operator's first-hand run
     authorization, which is not this document (see the header).
 
-TOOL PRECONDITION ON STEP 7, booked not assumed: `driver_resume_probe.py`
-currently has no argparse — model, prompts and invocations are literal,
-so it cannot be aimed at the run's arrangement at all (narrow-round S5,
-second half). Step 7 is unexecutable until that repair lands; the
-contrast is its sibling's `--launcher-file`.
+TOOL PRECONDITION — **DISCHARGED 2026-09-15 (st-78), and it was
+attached to the WRONG STEP.** As written it read "TOOL PRECONDITION ON
+STEP 7 [...] `driver_resume_probe.py` currently has no argparse [...]
+Step 7 is unexecutable until that repair lands; the contrast is its
+sibling's `--launcher-file`." Both halves are now false and the second
+was always false:
+
+- THE REPAIR LANDED. `tools/driver_resume_probe.py` imports argparse
+  (:87), builds its parser (:312) and takes `--launcher-file` (:313) —
+  the very flag this paragraph named as the sibling's contrasting
+  capability. Closed under st-78, "S5 argparse with launcher-file
+  aiming".
+- THE STEP NUMBER WAS WRONG. Step 7 is the LAUNCHER PROBE, which runs
+  `launch_substrate_probe.py` — that tool has had `--launcher-file`
+  throughout (:467, documented at :66-69). `driver_resume_probe.py` is
+  consumed at STEP 10, the driver re-run. So the precondition never
+  gated step 7 at all, and a freeze executor reading it would have
+  held the wrong step.
+
+Both probes are now aimable by file. Neither step is gated on tooling;
+what step 7 still lacks is its VERDICT, not its target (§3a.5c, §6d).
 
 ---
 
