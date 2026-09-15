@@ -682,6 +682,51 @@ tables still at zero rows.
 Any variation BEYOND the ones declared here is the measured object
 moving, which §15e refuses and this run refuses likewise.
 
+### 3a.5c THE CODEX LAUNCH INVOCATION — stated here, with its binding
+
+Added 2026-09-15 (st-81). §3a.5 names the launch invocation as a
+permitted between-arm variation and §4c probes "the run's ACTUAL
+arm-launch invocation", while NO section stated what that invocation
+IS — the third assumed-delivery instance in this document (§6d names
+the other two). It is stated HERE rather than left to the freeze
+record, so §5d step 6 has a target inside this document and a freeze
+executor can execute it without resolving a file this document does
+not name.
+
+    sol     codex exec -s danger-full-access -m gpt-5.6-sol
+    terra   codex exec -s danger-full-access -m gpt-5.6-terra
+    astra   codex exec -s danger-full-access -m gpt-6-astra
+
+**ASTRA IS `gpt-6`, NOT `gpt-5.6`** — stated because it is the one
+line here a reader reconstructs wrongly by pattern: sol and terra are
+the 5.6 ladder, astra is the configured flagship of the next
+generation. Basis, read rather than recalled:
+`codex-pilot-2026-09-12.md`:25-31 enumerates the tier-distinct model
+set as "gpt-5.6-luna, gpt-5.6-sol, gpt-5.6-terra (the 5.6 ladder) and
+gpt-6-astra (the configured flagship default)"; run 2's own arm table
+carries astra at `scoped-run-2-preregistration-2026-09-14.md`:244-245
+and terra at `scoped-run-2-arm-brief-2026-09-14.md`:138-139.
+
+**THE MODE IS THE PROGRAM'S BINDING, NOT THIS RUN'S CHOICE.**
+`codex-only-certification-2026-09-13.md`, the BINDING paragraph: "a
+codex-only desk must run `-s danger-full-access`, because statiker's
+whole lock/unit machinery is commits and workspace-write refuses
+`.git` writes", and it "ships LOUD, in the setup's first step, as a
+blast-radius statement". What the mode IS travels with it, in run 2's
+words rather than softened here: "`--sandbox danger-full-access` is
+the mode's requirement and it is NO sandbox"
+(`scoped-run-2-preregistration-2026-09-14.md`, §15d). That sentence is
+also §6a's basis for covering READS AND WRITES both — naming the
+invocation here does not narrow that residual.
+
+**WHAT THIS DOES NOT DISCHARGE, stated because the two verdicts live
+at different sections and only one of them moves.** This section
+supplies §4c's TARGET. It does not supply §4c's VERDICT: whether codex
+survives re-invocation is UNMEASURED, the probe is what measures it,
+and §6d's gate stands unchanged — until that verdict is recorded
+against the invocation above, NO CODEX ARM DISPATCHES. An invocation
+that is named is not an invocation that is probed.
+
 ## 4. ARRANGEMENT — the repairs run 2 bought, all three carried
 
 ### 4a. Clone construction gains hooksPath neutralization (§17)
@@ -914,9 +959,12 @@ the freeze is driven from.
  5. CONTAINMENT DECLARATION + preflight verdict (§4b). A
     PREFLIGHT_CONTAINMENT_HOLD here is an arrangement defect to repair
     before arms dispatch, never a finding about an arm.
- 6. **THE RUN DESK STATES THE CODEX LAUNCH INVOCATION** (§6d) — it is
-    named nowhere in this document, and step 7 has no target without
-    it.
+ 6. **THE RUN DESK RECORDS THE CODEX LAUNCH INVOCATION** in the freeze
+    record — **stated at §3a.5c as of 2026-09-15 (st-81)**, so this
+    step is now a TRANSCRIPTION of a named invocation rather than a
+    decision with no target. It still executes: step 7 probes what
+    this step records, and the freeze record is where the probed
+    invocation and its verdict sit together.
  7. LAUNCHER PROBE (§4c) against that stated invocation. Its verdict
     discharges precondition (1) FOR THE CODEX ARMS (§3a.4, per-arm).
  8. **CODEX INSTRUCTION-LOAD RE-PROBE (§3a.5b)** against the
@@ -1012,6 +1060,17 @@ match §3a.4, which this residual contradicted outright: **precondition
   **Until that verdict is recorded, no CODEX arm dispatches.**
 
 **AND THE CODEX LAUNCH INVOCATION IS NAMED NOWHERE IN THIS DOCUMENT** —
+**CLOSED 2026-09-15 (st-81): it is now stated at §3a.5c**, with the
+certification binding and the arm→model mapping both quoted to the
+files they resolve in. What remains at freeze is §5d step 6's
+transcription into the freeze record, not a decision. The finding's
+body is left standing below because it is this residual's provenance
+and because the assumed-delivery COUNT it records is the point.
+**THE GATE IN THIS RESIDUAL DOES NOT MOVE WITH IT**: sol, terra and
+astra stay OPEN on precondition (1), because what was missing was the
+invocation and what is still missing is its PROBE VERDICT. Until that
+verdict is recorded, no codex arm dispatches. Original finding, as
+written —
 found 2026-09-15 at this desk, not by the narrow round, while
 reconciling S6. §3a.5 says "the ONLY permitted between-arm variation is
 the model and its launch invocation", and no section states what that
