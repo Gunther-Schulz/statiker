@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 58
+added: 59
 compacted: 0
 
 ## st-12
@@ -370,3 +370,12 @@ write-set: dev-notes/scoped-run-3-preregistration.md,tools/driver_resume_probe.p
 done-criterion: each of S1, S2, S3, S5, S6, S7, S8 and M1-M5 carries a recorded disposition and is either repaired or explicitly declined with a reason, per the audit record. S1 and S3 are the two that gate any freeze re-run resting on the driver probe: S1 needs a could-not-verify state and a control leg matching its sibling PROBE_INVALID domination, S3 needs a distinct nonce per arm plus a third arm with a FRESH session id given turn 2 prompt which must NOT produce the token. S6 is the cheapest and most dangerous: one contract cannot both permit and forbid arm dispatch
 evidence: Fresh-context narrow round, 2026-09-14. Every finding carries an executed basis in the audit record; S2 was driven over every reachable marker combination with a fake launcher, S4 measured from the probe children own loaded snapshot, the M1 containment arm red-first proven by mutation. The reviewer stated its own bound and refused to dress its one inference as a measurement
 blocked-by: NONE
+
+## st-80
+grade: READY
+requirement: the record tool has NO runtime authorized-path check on its artifact --out, so the containment gate cannot catch the class that fired in the field. Verified at the code 2026-09-15: the gate is preflight-time satisfiability ONLY (statiker_git.py:1274-1366, three axes over the declared scope, then never again) and the declared scope is echoed into the verdict and persisted NOWHERE; terra actual act, filter --out to a path outside the declared scope, goes through statiker_record.py:2752-2761 ARTIFACT_IN_REPO which asks only whether the path is inside ANY repo. Record: docs/audits/2026-09-14-narrow-round-run3-contract.md B3, plus the decision of 2026-09-15 in LEDGER.md
+goal: general-maintenance
+write-set: plugin/skills/statiker/scripts/statiker_record.py,plugin/skills/statiker/scripts/statiker_git.py,tools/test_statiker_record.py,dev-notes/OBSERVATIONS.md
+done-criterion: a runtime authorized-path check on the artifact --out lands with a red-first arm whose RED is terra own act (filter --out to a path outside the declared containment scope) and whose MUST-NOT-MOVE is an --out INSIDE the declared scope staying silent. Verifier: the red arm reds on the unrepaired tool and the must-not-move stays green on it
+evidence: Fresh-context narrow round 2026-09-14 BLOCKING B3, both halves re-verified at the code by statiker-d4 2026-09-15 rather than accepted from the report. The field instance is st-64 amended-evidence, the FIRST ACTUAL OUT-OF-BOUNDARY WRITE in the program. Deferred out of run 3 by driving-desk decision 2026-09-15: it is payload work against banked certified 0.2.100, and the narrow round payload-clean verdict is what this arc exists to protect
+blocked-by: decision how the declared containment scope is carried from preflight to the record tool, given it is currently persisted nowhere downstream can read
