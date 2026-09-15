@@ -411,6 +411,94 @@ class TestSweepExemption(RecordFixture):
         self.assertNotIn("entry-near-miss", self.violation_codes(v))
 
 
+# ------------------------------------------------- st-71 (owner-less route)
+
+
+class TestSt71OwnerLessClearingRoute(RecordFixture):
+    """st-71: an undefanged tag literal on a line that parses NO entry
+    (header, INTENT, bare prose) had no clearing route at all — the
+    token was refused as unreachable and the tool's own message
+    prescribed writing the literal in place, which an append-only
+    record forbids. Terminal deadlock; it killed the scoped run's arm
+    2 with its design locked and sound (OBSERVATIONS 2026-09-14).
+
+    The route is now the EXISTING `corrects line <n>` form, extended
+    to reach the owner-less line, and it clears ONLY on an actual
+    defang: a pointer that names the line without carrying the
+    defanged literal changes nothing. Arms 2 and 6 are that guard —
+    a pointer-only clear would be the silencing `UNEXEMPTIBLE_CODES`
+    exists to forbid, wearing a repair's costume.
+
+    Arms 3 and 4 keep the exact shapes of the probe that decided this
+    item (tools/st71_clearing_route_probe.py, arms G and F), so the
+    incident is pinned in the battery rather than in memory."""
+
+    # HEADER is 8 lines, so a body's first line is line 9.
+    PROSE = "the guard prints [PENDING] on a miss, as the desk noted\n"
+
+    def test_owner_less_literal_clears_on_a_defanging_correction(self):
+        # THE RED ARM. Asserts the TERMINAL VERDICT, not merely the
+        # absence of corrects-nothing: the clause's fall-through has
+        # to land in the branch that actually clears.
+        v = self.sweep(
+            self.PROSE
+            + "- F1 [VERIFIED] record: corrects line 9, the literal "
+              "there reads pending — basis: executed\n")
+        self.assertEqual(v["verdict"], "SWEEP_CLEAN", v)
+        self.assertNotIn("tag-literal-in-body", self.violation_codes(v))
+        self.assertNotIn("corrects-nothing", self.violation_codes(v))
+
+    def test_owner_less_pointer_only_does_not_clear(self):
+        # MUST NOT MOVE — the (b)-in-disguise guard. A token naming the
+        # line but carrying no defanged literal is a wave-through.
+        v = self.sweep(
+            self.PROSE
+            + "- F1 [VERIFIED] record: corrects line 9 — basis: the "
+              "verdict at line 9\n")
+        self.assertEqual(v["verdict"], "SWEEP_HOLDS", v)
+        self.assertIn("tag-literal-in-body", self.violation_codes(v))
+        self.assertIn("corrects-nothing", self.violation_codes(v))
+
+    def test_owner_less_literal_with_no_token_holds(self):
+        # MUST NOT MOVE — probe arm G, the incident's own shape.
+        v = self.sweep(
+            self.PROSE
+            + "- F1 [VERIFIED] unrelated finding — basis: executed\n")
+        self.assertEqual(v["verdict"], "SWEEP_HOLDS", v)
+        self.assertIn("tag-literal-in-body", self.violation_codes(v))
+
+    def test_owned_line_literal_still_clears(self):
+        # MUST NOT MOVE — probe arm F. The owned route is untouched by
+        # this change; `owner is not None` never reaches the clause.
+        v = self.sweep(
+            "- F1 [VERIFIED] the guard prints [PENDING] on a miss "
+            "— basis: executed\n"
+            + "- F1 [VERIFIED] record: corrects line 9 — basis: the "
+              "tag-literal-in-body verdict at line 9\n")
+        self.assertEqual(v["verdict"], "SWEEP_CLEAN", v)
+
+    def test_token_at_a_line_carrying_no_violation_still_corrects_nothing(
+            self):
+        # MUST NOT MOVE — the nonexistent/non-violating target path is
+        # evaluated upstream of repair_class and is not in the change
+        # set.
+        v = self.sweep(
+            "- F1 [VERIFIED] an ordinary finding — basis: executed\n"
+            + "- F1 [VERIFIED] record: corrects line 9 — basis: "
+              "executed\n")
+        self.assertIn("corrects-nothing", self.violation_codes(v))
+
+    def test_a_correction_carrying_its_own_literal_does_not_clear(self):
+        # MUST NOT MOVE — a "repair" that re-offends is not a repair,
+        # and its own violation fires independently.
+        v = self.sweep(
+            self.PROSE
+            + "- F1 [VERIFIED] record: corrects line 9, pending, but "
+              "[VERIFIED] is written raw here — basis: executed\n")
+        self.assertEqual(v["verdict"], "SWEEP_HOLDS", v)
+        self.assertIn("tag-literal-in-body", self.violation_codes(v))
+
+
 # --------------------------------------------------------- P5 (epoch sweep)
 
 HEADER_PRE_ALL_FORM_MINTS = HEADER.replace(
