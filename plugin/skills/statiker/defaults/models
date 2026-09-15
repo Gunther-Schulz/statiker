@@ -77,12 +77,29 @@ impl@codex: terra
 # fire-on-a-non-defect shape that trains the override reflex.
 verify: haiku
 verify: sonnet
+verify: opus
 #
-# OPUS AT THIS ROLE IS UNMEASURED and is deliberately not listed.
-# Probe B ran sonnet and haiku; no opus arm exists. A desk whose
-# parent model is opus therefore still owes its declared deviation
-# line — a TRUE fire, not a false one, and the honest state of the
-# evidence. Booked as the measurement gap it is (st-60).
+# verify: opus — CERTIFIED 2026-09-15 (st-60), by ONE arm replaying
+# probe B's arrangement UNCHANGED, so the number shares a coordinate
+# with the two entries above rather than measuring a different object.
+# Result: coverage 9/9, ZERO fabricated met, agreement 8 of 8
+# exercised. R8 — the designed fabrication control, which the baseline
+# grades not-exercised-entirely — came back NOT EXERCISED, and the arm
+# went further than the baseline by naming the record's own two open
+# caveats on that probe. Criterion was probe B's own registered bar
+# (>= 7 agreement), taken from the standard's home and NOT from what
+# sonnet and haiku happened to score; pre-registration and the graded
+# result: dev-notes/opus-verify-role-probe-preregistration-2026-09-15.md.
+# Desk re-executed three of the arm's checks rather than booking its
+# report — named tests, numstat, and the full suite including the SKIP
+# count — all reproducing exactly. The mandatory out-of-workdir read
+# audit ran and is clean.
+#
+# OPUS DOES NOT OUTPERFORM THE CHEAPEST TIER HERE, and this entry must
+# not be read as saying so: 8 of 8 is haiku's number and sonnet's.
+# HAIKU still carries this role on price. What this entry buys is the
+# removal of a high-rate declared-deviation line on the site's DEFAULT
+# desk tier — it settles a certification question, not a routing one.
 #
 # verify (FP5) @codex: SAFE BUT UNCOMPETITIVE — measured
 # 2026-09-13, and recorded as a measurement rather than as a
