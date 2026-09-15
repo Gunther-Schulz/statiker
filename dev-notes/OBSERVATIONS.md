@@ -11999,3 +11999,150 @@ still carry "holds the sweep ... for the run's life", which st-71's
 ruled design makes false for the owner-less case. Revising them is
 st-71's, whose write-set already names SKILL.md. This patch is written
 so it needs no revision when that lands.
+
+## 2026-09-15 — st-71: the owner-less tag literal gains the one route it lacked
+
+INCIDENT + BASIS: the scoped codex-only run's arm 2 (terra as desk),
+2026-09-14, halted terminally with its design locked and sound. An
+undefanged tag literal sat on a BARE PROSE line that parses no entry
+id; `repair_class` classed it unreachable by any token, the record is
+append-only so the line could not be edited, and the tool's own
+message prescribed exactly the unavailable act: "write the defanged
+literal in place; no repair token reaches it". Refusal and impossible
+remedy in one string.
+
+CLASS: a hold with no clearing route, whose own message prescribes an
+act the grammar forbids.
+
+C4b: **MINT** — a new MANDATORY FORM (the defanged restatement as the
+clearing requirement), though no new token, hold code or predicate
+name. Ruled MINT by the driving desk 2026-09-15. Design graded before
+build: `dev-notes/st71-clearing-route-design-2026-09-15.md` (dd1c58f).
+
+THE PROBE THAT DECIDED IT, run before any design:
+`tools/st71_clearing_route_probe.py` (e10ffde), instrument proven with
+a positive and a negative control. OWNED line: the tool's own
+corrects-line token already cleared. OWNER-LESS line: hold stood AND
+the token minted a second violation. Probe result recorded on the item
+(44c1b12) BEFORE the design, so the design could not be read back into
+its own motivating evidence. Two earlier probe runs were VOID and are
+kept in the instrument's docstring.
+
+THE CHANGE: one clause in `repair_class` gains `and not defangs`; the
+single caller computes `defangs` via a new `correcting_entry_defangs`
+beside `defang_text`, whose spelling it REUSES so the two cannot
+diverge. `REPAIR_INTENT_HOLD` rewritten to prescribe the route that
+now exists. SKILL.md:590-592 and :801 revised in the same landing.
+
+THE PREDICATE'S ASSURANCE, AT ITS TRUE WIDTH — required by the driving
+desk's ruling as the condition on accepting the parity argument, and
+written into the docstring as well as here: it certifies that the
+DEFANGED LITERAL IS PRESENT in the correcting entry. It does NOT
+certify that the surrounding prose faithfully restates the offending
+line; that needs judging prose and is not computable. Nobody may read
+the green as more than this. Why presence is the right bar rather than
+a hole: an append-only record can never REMOVE the literal, so the
+duty was always to place an authoritative marked defang beside it —
+which is precisely the strength on which the OWNED route has always
+cleared (probe arm F clears with the literal still standing). Parity
+with the sanctioned neighbour, not a weakening.
+
+RED-FIRST ARRANGEMENT, executed and stated: the six arms landed in
+their OWN commit (b1e2f44) against the unrepaired tool, giving
+**1 failed, 5 passed**. The RED arm failed for the predicted reason,
+not an incidental one, and asserts the TERMINAL VERDICT (SWEEP_CLEAN)
+rather than the absence of a complaint — an absence assertion would
+pass on a change that dropped the complaint without clearing the hold.
+The five must-not-moves passed BEFORE the change, so their green after
+it is evidence rather than a vacuous baseline. Across the repair
+commit the six arms are BYTE-UNCHANGED (verified: `git diff b1e2f44 --
+tools/test_statiker_record.py` matches them zero times).
+
+ONE PRE-EXISTING TEST CHANGED, and it is not a silenced instrument.
+`test_an_intent_tag_literal_is_not_shed_by_a_bookkeeping_token`
+asserted the repair field's SHAPE — starts with "hold:", never says
+"bookkeeping" — as a proxy for its real demand, which its own comment
+names: the tool must not RECOMMEND a repair that does not work. st-71
+makes the bookkeeping route work here, so the proxy failed while the
+demand behind it held. The assertion is replaced by the demand itself,
+EXECUTED: perform the recommended repair and require it to clear.
+Verified independently before the edit, against the INTENT fixture,
+that the newly recommended repair genuinely reaches SWEEP_CLEAN. That
+is strictly stronger than the string check and goes red the moment the
+tool recommends something inert.
+`test_defang_class_is_never_exemptible` is green and byte-unchanged:
+the exemption path is untouched and that test is what proves it.
+
+SUITE: 656 passed, 7 subtests, 0 failed, 0 skipped (650 before, plus
+the six arms).
+
+ADJACENT DEFECT, FIXED IN ITS OWN COMMIT, and the route to that
+decision is worth recording. A guard named
+`test_docstring_no_longer_disclaims_the_write_set_form` asserted
+`assertNotIn("no literal", SCRIPT.read_text())` — a whole-FILE
+substring scan standing in for a claim about the MODULE DOCSTRING. It
+fired on this change's new, unrelated `correcting_entry_defangs`
+docstring. I first reworded around it and tried to BOOK the guard, to
+keep st-71 at the size its item asked for. The carrier's own cost test
+VETOED the booking: one file, one hunk, the session live, so booking
+costs what doing costs and the entry would be the deferral refuting
+itself in its own arithmetic. Correct, and it caught me applying the
+completion-pressure rule in the direction that rule does not reach —
+that rule forbids GROWING a change past its item, not splitting an
+independent fix into its own commit.
+
+So the guard is narrowed to the docstring's own extent via `ast`,
+never a line count or offset, which would drift on the next edit
+above it. Red-first, executed in a scratch copy so the repo file
+stayed read-only: the stale NOTE planted back into the MODULE
+docstring makes it FIRE, and the phrase living in a FUNCTION docstring
+does NOT — the second is the case that fired today, and it is now a
+LIVE control in the file itself, because `correcting_entry_defangs`
+keeps the natural wording and the suite stays green. Separate commit,
+so per-change attribution survives.
+
+REVIEW BOOKKEEPING, recorded as a decision rather than left an
+accident: this is MACHINE-READ SEMANTICS banking UNREVIEWED. That is
+correct under the consumption-only-seams rule — no interim review is
+owed however large the delta, the parked eve review's delta scope
+(afef58b..HEAD) sweeps it, and clause (d)'s foundation hold does not
+fire because nothing in this arc builds on it. VERSION: stays 0.2.101,
+the same drain wave's bank. 0.2.101 is not a certified label, so
+nothing stands over a changed body; the certified 0.2.100 was already
+protected by st-69's bump.
+
+TENET CHECK against PLAN.md's live list, all nine enumerated:
+
+1. **Investigation-led design — PASS.** A probe decided the item
+   before any design existed, and the design was read off the code and
+   the tool's own run rather than modelled.
+2. **Sufficiency = dispatchable — PASS.** The design document was
+   decision-complete and graded before the build; the build added no
+   design decision.
+3. **Anti-skim — N/A.** No forcing point moves.
+4. **Cost asymmetry — PASS.** The design locked before implementation;
+   the implementation is one clause plus one helper, and the only
+   design change under it would have cost a sentence.
+5. **Autonomy north star — PASS.** Replaces a human seat: a desk that
+   hits this hold now has a route it can execute, where arm 2 needed
+   an operator to diagnose a terminal deadlock.
+6. **Economics — PASS.** One clause, one helper, six arms. Against a
+   defect that cost the remainder of a run.
+7. **Convergence circuit — PASS.** Lands with a red-first battery
+   whose RED was established against the old implementation in its own
+   commit, and the whole suite green after.
+8. **Medium tenet — PASS, and it is the deciding one here.** What must
+   hold exactly is that a pointer-only token never clears an
+   unexemptible hold. That is a computable predicate over observable
+   text, so it is a MECHANISM with a battery, not prose — and it is
+   implemented as a refusal in `repair_class`, not as advice in the
+   message. The prose half (the SKILL.md sentences) states the route
+   and carries no enforcement.
+9. **Placement — PASS.** Precedent line: follows the existing
+   `corrects line <n>` repair form, judged sound — the ruling's narrow
+   (a) was explicitly to extend that form's reach rather than invent
+   an address scheme, and `correcting_entry_defangs` sits beside
+   `defang_text` and reuses it, so the change introduces no concept
+   its site did not already have.
+
+NO FAILS.

@@ -587,6 +587,9 @@ is desk error. DEFANG lint is separate and scans the WHOLE file: an
 undefanged bracketed tag literal holds the sweep wherever it sits,
 in INTENT enforcing the hand-defang duty; write the literal or
 expect the lint to say so.
+The hold clears one way, wherever the literal sits: an appended
+`record: corrects line <n>` whose body CARRIES the defanged literal.
+A token that only names the line clears nothing.
 
 Beside the write-set declarator: a correction appended under a
 write-set declarator's own id, whose latest EARLIER line for that id
@@ -795,7 +798,8 @@ everything outside still firing) — legitimacy belongs to the cited
 authorization; exemptible holds are FORM DEBT only. Defang-class
 holds (`tag-literal-in-body`) are never exemptible — the tool
 refuses the netting — because an undefanged tag literal holds every
-later sweep correctly for the run's life (The record); LIVE-WORK
+later sweep correctly until a correcting entry defangs it (The
+record); LIVE-WORK
 holds (`pending-latest`) are never exemptible — a netting reaching
 the no-[PENDING] gate would unlock [READY], the closing
 [ZERO-DELTA], and the Verify dispatch in one line; `exempt_holds` is

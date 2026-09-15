@@ -3460,9 +3460,23 @@ class TestHarvest2CorrectsReachClass(RecordFixture):
         self.assertEqual(baseline["verdict"], "SWEEP_HOLDS", baseline)
         literal_viol = next(x for x in baseline["violations"]
                             if x["code"] == "tag-literal-in-body")
-        self.assertTrue(literal_viol["repair"].startswith("hold:"),
-                        literal_viol)
-        self.assertNotIn("bookkeeping", literal_viol["repair"], literal_viol)
+        # st-71 (2026-09-15) UPDATED THIS ASSERTION, and states why
+        # rather than restoring the expected string. The original
+        # checked the repair field's SHAPE — starts with "hold:", never
+        # says "bookkeeping" — as a proxy for its real demand, which
+        # this comment's own provenance names: the tool must not
+        # RECOMMEND a repair that does not work. Under st-71 the
+        # bookkeeping route now DOES work here, so the shape proxy
+        # started failing while the demand behind it held. The
+        # assertion is therefore replaced by the demand itself,
+        # executed: the recommended repair is performed and must
+        # actually clear. That is strictly stronger than the string
+        # check it replaces, and it would go red again the moment the
+        # tool recommends something inert.
+        recommended = self.sweep(
+            f"- F1 [VERIFIED] record: corrects line {n}, the literal "
+            "there reads passed — basis: y\n", header=header)
+        self.assertEqual(recommended["verdict"], "SWEEP_CLEAN", recommended)
         body = f"- F1 [VERIFIED] record: corrects line {n} — basis: y\n"
         v = self.sweep(body, header=header)
         self.assertEqual(v["verdict"], "SWEEP_HOLDS", v)

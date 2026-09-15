@@ -558,9 +558,10 @@ REPAIR_STATUS_LINE = ("status line: append a new tag-first line under "
 # wherever it sits ... in INTENT it is the enforcement of the
 # hand-defang duty" — not an ordinary body-content violation a
 # bookkeeping token may shed.
-REPAIR_INTENT_HOLD = ("hold: an undefanged tag literal here holds the "
-                      "sweep for the run's life — write the defanged "
-                      "literal in place; no repair token reaches it")
+REPAIR_INTENT_HOLD = ("bookkeeping: append `- <id> [<tag>] record: "
+                      "corrects line {n}` whose body CARRIES the "
+                      "defanged literal — brackets dropped, lowercased. "
+                      "A token that only names the line clears nothing")
 # P15 (BACKLOG; b7's F29 dry-run in a scratch copy — eight holds
 # before, eight after — and the parent run's F147, both live
 # measurements): the prior repair text for `clause-unparsed` and
@@ -714,7 +715,7 @@ def violation_site(codes):
             else "body-content")
 
 
-def repair_class(codes, owner=None):
+def repair_class(codes, owner=None, defangs=False):
     """Which of the three REPAIR_FORMS classes a violated line's codes
     settle a `corrects line <n>` token into: 'supersede' when any code
     is a MACHINE_TOKEN_CODES member (REPAIR_SUPERSEDE — the semantics
@@ -735,7 +736,17 @@ def repair_class(codes, owner=None):
     classification says for an ordinary entry body."""
     if any(c in MACHINE_TOKEN_CODES for c in codes):
         return "supersede", None
-    if "tag-literal-in-body" in codes and owner is None:
+    # st-71 (2026-09-15): the owner-less shape gains the ONE route it
+    # lacked, gated on `defangs` — the caller's computed answer to
+    # whether the correcting entry actually carries the defanged
+    # literal (`correcting_entry_defangs`). A token that merely NAMES
+    # the line still reaches nothing: a pointer-only clear would be the
+    # silencing UNEXEMPTIBLE_CODES exists to forbid, wearing a repair's
+    # costume. Provenance: the scoped run's arm 2 died here with its
+    # design locked and sound, because this refusal's own message
+    # prescribed writing the literal in place and the record is
+    # append-only.
+    if "tag-literal-in-body" in codes and owner is None and not defangs:
         return "unreachable", REPAIR_INTENT_HOLD
     forms = {REPAIR_FORMS.get(c) for c in codes}
     if forms == {REPAIR_BOOKKEEPING}:
@@ -938,6 +949,42 @@ def defang_text(text: str):
         return low
 
     return TAG_LITERAL_RE.sub(repl, text), names
+
+
+def correcting_entry_defangs(target_text: str, correcting_body: str):
+    """Does `correcting_body` carry the defanged form of every counted
+    tag literal on `target_text`?
+
+    WHAT THIS ESTABLISHES, AND NOTHING WIDER (st-71, 2026-09-15): the
+    defanged literal is PRESENT in the correcting entry. It does NOT
+    establish that the surrounding prose faithfully restates the
+    offending line — that needs judging prose and is not computable.
+    Read the True as "a marked defang stands beside the literal", never
+    as "the correction is faithful". An assurance wider than its
+    predicate is what stops the next reader looking.
+
+    Why presence is the right bar and not a hole: an append-only record
+    can never REMOVE the literal, so the duty was always to place an
+    authoritative marked defang beside it — which is exactly the
+    strength on which the OWNED route has always cleared. Parity with
+    the sanctioned neighbour, not a weakening (driving-desk ruling,
+    2026-09-15).
+
+    Refuses three ways, each deliberate:
+    a target carrying no counted literal is not this case; a correcting
+    entry
+    carrying its OWN undefanged literal is not a repair (its own
+    violation fires separately); and the match is WORD-ANCHORED, never
+    a substring, so `pending` is not satisfied by `pendings` nor by a
+    bracketed literal surviving elsewhere on the line."""
+    _, names = defang_text(target_text)
+    if not names:
+        return False
+    _, own = defang_text(correcting_body)
+    if own:
+        return False
+    low = correcting_body.lower()
+    return all(re.search(r"\b" + re.escape(n) + r"\b", low) for n in names)
 
 
 def latest_by_id(entries):
@@ -1379,8 +1426,14 @@ def apply_supersession(entries, violations, line_ids, line_parse):
     clean resolution leaves its defective attempts' violations
     standing, the only case an operator SWEEP_EXEMPT still reaches."""
     violated = {}
+    # st-71: the offending line's own TEXT, kept beside its codes so the
+    # owner-less clearing predicate can read the literals it must find
+    # defanged. First violation at a line wins — every violation at one
+    # line quotes that same line.
+    violated_text = {}
     for v in violations:
         violated.setdefault(v["line"], []).append(v["code"])
+        violated_text.setdefault(v["line"], v.get("text", ""))
     by_id = {}
     for e2 in entries:
         by_id.setdefault(e2.id, []).append(e2)
@@ -1448,7 +1501,10 @@ def apply_supersession(entries, violations, line_ids, line_parse):
                              "same-unit supersede-whole form"})
                 declarator_refused.add(e.lineno)
                 continue
-            site, declared = repair_class(violated[n], owner)
+            site, declared = repair_class(
+                violated[n], owner,
+                defangs=correcting_entry_defangs(
+                    violated_text.get(n, ""), e.body))
             if site == "supersede":
                 superseded.add(n)
                 pin_complaints = _repair_pin_complaints(e, n, line_parse)
