@@ -167,18 +167,30 @@ def leg_background_resume(launcher, work):
     task dies with its parent before landing its own marker. The child
     still exits rc=0 — which is why the exit code is not consulted.
 
-    A THIRD leg outcome exists beside pass/fail: INCONCLUSIVE. Two
-    routes produce it, neither a substrate verdict:
+    A THIRD leg outcome exists beside pass/fail: INCONCLUSIVE. FOUR
+    routes produce it, none a substrate verdict:
       - the launcher itself times out (rc is None) — no result, and a
         timeout rendered as SUBSTRATE_DIES_AT_REINVOCATION is
         could-not-verify wearing a confirmed-dead costume (eve-review
         M2: `verdict()` v1 read a bare `rc=None` timeout as this leg's
         ordinary fail path, no different from a substrate that ran to
         completion and produced no ACK);
+      - ACK is present but TURN_END is not (S2, run-3 contract narrow
+        round, 2026-09-14/15: `verdict()` v1/v2 read this as "the ACK
+        marker is absent" — false, since ACK demonstrably landed — for
+        two of the three reachable states this shape covers; a third,
+        ACK and TURN_END present but BG_DONE absent, carries the same
+        false reason and is folded into the same route below);
       - TURN_END is present but not before BG — the compliance failure
         above. The lifecycle question was never exercised, so this is
         not a finding about the substrate, it is a finding about the
         run: the child did not end its turn as instructed.
+    Whichever route fires, the invariant this leg now holds is: a leg
+    is left in the plain "not pass" shape verdict() reads as ACK
+    genuinely absent ONLY when ACK actually is absent. Any state where
+    ACK landed but something else about the marker set is short of a
+    clean pass routes to inconclusive instead, never to a reason
+    string that contradicts the leg's own detail.
     """
     bg = os.path.join(work, "BG_DONE")
     ack = os.path.join(work, "ACK_AFTER_BG")
@@ -220,12 +232,38 @@ def leg_background_resume(launcher, work):
             f"the launcher itself timed out after its {CHILD_TIMEOUT_S}s "
             "budget before this leg could be exercised: no result, never "
             "a substrate death")
+    elif ack_present and not turn_end_present:
+        # S2: ACK landed -- the substrate demonstrably survived to act a
+        # second time -- but TURN_END never did, so this is neither the
+        # "ACK marker is absent" death the fall-through reason would
+        # otherwise claim, nor the ordering question below (there is no
+        # TURN_END to order against BG_DONE). Whether the forced-turn-end
+        # instruction was ever followed cannot be read from the markers.
+        inconclusive = True
+        inconclusive_reason = (
+            "ACK is present but TURN_END is not: the child reported "
+            "completion after re-invocation without ever writing its "
+            "forced-turn-end marker, so this is not run 2 arm 1's death "
+            "(ACK absent) and the ordering this leg checks cannot be "
+            "evaluated with no TURN_END to compare")
     elif turn_end_present and bg_present and not ordering_ok:
         inconclusive = True
         inconclusive_reason = (
             "TURN_END was written no earlier than BG_DONE: the child did "
             "not end its turn before the backgrounded work finished, so "
             "the re-invocation lifecycle question was never exercised")
+    elif ack_present and turn_end_present and not bg_present:
+        # Same shape as the first S2 route, one marker over: ACK and
+        # TURN_END both present but BG_DONE never landed. ACK being
+        # present at all means the substrate survived re-invocation, so
+        # this is not "the ACK marker is absent" either -- it is the
+        # ordering question with nothing to order against.
+        inconclusive = True
+        inconclusive_reason = (
+            "ACK and TURN_END are present but BG_DONE is not: the "
+            "detached background marker never landed even though the "
+            "child reported completion after re-invocation, so the "
+            "ordering this leg exists to check cannot be established")
 
     return {
         "leg": "background-resume",
@@ -295,6 +333,90 @@ def verdict(legs):
             "all three legs pass, control included")
 
 
+def _seed_bg_marker_state(bg, ack, turn_end, order=None):
+    """Build a scratch dir carrying exactly the requested BG_DONE/
+    ACK_AFTER_BG/TURN_END combination, for driving leg_background_resume()
+    end-to-end with a no-op launcher instead of a real one (S2 repair,
+    run-3 contract narrow round, 2026-09-14/15). `order`: 'compliant'
+    (TURN_END written before BG_DONE) or 'noncompliant' (written no
+    earlier); irrelevant when either marker is absent."""
+    work = tempfile.mkdtemp(prefix="statiker-bgmarker-selftest-")
+    base = 1_700_000_000.0
+    if turn_end and bg:
+        te_t, bg_t = (base, base + 5) if order == "compliant" \
+            else (base + 5, base)
+    else:
+        te_t = bg_t = base
+    if bg:
+        p = os.path.join(work, "BG_DONE")
+        with open(p, "w") as f:
+            f.write("BGDONE")
+        os.utime(p, (bg_t, bg_t))
+    if ack:
+        with open(os.path.join(work, "ACK_AFTER_BG"), "w") as f:
+            f.write("ACKED")
+    if turn_end:
+        p = os.path.join(work, "TURN_END")
+        with open(p, "w") as f:
+            f.write("TURNEND")
+        os.utime(p, (te_t, te_t))
+    return work
+
+
+def _selftest_marker_routing():
+    """S2's own reproduction, reachable from the HAND-RUN selftest and
+    not only from pytest — the same reason the PROBE_INCONCLUSIVE cases
+    above are duplicated here rather than left to the battery alone.
+    Drives leg_background_resume() itself (a no-op "true" launcher over
+    pre-seeded markers — no child model process), because the S2 defect
+    lived in that function's marker-to-leg-dict construction, upstream
+    of verdict(); the cases() cases above exercise verdict() only and
+    cannot see this class of bug."""
+    global SLEEP_S
+    orig_sleep_s = SLEEP_S
+    SLEEP_S = 0  # no detached process to wait for; markers are pre-seeded
+    cases = [
+        # must-not-move: the recorded 0.2.100 verdict, genuinely no ACK
+        (dict(bg=False, ack=False, turn_end=False), False, False),
+        # S2 named states: ACK present, TURN_END absent
+        (dict(bg=False, ack=True, turn_end=False), False, True),
+        (dict(bg=True, ack=True, turn_end=False), False, True),
+        # latent third state, same shape, found by driving every
+        # reachable combination rather than only the two the audit named
+        (dict(bg=False, ack=True, turn_end=True), False, True),
+        # genuine survive and the pre-existing ordering-inconclusive path
+        (dict(bg=True, ack=True, turn_end=True, order="compliant"),
+         True, False),
+        (dict(bg=True, ack=True, turn_end=True, order="noncompliant"),
+         False, True),
+        # genuine death: full lifecycle exercised, ACK truly never came
+        (dict(bg=True, ack=False, turn_end=True, order="compliant"),
+         False, False),
+    ]
+    bad = 0
+    try:
+        for kw, want_pass, want_inconclusive in cases:
+            work = _seed_bg_marker_state(**kw)
+            try:
+                leg = leg_background_resume("true", work)
+            finally:
+                shutil.rmtree(work, ignore_errors=True)
+            ok = (leg["pass"] == want_pass
+                  and leg["inconclusive"] == want_inconclusive)
+            mark = "ok " if ok else "FAIL"
+            if not ok:
+                bad += 1
+            print(f"  {mark} {kw} -> pass={leg['pass']!s:5} "
+                  f"inconclusive={leg['inconclusive']!s:5} "
+                  f"(want pass={want_pass!s:5} "
+                  f"inconclusive={want_inconclusive!s:5})")
+    finally:
+        SLEEP_S = orig_sleep_s
+    print("marker-routing selftest: PASS" if not bad
+          else f"marker-routing selftest: {bad} FAILED")
+    return bad
+
+
 def selftest():
     """Exercise the VERDICT logic on constructed leg sets, including the
     two false greens. Costs no child process, so the instrument stays
@@ -335,7 +457,9 @@ def selftest():
         print(f"  {mark} cap={l[0]['pass']!s:5} bg={l[1]['pass']!s:5} "
               f"ctl={l[2]['pass']!s:5} {inc}-> {got} (want {want})")
     print("selftest: PASS" if not bad else f"selftest: {bad} FAILED")
-    return 1 if bad else 0
+    print()
+    marker_bad = _selftest_marker_routing()
+    return 1 if (bad or marker_bad) else 0
 
 
 def main():
