@@ -12361,3 +12361,147 @@ entry PLUS its neighbours: a re-grade is commonly written as an
 ADJACENT record rather than an in-place edit"). This is that same class
 one domain over, at commit grain. The corpus needs nothing; this repo's
 gate-runner needed the instance, which is what this entry is.
+
+## 2026-09-15 — 0.2.101 release gate: the checkpoint review, its repair lap, and the carried-set re-ask
+
+Executing desk statiker-4b under the operator's first-hand
+delegation of this date; statiker-9c driving and grading. This entry
+is the RELEASE GATE RECORD for the pin move, and it carries the
+carried-set re-ask CLAUDE.md's birth-class discipline owes.
+
+**THE REVIEW.** One mandatory fresh-context opus review over the
+whole unreviewed delta `afef58b..HEAD`, base computed from the review
+records rather than assumed: `docs/audits/2026-09-14-containment-checkpoint-review.md`
+is titled `bbbe52f..afef58b`, so a review genuinely RAN to there;
+the 2026-09-14 eve review was PARKED, never run, which is exactly
+the case where REVIEWED and CONSUMED pick different deltas and
+clause (c) names REVIEWED. Delta 13 files / 2108 insertions, over
+trigger (1) (SKILL.md 56 changed lines) and trigger (2) (both
+scripts moved), so it SPLIT into two parallel class lanes per the
+oversized-delta rule — never an extra seam.
+
+VERDICT: 1 BLOCKING, 5 MAJOR reports, 9 MINOR. Four DISTINCT majors:
+both lanes converged on SKILL.md:590-592 from opposite directions,
+one reading page against tool and the other tool against page. That
+convergence is the split earning its cost — neither lane could have
+reached it from its own side, and two lanes agreeing from the SAME
+side would have certified much less.
+
+**REPAIRS, each with its red-first arrangement.**
+
+BLOCKING-1, SKILL.md:430-431. The INTENT/verbatim passage still told
+a desk an undefanged tag literal holds "for the run's life", which
+this payload's own new route makes false. Reproduced with a control
+the lane did not run: appending the clearing token cleared the INTENT
+hold at its line WHILE a planted literal elsewhere SURVIVED, so the
+route clears its target and no more. Repaired to carry the
+consequence without the absoluteness.
+
+MAJOR (prose-1 / semantics-3), SKILL.md:590-592 and :801. The page
+asserted ONE clearing route where the tool splits on ownership
+(`repair_class` gating on `owner is None`). NARROWED THE PAGE rather
+than extending the code, deliberately: the owned route has always
+cleared without a defang, the SENTENCE is what was new, and
+extending the gate would move long-standing behaviour and break arms
+the battery pins as must-not-move. The completion-pressure rule
+points the same way — the finding asked for a true sentence, not a
+larger change.
+
+MAJOR (semantics-1), `statiker_record.py` apply_supersession. The
+site interpolated the raw repair TEMPLATE into its corrects-nothing
+complaint, so `REPAIR_INTENT_HOLD`'s `{n}` — added by st-71 — reached
+the emitted verdict. That line books VERBATIM as a `record:` F-line,
+so the placeholder landed in the permanent record and a desk
+composing from the complaint wrote an invalid token. Battery
+coverage was ZERO. Red-first: the new arm asserts on what must NOT
+appear (a presence assertion catches one breaking, an absence
+assertion catches it DEGRADING), run RED against the unrepaired
+script, green after. The two consumption sites now share one
+`.format` contract.
+
+MAJOR (semantics-2), `correcting_entry_defangs`. The `own` refusal
+runs a CASE-SENSITIVE regex while the presence test lowercases, so a
+correcting body spelling `[Pending]` passed the refusal and then
+satisfied `\bpending\b` THROUGH ITS OWN BRACKETED TEXT — and
+SWEEP_CLEAN read as the defang duty discharged by a line still
+carrying a literal. The docstring's third stated refusal says the
+opposite in as many words, one paragraph after warning that an
+assurance wider than its predicate is what stops the next reader
+looking. Repaired by stripping bracketed tag-shaped tokens
+case-insensitively before the test. Red-first with a control (the
+sanctioned defang must still clear).
+
+MINORs: the `(The record)` cross-reference re-aimed at Stop rule
+where the rule actually lives; the :926 pronoun made explicit — its
+ambiguity PRE-EXISTED, but lap C's sentence split moved it to
+sentence-initial position where a reader resolves it fresh, and that
+salience change was this arc's.
+
+**C4b READING — THIS LAP MINTS NOTHING**, recorded rather than
+implied, because an unrecorded check is a skipped check. Both code
+changes RESTORE an existing predicate's stated reach — C4b's own
+carve-out distinguishes exactly this from introducing a token,
+predicate or mandatory form. Both page changes NARROW claims to what
+the code already does. Nothing new is introduced anywhere in the
+lap.
+
+**THE CARRIED-SET RE-ASK, 0.2.99 -> this release.** The range is
+smaller than the banner suggests: LEDGER:125/126 record that
+0.2.99..0.2.100 was ALREADY discharged at 67fda22 (two mints
+recorded, four non-mints reasoned). Read off the ledger rather than
+re-derived. What the gate still owed, each shown:
+1. `fee1302` (st-69) — OBSERVATIONS entry with tenet check. RECORDED.
+2. `c6a3149` (st-71) — OBSERVATIONS entry with tenet check; declares
+   MINT (a new mandatory form), nine tenets, no fails. RECORDED. Its
+   token-shaped hits are references to EXISTING codes, checked.
+3. `85d9e1c` (docstring guard anchored via ast) — its record is the
+   REVIEW BOOKKEEPING section with all nine tenets. RECORDED.
+4. `9f72ee4` (st-60, `verify: opus` into the register) — no tenet
+   record anywhere, and the READING was not established until the
+   gate ran. NOT A MINT, by a discriminating check rather than by
+   phrasing: the `verify:` class key PRE-EXISTED at `9f72ee4^`
+   (defaults/models lines 55, 64, 72, 75), so the commit adds a DATA
+   ROW under an existing class and resolution order. No new token,
+   class key, predicate or mandatory form.
+5. `4412453` (lap C) — no-mint reading recorded at its own entry.
+6. `bf82f4a` (this repair lap) — no-mint reading, above.
+
+**A METHOD CORRECTION THE GATE ITSELF PRODUCED**, worth more than
+the verdicts: the re-ask was first run PER COMMIT, and `9f72ee4`
+came back with no record — one step from being booked as a missing
+one. st-60's records sit in ADJACENT commits (`533f55c`, `4f08fd4`,
+`0f09b9f`) because this repo splits records from changes for
+per-change attribution. A per-unit check whose unit is finer than
+its object returns a confident FALSE ABSENCE indistinguishable from
+a real gap. Captured separately with the lens for the next
+gate-runner (read the neighbourhood; prefer the item id as key).
+
+**THREE FIRINGS OF ONE CLASS IN ONE SESSION**, recorded together
+because the pattern is the finding and no single incident carries
+it: (i) two prior repair laps enumerated defang-duration sites with
+LINE-BASED searches over 69-column-wrapped prose and each closed on
+two of three homes — the corpus binding for this is LOADED and did
+not fire, recorded as fire-rate evidence on the machine-wide capture
+carrier rather than minted; (ii) the gate's per-commit grain above;
+(iii) at the very end, closing the reviewer's own caveat that our
+two Q2 enumerations shared an instrument, my FIRST discriminator
+returned a clean zero from a DEAD instrument — collapsing whitespace
+to a SPACE cannot rejoin a token split across a line — caught only
+because its positive control failed. Re-run with a token-joining
+buffer that passes its control: 0 of 77 names differ, reach proven.
+THE SHAPE: an instrument that cannot see the thing returns exactly
+what a true absence returns, and nothing in the output distinguishes
+the two. The only defence that worked in all three was a control
+drawn from data known to carry the property.
+
+**COUNT DRIFT, caught by the lap's own re-measure.** 1793 was written
+into THREE carriers at the tighten; the repairs moved the body under
+all three (1801). Fixed at the ROOT rather than by correcting three
+numbers: the figure now has ONE home (PLAN.md's supersession entry)
+and the other two point at it. A stale 1793 then survived three
+lines inside the paragraph explaining the drift, caught on re-read.
+
+**VERIFIERS, own output:** 658 passed / 0 failed / 0 SKIPPED (656
+baseline + 2 new arms); declared band exit 0; 1801 operational
+lines; stale-phrase scan 0 whitespace-normalised against a
+before-file control of 2.
