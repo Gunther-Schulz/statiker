@@ -971,8 +971,7 @@ def correcting_entry_defangs(target_text: str, correcting_body: str):
     2026-09-15).
 
     Refuses three ways, each deliberate:
-    a target carrying no counted literal is not this case; a correcting
-    entry
+    a target carrying no literal is not this case; a correcting entry
     carrying its OWN undefanged literal is not a repair (its own
     violation fires separately); and the match is WORD-ANCHORED, never
     a substring, so `pending` is not satisfied by `pendings` nor by a

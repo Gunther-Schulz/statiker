@@ -12,6 +12,7 @@ clippy-stats source read 2026-08-07 (0.12.4).
 Run: python3 tools/test_statiker_record.py
 """
 
+import ast
 import json
 import os
 import shutil
@@ -4947,8 +4948,18 @@ class TestEESmallFixes(RecordFixture):
     # (4) C1: the stale "no literal write-set record-line form" NOTE is
     # gone from the module docstring; the form is stated normative
     def test_docstring_no_longer_disclaims_the_write_set_form(self):
+        # st-83 (2026-09-15): this read the WHOLE FILE while claiming a
+        # property of the MODULE DOCSTRING, so it fired on any author
+        # who wrote the phrase anywhere in the file — measured, on
+        # st-71's unrelated `correcting_entry_defangs` docstring. The
+        # predicate is now anchored to the docstring's own extent via
+        # ast, never a line count or offset, which would drift on the
+        # next edit above it. The live must-not-move control sits in
+        # the file itself: `correcting_entry_defangs` legitimately
+        # contains the phrase and this test stays green.
         text = SCRIPT.read_text()
-        self.assertNotIn("no literal", text)
+        docstring = ast.get_docstring(ast.parse(text)) or ""
+        self.assertNotIn("no literal", docstring)
         self.assertIn("record-line form is normative in", text)
         self.assertIn(":876-880", text)
         self.assertIn(":486-487", text)
