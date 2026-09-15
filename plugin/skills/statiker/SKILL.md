@@ -1258,6 +1258,9 @@ text itself), else [PENDING]; an UNMEASURED verdict is an open
 question the desk completes itself — its own executed measurement
 recorded as the F-line's evidence — before the round's A-line lands.
 
+The form below is the tool's OUTPUT, never a second route.
+A hand-built block raises `tag-literal-in-body` on the first literal
+its builder misses. No exemption nets that hold (The record).
 Report quotes the desk retains are pasted, never paraphrased (the
 defang is the one sanctioned mutation), and append as the quoted
 block the record tool produces — `quote --label "A<n> quotes"`, raw

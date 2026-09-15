@@ -11893,3 +11893,109 @@ placeholders and the unaided arm's empty-session-args case, with a
 control; substitution is proven, the end-to-end child invocation is
 not. The freeze-time driver re-run (§5d step 10 of the run-3
 pre-registration) is where that closes.
+
+## 2026-09-15 — st-69: the quote passage states the consequence that separates the hand route from the tool route
+
+INCIDENT + BASIS: the scoped codex-only run's arm 2 (terra as desk),
+2026-09-14, hand-built a look-alike quote block from SKILL.md's own
+description of the block's form, one keystroke from the sanctioned
+route, and lost the remainder of its loop. The passage described the
+output completely enough to reproduce and never stated the consequence
+separating the two routes, so the cheaper route won at the moment of
+use. Recorded that date as the look-alike quote block entry.
+
+CLASS: a describing passage competing with its own mechanism.
+
+THE PATCH, three sentences at the HEAD of the quote passage
+(SKILL.md:1261-1263): "The form below is the tool's OUTPUT, never a
+second route. A hand-built block raises `tag-literal-in-body` on the
+first literal its builder misses. No exemption nets that hold (The
+record)."
+
+PLACEMENT BASIS — the search-before-add scan, run before the edit:
+`grep -n -iE "unexemptible|holds the sweep|tag-literal|hand-defang"`
+over SKILL.md, 8 hits. The consequence ALREADY HAS TWO HOMES, at :587
+(the DEFANG lint paragraph) and :796 (the exemption rule). So this is
+NOT a gap in skill-craft's triage — it is LOADED-BUT-INERT: the rule
+sits 680 lines from the passage whose description competes with it,
+and a desk reading the recipe never reaches it at the decision moment.
+The patch is therefore a SEAM POINTER, not a third home: it names the
+consequence and cites `(The record)` in the file's own existing
+cross-reference form (the same pointer :798 uses), and deliberately
+does NOT restate the rule's body.
+
+HEAD POSITION, not tail, on skill-craft's measured finding that a
+load-bearing line inside an invariant block de-binds at tail position
+(2 violations at tail, full compliance after the move, wording
+unchanged). The competing description is exactly such a block.
+
+WORDING DEVIATION FROM THE ITEM'S PRE-FORMULATED TEXT, stated because
+it is a deviation and not an improvement claim: st-69's done-criterion
+pre-formulated "... is UNEXEMPTIBLE and so holds the sweep for the
+run's life". That phrase is about to become FALSE. st-71's design was
+ruled this same date (narrow (a): extend `corrects line <n>` to reach
+the owner-less line, with the clearing predicate verifying an actual
+defang), which gives the owner-less case the route it now lacks. A
+sentence written today in the pre-formulated absolute form would need
+rewriting by the next item in the same lane. The patch states the
+consequence WITHOUT the run's-life absoluteness, so it survives st-71
+unchanged; the two existing homes carry that phrase and are st-71's to
+revise, which its write-set already includes.
+
+LINT: register_lint over the ADDED text alone, 0 findings, 10.0
+words/sentence, 0 em dashes. (The surrounding passage fails the lint
+on a pre-existing 140-word sentence; grading the edited text, not the
+file.)
+
+C4b: NOT a token-introducing mint. It NAMES `tag-literal-in-body`,
+introduces no machine token, hold code, predicate or mandatory form,
+and adds no machinery. It is a birth-class payload addition carrying
+incident provenance, so the provenance bar and this tenet check bind
+regardless.
+
+TENET CHECK against PLAN.md's live list, all nine enumerated:
+
+1. **Investigation-led design — PASS.** The design followed the
+   incident record and the search scan; the placement was decided by
+   what the scan found (two existing homes), not by the item's guess.
+2. **Sufficiency = dispatchable — PASS.** The item was
+   decision-complete: pre-formulated sentence, verifier, write-set. The
+   one deviation is recorded above with its reason rather than taken
+   silently.
+3. **Anti-skim — N/A.** Touches no forcing point; adds no ceremony.
+4. **Cost asymmetry — PASS.** A sentence, decided before any
+   mechanism work; st-71's mechanism lands separately and this text
+   does not constrain it.
+5. **Autonomy north star — PASS.** Replaces a human seat: the
+   consequence now reaches the desk at its decision moment instead of
+   the operator diagnosing a terminal deadlock after the run dies.
+6. **Economics — PASS, and it is the tightest one.** Three sentences,
+   ~30 words, against an incident that cost the remainder of a run.
+   Paid in corpus lines; the alternative (a mechanism) is priced under
+   tenet 8 and rejected there.
+7. **Convergence circuit — N/A.** No gradeable artifact changes; the
+   enforcement it points at is already covered by the record tool's
+   own battery.
+8. **Medium tenet — PASS, and checked rather than assumed, this
+   being the tenet this repo has measured itself skipping.** Question:
+   is any of this machine-read semantics belonging in a mechanism? The
+   rule the sentence states is ALREADY mechanized — the defang lint
+   fires on the literal, with its own battery. What the prose adds is
+   SALIENCE at a moment no mechanism can reach: the tool fires after
+   the block is written, and the decision this text governs is taken
+   before it exists. There is no computable predicate over "a desk is
+   about to hand-build from a description", so a gate here would have
+   nothing to fire on. Prose is the correct medium and the mechanism
+   already exists beneath it.
+9. **Placement — PASS.** Precedent line: follows SKILL.md:798's own
+   cross-reference form, `(The record)`, judged sound — the file
+   already resolves this exact concept that way, so the patch reuses
+   the existing instance rather than minting a second convention.
+
+NO FAILS.
+
+RESIDUE, named rather than left: the two existing homes (:587, :798)
+still carry "holds the sweep ... for the run's life", which st-71's
+ruled design makes false for the owner-less case. Revising them is
+st-71's, whose write-set already names SKILL.md. This patch is written
+so it needs no revision when that lands.
