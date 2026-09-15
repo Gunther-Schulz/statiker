@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 60
+added: 61
 compacted: 0
 
 ## st-12
@@ -388,3 +388,12 @@ write-set: dev-notes/scoped-run-3-preregistration.md
 done-criterion: the pre-registration states the codex launch invocation for sol, terra and astra explicitly, with its citation to the certification binding, so that 4c has a target and 5d step 6 is executable as written. Verifier: a freeze executor can perform 5d step 6 without consulting a document the pre-registration does not name
 evidence: Found 2026-09-15 at statiker-d4. Basis: grep -n -i -E "codex|sandbox" over dev-notes/scoped-run-3-preregistration.md returns ten hits, none of which states a launch invocation; the binding text sits in dev-notes/codex-only-certification-2026-09-13.md:40 and dev-notes/scoped-run-2-arm-brief-2026-09-14.md:144. Recorded in the document meanwhile as an open freeze step (6d) and as step 5 of the 5d order, commit 0c2b537
 blocked-by: NONE
+
+## st-82
+grade: READY
+requirement: this repo CLAUDE.md teaches the decision-recording verb with the WRONG argument, at exactly the seam the incident it cites (89fd565) was about. It says: recorded via `lifecycle ledger add decision --question <the blocker text VERBATIM>`. But ledger.decision_for compares EXACT-AFTER-STRIP against the blocker MINUS its leading TYPE word, and blocked-by slots are TYPED (`decision <q>` per item add --help). So passing the slot value verbatim, with its leading "decision ", matches no blocker: the ledger reads answered while the item stays BLOCKED. Measured at this desk 2026-09-15 recording the st-77 and st-78 decisions - both written and committed, both items still reporting BLOCKED, cleared only on re-recording with the type word dropped. Two inert decision lines remain in LEDGER.md from the first attempt, each carrying a supersedes note
+goal: general-maintenance
+write-set: CLAUDE.md
+done-criterion: the carrier-transition bullet states the argument unambiguously. Pre-formulated replacement for the offending clause: "recorded via `lifecycle ledger add decision --question <the blocker text MINUS its leading type word>` - blocked-by slots are TYPED (`decision <q>`), and the verb compares exact-after-strip against the QUESTION alone, so passing the slot value with its `decision ` prefix matches nothing and leaves the item blocked while the ledger reads answered." Verifier: a fresh context following the amended sentence records a decision that clears its blocker on the first attempt, checked by `item ready <id>` printing READY and unblocked
+evidence: Incident at statiker-d4 2026-09-15, both halves executed: the failing form and the working form, with `item ready` output either side. Mechanism verified at the source rather than inferred - lifecycle plugin/cli/lifecycle_core/ledger.py decision_for docstring states "Compared EXACT after a strip rather than by containment", and verbs.py _decision_blocker_disposition passes the stripped detail. The stronger fix is the pit of success and belongs to the lifecycle repo, not here: have the verb accept EITHER form and strip a leading type word itself, a computable predicate with near-zero false fires. This item covers only the statiker wording
+blocked-by: decision whether the CLAUDE.md carrier-transition wording fix is authorized, the edit being outside the 2026-09-15 delegation scope
