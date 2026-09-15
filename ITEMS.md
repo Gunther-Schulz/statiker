@@ -243,15 +243,6 @@ done-criterion: UNKNOWN — the shape is undecided and the options differ in kin
 evidence: SKILL.md lines 418-433 read verbatim 2026-09-13; PLAN 'Lenses: none at birth' and the 2026-08-10 lineage entry on depreciation slopes; dev-notes/pstack-comparison-2026-09-13.md section 9d-bis, which names this slot as one of the two places design content would attach
 blocked-by: evidence a firing, or the trial datum — a run whose head omitted a requirement a competent shop would have derived, visible as a late reconciliation, an escaped defect the head never asked about, or an operator correction at close
 
-## st-60
-grade: READY
-requirement: OPUS at the verify role (forcing point 5) is UNMEASURED, and opus is this site's default desk tier — so the st-54 certification duty fires a declared-deviation line on most real runs here. A true fire, not a false one, but a high-rate one: the register carries sonnet 8/9 and haiku 8/9 from probe B and no opus arm exists. Record: 0.2.97 seam review F2, statiker-c8 2026-09-13.
-goal: general-maintenance
-write-set: plugin/skills/statiker/defaults/models,dev-notes
-done-criterion: Either an opus verify-leg arm is run against probe B's own graded baseline and its result lands as a register entry with provenance inline (the Stage-2d/probe-B form), OR the register records a reasoned position on why opus stays unlisted and the deviation line on an opus desk is accepted as standing cost. Pre-registered before the arm dispatches, per the repo's comparison convention.
-evidence: 0.2.97 seam review F2, executed by the reviewer: grep -cE '^\s*verify(@[a-z]+)?:' over the register returned 0 before this lap, so the duty fired in every state of the world. Repaired by adding verify: haiku and verify: sonnet on probe B's measured evidence (both 8/9, honesty floor held, transcript audit clean with a positive control). Opus was deliberately NOT added: probe B ran no opus arm, and inventing a certification is the one thing the register's provenance bar forbids.
-blocked-by: NONE
-
 ## st-65
 grade: NEW
 requirement: A comparison run's registration must be EXECUTED against the world it describes before any arm dispatches; both measurement failures of the scoped lc-61 run were arrangement defects, not model results (dev-notes/scoped-run-preregistration-2026-09-13.md §§14,16)
