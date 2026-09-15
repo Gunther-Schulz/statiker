@@ -27,7 +27,56 @@ requirement text an arm would receive — no withheld criterion, no
 hint that one exists, no statiker framing. It is asked what the
 acceptance criterion for a correct fix should be.
 
+## ADMISSIBILITY GATE — runs BEFORE either axis
+
+Added 2026-09-15 by operator decision, on the C2 collision below. This
+gate is not a measurement and produces no evidence: it decides whether
+a candidate may be MEASURED AT ALL.
+
+**A candidate whose write-set touches the statiker repo is
+INADMISSIBLE. It is never graded on gap, on either axis, and never
+enters the candidate set.**
+
+The reason is the containment design's own founding sentence, which
+every other part of the arrangement rests on — run-3
+pre-registration, header lines 6-8:
+
+> **THIS DOCUMENT CARRIES THE WITHHELD CRITERION AND NEVER TRAVELS TO
+> AN ARM.** It lives in the statiker repo, which no arm clones, reads
+> or is told exists.
+
+Arms work in a clone of the OBJECT's repo (§5a freezes the packet from
+the real repo; §5c clones it). So an object in the statiker repo puts
+that repo in every arm's hands, and three independent disqualifiers
+fire at once: the clone carries the withheld criterion, the grading
+criteria and every trial record; the clone's own `CLAUDE.md` — which
+the ceiling arm is MEASURED to load (run-3 pre-registration §3a.5b) —
+announces the experiment and the arm's place in it; and where the
+write-set includes `SKILL.md`, the arm edits its own conduct
+specification as the object.
+
+**THE INCIDENT, quoted because this gate exists only because nothing
+asked the question.** C2 (st-71) was graded GAP DEMONSTRATED below and
+carried as RESERVE, then ruled run 3's object on 2026-09-15 when C1
+was refuted on axis 2 — and st-71's write-set is
+`plugin/skills/statiker/scripts/statiker_record.py`,
+`tools/test_statiker_record.py`,
+`plugin/skills/statiker/SKILL.md`: three statiker paths. The pick was
+stopped before it was recorded, by the executing desk reading the
+header above against the write-set.
+
+**WHY IT WAS INVISIBLE, which is the transferable half.** C1 satisfied
+this constraint silently — a foreign-repo item — so the constraint was
+never stated, so nothing checked it, and C2 was graded on gap alone
+through a full candidates round and a reserve ruling. A constraint met
+by accident is a constraint nobody wrote down. That is this program's
+assumed-delivery shape, and this gate is its precipitate: a computable
+predicate over the write-set slot, with near-zero false fires, which
+is what earns a gate rather than prose.
+
 ## THE DECISION CRITERION, pre-registered
+
+Reached only by candidates the admissibility gate ADMITS.
 
 For each candidate, the WITHHELD CRITERION's discriminating half is
 named below BEFORE the probe runs.
