@@ -562,25 +562,65 @@ clause" and "moot" are all ABSENT; only the domain's ordinary
 vocabulary (blocker, decision, ledger) is present. It is an asymmetry,
 not a disclosure.
 
-**AND IT OPENS AN EQUALISATION ROUTE THE DECLARATION'S REASONING DID
-NOT HAVE.** The two barred directions concerned the OPERATOR corpus.
-The clone's `CLAUDE.md` is a different component: it lives INSIDE the
-throwaway clone, which is precisely where §4a says a run may act
-("a run neutralizes the hazard inside its own throwaway clone"). Adding
-an `AGENTS.md` to the clone carrying that same text would equalise this
-half at no cost to the operator's machine and without touching the
-measured object — a clone-construction step exactly like the hooksPath
-neutralization. Whether to take it is the driving desk's call and is
-OPEN; the measurement above is not.
+**THE CLAUDE SIDE IS MEASURED TOO — the mirror probe, demanded before
+this section was allowed to assert anything.** That the ceiling arm
+loads the clone's `CLAUDE.md` was first DERIVED from mechanism ("a
+`claude -p` child auto-loads project instructions from its cwd") rather
+than observed, and the direction of the whole repair turns on it: if it
+were false, adding `AGENTS.md` to the clone would hand the codex arms
+22,633 bytes the ceiling arm never receives — CREATING the asymmetry
+the step claims to remove. So it was measured, 2026-09-15, same shape
+as the codex probe: a scratch git repo carrying all three files with
+distinct tokens, a `claude -p --model sonnet --permission-mode
+acceptEdits` child launched with the clone as cwd:
 
-**CODEX MEMORY STORES: present, empty, and named as a watch.**
+    CLAUDE.md token  -> REPORTED   (claude -p loads CLAUDE.md from cwd)
+    AGENTS.md token  -> ABSENT     (claude -p does NOT load AGENTS.md)
+    README.md token  -> ABSENT     (claude -p does NOT load README.md)
+
+**THE TWO TOOLS ARE EXACTLY COMPLEMENTARY:** claude reads `CLAUDE.md`
+and ignores `AGENTS.md`; codex reads `AGENTS.md` and ignores
+`CLAUDE.md`. Each probe's positive is the other's negative control,
+drawn from the same three-file repo.
+
+**SO THE CLONE-INSTRUCTIONS COMPONENT IS EQUALISED, not declared.**
+Decision (a), driving desk 2026-09-15, gated on the measurement above.
+Clone construction gains one step (§4a, §5d): **an `AGENTS.md` written
+byte-identical to the clone's `CLAUDE.md`**, uniform for every arm.
+Because the two tools ignore each other's file, this gives each codex
+arm exactly what the ceiling arm already got and gives the ceiling arm
+nothing new — the object changes for ALL arms equally, so between-arm
+variation stays model + launch invocation and §15e is not touched.
+
+RECORDED COUNTERPOINT, because the next run may weigh it differently:
+a ceiling arm reading the PROJECT's own discipline is arguably part of
+what a ceiling desk IS, and equalising it hands the codex arms
+something the field would not give them. What run 3 certifies is
+PARITY COLUMNS, which is why (a) wins here and not everywhere.
+
+**RESIDUAL ASYMMETRIES AFTER THE STEP: TWO, not three** — the operator
+corpus (155,102 bytes, barred from equalisation in both directions
+above) and the driven series. The clone-instructions component is
+equalised, with both probes as its basis.
+
+**FREEZE RE-CHECK, because a result carries only the variables its run
+reproduced.** The codex probe ran `-s read-only`; the run's arms use
+`-s danger-full-access`. At freeze the codex token probe re-runs
+against the CONSTRUCTED clone with the RUN's actual invocation, which
+converts "codex loads AGENTS.md" from a probe-conditions fact into a
+run-conditions one. Cheap, and it is the same class of re-run §3a.4
+already owes for the driver.
+
+**CODEX MEMORY STORES — a FREEZE CHECK, not a watch.**
 `~/.codex/memories_1.sqlite` and `goals_1.sqlite` exist with their
 schemas but hold ZERO rows in every content table (`stage1_outputs`,
 `jobs`, `thread_goals`, `thread_goal_continuation_deferrals`), and no
-memory key appears in `~/.codex/config.toml`. So there is no cross-arm
-carryover today. The MECHANISM exists, so if a future run enables it,
-arms would share state and independence would break silently — named
-here rather than discovered at grading.
+memory key appears in `~/.codex/config.toml` — measured 2026-09-15. If
+that mechanism is ever populated, arms share state and independence
+breaks SILENTLY. Today's zero anchors to live state, which is exactly
+what a check must not rest on, so the freeze gate asserts it at the
+moment that matters: no memory key in `config.toml`, and the content
+tables still at zero rows.
 
 Any variation BEYOND the ones declared here is the measured object
 moving, which §15e refuses and this run refuses likewise.
@@ -654,6 +694,37 @@ and DISQUALIFIED for any arm whose work ends a turn; codex's behaviour
 on this axis is UNMEASURED and the probe is what measures it. Until
 the call is made and its probe recorded, precondition (1) is NOT
 discharged — see §6d.
+
+### 4d. Clone instruction parity — `AGENTS.md` written from `CLAUDE.md`
+
+Added 2026-09-15 (st-77, decision (a); basis and both probes: §3a.5b).
+
+    cp <clone>/CLAUDE.md <clone>/AGENTS.md
+
+VERIFIER, and it is byte-exactness rather than a reading: `cmp
+<clone>/CLAUDE.md <clone>/AGENTS.md` exits 0. A "looks the same" check
+is not this check — the whole point is that the two arms receive the
+SAME bytes.
+
+WHY THIS IS NOT THE MEASURED OBJECT MOVING. A `claude -p` child reads
+`CLAUDE.md` and ignores `AGENTS.md`; a `codex exec` child reads
+`AGENTS.md` and ignores `CLAUDE.md` — both measured, each probe's
+positive being the other's negative control (§3a.5b). So this step
+hands every codex arm exactly what the ceiling arm already received
+from the clone, and hands the ceiling arm nothing it did not have. The
+change is uniform across arms, which is what §15e's rule is about; a
+step that moved ONE arm would be the violation.
+
+WHY IT IS INSIDE THE BOUNDARY, in the shape §4a already establishes: a
+run may neutralize a hazard inside its OWN throwaway clone, and may not
+reach outside its containment to change the world it is contained from.
+This writes one file in the clone. The operator-corpus asymmetry, which
+WOULD need reaching outside, stays declared rather than equalised
+(§3a.5b).
+
+WHERE THE FILE MUST NOT LEAK: `AGENTS.md` is a clone artifact, never
+committed to the real lifecycle repo — which tracks no `AGENTS.md`, and
+that absence is what made the asymmetry in the first place.
 
 ---
 
@@ -780,22 +851,38 @@ the freeze is driven from.
  3. **CLONE SHA VERIFIER (§5a):** `git -C <clone> rev-parse HEAD`
     equals the pinned sha, recorded as an executed comparison. Mismatch
     → rebuild the clone at the pinned sha, never re-cut the packet.
- 4. CONTAINMENT DECLARATION + preflight verdict (§4b). A
+ 4. **CLONE INSTRUCTION PARITY (§4d):** `AGENTS.md` written
+    byte-identical to the clone's `CLAUDE.md`, verified by `cmp`
+    exiting 0.
+ 5. CONTAINMENT DECLARATION + preflight verdict (§4b). A
     PREFLIGHT_CONTAINMENT_HOLD here is an arrangement defect to repair
     before arms dispatch, never a finding about an arm.
- 5. **THE RUN DESK STATES THE CODEX LAUNCH INVOCATION** (§6d) — it is
-    named nowhere in this document, and step 6 has no target without
+ 6. **THE RUN DESK STATES THE CODEX LAUNCH INVOCATION** (§6d) — it is
+    named nowhere in this document, and step 7 has no target without
     it.
- 6. LAUNCHER PROBE (§4c) against that stated invocation. Its verdict
+ 7. LAUNCHER PROBE (§4c) against that stated invocation. Its verdict
     discharges precondition (1) FOR THE CODEX ARMS (§3a.4, per-arm).
- 7. **DRIVER RE-RUN (§3a.4)** — `tools/driver_resume_probe.py` against
+ 8. **CODEX INSTRUCTION-LOAD RE-PROBE (§3a.5b)** against the
+    CONSTRUCTED clone using the RUN's actual invocation (`-s
+    danger-full-access`), not the `-s read-only` the original probe
+    used: a result carries only the variables its run reproduced. The
+    planted-token shape of §3a.5b, with its negative control.
+ 9. **MEMORY-STORE CHECK (§3a.5b):** no memory key in
+    `~/.codex/config.toml`, and `memories_1.sqlite` /
+    `goals_1.sqlite` content tables still at ZERO rows. A populated
+    store means arms share state and independence breaks silently.
+10. **DRIVER RE-RUN (§3a.4)** — `tools/driver_resume_probe.py` against
     the run's ACTUAL driver arrangement, not the substitute invocation
     it was built against. Discharges precondition (1) for the CEILING
     arm. If it fails, §3a.4's decision round fires BEFORE arms spend.
- 8. REACHABILITY SWEEP + its verified zero WITH its reach control
+11. REACHABILITY SWEEP + its verified zero WITH its reach control
     (§5c), then the scrub amended into the clone's single commit and
-    its two verifiers (one commit, clean status).
- 9. ARM DISPATCH — and only after the operator's first-hand run
+    its two verifiers (one commit, clean status). **The sweep runs
+    AFTER step 4, so it covers the planted `AGENTS.md` too** — it is a
+    copy of a file already in scope, but a sweep that ran before it
+    would be reporting a zero over a population the clone no longer
+    has.
+12. ARM DISPATCH — and only after the operator's first-hand run
     authorization, which is not this document (see the header).
 
 TOOL PRECONDITION ON STEP 7, booked not assumed: `driver_resume_probe.py`
