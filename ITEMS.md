@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 61
+added: 62
 compacted: 0
 
 ## st-12
@@ -289,3 +289,12 @@ write-set: plugin/skills/statiker/scripts/statiker_record.py,plugin/skills/stati
 done-criterion: a runtime authorized-path check on the artifact --out lands with a red-first arm whose RED is terra own act (filter --out to a path outside the declared containment scope) and whose MUST-NOT-MOVE is an --out INSIDE the declared scope staying silent. Verifier: the red arm reds on the unrepaired tool and the must-not-move stays green on it
 evidence: Fresh-context narrow round 2026-09-14 BLOCKING B3, both halves re-verified at the code by statiker-d4 2026-09-15 rather than accepted from the report. The field instance is st-64 amended-evidence, the FIRST ACTUAL OUT-OF-BOUNDARY WRITE in the program. Deferred out of run 3 by driving-desk decision 2026-09-15: it is payload work against banked certified 0.2.100, and the narrow round payload-clean verdict is what this arc exists to protect
 blocked-by: decision how the declared containment scope is carried from preflight to the record tool, given it is currently persisted nowhere downstream can read
+
+## st-83
+grade: READY
+requirement: MOVE-TO-A-LEVER for the branch-specific page mass: the loading-economics goal the split question was raised to serve survives its NO, and the exit that serves it without putting a rule behind a pointer is PLAN.md 2026-09-13 (text whose work a tool can do or prove leaves the page without the guarantee leaving with it) — record: docs/audits/2026-09-15-phase0-split-question-analysis.md sections 4 and 2b, and the LEDGER decision of 2026-09-15
+goal: tend
+write-set: plugin/skills/statiker/scripts/statiker_record.py, tools/test_statiker_record.py, plugin/skills/statiker/SKILL.md
+done-criterion: the instrument is DESIGNED and DRY-RUN over the real corpus BEFORE any build (the 0.2.89 precedent: a class-level route-token check was designed, dry-run, and killed at 24/76 multi-location verdicts — a false-fire rate measured before building, not after). CONFIRM on an acceptable false-fire rate: the check ships with its red-first battery AND the page text whose guarantee it now carries leaves in the same change, the byte-equivalence of what remains asserted. REFUTE: the mechanism bar is unmet, the remainder is a review instruction not a check, recorded with its measured rate, and this item DROPS with that reason
+evidence: the disjointness finding (phase-0 analysis section 2b): 509 nb of branch-specific mass (Implementation 286, Verify 129, Close 94) plus the attack question block (26 nb) carry NO lint code, while the 169 nb the 39-code registry does cover is loaded by every branch anyway — so mass leaves the page only where a mechanism takes over its guarantee. Two candidates named, neither designed: a brief-composition check over the attack brief (does it carry the reach-matched-evidence block verbatim, SKILL.md:1081-1106), and the already-half-built overlap between the page form text and the record tool verdicts own repair strings (measured: the negative-control verdict carried a full repair sentence per violation)
+blocked-by: decision which lever instrument carries which currently-silent branch-specific material, decided by a dry run over the real corpus before any build, and against which consuming arc the build opens
