@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 59
+added: 60
 compacted: 0
 
 ## st-12
@@ -379,3 +379,12 @@ write-set: plugin/skills/statiker/scripts/statiker_record.py,plugin/skills/stati
 done-criterion: a runtime authorized-path check on the artifact --out lands with a red-first arm whose RED is terra own act (filter --out to a path outside the declared containment scope) and whose MUST-NOT-MOVE is an --out INSIDE the declared scope staying silent. Verifier: the red arm reds on the unrepaired tool and the must-not-move stays green on it
 evidence: Fresh-context narrow round 2026-09-14 BLOCKING B3, both halves re-verified at the code by statiker-d4 2026-09-15 rather than accepted from the report. The field instance is st-64 amended-evidence, the FIRST ACTUAL OUT-OF-BOUNDARY WRITE in the program. Deferred out of run 3 by driving-desk decision 2026-09-15: it is payload work against banked certified 0.2.100, and the narrow round payload-clean verdict is what this arc exists to protect
 blocked-by: decision how the declared containment scope is carried from preflight to the record tool, given it is currently persisted nowhere downstream can read
+
+## st-81
+grade: READY
+requirement: the run-3 pre-registration names the CODEX LAUNCH INVOCATION nowhere, while three of its clauses consume it: 3a.5 calls the launch invocation one of only two permitted between-arm variations, 4c requires the launch probe to run against "the run ACTUAL arm-launch invocation", and 5d step 6 cannot execute without a target. Found at statiker-d4 2026-09-15 while reconciling narrow-round S6, not by the narrow round itself. The program own binding lives in a different file (dev-notes/codex-only-certification-2026-09-13.md: codex exec -s danger-full-access -m MODEL, with run 2 15d calling that mode NO sandbox). THIRD instance of the assumed-delivery shape in this one document, after the missing arms section and residual 6d
+goal: general-maintenance
+write-set: dev-notes/scoped-run-3-preregistration.md
+done-criterion: the pre-registration states the codex launch invocation for sol, terra and astra explicitly, with its citation to the certification binding, so that 4c has a target and 5d step 6 is executable as written. Verifier: a freeze executor can perform 5d step 6 without consulting a document the pre-registration does not name
+evidence: Found 2026-09-15 at statiker-d4. Basis: grep -n -i -E "codex|sandbox" over dev-notes/scoped-run-3-preregistration.md returns ten hits, none of which states a launch invocation; the binding text sits in dev-notes/codex-only-certification-2026-09-13.md:40 and dev-notes/scoped-run-2-arm-brief-2026-09-14.md:144. Recorded in the document meanwhile as an open freeze step (6d) and as step 5 of the 5d order, commit 0c2b537
+blocked-by: NONE
