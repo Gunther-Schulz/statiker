@@ -61,8 +61,12 @@
   never hand-edited). The DECISION path is the same shape and is
   stated here because it fails differently: a decision that clears
   an item's blocker is recorded via `lifecycle ledger add decision
-  --question <the blocker's text VERBATIM>`, never as a
-  hand-written LEDGER line. The gate resolves a decision blocker by
+  --question <the blocker text MINUS its leading type word>`, never
+  as a hand-written LEDGER line. Blocked-by slots are TYPED
+  (`decision <q>`), and the verb compares exact-after-strip against
+  the QUESTION alone, so passing the slot value with its `decision `
+  prefix matches nothing and leaves the item blocked while the
+  ledger reads answered. The gate resolves a decision blocker by
   QUESTION-SLOT EQUALITY, so a line that NAMES the question
   ("st-63's contract question → PERMIT") instead of restating it
   leaves the item blocked while the ledger reads answered — a
