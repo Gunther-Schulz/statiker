@@ -11721,3 +11721,93 @@ record.**
 CONSUMER: the release gate itself, which re-asks this at the pin move;
 and the next releasing desk, which inherits the enumeration form rather
 than re-deriving it.
+
+## 2026-09-15 — C4b MINT: `driver_resume_probe.py` gains a
+## COULD-NOT-VERIFY state, and the token is REUSED from its sibling
+
+NOT A PAYLOAD CHANGE — `tools/`, outside `plugin/`. Recorded here
+because C4b binds on the INTRODUCTION axis, not on the directory: the
+run-3 freeze record consumes this tool's verdicts, so a new verdict
+state is new to what a freeze executor must handle. C4b call made at
+statiker-d4 and confirmed by the driving desk statiker-9c under the
+operator's delegation of 2026-09-15; the fired positive d946b1a was
+itself a tools-side token addition, so C4b's reach over `tools/` rests
+on its own discriminating pair rather than on this entry widening it.
+
+INCIDENT AND PROVENANCE — narrow-round S1 (fresh-context opus,
+2026-09-14; `docs/audits/2026-09-14-narrow-round-run3-contract.md`),
+re-verified at the code by this desk before minting:
+
+- `driver_resume_probe.py` refuses on exactly ONE condition — the
+  unaided arm having WRITTEN the marker (`if u["ack"]`).
+- It never inspects a return code ANYWHERE. `run()` captures `rc` in
+  both arms and every caller discards it. A timeout yields
+  `rc=None`; a rate-limit refusal or any nonzero exit yields the same
+  absent marker. Each PASSES the red guard as a valid red.
+- If the driven arm then also fails, the tool prints
+  "DRIVER DOES NOT CARRY THE WORK" — a SUBSTRATE verdict over an
+  attempt that never ran. §3a.4 routes that verdict to an OPERATOR
+  decision round, so an environment refusal at freeze would reach the
+  operator dressed as a scope change.
+- SHARPER THAN THE AUDIT STATED: the audit gives the timeout case;
+  the defect is the absent rc check, of which the timeout is one
+  instance. Recorded because the wider statement is what sizes the
+  repair.
+
+This is the corpus's own third-answer class: an instrument offering
+only two outputs cannot say could-not-verify, so the grade it exists
+to forbid stops being an error and becomes structural — a refused run
+renders as verified-wrong.
+
+THE MINT: a `PROBE_INVALID` state with DOMINATION over substrate
+verdicts, plus a control leg, plus a `--selftest` battery.
+
+**THE TOKEN IS NOT COINED — it is REUSED.** `PROBE_INVALID` already
+exists in this tool's sibling, `tools/launch_substrate_probe.py`
+(`verdict()`, and its selftest asserts the domination). The existing
+instance fixes the name, the precedence and the idiom; inventing a
+third spelling for the same concept would be the slot-taught-under-two-
+names shape this repo has already paid for. What is new is this TOOL's
+output set, which is what the C4b call rests on. The sibling is also
+the shape precedent for S5's `--launcher-file` aiming.
+
+TENET CHECK — all nine enumerated from PLAN.md's live list read at the
+artifact this date, never recalled (a restated tenet set is the
+paraphrase-drift class, and the one skipped tenet is historically the
+one that bites):
+
+1. **Investigation-led design — PASS.** The repair follows a
+   fresh-context finding re-verified at the code, not a symptom guess.
+   The root cause (no rc inspection) was articulated before the shape.
+2. **Sufficiency = dispatchable — PASS.** Design settled here, brief
+   carries the sibling as the named existing instance; the build is
+   mechanical.
+3. **Anti-skim — PASS.** Touches no forcing point. It RESTORES one:
+   the freeze gate's ability to tell a dead instrument from a dead
+   substrate.
+4. **Cost asymmetry — PASS.** Locked before implementation; this
+   entry is the lock.
+5. **Autonomy — PASS, and it is the point.** The defect's live
+   consequence was an environment refusal arriving at the OPERATOR as
+   a scope decision. The mint removes a spurious human seat.
+6. **Economics — PASS.** One sonnet lane, one file plus a battery. The
+   counterfactual is an operator decision round over a non-result at
+   freeze, which is the more expensive currency.
+7. **Convergence circuit — PASS.** Lands red-first with its battery;
+   admitted in gradeable form.
+8. **Medium tenet — PASS, and it is the deciding one.** "Whatever must
+   hold exactly is designed as mechanism with a red-first battery."
+   The thing that must hold exactly is that a refused run never reads
+   as a substrate verdict — a computable predicate, so mechanism, not
+   prose. Its red-first arm: a leg forced to nonzero rc / timeout must
+   yield PROBE_INVALID, and must NOT yield it when both arms ran.
+9. **Placement — PASS.** Precedent line: follows
+   `tools/launch_substrate_probe.py`, judged sound — same family, same
+   verdict vocabulary, same selftest form. Nothing here argues that
+   sibling is the problem.
+
+NO TENET FAILS AND NONE IS NOT-APPLICABLE.
+
+CONSUMER: the st-79 tool lane's build (this entry is its lock), and
+the next release gate's carried-set re-ask, which will find this mint
+in the interval and demand exactly this record.
