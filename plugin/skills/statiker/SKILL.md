@@ -1043,6 +1043,17 @@ the brief QUOTES that verdict line beside the artifact; the brief
 also carries the question and the read-only tail (dispatch skill
 `references/forms.md`).
 
+A unit carrying an EXECUTABLE mechanism (a predicate, a query, a
+parser, anything runnable against real or planted input at design
+time) earns one EXECUTED probe, named in the brief, its input
+drawn from the source the mechanism will face rather than built to
+the design's own assumption; a reading round's zero on such a unit
+is could-not-verify at the executing altitude and converges nothing
+(the CONVERGED clause carries the grading half). Where no input can
+legally reach the mechanism at design time (an authority-gated
+prod act), the brief names that absence instead, the verify phase's
+named-absence form.
+
 Unfiltered, the
 artifact compounds per round; the desk appends nothing to the record
 while any attacker is live — an append landing mid-round leaks

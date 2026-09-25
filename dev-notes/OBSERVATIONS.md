@@ -12695,3 +12695,24 @@ Consumer + drain seam: SKILL.md attack section (the round-brief
 passage); mint at the accumulated release seam with the rest of
 this date's batch; its review rides the same seam (and the st-85
 probe's arms).
+
+**MINT RECORD, same date — the executed-probes clause lands (fifth
+of the batch, operator GO "get the new version ready").** Text per
+the booked entry above, refined by F101's fire-rate datum: the
+probe's INPUT is drawn from the source the mechanism will face
+(execution against assumption-shaped input is the residual class
+the clause must not claim to close). Home: the attack section's
+brief-contents passage. C4b: a mint (a mandatory brief form).
+Tenet check, nine enumerated: 1 PASS (loop conduct, design freedom
+untouched); 2 PASS (one named probe per mechanism-bearing unit,
+recordable in the brief, no new ceremony); 3 PASS (strengthens
+forcing point 3); 4 PASS (defects surface at design time, where
+change costs a sentence); 5 PASS (removes the operator-as-catcher
+seat A6's class exposed); 6 PASS (the day's measured
+round-economics lever); 7 PASS (probe results enter as gradeable
+F-lines); 8 FLAGGED (prose demand today; whether the record tool
+should verify probe-presence per mechanism-bearing unit joins the
+existing named debt at the release seam); 9 PASS (amended into the
+passage that owns brief contents; placement basis: the
+brief/dispatch grep at this desk, this date). Verify: band lint 0
+findings (after one em-dash repair), suite 658 passed.
