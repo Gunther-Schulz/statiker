@@ -393,17 +393,26 @@ Housekeeping never bills the budget (record-repair legs — The
 record, the resume's mechanical leg — and sweep/closure passes are
 meta-owned, outside cycle accounting); excess iteration is a
 SYMPTOM, never a verdict; a stop-and-report fires as a MINT SOURCE,
-and the bound is a CANARY — its firing always points at structure.
-The stop report itself names the cause AND the generalization it
-implies (which design change makes the class not recur); a raise
-never lands without that cause quoted beside it, and one granted
-causeless is a recorded miss. The cause is read from the
-DISCRIMINATING
-EVIDENCE pre-registered at arming (the trend verdict for arithmetic,
-named locus body-reads for repair-versus-account, each terminal
-entry's class split) — a cause report is a READ, not a composition;
-a computable cause becomes a named tripwire; a breaker tripping
-twice for one cause indicts the missing tripwire. THREE ENDINGS, all
+and the ROUNDS BOUND is a CANARY — its firing always points at
+structure (tripwire arming and thresholds keep their own split,
+above). The exhaustion's cause lands where the stop lands:
+attended, in the operator prompt the stop forces; unattended, in
+the close beside the open reconciliations. A raise entry carries
+the cause in its own body (the template's cause slot, below),
+filled by the desk from the discriminating evidence; the
+operator's raise LANDS regardless — the bound is theirs — and a
+raise entry missing its cause is a gap the desk repairs on sight
+by appending the cause under the same id, never a refusal of the
+grant. A proactive raise granted before any exhaustion takes
+`cause: operator discretion`. The cause is a READ, not a
+composition, from the DISCRIMINATING EVIDENCE pre-registered at
+arming (the trend verdict for arithmetic, named locus body-reads
+for repair-versus-account, each terminal entry's class split);
+the generalization — which change makes the class not recur — is
+the MINT-SOURCE duty's half, owed at the close, never composed
+into the stop's cause line. A computable cause becomes a named
+tripwire; a breaker tripping twice for one cause indicts the
+missing tripwire. THREE ENDINGS, all
 operator-owned: FAILED (operator refuses the run); EXPORT (operator
 re-scopes; displaced scope exits per The loop's exit machinery to a
 backlog entry); CONTINUE (a disposition GRANTING the closing round
@@ -418,7 +427,8 @@ operator's line (the header is pinned surface, never rewritten), and
 every later exhaustion check reads the LATEST such entry over the
 header's default. The raise line's template: `- F<n> [VERIFIED] record:
 budget raised to cycles <n> / rounds <n> / verify <n> — "<the
-operator's line verbatim>" — basis: operator` (the `record: `
+operator's line verbatim>" — cause: <the named structural cause,
+or: operator discretion> — basis: operator` (the `record: `
 opener is what voids no closure and re-opens no unit;
 machine-findable surfacing in the verdicts is parked tool
 work — until it ships, the exhaustion check's read is a
@@ -1238,11 +1248,14 @@ completed [BIT] rounds behind it there is no series, and the first
 repeat round is the ordinary re-lock path, never graded. CONTRACTING:
 substance
 findings fall round over round AND land mostly on ground the
-previous round already bit. Ground BORN from that round's repairs —
-a unit, gate or form the repair introduced — is NEW surface, never
-ground already bit: findings concentrating there are the
-non-contracting shape however the counts fall, and the location
-read outranks the count read. NON-CONTRACTING: everything else
+previous round already bit. A UNIT born from a prior round's
+repairs (the intake clause's birth test: new design surface, never
+a fix inside existing surface) is NEW ground however many rounds
+ago it was born: findings concentrating on repair-born units
+DEMOTE the grade to non-contracting whatever the counts read —
+the location read demotes, never promotes — and a justified
+join's first post-birth round is exempt, its findings being the
+attack the join bought. NON-CONTRACTING: everything else
 (the founding shape: the loop
 eating its own repairs — nine rounds, none zero-delta, each
 round's findings concentrated on the newest cycle's own work; the
@@ -1308,13 +1321,19 @@ under both instruments). A
 design-substance finding landing on a converged unit REOPENS it by
 an entry citing the finding, never by silent regrade. A repair
 that BIRTHS a unit — new design surface, not a fix inside existing
-surface — is an INTAKE, not a repair: the re-lock entry answers
-join-or-export at the birth, export the default where the newborn
-carries its own operator dependency or the run's other units are
-converged or near it, a join naming why the newborn must ship with
-this run (the founding incident: two units born in one repair step
-drew every later round's substance while four converged units
-waited, and were exported at exhaustion two rounds late).
+surface — is an INTAKE, not a repair: the disposition entry
+recording the repair answers join-or-export at the birth. Export
+is the default where the newborn carries its own operator
+dependency or the run's other units are converged or near
+convergence, and it runs through the NARROWING machinery above —
+an R-amendment, the backlog entry carrying the successor intent,
+the close reconciliation — never a bare note, with the finding
+the newborn answered re-dispositioned there (repaired another
+way, or exported beside it). A join names why the newborn must
+ship with this run (the founding incident: two units born in one
+repair step drew every later round's substance while four
+converged units waited, and were exported at exhaustion two
+rounds late).
 
 The form below is the tool's OUTPUT, never a second route.
 A hand-built block raises `tag-literal-in-body` on the first literal
