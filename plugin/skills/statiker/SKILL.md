@@ -1285,7 +1285,15 @@ Per-unit convergence rides the same return. A unit that draws zero
 design-substance findings across a full round is CONVERGED,
 recorded as that unit's own `record:`-scoped entry; later rounds
 aim at unconverged units plus cross-unit interactions, and the
-closing zero-delta round runs once over the converged set. A
+closing zero-delta round runs once over the converged set. The
+zero converges only at the instrument's own altitude: a reading
+round's zero never converges a unit whose mechanism it did not
+execute, and the first executing round grades such a unit as if
+ungraded (the founding probe: two units record-only across two
+reading rounds each drew a design finding from the first executing
+round — a predicate proven false by running it, a query plan
+proven pathological by EXPLAIN — while a third unit held clean
+under both instruments). A
 design-substance finding landing on a converged unit REOPENS it by
 an entry citing the finding, never by silent regrade. A repair
 that BIRTHS a unit — new design surface, not a fix inside existing

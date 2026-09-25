@@ -12652,3 +12652,20 @@ PLAN.md's supersession entry.
 date's earlier OBSERVATIONS section carries the incident bodies);
 operator decisions of this date (canary framing; changes-now
 review-deferred) in statiker LEDGER.md.
+
+**FIRE RECORD, same date — the CONVERGED candidate's registered
+probe MISSED, rule amended in place (unreleased, so the amendment
+is the rollback-cheap path).** The A6 probe (prediction sealed
+pre-dispatch: zero delta on twice-clean units) returned two design
+findings, both on units record-only across A4/A5, both surfaced by
+EXECUTING the mechanism (a suffix predicate proven false by
+running it; a parameterized-LIMIT DELETE proven pathological by
+EXPLAIN on prod, 808k vs 44k). The third unit held clean under
+both instruments — the control that keeps the concept. Amendment
+landed in the same clause: a reading round's zero never converges
+a unit whose mechanism it did not execute; the first executing
+round grades such a unit as if ungraded. This is the corpus
+altitude rule (wrongness lives where the work takes effect)
+reaching the convergence grain. Verify: band lint 0 findings,
+suite 658 passed. The probe, its prediction, and its outcome are
+in the run tracker (F95) and statiker LEDGER this date.
