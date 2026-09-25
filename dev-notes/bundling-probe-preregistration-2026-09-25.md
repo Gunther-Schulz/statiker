@@ -60,3 +60,74 @@ the spend proxy the reports themselves state.
 - Outcome and verdict land in this file's addendum plus st-85's
   closure; the release (pin move) waits for the btb run's close
   regardless of outcome.
+
+## ADDENDUM — outcome (written after all three arms returned, before any repair)
+
+Raw yields: W 5 BLOCKING + 7 minor (1 executed probe). S1 3 B + 5 m.
+S2 6 B + 5 m (1 executed three-tracker battery). Sender identities
+verified against the dispatch list (opus-review-w/s1/s2).
+
+Cluster map (substance, deduped; found-by in brackets):
+A closure fails open on ZERO-DELTA vs convergence [W-B1, S2-B1+B2]
+B named-absence escape broken, ref dangling [W-B2, S2-B5]
+C aiming vs no-steering contradiction [W-B3, S2-m1]
+D CONVERGED entries corrupt trend arithmetic — EXECUTED both arms,
+  convergent with varied batteries [W-B4, S2-B3]
+E raise template/cause self-contradiction, no seam [S1-B1, W-B5]
+F stop-report demand homeless at real exit seams [S1-B2, W-B5 sub]
+G "born" widening: three definitions, healthy-series misgrade,
+  join self-defeat [S1-B3+M1+M3, W-m1+m2]
+H intake export engages no export gate, bypasses narrowing
+  [S2-B4, W-m3]
+I generalization-is-composition contradiction [S1-M4, W-m4]
+J REOPENS/CONVERGED entry forms unspecified; reopen name collision
+  [S2-m2, W-m7]
+K executed-probe clause: verbatim-block conflict, planted-input
+  loophole, per-round ambiguity [S2-B6+m3+m4, W-m5+m6]
+L trend location-precedence read generally is fail-open [S1-M2
+  ONLY — W in-scope, missed]
+Editorial: severed paragraph, "re-lock entry" undefined [both].
+
+## Pre-registered criterion applied
+
+Union-unique substance W missed: 1 (cluster L). W-unique substance
+the union missed: 0-1 (W-m5's desk-measurement-convergence
+question, arguable). Neither branch's threshold (>=2) is met in
+either direction: **verdict MIXED** — recorded, judged at the
+close, no rule change on this probe alone.
+
+Honest secondary reading (recorded, non-deciding): near-total
+convergence. At this delta size (51 insertions) the whole-object
+arm matched the split's substance minus one minor finding, at one
+lane instead of two — evidence LEANING toward bundling harder at
+this size, short of the pre-registered bar. Both executed probes
+(cluster D) came from different arms with different batteries and
+converged: the varied-axis corroboration the instrument rules ask
+for, obtained by construction.
+
+## Dispositions (one pass, all arms)
+
+ACCEPTED, repair in the prose lap: E, F, G, I, L, editorial pair
+(contradiction fixes, scope narrowings back to the booked incident
+basis, form specifications, the severed paragraph).
+ACCEPTED, repair needs the TOOL HALF (machine-read class, the
+mint's named debt now due): A (ZERO-DELTA conditions), D (trend
+exclusion of record-scoped F-lines or a non-F entry class), J
+(entry classes + rename to avoid the reopen collision), B/K's
+record-form halves (named-absence as a tracker entry).
+ACCEPTED, needs a DESIGN CHOICE at this desk before repair: C/m1
+(aiming vs no-steering — a declared scope form per S2's suggestion
+is the leading candidate), H (route intake export through the
+NARROWING machinery, per S2's fix).
+NO FINDING REJECTED.
+
+## Repair plan
+
+1. Prose lap at this desk (judgment-dense corpus work, inline).
+2. Tool half briefed from these dispositions and dispatched
+   (sonnet; codex limit-refused today) — red-first per class,
+   including the two arms' own probe trackers as fixtures.
+3. Machine-read semantics re-review at this same seam, scoped to
+   the tool diff + the repaired token clauses (the checkpoint
+   rule's class lane, not a new seam).
+4. Version ready; pin move still waits for the btb run close.
