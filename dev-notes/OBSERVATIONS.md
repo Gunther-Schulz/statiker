@@ -12583,3 +12583,11 @@ executed, raise 4 -> 5).
 Consumer + drain seam: trial working conventions (this repo's
 CLAUDE.md efficiency bullet) + SKILL.md budget passage; mint at
 the next consuming seam.
+
+Receipt (2026-09-25): the cross-repo half of the fourth entry — the
+banner-substrate / reflection-trigger mechanism — is PARKED on the
+lifecycle item carrier (booked via lifecycle-d8 under their design
+freeze's surface-never-build bar, this section cited as evidence),
+so its consumer/drain seam is "lifecycle item carrier,
+reflection-triggers entry". The statiker-side halves keep their
+consumers as written above.
