@@ -215,6 +215,40 @@ TRIPWIRE_ARM_RE = re.compile(
 # is not a fully-qualified one", not a second grammar to maintain.
 TRIPWIRE_ARM_NEAR_RE = re.compile(r'(?i)^record: tripwire armed\b')
 
+# st-85 (unit-convergence machine grammar): three appended `record: `-
+# scoped forms tracking a unit's design-convergence state across attack
+# rounds — the same appended-entry route the tripwire arm above uses
+# (SCOPE_EXACT_RE already admits `record: `; no new top-level grammar).
+# UNCONVERGED is spelled to avoid colliding with the page's existing
+# "reopen" design vocabulary. Each regex is exact (anchored both ends,
+# on the parsed body_main — the "— basis: ..." clause is already split
+# off by the time these run); anything record-scoped that does not
+# match one of the three is left untouched, same as any other
+# `record: `-opened bookkeeping line.
+RECORD_CONVERGED_RE = re.compile(r'^record: unit (U\d+) CONVERGED at (A\d+)$')
+RECORD_UNCONVERGED_RE = re.compile(
+    r'^record: unit (U\d+) UNCONVERGED at (A\d+) — (F\d+)$')
+RECORD_ABSENCE_RE = re.compile(r'^record: unit (U\d+) ABSENCE — (\S.*)$')
+
+
+def recognize_record_form(body: str):
+    """One of the three st-85 unit-convergence forms, or None for any
+    other body (record-scoped or not). Returns (kind, unit, extra):
+    kind is 'converged', 'unconverged', or 'absence'; extra is the
+    citing A-id for 'converged', a (A-id, F-id) pair for 'unconverged',
+    or the free-text reason for 'absence'."""
+    m = RECORD_CONVERGED_RE.match(body)
+    if m:
+        return ("converged", m.group(1), m.group(2))
+    m = RECORD_UNCONVERGED_RE.match(body)
+    if m:
+        return ("unconverged", m.group(1), (m.group(2), m.group(3)))
+    m = RECORD_ABSENCE_RE.match(body)
+    if m:
+        return ("absence", m.group(1), m.group(2))
+    return None
+
+
 CLASS_TAGS = {
     "F": {"VERIFIED", "PENDING", "INVALIDATED", "AUTO-ACCEPTED"},
     "D": {"PENDING", "COMMITTED", "INVALIDATED", "AUTO-ACCEPTED"},
@@ -2013,7 +2047,7 @@ def cmd_sweep(args):
         m = BUDGET_ROUNDS_RE.search(meta["budget"])
         if m:
             budget_n = int(m.group(1))
-            bounds, _, _, _, _ = trend_over_rounds(entries)
+            bounds, _, _, _, _, _ = trend_over_rounds(entries)
             if len(bounds) >= budget_n:
                 say(f"sweep: resolved rounds ({len(bounds)}) meet/exceed "
                     f"Budget (rounds {budget_n})")
@@ -2073,6 +2107,28 @@ def out_of_scope_undispositioned(entries):
         out.append({"id": id_, "line": e.lineno,
                     "text": f"{e.id} [{e.tag}] {e.body}"})
     return out
+
+
+def unit_convergence_states(entries):
+    """st-85: per-unit LATEST state among the three recognized
+    convergence forms (recognize_record_form) — 'converged',
+    'unconverged', or 'absence' — in file order, an id's own later
+    restatement or [INVALIDATED] supersession honored the same way
+    the rest of this page resolves a same-id line (latest_by_id): a
+    reopened unit (UNCONVERGED citing a later finding) drops back out
+    of the converged set until a fresh CONVERGED record lands after
+    it. Returns unit -> (kind, Entry)."""
+    latest = latest_by_id(entries)
+    states = {}
+    for e in sorted(entries, key=lambda e: e.lineno):
+        if e.cls != "F" or latest[e.id] is not e or e.tag == "INVALIDATED":
+            continue
+        rec = recognize_record_form(e.body)
+        if rec is None:
+            continue
+        kind, unit, _extra = rec
+        states[unit] = (kind, e)
+    return states
 
 
 def cmd_closure(args):
@@ -2165,6 +2221,39 @@ def cmd_closure(args):
             f"amends no design entry outside record/unit scope (P27)")
     else:
         say(f"closure: {closing.id} [ZERO-DELTA] at line {closing.lineno}")
+        # st-85: a ZERO-DELTA round can be scoped to a subset of the
+        # tracker's units — closing on it must not silently close
+        # design for the units the round never touched. Every unit a
+        # D-line names AT THE CLOSE (live at or before closing.lineno,
+        # latest-line-per-id resolved AS OF that point — a post-close
+        # D-line is a NEW work item the existing per-unit machinery
+        # below already handles, never part of the round being closed;
+        # an [INVALIDATED] line, same convention as waves_over_units,
+        # never established a live design commitment) needs a live
+        # 'converged' or 'absence' state (unit_convergence_states) — a
+        # unit still 'unconverged' (reopened) or never recorded at all
+        # holds the closure.
+        pre_close = [e for e in entries if e.lineno <= closing.lineno]
+        pre_close_latest = latest_by_id(pre_close)
+        d_units = set()
+        for id_ in {e.id for e in pre_close if e.cls == "D"}:
+            le = pre_close_latest[id_]
+            if le.tag == "INVALIDATED":
+                continue
+            scope, unit = classify_scope(le.body)
+            if scope == "unit":
+                d_units.add(unit)
+        states = unit_convergence_states(entries)
+        unconverged = sorted(
+            (u for u in d_units
+             if states.get(u, (None, None))[0] not in ("converged", "absence")),
+            key=lambda u: int(u[1:]))
+        if unconverged:
+            say(f"closure ZERO_DELTA_UNCONVERGED: unit(s) "
+                f"{', '.join(unconverged)} carry a design (D-line) entry "
+                f"but no live CONVERGED or ABSENCE record")
+            finish("ZERO_DELTA_UNCONVERGED", 2, unconverged=unconverged,
+                  last_a=f"{closing.id} [{closing.tag}]", **late)
 
     post = [e for e in entries
             if e.lineno > closing.lineno and e.cls in ("F", "D", "R")]
@@ -2509,9 +2598,21 @@ def trend_over_rounds(entries):
     for e in rounds_a:
         bounds.append((dispatch_line.get(e.id, prev_end), e.lineno, e))
         prev_end = e.lineno
+    # st-85: trend counts align with the concentration flag's own
+    # exclusion just below — a `record: `-scoped F-line (classify_scope)
+    # is desk bookkeeping, never a finding landing on the round, so it
+    # is excluded from the counted series the same way. record_counts
+    # is the parallel excluded-volume series, per round, kept visible
+    # rather than silently dropped (cmd_trend's own printed line).
     f_entries = [e for e in entries if e.cls == "F"]
-    counts = [sum(1 for f in f_entries if start < f.lineno <= end)
+    counts = [sum(1 for f in f_entries
+                  if start < f.lineno <= end
+                  and classify_scope(f.body)[0] != "record")
              for start, end, _ in bounds]
+    record_counts = [sum(1 for f in f_entries
+                         if start < f.lineno <= end
+                         and classify_scope(f.body)[0] == "record")
+                     for start, end, _ in bounds]
     trajectory = trend_verdict(counts)
     concentration, hits = False, []
     if len(bounds) >= 2:
@@ -2539,7 +2640,7 @@ def trend_over_rounds(entries):
             if hit:
                 concentration = True
                 hits.append({"finding": f.id, "repair_ids": sorted(hit)})
-    return bounds, counts, trajectory, concentration, hits
+    return bounds, counts, record_counts, trajectory, concentration, hits
 
 
 def cmd_trend(args):
@@ -2550,17 +2651,24 @@ def cmd_trend(args):
         for v in blocking:
             say(f"trend blocked: {v['code']} @ line {v['line']}: {v['text']}")
         finish("TREND_RECORD_MALFORMED", 2, violations=blocking, **meta)
-    bounds, counts, trajectory, concentration, hits = trend_over_rounds(entries)
+    bounds, counts, record_counts, trajectory, concentration, hits = \
+        trend_over_rounds(entries)
     if not bounds:
         say("trend: no resolved (BIT/ZERO-DELTA) attack round in this tracker")
         finish("TREND_NO_ROUNDS", 0, rounds=0, **meta)
-    say(f"trend: {len(bounds)} round(s), findings {counts}, "
+    # st-85: each round's count carries its own excluded-record-volume
+    # suffix, so the number trend prints and the number a reader would
+    # get by grepping the tracker's F-lines stay reconcilable.
+    counts_str = ", ".join(
+        f"{c} (+{r} record)" for c, r in zip(counts, record_counts))
+    say(f"trend: {len(bounds)} round(s), findings [{counts_str}], "
         f"trajectory {trajectory}"
         + (", CONCENTRATION in the previous re-lock's repairs — counted "
            "(non-record-scoped) finding(s): "
            + ", ".join(h["finding"] for h in hits)
            if concentration else ""))
     finish("TREND_COMPUTED", 0, rounds=len(bounds), counts=counts,
+          record_counts=record_counts,
           trajectory=trajectory, concentration=concentration,
           concentration_detail=hits, **meta)
 
@@ -2600,7 +2708,7 @@ def cmd_sustain(args):
                       key=lambda e: e.lineno)
     live_round = (a_latest[-1].id if a_latest
                  and a_latest[-1].tag == "DISPATCHED" else None)
-    bounds, _, _, _, _ = trend_over_rounds(entries)
+    bounds, _, _, _, _, _ = trend_over_rounds(entries)
     if not bounds or bounds[-1][2].tag != "BIT":
         latest_resolved = (f"{bounds[-1][2].id} [{bounds[-1][2].tag}]"
                            if bounds else None)
@@ -2609,8 +2717,14 @@ def cmd_sustain(args):
         finish("SUSTAIN_NOT_APPLICABLE", 0, latest=latest_resolved,
                live_round=live_round, **meta)
     start, end, closing = bounds[-1]
+    # st-85: a recognized unit-convergence record (CONVERGED/UNCONVERGED/
+    # ABSENCE) is a STATE RECORD, not a finding at all — it never enters
+    # `findings`, so it is never listed as a record/instrument-class
+    # finding either. An unrecognized `record: `-scoped line (ordinary
+    # desk bookkeeping) keeps the prior behavior unchanged.
     findings = [e for e in entries
-               if e.cls == "F" and start < e.lineno <= end]
+               if e.cls == "F" and start < e.lineno <= end
+               and recognize_record_form(e.body) is None]
     substance = [e for e in findings if classify_scope(e.body)[0] != "record"]
     record_class = [e for e in findings if classify_scope(e.body)[0] == "record"]
     for e in record_class:
@@ -2757,7 +2871,7 @@ def cmd_tripwire(args):
                              f">= 1 ({threshold} given)")
             say(f"tripwire: armed from the Budget line's `tripwire "
                 f"{threshold}` field")
-    bounds, _, _, _, _ = trend_over_rounds(entries)
+    bounds, _, _, _, _, _ = trend_over_rounds(entries)
     rounds = len(bounds)
     # any landing mention counts, indented (the sanctioned form) or
     # not (a landing-indent lint defect is a form issue, never a

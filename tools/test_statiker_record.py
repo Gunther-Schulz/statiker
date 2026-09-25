@@ -1329,6 +1329,220 @@ class TestP20SustainGate(RecordFixture):
         self.assertEqual(v["live_round"], "A2", v)
 
 
+class TestSt85TrendExcludesRecordScoped(RecordFixture):
+    """st-85: unit-convergence record lines (record: unit U<k>
+    CONVERGED/UNCONVERGED/ABSENCE) are desk state, not findings —
+    trend's counted series excludes them via classify_scope, aligned
+    with the concentration flag's existing exclusion (P26). Reviewer
+    probe basis: a control series 3,2,1 (IMPROVING) read as 3,4,3
+    (FLAT) before this fix when convergence lines land unevenly
+    (0,2,2 per round)."""
+
+    def _control_body(self, round1_extra="", round2_extra="",
+                      round3_extra=""):
+        return (
+            "- D1 [COMMITTED] first design — basis: probe\n"
+            "- A1 [DISPATCHED] round 1 — basis: brief\n"
+            "- F1 [VERIFIED] finding a — basis: probe\n"
+            "- F2 [VERIFIED] finding b — basis: probe\n"
+            "- F3 [VERIFIED] finding c — basis: probe\n"
+            + round1_extra +
+            "- A1 [BIT] three findings — basis: report\n"
+            "- D2 [COMMITTED] repair for round 1's findings — basis: F1\n"
+            "- A2 [DISPATCHED] round 2 — basis: brief\n"
+            "- F4 [VERIFIED] finding d — basis: probe\n"
+            "- F5 [VERIFIED] finding e — basis: probe\n"
+            + round2_extra +
+            "- A2 [BIT] two findings — basis: report\n"
+            "- D3 [COMMITTED] repair for round 2's findings — basis: F4\n"
+            "- A3 [DISPATCHED] round 3 — basis: brief\n"
+            "- F6 [VERIFIED] an unrelated finding, cites nothing from the "
+            "round-2 repair — basis: probe\n"
+            + round3_extra +
+            "- A3 [BIT] one finding — basis: report\n")
+
+    def test_uneven_convergence_lines_excluded_from_counts(self):
+        # 0,2,2 per round — the reviewers' measured false-FLAT shape:
+        # raw counts [3,4,3] read FLAT; excluding record-scoped lines
+        # restores the control's [3,2,1] IMPROVING.
+        body = self._control_body(
+            round2_extra=(
+                "- F7 [VERIFIED] record: unit U1 CONVERGED at A2 — "
+                "basis: verdict\n"
+                "- F8 [VERIFIED] record: unit U2 CONVERGED at A2 — "
+                "basis: verdict\n"),
+            round3_extra=(
+                "- F9 [VERIFIED] record: unit U3 CONVERGED at A3 — "
+                "basis: verdict\n"
+                "- F10 [VERIFIED] record: unit U4 CONVERGED at A3 — "
+                "basis: verdict\n"))
+        v = self.trend(body)
+        self.assertEqual(v["verdict"], "TREND_COMPUTED", v)
+        self.assertEqual(v["counts"], [3, 2, 1], v)
+        self.assertEqual(v["record_counts"], [0, 2, 2], v)
+        self.assertEqual(v["trajectory"], "IMPROVING", v)
+
+    def test_one_per_round_variant_stable(self):
+        body = self._control_body(
+            round1_extra=(
+                "- F7 [VERIFIED] record: unit U1 CONVERGED at A1 — "
+                "basis: verdict\n"),
+            round2_extra=(
+                "- F8 [VERIFIED] record: unit U2 CONVERGED at A2 — "
+                "basis: verdict\n"),
+            round3_extra=(
+                "- F9 [VERIFIED] record: unit U3 CONVERGED at A3 — "
+                "basis: verdict\n"))
+        v = self.trend(body)
+        self.assertEqual(v["counts"], [3, 2, 1], v)
+        self.assertEqual(v["record_counts"], [1, 1, 1], v)
+        self.assertEqual(v["trajectory"], "IMPROVING", v)
+
+
+class TestSt85SustainExcludesConvergenceForms(RecordFixture):
+    """st-85: a recognized unit-convergence record is a state record,
+    never listed by sustain as a record/instrument-class finding at
+    all — P20's existing record_class bucket is for unrecognized
+    `record: `-scoped bookkeeping only, which keeps its prior
+    behavior."""
+
+    def test_recognized_forms_excluded_unrecognized_still_listed(self):
+        body = (
+            "- A1 [DISPATCHED] round 1 — basis: brief\n"
+            "- F1 [VERIFIED] a genuine design finding — basis: probe\n"
+            "- F2 [VERIFIED] record: unit U1 CONVERGED at A1 — "
+            "basis: verdict\n"
+            "- F3 [VERIFIED] record: a bookkeeping note — basis: probe\n"
+            "- A1 [BIT] three entries — basis: report\n")
+        v = self.sustain(body)
+        self.assertEqual(v["verdict"], "SUSTAIN_OK", v)
+        self.assertEqual(v["substance"], ["F1"], v)
+        self.assertEqual(v["record_class"], ["F3"], v)
+
+    def test_all_recognized_forms_denies_with_empty_record_class(self):
+        body = (
+            "- A1 [DISPATCHED] round 1 — basis: brief\n"
+            "- F1 [VERIFIED] record: unit U1 CONVERGED at A1 — "
+            "basis: verdict\n"
+            "- F2 [VERIFIED] record: unit U2 ABSENCE — no design-time "
+            "input reaches U2 — basis: verdict\n"
+            "- A1 [BIT] two entries — basis: report\n")
+        v = self.sustain(body)
+        self.assertEqual(v["verdict"], "SUSTAIN_DENIED", v)
+        self.assertEqual(v["record_class"], [], v)
+
+
+class TestSt85ZeroDeltaUnconvergedGuard(RecordFixture):
+    """st-85: a [ZERO-DELTA] round can be scoped to a subset of
+    units — closing on it must not silently close design for units
+    the round never touched. Every unit a D-line names (unit-scoped,
+    latest-line-per-id) needs a live CONVERGED or ABSENCE record at
+    closure, else ZERO_DELTA_UNCONVERGED refuses, naming the units."""
+
+    def _body(self, extra=""):
+        return (
+            "- D1 [COMMITTED] unit U1 add feature X — basis: design\n"
+            "- D2 [COMMITTED] unit U2 add feature Y — basis: design\n"
+            "- A1 [DISPATCHED] round 1 — basis: brief\n"
+            + extra +
+            "- A1 [ZERO-DELTA] clean return — basis: report\n")
+
+    def test_unconverged_unit_refuses(self):
+        body = self._body(
+            "- F1 [VERIFIED] record: unit U1 CONVERGED at A1 — "
+            "basis: verdict\n")
+        v = self.closure(body)
+        self.assertEqual(v["verdict"], "ZERO_DELTA_UNCONVERGED", v)
+        self.assertEqual(v["unconverged"], ["U2"], v)
+
+    def test_absence_record_satisfies(self):
+        body = self._body(
+            "- F1 [VERIFIED] record: unit U1 CONVERGED at A1 — "
+            "basis: verdict\n"
+            "- F2 [VERIFIED] record: unit U2 ABSENCE — no design-time "
+            "input can legally reach U2 — basis: verdict\n")
+        v = self.closure(body)
+        self.assertEqual(v["verdict"], "CLOSURE_LIVE", v)
+
+    def test_all_converged_accepts(self):
+        body = self._body(
+            "- F1 [VERIFIED] record: unit U1 CONVERGED at A1 — "
+            "basis: verdict\n"
+            "- F2 [VERIFIED] record: unit U2 CONVERGED at A1 — "
+            "basis: verdict\n")
+        v = self.closure(body)
+        self.assertEqual(v["verdict"], "CLOSURE_LIVE", v)
+
+    def test_reopened_unit_still_unconverged(self):
+        body = self._body(
+            "- F1 [VERIFIED] record: unit U1 CONVERGED at A1 — "
+            "basis: verdict\n"
+            "- F2 [VERIFIED] record: unit U2 CONVERGED at A1 — "
+            "basis: verdict\n"
+            "- F3 [VERIFIED] record: unit U2 UNCONVERGED at A1 — F9 — "
+            "basis: retriage\n")
+        v = self.closure(body)
+        self.assertEqual(v["verdict"], "ZERO_DELTA_UNCONVERGED", v)
+        self.assertEqual(v["unconverged"], ["U2"], v)
+
+    def test_scopeless_d_line_no_units_to_check(self):
+        # CLOSED itself: a scopeless D-line names no unit at all — the
+        # guard has nothing to check and closure proceeds unaffected
+        v = self.closure(CLOSED)
+        self.assertEqual(v["verdict"], "CLOSURE_LIVE", v)
+
+
+class TestSt85RecordGrammar(unittest.TestCase):
+    """st-85: recognize_record_form's three forms, a known-positive
+    and a known-negative (near-miss spelling) each."""
+
+    def setUp(self):
+        sys.path.insert(0, str(SCRIPT.parent))
+        import statiker_record
+        self.m = statiker_record
+
+    def tearDown(self):
+        sys.path.remove(str(SCRIPT.parent))
+
+    def test_converged_positive(self):
+        self.assertEqual(
+            self.m.recognize_record_form("record: unit U3 CONVERGED at A5"),
+            ("converged", "U3", "A5"))
+
+    def test_converged_negative_near_miss(self):
+        self.assertIsNone(
+            self.m.recognize_record_form("record: unit U3 CONVERGED A5"))
+
+    def test_unconverged_positive(self):
+        self.assertEqual(
+            self.m.recognize_record_form(
+                "record: unit U3 UNCONVERGED at A5 — F7"),
+            ("unconverged", "U3", ("A5", "F7")))
+
+    def test_unconverged_negative_near_miss(self):
+        self.assertIsNone(
+            self.m.recognize_record_form(
+                "record: unit U3 UNCONVERGED at A5"))
+
+    def test_absence_positive(self):
+        self.assertEqual(
+            self.m.recognize_record_form(
+                "record: unit U3 ABSENCE — no design-time input "
+                "reaches it"),
+            ("absence", "U3", "no design-time input reaches it"))
+
+    def test_absence_negative_near_miss(self):
+        self.assertIsNone(
+            self.m.recognize_record_form("record: unit U3 ABSENCE"))
+
+    def test_unrecognized_record_scoped_returns_none(self):
+        self.assertIsNone(self.m.recognize_record_form(
+            "record: an ordinary bookkeeping note"))
+        self.assertEqual(
+            self.m.classify_scope("record: an ordinary bookkeeping note"),
+            ("record", None))
+
+
 class TestP19ZeroLandedTripwire(RecordFixture):
     """BACKLOG P19 (P18 measurement): the zero-landed progress
     tripwire — one of the two progress-shaped stop signals the
