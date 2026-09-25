@@ -12669,3 +12669,29 @@ altitude rule (wrongness lives where the work takes effect)
 reaching the convergence grain. Verify: band lint 0 findings,
 suite 658 passed. The probe, its prediction, and its outcome are
 in the run tracker (F95) and statiker LEDGER this date.
+
+**EXECUTED PROBES IN THE ATTACK (mint candidate, booked on operator
+GO "ok book it all", same date).**
+Incident + basis: A2-A5 stacked reading-round zeros on U2/U3 while
+both carried executable mechanisms; A6's single executing round
+(ran the predicate; EXPLAIN on prod data) found a real defect in
+each at ordinary round cost. The convergence amendment (above)
+records the grading half; this entry carries the DEMAND half.
+Class: instrument altitude inside the attack loop — the corpus
+effect-site rule at design-attack time; the round-economics lever
+the day's bundling and cap discussions were circling without
+naming.
+Pre-formulated text: an attack brief covering a unit that carries
+an EXECUTABLE mechanism (a predicate, a query, a parser — anything
+runnable against real or planted input at design time) demands one
+executed probe of it, the probe named in the brief; a reading
+round's zero on such a unit is recorded as the weaker grade
+(could-not-verify at the executing altitude), which composes with
+the CONVERGED clause: such a zero converges nothing. Where no
+input can legally reach the mechanism at design time (an
+authority-gated prod act), the brief names that instead — the
+same named-absence form the verify phase already uses.
+Consumer + drain seam: SKILL.md attack section (the round-brief
+passage); mint at the accumulated release seam with the rest of
+this date's batch; its review rides the same seam (and the st-85
+probe's arms).
