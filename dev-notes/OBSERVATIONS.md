@@ -12505,3 +12505,81 @@ lines inside the paragraph explaining the drift, caught on re-read.
 baseline + 2 new arms); declared band exit 0; 1801 operational
 lines; stale-phrase scan 0 whitespace-normalised against a
 before-file control of 2.
+
+## 2026-09-25 — the btb prod-data-growth run's attack-loop yield (four entries, one incident family)
+
+**PER-UNIT SEAL STATE (mint candidate, tool-backed form).**
+Incident + basis: the btb run's attack series (tracker
+2026-09-25-prod-data-growth.md) spent its 4-round budget while
+U1-U4 had drawn zero findings since A3 and every A3/A4 substance
+finding landed on U5/U6 — units born from A2's own repairs. The
+run-level budget could not see per-unit convergence; exhaustion
+plus hand-narrowing rediscovered it at two rounds' cost.
+Class: attack-loop convergence tracked at the wrong grain.
+Pre-formulated text: a unit that draws zero substance findings
+across a full attack round is SEALED (a machine token on the
+unit's tracker entry); later rounds aim only at unsealed units
+plus cross-unit interactions, and the closing zero-delta round
+runs once over the sealed set. A finding landing on a sealed unit
+UNSEALS it (recorded event, not a silent regrade).
+Consumer + drain seam: SKILL.md attack section; mint at the next
+consuming seam (next run start or deliberate release), tool-backed
+(token + lint), tenet check owed at mint per C4b — this IS a new
+machine token.
+
+**A REPAIR THAT BIRTHS A UNIT IS AN INTAKE EVENT (mint candidate,
+seam prose).**
+Incident + basis: U5 (window cut) and U6 (index) were born inside
+A2's repair step; U5 carried an operator dependency (a pinned-
+decision reversal) and zero coupling to shipping U1-U4, yet joined
+the run by default and drew the churn that spent A3/A4. Both were
+exported at budget exhaustion — the join-or-export question
+answered two rounds late.
+Class: mid-loop scope growth entering without an intake gauge —
+C4b's insight (a repair disposition that introduces new machinery
+IS a mint) one level up: a repair that introduces new design
+surface IS an intake.
+Pre-formulated text: a repair or decision that adds a NEW UNIT to
+a locked design answers join-or-export at birth, in the re-lock
+entry: export is the default when the newborn carries its own
+operator dependency, or when the run's other units are sealed or
+near seal; a join names why the newborn must ship with this run.
+Consumer + drain seam: SKILL.md repair/re-lock passage; mint at
+the next consuming seam; prose form (judgment condition — the
+mechanism bar is unmet: "near seal" is not computable).
+
+**THE ROUND-RETURN TREND READS LOCATION, NOT ONLY COUNT (amendment
+candidate to the existing trend clause).**
+Incident + basis: the A3 return graded the series "10 -> 5,
+IMPROVING" — numerically true while every A3 substance finding sat
+in A2's own repair ground; the concentration that routes to
+narrowing was visible one round before the budget fired and was
+read only at exhaustion.
+Class: the corpus re-entry rule's "counts and locations" with the
+location half under-applied — a trend read as a scalar.
+Pre-formulated text (amendment, not addition): the round-return
+trend names WHERE the findings landed; findings concentrating in
+units born from prior repairs trigger the narrowing question at
+that return, not at budget exhaustion.
+Consumer + drain seam: the attack section's trend/series clause;
+mint at the next consuming seam as an amendment.
+
+**THE BUDGET IS A CANARY (operator decision, 2026-09-25, verbatim:
+"teh budget shuodl oly be a canary so to say ... it shoudl always
+point us to someting structural").**
+Incident + basis: this run's exhaustion DID point at structure
+(concentration in post-lock-born units) and the existing
+efficiency-lens line ("a bound's firing is a diagnostic event
+owing a named cause") already gestures here; the operator's
+decision sharpens it to an obligation on the RAISE.
+Class: bound semantics — exhaustion is an alarm, never a meter
+that ran out.
+Pre-formulated text (amendment to the budget/efficiency prose): a
+rounds-budget fire always owes a NAMED structural cause before any
+raise; a raise granted without one is a recorded miss, and the
+named cause travels with the raise into the run record (this
+run's instance: concentration in post-lock-born units, narrowing
+executed, raise 4 -> 5).
+Consumer + drain seam: trial working conventions (this repo's
+CLAUDE.md efficiency bullet) + SKILL.md budget passage; mint at
+the next consuming seam.
