@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 63
+added: 64
 compacted: 0
 
 ## st-12
@@ -288,3 +288,13 @@ write-set: plugin/skills/statiker/scripts/statiker_record.py, tools/test_statike
 done-criterion: the predicate is COMPUTABLE and that is why this is buildable: the record tool can derive its OWN served version from its install path (the plugin cache path carries the version, as SKILL.md already states for the desk read) and compare it against the header Skill: line it already parses — so the gate needs no new desk input. Built RED-FIRST against a fixture record whose header names a version ahead of the tool, the arm proving the hold fires, plus the equal-version and marker-less arms proving it does NOT (a marker-less record is out of scope per the no-grandfather narrowing). Ships with the page passage naming the verdict, and the release gate tenet check per C4b since a new verdict name and hold code IS a mint
 evidence: SKILL.md resume passage (the version pair, WRITES NO CLOSE, surfaced as the desk reply not a record write) and its own sentence that skill_versions is attribution never a gate; this repo CLAUDE.md, "A release during a live run means the desk session restarts", the out-of-payload mitigation; the self-containment criterion (CLAUDE.md, operator-settled 2026-08-17): silent break -> skill-owned. Measured neighbouring fact from this arc: this repo has twice recorded momentum beating prose that was LOADED, which is why a prose-only refusal is the weak form here. ON THE BLOCKER: fire-born needs a field incident and I have NOT established one — the honest alternative is the pre-registered hypothesis-patch class (marked at mint, validation criterion logged in dev-notes), and the decision goes against the field record at the next fire-rate review or on the first incident, whichever comes first
 blocked-by: decision which provenance class the version-mismatch gate mints under, fire-born or marked hypothesis patch
+
+## st-85
+grade: PARKED
+requirement: Measure whether attack-round coverage degrades with object size — the claim 'bigger object per round buys shallower per-unit coverage' is UNVERIFIED mechanism reasoning (operator challenge 2026-09-25, this desk's admission; LEDGER this date). If whole-object yield holds, attacks bundle harder with measurement behind it and the class-lane splitting rule gets re-derived or retired.
+goal: general-maintenance
+write-set: dev-notes/
+done-criterion: A pre-registered comparison (per the repo's comparison-experiments convention: criterion recorded in dev-notes BEFORE arms dispatch) has RUN: one reviewer takes an accumulated multi-unit delta WHOLE, two reviewers take scoped halves at the same total spend; unique substance findings per unit compared; verdict recorded in dev-notes with the n=1 trial rule applied. A design with no run does not satisfy this. Execution seam per operator 2026-09-25: the next accumulated-release review (review deferred by operator decision of this date), whose delta is the probe's object.
+evidence: RECALLED (from this session's corpus/CLAUDE.md reads, not re-read at booking): the 0.2.78 review series evidence is CLASS evidence (tool-backed survives, fresh prose draws blockers), silent on size-vs-coverage. DERIVED: no size-vs-coverage measurement exists on this stack — concluded from the absence of any such record in the review provenance this session read; not a swept absence, no positive control run. MEASURED (this session, 2026-09-25, btb run record): A2 attacked the largest object of the series and returned its highest yield (10 findings); DERIVED: that datum is confounded by the object changing between rounds, so it decides nothing. RELAYED (operator, verbatim in session record): 'i am not sure it woudl be too much' — the challenge that opened this item; RELAYED (operator, same date): 'Want it booked --> and excuted now if possible' — spend approved, execution bound to the deferred review seam.
+blocked-by: decision spend a doubled review round on the bundling probe at the next consuming seam that carries an accumulated multi-unit review delta
+not-derivable: 2026-09-25 Constitutively the operator's on both halves: WHICH future seam qualifies depends on run scheduling only the operator opens, and spending a doubled review round is a spend preference (the cost the operator is split over, per the economics lens).
