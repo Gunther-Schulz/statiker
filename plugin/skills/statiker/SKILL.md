@@ -392,8 +392,13 @@ NARROWING route (The attack), never to another same-form round.
 Housekeeping never bills the budget (record-repair legs — The
 record, the resume's mechanical leg — and sweep/closure passes are
 meta-owned, outside cycle accounting); excess iteration is a
-SYMPTOM, never a verdict; a stop-and-report fires as a MINT SOURCE:
-it owes a named cause at close-out, read from the DISCRIMINATING
+SYMPTOM, never a verdict; a stop-and-report fires as a MINT SOURCE,
+and the bound is a CANARY — its firing always points at structure.
+The stop report itself names the cause AND the generalization it
+implies (which design change makes the class not recur); a raise
+never lands without that cause quoted beside it, and one granted
+causeless is a recorded miss. The cause is read from the
+DISCRIMINATING
 EVIDENCE pre-registered at arming (the trend verdict for arithmetic,
 named locus body-reads for repair-versus-account, each terminal
 entry's class split) — a cause report is a READ, not a composition;
@@ -1222,10 +1227,17 @@ completed [BIT] rounds behind it there is no series, and the first
 repeat round is the ordinary re-lock path, never graded. CONTRACTING:
 substance
 findings fall round over round AND land mostly on ground the
-previous round already bit. NON-CONTRACTING: everything else
+previous round already bit. Ground BORN from that round's repairs —
+a unit, gate or form the repair introduced — is NEW surface, never
+ground already bit: findings concentrating there are the
+non-contracting shape however the counts fall, and the location
+read outranks the count read. NON-CONTRACTING: everything else
 (the founding shape: the loop
 eating its own repairs — nine rounds, none zero-delta, each
-round's findings concentrated on the newest cycle's own work).
+round's findings concentrated on the newest cycle's own work; the
+measured variant, counts falling while every finding sat in the
+prior repair's newborn units — graded improving by count, caught
+only at budget exhaustion).
 A non-contracting grade routes to NARROWING, never to another
 same-form round:
 re-scope the head to the smallest independently shippable unit
@@ -1268,6 +1280,22 @@ F-lines with the tag their evidence earns — reach-matched in hand →
 text itself), else [PENDING]; an UNMEASURED verdict is an open
 question the desk completes itself — its own executed measurement
 recorded as the F-line's evidence — before the round's A-line lands.
+
+Per-unit convergence rides the same return. A unit that draws zero
+design-substance findings across a full round is CONVERGED,
+recorded as that unit's own `record:`-scoped entry; later rounds
+aim at unconverged units plus cross-unit interactions, and the
+closing zero-delta round runs once over the converged set. A
+design-substance finding landing on a converged unit REOPENS it by
+an entry citing the finding, never by silent regrade. A repair
+that BIRTHS a unit — new design surface, not a fix inside existing
+surface — is an INTAKE, not a repair: the re-lock entry answers
+join-or-export at the birth, export the default where the newborn
+carries its own operator dependency or the run's other units are
+converged or near it, a join naming why the newborn must ship with
+this run (the founding incident: two units born in one repair step
+drew every later round's substance while four converged units
+waited, and were exported at exhaustion two rounds late).
 
 The form below is the tool's OUTPUT, never a second route.
 A hand-built block raises `tag-literal-in-body` on the first literal

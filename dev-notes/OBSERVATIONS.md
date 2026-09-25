@@ -12591,3 +12591,64 @@ freeze's surface-never-build bar, this section cited as evidence),
 so its consumer/drain seam is "lifecycle item carrier,
 reflection-triggers entry". The statiker-side halves keep their
 consumers as written above.
+
+## 2026-09-25 — MINT RECORD: the three attack-loop clauses land (review deferred to the accumulation seam, operator decision of this date)
+
+Applied from this date's four booked entries, per the operator's
+same-day decision: changes land now, the checkpoint review defers
+to the next accumulated release seam (consistent with the
+CLAUDE.md 2026-09-14 amendment — no pin move happens here, so no
+review is owed yet; the floor review runs at the seam).
+
+**What landed (SKILL.md, three amendments):**
+1. Budget passage: the bound is a CANARY — stop report names cause
+   AND generalization; a causeless raise is a recorded miss.
+2. Trend clause: repair-born ground is NEW surface; location read
+   outranks count read.
+3. Round-return: per-unit CONVERGED / REOPENS entries; repair that
+   births a unit is an INTAKE (join-or-export at birth).
+
+**Rename at mint:** the booked entry said SEALED; the payload
+already owns the seal namespace (sealed predictions, seal-path),
+so the token minted as CONVERGED/REOPENS — one word, one referent;
+substance unchanged.
+
+**C4b reading:** all three ARE mints — new tokens (CONVERGED,
+REOPENS) and new mandatory forms (the causeless-raise refusal, the
+birth-time join-or-export answer). Tenet check, all nine, for the
+batch:
+1. Investigation-led design: PASS — loop-conduct rules, design
+   freedom untouched.
+2. Sufficiency=dispatchable: PASS — convergence and intake answers
+   are ordinary record entries, no pre-dispatch ceremony added.
+3. Anti-skim/forcing points: PASS — strengthens forcing point 3,
+   thins none.
+4. Cost asymmetry: PASS — birth-intake moves scope decisions to
+   lock time, where change costs a sentence.
+5. Autonomy north star: PASS — canary+location-read replace the
+   operator-as-alarm seat the founding incident exposed.
+6. Economics: PASS — all three exist to cut wasted rounds; the
+   canary prices raises.
+7. Convergence circuit: PASS — convergence admitted in gradeable
+   form (entries, reopen events, citable).
+8. Medium tenet: FLAGGED — prose-mechanism today; the
+   machine-graded half (record-tool vocabulary + lint for
+   converged/reopen entries and the causeless-raise check) is this
+   mint's NAMED DEBT, landing at the release seam per the
+   batch-pricing rule (prose-mechanism mints budget one repair lap
+   into the seam plan). Consumer of the debt: the release seam's
+   batch plan reads this entry.
+9. Placement: PASS — three amendments into the passages that
+   already owned the concepts (budget, trend, round-return);
+   placement basis: the concept greps run at this desk this date
+   (seal/trend/budget/birth searches, statiker-c2 session record).
+
+**Verify at mint:** register_lint band 52/30 over the three edited
+regions: 0 findings (44.7 w/s, 22.4 dashes/1000w). Full suite: 658
+passed. Operational lines 1801 -> 1828; the count's home stays
+PLAN.md's supersession entry.
+
+**Provenance:** the btb prod-data-growth run's attack series (this
+date's earlier OBSERVATIONS section carries the incident bodies);
+operator decisions of this date (canary framing; changes-now
+review-deferred) in statiker LEDGER.md.
