@@ -594,6 +594,11 @@ def run_battery(git_script, record_script, root):
     (repo / "held.md").write_text(
         CLOSED_TRACKER +
         "- D9 [AUTO-ACCEPTED] unit U2 held: x.txt — basis: F9\n")
+    # a unit-scoped D-line BEFORE the closing [ZERO-DELTA], with no
+    # CONVERGED/ABSENCE record — drives ZERO_DELTA_UNCONVERGED
+    (repo / "unconv.md").write_text(
+        CLOSED_TRACKER.replace("- D1 [COMMITTED] the design",
+                               "- D1 [COMMITTED] unit U3 the design"))
     (repo / "leavings.md").write_text(
         CLOSED_TRACKER +
         "- F9 [VERIFIED] out-of-scope: spread CLV has never computed — "
@@ -832,6 +837,10 @@ def run_battery(git_script, record_script, root):
         # UNIT_DISPATCHABLE now that an unscoped id no longer does
         ("record", "closure", ["closure", "--tracker", str(repo / "waves.md"),
                                "--unit", "U1"], repo, None, None),
+        # unconv.md's pre-close unit D-line lacks a CONVERGED/ABSENCE
+        # record — drives ZERO_DELTA_UNCONVERGED (st-85 tool half)
+        ("record", "closure", ["closure", "--tracker",
+                               str(repo / "unconv.md")], repo, None, None),
         ("record", "waves", ["waves", "--tracker", str(repo / "waves.md")],
          repo, None, None),
         ("record", "waves", ["waves", "--tracker",

@@ -1310,6 +1310,10 @@ design-substance findings across a full round is CONVERGED,
 recorded as that unit's own `record:`-scoped entry; later rounds
 aim at unconverged units plus cross-unit interactions, and the
 closing zero-delta round runs once over the converged set. The
+closure tool enforces the seam: a [ZERO-DELTA] landing is REFUSED
+(ZERO_DELTA_UNCONVERGED, exit 2, each unit named) while any unit
+carried by a live pre-close D-line lacks a live CONVERGED or
+ABSENCE record — an aimed round's zero cannot close design. The
 zero converges only at the instrument's own altitude: a reading
 round's zero never converges a unit whose mechanism it did not
 execute, and the first executing round grades such a unit as if

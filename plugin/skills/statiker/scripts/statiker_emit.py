@@ -141,6 +141,7 @@ ROUTES = {
     # checkpoint-review dispositions" and the 2026-09-12 desk ruling)
     "CLOSURE_ABSENT": "barred",
     "CLOSURE_VOID": "barred",
+    "ZERO_DELTA_UNCONVERGED": "barred",
     "UNIT_HELD": "barred",
     "SUSTAIN_DENIED": "barred",
     # narrow (1)
