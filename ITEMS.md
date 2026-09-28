@@ -1,6 +1,6 @@
 schema: 2
 baseline: 21
-added: 65
+added: 66
 compacted: 0
 
 ## st-12
@@ -308,3 +308,13 @@ done-criterion: The design decision is recorded (void-always with the new-A-line
 evidence: MEASURED (statiker-c2, 2026-09-25): source read at 2170-2209 confirms branch order, the missing guard, and the continue that bypasses same-id resolution; the 2191-2202 comment itself flags the shape. RELAYED (desk F104, same date): two restatement forms left closure void; the fix lane's unit-start halted UNIT_GATE_BLOCKED correctly, no edits made. DERIVED: the incident is n=1 and argues both designs — its cost (an unrecoverable void from record hygiene) favors resolution, its lesson (write-set changes are design changes) favors void-always.
 blocked-by: decision void-always with a named recovery route versus same-id resolution for unit-scoped post-closure invalidations
 not-derivable: 2026-09-25 Genuinely open design tension: the single incident argues both directions, and the choice sets closure semantics for every future run — it belongs to the release-seam batch plan where this date's other mint judgments sit, informed by the run close's lesson harvest.
+
+## st-87
+grade: PARKED
+requirement: RUN-COST PROFILE MEASURED, causes ranked — the 2026-09-25 btb run billed ~730M context-tokens in one day across two sessions, and the dominant terms are desk depth and the meta layer, NOT the page: desk (opus, beat-the-books) 960 turns / 480M ctx, 68% of turns above 400k depth, 319 turns above 600k, max 792k, zero seam restarts, against the corpus's measured ~200k restart-payback; meta (fable, this repo) 708 turns / 249M the same day, largely drive-and-relay composition; the SKILL.md page (~25k tokens) is ~5% of a typical desk turn's prefix at those depths, so st-83 moves the smallest of the three terms. Operator prompt 2026-09-29: statiker runs feel much heavier than clippy. Record: transcript sums, sessions 58361508 (btb) and 2070cc85 (statiker), summed 2026-09-29 from ~/.claude/projects/ usage fields; sums EXCLUDE dispatched lanes (side=0 in both files), so they are undercounts
+goal: tend
+write-set: UNKNOWN
+done-criterion: a designed response per term or a recorded decline each: (1) desk seam-restart cadence — the tracker is the handoff by design, so a restart-at-seam clause is cheap; whether it is a C4b mint and what its provenance entry cites is part of the design; (2) meta-desk tier for run-driving — desk-tier-fit says opus is this repo's default desk and the meta layer's judgment share is measurable from the same transcripts; (3) st-83 re-scoped as the ~5% lever it is, not the headline. CONFIRM: each term has a disposition recorded (built, booked at its own grain, or declined with grounds). REFUTE: the depth profile of the NEXT run shows the 09-25 shape was atypical
+evidence: MEASURED: per-turn usage sums and depth buckets over ~/.claude/projects/-home-g-dev-Gunther-Schulz-beat-the-books/58361508-*.jsonl (960 opus turns, 480M ctx, 649/960 turns >400k, max 792k) and -home-g-dev-Gunther-Schulz-statiker/2070cc85-*.jsonl (708 fable turns, 249M), taken 2026-09-29 (scratchpad sumusage.py/depth.py, re-derivable from the transcripts). DERIVED: the ranking of the three terms (page share arithmetic: ~25k page over 400-600k prefixes = ~5%); 'largely drive-and-relay' for the meta session (composition not read turn-by-turn); lane exclusion read off side=0, so totals are undercounts. RECALLED: corpus Calibration stamped line (restart payback ~200k, 94.2% prefix re-read share); statiker CLAUDE.md desk-tier-fit and release-restart rule
+blocked-by: decision which of the three terms gets a designed response first, and whether the seam-restart clause is skill-owned (self-containment: is an un-restarted deep desk a silent cost or a loud one)
+not-derivable: 2026-09-29 the ranking of levers is a spend preference across the operator's capped pool and trial goals — derivable evidence ends at the measurement
