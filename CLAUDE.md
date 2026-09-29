@@ -53,6 +53,14 @@
   because it is why this is prose and not a check: e19116d's
   fail-closed floor adds no token name but does add a mandatory
   form, and whether it fires is a desk judgment.
+  A verdict mint's WRITE-SET structurally includes
+  `plugin/skills/statiker/scripts/statiker_emit.py` (ROUTES
+  registration) and `tools/test_contract.py` (the driven-or-frozen
+  battery contract) beside the emitting script — a new
+  finish()-emitted token fails the whole suite without both.
+  Applied 2026-09-29 on the third recorded miss of this exact gap
+  (OBSERVATIONS "st-74/st-64 mint" entry, pre-formulated there;
+  third instance the st-80/st-84 brief, caught by its lane).
 - **PLAN.md is the design record** — settled decisions are not
   re-opened without new evidence.
 - **Carrier transition (2026-09-10, operator GO).** Work items live
