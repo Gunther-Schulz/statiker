@@ -252,7 +252,21 @@
   never learns this repo exists (carrier-on-read-path). Measured
   the day it was settled: five silent-form defects (P32–P36), each
   arriving with file:line and both sides read, none bookable by
-  the desk itself.
+  the desk itself. UPDATED 2026-09-29 (operator, st-87): META
+  CADENCE — the meta session wakes at SEAMS and judgment moments
+  (a desk report landing, a hold, a stop-call candidate, a
+  decision round, a forcing-point boundary), never per lane
+  event; routine desk traffic arrives batched per the corpus
+  desk-pair convention, and the watching between wakes is the
+  Insurance machinery's (armed horizons, idle subscriptions,
+  artifact polls), not a model's turns. The four per-relay
+  obligations are unchanged — they bind per desk REPORT, and
+  batching changes when reports arrive, not what each owes.
+  Basis: the 09-25 run's measured meta share (708 fable turns /
+  249M context in one day, ~the whole statiker premium over the
+  bare control arm — LEDGER 2026-09-29, st-87); tier stays fable
+  per the 2026-08-05 working hypothesis (role-not-tier, ledger
+  19fd5fd).
 - **Economics lens — where the line is (operator-settled
   2026-08-26).** Every harvest, mint decision, release, and review
   in this repo asks, beside the evidence question, the ECONOMICS
