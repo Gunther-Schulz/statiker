@@ -1,6 +1,6 @@
 schema: 2
 baseline: 47
-added: 66
+added: 67
 compacted: 0
 
 ## st-12
@@ -302,3 +302,13 @@ write-set: CLAUDE.md, LEDGER.md, dev-notes/OBSERVATIONS.md, dev-notes/arm-b-raw-
 done-criterion: no tracked file outside the migration's own outputs names `BACKLOG.md`, or each remaining one is recorded as a declared exemption
 evidence: tracked files naming `BACKLOG.md` at migration time: CLAUDE.md, LEDGER.md, dev-notes/OBSERVATIONS.md, dev-notes/arm-b-raw-2026-09-10.md, dev-notes/probe-attack-batching-2026-08-10.md, dev-notes/probeB-arms-2026-09-13/sonnet.json, docs/audits/migration-report-2026-09-10.md, docs/directives/2026-08-15-harvest-lane-brief.md, docs/directives/2026-08-15-lane-D-P12EN-brief.md, docs/directives/2026-08-15-lane-EJL-brief.md, docs/directives/2026-08-15-lane-EK-brief.md, docs/directives/2026-08-15-lane-G-brief.md, docs/directives/2026-08-15-lane-P34EM-brief.md, docs/directives/2026-08-15-lane-R-brief.md, docs/directives/2026-08-15-lane-R2-brief.md, docs/directives/2026-08-16-lane-E-brief.md, docs/directives/2026-08-17-lane-A-mint-batch-brief.md, docs/directives/2026-08-17-lane-B-p16-stop-hook-brief.md, docs/directives/2026-08-17-lane-C-review-repair-brief.md, docs/directives/2026-08-23-u2-seed-brief.md, docs/directives/2026-09-11-handoff-p28-design-statiker-ba.md, docs/directives/2026-09-11-handoff-st29-compression-design-statiker-fb.md, docs/directives/2026-09-11-opus-rereview-0286-brief.md, docs/directives/2026-09-11-opus-review-0287-brief.md, docs/directives/2026-09-11-p28-design-statiker-ba.md, docs/directives/2026-09-11-sonnet-lap-0287-brief.md, docs/directives/2026-09-11-sonnet-lapA-0288-brief.md, docs/directives/2026-09-11-sonnet-lapA-fix-0288-brief.md, docs/directives/2026-09-11-sonnet-repair-0285-brief.md, docs/directives/2026-09-11-sonnet-repair-0286-brief.md, docs/directives/2026-09-12-handoff-st32-lapB-design-statiker-a5.md, plugin/hooks/statiker_stop_guard.py, plugin/skills/statiker/scripts/statiker_record.py, tools/test_contract.py, tools/test_statiker_git.py, tools/test_statiker_record.py, tools/test_statiker_stop_hook.py
 blocked-by: decision every consumer migrated or declared exempt
+
+## st-89
+grade: PARKED
+requirement: DECLARED CONTAINMENT CAN SILENTLY DOWNGRADE: two paths read as containment-never-declared while the operator declared it — a malformed CONTAINMENT: label line fails open (lane candidate lesson 1, st-80 closing report 3b), and a desk that skips the transcription step leaves a preflight-declared scope unconsumed (SKILL.md:255-258 states the absence rule; the ABSENCE is designed, the silent DOWNGRADE of a declaration is the hazard). An operator who declared containment believes the runtime gate armed. Record: st-80 mint entry tenet 8 residual, dev-notes/OBSERVATIONS.md 2026-09-29
+goal: general-maintenance
+write-set: plugin/skills/statiker/scripts/statiker_record.py,tools/test_statiker_record.py,plugin/skills/statiker/SKILL.md
+done-criterion: a detector for each path or a recorded decline each: (1) near-miss lint on CONTAINMENT:-shaped malformed labels per the d946b1a tripwire precedent; (2) a sweep/closure cross-check — record carries a PREFLIGHT verdict with containment_scope but no CONTAINMENT: line is a surfaced inconsistency, not silence. Red-first per repo rule; C4b binds if either adds a token
+evidence: RELAYED (lane sonnet-payload-st80-st84 closing report 3b, graded at this desk against the page): malformed label fails open, unlike the tripwire-arm-near-miss precedent it is modeled on. MEASURED (this desk 2026-09-29): SKILL.md:255-258 read — the skipped-transcription absence rule is stated on the page; the preflight verdict JSON carries containment_scope while the record may carry no CONTAINMENT: line, and nothing cross-checks the pair. DERIVED: the two paths converge on one read (containment-never-declared), which is what makes the downgrade silent
+blocked-by: decision which detector shape (lint, cross-check, or both) and against which consuming seam the build opens (fire-born vs hypothesis-patch class per C4b)
+not-derivable: 2026-09-29 detector shape prices a false-fire trade-off on run conduct; the mint-class call is a provenance judgment the operator holds during the trial
