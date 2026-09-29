@@ -12914,7 +12914,7 @@ battery's dev-checkout script path by construction (no semver
 ancestor directory), and the shared battery's one env dict is not
 this lane's to restructure, so `STATIKER_SERVED_VERSION` cannot be
 scoped to a single row without leaking into every row after it.
-DRIVEN ELSEWHERE, not undriven in fact (operator ruling, this date,
+DRIVEN ELSEWHERE, not undriven in fact (desk ruling, this date — dispatcher under the operator standing GO —
 answering the b76a30f "freezing a reachable verdict hides it from
 this file's own reach check" warning): all three arms — fires,
 equal, marker-less — run as real subprocess invocations in
@@ -12922,7 +12922,7 @@ TestSt84SkillVersionHold (tools/test_statiker_record.py), with
 `STATIKER_SERVED_VERSION` set per-invocation; the remainder entry's
 own text now names this instrument, not only this record.
 
-RESIDUE, named per operator ruling rather than solved beyond the
+RESIDUE, named per desk ruling rather than solved beyond the
 owned files: `STATIKER_SERVED_VERSION` is a bypass surface for a
 gate whose whole point is refusing an older desk. A production
 caller with control over the record tool's invocation environment
