@@ -900,6 +900,18 @@ blocker-moot: how the declared containment scope is carried from preflight to th
 closed-reason: 2026-09-29 runtime containment check landed: containment_scope persisted by preflight, CONTAINMENT: labels consumed by filter, ARTIFACT_CONTAINMENT_HOLD routed halt with a driven battery row; red-first proven per report 2/4, dispatcher re-ran suite 683/0/0 and read the deletion diff; silent-downgrade residual booked st-89
 closed-ref: 778221d
 
+## st-84
+grade: DONE
+requirement: VERSION-MISMATCH RESUME has no mechanism behind it: SKILL.md states the older-desk-over-newer-record refusal as PROSE, the tool surfaces skill_versions as "attribution, never a gate" in its own words, and the only other coverage is this repo CLAUDE.md release-during-a-live-run restart rule, which lives OUTSIDE the payload and binds this operator only. On a bare machine the break is SILENT — a desk under the wrong rules appends to a record it should not touch — and the self-containment criterion puts a silent break inside the skill. Surfaced at the lap-C disclosure grading and caught by statiker-9c as booking-shaped, 2026-09-15 — record: docs/audits/2026-09-15-phase0-split-question-analysis.md section 2b, PLAN.md disclosure entry of this date
+goal: tend
+write-set: plugin/skills/statiker/scripts/statiker_record.py, tools/test_statiker_record.py, plugin/skills/statiker/SKILL.md
+done-criterion: the predicate is COMPUTABLE and that is why this is buildable: the record tool can derive its OWN served version from its install path (the plugin cache path carries the version, as SKILL.md already states for the desk read) and compare it against the header Skill: line it already parses — so the gate needs no new desk input. Built RED-FIRST against a fixture record whose header names a version ahead of the tool, the arm proving the hold fires, plus the equal-version and marker-less arms proving it does NOT (a marker-less record is out of scope per the no-grandfather narrowing). Ships with the page passage naming the verdict, and the release gate tenet check per C4b since a new verdict name and hold code IS a mint
+evidence: SKILL.md resume passage (the version pair, WRITES NO CLOSE, surfaced as the desk reply not a record write) and its own sentence that skill_versions is attribution never a gate; this repo CLAUDE.md, "A release during a live run means the desk session restarts", the out-of-payload mitigation; the self-containment criterion (CLAUDE.md, operator-settled 2026-08-17): silent break -> skill-owned. Measured neighbouring fact from this arc: this repo has twice recorded momentum beating prose that was LOADED, which is why a prose-only refusal is the weak form here. ON THE BLOCKER: fire-born needs a field incident and I have NOT established one — the honest alternative is the pre-registered hypothesis-patch class (marked at mint, validation criterion logged in dev-notes), and the decision goes against the field record at the next fire-rate review or on the first incident, whichever comes first
+blocked-by: NONE
+blocker-moot: which provenance class the version-mismatch gate mints under, fire-born or marked hypothesis patch (answered in the ledger before this item closed)
+closed-reason: 2026-09-29 version gate landed as MARKED HYPOTHESIS-PATCH: header-vs-served comparison in sweep/closure, SKILL_VERSION_HOLD routed surface, UNDRIVEN_REMAINDER names the compensating direct arms; validation criterion pre-registered in the mint entry; dispatcher re-ran suite and lint band green
+closed-ref: f268da5
+
 ## Archive (pre-migration)
 
 <!-- CLOSURES READ FROM THE `--from` CARRIER ITSELF (lc-18/lc-19). The
