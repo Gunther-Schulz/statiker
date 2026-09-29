@@ -162,4 +162,9 @@ ROUTES = {
     # itself enforces, not an operator-resolvable ambiguity like
     # PREFLIGHT_CONTAINMENT_HOLD's "surface").
     "ARTIFACT_CONTAINMENT_HOLD": "halt",
+    # st-84 (0.2.105, LEDGER.md 2026-09-29 decision): an older desk
+    # over a newer record — same disposition as PREFLIGHT_UNPINNABLE_
+    # TRACKER/PREFLIGHT_CONTAINMENT_HOLD above: only a correctly-
+    # versioned successor (a restart) resolves it, never a repair.
+    "SKILL_VERSION_HOLD": "surface",
 }

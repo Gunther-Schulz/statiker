@@ -2553,6 +2553,66 @@ class TestSt80ArtifactContainmentHold(RecordFixture):
             self.assertEqual(v["verdict"], "ARTIFACT_WRITTEN", v)
 
 
+# ------------------------ st-84: version-mismatch resume gate --------------
+
+class TestSt84SkillVersionHold(RecordFixture):
+    """LEDGER.md 2026-09-29 decision: the record tool derives its OWN
+    served version from its install path (STATIKER_SERVED_VERSION
+    overrides for this test, since the dev checkout carries no semver
+    ancestor directory — UNDRIVEN_REMAINDER's own stated reason in
+    tools/test_contract.py) and compares it against the tracker
+    header's `Skill:` line ONLY — the mid-run SKILL: body stamps stay
+    attribution-only, unchanged (SKILL.md, The record). Three arms,
+    each red against the unrepaired tool and green after."""
+
+    def _sweep_with_served(self, body, header, served):
+        os.environ["STATIKER_SERVED_VERSION"] = served
+        try:
+            return self.sweep(body, header=header)
+        finally:
+            del os.environ["STATIKER_SERVED_VERSION"]
+
+    def test_header_ahead_of_served_version_fires(self):
+        header = HEADER.replace("Skill: statiker 0.2.33",
+                                "Skill: statiker 9.9.9")
+        v = self._sweep_with_served(
+            "- F1 [VERIFIED] a fact — basis: y\n", header, "0.2.105")
+        self.assertEqual(v["verdict"], "SKILL_VERSION_HOLD", v)
+        self.assertEqual(v["header_version"], "9.9.9")
+        self.assertEqual(v["served_version"], "0.2.105")
+
+    def test_equal_version_does_not_fire(self):
+        header = HEADER.replace("Skill: statiker 0.2.33",
+                                "Skill: statiker 0.2.105")
+        v = self._sweep_with_served(
+            "- F1 [VERIFIED] a fact — basis: y\n", header, "0.2.105")
+        self.assertEqual(v["verdict"], "SWEEP_CLEAN", v)
+
+    def test_marker_less_record_does_not_fire(self):
+        header = ("# Run: test\nStatus: in-progress\n"
+                 "Phase: investigate-design\n\nINTENT — do the thing.\n\n"
+                 "## Cycle 1\n")
+        v = self._sweep_with_served(
+            "- F1 [VERIFIED] a fact — basis: y\n", header, "0.2.105")
+        self.assertEqual(v["verdict"], "SWEEP_CLEAN", v)
+
+    def test_served_ahead_of_header_does_not_fire(self):
+        # the older-record/newer-tool direction is not the mismatch
+        # this gate names — only a header AHEAD of the served version.
+        v = self._sweep_with_served(
+            "- F1 [VERIFIED] a fact — basis: y\n", HEADER, "9.9.9")
+        self.assertEqual(v["verdict"], "SWEEP_CLEAN", v)
+
+    def test_mid_run_skill_stamp_never_gates(self):
+        # attribution-only, unchanged: a mid-run SKILL: body stamp
+        # ahead of the served version must NOT fire this gate — only
+        # the header line is read (SKILL.md, The record).
+        body = ("SKILL: statiker 9.9.9\n"
+               "- F1 [VERIFIED] a fact — basis: y\n")
+        v = self._sweep_with_served(body, HEADER, "0.2.105")
+        self.assertEqual(v["verdict"], "SWEEP_CLEAN", v)
+
+
 class TestAttack9ClosureSoundness(RecordFixture):
     """Region-2 repairs from attack 9 (dev-notes, 2026-08-07): the
     disarm requires RE-ASSERTION (same id, same tag), and entry-shape

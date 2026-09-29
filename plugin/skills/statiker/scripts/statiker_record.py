@@ -334,6 +334,68 @@ SKILL_HEADER_VERSION_RE = re.compile(r"^statiker (\S+)$")
 # below) — never widen the "attribution, never a gate" sentence
 # (SKILL.md) to cover this line.
 CONTAINMENT_EXACT_RE = re.compile(r"^CONTAINMENT: (\S+)$")
+# st-84 (LEDGER.md 2026-09-29 decision, MARKED HYPOTHESIS-PATCH — no
+# field incident; validated by the first field incident of an older
+# desk over a newer record, or graded at the next fire-rate review,
+# whichever comes first): a bare semver directory name, the plugin
+# cache install layout's version segment (SKILL.md already states
+# this for the desk's own served-version read).
+_INSTALL_VERSION_RE = re.compile(r"^\d+\.\d+\.\d+$")
+
+
+def own_served_version():
+    """The record tool's OWN served version, derived from its install
+    path — never the tracker's. `STATIKER_SERVED_VERSION` overrides for
+    the targeted unit tests (test_statiker_record.py): the battery in
+    tools/test_contract.py runs this script from the dev checkout,
+    which carries no semver ancestor directory, so this function
+    returns None there by construction (UNDRIVEN_REMAINDER's own
+    stated reason for SKILL_VERSION_HOLD) — the override is what makes
+    the header-ahead/equal arms reachable outside that checkout.
+    Production reads the plugin cache path: `.../statiker/statiker/
+    <version>/plugin/skills/statiker/scripts/statiker_record.py`."""
+    override = os.environ.get("STATIKER_SERVED_VERSION")
+    if override:
+        return override
+    for parent in Path(__file__).resolve().parents:
+        if _INSTALL_VERSION_RE.match(parent.name):
+            return parent.name
+    return None
+
+
+def _version_tuple(v):
+    try:
+        return tuple(int(x) for x in v.split("."))
+    except (ValueError, AttributeError):
+        return None
+
+
+def skill_version_hold(reach):
+    """st-84: an OLDER desk's tool over a NEWER record's header —
+    SKILL.md's resume passage ("WRITES NO CLOSE"), mechanized. Reads
+    ONLY the header `Skill:` line (reach["skill_versions"][0] when
+    present — parse_tracker appends the header entry first, always,
+    before any mid-run body stamp; P3, parse_tracker's own docstring):
+    the mid-run SKILL: body stamps stay attribution-only for sweep
+    scoping, an UNCHANGED, DISTINCT check (SKILL.md, The record) —
+    never read here. Returns None (no fire) on a marker-less record
+    (no header Skill: line at all — the no-grandfather narrowing's own
+    out-of-scope case), when this tool's own version cannot be derived
+    (own_served_version() is None — could-not-verify, never a silent
+    fire), on either version failing to parse as a plain X.Y.Z, or
+    when the header is at or behind the served version; else the
+    mismatch detail dict for the hold verdict."""
+    skill_versions = reach.get("skill_versions") or []
+    if not skill_versions:
+        return None
+    header_version = skill_versions[0]["version"]
+    served = own_served_version()
+    if served is None:
+        return None
+    h, s = _version_tuple(header_version), _version_tuple(served)
+    if h is None or s is None or h <= s:
+        return None
+    return {"header_version": header_version, "served_version": served}
 # P6 (BACKLOG, SKILL.md Stop rule): a declared-exemption label line —
 # INTENT_EXACT_RE/SKILL_VERSION_EXACT_RE's sibling, same body-region
 # placement, same field-not-gate treatment (no near-miss class:
@@ -2028,6 +2090,12 @@ def net_sweep_exemptions(violations, exemptions):
 
 def cmd_sweep(args):
     entries, violations, meta, reach = parse_tracker(load(args.tracker))
+    # st-84: the resume record gate's FIRST check, ahead of every
+    # other read of this record's content — an older desk over a
+    # newer record proceeds no further (SKILL.md, the resume passage).
+    mismatch = skill_version_hold(reach)
+    if mismatch is not None:
+        finish("SKILL_VERSION_HOLD", 2, **mismatch)
     say_head_region_entries("sweep", reach)
     sweep_viols, clause_dispositions = sweep_checks(
         entries, reach["landed_units"])
@@ -2147,6 +2215,11 @@ def cmd_closure(args):
         finish("USAGE_ERROR", 3,
                error=f"--unit must match U<k>, got {args.unit!r}")
     entries, violations, meta, reach = parse_tracker(load(args.tracker))
+    # st-84: the resume record gate's FIRST check, same as sweep's —
+    # an older desk over a newer record proceeds no further.
+    mismatch = skill_version_hold(reach)
+    if mismatch is not None:
+        finish("SKILL_VERSION_HOLD", 2, **mismatch)
     say_head_region_entries("closure", reach)
     # ES-2: every closure verdict lists the labeled late-INTENT lines —
     # verify's composition grades against the head PLUS these, and the

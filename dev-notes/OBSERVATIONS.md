@@ -12849,3 +12849,118 @@ scripts, never `git stash` on this shared checkout).
 Consumer: the release gate's carried-set re-ask (this repo's C4b
 Birth-class bullet); the fire-rate review for the near-miss-lint
 residual named at tenet 8.
+
+## 2026-09-29 — st-84 mint (MARKED HYPOTHESIS-PATCH): the record
+## tool derives its own served version and gates an older desk's read
+
+PAYLOAD CHANGE, same lane and brief as st-80 above, LEDGER.md's
+2026-09-29 decision ("which provenance class the version-mismatch
+gate mints under, fire-born or marked hypothesis patch").
+
+PROVENANCE, marked hypothesis-patch rather than fire-born: NO FIELD
+INCIDENT grounds this mint. SKILL.md already states the older-desk-
+over-newer-record refusal as PROSE (the resume passage's WRITES NO
+CLOSE sentence, present since the st-74/st-64 mint), and the record
+tool's own `skill_versions` field is, in its own stated words,
+"attribution, never a gate." The self-containment criterion
+(CLAUDE.md, operator-settled 2026-08-17: a silent break belongs in
+the skill) and this repo's own recorded pattern — momentum beating
+in-force PROSE twice already (run-1 round 8's unapplied never-
+sustain clause; P16's improvised turn-ends) — argue the prose form is
+weak here specifically, but neither is an EXECUTED incident of this
+exact class firing. Pre-registered validation criterion (verbatim,
+per the item's own evidence slot): "validated by the first field
+incident of an older desk over a newer record, or graded at the next
+fire-rate review, whichever comes first; a 0-incident record at that
+review argues retirement, not tightening."
+
+WHAT LANDED: `sweep` and `closure` — the two commands SKILL.md's
+resume passage already names as "the RECORD GATE" — each now derive
+the record tool's OWN served version from its install path (the
+plugin cache path carries it, the same fact the desk already reads
+off its Skill injection) and compare it, ONCE, against the tracker
+header's `Skill:` line ONLY. A header ahead of the served version
+holds a NEW verdict, SKILL_VERSION_HOLD (exit 2), before either
+command's ordinary work runs — mechanizing the existing WRITES-NO-
+CLOSE sentence rather than widening it. The mid-run `SKILL: ` body
+stamps stay attribution-only and unread by this gate, by design: a
+DIFFERENT existing check (sweep/closure's retro-scoping) already
+owns them, and the page text says so explicitly to keep the
+"attribution, never a gate" sentence true at its narrower, original
+scope. Marker-less (no header `Skill:` line), unparseable, equal, or
+served-ahead-of-header: no fire — could-not-verify or the wrong
+direction, never a silent fire.
+
+Same deviation as st-80 (one brief, one write-set gap): SKILL_
+VERSION_HOLD registered in statiker_emit.ROUTES (route "surface",
+matching PREFLIGHT_UNPINNABLE_TRACKER/PREFLIGHT_CONTAINMENT_HOLD's
+"only a correctly-versioned successor resolves it" disposition, never
+MACHINE_TOKEN_CODES/RULE_MINT_VERSION — the same category mismatch
+named in st-80's entry), and added to tools/test_contract.py's
+UNDRIVEN_REMAINDER (not driven: `own_served_version()` returns None
+under the battery's dev-checkout script path by construction — no
+semver ancestor directory — and the shared battery's one env dict
+cannot scope `STATIKER_SERVED_VERSION` to a single row without
+leaking into every row after it; the targeted unit tests in
+tools/test_statiker_record.py drive all three arms directly instead).
+
+### The tenet check — all nine, each marked
+
+1. INVESTIGATION-LED DESIGN — PASS. The predicate is fully settled
+   in LEDGER.md before this lane opened (computable from the tool's
+   own install path, compared against the already-parsed header) —
+   no design decision was made at implementation.
+2. SUFFICIENCY = DISPATCHABLE — PASS, WITH THE SAME RECORDED MISS as
+   st-80 (the write-set gap; one gap, two items, reported once via
+   the peer channel and named in both entries since each mint's own
+   record must be readable alone).
+3. ANTI-SKIM — PASS. Mechanizes an EXISTING prose passage (the
+   resume gate already named sweep/closure as its checkpoint) rather
+   than adding a new forcing point or a new section.
+4. COST ASYMMETRY — PASS, and this is the item's own predicate: a
+   version mismatch now surfaces at the record gate, before any
+   further design work rests on the wrong rules, rather than
+   depending on a desk noticing its own Skill injection disagrees
+   with the header.
+5. AUTONOMY NORTH STAR — PASS. Removes the seat a desk's own
+   self-check occupied — noticing is now computed, not recalled.
+6. ECONOMICS — PASS, priced. One path-ancestry walk (memoizable, not
+   memoized) and one int-tuple compare, once per sweep/closure call,
+   never per line.
+7. CONVERGENCE CIRCUIT — PASS. SKILL_VERSION_HOLD is a gradeable
+   verdict a later reader checks, never a desk assurance that the
+   versions were compared.
+8. MEDIUM TENET — PASS. What must hold exactly — the header-vs-
+   served comparison — is full mechanism with a red-first battery (5
+   unit arms: fires, equal, marker-less, served-ahead, mid-run-stamp-
+   never-gates). The judgment remainder — WHAT TO DO once surfaced
+   (restart the desk) — correctly stays prose (CLAUDE.md's existing
+   "a release during a live run means the desk session restarts"
+   rule), never mechanized past what a subprocess verdict can compel.
+9. PLACEMENT — PASS. Lands directly inside the existing resume
+   passage (SKILL.md, the `Skill:`/`WRITES NO CLOSE` region) as one
+   new paragraph naming the mechanized check as a narrower sibling of
+   the existing attribution sentence; no new section, no new page.
+
+Verify (both items, combined — the lane's one verification pass):
+baseline `python3 -m pytest tools/ -q` before any edit: 674 passed,
+7 subtests passed, 0 failed, 0 skipped. Full suite after both mints
+plus their battery/remainder registration: 683 passed, 7 subtests
+passed, 0 failed, 0 skipped (9 new tests, 0 new skips). register_lint
+band 52/30 over the full page after both items' edits: 0 findings
+(46.5 w/s, 26.7 dashes/1000w). Red-first proofs run per item, in
+isolation, restored from saved pre-edit copies of the touched
+scripts rather than `git stash` (this working copy is shared with
+the dispatcher desk, and stash sweeps the whole tree's uncommitted
+state) — st-80's RED (`ARTIFACT_WRITTEN` where `ARTIFACT_CONTAINMENT_
+HOLD` was expected) proved against this repo's own committed HEAD
+before st-84 existed; st-84's RED (`SWEEP_CLEAN` where `SKILL_
+VERSION_HOLD` was expected) proved against a line-precise, syntax-
+checked strip of exactly its own additions from the st-80-complete
+state, both restorations verified byte-identical to the pre-strip
+copy before any test ran again.
+
+Consumer: the release gate's carried-set re-ask; the pre-registered
+fire-rate review named in st-84's own provenance above (this mint's
+first re-grading point, whichever of the two named triggers comes
+first).

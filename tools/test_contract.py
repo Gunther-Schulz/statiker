@@ -318,6 +318,22 @@ UNDRIVEN_REMAINDER = {
                              "produce extras (function-level red)",
     "UNIT_COMMITTED_EXTRAS": "same as the lock seam's extras: no git "
                              "state is known to produce them",
+    # st-84: the tool's own served version derives from its install-
+    # path ancestry (a semver-named directory in the plugin cache), and
+    # the battery drives the checked-out script from this repo's own
+    # tree, which carries no such ancestor — own_served_version()
+    # returns None there, so the gate never fires under any battery
+    # row. STATIKER_SERVED_VERSION exists to force it for the targeted
+    # unit tests in test_statiker_record.py, but run_battery uses ONE
+    # env dict for every row (battery_env(), function level): setting
+    # the override for this row alone would leak it into every row
+    # after it, since nothing resets it.
+    "SKILL_VERSION_HOLD": "own_served_version() returns None under the "
+                          "battery's dev-checkout script path (no "
+                          "semver ancestor directory); the override env "
+                          "var that forces it for targeted unit tests "
+                          "cannot be scoped to one battery row without "
+                          "leaking into the rows after it",
 }
 # E-P: GATE_UNREADABLE retired from the remainder above — driven by
 # run_battery's own substitute-record-tool rows (gate_unreadable_row),

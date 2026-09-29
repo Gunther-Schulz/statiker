@@ -297,6 +297,19 @@ with the header's version as `skill_versions` in sweep and closure
 verdicts (attribution, never a gate): the `Skill:` line is pinned
 surface — Status and Phase are the only mutable fields — so a header
 rewritten to the new version reads as tampering, not as an update.
+This attribution sentence names the mid-run body stamps and the
+header field AS SURFACED — it does not cover a SEPARATE, mechanized
+check on that same header field (st-84): `sweep` and `closure` each
+derive the record TOOL's own served version from its install path
+(the plugin cache path carries it, the same fact the desk reads off
+its Skill injection above) and compare it against the header
+`Skill:` line ONLY, never the mid-run stamps — an older desk's TOOL
+running against a NEWER header holds SKILL_VERSION_HOLD before
+either command's ordinary work runs, mechanizing the WRITES-NO-CLOSE
+sentence above rather than widening it. A marker-less header, an
+unparseable version on either side, or a served version the tool
+cannot derive (a dev checkout with no install-path version segment)
+each hold nothing — could-not-verify, never a silent fire.
 A resume opens with the RECORD GATE before any design work: `sweep`
 and `closure` first, whatever the cause. Verdicts route by KIND —
 `closure`'s state verdicts CLOSURE_ABSENT, CLOSURE_LIVE (the
