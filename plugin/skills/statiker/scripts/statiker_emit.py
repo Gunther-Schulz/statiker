@@ -156,4 +156,10 @@ ROUTES = {
     "ARTIFACT_IN_REPO": "halt",
     "PIN_UNREADABLE": "halt",
     "TRACKER_UNREADABLE": "halt",
+    # st-80 (0.2.105, LEDGER.md 2026-09-29 decision): the runtime
+    # containment check on artifact --out — same disposition as its
+    # sibling ARTIFACT_IN_REPO just above (an --out placement the tool
+    # itself enforces, not an operator-resolvable ambiguity like
+    # PREFLIGHT_CONTAINMENT_HOLD's "surface").
+    "ARTIFACT_CONTAINMENT_HOLD": "halt",
 }

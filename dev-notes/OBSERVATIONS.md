@@ -12716,3 +12716,136 @@ existing named debt at the release seam); 9 PASS (amended into the
 passage that owns brief contents; placement basis: the
 brief/dispatch grep at this desk, this date). Verify: band lint 0
 findings (after one em-dash repair), suite 658 passed.
+
+## 2026-09-29 — st-80 mint: the preflight containment gate's declared
+## scope PERSISTS into the record, and `filter --out` reads it back
+
+PAYLOAD CHANGE, sonnet payload lane (this date), on the driving
+desk's brief (docs/directives/2026-09-29-payload-st80-st84-brief.md)
+rendering LEDGER.md's 2026-09-29 decision.
+
+INCIDENT PROVENANCE: st-64 amended-evidence (ITEMS-DONE.md), the
+FIRST ACTUAL OUT-OF-BOUNDARY WRITE in the program — run 2 arm 2
+(terra) executed `filter --out /tmp/invalid`, which the tool returned
+ARTIFACT_WRITTEN/proceed for, CORRECTLY under the page's rule (the
+artifact sits outside every repository), while /tmp was outside the
+brief's three authorized paths. That gap was closed at DECLARATION
+TIME (st-74/st-64, PREFLIGHT_CONTAINMENT_HOLD, 2026-09-14) but never
+at the WRITE it declares for: the preflight gate is
+satisfiability-only, checked once at run start, and the declared
+scope was echoed into the verdict and persisted nowhere a later
+command could read (fresh-context narrow round 2026-09-14 BLOCKING
+B3, docs/audits/2026-09-14-narrow-round-run3-contract.md, both
+halves re-verified at the code by statiker-d4 2026-09-15; re-opened
+today at the token level only, per the brief's own grade — cmd_
+preflight's full body was re-read this date and confirmed it writes
+no tracker content on any path).
+
+WHAT LANDED: preflight's PREFLIGHT_OK (under a declared scope) and
+PREFLIGHT_CONTAINMENT_HOLD both carry a new `containment_scope`
+field (the resolved, real form of every declared path — the same
+form the gate's own must-be-inside axes already use). The desk
+transcribes it as bare `CONTAINMENT: <path>` label lines, one per
+declared path — the `SKILL:`/`unit U<k> irreversible:` bare-label
+idiom, but UNLIKE those two this field IS consumed as a gate.
+`filter`'s --out handling reads it back: an --out outside every
+`CONTAINMENT:`-persisted path holds a NEW verdict,
+ARTIFACT_CONTAINMENT_HOLD (exit 2), even one that already clears
+ARTIFACT_IN_REPO — terra's own act shape, reproduced as the RED arm.
+No `CONTAINMENT:` line anywhere: unchanged ARTIFACT_IN_REPO-only
+behavior (st-74's declared-only design — absence is could-not-
+verify, never a silent pass into the new hold).
+
+DEVIATION FROM THE BRIEF, both reported at the time via the peer
+channel (dispatcher inbox, this session): (1) the brief's assigned
+registration — "added to MACHINE_TOKEN_CODES and RULE_MINT_VERSION
+... exactly per the d946b1a pattern" — contradicts the registry it
+names. d946b1a mints a lowercase-hyphen LINT-VIOLATION code detected
+inside parse_tracker's per-entry loop and retro-scoped via
+RULE_MINT_VERSION/skill_versions (is_retro/net_retro_holds, keyed to
+a tracker LINE). ARTIFACT_CONTAINMENT_HOLD is a `finish()`-emitted
+verdict (exit 2), never a per-line violation — there is no tracker
+lineno to retro-scope against, and MACHINE_TOKEN_CODES/RULE_MINT_
+VERSION are, without exception (read in full), lowercase-hyphenated
+tracker-grammar codes. The registry verdicts actually participate in
+is `statiker_emit.ROUTES` (confirmed: test_contract.py's
+emit_position_verdicts/test_every_emitted_verdict_is_routed scans
+`finish()` calls specifically, never MACHINE_TOKEN_CODES's
+population) — registered there instead, route "halt" (ARTIFACT_
+IN_REPO's sibling disposition), per the brief's own pre-authorized
+repair class (assigned spelling contradicts the target registry's
+idiom -> conform to the idiom that fits). (2) statiker_emit.py and
+tools/test_contract.py sit outside the brief's stated write
+boundary, yet a new verdict is structurally coupled to both: this
+repo's OWN recorded memory (below, "st-74/st-64 mint") already names
+this exact gap as a write-set member "nobody lists," missed twice
+before landing this same mint's PREFLIGHT_CONTAINMENT_HOLD half. A
+third miss on the same shape, in a brief that cites that mint's
+neighboring evidence as its own grounding, was treated as the known
+gap rather than a fresh scope question: statiker_emit.ROUTES gained
+the two new verdicts, and test_contract.py gained one battery row
+(ARTIFACT_CONTAINMENT_HOLD — driven, matching the "driven, never
+frozen: the verdict IS reachable" precedent from b76a30f) and one
+UNDRIVEN_REMAINDER entry (SKILL_VERSION_HOLD, st-84 below — its
+trigger needs the tool's own install-path-derived version, which the
+battery's dev-checkout script path never carries, and the shared
+battery's single env dict cannot scope an override to one row).
+
+### The tenet check — all nine, each marked
+
+1. INVESTIGATION-LED DESIGN — PASS. The design was settled in
+   LEDGER.md before this lane opened; nothing here redesigns it.
+2. SUFFICIENCY = DISPATCHABLE — PASS, WITH TWO RECORDED MISSES. The
+   brief's own assigned token registration contradicted the registry
+   it named (above), and its write boundary omitted the two files a
+   new verdict is structurally coupled to (statiker_emit.py,
+   tools/test_contract.py) — the SAME write-set gap this repo's
+   memory already names twice. Both surfaced via the peer channel
+   before building past them, per the brief's own critique-pass and
+   gap-surfacing conventions.
+3. ANTI-SKIM — PASS. Closes a hole at an existing forcing point
+   (the preflight/filter pair already existed; this gives filter the
+   question preflight could not answer for it) rather than adding a
+   new one.
+4. COST ASYMMETRY — PASS, and this is the item's own predicate: the
+   collision surfaced at attack time (a full cycle spent, st-64) and
+   now surfaces at the write itself, before any artifact lands.
+5. AUTONOMY NORTH STAR — PASS. Replaces the manual, field-incident
+   discovery (terra's act, caught only by later audit) with a check
+   that fires at the write.
+6. ECONOMICS — PASS, priced. One tracker-line scan and one realpath
+   membership test per `filter` invocation, and only when a scope was
+   ever declared for the run.
+7. CONVERGENCE CIRCUIT — PASS. The scope and the violating path enter
+   as verdict FIELDS (`containment_scope`) a later reader can grade,
+   never a desk assurance.
+8. MEDIUM TENET — PASS, WITH A NAMED RESIDUAL. What must hold
+   exactly — the --out-vs-scope comparison — is mechanism, with a
+   red-first battery (4 unit arms plus one driven battery row). The
+   residual: unlike d946b1a's tripwire-arm-near-miss precedent, a
+   malformed `CONTAINMENT: ` line (wrong spacing, wrong case) is not
+   near-miss linted — it fails OPEN, silently read as "no scope
+   declared," the exact silent-fail-open shape this repo's C4b bar
+   otherwise polices. Not built here (outside the brief's stated
+   done-criteria, and "implement exactly this, do not redesign"
+   governs); named as a candidate lesson in the closing report.
+9. PLACEMENT — PASS, WITH ONE ADAPTATION (see deviation above).
+   Precedent line: follows the `SKILL:`/`unit U<k> irreversible:`
+   bare-label-line family (SKILL.md, the machine-token enumeration)
+   for the persistence form, and the ARTIFACT_IN_REPO halt precedent
+   (statiker_emit.ROUTES) for the verdict's routing — judged sound;
+   the one departure (ROUTES instead of MACHINE_TOKEN_CODES) is the
+   deviation this entry names above, not a fresh design choice.
+
+Verify: register_lint band 52/30 over the edited page: 0 findings
+(46.3 w/s, 26.8 dashes/1000w, before st-84's own page edit landed in
+the same session). Full suite after both items: see the st-84 entry
+below, which carries the combined count (the two mints landed in one
+verification pass, per this lane's per-item red-first proofs run
+independently — st-80's red/green proved in isolation before st-84's
+code existed, restored via a saved pre-edit copy of the two touched
+scripts, never `git stash` on this shared checkout).
+
+Consumer: the release gate's carried-set re-ask (this repo's C4b
+Birth-class bullet); the fire-rate review for the near-miss-lint
+residual named at tenet 8.

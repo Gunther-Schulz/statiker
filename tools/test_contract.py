@@ -420,6 +420,23 @@ def run_battery(git_script, record_script, root):
     pin_sha = subprocess.run(["git", "rev-parse", "HEAD"], cwd=repo, env=env,
                              capture_output=True, text=True,
                              check=True).stdout.strip()
+    # st-80: drives ARTIFACT_CONTAINMENT_HOLD — a mint's write-set has a
+    # mandatory member nobody lists (dev-notes/OBSERVATIONS.md,
+    # "st-74/st-64 mint": the driven-or-frozen contract couples a new
+    # machine token to this file), and this verdict IS reachable, so it
+    # is driven here rather than frozen. `scope` is a declared
+    # containment path distinct from `outside` (already used by other
+    # filter rows as a valid ARTIFACT_WRITTEN destination), so this row
+    # cannot collide with them.
+    scope = root / "scope"
+    scope.mkdir()
+    (repo / "containment.md").write_text(
+        CLOSED_TRACKER + f"CONTAINMENT: {scope}\n")
+    git("add", "containment.md")
+    git("commit", "-m", "containment fixture")
+    containment_sha = subprocess.run(
+        ["git", "rev-parse", "HEAD"], cwd=repo, env=env,
+        capture_output=True, text=True, check=True).stdout.strip()
     with (repo / "pin_append.md").open("a") as f:
         f.write("- F9 [VERIFIED] leg returned clean — basis: report\n")
     (repo / "pin_rewrite.md").write_text(
@@ -732,6 +749,15 @@ def run_battery(git_script, record_script, root):
         ("record", "filter", ["filter", "--tracker", tracker_abs,
                               "--sha", "deadbeef",
                               "--out", str(outside / "art2.md")],
+         repo, None, None),
+        # st-80: ARTIFACT_CONTAINMENT_HOLD — `outside` lies outside the
+        # declared `scope` (and outside every repo, clearing
+        # ARTIFACT_IN_REPO first), so only the new containment check
+        # fires.
+        ("record", "filter", ["filter", "--tracker",
+                              str(repo / "containment.md"),
+                              "--sha", containment_sha,
+                              "--out", str(outside / "containment_hold.md")],
          repo, None, None),
         ("record", "pinned", ["pinned", "--tracker",
                               str(repo / "pin_append.md"), "--sha", pin_sha],

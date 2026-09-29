@@ -325,6 +325,15 @@ SKILL_VERSION_EXACT_RE = re.compile(r"^SKILL: statiker (\S+)$")
 # the documented shape (a field never fails to attach on a malformed
 # header, it degrades to the unparsed string).
 SKILL_HEADER_VERSION_RE = re.compile(r"^statiker (\S+)$")
+# st-80 (LEDGER.md 2026-09-29 decision): the containment gate's
+# declared scope PERSISTS into the record as bare `CONTAINMENT:
+# <path>` label lines — INTENT_EXACT_RE/SKILL_VERSION_EXACT_RE's
+# sibling, same body-region placement, ONE declared path per line
+# (--containment is repeatable). UNLIKE those two siblings this field
+# IS consumed as a gate (cmd_filter's ARTIFACT_CONTAINMENT_HOLD,
+# below) — never widen the "attribution, never a gate" sentence
+# (SKILL.md) to cover this line.
+CONTAINMENT_EXACT_RE = re.compile(r"^CONTAINMENT: (\S+)$")
 # P6 (BACKLOG, SKILL.md Stop rule): a declared-exemption label line —
 # INTENT_EXACT_RE/SKILL_VERSION_EXACT_RE's sibling, same body-region
 # placement, same field-not-gate treatment (no near-miss class:
@@ -2899,6 +2908,29 @@ def cmd_tripwire(args):
 
 # -------------------------------------------------------------------- filter
 
+def _within_any(real_path, scope_reals):
+    """statiker_git.py's own helper of this name, mirrored rather than
+    imported: the two tools are independent scripts (each inserts only
+    its own directory onto sys.path, per statiker_emit's docstring),
+    never cross-importing each other's internals."""
+    return any(real_path == s or real_path.startswith(s + os.sep)
+              for s in scope_reals)
+
+
+def extract_containment_scope(lines):
+    """st-80: the declared containment scope, read directly off the
+    committed tracker lines cmd_filter already reads for its own
+    blanking pass — never through parse_tracker (cmd_filter has no
+    dependency on tracker-grammar validity today, and a malformed
+    entry elsewhere must not blind the containment check that guards
+    a filesystem write). One `CONTAINMENT: <path>` label line per
+    declared path (CONTAINMENT_EXACT_RE); an empty return means no
+    scope was ever persisted (st-74's declared-only design: no field,
+    no gate)."""
+    return [m.group(1) for line in lines
+            for m in (CONTAINMENT_EXACT_RE.match(line),) if m]
+
+
 def cmd_filter(args):
     fs, rel, top, resolved = repo_paths(args.tracker)
     check_tracker_dir(args.tracker, fs)
@@ -3016,6 +3048,22 @@ def cmd_filter(args):
     # (attack-10 N6). Surrogateescape both ways keeps preserved lines
     # byte-identical to the pinned tracker.
     lines = split_lines(p.stdout.decode("utf-8", "surrogateescape"))
+    # st-80: the runtime containment check, checked only once the
+    # tracker's own committed content is in hand (containment_scope is
+    # PERSISTED RECORD content, unlike ARTIFACT_IN_REPO's check above,
+    # which needs no tracker read at all and so stays ahead of this
+    # one). No CONTAINMENT: line anywhere -> no scope was ever
+    # declared for this run -> unchanged ARTIFACT_IN_REPO-only
+    # behavior (st-74's declared-only design). Checked, and finished
+    # on, BEFORE the artifact is written.
+    containment_scope = extract_containment_scope(lines)
+    if containment_scope:
+        scope_reals = [os.path.realpath(s) for s in containment_scope]
+        if not _within_any(out_real, scope_reals):
+            finish("ARTIFACT_CONTAINMENT_HOLD", 2, out=args.out,
+                   containment_scope=containment_scope,
+                   error="--out lands outside the run's declared "
+                         "containment scope")
     # ES-3 (design-attack R3-B1): the two species are BLANKED IN PLACE
     # and NO header is emitted, so artifact line numbers EQUAL source
     # line numbers by construction — a `corrects line <n>` token

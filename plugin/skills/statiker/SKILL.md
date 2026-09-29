@@ -240,6 +240,23 @@ is desk-chosen at attack preparation, so the gate establishes that a
 legal parent EXISTS in scope and never that the desk will choose one;
 `worktree-add` halts on the path itself.
 
+This gate is SATISFIABILITY-ONLY, checked once at run start — it
+never re-checks a later write against the scope it declared
+satisfiable (st-80; ITEMS.md, docs/audits/2026-09-14-narrow-round-run3-contract.md
+B3). A declared scope PERSISTS into the record: PREFLIGHT_OK and
+PREFLIGHT_CONTAINMENT_HOLD both carry `containment_scope` (the
+resolved, real form of every declared path), and the desk transcribes
+it as bare `CONTAINMENT: <path>` label lines, one per declared path
+(The record, the machine-token enumeration) — the `SKILL:`/`unit
+U<k> irreversible:` idiom, but UNLIKE those two this field IS
+consumed as a gate: `filter`'s --out handling (The attack) reads it
+back and holds ARTIFACT_CONTAINMENT_HOLD on an --out landing outside
+every declared path, even one that already clears ARTIFACT_IN_REPO.
+No `CONTAINMENT:` line anywhere in the record — containment never
+declared, or the desk's transcription step skipped — and `filter`
+gates nothing new (st-74's declared-only design: absence is
+could-not-verify, never a silent pass INTO the new hold).
+
 ## The record (forcing point 1)
 
 Append-only tracker at `.clippy/runs/<yyyy-mm-dd>-<slug>.md` —
@@ -573,14 +590,18 @@ other way holds nothing), the write-set declarator
 route, The record tool; class F, tag VERIFIED — near-miss lint
 class `tripwire-arm-near-miss`, since an arming entry's whole
 purpose is to be load-bearing at a seam nobody re-reads),
-the late-instruction label `INTENT: `, and three bare label
+the late-instruction label `INTENT: `, and four bare label
 lines: `SKILL: statiker <version>`, `SWEEP_EXEMPT: <code>
 lines<=<n> — basis: <citation>` / `SWEEP_EXEMPT: <code> line <n>
-— basis: <citation>`, and
-`unit U<k> irreversible: <effect>`. The two attribution labels
+— basis: <citation>`, `unit U<k> irreversible: <effect>`, and
+`CONTAINMENT: <path>` (st-80; the declared containment scope's
+persistence — one line per declared path, Containment). The two
+attribution labels
 (`SKILL:`, `unit U<k> irreversible:`) carry NO near-miss class by
 recorded decision (a bare-word scan false-fires; attribution
-fields fail soft).
+fields fail soft); `CONTAINMENT:` shares their bare-label shape but
+NOT their attribution-only treatment — it IS consumed as a gate
+(`filter`'s ARTIFACT_CONTAINMENT_HOLD, The attack).
 
 The PRECEDENT LINE (one clause of the unit's design D-line; forms at
 Stop rule, "Each unit design also carries the PRECEDENT LINE")
@@ -1040,7 +1061,11 @@ bars a read is the brief's scope, not the split; the artifact lives
 OUTSIDE every repo (an in-repo artifact is an untracked file under a
 brief asserting tree == lock commit): the tool halts
 ARTIFACT_IN_REPO on any, halts a symlink tracker (name the real
-path), and `--out` alone is cwd-relative; filter BLANKS the two
+path), and `--out` alone is cwd-relative. Declared containment
+(Containment) narrows this further: an --out outside every
+`CONTAINMENT:`-persisted path holds ARTIFACT_CONTAINMENT_HOLD, even
+one already outside every repo — no declared scope, no new gate
+(st-80). filter BLANKS the two
 Superseded species IN PLACE — each dropped line an empty line, so
 artifact line numbers EQUAL source line numbers and `corrects line
 <n>` dereferences identically — while entry-shaped lines inside a

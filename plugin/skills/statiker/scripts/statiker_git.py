@@ -1349,12 +1349,24 @@ def cmd_preflight(repo, args):
     # is validated only by worktree-add itself, at that later seam.
     unchecked_axes = ["attack-worktree-parent-choice"]
 
+    # st-80: the declared scope PERSISTS into the run record as a
+    # tool-owned field — the skill_versions pattern (LEDGER.md
+    # 2026-09-29 decision): the desk transcribes `containment_scope`
+    # into the tracker as bare `CONTAINMENT: <path>` label lines
+    # (SKILL.md, The record — the SKILL:/irreversible: label family),
+    # and statiker_record.py's --out check reads it back from there,
+    # no new desk input at filter time. The REAL (resolved) form is
+    # persisted, not the as-named one: it is the form every
+    # must-be-inside check in this function already uses
+    # (scope_reals), and it is what the --out check's own realpath
+    # comparison needs to compare like with like.
     if axes:
         finish("PREFLIGHT_CONTAINMENT_HOLD", 2, tracker=tracker_rel,
                ops=ops, branch=branch, worktree=worktree,
                hooks_path=hooks_path_field,
                out_of_repo_required=out_of_repo_required,
-               containment=args.containment, axes=axes,
+               containment=args.containment,
+               containment_scope=scope_reals, axes=axes,
                unchecked_axes=unchecked_axes,
                unchecked_note=UNCHECKED_WORKTREE_PARENT_NOTE)
     finish("PREFLIGHT_OK", 0, tracker=tracker_rel, ops=ops,
@@ -1362,6 +1374,7 @@ def cmd_preflight(repo, args):
            hooks_path=hooks_path_field,
            out_of_repo_required=out_of_repo_required,
            containment=args.containment,
+           containment_scope=scope_reals,
            unchecked_axes=unchecked_axes,
            unchecked_note=UNCHECKED_WORKTREE_PARENT_NOTE)
 

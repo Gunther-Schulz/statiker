@@ -2470,6 +2470,89 @@ class TestAttack8Findings(RecordFixture):
                          "halt must precede the write")
 
 
+# --------------- st-80: runtime containment check on artifact --out ---------
+
+class TestSt80ArtifactContainmentHold(RecordFixture):
+    """LEDGER.md 2026-09-29 decision: the preflight-declared containment
+    scope persists into the record as bare `CONTAINMENT: <path>` label
+    lines (the skill_versions idiom); cmd_filter's --out handling reads
+    them back and holds an --out that lands outside every declared
+    scope path, even when it already clears ARTIFACT_IN_REPO (terra's
+    own act shape: outside every repo, but not the declared scope —
+    ITEMS.md st-80, docs/audits/2026-09-14-narrow-round-run3-contract.md
+    B3). Three arms, each red against the unrepaired tool and green
+    after (0.2.104 vs 0.2.105, verified by hand: see the closing
+    report's red-first section — reverting this file's containment
+    check and extract_containment_scope reproduces RED on this class,
+    unchanged behavior on TestFilter)."""
+
+    def _committed_sha(self, containment_lines, out_of_scope=False):
+        f = TestFilter("test_filter_drops_both_species_and_reads_the_sha")
+        f._tmp, f.dir = self._tmp, self.dir
+        body = HEADER + "".join(
+            f"CONTAINMENT: {p}\n" for p in containment_lines)
+        body += "- F1 [VERIFIED] kept — basis: y\n"
+        return TestFilter.make_repo_with_tracker(f, body)
+
+    def test_out_outside_declared_scope_holds(self):
+        # RED arm (done-criterion): --out outside every declared
+        # containment path holds, even though it is outside every repo
+        # too (ARTIFACT_IN_REPO would not catch this on its own).
+        with tempfile.TemporaryDirectory() as scope_root, \
+                tempfile.TemporaryDirectory() as elsewhere:
+            sha = self._committed_sha([scope_root])
+            out = Path(elsewhere) / "artifact.md"
+            p = tool(["filter", "--tracker", "t.md", "--sha", sha,
+                      "--out", str(out)], cwd=self.dir)
+            v = self.verdict(p)
+            self.assertEqual(v["verdict"], "ARTIFACT_CONTAINMENT_HOLD", v)
+            self.assertEqual(p.returncode, 2)
+            self.assertEqual(v["containment_scope"],
+                             [os.path.realpath(scope_root)])
+            self.assertFalse(out.exists(), "hold must precede the write")
+
+    def test_out_inside_declared_scope_stays_silent(self):
+        # MUST-NOT-MOVE arm (done-criterion): an --out INSIDE the
+        # declared scope is unaffected — same ARTIFACT_WRITTEN path as
+        # before this check existed.
+        with tempfile.TemporaryDirectory() as scope_root:
+            sha = self._committed_sha([scope_root])
+            out = Path(scope_root) / "artifact.md"
+            p = tool(["filter", "--tracker", "t.md", "--sha", sha,
+                      "--out", str(out)], cwd=self.dir)
+            v = self.verdict(p)
+            self.assertEqual(v["verdict"], "ARTIFACT_WRITTEN", v)
+            self.assertTrue(out.exists())
+
+    def test_absent_containment_field_does_not_fire(self):
+        # absent-field arm (brief verifier §2): no CONTAINMENT: line
+        # anywhere in the record -> unchanged ARTIFACT_IN_REPO-only
+        # behavior (st-74's declared-only design) — an --out that would
+        # have held under a declared scope succeeds when none was ever
+        # declared for this run.
+        with tempfile.TemporaryDirectory() as elsewhere:
+            sha = self._committed_sha([])
+            out = Path(elsewhere) / "artifact.md"
+            p = tool(["filter", "--tracker", "t.md", "--sha", sha,
+                      "--out", str(out)], cwd=self.dir)
+            v = self.verdict(p)
+            self.assertEqual(v["verdict"], "ARTIFACT_WRITTEN", v)
+            self.assertTrue(out.exists())
+
+    def test_multiple_declared_paths_any_one_satisfies(self):
+        # --containment is repeatable at preflight time; the persisted
+        # form must stay a set the --out check accepts ANY member of,
+        # not just the first declared path.
+        with tempfile.TemporaryDirectory() as scope_a, \
+                tempfile.TemporaryDirectory() as scope_b:
+            sha = self._committed_sha([scope_a, scope_b])
+            out = Path(scope_b) / "artifact.md"
+            p = tool(["filter", "--tracker", "t.md", "--sha", sha,
+                      "--out", str(out)], cwd=self.dir)
+            v = self.verdict(p)
+            self.assertEqual(v["verdict"], "ARTIFACT_WRITTEN", v)
+
+
 class TestAttack9ClosureSoundness(RecordFixture):
     """Region-2 repairs from attack 9 (dev-notes, 2026-08-07): the
     disarm requires RE-ASSERTION (same id, same tag), and entry-shape
