@@ -327,13 +327,23 @@ UNDRIVEN_REMAINDER = {
     # unit tests in test_statiker_record.py, but run_battery uses ONE
     # env dict for every row (battery_env(), function level): setting
     # the override for this row alone would leak it into every row
-    # after it, since nothing resets it.
+    # after it, since nothing resets it. Frozen here rather than
+    # driven IN-BATTERY, never frozen in fact — TestSt84SkillVersionHold
+    # drives all three arms as real subprocess invocations outside this
+    # file, which is where the b76a30f warning ("freezing a reachable
+    # verdict hides it from this file's own reach check") is answered.
     "SKILL_VERSION_HOLD": "own_served_version() returns None under the "
                           "battery's dev-checkout script path (no "
                           "semver ancestor directory); the override env "
                           "var that forces it for targeted unit tests "
                           "cannot be scoped to one battery row without "
-                          "leaking into the rows after it",
+                          "leaking into the rows after it. DRIVEN "
+                          "ELSEWHERE, not undriven in fact: all three "
+                          "arms (fires, equal, marker-less) run as real "
+                          "subprocess invocations in "
+                          "TestSt84SkillVersionHold, "
+                          "tools/test_statiker_record.py, with "
+                          "STATIKER_SERVED_VERSION set per-invocation",
 }
 # E-P: GATE_UNREADABLE retired from the remainder above — driven by
 # run_battery's own substitute-record-tool rows (gate_unreadable_row),

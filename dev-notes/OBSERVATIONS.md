@@ -11595,6 +11595,15 @@ is now a known slot, not a discovery), and the fire-rate review, which
 should ask whether the declaration-as-switch shape generalizes past
 containment.
 
+THIRD INSTANCE, 2026-09-29, st-80/st-84 payload lane: the brief for
+the sibling containment mint (ARTIFACT_CONTAINMENT_HOLD) and its
+version-gate sibling (SKILL_VERSION_HOLD) again omitted
+statiker_emit.py and tools/test_contract.py from its stated write
+boundary; caught by the executing lane rather than the desk, same
+shape as both misses above — "the next C4b mint's batch plan" named
+here in 2026-09-14 did not reach the 2026-09-29 brief. Full record:
+this file's "st-80 mint" and "st-84 mint" entries, this date.
+
 ## 2026-09-14 — RELEASE-GATE RECORD for 0.2.100: the C4b call on the M3
 ## refusal, and the carried-set re-ask over the whole pin interval
 
@@ -12777,12 +12786,14 @@ repair class (assigned spelling contradicts the target registry's
 idiom -> conform to the idiom that fits). (2) statiker_emit.py and
 tools/test_contract.py sit outside the brief's stated write
 boundary, yet a new verdict is structurally coupled to both: this
-repo's OWN recorded memory (below, "st-74/st-64 mint") already names
-this exact gap as a write-set member "nobody lists," missed twice
-before landing this same mint's PREFLIGHT_CONTAINMENT_HOLD half. A
-third miss on the same shape, in a brief that cites that mint's
-neighboring evidence as its own grounding, was treated as the known
-gap rather than a fresh scope question: statiker_emit.ROUTES gained
+repo's OWN recorded memory (above, "st-74/st-64 mint", now carrying
+this instance as an appended line) already names this exact gap as a
+write-set member "nobody lists," missed twice before landing that
+mint's PREFLIGHT_CONTAINMENT_HOLD half. A third miss on the same
+shape, in a brief that cites that mint's neighboring evidence as its
+own grounding, was treated as the known gap rather than a fresh
+scope question, ratified by the driving desk (SendMessage grants,
+this date, state token base fe184c2): statiker_emit.ROUTES gained
 the two new verdicts, and test_contract.py gained one battery row
 (ARTIFACT_CONTAINMENT_HOLD — driven, matching the "driven, never
 frozen: the verdict IS reachable" precedent from b76a30f) and one
@@ -12897,12 +12908,34 @@ matching PREFLIGHT_UNPINNABLE_TRACKER/PREFLIGHT_CONTAINMENT_HOLD's
 "only a correctly-versioned successor resolves it" disposition, never
 MACHINE_TOKEN_CODES/RULE_MINT_VERSION — the same category mismatch
 named in st-80's entry), and added to tools/test_contract.py's
-UNDRIVEN_REMAINDER (not driven: `own_served_version()` returns None
-under the battery's dev-checkout script path by construction — no
-semver ancestor directory — and the shared battery's one env dict
-cannot scope `STATIKER_SERVED_VERSION` to a single row without
-leaking into every row after it; the targeted unit tests in
-tools/test_statiker_record.py drive all three arms directly instead).
+UNDRIVEN_REMAINDER — genuinely unavailable IN-BATTERY, not a
+convenience freeze: `own_served_version()` returns None under the
+battery's dev-checkout script path by construction (no semver
+ancestor directory), and the shared battery's one env dict is not
+this lane's to restructure, so `STATIKER_SERVED_VERSION` cannot be
+scoped to a single row without leaking into every row after it.
+DRIVEN ELSEWHERE, not undriven in fact (operator ruling, this date,
+answering the b76a30f "freezing a reachable verdict hides it from
+this file's own reach check" warning): all three arms — fires,
+equal, marker-less — run as real subprocess invocations in
+TestSt84SkillVersionHold (tools/test_statiker_record.py), with
+`STATIKER_SERVED_VERSION` set per-invocation; the remainder entry's
+own text now names this instrument, not only this record.
+
+RESIDUE, named per operator ruling rather than solved beyond the
+owned files: `STATIKER_SERVED_VERSION` is a bypass surface for a
+gate whose whole point is refusing an older desk. A production
+caller with control over the record tool's invocation environment
+neutralizes SKILL_VERSION_HOLD entirely by setting that variable to
+the header's own version (or higher) before every `sweep`/`closure`
+call — the gate then never sees a mismatch, whatever the tool's
+actual served version. Nothing in the owned files distinguishes a
+test invocation from a production one; the variable is the only
+input `own_served_version()` reads before falling back to the
+install-path walk. Left as-is: a test-mode detector would be new
+infrastructure outside this mint's scope, and the residue is exactly
+the class hypothesis-patch provenance exists to carry into the
+fire-rate review rather than silently accept or unilaterally fix.
 
 ### The tenet check — all nine, each marked
 
