@@ -888,6 +888,18 @@ amended-evidence: 2026-09-12 lc-73 (lifecycle b452d88) execution facts (statiker
 closed-reason: 2026-09-29 25 archive bodies ingested verbatim (hand-verified 25/25 present, 0 missing, drawn from the source; tool per-source name-match could-not-verify explained by 70 pre-existing BACKLOG.md mentions), total conservation CLEAN. BACKLOG.md retirement still NOT decidable: st-21 open, and the source is unfrozen (69 unpinned anchors, migration report 2026-09-29)
 closed-ref: e881518
 
+## st-80
+grade: DONE
+requirement: the record tool has NO runtime authorized-path check on its artifact --out, so the containment gate cannot catch the class that fired in the field. Verified at the code 2026-09-15: the gate is preflight-time satisfiability ONLY (statiker_git.py:1274-1366, three axes over the declared scope, then never again) and the declared scope is echoed into the verdict and persisted NOWHERE; terra actual act, filter --out to a path outside the declared scope, goes through statiker_record.py:2752-2761 ARTIFACT_IN_REPO which asks only whether the path is inside ANY repo. Record: docs/audits/2026-09-14-narrow-round-run3-contract.md B3, plus the decision of 2026-09-15 in LEDGER.md
+goal: general-maintenance
+write-set: plugin/skills/statiker/scripts/statiker_record.py,plugin/skills/statiker/scripts/statiker_git.py,tools/test_statiker_record.py,dev-notes/OBSERVATIONS.md
+done-criterion: a runtime authorized-path check on the artifact --out lands with a red-first arm whose RED is terra own act (filter --out to a path outside the declared containment scope) and whose MUST-NOT-MOVE is an --out INSIDE the declared scope staying silent. Verifier: the red arm reds on the unrepaired tool and the must-not-move stays green on it
+evidence: Fresh-context narrow round 2026-09-14 BLOCKING B3, both halves re-verified at the code by statiker-d4 2026-09-15 rather than accepted from the report. The field instance is st-64 amended-evidence, the FIRST ACTUAL OUT-OF-BOUNDARY WRITE in the program. Deferred out of run 3 by driving-desk decision 2026-09-15: it is payload work against banked certified 0.2.100, and the narrow round payload-clean verdict is what this arc exists to protect
+blocked-by: NONE
+blocker-moot: how the declared containment scope is carried from preflight to the record tool, given it is currently persisted nowhere downstream can read (answered in the ledger before this item closed)
+closed-reason: 2026-09-29 runtime containment check landed: containment_scope persisted by preflight, CONTAINMENT: labels consumed by filter, ARTIFACT_CONTAINMENT_HOLD routed halt with a driven battery row; red-first proven per report 2/4, dispatcher re-ran suite 683/0/0 and read the deletion diff; silent-downgrade residual booked st-89
+closed-ref: 778221d
+
 ## Archive (pre-migration)
 
 <!-- CLOSURES READ FROM THE `--from` CARRIER ITSELF (lc-18/lc-19). The
