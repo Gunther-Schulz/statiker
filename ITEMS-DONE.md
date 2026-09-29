@@ -868,6 +868,26 @@ not-derivable: 2026-09-29 the ranking of levers is a spend preference across the
 blocker-moot: which of the three terms gets a designed response first, and whether the seam-restart clause is skill-owned (self-containment: is an un-restarted deep desk a silent cost or a loud one) (answered in the ledger before this item closed)
 closed-reason: 2026-09-29 all three terms dispositioned: term 1 rejected (ledger 7e91054, per-seam restarts cost operator pastes), term 2 role-not-tier with meta cadence built into CLAUDE.md two-session layout 2026-09-29, term 3 st-83 re-scoped (~5% lever). Desk-as-lane stays a recorded option in the 7e91054 line, deliberately not designed (layout redesign, no consumer). REFUTE branch (next run depth profile) inherited by the next run's meta as an ordinary read
 
+## st-22
+grade: DONE
+requirement: BACKLOG.md's ## Done section (25 date-led closure bodies) is NOT yet ingested into ITEMS-DONE.md: the migrate recognizer missed date-led closure bullets (lifecycle lc-72); BACKLOG.md must not retire before ingestion or the closure archive leaves the live successor — record: docs/audits/migration-report-2026-09-10.md
+goal: tend
+write-set: ITEMS-DONE.md, BACKLOG.md
+done-criterion: after the lc-72 fix releases: migrate --merge --from-done NONE re-run routes 25 archive bodies to ITEMS-DONE.md verbatim, bullet identity and conservation hold; only then is BACKLOG.md retirement decidable (jointly with st-21's consumer criterion)
+evidence: docs/audits/migration-report-2026-09-10.md — 25 'non-entry prose', all under ## Done, source blob a115998c; lifecycle ITEMS.md lc-72 (be97be9) carries the fix
+blocked-by: NONE
+blocker-moot: fired: grep -q '^## lc-73' /home/g/dev/Gunther-Schulz/lifecycle/ITEMS-DONE.md
+amend-reason: 2026-09-10 re-pointed: the recognizer fix (lc-72, dd81507) is in and proven at unit level, but the merge's whole-run duplicate refusal (lc-73) now blocks the ingestion; BACKLOG.md retirement unchanged, still jointly gated with st-21
+amended-blocked-by: 2026-09-10 evidence lifecycle lc-73 duplicate-disposition landed (a merge build that routes the 25 closure bodies past the 20 declared same-work duplicates)
+amend-reason: 2026-09-10 blocker predicate made EXECUTABLE: item ready runs the predicate as a command and my prose form exited 2 (trigger_broken); the grep goes green when lc-73's closed body moves to lifecycle's done home
+amended-blocked-by: 2026-09-10 evidence grep -q '^## lc-73' /home/g/dev/Gunther-Schulz/lifecycle/ITEMS-DONE.md
+amend-reason: 2026-09-12 Evidence refreshed after a peer relay concluded execute-a-run from lc-72's closure alone; the lifecycle record refutes that, and the stale lc-72 citation in this body is what misled
+amended-evidence: 2026-09-12 lc-72 (recognizer for date-led bullets) is CLOSED in lifecycle ITEMS-DONE.md:116 (verified 2026-09-12, statiker-58) and migrate --merge ships; but the merge was ALREADY EXECUTED here 2026-09-10 and structurally refused: FINDING merge_duplicate_body 20, nothing written (lifecycle lc-73's evidence slot records the run). lc-73 (READY in lifecycle ITEMS.md:451, blocked on its own duplicate-disposition design decision) carries lc-72's unmet cross-repo remainder; this item's predicate greps lc-73 and is correctly quiet. A desk reading only lc-72's closure re-derives execute-a-run wrongly, as the dotfiles drainage desk did 2026-09-12
+amend-reason: 2026-09-12 statiker-f7 relayed two facts from dotfiles-1a's lc-73 ruling that change how st-22 executes
+amended-evidence: 2026-09-12 lc-73 (lifecycle b452d88) execution facts (statiker-f7, 2026-09-12): (1) the live proof of the lc-73 fix is a statiker migrate re-run and THIS desk holds the consuming working copy — expect the lc-73 build to name this desk for the proof run; (2) that proof run is NOT a test: with lc-73 fixed the merge SUCCEEDS and performs the real ingestion of the 25 closure bodies into ITEMS-DONE.md — proof and production write are one act. Run it deliberately as st-22's execution, or against a copy first.
+closed-reason: 2026-09-29 25 archive bodies ingested verbatim (hand-verified 25/25 present, 0 missing, drawn from the source; tool per-source name-match could-not-verify explained by 70 pre-existing BACKLOG.md mentions), total conservation CLEAN. BACKLOG.md retirement still NOT decidable: st-21 open, and the source is unfrozen (69 unpinned anchors, migration report 2026-09-29)
+closed-ref: e881518
+
 ## Archive (pre-migration)
 
 <!-- CLOSURES READ FROM THE `--from` CARRIER ITSELF (lc-18/lc-19). The

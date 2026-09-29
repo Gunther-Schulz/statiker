@@ -97,23 +97,6 @@ done-criterion: no tracked file outside the migration's own outputs names `BACKL
 evidence: tracked files naming `BACKLOG.md` at migration time: dev-notes/OBSERVATIONS.md, dev-notes/probe-attack-batching-2026-08-10.md, docs/directives/2026-08-15-harvest-lane-brief.md, docs/directives/2026-08-15-lane-D-P12EN-brief.md, docs/directives/2026-08-15-lane-EJL-brief.md, docs/directives/2026-08-15-lane-EK-brief.md, docs/directives/2026-08-15-lane-G-brief.md, docs/directives/2026-08-15-lane-P34EM-brief.md, docs/directives/2026-08-15-lane-R-brief.md, docs/directives/2026-08-15-lane-R2-brief.md, docs/directives/2026-08-16-lane-E-brief.md, docs/directives/2026-08-17-lane-A-mint-batch-brief.md, docs/directives/2026-08-17-lane-B-p16-stop-hook-brief.md, docs/directives/2026-08-17-lane-C-review-repair-brief.md, docs/directives/2026-08-23-u2-seed-brief.md, plugin/hooks/statiker_stop_guard.py, tools/test_contract.py, tools/test_statiker_git.py, tools/test_statiker_record.py, tools/test_statiker_stop_hook.py
 blocked-by: decision every consumer migrated or declared exempt
 
-## st-22
-grade: READY
-requirement: BACKLOG.md's ## Done section (25 date-led closure bodies) is NOT yet ingested into ITEMS-DONE.md: the migrate recognizer missed date-led closure bullets (lifecycle lc-72); BACKLOG.md must not retire before ingestion or the closure archive leaves the live successor — record: docs/audits/migration-report-2026-09-10.md
-goal: tend
-write-set: ITEMS-DONE.md, BACKLOG.md
-done-criterion: after the lc-72 fix releases: migrate --merge --from-done NONE re-run routes 25 archive bodies to ITEMS-DONE.md verbatim, bullet identity and conservation hold; only then is BACKLOG.md retirement decidable (jointly with st-21's consumer criterion)
-evidence: docs/audits/migration-report-2026-09-10.md — 25 'non-entry prose', all under ## Done, source blob a115998c; lifecycle ITEMS.md lc-72 (be97be9) carries the fix
-blocked-by: evidence lifecycle lc-72 fix landed (a migrate build whose closure pass routes date-led bullets)
-amend-reason: 2026-09-10 re-pointed: the recognizer fix (lc-72, dd81507) is in and proven at unit level, but the merge's whole-run duplicate refusal (lc-73) now blocks the ingestion; BACKLOG.md retirement unchanged, still jointly gated with st-21
-amended-blocked-by: 2026-09-10 evidence lifecycle lc-73 duplicate-disposition landed (a merge build that routes the 25 closure bodies past the 20 declared same-work duplicates)
-amend-reason: 2026-09-10 blocker predicate made EXECUTABLE: item ready runs the predicate as a command and my prose form exited 2 (trigger_broken); the grep goes green when lc-73's closed body moves to lifecycle's done home
-amended-blocked-by: 2026-09-10 evidence grep -q '^## lc-73' /home/g/dev/Gunther-Schulz/lifecycle/ITEMS-DONE.md
-amend-reason: 2026-09-12 Evidence refreshed after a peer relay concluded execute-a-run from lc-72's closure alone; the lifecycle record refutes that, and the stale lc-72 citation in this body is what misled
-amended-evidence: 2026-09-12 lc-72 (recognizer for date-led bullets) is CLOSED in lifecycle ITEMS-DONE.md:116 (verified 2026-09-12, statiker-58) and migrate --merge ships; but the merge was ALREADY EXECUTED here 2026-09-10 and structurally refused: FINDING merge_duplicate_body 20, nothing written (lifecycle lc-73's evidence slot records the run). lc-73 (READY in lifecycle ITEMS.md:451, blocked on its own duplicate-disposition design decision) carries lc-72's unmet cross-repo remainder; this item's predicate greps lc-73 and is correctly quiet. A desk reading only lc-72's closure re-derives execute-a-run wrongly, as the dotfiles drainage desk did 2026-09-12
-amend-reason: 2026-09-12 statiker-f7 relayed two facts from dotfiles-1a's lc-73 ruling that change how st-22 executes
-amended-evidence: 2026-09-12 lc-73 (lifecycle b452d88) execution facts (statiker-f7, 2026-09-12): (1) the live proof of the lc-73 fix is a statiker migrate re-run and THIS desk holds the consuming working copy — expect the lc-73 build to name this desk for the proof run; (2) that proof run is NOT a test: with lc-73 fixed the merge SUCCEEDS and performs the real ingestion of the 25 closure bodies into ITEMS-DONE.md — proof and production write are one act. Run it deliberately as st-22's execution, or against a copy first.
-
 ## st-26
 grade: PARKED
 requirement: precedent line and red-recording mandate: mechanized readers deferred pending a field datum. N3: does the precedent line earn a near-miss lint or close enumeration; N4: does the red-record earn a gate-legible token. Both were minted 0.2.84 as prose with a named consumer (the verify-leg brief demand; the D-line home) — record: dev-notes/OBSERVATIONS.md 2026-09-10 checkpoint-review dispositions, N3/N4
