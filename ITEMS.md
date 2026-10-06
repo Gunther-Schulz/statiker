@@ -1,6 +1,6 @@
 schema: 2
 baseline: 47
-added: 67
+added: 68
 compacted: 0
 
 ## st-12
@@ -294,3 +294,13 @@ done-criterion: a detector for each path or a recorded decline each: (1) near-mi
 evidence: RELAYED (lane sonnet-payload-st80-st84 closing report 3b, graded at this desk against the page): malformed label fails open, unlike the tripwire-arm-near-miss precedent it is modeled on. MEASURED (this desk 2026-09-29): SKILL.md:255-258 read — the skipped-transcription absence rule is stated on the page; the preflight verdict JSON carries containment_scope while the record may carry no CONTAINMENT: line, and nothing cross-checks the pair. DERIVED: the two paths converge on one read (containment-never-declared), which is what makes the downgrade silent
 blocked-by: decision which detector shape (lint, cross-check, or both) and against which consuming seam the build opens (fire-born vs hypothesis-patch class per C4b)
 not-derivable: 2026-09-29 detector shape prices a false-fire trade-off on run conduct; the mint-class call is a provenance judgment the operator holds during the trial
+
+## st-90
+grade: NEW
+requirement: Deliberate how the reported Opus coding-capability jump (operator-pasted 2026-10-07, SWE-bench Pro: Opus 5.5 89.9 vs Opus 5 79.2 vs Opus 4.6 Max 53.4 — UNVERIFIED testimony, and a patch-generation benchmark, not multi-session conduct) moves statiker's economics and tier routing: rounds-per-landed-unit, repair laps per mint batch, the prose-mechanism-draws-blockers split, desk-tier-fit defaults, and whether the control-arm premium (priced against an older model's unaided baseline) still holds. Working hypothesis to test, not assume: the self-blindness core (the one fresh-context round) is capability-independent and stays; the machinery on trial against its cost is what a stronger coder cheapens. CLEARING CONVENTION: the first statiker run executed on the upgraded tier lineup files its digest as dev-notes/*post-upgrade-run*.md, recording rounds-per-landed-unit and repair-lap counts with the prior run record cited as comparand — that filing is what clears this item's evidence blocker.
+goal: general-maintenance
+write-set: UNKNOWN
+done-criterion: A recorded deliberation (ledger decision or PLAN.md entry) grading each economics-lens knob against the first post-upgrade run's measured figures, with any resulting convention changes booked or declined with named grounds
+evidence: RELAYED: the operator-pasted benchmark table of 2026-10-07 (SWE-bench Pro row in the requirement), carried as the operator's paste of an unnamed external source, unverified and not a statiker-domain measurement — the booking trigger, not a basis the deliberation may rest on. DERIVED: the working hypothesis in the requirement (self-blindness capability-independent, machinery-on-trial cheapened) is this session's inference from the repo's own trial record, unexecuted. MEASURED: grep of ITEMS.md for capab/opus/benchmark/tier found no existing item covering model-capability recalibration (join basis, this session); grep of dev-notes/ found 'rounds-per-landed-unit' already present in OBSERVATIONS.md, which is why the predicate keys on the filename convention instead of that phrase.
+blocked-by: evidence ls dev-notes/ | grep -q post-upgrade-run
+blocker-exercise: 2026-10-07 live 1 | ACCEPT arm (constructed): with a file dev-notes/2026-xx-xx-post-upgrade-run-digest.md present, 'ls dev-notes/ | grep -q post-upgrade-run' exits 0. REFUSE arm (current state, run this session): no dev-notes filename contains 'post-upgrade-run', the command exits 1 — a benchmark table or offline capability claim creates no such file and cannot clear it; the clearing convention is stated in the requirement so the run that earns it knows the filename to use
