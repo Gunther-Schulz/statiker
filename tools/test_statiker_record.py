@@ -1028,7 +1028,7 @@ class TestSt66PostClosureField(RecordFixture):
         self.assertEqual(v["verdict"], "CLOSURE_LIVE", v)
         self.assertEqual(
             v["post_closure"],
-            [{"line": line[2:],
+            [{"line": "F9 [VERIFIED] record: collision on t.md",
               "lineno": self.lineno_of(body, "F9 [VERIFIED]")}])
 
     def test_no_post_closure_line_is_empty_list_verdict_unchanged(self):
