@@ -102,6 +102,9 @@ blocked-by: evidence false  # the next statiker run reaching a V1 -> repairs -> 
 not-derivable: 2026-10-07 the run-3 object is the operator choice (st-75); this item needs an ACT at run-3 prep — the meta session schedules the shadow full V2 leg — so it waits on the event that opens prep
 amend-reason: 2026-10-07 the trigger FIRED in the 2026-09-25 run (tracker line 356 V1 ISSUES FOUND, non-design repairs D32/D33, scoped V2 PASSED at line 376) and nobody ran the shadow full leg, so the field test went unexercised a second time; a passive predicate cannot deliver a test that needs an act, so the blocker is re-keyed to run-3 prep. Also: the page pointer SKILL.md:1663-1677 is stale, the delta-scoped text now sits near SKILL.md:1867 (lane sonnet-trigger-recheck, first line only read)
 amended-blocked-by: 2026-10-07 decision which object run 3 takes, and whether its requirement-criterion gap is demonstrably wider than lc-109 proved to be
+amend-reason: 2026-10-07 re-keyed from the codex desk-role run-3 object to the next ordinary run: the act this item needs belongs to whichever run comes next, and run 3 of the codex program is unscheduled
+amended-blocked-by: 2026-10-07 decision which real task the next statiker run takes
+amended-not-derivable: 2026-10-07 2026-10-07 the task is the operator product work (st-94 carries the same question and the prep order); this item is decision-complete and waits for that run prep
 
 ## st-36
 grade: READY
