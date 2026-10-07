@@ -86,13 +86,20 @@
   same mismatch made 69 of 99 decision-blocked items permanently
   unanswerable in a sibling carrier (lc-40). Rephrase the QUESTION
   at the MINT, never at the answer.
-  `BACKLOG.md` is NOT retired: it remains the
-  body store the migrated entries point into (blob `a115998c`),
-  read-only: the last arc still recorded there (P29's run
-  bookkeeping, st-11) closed at the 0.2.86 release, 2026-09-11.
-  Retirement is decidable only when st-21 (consumer migration) and
-  st-22 (`## Done` ingestion, blocked on lifecycle lc-73's
-  duplicate-disposition fix) both close. Migration report:
+  `BACKLOG.md` is DELETED (st-39, 2026-10-07; operator decision
+  2026-09-12). Every `BACKLOG.md:<line>` or `BACKLOG.md:<a>-<b>`
+  citation anywhere in this repo — item evidence, code comments,
+  test docstrings, dev-notes — is a pointer into a frozen record
+  and resolves at the migration's pinned blob:
+  `git cat-file -p a115998c | sed -n '<a>,<b>p'`. Control shown at
+  the deletion: the blob prints the P23 entry at line 478;
+  `git cat-file -p a115998d` (one character off) fails with "Not a
+  valid object name". The citations are declared exempt from any
+  stale-carrier sweep: none is code that reads or writes the file
+  (st-21/st-88, 300 mentions in 41 tracked files classified
+  2026-10-07). The `evidence: BACKLOG.md:<range>` base lines of the
+  migrated items are never hand-edited — they are lifecycle lc-73's
+  re-import anchor. Migration report:
   `docs/audits/migration-report-2026-09-10.md`.
 - **`dev-notes/clippy-lineage.md` is the lineage evidence register**
   — clippy-history Stichproben and the weakness ledger, loosely
