@@ -189,13 +189,14 @@ amend-reason: 2026-09-13 the stored trigger was PROSE in a predicate slot ('Part
 amended-blocked-by: 2026-09-13 evidence ls /home/g/dev/Gunther-Schulz/statiker/dev-notes/poteto-guide-pt3* 2>/dev/null | grep -q .
 
 ## st-49
-grade: NEW
+grade: PARKED
 requirement: statiker's payload never tells a run to prefer a rerunnable instrument over hand-work, though the desk that built statiker followed exactly that rule (two tools plus their battery as the executable spec). pstack states it with a self-falsifying test: build the tool that does or proves the work, and if you cited the principle and there is no codemod, script, generator or delegate skill in the diff, you did not apply it. Gap 1 of 4 in dev-notes/pstack-comparison-2026-09-13.md section 9d
 goal: general-maintenance
 write-set: UNKNOWN
 done-criterion: UNKNOWN — the clause text, and whether SKILL.md is even its home rather than the compression pass declining it, are composed at mint time from the firing incident
 evidence: pstack principle-build-the-lever, read 2026-09-13; SKILL.md read in full same date, no counterpart in The loop, Stop rule or Implementation; PLAN 2026-09-13 entry item (v)
-blocked-by: evidence a real firing — a statiker run where hand-work was redone or went unchecked because no lever was built, logged in dev-notes/OBSERVATIONS.md
+blocked-by: evidence grep -q '^TRIGGER-FIRED st-49 ' /home/g/dev/Gunther-Schulz/statiker/dev-notes/OBSERVATIONS.md
+blocker-exercise: 2026-10-07 live 1 | ACCEPT arm (constructed): a file holding the line 'TRIGGER-FIRED st-49 — basis' at column 0 makes the grep exit 0. REFUSE arm (current state, and constructed): OBSERVATIONS.md holds no such line, and a line naming another id or carrying the token mid-line exits 1. Writer: the run-close harvest (CLAUDE.md two-session bullet, re-asks the parked triggers). Rechecked NOT-FIRED against the 2026-09-25 run record by lane sonnet-trigger-recheck, 2026-10-07 (st-19 and st-52: partial, no cost incident)
 
 ## st-50
 grade: PARKED
