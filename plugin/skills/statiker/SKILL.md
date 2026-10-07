@@ -1095,15 +1095,21 @@ also carries the question and the read-only tail (dispatch skill
 `references/forms.md`).
 
 A unit carrying an EXECUTABLE mechanism (a predicate, a query, a
-parser, anything runnable against real or planted input at design
-time) earns one EXECUTED probe, named in the brief, its input
-drawn from the source the mechanism will face rather than built to
-the design's own assumption; a reading round's zero on such a unit
-is could-not-verify at the executing altitude and converges nothing
-(the CONVERGED clause carries the grading half). Where no input can
+parser, anything runnable at design time) earns an EXECUTED probe
+in each round that covers it, until it converges. The brief names
+the probe. Its input is drawn from the source the mechanism will
+face; an input built to the design's own assumption discharges
+nothing. A reading round's zero on such a unit is could-not-verify
+at the executing altitude and converges nothing (the CONVERGED
+clause carries the grading half). Where no source-drawn input can
 legally reach the mechanism at design time (an authority-gated
-prod act), the brief names that absence instead, the verify phase's
-named-absence form.
+prod act, a source the desk cannot read), the desk records that
+absence before the round dispatches, as an F-line whose body
+before its basis clause is exactly
+`record: unit U<n> ABSENCE — <reason>`, and the brief names it.
+The entry stands in for the unit's convergence record at the
+closure seam and hands the mechanism to the verify phase
+unexecuted (Verify, the ABSENCE demand).
 
 Unfiltered, the
 artifact compounds per round; the desk appends nothing to the record
@@ -1155,7 +1161,9 @@ clauses):
     Every severity, closure, or HOLD verdict rests on evidence
     whose question matches the verdict's reach: an executed probe
     where the object exists to execute, a full source-chain trace
-    (every hop cited) where it is still design prose; a closure
+    (every hop cited) where it is still design prose. A mechanism
+    runnable at design time (a predicate, a query, a parser)
+    exists to execute, whatever prose surrounds it. A closure
     names what the guarded input meets on the NEW path. Evidence
     answering a narrower question than the verdict it closes is
     the false-clean shape. A verdict without reach-matched
@@ -1347,10 +1355,19 @@ question the desk completes itself — its own executed measurement
 recorded as the F-line's evidence — before the round's A-line lands.
 
 Per-unit convergence rides the same return. A unit that draws zero
-design-substance findings across a full round is CONVERGED,
-recorded as that unit's own `record:`-scoped entry; later rounds
-aim at unconverged units plus cross-unit interactions, and the
-closing zero-delta round runs once over the converged set. The
+design-substance findings across a full round is CONVERGED. The
+desk records it as an F-line whose body before its basis clause
+is exactly `record: unit U<n> CONVERGED at A<n>`. The tool reads
+the three convergence forms exactly: a near-form is ordinary
+bookkeeping and converges nothing. Later rounds aim at unconverged
+units plus cross-unit interactions, and the closing zero-delta
+round runs once over the converged set. The aim is a declared
+SCOPE: the brief's question names the unit ids the round covers
+and nothing else. A scope names WHICH units, never where one is
+weak, so it is no steering (the brief-purity rule, above). The
+verbatim block's design-wide attacks read against the declared
+units in an aimed round and against the whole design in the
+closing one. The
 closure tool enforces the seam: a [ZERO-DELTA] landing is REFUSED
 (ZERO_DELTA_UNCONVERGED, exit 2, each unit named) while any unit
 carried by a live pre-close D-line lacks a live CONVERGED or
@@ -1363,8 +1380,11 @@ reading rounds each drew a design finding from the first executing
 round — a predicate proven false by running it, a query plan
 proven pathological by EXPLAIN — while a third unit held clean
 under both instruments). A
-design-substance finding landing on a converged unit REOPENS it by
-an entry citing the finding, never by silent regrade. A repair
+design-substance finding landing on a converged unit returns it to
+the unconverged set by an F-line whose body is exactly
+`record: unit U<n> UNCONVERGED at A<n> — F<n>`, naming the round
+and the finding, never by silent regrade; a later CONVERGED entry
+converges it again. A repair
 that BIRTHS a unit — new design surface, not a fix inside existing
 surface — is an INTAKE, not a repair: the disposition entry
 recording the repair answers join-or-export at the birth. Export
@@ -1782,7 +1802,10 @@ whether its scope opener matches its body kind — a
 a design question or justifies a boundary is a FINDING, not a
 bookkeeping or per-unit line — NOT EXERCISED otherwise (st-10 C4a).
 That population is read from the closure verdict's `post_closure`
-field, never reassembled from the tracker.
+field, never reassembled from the tracker. The brief demands the
+same statement for every unit holding a live ABSENCE record: the
+mechanism the design rounds could not execute, run here on
+source-drawn input — NOT EXERCISED where it is still unreachable.
 The V-line's evidence
 carries the per-R table; PASSED is recordable only with every
 R-line met or its non-exercise carried as a named

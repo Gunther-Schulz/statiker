@@ -13175,3 +13175,204 @@ reach, because that pattern fires on own-file citations.
 Verify (desk, integrated): `python3 -m pytest tools/ -q` -> 723
 passed, 18 subtests passed, 0 failed, 0 skipped. Band lint 0
 findings.
+
+## 2026-10-07 — MINT RECORD: the 2026-09-25 review's unbuilt residue lands on the page before the eve review (clusters B, C, J, K)
+
+Desk statiker-30 (opus), under the operator's first-hand delegation
+of this date. Written at the next-run prep (st-94), BEFORE the eve
+review dispatches, because a review runs on the final form
+(CLAUDE.md, verification laps).
+
+**Incident provenance.** The 2026-09-25 bundling-probe review
+(dev-notes/bundling-probe-preregistration-2026-09-25.md, addendum)
+ACCEPTED twelve clusters. LEDGER:181 records what was left: "the
+coordinated token-clause prose polish (B/J/K residue + C
+declared-scope form) ... deferred to the release seam". No item
+carried it. Search, all carriers, with a control: `grep -iE
+'token-clause|B/J/K|declared-scope form'` over ITEMS.md,
+ITEMS-DONE.md, LEDGER.md, OBSERVATIONS.md and the two later
+handoff directories returns LEDGER:179 and LEDGER:181 only (the
+same pattern counts 2 in LEDGER.md, so the instrument is live).
+The handoff to this desk did not name it either. Found by reading
+the last review's own record while deriving the review base.
+
+**The defect as it stood at 44ce24a, read at the artifact.** The
+tool reads three exact forms (`statiker_record.py`,
+RECORD_CONVERGED_RE / RECORD_UNCONVERGED_RE / RECORD_ABSENCE_RE,
+anchored both ends; anything else record-scoped is "left
+untouched"). The page named NONE of them: it said CONVERGED is
+"recorded as that unit's own `record:`-scoped entry" and that a
+finding "REOPENS it by an entry citing the finding". Closure then
+REFUSES a [ZERO-DELTA] landing (ZERO_DELTA_UNCONVERGED, exit 2)
+while any designed unit lacks a live CONVERGED or ABSENCE record,
+and its message names the units and not the form. A desk following
+the page would write a near-form, converge nothing, and meet a
+refusal it has no stated route out of. The next run (bt-68,
+multi-unit) is the first consumer of this grammar: the 2026-09-25
+run ran on pin 0.2.103, which predates it.
+
+**What landed (SKILL.md, five edits, all four clusters).**
+- J / S2-m2 / W-m7: the three entry forms are quoted on the page;
+  the REOPENS word is gone, the UNCONVERGED entry replaces it.
+- B / S2-B5 / W-B2: the absence is a tracker entry
+  (`record: unit U<n> ABSENCE — <reason>`), recorded before the
+  round dispatches; the dangling "verify phase's named-absence
+  form" reference is replaced by a real Verify demand (the
+  mechanism run there on source-drawn input, NOT EXERCISED where
+  still unreachable).
+- C / S2-m1 / W-B3: an aimed round's brief declares its SCOPE by
+  unit id and nothing else; which units is not where-weak, so it
+  sits outside the brief-purity rule.
+- K / S2-B6, m3, m4 / W-m5, m6: the verbatim block now says a
+  mechanism runnable at design time exists to execute; the probe
+  is owed in each round covering the unit until it converges; a
+  self-built input discharges nothing (that case is the ABSENCE).
+
+**Placement basis (search before add).** `grep -nE
+'CONVERGED|UNCONVERGED|REOPENS|ABSENCE'` over SKILL.md at 44ce24a:
+lines 1103, 1350, 1355-1357, 1366 — one convergence paragraph and
+one attack-brief clause, both edited in place; `grep -niE
+'steer|aim'`: 1184 (the purity rule) and 1352/1357. No second home
+was created. The Verify demand sits in Verify's existing
+per-population demand list, the seam where a desk composes that
+brief.
+
+**C4b reading: MINT.** The three forms are the tool's (minted
+2026-09-25, 4000538), so naming them restores a stated reach. Two
+things are new and are mandatory forms: the declared round scope
+in the brief's question, and the Verify demand over ABSENCE units.
+
+Tenet check against PLAN.md's live list (read at PLAN.md:43-71
+today, all nine):
+1. Investigation-led design: PASS — loop conduct only.
+2. Sufficiency = dispatchable: PASS — the scope and the absence
+   are one clause and one entry; no pre-dispatch ceremony beyond
+   them.
+3. Anti-skim / forcing points: PASS — strengthens forcing point 3
+   (the round can no longer return a trace-backed zero on a
+   runnable mechanism under the verbatim block) and forcing point
+   5 (the unexecuted mechanism is named to verify).
+4. Cost asymmetry: PASS — the absence is recorded at design time.
+5. Autonomy: PASS — removes a refusal the desk could not clear
+   without an operator.
+6. Economics: PASS on turns (an unclearable closure refusal is the
+   costliest round there is); corpus lines +23 operational, priced
+   against a grammar the tool already enforces.
+7. Convergence circuit: PASS — convergence is admitted in the form
+   the tool grades.
+8. Medium tenet: FLAGGED, and named rather than waved through. The
+   entry forms are mechanism (tool-read, battery-backed). The
+   ABSENCE-to-Verify demand is PROSE: nothing hands the verify
+   brief the ABSENCE population the way `post_closure` hands it
+   the post-closure one. Not built now, on the mint-timing
+   convention: no run has ever recorded an ABSENCE, so there is no
+   field datum to grade a mechanism's shape on. PRE-FORMULATED FIX,
+   for the pass that drains this entry: closure's verdict gains an
+   `absence_units` field (unit ids holding a live ABSENCE record)
+   and the Verify sentence reads the population from it. TRIGGER:
+   the first run whose tracker carries an ABSENCE entry; the
+   harvest's parked-trigger re-ask reads this line. The declared
+   scope is judgment-shaped (which units a round covers) and stays
+   prose.
+9. Placement: PASS — edits sit in the two passages that already
+   carried the concept.
+
+**Verifiers, own output, on the edited tree:** `python3 -m pytest
+tools/ -q` → 723 passed, 18 subtests passed (baseline 723, skips
+0 both sides); band lint exit 0 (0 findings, 26.5 em dashes per
+1000 words, 45.3 words per sentence against caps 30 and 52).
+Deletion side of the diff read before the run: sixteen lines, all
+in the four edited passages.
+
+**Form: PROSE-MECHANISM**, so the seam plan budgets one repair lap
+(batch-pricing rule). Version: stays 0.2.105 — the manifest was
+never released at that number (pin serves 0.2.103), so this rides
+the same unreleased version.
+
+## 2026-10-07 — P28/st-37 C4c field test, repeat on the repaired instrument: registered BEFORE the eve review dispatches
+
+Design, rule and finding-kind rule carried UNCHANGED from the
+2026-09-11 registration (this file, "P28/st-10 C4c field test:
+prediction registered BEFORE the 0.2.86 re-review dispatches").
+What changes is the instrument, per st-37's amended criterion
+(restricted population, denominator stated), plus one repair this
+registration found while executing itself.
+
+**Graded population, RESTRICTED: dispositions of review findings
+inside the eve review's delta (f954320..HEAD).** Two sets carry
+them. Every other change in the delta (st-80, st-84, st-86, st-66,
+st-89, st-93, st-92, st-36) is a backlog item, not a disposition
+of a review finding: findings there are COUNTED and LISTED and do
+not grade.
+
+Set X — the 0.2.101 review's dispositions (bf82f4a):
+- X1 BLOCKING-1, the INTENT passage loses "for the run's life":
+  NOT FLAGGED (page aligned to the existing route).
+- X2 MAJOR semantics-1, one `.format` contract at both sites:
+  NOT FLAGGED (prescribed form).
+- X3 MAJOR semantics-2, bracketed tag-shaped tokens stripped
+  case-insensitively before the presence test: FLAGGED (decides
+  the predicate's input; the 0.2.86 N2 precedent).
+- X4 MAJOR prose-1 / semantics-3, the page NARROWED instead of the
+  code extended: FLAGGED (decides a stated reach; the 0.2.86 B1
+  precedent).
+- X5, X6 the two MINORs (cross-reference, pronoun): NOT FLAGGED.
+
+Set Y — the 2026-09-25 review's clusters (90c3067, 4000538,
+0220913, and this date's residue above):
+- A ZERO-DELTA guard and its live-set scope: FLAGGED.
+- B ABSENCE record and its convergence consequence: FLAGGED.
+- C declared round scope: FLAGGED.
+- D trend exclusion of record-scoped lines: FLAGGED.
+- E raise template, cause slot, rounds-bound scoping: FLAGGED.
+- F stop-report demand homed at the real exit seams: NOT FLAGGED
+  (an existing demand placed at existing seams).
+- G "born" narrowed, demote-only, join's first round exempt:
+  FLAGGED.
+- H intake export through NARROWING: NOT FLAGGED (the reviewer's
+  prescribed fix).
+- I generalization re-homed to the mint-source duty: NOT FLAGGED
+  (restores read-not-composition).
+- J entry forms and the UNCONVERGED spelling: FLAGGED.
+- K executed-probe clause (verbatim block, per round, source-drawn
+  input): FLAGGED.
+- L location precedence made demote-only: FLAGGED.
+- Editorial pair: NOT FLAGGED.
+
+Share: 11 flagged of 19 slots (0.579).
+
+**Instrument repair found by this registration (desk decision,
+operator delegation of this date).** The carried criterion reads
+"CONFIRM when more than half sit at flagged dispositions", and its
+own stated rationale is "a majority there is concentration above
+the flag's share". That held at 3 of 10. At 11 of 19 the flag's
+share is itself above half, so a bare majority is what chance
+returns and the criterion would report CONFIRM while
+discriminating nothing — the same failure as the denominator of
+one, reached from the other side. The criterion is therefore
+restated in the terms its rationale always used, before any arm
+exists:
+
+Over the review's blocking + major DESIGN-kind findings landing on
+set X or set Y (n graded findings, k of them at FLAGGED slots),
+with p = 11/19:
+- CONFIRM when the one-sided binomial tail P(K >= k | n, p) is at
+  most 0.10;
+- REFUTE when P(K <= k | n, p) is at most 0.10;
+- UNDECIDED otherwise.
+Decision table, computed today and pasted (n: CONFIRM / REFUTE):
+3: none / k=0 · 4: none / k=0 · 5: k=5 / k=0 · 6: k=6 / k<=1 ·
+7: k=7 / k<=1 · 8: k>=7 / k<=2 · 9: k>=8 / k<=2 · 10: k>=9 /
+k<=3 · 11: k>=9 / k<=3 · 12: k>=10 / k<=4. Below n=3 nothing
+resolves.
+
+The outcome line states n and k beside the verdict. This is the
+third repeat under one test: UNDECIDED ends it under the stop the
+test already carries, C4c does not mint, and st-37 closes on that
+reason. Variance caveats recorded now: one round; the classifier
+is the desk that wrote four of the flagged slots' final text
+(B, C, J, K) today; findings are attributed by the desk, not by
+the reviewers, who are told nothing of the test.
+
+The outcome is appended as its own line when the review is
+dispositioned, opening `C4c FIELD TEST OUTCOME: `.
