@@ -1011,6 +1011,21 @@ closed-decided: none
 closed-ref: dda19ce
 closure-superseded-by: 2026-10-07 c7cd480 the closure was recorded one commit before the deletion landed (the first deletion commit bounced on the mass-deletion guard); the closing commit is c7cd480, not the closed-ref on this body
 
+## st-86
+grade: DONE
+requirement: The closure VOID branch (statiker_record.py:2180-2190) fires on ANY post-closure [INVALIDATED] of a live-at-close entry — no latest-per-id guard (2203's guard sits one branch down, the 2191-2202 comment names the identical shape) and no scope path — so a deliberate unit-scoped deviation invalidation voids closure unrecoverably short of a new closing A-line. Incident: btb run F104, two restatement forms failed. The same incident argues the OTHER way too: a post-closure write-set change IS a design change owing a round, so void-always may be the correct semantics wanting only a named recovery route in its message.
+goal: general-maintenance
+write-set: plugin/skills/statiker/scripts/statiker_record.py, tools/test_statiker_record.py
+done-criterion: The design decision is recorded (void-always with the new-A-line route named in the verdict message, vs same-id resolution for unit-scoped invalidations) and the chosen form is implemented with a red-first pair drawn from the F104 incident: a unit-scoped post-closure invalidation and a mis-scoped one, the two discriminated — plus the verdict message naming the recovery route either way.
+evidence: MEASURED (statiker-c2, 2026-09-25): source read at 2170-2209 confirms branch order, the missing guard, and the continue that bypasses same-id resolution; the 2191-2202 comment itself flags the shape. RELAYED (desk F104, same date): two restatement forms left closure void; the fix lane's unit-start halted UNIT_GATE_BLOCKED correctly, no edits made. DERIVED: the incident is n=1 and argues both designs — its cost (an unrecoverable void from record hygiene) favors resolution, its lesson (write-set changes are design changes) favors void-always.
+blocked-by: NONE
+not-derivable: 2026-09-25 Genuinely open design tension: the single incident argues both directions, and the choice sets closure semantics for every future run — it belongs to the release-seam batch plan where this date's other mint judgments sit, informed by the run close's lesson harvest.
+blocker-moot: void-always with a named recovery route versus same-id resolution for unit-scoped post-closure invalidations (answered in the ledger before this item closed)
+closed-reason: 2026-10-07 void-always kept and the verdict message names the recovery route; red-first pair from the F104 shape in the battery (arm 1 red on the old tool, arms 2 and 3 pins)
+closed-met: st-66, st-89
+closed-decided: LEDGER.md:201
+closed-ref: 1ab8cc3
+
 ## Archive (pre-migration)
 
 <!-- CLOSURES READ FROM THE `--from` CARRIER ITSELF (lc-18/lc-19). The
