@@ -68,7 +68,8 @@ goal: UNKNOWN
 write-set: UNKNOWN
 done-criterion: UNKNOWN
 evidence: BACKLOG.md:603-629
-blocked-by: evidence false  # P12 (BACKLOG.md:603 body): the trial-close grading, or the first multi-unit greenfield run that misses the early decomposition round. Re-checked LIVE at 49e9529: A-line tags still DISPATCHED|BIT|ZERO-DELTA|VOID (SKILL.md:538); the 0.68 NARROWING route is the mid-run re-scope, not this round
+blocked-by: evidence grep -q '^TRIGGER-FIRED st-17 ' /home/g/dev/Gunther-Schulz/statiker/dev-notes/OBSERVATIONS.md
+blocker-exercise: 2026-10-07 live 1 | ACCEPT arm (constructed): a file holding the line 'TRIGGER-FIRED st-17 — basis' at column 0 makes the grep exit 0. REFUSE arm (current state, and constructed): OBSERVATIONS.md holds no such line, and a line naming another id or carrying the token mid-line exits 1. Writer: the run-close harvest (CLAUDE.md two-session bullet, re-asks the parked triggers). Rechecked NOT-FIRED against the 2026-09-25 run record by lane sonnet-trigger-recheck, 2026-10-07 (st-19 and st-52: partial, no cost incident)
 amend-reason: 2026-09-12 migration UNKNOWN slots filled at the 0.2.89 release gate. The P12 body enumerates five design constraints from two review rounds; the done-criterion is those constraints rather than a restatement of the feature, because the feature was never what failed
 amended-goal: 2026-09-12 tend
 amended-write-set: 2026-09-12 plugin/skills/statiker/SKILL.md, plugin/skills/statiker/scripts/statiker_record.py, tools/test_statiker_record.py, plugin/.claude-plugin/plugin.json
