@@ -798,12 +798,19 @@ REPAIR_LANDING_MISSING = (
 MACHINE_TOKEN_CODES = {
     "entry-form", "tag-enum", "entry-near-miss", "scope-near-miss",
     "hold-form", "write-set-near-miss", "write-set-path-near-miss",
-    "tripwire-arm-near-miss", "convergence-near-miss",
+    "tripwire-arm-near-miss",
 }
+# convergence-near-miss sheds (REPAIR_BOOKKEEPING) and is NOT a
+# supersede-whole code: a restated convergence record carrying the
+# `corrects line <n>` token no longer matches its exact form, so the
+# supersede route re-raised the code one line down on every attempt
+# (eve review round 2, B1). The malformed line is shed and the record
+# is then written fresh in its exact form.
 BODY_CONTENT_CODES = {
     "tag-literal-in-body", "basis-missing",
     "superseded-block-form", "landing-indent", "landing-blank",
     "intent-near-miss", "containment-near-miss",
+    "convergence-near-miss",
 }
 # P15: clause-unparsed and killerless-dead share REPAIR_SWEEP_EXEMPT_ROUTE
 # (defined above) rather than a set-driven comprehension here — both are
@@ -2325,7 +2332,17 @@ def cmd_closure(args):
            "head_boundary": meta["head_boundary"], "r_lines": reach["r_lines"],
            "mode": meta["mode"], "skill_versions": reach["skill_versions"],
            "irreversible_units": reach["irreversible_units"]}
-    blocking = closure_blocking_violations(violations)
+    # eve review round 2, M2: a malformed convergence record is one
+    # the guard below silently does not read — a mistyped UNCONVERGED
+    # leaves its unit converged — and `sweep`, which holds on the
+    # lint, is not consulted between a round's return and unit
+    # dispatch. So closure refuses to read past a live one itself.
+    # Scoped to cmd_closure (never waves or trend) and to lines the
+    # code's mint version reaches.
+    blocking = closure_blocking_violations(violations) + [
+        v for v in violations
+        if v["code"] == "convergence-near-miss"
+        and not is_retro(v["code"], v["line"], reach["skill_versions"])]
     if blocking:
         for v in blocking:
             say(f"closure blocked: {v['code']} @ line {v['line']}: "

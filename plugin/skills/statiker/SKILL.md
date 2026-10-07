@@ -625,9 +625,11 @@ NOT their attribution-only treatment — it IS consumed as a gate
 (`filter`'s ARTIFACT_CONTAINMENT_HOLD, The attack). A body-region
 line that opens with `containment:` in any case or spacing and is
 not the exact form lints `containment-near-miss`, and `filter`
-holds while that violation is live; the lint's own correcting
-entry clears both. A malformed label never downgrades silently to
-none. The exact form takes the path to the end of the line,
+holds while that violation is live in the pinned record. The
+lint's correcting entry sheds the malformed line and no more: the
+scope it meant exists again only once the exact label is written
+beside it, and `filter` reads both at the next lock. A shed label
+with none written leaves nothing declared. The exact form takes the path to the end of the line,
 interior spaces included. The label lines sit in the body region,
 each standing alone, written before the lock commit.
 
@@ -878,7 +880,8 @@ enumerated in the close beside the [AUTO-ACCEPTED] entries: netted
 is never invisible.
 
 A FORM-code hold — `superseded-block-form`, `basis-missing`,
-`tag-literal-in-body`, `clause-unparsed` — additionally nets against
+`tag-literal-in-body`, `clause-unparsed`, `containment-near-miss`,
+`convergence-near-miss` — additionally nets against
 its own code's MINT VERSION: each carries a rule→version entry in a
 table backfilled once from the tool's git history (the SKILL version
 served when the code first shipped), and a hold whose LINE was
@@ -1374,7 +1377,10 @@ desk records it as an F-line whose body before its basis clause
 is exactly `record: unit U<n> CONVERGED at A<n>`. The tool reads
 the three convergence forms exactly, on a [VERIFIED] line whose
 `A<n>` names a round in the record; a line shaped like one that is
-not one lints `convergence-near-miss` and holds the sweep. Every
+not one lints `convergence-near-miss`, which holds the sweep and
+bars `closure` (CLOSURE_RECORD_MALFORMED). Its correcting entry
+sheds the line, and the record is then written fresh in the exact
+form. Every
 unit a round covered takes a record at that round's return:
 CONVERGED on its zero, UNCONVERGED naming its findings otherwise.
 The records are what make a unit visible to the tool. Later rounds
@@ -1392,12 +1398,15 @@ or the terminal [BIT] the gate reads as satisfied — `closure`
 returns ZERO_DELTA_UNCONVERGED (barred, exit 2, each unit named)
 while any unit the record names, by a convergence record or by a
 pre-close `unit U<k>` D-line, lacks a live CONVERGED or ABSENCE
-record: an aimed round's zero cannot close design. The way out is
+record: a unit recorded unconverged cannot ride a closing A-line.
+The way out is
 the record. A unit truly at zero takes its CONVERGED entry and
 `closure` re-runs; any other named unit means the round was not
-the closing one, and the next round covers it. A unit no entry
-names is invisible to the tool, which is what the return duty
-above is for. The
+the closing one, and the next round covers it. The tool checks
+only the units those entries name. A unit declared by its
+write-set line alone, and a closing round aimed at a subset, are
+both beyond it: recording every unit, and running the closing
+round over the whole design, stay the desk's. The
 zero converges only at the instrument's own altitude: a reading
 round's zero never converges a unit whose mechanism it did not
 execute, and the first executing round grades such a unit as if

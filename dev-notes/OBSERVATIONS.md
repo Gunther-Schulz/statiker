@@ -13406,3 +13406,198 @@ three rounds did establish is narrower and is recorded as the
 reason: reviews of this page return too few independent design-kind
 findings per round, on too few mechanisms, for a concentration test
 to resolve inside the trial. st-37 closes on that.
+
+## 2026-10-07 — MINT RECORD: the eve-review repair lap (0bb6fd6 page side, f1bebcc + b65d673 tool side)
+
+Desk statiker-30 (opus); tool side by lane sonnet-repair-0205 from
+docs/directives/2026-10-07-sonnet-repair-0205-brief.md. Dispositions
+and their findings:
+docs/audits/2026-10-07-eve-review-dispositions.md. Incident
+provenance for every change below is a numbered finding there, each
+executed one reproduced at the desk before it was accepted.
+
+**Verified at the artifact, not on the lane's report.** Commits
+f1bebcc and b65d673 carry the lane's own trailer (Claude Sonnet
+5.5). Suite re-run at the desk: 748 passed, 22 subtests passed, 0
+skipped (base 723 / 18 / 0; the difference is the lap's own arms).
+The two reporting reviewers' probe scripts, re-run against the
+repaired tools at b65d673: terminal [BIT] with unconverged named
+units → ZERO_DELTA_UNCONVERGED (was CLOSURE_LIVE); hyphenated
+UNCONVERGED → `convergence-near-miss` (was LINT_CLEAN); `[PENDING]
+... CONVERGED at A99` → ZERO_DELTA_UNCONVERGED (was CLOSURE_LIVE);
+head-region containment prose, a corrected label, and a spaced
+path → ARTIFACT_WRITTEN (were holds); out-of-scope `--out` still
+holds; version hold → LOCK_GATE_HOLDS with no commit landed (was
+LOCK_COMMITTED), route `barred`; marker-less header plus body
+stamp → SWEEP_CLEAN (was a hold); the closure verdict carries
+`absence_units`. UNCHANGED BY DESIGN: a record naming no unit
+still closes (CLOSURE_LIVE) — the stated residual.
+
+**Lane deviations, graded.** (1) One commit for A+B+C: accepted —
+the items share hunks in two files and the brief's per-item commit
+plan was unsatisfiable without interactive staging; the defect is
+the brief's. (2) Existing arms moved where the design moved them
+(`CONTAINMENT: /x /y` is now a legal spaced path; the UNCONVERGED
+tuple carries a list; `skill_versions` entries gain `header`):
+accepted, each follows a settled design line. (3) The golden
+tracker's header moved 0.2.87 → 0.2.105 so the newly mint-gated
+code is not graded RETRO out of the golden set: accepted; the
+expected-violations diff was read at the desk and changes exactly
+one row number and adds the one new row. (4) `filter` nets RETRO
+and the correcting entry but not SWEEP_EXEMPT: accepted, the
+stricter reading for a file write. (5) Two empty-stdin commands
+against the plumbing rule, no effect: noted.
+Source-entry re-ask: the brief's design lines A-D survive every
+accepted deviation unchanged; none amends a disposition.
+
+**C4b reading.** MINTS: the lint code `convergence-near-miss` (a
+new machine token, registered in RULE_MINT_VERSION at 0.2.105 and
+FORM_CODES_MINT_GATED, with its golden row; its repair class was
+MACHINE_TOKEN_CODES as the lane built it and is BODY_CONTENT_CODES
+since round 2, next entry); the closure verdict field `absence_units`; the page duty that
+every covered unit takes a convergence record at each round's
+return (a new mandatory form). NOT MINTS, each restoring a reach
+the page already stated: the guard on the terminal-[BIT] path
+("the same predicate as ZERO-DELTA"); the lock gate holding under
+SKILL_VERSION_HOLD ("proceeds no further than the record gate");
+`filter` holding on the lint's live violations instead of a second
+scan; the header-only read of the version hold ("the header
+`Skill:` line ONLY"). A TOKEN CHANGE, recorded as such:
+SKILL_VERSION_HOLD routes `barred`, was `surface` — every page
+location gives the verdict one disposition, so the token takes that
+disposition's class.
+
+Tenet check against PLAN.md's live list (PLAN.md:43-71, all nine):
+1. Investigation-led design: PASS — record and gate conduct only.
+2. Sufficiency = dispatchable: PASS — one record line per covered
+   unit per return; no pre-dispatch ceremony.
+3. Anti-skim / forcing points: PASS — forcing point 3's closing
+   seam now refuses on both closing paths.
+4. Cost asymmetry: PASS — unit state is recorded while design is
+   still prose.
+5. Autonomy: PASS — every refusal the lap touches now has a stated
+   desk route out (correcting entry; the convergence records; a
+   restart for the version hold).
+6. Economics: PASS with the price stated — page +29 operational
+   lines at this entry's writing (1936 to 1965; the round-2
+   narrowing adds 9 more, next entry); one lint code; against a containment hold that ended a
+   run at its first attack and a convergence gate that checked
+   nothing.
+7. Convergence circuit: PASS — convergence is admitted in a form
+   the tool grades, with the ungradeable part (an unnamed unit)
+   named on the page.
+8. Medium tenet: PASS for what must hold exactly (the forms, the
+   lint, the two closing paths, the lock hold — all tool-read with
+   red-first arms); the return duty itself is PROSE, and its
+   failure is the stated residual. Mechanizing it needs a
+   design-time unit declaration the page does not have; that is a
+   design question, graded on this run's field data and not minted
+   here.
+9. Placement: PASS — one predicate where there were two
+   (`filter`), the near-miss lint on the tripwire-arm precedent.
+
+**FIELD-TEST LINE for the harvest (mint-timing convention).** The
+convergence records have never operated in a run. bt-68 is their
+first. The harvest reads the run's tracker for: every unit the
+design named; whether each carries a record at each return; any
+ZERO_DELTA_UNCONVERGED or `convergence-near-miss` firing and what
+it cost. That reading grades the DESIGN of the return duty and
+decides whether a design-time unit declaration is owed.
+
+## 2026-10-07 — the eve review's second round, and the narrowing that ends the series
+
+**Why a second round ran (stated before it dispatched).** The
+repair lap put new machine-read behaviour on a silent-failure
+surface, and the machine half had no report from round one (both
+attempts lost to permission dialogs). One opus lane, `opus-review-m2`,
+over the machine side at b65d673, briefed with the plumbing rules
+the implementation lane had just completed under. It reported in
+seven parts: HOLD, 1 BLOCKING, 4 MAJOR, 9 MINOR, every blocking and
+major one executed. Dispositions:
+docs/audits/2026-10-07-eve-review-dispositions.md, Round 2.
+
+**The series, read from the record.** Round 1: 18 findings, three
+mechanisms (convergence gate, containment label, version hold).
+Round 2: 14 findings; the blocking one and two majors sit in the
+repair lap's OWN new code (the near-miss lint's repair class, the
+containment correction), the other two majors on the same
+convergence gate. That is a flat series concentrating in the newest
+round's changes, which indicts the FORM and routes to narrowing,
+never to a third same-form round (corpus Calibration, the re-entry
+seam; CLAUDE.md, attack timing). The form that failed: completing a
+gate by repair increments when the gate has never operated in a
+run. Each increment exposed the next seam.
+
+**The narrowing.** Shipped in 0.2.105:
+- B1 (the lint's prescribed repair re-raised the lint one line down
+  on every attempt): `convergence-near-miss` moves from the
+  supersede-whole class to the shed class, so the verdict's own
+  repair text is the route that works, and the record is then
+  written fresh. Red first at the desk: the new arm
+  `test_near_miss_repair_route_is_followable` failed on the
+  unchanged tool (repair text "supersede-whole"), passes after. The
+  reviewer's probe P1, re-run: the token-only line plus a fresh
+  exact line → SWEEP_CLEAN, and the repair text now names exactly
+  that line.
+- M2 (a malformed UNCONVERGED left its unit converged for
+  `closure`, and sweep is not consulted before unit dispatch):
+  `cmd_closure` refuses to read past a live, non-retro
+  `convergence-near-miss`. Scoped to closure, never waves or trend.
+  Red first: `test_near_miss_bars_closure_on_both_closing_paths`
+  failed (CLOSURE_LIVE), passes after. Probe P2, re-run: hyphen form
+  → CLOSURE_RECORD_MALFORMED on `closure` and `closure --unit U2`.
+  Three lane arms that pinned "does not count" through
+  ZERO_DELTA_UNCONVERGED now pin it through the earlier refusal;
+  each still goes red if a non-counting line were to count, because
+  it would then not lint.
+- Page: five passages narrowed to what the tool enforces (M1, M3,
+  M4, N2, and B1's route). The page no longer says a corrected
+  containment label is never silently lost, that an aimed round's
+  zero cannot close design, or that an unnamed unit is merely
+  "invisible".
+
+BOOKED, not built, each on the item named in the dispositions:
+widening the gate's population to write-set-declared units (M3) and
+the whole design question of the closing round (M4, N3, N4, N5) wait
+on this run's field data; the containment label's fail-closed form
+(M1, N6, N7) waits on a run that declares containment; the exact
+leftovers (the same repair-loop flaw in `tripwire-arm-near-miss`,
+the lock gate reading any verdict without `violations` as clean,
+the version hold's outer route and battery gaps) are one READY
+item.
+
+**No third round, and why that is not the floor being economized.**
+The floor is one honest fresh-context round before code ships
+(CLAUDE.md); two ran. What changed after the second: one registry
+move between two existing, reviewed repair classes; one filter line
+in `cmd_closure`; five page narrowings that remove claims. No new
+mechanism, token, form or predicate. Each tool change is proven by
+the reviewer's own probe going from its failing output to the
+designed one, and by a red-first arm.
+
+**C4b reading for this lap: NO MINT.** Nothing is introduced; a code
+changes repair class and closure's blocking set gains a code that
+already existed. Tenet check, PLAN.md:43-71, all nine: 1 PASS
+(conduct untouched); 2 PASS (no ceremony added); 3 PASS (forcing
+point 3's seam refuses a malformed record on both paths); 4 PASS;
+5 PASS (the one hold a desk could not clear now has a followable
+repair); 6 PASS (page +9 lines, 1965 to 1974, all of it claims
+narrowed or a route stated); 7 PASS; 8 PASS (both changes are
+tool-read with red-first arms); 9 PASS (the shed class is where
+`containment-near-miss`, the same kind of line, already sits).
+
+**Verifiers, own output, on the tree this entry commits with:**
+`python3 -m pytest tools/ -q -p no:cacheprovider` → 750 passed, 22
+subtests passed, 0 skipped; band lint exit 0 (26.0 em dashes per
+1000 words, 44.9 words per sentence); operational lines 1974.
+
+**Candidate lessons, for the carriers that own them.** (1) A lint
+minted "on the precedent" of an existing one inherits that one's
+defects: the precedent's repair class was never exercised end to
+end, and the copy shipped the same loop. An arm that FOLLOWS the
+verdict's repair text to a clean sweep is the cheap instrument, and
+neither lint had one. (2) Review lanes on this machine stall on
+permission dialogs when nobody is present; the brief that completed
+(one plain command per call, probes as Python files, no angle
+brackets) is the form to reuse. That one belongs to the dispatch
+discipline's own carrier, not here.

@@ -147,3 +147,53 @@ arrangement defect named: review lanes need a brief that cannot
 raise a permission dialog.
 
 ## C4c FIELD TEST OUTCOME (st-37): see dev-notes/OBSERVATIONS.md
+
+## Round 2 — `opus-review-m2`, machine side at b65d673
+
+HOLD, 1 BLOCKING, 4 MAJOR, 9 MINOR. Suite run by the lane: 748
+passed, 0 skipped. Reason the round ran, the series reading and the
+narrowing: dev-notes/OBSERVATIONS.md 2026-10-07, "the eve review's
+second round". Reproduced at the desk with the lane's own probe
+(`probe1.py`, copied to this desk's scratch): B1, M2, M3, M4, N3,
+N4, N5 as reported. M1, N1, N6, N7, N9 are the lane's executed
+results, not re-run here.
+
+- B1 BLOCKING, the near-miss lint's repair cannot be followed.
+  ACCEPTED, FIXED in this release (repair class moved; red-first
+  arm; probe re-run clean).
+- M2, a malformed UNCONVERGED does not bar `closure`. ACCEPTED,
+  FIXED in this release (closure refuses; red-first arm; probe
+  re-run).
+- M1, a corrected containment label with no exact label beside it
+  leaves the gate unarmed. ACCEPTED. Page narrowed now to say
+  exactly that. The fail-closed form is BOOKED (st-96).
+- M3, the gate's population omits units declared by write-set
+  line. ACCEPTED, and it corrects this desk: those lines are
+  written at the [READY] enumeration, before the attack, so the
+  round-1 disposition's "no machine-readable declaration" was
+  wrong. Page narrowed now; the widening is BOOKED (st-95),
+  because it makes the gate bite on every multi-unit run for the
+  first time and its shape should be graded on this run's record.
+- M4, "an aimed round's zero cannot close design" outruns the
+  tool. ACCEPTED, page narrowed now; the enforcement question
+  rides st-95.
+- N1 (the hold's outer route through the git tool), N8 (version
+  hold battery gaps), the lock gate's read of any verdict lacking
+  `violations`, and the sibling repair loop in
+  `tripwire-arm-near-miss`: ACCEPTED, BOOKED together (st-97).
+- N2, the page's list of version-scoped codes: ACCEPTED, fixed
+  now.
+- N3 (a record citing a voided round counts), N4 (ABSENCE accepted
+  at any time), N5 (the gate is not scoped by record version):
+  ACCEPTED, ride st-95. No older run is in flight, and the next
+  run starts a fresh record.
+- N6, N7 (labels not tied to preflight; the hold clears only at a
+  re-lock): ACCEPTED, the re-lock is on the page now, the rest
+  rides st-96.
+- N9, the hook fires inside an attack worktree: ACCEPTED RESIDUAL,
+  joined to blind spot 2 of the depth-cap probe registration
+  (dev-notes/next-run-prep.md).
+
+Not reached by this lane, by its own statement: about 300 added
+lines of earlier test arms, a real compaction, a real cache
+install.

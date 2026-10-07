@@ -41,8 +41,17 @@ Each step below is marked DONE only with the record that shows it.
    a binomial tail against the flag's share, with its table.
 2. st-85 bundling criterion pre-registered — DONE 2026-10-07:
    dev-notes/bundling-probe-preregistration-2026-10-07.md.
-3. The one fresh-context review, two-arm form — OPEN.
-4. Release and pin move — OPEN (operator types `/reload-plugins`).
+3. The one fresh-context review — DONE 2026-10-07, two rounds, every
+   finding dispositioned:
+   docs/audits/2026-10-07-eve-review-dispositions.md. The two-arm
+   form's comparison is VOID (the machine-half arm never
+   reported); st-37's test resolved UNDECIDED and its repeat ended.
+   One repair lap (lane sonnet-repair-0205) plus a desk narrowing
+   after round 2; three items booked for what was not built
+   (st-95, st-96, st-97).
+4. Release and pin move — OPEN. No `/reload-plugins` is needed for
+   the run: the run session is a new session and resolves the pin
+   at its start.
 5. st-92 depth-cap probe pre-registered; run session launched with
    `claude --autocompact 300000` — OPEN.
 6. During the run: st-31's shadow full V2 leg if a V1 -> repairs

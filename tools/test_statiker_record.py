@@ -7406,13 +7406,61 @@ class TestEveRepairBUnitConvergence(RecordFixture):
             self.assertNotIn("convergence-near-miss",
                              self.violation_codes(v), v)
 
+    def test_near_miss_repair_route_is_followable(self):
+        """Eve review round 2, B1: the verdict's own repair text,
+        followed literally, must clear the hold. The near-miss line
+        cites an existing round so the red is the hyphen's alone."""
+        bad = ("- F5 [VERIFIED] record: unit U1 UNCONVERGED at A1 - F9 "
+               "— basis: retriage\n")
+        body = self.UNITS + self.CONV1 + self.CONV2 + bad
+        v = self.sweep(body + self.ZD, header=HEADER_105)
+        hit = [x for x in v["violations"]
+               if x["code"] == "convergence-near-miss"]
+        self.assertEqual(len(hit), 1, v)
+        self.assertTrue(hit[0]["repair"].startswith("bookkeeping:"), hit)
+        n = hit[0]["line"]
+        fixed = (body +
+                 f"- F5 [VERIFIED] record: corrects line {n} — basis: "
+                 f"the convergence-near-miss verdict at line {n}\n"
+                 "- F6 [VERIFIED] record: unit U1 UNCONVERGED at A1 "
+                 "— F9 — basis: retriage\n" + self.ZD)
+        v = self.sweep(fixed, header=HEADER_105)
+        self.assertEqual(v["verdict"], "SWEEP_CLEAN", v)
+        v = self.closure(fixed, header=HEADER_105)
+        self.assertEqual(v["verdict"], "ZERO_DELTA_UNCONVERGED", v)
+        self.assertEqual(v["unconverged"], ["U1"], v)
+
+    def test_near_miss_bars_closure_on_both_closing_paths(self):
+        """Eve review round 2, M2: a malformed UNCONVERGED leaves the
+        unit converged for the guard, so closure itself must refuse to
+        read past it — sweep is not consulted between a round's return
+        and unit dispatch."""
+        bad = ("- F3 [VERIFIED] record: unit U2 UNCONVERGED at A1 - F9 "
+               "— basis: retriage\n")
+        for closing in (self.ZD, self.BIT):
+            body = self.UNITS + self.CONV1 + self.CONV2 + bad + closing
+            for unit in (None, "U2"):
+                v = self.closure(body, unit=unit, header=HEADER_105)
+                self.assertEqual(v["verdict"],
+                                 "CLOSURE_RECORD_MALFORMED", (closing, v))
+                self.assertEqual(self.violation_codes(v),
+                                 {"convergence-near-miss"}, v)
+        # control: without the malformed line both paths read on
+        ok = self.UNITS + self.CONV1 + self.CONV2 + self.ZD
+        self.assertEqual(self.closure(ok, header=HEADER_105)["verdict"],
+                         "CLOSURE_LIVE")
+
     def test_pending_record_does_not_count_lints_and_closure_stays(self):
         body = (self.UNITS + self.CONV1 +
                 "- F2 [PENDING] record: unit U2 CONVERGED at A99 "
                 "— basis: unverified\n" + self.ZD)
         v = self.closure(body, header=HEADER_105)
-        self.assertEqual(v["verdict"], "ZERO_DELTA_UNCONVERGED", v)
-        self.assertEqual(v["unconverged"], ["U2"], v)
+        # closure refuses to read past the malformed record (round 2,
+        # M2); were the line to COUNT it would not lint, and this
+        # verdict would read on instead
+        self.assertEqual(v["verdict"], "CLOSURE_RECORD_MALFORMED", v)
+        self.assertEqual(self.violation_codes(v),
+                         {"convergence-near-miss"}, v)
         self.assertIn("convergence-near-miss",
                       self.violation_codes(self.lint(body, header=HEADER_105)))
 
@@ -7421,8 +7469,12 @@ class TestEveRepairBUnitConvergence(RecordFixture):
                 "- F2 [VERIFIED] record: unit U2 CONVERGED at A99 "
                 "— basis: verdict\n" + self.ZD)
         v = self.closure(body, header=HEADER_105)
-        self.assertEqual(v["verdict"], "ZERO_DELTA_UNCONVERGED", v)
-        self.assertEqual(v["unconverged"], ["U2"], v)
+        # closure refuses to read past the malformed record (round 2,
+        # M2); were the line to COUNT it would not lint, and this
+        # verdict would read on instead
+        self.assertEqual(v["verdict"], "CLOSURE_RECORD_MALFORMED", v)
+        self.assertEqual(self.violation_codes(v),
+                         {"convergence-near-miss"}, v)
         self.assertIn("convergence-near-miss",
                       self.violation_codes(self.lint(body, header=HEADER_105)))
 
@@ -7431,7 +7483,12 @@ class TestEveRepairBUnitConvergence(RecordFixture):
                    "input reaches it — basis: verdict\n")
         v = self.closure(self.UNITS + self.CONV1 + absence + self.ZD,
                          header=HEADER_105)
-        self.assertEqual(v["verdict"], "ZERO_DELTA_UNCONVERGED", v)
+        # closure refuses to read past the malformed record (round 2,
+        # M2); were the line to COUNT it would not lint, and this
+        # verdict would read on instead
+        self.assertEqual(v["verdict"], "CLOSURE_RECORD_MALFORMED", v)
+        self.assertEqual(self.violation_codes(v),
+                         {"convergence-near-miss"}, v)
 
     def test_unit_named_only_by_an_unconverged_record_bars_the_close(self):
         body = ("- D1 [COMMITTED] the design — basis: probe\n"

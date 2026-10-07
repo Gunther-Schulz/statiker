@@ -125,3 +125,29 @@ A dry run of the criterion against the first run's own figures
   the batch).
 - Outcome and verdict land in an addendum to this file and in
   st-85's closure.
+
+## ADDENDUM — outcome: VOID (written 2026-10-07, after the arms)
+
+Arm W reported (1 BLOCKING, 6 MAJOR, 6 MINOR). Arm S1 reported
+(1 BLOCKING, 6 MAJOR, 4 MINOR). Arm S2 did not: the lane and its
+re-dispatch each finished their analysis and stalled on a
+permission dialog with nobody present; neither left a report. The
+criterion needs union(S1, S2) and is not computable. It is not
+approximated from two arms.
+
+Recorded beside it, non-deciding: on the ground W and S1 shared, S1
+raised no substance finding W missed apart from one contradiction W
+saw and judged "stated on the page"; W raised three findings S1 did
+not, all on the machine side. The later machine-side round found a
+further BLOCKING and four MAJOR there, but over a repaired object,
+so it does not stand in for S2.
+
+Arrangement defect, named: a read-only review lane here must be
+briefed so that no command can raise a permission dialog. The brief
+form that completed is in docs/audits/2026-10-07-eve-review-dispositions.md's
+neighbour, the `opus-review-m2` dispatch (one plain command per
+call, probes as Python files, no angle brackets).
+
+st-85: its done-criterion — a pre-registered comparison has RUN and
+its verdict is recorded — was met by the 2026-09-25 run (MIXED).
+This second run adds no verdict. The item closes on the first.
