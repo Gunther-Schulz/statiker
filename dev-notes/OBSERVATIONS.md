@@ -13713,3 +13713,47 @@ Other harvest:
   run desk held it correctly and the line is corrected to it.
 - No mint candidate, no stop-call. Turn cost so far at this desk
   for the run: three relays.
+
+## 2026-10-07 — bt-68 run harvest, relay 3 (attack round A1 returned [BIT])
+
+Run desk beat-the-books-70 on 0.2.105; tracker
+`.clippy/runs/2026-10-07-drain-effect-alarms.md`, read by this desk
+at lines 61 and 85-87 before the desk's report arrived, then
+against the report. Re-lock a346cfa3; rounds 1 of 4 spent.
+
+FIELD DATA for st-95 (the return duty's first operation):
+- At A1's return each unit the round covered took a record, in the
+  exact form, with no question to this desk: `- F40 [VERIFIED]
+  record: unit U1 UNCONVERGED at A1 — F30` and `- F41 [VERIFIED]
+  record: unit U2 UNCONVERGED at A1 — F29, F30, F31, F32, F33, F34,
+  F35` (tracker lines 86-87). Sweep stayed SWEEP_CLEAN (desk's
+  report; this desk ran the installed tool's sweep at the earlier
+  lock only).
+- The finding-list form added in the repair lap (review finding
+  S1-F3: "two findings on one unit is the ordinary case and the
+  page gives no form for it") was needed on the first round a run
+  ever returned: seven findings on one unit. Under the 0.2.104
+  grammar that line would have been an unrecognized near-form.
+- A finding that touches both units (F30) is cited in both
+  records. The page does not say so; the desk did it. Datum for
+  the review's open question "does a cross-unit finding reopen
+  both units" (opus-review-w m7).
+- The ABSENCE unit (U2) then took an UNCONVERGED record. By the
+  tool the latest record wins, so U2 is no longer in
+  `absence_units`. Whether the absence must be re-recorded before
+  closure for Verify to see it is NOT stated on the page: a
+  question for st-95, raised here before it can bite. This desk
+  watches U2's records at the closing round.
+
+Round yield, from the desk's report: 2 MAJOR, 5 MINOR, 1 exported,
+1 record finding; the attacker executed (153 passed, 0 skipped,
+one Postgres 17 probe). One MAJOR (F29) was a source trace plus a
+catalog read, not an end-to-end execution; the desk says so and
+moved it into the differential test. A2's stated reason: the
+repairs changed the design (sentinel pins on every shared name, a
+re-alert rule, an amended requirement). No stop-call: a first
+round biting is the round working, and no minted rule failed its
+falsifier.
+
+Turn cost at this desk for the run so far: five relays, one
+operator blocker (the daemon), one horizon wake with nothing found.
