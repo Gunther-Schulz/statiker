@@ -242,6 +242,9 @@ amend-reason: 2026-09-29 carrier for the chat-only deferral decision of 2026-09-
 amended-evidence: 2026-09-29 DERIVED (desk decision 2026-09-29, statiker-update batch): the pre-registered criterion is WRITTEN AT RUN-3 PREP, against the object st-75's answer names — a criterion designed before the run's object is chosen would pin the wrong comparison; the measurement itself still runs inside the next run as parked
 promote-reason: 2026-10-07 spend decision answered YES in the ledger (2026-09-25); design is fixed in the done-criterion; only the object waits on run-3 prep
 promoted-by: 2026-10-07 statiker desk 6796fb27 (opus), 2026-10-07
+amend-reason: 2026-10-07 re-keyed from the codex desk-role run-3 object to the next ordinary run: the act this item needs belongs to whichever run comes next, and run 3 of the codex program is unscheduled
+amended-blocked-by: 2026-10-07 decision which real task the next statiker run takes
+amended-not-derivable: 2026-10-07 2026-10-07 the task is the operator product work (st-94 carries the same question and the prep order); this item is decision-complete and waits for that run prep
 
 ## st-90
 grade: NEW
