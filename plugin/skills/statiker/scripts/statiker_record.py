@@ -231,26 +231,54 @@ TRIPWIRE_ARM_NEAR_RE = re.compile(r'(?i)^record: tripwire armed\b')
 # `record: `-opened bookkeeping line.
 RECORD_CONVERGED_RE = re.compile(r'^record: unit (U\d+) CONVERGED at (A\d+)$')
 RECORD_UNCONVERGED_RE = re.compile(
-    r'^record: unit (U\d+) UNCONVERGED at (A\d+) — (F\d+)$')
+    r'^record: unit (U\d+) UNCONVERGED at (A\d+) — '
+    r'(F\d+(?:, F\d+)*)$')
 RECORD_ABSENCE_RE = re.compile(r'^record: unit (U\d+) ABSENCE — (\S.*)$')
+# 0.2.105 (eve review repair B3): a body that opens like one of the
+# three forms above and does not match it is a convergence record the
+# closure guard would silently not read — the hyphen spelling, a
+# missing `at`. Same shape as TRIPWIRE_ARM_NEAR_RE below.
+CONVERGENCE_NEAR_RE = re.compile(
+    r'(?i)^record: unit U\d+ (converged|unconverged|absence)\b')
 
 
 def recognize_record_form(body: str):
     """One of the three st-85 unit-convergence forms, or None for any
     other body (record-scoped or not). Returns (kind, unit, extra):
     kind is 'converged', 'unconverged', or 'absence'; extra is the
-    citing A-id for 'converged', a (A-id, F-id) pair for 'unconverged',
-    or the free-text reason for 'absence'."""
+    citing A-id for 'converged', an (A-id, [F-ids]) pair for
+    'unconverged' (the finding list, in written order), or the
+    free-text reason for 'absence'."""
     m = RECORD_CONVERGED_RE.match(body)
     if m:
         return ("converged", m.group(1), m.group(2))
     m = RECORD_UNCONVERGED_RE.match(body)
     if m:
-        return ("unconverged", m.group(1), (m.group(2), m.group(3)))
+        return ("unconverged", m.group(1),
+                (m.group(2), m.group(3).split(", ")))
     m = RECORD_ABSENCE_RE.match(body)
     if m:
         return ("absence", m.group(1), m.group(2))
     return None
+
+
+def convergence_record_counts(e, a_ids):
+    """0.2.105 (eve review repair B2): whether a recognized convergence
+    record COUNTS toward a unit's state. It must sit on an F-line
+    tagged [VERIFIED] — a [PENDING] or [INVALIDATED] line is not a
+    verdict anyone stands behind — and, for CONVERGED and UNCONVERGED,
+    the `A<n>` it cites must be an A-class entry present in the record
+    (`a_ids`); ABSENCE cites no round and needs the tag only. A body
+    that is no recognized form never counts."""
+    rec = recognize_record_form(e.body)
+    if rec is None or e.cls != "F" or e.tag != "VERIFIED":
+        return False
+    kind, _unit, extra = rec
+    if kind == "converged":
+        return extra in a_ids
+    if kind == "unconverged":
+        return extra[0] in a_ids
+    return True
 
 
 CLASS_TAGS = {
@@ -337,7 +365,7 @@ SKILL_HEADER_VERSION_RE = re.compile(r"^statiker (\S+)$")
 # IS consumed as a gate (cmd_filter's ARTIFACT_CONTAINMENT_HOLD,
 # below) — never widen the "attribution, never a gate" sentence
 # (SKILL.md) to cover this line.
-CONTAINMENT_EXACT_RE = re.compile(r"^CONTAINMENT: (\S+)$")
+CONTAINMENT_EXACT_RE = re.compile(r"^CONTAINMENT: (\S(?:.*\S)?)$")
 # st-89: a column-0 line that LOOKS like a label attempt. Near and not
 # exact is the malformed label: it lints `containment-near-miss` and
 # holds cmd_filter, so a declared scope never silently reads as none.
@@ -361,7 +389,9 @@ def own_served_version():
     stated reason for SKILL_VERSION_HOLD) — the override is what makes
     the header-ahead/equal arms reachable outside that checkout.
     Production reads the plugin cache path: `.../statiker/statiker/
-    <version>/plugin/skills/statiker/scripts/statiker_record.py`."""
+    <version>/skills/statiker/scripts/statiker_record.py` (the plugin
+    directory is the install root, so the `plugin/` segment of this
+    checkout's layout is absent there)."""
     override = os.environ.get("STATIKER_SERVED_VERSION")
     if override:
         return override
@@ -381,22 +411,23 @@ def _version_tuple(v):
 def skill_version_hold(reach):
     """st-84: an OLDER desk's tool over a NEWER record's header —
     SKILL.md's resume passage ("WRITES NO CLOSE"), mechanized. Reads
-    ONLY the header `Skill:` line (reach["skill_versions"][0] when
-    present — parse_tracker appends the header entry first, always,
-    before any mid-run body stamp; P3, parse_tracker's own docstring):
-    the mid-run SKILL: body stamps stay attribution-only for sweep
-    scoping, an UNCHANGED, DISTINCT check (SKILL.md, The record) —
-    never read here. Returns None (no fire) on a marker-less record
+    ONLY the header `Skill:` line (the reach["skill_versions"] entry
+    parse_tracker marks `"header": True`; a record whose header carries
+    no `Skill:` line has no such entry, so a body stamp can never stand
+    in for it): the mid-run SKILL: body stamps stay attribution-only
+    for sweep scoping, an UNCHANGED, DISTINCT check (SKILL.md, The
+    record) — never read here. Returns None (no fire) on a marker-less record
     (no header Skill: line at all — the no-grandfather narrowing's own
     out-of-scope case), when this tool's own version cannot be derived
     (own_served_version() is None — could-not-verify, never a silent
     fire), on either version failing to parse as a plain X.Y.Z, or
     when the header is at or behind the served version; else the
     mismatch detail dict for the hold verdict."""
-    skill_versions = reach.get("skill_versions") or []
-    if not skill_versions:
+    header_entry = next((sv for sv in reach.get("skill_versions") or []
+                         if sv.get("header")), None)
+    if header_entry is None:
         return None
-    header_version = skill_versions[0]["version"]
+    header_version = header_entry["version"]
     served = own_served_version()
     if served is None:
         return None
@@ -459,6 +490,7 @@ RULE_MINT_VERSION = {
     "freeze-breach": "0.2.63",
     "hold-form": "0.2.43",
     "containment-near-miss": "0.2.105",
+    "convergence-near-miss": "0.2.105",
     "intent-near-miss": "0.2.49",
     "killerless-dead": "0.2.33",
     "landing-blank": "0.2.36",
@@ -479,7 +511,8 @@ RULE_MINT_VERSION = {
     "write-set-path-near-miss": "0.2.62",
 }
 FORM_CODES_MINT_GATED = {"superseded-block-form", "basis-missing",
-                         "tag-literal-in-body", "clause-unparsed"}
+                         "tag-literal-in-body", "clause-unparsed",
+                         "containment-near-miss", "convergence-near-miss"}
 
 
 def _version_tuple(v):
@@ -765,7 +798,7 @@ REPAIR_LANDING_MISSING = (
 MACHINE_TOKEN_CODES = {
     "entry-form", "tag-enum", "entry-near-miss", "scope-near-miss",
     "hold-form", "write-set-near-miss", "write-set-path-near-miss",
-    "tripwire-arm-near-miss",
+    "tripwire-arm-near-miss", "convergence-near-miss",
 }
 BODY_CONTENT_CODES = {
     "tag-literal-in-body", "basis-missing",
@@ -1426,6 +1459,17 @@ def parse_tracker(text: str):
                          "scope_parsed": scope_parsed}
         entries.append(Entry(i, cls, f"{cls}{num}", tag, body_main, basis))
 
+    # 0.2.105 (eve review repair B3): a convergence-shaped F-line the
+    # closure guard will not read. Needs the whole entry set (the A-ids
+    # a record may cite exist anywhere in the record), so it runs after
+    # the scan; an [INVALIDATED] line retires a record and is no claim.
+    a_ids = {e.id for e in entries if e.cls == "A"}
+    for e in entries:
+        if (e.cls == "F" and e.tag != "INVALIDATED"
+                and CONVERGENCE_NEAR_RE.match(e.body)
+                and not convergence_record_counts(e, a_ids)):
+            viol("convergence-near-miss", e.lineno, lines[e.lineno - 1])
+
     # bracketed tag literal anywhere outside an entry's leading tag
     # position and outside the Status header line
     for i, line in enumerate(lines, 1):
@@ -1452,7 +1496,8 @@ def parse_tracker(text: str):
     if skill_line is not None:
         hm = SKILL_HEADER_VERSION_RE.match(skill_val) if skill_val else None
         skill_versions.append({"line": skill_line,
-                               "version": hm.group(1) if hm else skill_val})
+                               "version": hm.group(1) if hm else skill_val,
+                               "header": True})
     skill_versions.extend(skill_version_lines)
     reach = {"r_lines": r_lines, "head_region_entries": head_region_entries,
              "skill_versions": skill_versions,
@@ -2210,18 +2255,50 @@ def unit_convergence_states(entries):
     the rest of this page resolves a same-id line (latest_by_id): a
     reopened unit (UNCONVERGED citing a later finding) drops back out
     of the converged set until a fresh CONVERGED record lands after
-    it. Returns unit -> (kind, Entry)."""
+    it. Only records that COUNT are read (convergence_record_counts:
+    [VERIFIED], and the cited A-id present). Returns unit -> (kind,
+    Entry)."""
     latest = latest_by_id(entries)
+    a_ids = {e.id for e in entries if e.cls == "A"}
     states = {}
     for e in sorted(entries, key=lambda e: e.lineno):
         if e.cls != "F" or latest[e.id] is not e or e.tag == "INVALIDATED":
             continue
-        rec = recognize_record_form(e.body)
-        if rec is None:
+        if not convergence_record_counts(e, a_ids):
             continue
-        kind, unit, _extra = rec
+        kind, unit, _extra = recognize_record_form(e.body)
         states[unit] = (kind, e)
     return states
+
+
+def unconverged_units_at_close(entries, closing):
+    """0.2.105 (eve review repair B4/B5): the closure guard, one helper
+    for BOTH closing paths (the [ZERO-DELTA] branch and the terminal
+    [BIT] branch read as satisfied). Its population is the UNION of
+    every unit a D-line names AT THE CLOSE (live at or before
+    closing.lineno, latest-line-per-id resolved AS OF that point — a
+    post-close D-line is a NEW work item the per-unit machinery below
+    already handles, never part of the round being closed; an
+    [INVALIDATED] line, same convention as waves_over_units, never
+    established a live design commitment) and every unit carrying a
+    counting convergence record of any kind. A unit in it whose latest
+    counting state is not 'converged' or 'absence' is unconverged.
+    Returns the sorted unit ids."""
+    pre_close = [e for e in entries if e.lineno <= closing.lineno]
+    pre_close_latest = latest_by_id(pre_close)
+    d_units = set()
+    for id_ in {e.id for e in pre_close if e.cls == "D"}:
+        le = pre_close_latest[id_]
+        if le.tag == "INVALIDATED":
+            continue
+        scope, unit = classify_scope(le.body)
+        if scope == "unit":
+            d_units.add(unit)
+    states = unit_convergence_states(entries)
+    return sorted(
+        (u for u in d_units | set(states)
+         if states.get(u, (None, None))[0] not in ("converged", "absence")),
+        key=lambda u: int(u[1:]))
 
 
 def cmd_closure(args):
@@ -2319,39 +2396,19 @@ def cmd_closure(args):
             f"amends no design entry outside record/unit scope (P27)")
     else:
         say(f"closure: {closing.id} [ZERO-DELTA] at line {closing.lineno}")
-        # st-85: a ZERO-DELTA round can be scoped to a subset of the
-        # tracker's units — closing on it must not silently close
-        # design for the units the round never touched. Every unit a
-        # D-line names AT THE CLOSE (live at or before closing.lineno,
-        # latest-line-per-id resolved AS OF that point — a post-close
-        # D-line is a NEW work item the existing per-unit machinery
-        # below already handles, never part of the round being closed;
-        # an [INVALIDATED] line, same convention as waves_over_units,
-        # never established a live design commitment) needs a live
-        # 'converged' or 'absence' state (unit_convergence_states) — a
-        # unit still 'unconverged' (reopened) or never recorded at all
-        # holds the closure.
-        pre_close = [e for e in entries if e.lineno <= closing.lineno]
-        pre_close_latest = latest_by_id(pre_close)
-        d_units = set()
-        for id_ in {e.id for e in pre_close if e.cls == "D"}:
-            le = pre_close_latest[id_]
-            if le.tag == "INVALIDATED":
-                continue
-            scope, unit = classify_scope(le.body)
-            if scope == "unit":
-                d_units.add(unit)
-        states = unit_convergence_states(entries)
-        unconverged = sorted(
-            (u for u in d_units
-             if states.get(u, (None, None))[0] not in ("converged", "absence")),
-            key=lambda u: int(u[1:]))
-        if unconverged:
-            say(f"closure ZERO_DELTA_UNCONVERGED: unit(s) "
-                f"{', '.join(unconverged)} carry a design (D-line) entry "
-                f"but no live CONVERGED or ABSENCE record")
-            finish("ZERO_DELTA_UNCONVERGED", 2, unconverged=unconverged,
-                  last_a=f"{closing.id} [{closing.tag}]", **late)
+    # st-85: a closing round can be scoped to a subset of the tracker's
+    # units — closing on it must not silently close design for the
+    # units the round never touched. 0.2.105 (eve review B5): the
+    # guard runs on BOTH satisfied paths, [ZERO-DELTA] and terminal
+    # [BIT], through one helper.
+    unconverged = unconverged_units_at_close(entries, closing)
+    if unconverged:
+        say(f"closure ZERO_DELTA_UNCONVERGED: unit(s) "
+            f"{', '.join(unconverged)} carry a design (D-line) entry "
+            f"or a convergence record but no live CONVERGED or ABSENCE "
+            f"record")
+        finish("ZERO_DELTA_UNCONVERGED", 2, unconverged=unconverged,
+              last_a=f"{closing.id} [{closing.tag}]", **late)
 
     post = [e for e in entries
             if e.lineno > closing.lineno and e.cls in ("F", "D", "R")]
@@ -2360,6 +2417,12 @@ def cmd_closure(args):
     late["post_closure"] = [
         {"line": f"{e.id} [{e.tag}] {e.body}", "lineno": e.lineno}
         for e in post]
+    # 0.2.105 (eve review repair B6): the units closed as ABSENCE ride
+    # every verdict that carries the population above, so the close
+    # report enumerates them (SKILL.md, Verify's demand list)
+    late["absence_units"] = sorted(
+        (u for u, (kind, _e) in unit_convergence_states(entries).items()
+         if kind == "absence"), key=lambda u: int(u[1:]))
     # latest line per id AT the closure — the live set the closure
     # rests on (attack-7 N1)
     live_at_close = {}
@@ -3146,7 +3209,8 @@ def cmd_filter(args):
     # the attacker would grade text the record does not contain
     # (attack-10 N6). Surrogateescape both ways keeps preserved lines
     # byte-identical to the pinned tracker.
-    lines = split_lines(p.stdout.decode("utf-8", "surrogateescape"))
+    pinned_text = p.stdout.decode("utf-8", "surrogateescape")
+    lines = split_lines(pinned_text)
     # st-80: the runtime containment check, checked only once the
     # tracker's own committed content is in hand (containment_scope is
     # PERSISTED RECORD content, unlike ARTIFACT_IN_REPO's check above,
@@ -3157,8 +3221,20 @@ def cmd_filter(args):
     # on, BEFORE the artifact is written.
     # st-89: a label-shaped line that is not the exact form fails
     # CLOSED — read as no scope it would leave the gate unarmed.
-    malformed = [l for l in lines if CONTAINMENT_NEAR_RE.match(l)
-                 and not CONTAINMENT_EXACT_RE.match(l)]
+    # 0.2.105 (eve review repair A2): "label-shaped" is what the
+    # record's own grading says, never a second raw-line predicate —
+    # the pinned text goes through parse_tracker (body region only, a
+    # line shed by a `corrects line` entry gone) and net_retro_holds
+    # (a line written under a stamp older than the code's mint never
+    # holds), the same two steps `sweep` takes to reach the set. A
+    # SWEEP_EXEMPT declaration is deliberately not netted here: this
+    # gate guards a filesystem write and stays fail-closed.
+    _entries, parsed_violations, _meta, parsed_reach = parse_tracker(
+        pinned_text)
+    live_violations, _retro = net_retro_holds(
+        parsed_violations, parsed_reach["skill_versions"])
+    malformed = [v["text"] for v in live_violations
+                 if v["code"] == "containment-near-miss"]
     if malformed:
         finish("ARTIFACT_CONTAINMENT_HOLD", 2, out=args.out,
                containment_scope=extract_containment_scope(lines),

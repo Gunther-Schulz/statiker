@@ -163,8 +163,9 @@ ROUTES = {
     # PREFLIGHT_CONTAINMENT_HOLD's "surface").
     "ARTIFACT_CONTAINMENT_HOLD": "halt",
     # st-84 (0.2.105, LEDGER.md 2026-09-29 decision): an older desk
-    # over a newer record — same disposition as PREFLIGHT_UNPINNABLE_
-    # TRACKER/PREFLIGHT_CONTAINMENT_HOLD above: only a correctly-
-    # versioned successor (a restart) resolves it, never a repair.
-    "SKILL_VERSION_HOLD": "surface",
+    # over a newer record — only a correctly-versioned successor (a
+    # restart) resolves it, never a repair or an operator answer.
+    # Eve review repair C2: `barred`, like ZERO_DELTA_UNCONVERGED —
+    # the older desk neither proceeds nor surfaces a choice.
+    "SKILL_VERSION_HOLD": "barred",
 }

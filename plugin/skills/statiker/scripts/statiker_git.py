@@ -975,6 +975,13 @@ def lock_gate_check(repo, args):
     unnamed status defaults to the original fail-closed behavior
     rather than a guessed third bucket."""
     gate = gate_consult(repo, ["sweep", "--tracker", args.tracker])
+    # 0.2.105 (eve review repair C1): the version hold carries neither
+    # `violations` nor `status`, so the keys below read it as a clean
+    # gate — an older desk locked over a newer record. It halts by its
+    # verdict name, whatever the status bucket (the close path
+    # included): "WRITES NO CLOSE" has no pass-with-holds reading.
+    if gate.get("verdict") == "SKILL_VERSION_HOLD":
+        raise Halt("LOCK_GATE_HOLDS", gate=gate)
     blocking = gate.get("violations") or []
     close_path = gate.get("status") in CLOSE_PATH_STATUSES
     if blocking and not close_path:

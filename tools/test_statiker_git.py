@@ -920,6 +920,52 @@ class TestLockGateStatusConditioning(GitFixture):
         self.assertEqual(v["verdict"], "LOCK_CHECK_CLEAN", v)
 
 
+class TestLockGateSkillVersionHold(GitFixture):
+    """0.2.105 eve review repair C1: a gate verdict named
+    SKILL_VERSION_HOLD carries no `violations` and no `status`, so the
+    violations-keyed gate passed it. An older desk over a newer record
+    must lock nothing, whatever the Status bucket (the close path
+    included)."""
+
+    TRACKER = ".clippy/runs/t.md"
+
+    def held_tracker(self, status):
+        return (f"# Run: t\nStatus: {status}\nPhase: implement\n"
+                f"Skill: statiker 9.9.9\n\n## Cycle 1\n")
+
+    def setUp(self):
+        super().setUp()
+        # the record tool derives its served version from its install
+        # path; the dev checkout has none, so the override forces it
+        # (the gate consult inherits this process env)
+        self.env["STATIKER_SERVED_VERSION"] = "0.2.105"
+
+    def test_lock_check_halts_under_a_version_hold_in_every_bucket(self):
+        for status in ("[READY]", "in-progress", "FAILED", "COMPLETE"):
+            with self.subTest(status=status):
+                self.write(self.TRACKER, self.held_tracker(status))
+                p = self.tool("lock-check", "--tracker", self.TRACKER)
+                v = self.verdict(p)
+                self.assertEqual(v["verdict"], "LOCK_GATE_HOLDS", v)
+                self.assertEqual(v["gate"]["verdict"], "SKILL_VERSION_HOLD")
+                self.assertNotEqual(p.returncode, 0)
+
+    def test_lock_commit_lands_no_commit_under_a_version_hold(self):
+        self.write(self.TRACKER, self.held_tracker("[READY]"))
+        before = self.head_sha()
+        p = self.tool("lock-commit", "--tracker", self.TRACKER, "-m", "lock")
+        v = self.verdict(p)
+        self.assertEqual(v["verdict"], "LOCK_GATE_HOLDS", v)
+        self.assertEqual(self.head_sha(), before)
+
+    def test_equal_version_still_locks(self):
+        # MUST NOT MOVE: header at the served version is no hold
+        self.write(self.TRACKER, self.held_tracker("[READY]").replace(
+            "9.9.9", "0.2.105"))
+        v = self.verdict(self.tool("lock-check", "--tracker", self.TRACKER))
+        self.assertEqual(v["verdict"], "LOCK_CHECK_CLEAN", v)
+
+
 # --------------------------------------------------------------- lock commit
 
 class TestLockCommit(GitFixture):

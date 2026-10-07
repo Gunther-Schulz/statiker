@@ -1587,7 +1587,7 @@ class TestSt85RecordGrammar(unittest.TestCase):
         self.assertEqual(
             self.m.recognize_record_form(
                 "record: unit U3 UNCONVERGED at A5 — F7"),
-            ("unconverged", "U3", ("A5", "F7")))
+            ("unconverged", "U3", ("A5", ["F7"])))
 
     def test_unconverged_negative_near_miss(self):
         self.assertIsNone(
@@ -2631,12 +2631,19 @@ class TestSt89MalformedContainmentLabel(RecordFixture):
     (the gate never armed). It now lints `containment-near-miss` and
     holds `filter` (ARTIFACT_CONTAINMENT_HOLD, malformed_containment)."""
 
-    SLIPS = ("Containment: /x", "CONTAINMENT:/x", "CONTAINMENT: /x /y")
+    # 0.2.105 repair A: `CONTAINMENT: /x /y` is no slip any more (the
+    # exact form admits an interior-space path); the doubled space after
+    # the colon takes its place. The fixture's header carries the
+    # 0.2.105 stamp: the code is mint-gated, so an older stamp grades
+    # the slip RETRO and `filter` ignores it.
+    SLIPS = ("Containment: /x", "CONTAINMENT:/x", "CONTAINMENT:  /x")
 
     def _filter(self, label_lines, out_dir):
         f = TestFilter("test_filter_drops_both_species_and_reads_the_sha")
         f._tmp, f.dir = self._tmp, self.dir
-        body = HEADER + "".join(l + "\n" for l in label_lines)
+        body = HEADER.replace("Skill: statiker 0.2.33",
+                              "Skill: statiker 0.2.105") + "".join(
+            l + "\n" for l in label_lines)
         body += "- F1 [VERIFIED] kept \u2014 basis: y\n"
         sha = TestFilter.make_repo_with_tracker(f, body)
         out = Path(out_dir) / "artifact.md"
@@ -5803,8 +5810,11 @@ class TestP3SkillVersionLine(RecordFixture):
         self.assertEqual(v["verdict"], "SWEEP_CLEAN")
         header_line = self.lineno_of(body, "Skill: statiker")
         planted_line = self.lineno_of(body, "SKILL: statiker 0.2.99")
+        # 0.2.105 (eve review C3): the header entry carries the additive
+        # `header` marker the version hold selects on; the body stamp
+        # does not
         self.assertEqual(v["skill_versions"], [
-            {"line": header_line, "version": "0.2.33"},
+            {"line": header_line, "version": "0.2.33", "header": True},
             {"line": planted_line, "version": "0.2.99"},
         ])
 
@@ -5814,7 +5824,8 @@ class TestP3SkillVersionLine(RecordFixture):
         self.assertEqual(v["verdict"], "SWEEP_CLEAN")
         header_line = self.lineno_of(body, "Skill: statiker")
         self.assertEqual(v["skill_versions"],
-                         [{"line": header_line, "version": "0.2.33"}])
+                         [{"line": header_line, "version": "0.2.33",
+                           "header": True}])
 
     def test_planted_line_surfaces_in_closure_too(self):
         body = "SKILL: statiker 0.2.99\n" + CLOSED
@@ -5823,7 +5834,7 @@ class TestP3SkillVersionLine(RecordFixture):
         header_line = self.lineno_of(body, "Skill: statiker")
         planted_line = self.lineno_of(body, "SKILL: statiker 0.2.99")
         self.assertEqual(v["skill_versions"], [
-            {"line": header_line, "version": "0.2.33"},
+            {"line": header_line, "version": "0.2.33", "header": True},
             {"line": planted_line, "version": "0.2.99"},
         ])
 
@@ -7205,6 +7216,294 @@ class TestSt35ArmingRetraction(RecordFixture):
             "- F2 [VERIFIED] record: tripwire armed at 7 — basis: desk\n")
         v = self.tripwire(body)
         self.assertEqual(v["threshold"], 7, v)
+
+
+# ------------- 0.2.105 eve review repair lap (items A, B, C) --------------
+
+# a header at/after the 0.2.105 mint of the codes under test, so no arm
+# is confounded by RETRO netting (a line written under an older stamp
+# never grades under a code minted later)
+HEADER_105 = HEADER.replace("Skill: statiker 0.2.33", "Skill: statiker 0.2.105")
+
+
+class TestEveRepairAContainmentLabel(RecordFixture):
+    """Eve review repair A: the exact label admits an interior-space
+    path; `filter` holds on a malformed label only when the pinned
+    record carries a LIVE, NON-RETRO containment-near-miss as sweep
+    grades it (body region, correction-shed, retro-netted) — never a
+    raw-line scan; the code is mint-gated."""
+
+    def _filter(self, body, out_dir, header=HEADER_105):
+        f = TestFilter("test_filter_drops_both_species_and_reads_the_sha")
+        f._tmp, f.dir = self._tmp, self.dir
+        sha = TestFilter.make_repo_with_tracker(f, header + body)
+        out = Path(out_dir) / "artifact.md"
+        p = tool(["filter", "--tracker", "t.md", "--sha", sha,
+                  "--out", str(out)], cwd=self.dir)
+        return self.verdict(p), p, out
+
+    def test_corrected_mistyped_label_plus_correct_one_writes(self):
+        with tempfile.TemporaryDirectory() as scope_root:
+            body = (f"Containment: {scope_root}\n"
+                    f"CONTAINMENT: {scope_root}\n"
+                    "- F1 [VERIFIED] kept — basis: y\n")
+            n = self.lineno_of(body, "Containment:", header=HEADER_105)
+            body += (f"- F2 [VERIFIED] record: corrects line {n} — "
+                     f"basis: the containment-near-miss verdict at "
+                     f"line {n}\n")
+            codes = self.violation_codes(self.sweep(body, header=HEADER_105))
+            self.assertNotIn("containment-near-miss", codes)
+            v, _, out = self._filter(body, scope_root)
+            self.assertEqual(v["verdict"], "ARTIFACT_WRITTEN", v)
+            self.assertTrue(out.exists())
+
+    def test_head_region_prose_is_not_a_label(self):
+        header = HEADER_105.replace(
+            "## Cycle 1\n",
+            "Containment: keep every artifact under ~/work please.\n\n"
+            "## Cycle 1\n")
+        with tempfile.TemporaryDirectory() as elsewhere:
+            body = "- F1 [VERIFIED] kept — basis: y\n"
+            self.assertNotIn(
+                "containment-near-miss",
+                self.violation_codes(self.lint(body, header=header)))
+            v, _, out = self._filter(body, elsewhere, header=header)
+            self.assertEqual(v["verdict"], "ARTIFACT_WRITTEN", v)
+
+    def test_spaced_path_inside_scope_writes(self):
+        with tempfile.TemporaryDirectory() as td:
+            scope = Path(td) / "scope root"
+            scope.mkdir()
+            body = (f"CONTAINMENT: {scope}\n"
+                    "- F1 [VERIFIED] kept — basis: y\n")
+            self.assertNotIn(
+                "containment-near-miss",
+                self.violation_codes(self.lint(body, header=HEADER_105)))
+            v, _, out = self._filter(body, scope)
+            self.assertEqual(v["verdict"], "ARTIFACT_WRITTEN", v)
+            self.assertTrue(out.exists())
+
+    def test_spaced_path_outside_scope_holds(self):
+        with tempfile.TemporaryDirectory() as td, \
+                tempfile.TemporaryDirectory() as elsewhere:
+            scope = Path(td) / "scope root"
+            scope.mkdir()
+            body = (f"CONTAINMENT: {scope}\n"
+                    "- F1 [VERIFIED] kept — basis: y\n")
+            v, _, out = self._filter(body, elsewhere)
+            self.assertEqual(v["verdict"], "ARTIFACT_CONTAINMENT_HOLD", v)
+            self.assertEqual(v["containment_scope"],
+                             [str(scope)])
+            self.assertNotIn("malformed_containment", v)
+            self.assertFalse(out.exists())
+
+    def test_uncorrected_body_near_miss_still_holds(self):
+        # MUST NOT MOVE
+        with tempfile.TemporaryDirectory() as elsewhere:
+            slip = "Containment: /x"
+            body = slip + "\n- F1 [VERIFIED] kept — basis: y\n"
+            v, _, out = self._filter(body, elsewhere)
+            self.assertEqual(v["verdict"], "ARTIFACT_CONTAINMENT_HOLD", v)
+            self.assertEqual(v["malformed_containment"], [slip])
+            self.assertFalse(out.exists())
+
+    def test_doubled_space_is_still_a_near_miss(self):
+        # MUST NOT MOVE
+        slip = "CONTAINMENT:  /x"
+        body = "- F1 [VERIFIED] a fact — basis: y\n" + slip + "\n"
+        self.assertIn("containment-near-miss",
+                      self.violation_codes(self.lint(body, header=HEADER_105)))
+        with tempfile.TemporaryDirectory() as elsewhere:
+            v, _, out = self._filter(slip + "\n", elsewhere)
+            self.assertEqual(v["verdict"], "ARTIFACT_CONTAINMENT_HOLD", v)
+            self.assertEqual(v["malformed_containment"], [slip])
+
+    def test_retro_graded_near_miss_never_holds(self):
+        # the same uncorrected slip under a header older than the
+        # code's mint grades RETRO in sweep, so the filter writes
+        with tempfile.TemporaryDirectory() as elsewhere:
+            body = "Containment: /x\n- F1 [VERIFIED] kept — basis: y\n"
+            v, _, out = self._filter(body, elsewhere, header=HEADER)
+            self.assertEqual(v["verdict"], "ARTIFACT_WRITTEN", v)
+
+    def test_code_is_mint_gated(self):
+        sys.path.insert(0, str(SCRIPT.parent))
+        try:
+            import statiker_record
+        finally:
+            sys.path.remove(str(SCRIPT.parent))
+        self.assertIn("containment-near-miss",
+                      statiker_record.FORM_CODES_MINT_GATED)
+        self.assertTrue(statiker_record.is_retro(
+            "containment-near-miss", 9,
+            [{"line": 4, "version": "0.2.33"}]))
+        self.assertFalse(statiker_record.is_retro(
+            "containment-near-miss", 9,
+            [{"line": 4, "version": "0.2.105"}]))
+
+
+class TestEveRepairBUnitConvergence(RecordFixture):
+    """Eve review repair B: a finding LIST on UNCONVERGED; a record
+    counts only when [VERIFIED] and its A-id exists; the near-miss
+    lint; the close guard's population is D-units plus every unit a
+    counting record names, on BOTH closing paths; absence_units."""
+
+    UNITS = ("- D1 [COMMITTED] unit U1 add feature X — basis: design\n"
+             "- D2 [COMMITTED] unit U2 add feature Y — basis: design\n"
+             "- A1 [DISPATCHED] round 1 — basis: brief\n")
+    ZD = "- A1 [ZERO-DELTA] clean return — basis: report\n"
+    BIT = "- A1 [BIT] findings — basis: report\n"
+    CONV1 = ("- F1 [VERIFIED] record: unit U1 CONVERGED at A1 — "
+             "basis: verdict\n")
+    CONV2 = ("- F2 [VERIFIED] record: unit U2 CONVERGED at A1 — "
+             "basis: verdict\n")
+
+    def _module(self):
+        sys.path.insert(0, str(SCRIPT.parent))
+        try:
+            import statiker_record
+        finally:
+            sys.path.remove(str(SCRIPT.parent))
+        return statiker_record
+
+    def test_finding_list_grammar(self):
+        m = self._module()
+        self.assertEqual(
+            m.recognize_record_form(
+                "record: unit U3 UNCONVERGED at A5 — F7, F8"),
+            ("unconverged", "U3", ("A5", ["F7", "F8"])))
+        self.assertEqual(
+            m.recognize_record_form(
+                "record: unit U3 UNCONVERGED at A5 — F7"),
+            ("unconverged", "U3", ("A5", ["F7"])))
+        self.assertIsNone(m.recognize_record_form(
+            "record: unit U3 UNCONVERGED at A5 — F7,F8"))
+
+    def test_finding_list_reopens_a_converged_unit(self):
+        body = (self.UNITS + self.CONV1 + self.CONV2 +
+                "- F3 [VERIFIED] record: unit U2 UNCONVERGED at A1 "
+                "— F5, F6 — basis: retriage\n" + self.ZD)
+        v = self.closure(body, header=HEADER_105)
+        self.assertEqual(v["verdict"], "ZERO_DELTA_UNCONVERGED", v)
+        self.assertEqual(v["unconverged"], ["U2"], v)
+
+    def test_hyphen_form_lints_and_sweep_holds(self):
+        bad = ("- F2 [VERIFIED] record: unit U1 UNCONVERGED at A2 - F2 "
+               "— basis: retriage\n")
+        body = self.UNITS + self.CONV1 + bad + self.ZD
+        v = self.lint(body, header=HEADER_105)
+        self.assertIn("convergence-near-miss", self.violation_codes(v), v)
+        v = self.sweep(body, header=HEADER_105)
+        self.assertEqual(v["verdict"], "SWEEP_HOLDS", v)
+        self.assertIn("convergence-near-miss", self.violation_codes(v), v)
+        # control: the exact form lints and sweeps without the code
+        good = ("- F2 [VERIFIED] record: unit U1 UNCONVERGED at A1 "
+                "— F2 — basis: retriage\n")
+        for v in (self.lint(self.UNITS + self.CONV1 + good + self.ZD,
+                            header=HEADER_105),
+                  self.sweep(self.UNITS + self.CONV1 + good + self.ZD,
+                             header=HEADER_105)):
+            self.assertNotIn("convergence-near-miss",
+                             self.violation_codes(v), v)
+
+    def test_pending_record_does_not_count_lints_and_closure_stays(self):
+        body = (self.UNITS + self.CONV1 +
+                "- F2 [PENDING] record: unit U2 CONVERGED at A99 "
+                "— basis: unverified\n" + self.ZD)
+        v = self.closure(body, header=HEADER_105)
+        self.assertEqual(v["verdict"], "ZERO_DELTA_UNCONVERGED", v)
+        self.assertEqual(v["unconverged"], ["U2"], v)
+        self.assertIn("convergence-near-miss",
+                      self.violation_codes(self.lint(body, header=HEADER_105)))
+
+    def test_missing_a_id_does_not_count(self):
+        body = (self.UNITS + self.CONV1 +
+                "- F2 [VERIFIED] record: unit U2 CONVERGED at A99 "
+                "— basis: verdict\n" + self.ZD)
+        v = self.closure(body, header=HEADER_105)
+        self.assertEqual(v["verdict"], "ZERO_DELTA_UNCONVERGED", v)
+        self.assertEqual(v["unconverged"], ["U2"], v)
+        self.assertIn("convergence-near-miss",
+                      self.violation_codes(self.lint(body, header=HEADER_105)))
+
+    def test_absence_needs_the_tag_only(self):
+        absence = ("- F2 [PENDING] record: unit U2 ABSENCE — no "
+                   "input reaches it — basis: verdict\n")
+        v = self.closure(self.UNITS + self.CONV1 + absence + self.ZD,
+                         header=HEADER_105)
+        self.assertEqual(v["verdict"], "ZERO_DELTA_UNCONVERGED", v)
+
+    def test_unit_named_only_by_an_unconverged_record_bars_the_close(self):
+        body = ("- D1 [COMMITTED] the design — basis: probe\n"
+                "- A1 [DISPATCHED] round 1 — basis: brief\n"
+                "- F1 [VERIFIED] record: unit U7 UNCONVERGED at A1 "
+                "— F9 — basis: retriage\n" + self.ZD)
+        v = self.closure(body, header=HEADER_105)
+        self.assertEqual(v["verdict"], "ZERO_DELTA_UNCONVERGED", v)
+        self.assertEqual(v["unconverged"], ["U7"], v)
+
+    def test_terminal_bit_with_an_unconverged_named_unit_bars_the_close(self):
+        body = (self.UNITS + self.CONV1 +
+                "- F2 [VERIFIED] record: unit U2 UNCONVERGED at A1 "
+                "— F9 — basis: retriage\n" + self.BIT)
+        v = self.closure(body, header=HEADER_105)
+        self.assertEqual(v["verdict"], "ZERO_DELTA_UNCONVERGED", v)
+        self.assertEqual(v["unconverged"], ["U2"], v)
+        # control: the same record, every unit converged, closes
+        ok = self.closure(self.UNITS + self.CONV1 + self.CONV2 + self.BIT,
+                          header=HEADER_105)
+        self.assertEqual(ok["verdict"], "CLOSURE_LIVE", ok)
+
+    def test_absence_units_lists_an_absence_unit(self):
+        absence = ("- F2 [VERIFIED] record: unit U2 ABSENCE — no "
+                   "input reaches it — basis: verdict\n")
+        for closing in (self.ZD, self.BIT):
+            v = self.closure(self.UNITS + self.CONV1 + absence + closing,
+                             header=HEADER_105)
+            self.assertEqual(v["verdict"], "CLOSURE_LIVE", v)
+            self.assertEqual(v["absence_units"], ["U2"], v)
+        # control: no ABSENCE record, the field is present and empty
+        v = self.closure(self.UNITS + self.CONV1 + self.CONV2 + self.ZD,
+                         header=HEADER_105)
+        self.assertEqual(v["absence_units"], [], v)
+
+    def test_every_post_closure_verdict_carries_absence_units(self):
+        body = (CLOSED + "- F9 [VERIFIED] record: unit U4 ABSENCE — "
+                "none reaches it — basis: verdict\n"
+                "- F10 [VERIFIED] out-of-scope: spread — basis: probe\n")
+        v = self.closure(body, header=HEADER_105)
+        self.assertEqual(v["verdict"], "CLOSURE_LEAVINGS_HOLD", v)
+        self.assertIn("post_closure", v)
+        self.assertEqual(v["absence_units"], ["U4"], v)
+
+
+class TestEveRepairCVersionHold(RecordFixture):
+    """Eve review repair C (record side): the hold reads the HEADER
+    `Skill:` line only, and routes `barred`."""
+
+    def _sweep_with_served(self, body, header, served):
+        os.environ["STATIKER_SERVED_VERSION"] = served
+        try:
+            return self.sweep(body, header=header)
+        finally:
+            del os.environ["STATIKER_SERVED_VERSION"]
+
+    def test_marker_less_header_with_ahead_body_stamp_holds_nothing(self):
+        header = ("# Run: test\nStatus: in-progress\n"
+                  "Phase: investigate-design\n\nINTENT — do the "
+                  "thing.\n\n## Cycle 1\n")
+        body = ("SKILL: statiker 0.2.110\n"
+                "- F1 [VERIFIED] a fact — basis: y\n")
+        v = self._sweep_with_served(body, header, "0.2.105")
+        self.assertEqual(v["verdict"], "SWEEP_CLEAN", v)
+
+    def test_version_hold_routes_barred(self):
+        header = HEADER.replace("Skill: statiker 0.2.33",
+                                "Skill: statiker 9.9.9")
+        v = self._sweep_with_served(
+            "- F1 [VERIFIED] a fact — basis: y\n", header, "0.2.105")
+        self.assertEqual(v["verdict"], "SKILL_VERSION_HOLD", v)
+        self.assertEqual(v["route"], "barred", v)
 
 
 if __name__ == "__main__":

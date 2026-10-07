@@ -1,7 +1,7 @@
 # Run: golden-corpus
 Status: bogus-status
 Phase: bogus-phase
-Skill: statiker 0.2.87
+Skill: statiker 0.2.105
 
 INTENT — synthetic corpus fixture for st-28 (golden-corpus sweep test); no real run content.
 
@@ -126,6 +126,10 @@ CONTAINMENT: /srv/declared
 ## Block: tripwire-arm-near-miss
 - F160 [VERIFIED] record: tripwire armed at 2 (per operator) — basis: design
 - F161 [VERIFIED] record: tripwire armed at 2 — basis: design
+
+## Block: convergence-near-miss
+- F162 [VERIFIED] record: unit U1 UNCONVERGED at A1 - F2 — basis: design
+- F163 [VERIFIED] record: unit U1 UNCONVERGED at A1 — F2 — basis: design
 
 ## Block: freeze-breach
 - A1 [DISPATCHED] an earlier, resolved round — basis: brief
