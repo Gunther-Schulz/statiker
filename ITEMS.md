@@ -51,6 +51,8 @@ amend-reason: 2026-09-12 migration UNKNOWN slots filled at the 0.2.89 release ga
 amended-goal: 2026-09-12 tend
 amended-write-set: 2026-09-12 plugin/skills/statiker/SKILL.md, plugin/skills/statiker/scripts/statiker_record.py, tools/test_statiker_record.py, plugin/.claude-plugin/plugin.json
 amended-done-criterion: 2026-09-12 a quoting or escaping grammar for the write-set field, DESIGNED before any build (the P8 body names the missing design, not a fix). Red-first, both directions, because this grammar is one where only the quiet direction is dangerous: RED is a space-carrying path and a leading-slash absolute path declared and resolving to ONE unit, against todays refusal at statiker_record.py:842-844 (write-set-path-near-miss, re-verified live at 49e9529); the CONTROL that must not regress is the incident the single-token rule was born from, whitespace read as TWO colliding units, which the new grammar must still refuse to produce. New grammar is machine-read semantics, so the tool is authored in the same commit as the page clause and a checkpoint review runs before the pin moves
+amend-reason: 2026-10-07 st-39: the cited file is being deleted, so the effective evidence must resolve without it; the base line is retained by the append-only verb (lifecycle lc-73 anchor)
+amended-evidence: 2026-10-07 MEASURED (desk 2026-10-07): BACKLOG.md is deleted at st-39; each BACKLOG.md:<range> cited here resolves at the migration's pinned blob a115998c (git cat-file -p a115998c | sed -n '<first>,<last>p') — blob and file compared at 983 lines each, lines 478-479 identical, head rewrite d773e12 line-count-neutral. RELAYED (the evidence as booked, carried unchanged, not re-read today): BACKLOG.md:592-602
 
 ## st-17
 grade: PARKED
