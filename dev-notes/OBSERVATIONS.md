@@ -13601,3 +13601,74 @@ permission dialogs when nobody is present; the brief that completed
 (one plain command per call, probes as Python files, no angle
 brackets) is the form to reuse. That one belongs to the dispatch
 discipline's own carrier, not here.
+
+## 2026-10-07 — 0.2.105 RELEASE GATE RECORD: the carried-set re-ask, 0.2.103 → 0.2.105
+
+Releasing desk statiker-30 (opus), operator delegation of this
+date, which names the release. Installed pin: 0.2.103 at f3b8325
+(`~/.claude/plugins/installed_plugins.json`, read at this gate).
+Carried set: every payload commit in `git log f3b8325..HEAD --
+plugin`, 23 commits, keyed by item or batch and read in its
+neighbourhood (a record lands beside its change, not inside it —
+the 0.2.101 gate's own method correction).
+
+Each shown, or written here where the gate found none:
+1. c8659a1, the three attack-loop clauses (0.2.104) — MINT RECORD
+   with nine tenets, this file, 2026-09-25. RECORDED.
+2. da7d6b0, the CONVERGED altitude qualifier — FIRE RECORD in its
+   own commit, same section: an amendment in place of an unreleased
+   mint after its registered probe missed. RECORDED; not a separate
+   mint (it narrows what a zero converges).
+3. 6ae59b3, the executed-probes brief clause — MINT RECORD with
+   nine tenets, same section. RECORDED.
+4. 90c3067, the prose repair lap over the 2026-09-25 probe review
+   (clusters E, F, G, I, L, H) — dispositions in
+   dev-notes/bundling-probe-preregistration-2026-09-25.md; NO C4b
+   reading anywhere. WRITTEN AT THIS GATE: the lap introduced one
+   mandatory form, the raise template's cause slot; the rest
+   narrows the batch's own clauses back to their booked incident
+   basis. The cause slot rides the canary mint's tenet record (item
+   1: tenet 6, "the canary prices raises"), of which it is the
+   stated form, and adds no tenet question of its own.
+5. 4000538 and 0220913, the tool half — booked in LEDGER.md (the
+   "ST-85 TOOL HALF BOOKED + INTEGRATED" line) and named in item 1's
+   record as tenet 8's debt, but with NO C4b reading and NO tenet
+   record of its own, although it mints three record forms
+   (CONVERGED, UNCONVERGED, ABSENCE) and a verdict
+   (ZERO_DELTA_UNCONVERGED). WRITTEN AT THIS GATE, against PLAN.md's
+   live list (PLAN.md:43-71), graded on what this date's two review
+   rounds measured about it:
+   1 PASS (record grammar, no design conduct); 2 PASS (entries
+   only); 3 PASS in intent, and in effect only since the repair
+   lap — as built it enforced nothing on ordinary records; 4 PASS;
+   5 PASS; 6 FAILED AS BUILT — it shipped lines and a verdict that
+   checked nothing and would have cost a run a refusal with no
+   stated route out; repaired this date; 7 PASS (convergence in
+   gradeable form); 8 FAILED AS BUILT — a mechanism whose population
+   predicate matched no record the page produces, with the battery
+   pinning the vacuous case as intended; narrowed and stated this
+   date, the design question booked (st-95); 9 PASS.
+   The two FAILED lines are why the record is written late rather
+   than waved through: the check this gate owes would have asked
+   "what does this predicate match on a real record" on the day it
+   was built.
+6. 68405ed, 778221d, f268da5 (st-80, st-84) — two mint entries,
+   2026-09-29, nine tenets each. RECORDED.
+7. 1ab8cc3, 41db2b8, 2e8c8ed, 7819e2f (st-86, st-66, st-89) — the
+   record-tool batch entry, 2026-10-07, nine tenets. RECORDED.
+8. 8c77f1a (st-93) — its entry, 2026-10-07, nine tenets. RECORDED.
+9. 4761121 (st-36) — read in the st-92 entry: "not a mint", a
+   tracked-Python pointer ban with its battery. RECORDED.
+10. c47e844, 27fecae, cb9ff76 (st-92 build half) — its entry,
+    HYPOTHESIS-PATCH mint, nine tenets. RECORDED.
+11. ae19e24 — MINT RECORD, the unbuilt residue, this date. RECORDED.
+12. 0bb6fd6, f1bebcc, b65d673 — MINT RECORD, the eve-review repair
+    lap, this date. RECORDED.
+13. f5de5b5 — the second round's narrowing, C4b NO MINT with nine
+    tenets, this date. RECORDED.
+Count re-derived from the list: 1+1+1+1+2+3+4+1+1+3+1+3+1 = 23.
+
+Review floor for this pin move: two fresh-context rounds over the
+delta since the last reviewed state (f954320), every finding
+dispositioned (docs/audits/2026-10-07-eve-review-dispositions.md).
+Consuming seam: the bt-68 run, about to start (st-94).
