@@ -992,6 +992,24 @@ closed-reason: 2026-10-07 no live consumer exists: git grep over tracked files (
 closed-met: st-39
 closed-decided: LEDGER.md:208
 
+## st-39
+grade: DONE
+requirement: BACKLOG.md deletion pass: superseded carriers of migrated repos are DELETED, banners interim (operator decision 2026-09-12, verified at dotfiles docs/directives/2026-09-12-dotfiles-drainage-arc.md:27-42 by statiker-58; statiker named there as bannered interim d773e12, deletion ours since our sessions hold the copy)
+goal: general-maintenance
+write-set: BACKLOG.md,ITEMS.md,CLAUDE.md
+done-criterion: BACKLOG.md deleted; every ITEMS.md evidence slot citing BACKLOG.md:NNN re-rooted to carry pinned blob a115998c inline (resolving via git cat-file -p a115998c) BEFORE the delete; inbound-reference triage stated as command plus hits in the deletion commit; deletion record in CLAUDE.md (the laws file) naming the cat-file resolution path with a negative control shown — the dispatch-guards worked pattern
+evidence: live line-cited ranges that must be re-rooted first, per statiker-f7 at the release gate: st-10 :279-317, st-12 :478-494, st-13 :495-523, st-15 :556-591, st-16 :592-602, st-17 :603-629, st-19 :646-662; freeze banner d773e12 held 983 lines so all currently resolve; lifecycle lc-86 (migrate deletes-with-record by default) is the tool half, booked in the drainage directive
+blocked-by: NONE
+amend-reason: 2026-09-12 Cross-repo collision surfaced by statiker-f7: st-39's done-criterion (re-root line-cited references before delete) would blind lc-73's detector; the constraint lived in neither entry until now
+amended-evidence: 2026-09-12 ORDERING CONSTRAINT (statiker-f7, 2026-09-12, verified by f7 against the carriers): st-1..st-20 carry the exact base line form 'evidence: BACKLOG.md:<line>-<end>' (contiguous ranges tiling BACKLOG 23-683) and those 20 lines are lifecycle lc-73's re-import detector anchor (migrate.py:722 source-provenance key, read from the RAW block). st-39's re-rooting pass must NOT rewrite them before the st-22 merge has run — rewrite them earlier and lc-73's detector goes blind at the merge. The parking chain (st-39 parked on st-21+st-22; st-22 IS the merge) already orders this, but only this line records WHY the order is load-bearing.
+amend-reason: 2026-09-12 Settles the 're-rooted' ambiguity statiker-f7 surfaced and corrects this desk's own earlier temporal phrasing: METHOD, not order, is what protects lc-73's anchor — append-only amend retains base lines at any time, so 'not before the merge' wrongly read as permission to rewrite after, inviting the one act (hand-edit) that both violates the never-hand-edit rule and blinds lc-73
+amended-done-criterion: 2026-09-12 BACKLOG.md deleted; every ITEMS.md evidence citation of BACKLOG.md:NNN re-rooted via 'lifecycle item amend --evidence' so the EFFECTIVE evidence resolves without BACKLOG.md, carrying pinned blob a115998c inline (resolving via git cat-file -p a115998c). Re-rooted means the effective value resolves without the file — NEVER that the BACKLOG.md:NNN strings are removed from ITEMS.md: the base evidence lines of st-1..st-20 are retained by the verb's append-only construction, are never hand-edited, and are lifecycle lc-73's provenance anchor (its declared kill condition is string removal). Inbound-reference triage stated as command plus hits in the deletion commit; deletion record in CLAUDE.md (the laws file) naming the cat-file resolution path with a negative control shown — the dispatch-guards worked pattern
+amended-evidence: 2026-09-12 DEPENDENT (cross-repo): lifecycle lc-73 (lifecycle repo, b452d88) anchors its re-import detector on st-1..st-20's base 'evidence: BACKLOG.md:<line>-<end>' lines. Protection is the METHOD, not the order: 'item amend --evidence' appends and retains base lines by construction at any time, so no conforming carrier operation can destroy the anchor — only a hand-edit can, and bookings are never hand-edited (CLAUDE.md). The earlier amendment's ordering framing stands only as WHEN the pass runs (blocker predicate holds it behind the st-22 merge, machine-evaluated); it is not what keeps the anchor alive.
+closed-reason: 2026-10-07 file deleted; effective evidence of the five live citing items re-rooted to blob a115998c by the amend verb with base lines retained; triage and controls in the deletion commit; deletion record in CLAUDE.md
+closed-met: st-21, st-88
+closed-decided: none
+closed-ref: dda19ce
+
 ## Archive (pre-migration)
 
 <!-- CLOSURES READ FROM THE `--from` CARRIER ITSELF (lc-18/lc-19). The
