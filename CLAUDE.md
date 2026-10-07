@@ -60,7 +60,12 @@
   finish()-emitted token fails the whole suite without both.
   Applied 2026-09-29 on the third recorded miss of this exact gap
   (OBSERVATIONS "st-74/st-64 mint" entry, pre-formulated there;
-  third instance the st-80/st-84 brief, caught by its lane).
+  third instance the st-80/st-84 brief, caught by its lane). A
+  LINT-code mint's write-set likewise includes
+  `tools/golden-corpus/` — one golden row per new
+  RULE_MINT_VERSION code, or TestGoldenCorpusSweep fails the suite
+  (fourth miss of the class, the st-89 brief, 2026-10-07, caught by
+  its lane).
 - **PLAN.md is the design record** — settled decisions are not
   re-opened without new evidence.
 - **Carrier transition (2026-09-10, operator GO).** Work items live

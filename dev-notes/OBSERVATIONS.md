@@ -12997,3 +12997,86 @@ Consumer: the release gate's carried-set re-ask; the pre-registered
 fire-rate review named in st-84's own provenance above (this mint's
 first re-grading point, whichever of the two named triggers comes
 first).
+
+## 2026-10-07 — record-tool batch: st-86 (repair), st-66 and st-89
+## (MARKED HYPOTHESIS-PATCH mints)
+
+PAYLOAD CHANGE, lane sonnet-payload-st86-st66-st89 on the desk's
+brief (docs/directives/2026-10-07-payload-st86-st66-st89-brief.md);
+st-89 finished at the desk from the lane's saved patch after the
+lane halted on a write-set gap of the brief's making (below). Design
+decisions: LEDGER.md 2026-10-07, three lines, desk-derived under the
+operator's standing GO of that date. Consumer: the one pre-run
+review, and run 3.
+
+st-86 — NOT A MINT (C4b: no token, hold code, predicate or
+mandatory form). The post-closure-invalidation void keeps its reach;
+its `why` text now names the recovery route (a new closing A-line; a
+same-id restatement does not restore it). Commit 1ab8cc3. Incident:
+btb run F104, two restatement attempts against an unexplained void.
+
+st-66 — MINT, hypothesis-patch. `closure` emits `post_closure`, the
+unfiltered F/D/R population after the closing A-line, on every
+verdict reached once it is computed; empty on ordinary records. The
+verify brief's demand reads it (two page lines). Commits 41db2b8,
+8e06900 (test expectation fix), 2e8c8ed. Provenance: arc-close
+review M4 (docs/audits/2026-09-14-arcclose-review.md) — a review
+finding, no field incident; graded at the next fire-rate review or
+at the first run whose verify leg reads the field.
+Tenet check (PLAN.md list, all nine):
+1. Investigation-led loop — NOT APPLICABLE (loop untouched).
+2. Sufficiency = dispatchable — PASS: one verify-brief input stops
+   being a hand derivation.
+3. Anti-skim — PASS: feeds forcing point 5; two page lines, no
+   ceremony.
+4. Cost asymmetry — NOT APPLICABLE.
+5. Autonomy — PASS: a desk derivation becomes tool output.
+6. Economics — PASS: +2 page lines, one list per closure verdict;
+   pays back in desk turns not spent reassembling the set.
+7. Convergence circuit — PASS: post-closure lines stay inside
+   record -> verify.
+8. Medium — PASS: an exact population, as mechanism, red-first (all
+   three new tests KeyError on the old tool).
+9. Placement — PASS: follows `late_intent` in the same carried
+   dict, judged sound.
+
+st-89 — MINT, hypothesis-patch. A line opening `containment:` in any
+case or spacing that is not the exact label lints
+`containment-near-miss` (the intent-near-miss family) and holds
+`filter` on ARTIFACT_CONTAINMENT_HOLD with `malformed_containment`
+naming the line — existing token, no new route. Four page lines.
+Provenance: st-80 lane closing report 3b (malformed label fails
+open), no field incident. DECLINED: the skipped-transcription
+cross-check — the record carries no input saying a scope was
+declared (preflight prints its verdict; the desk transcribes), so
+the page's stated absence rule stands.
+Tenet check (all nine):
+1. NOT APPLICABLE. 2. NOT APPLICABLE.
+3. Anti-skim — PASS: fail-closed at the gate, per the Route
+   vocabulary floor.
+4. NOT APPLICABLE.
+5. Autonomy — PASS: no human seat added.
+6. Economics — PASS, priced: +4 page lines, one lint code. False
+   fire bounded by the label shape; an entry line whose body
+   contains the word is a pinned non-fire.
+7. NOT APPLICABLE.
+8. Medium — PASS: mechanism plus battery; red-first reported by the
+   lane (slip-lint and slip-hold red on the old tool), not re-run at
+   the desk. Residual: the declined path above.
+9. Placement — PASS: mirrors intent-near-miss's sets and site; the
+   hold sits ahead of the scope test in `filter`.
+
+Verify (desk, integrated state): `python3 -m pytest tools/ -q` ->
+695 passed, 7 subtests passed, 0 failed, 0 skipped (683 baseline +
+12). register_lint band 52/30: 0 findings (46.2 w/s, 26.7
+dashes/1000w).
+
+INSTRUMENT LESSON (class: verdict-mint write-set, fourth firing —
+this time a LINT-code mint). Incident: the brief gave the lane
+statiker_record.py and the two test files; a new RULE_MINT_VERSION
+code also needs a golden-corpus row
+(tools/golden-corpus/tracker.md + expected-violations.json), or
+TestGoldenCorpusSweep fails the suite. The lane halted the item
+correctly. Pre-formulated text for CLAUDE.md's write-set sentence:
+"A lint-code mint's write-set includes tools/golden-corpus/ (one
+row per new RULE_MINT_VERSION code)." Applied this date.
