@@ -251,7 +251,20 @@
   its own falsifier (a bite in a class an existing mint governs) or
   when impl/verify surfaces what the attack rounds should have
   caught (succession-negative evidence); otherwise let it run — and
-  the next relay line. The harvest is also the skill's FIRE-BORN
+  the next relay line. The harvest also RE-ASKS THE PARKED
+  TRIGGERS (2026-10-07, desk decision under the operator's standing
+  GO): at run close the meta session reads every item parked on a
+  run-evidence trigger (`lifecycle item ready --head`, the evidence
+  waits) against the run's record and, for each trigger met, writes
+  one line opening `TRIGGER-FIRED st-<n> — ` with its basis into
+  dev-notes/OBSERVATIONS.md. That line is what the items' blocker
+  predicates read, so a met trigger surfaces at the next session
+  start instead of waiting for someone to remember the item.
+  Incident: ten items sat parked on the literal predicate `false`
+  or on prose no shell could run; the 2026-09-25 run met three of
+  their triggers (st-19, st-26, st-31) and none was noticed for
+  twelve days, one of them a field test whose shadow leg was
+  therefore never run. The harvest is also the skill's FIRE-BORN
   CHANNEL (operator-settled 2026-08-26): a tool or page defect the
   desk hits while running is booked HERE by the meta session — the
   claim verified against this repo's source at the meta desk, never
