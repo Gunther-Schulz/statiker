@@ -244,8 +244,9 @@ legal parent EXISTS in scope and never that the desk will choose one;
 
 This gate is SATISFIABILITY-ONLY, checked once at run start — it
 never re-checks a later write against the scope it declared
-satisfiable (st-80; ITEMS.md, docs/audits/2026-09-14-narrow-round-run3-contract.md
-B3). A declared scope PERSISTS into the record: PREFLIGHT_OK and
+satisfiable (st-80; ITEMS.md,
+docs/audits/2026-09-14-narrow-round-run3-contract.md B3). A declared
+scope PERSISTS into the record: PREFLIGHT_OK and
 PREFLIGHT_CONTAINMENT_HOLD both carry `containment_scope` (the
 resolved, real form of every declared path), and the desk transcribes
 it as bare `CONTAINMENT: <path>` label lines, one per declared path
@@ -441,8 +442,9 @@ operator's raise LANDS regardless — the bound is theirs — and a
 raise entry missing its cause is a gap the desk repairs on sight
 by restating the whole raise entry under the same id with its
 cause filled (the latest line is the one every exhaustion check
-reads), never a refusal of the grant. A proactive raise granted before any exhaustion takes
-`cause: operator discretion`. The cause is a READ, not a
+reads), never a refusal of the grant. A proactive raise granted
+before any exhaustion takes `cause: operator discretion`. The cause
+is a READ, not a
 composition, from the DISCRIMINATING EVIDENCE pre-registered at
 arming (the trend verdict for arithmetic, named locus body-reads
 for repair-versus-account, each terminal entry's class split);
@@ -629,8 +631,9 @@ holds while that violation is live in the pinned record. The
 lint's correcting entry sheds the malformed line and no more: the
 scope it meant exists again only once the exact label is written
 beside it, and `filter` reads both at the next lock. A shed label
-with none written leaves nothing declared. The exact form takes the path to the end of the line,
-interior spaces included. The label lines sit in the body region,
+with none written leaves nothing declared. The exact form takes
+the path to the end of the line, interior spaces included. The label
+lines sit in the body region,
 each standing alone, written before the lock commit.
 
 The PRECEDENT LINE (one clause of the unit's design D-line; forms at
@@ -1093,7 +1096,8 @@ OUTSIDE every repo (an in-repo artifact is an untracked file under a
 brief asserting tree == lock commit): the tool halts
 ARTIFACT_IN_REPO on any, halts a symlink tracker (name the real
 path), and `--out` alone is cwd-relative. Declared containment
-(Containment) narrows this further: an --out outside every
+(the `--containment` declaration at preflight) narrows this further:
+an --out outside every
 `CONTAINMENT:`-persisted path holds ARTIFACT_CONTAINMENT_HOLD, even
 one already outside every repo — no declared scope, no new gate
 (st-80). filter BLANKS the two
@@ -1419,8 +1423,8 @@ design-substance finding landing on a converged or
 absence-recorded unit returns it to the unconverged set by an
 F-line whose body is exactly
 `record: unit U<n> UNCONVERGED at A<n> — F<n>`, naming the round
-and the finding (several as `F<n>, F<m>`), never by silent regrade; a later CONVERGED entry
-converges it again. A repair
+and the finding (several as `F<n>, F<m>`), never by silent
+regrade; a later CONVERGED entry converges it again. A repair
 that BIRTHS a unit — new design surface, not a fix inside existing
 surface — is an INTAKE, not a repair: the disposition entry
 recording the repair answers join-or-export at the birth. Export
