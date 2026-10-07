@@ -1,6 +1,6 @@
 schema: 2
 baseline: 47
-added: 69
+added: 70
 compacted: 0
 
 ## st-12
@@ -308,4 +308,13 @@ goal: general-maintenance
 write-set: dev-notes/token-economics-levers.md, LEDGER.md
 done-criterion: dev-notes/token-economics-levers.md exists carrying the per-role cost decomposition with its commands and sources named, and a ranked lever table where every lever exits as a booked item id, a pre-registered probe, or a decline naming its ground; the ledger records the survey's verdict
 evidence: RELAYED: operator statement 2026-10-07 that runs are too token-heavy and levers feel unused (first-hand, a decision-grade problem statement, not testimony needing a check). RECALLED: the st-87 meta-share figure and cadence fix (CLAUDE.md two-session bullet and ledger tail, loaded this session, not re-read at the artifact). DERIVED: the lever list A-D is this session's inference from the cost model (prefix re-billing x turns x tier), unexecuted; whether haiku certification exists or the tracker volume is material are open questions the survey measures.
+blocked-by: NONE
+
+## st-92
+grade: READY
+requirement: RUN-SESSION DEPTH CAP BY COMPACTION (st-91 lever 1): the 2026-09-25 run session never shed context — 92k to 792k over 427 calls, zero compactions — and 88% of its weighted cost is cache reads over that prefix. Two halves. PROBE: run 3 launches its run session with a compaction window (claude --autocompact 300000, trip near 265k) and the digest grades conduct and cost against the 09-25 profile. SKILL-OWNED HALF: after a compaction the old page text and record state are a machine summary, so the run must re-enter through the resume gate (sweep, closure, served-version check) — a plugin PostCompact hook injecting that instruction, since a session cannot observe its own compaction. Record: dev-notes/token-economics-levers.md sections 1-3
+goal: general-maintenance
+write-set: plugin/hooks/hooks.json, plugin/hooks/statiker_postcompact.py, tools/test_statiker_postcompact_hook.py, plugin/skills/statiker/SKILL.md, dev-notes/OBSERVATIONS.md
+done-criterion: BUILD: a PostCompact hook (matcher auto|manual) ships in the plugin, injecting one instruction — re-run the resume gate before the next act — only when the session has a live statiker run; red-first battery with a no-live-run arm that stays silent; marked hypothesis-patch with its tenet record in OBSERVATIONS (C4b: a new mandatory form). PROBE, pre-registered in dev-notes before run 3 starts: CONFIRM if the compacted run session shows no hold, repair lap or operator correction traced to lost context AND its weighted cost per landed unit is at most 65 percent of the 09-25 figure; REFUTE on any conduct loss traced to a compaction, which returns the amputation question (levers file, Structural lever) to the operator
+evidence: MEASURED (lane sonnet-st91-measure, totals re-run at the desk 2026-10-07): 427 calls, 210.8M context, depth 92,422 to 791,942, all 426 deltas positive. MODELED (same lane): trip 265k / floor 130k gives 4 compactions and 49.5 percent of the weighted cost; the model omits the summarization call and any behaviour change. RECALLED (corpus environment module, not re-run): the token setting is a window that trips near 89 percent, post-compact floor ~128k on this stack, PreCompact/PostCompact hooks exist. DERIVED: the tracker being the handoff by design is what makes the summary non-load-bearing here; unexercised — that is the probe. Seam restarts were rejected 2026-09-29 for costing an operator paste each (ledger 7e91054); a launch flag costs none
 blocked-by: NONE
