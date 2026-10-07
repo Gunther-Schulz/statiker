@@ -103,7 +103,7 @@ amend-reason: 2026-10-07 the trigger FIRED in the 2026-09-25 run (tracker line 3
 amended-blocked-by: 2026-10-07 decision which object run 3 takes, and whether its requirement-criterion gap is demonstrably wider than lc-109 proved to be
 
 ## st-36
-grade: PARKED
+grade: READY
 requirement: the pointer instrument does not reach script->page pointers: 0.2.88's f23a69b + test_contract.py's section_pointers() cover page-INTERNAL pointers, and the 0.2.89 review's N1 found five stale SKILL.md:<line> pointers in scripts and tests that it cannot see; repaired by hand at 3afb52e with nothing pinning the class. The 0.2.89 review disposition calls this gap 'booked separately' and it was never booked; three tracked files already cite the id st-36 (dev-notes/OBSERVATIONS.md:9587, tools/test_contract.py:1050 docstring, docs/directives/2026-09-11-handoff-corpus-batching-statiker-ca.md:77) - record: dev-notes/OBSERVATIONS.md 2026-09-12 release gate, the st-36 finding
 goal: tend
 write-set: tools/test_contract.py, dev-notes/OBSERVATIONS.md
@@ -114,6 +114,8 @@ amend-reason: 2026-10-07 the dry run named the seven numeric pointers and their 
 amended-write-set: 2026-10-07 tools/test_contract.py, plugin/hooks/statiker_stop_guard.py, plugin/skills/statiker/scripts/statiker_record.py, tools/test_statiker_record.py
 amend-reason: 2026-10-07 criterion was UNKNOWN; the dry run and the ledger decision of 2026-10-07 fix it
 amended-done-criterion: 2026-10-07 The seven numeric line pointers into SKILL.md in tracked Python (statiker_stop_guard.py:23 and :35; statiker_record.py:26 and :1326; test_statiker_record.py:5434, :5455, :5742 at commit 05b7ef1, located by content not by these numbers) are rewritten as section name plus a quoted anchor phrase that exists on the page today; a contract test asserts NO numeric pointer form (SKILL.md followed by a line number or range, with or without L, tilde, colon or parentheses) in tracked *.py under plugin/ and tools/, red-first on the unconverted tree, and asserts each converted anchor phrase is present on the page
+promote-reason: 2026-10-07 instrument decided on an executed dry run; sites, form and red-first arrangement named; a fresh context can build it
+promoted-by: 2026-10-07 statiker desk 6796fb27 (opus), 2026-10-07
 
 ## st-37
 grade: PARKED
