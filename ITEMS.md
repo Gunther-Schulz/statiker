@@ -134,6 +134,9 @@ amend-reason: 2026-10-07 the either/or in the criterion is decided: restriction 
 amended-done-criterion: 2026-10-07 Instrument repair DECIDED (ledger 2026-10-07): the graded population is RESTRICTED to surface carrying a flagged/unflagged classification, and the outcome line states its DENOMINATOR beside its verdict. The repeat is pre-registered in dev-notes/OBSERVATIONS.md BEFORE the next checkpoint review dispatches. CONFIRM on a population large enough to discriminate mints C4c into CLAUDE.md; REFUTE drops the clause with its reason; a third UNDECIDED ends the repeat under the stop the test already carries
 promote-reason: 2026-10-07 the one open choice is answered in the ledger; what remains is a pre-registration paragraph and a grading line, executable by a fresh context from the criterion
 promoted-by: 2026-10-07 statiker desk 6796fb27 (opus), 2026-10-07
+amend-reason: 2026-10-07 re-keyed from the codex desk-role run-3 object to the next ordinary run: the act this item needs belongs to whichever run comes next, and run 3 of the codex program is unscheduled
+amended-blocked-by: 2026-10-07 decision which real task the next statiker run takes
+amended-not-derivable: 2026-10-07 2026-10-07 the task is the operator product work (st-94 carries the same question and the prep order); this item is decision-complete and waits for that run prep
 
 ## st-46
 grade: READY
