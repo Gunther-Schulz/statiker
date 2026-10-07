@@ -13757,3 +13757,42 @@ falsifier.
 
 Turn cost at this desk for the run so far: five relays, one
 operator blocker (the daemon), one horizon wake with nothing found.
+
+## 2026-10-07 — bt-68 run harvest, relay 4 (attack round A2 returned [BIT]; the desk narrows)
+
+Tracker read by this desk at lines 97-109 and the installed tool's
+`trend` run here: counts [8, 8], trajectory FLAT, record_counts
+[3, 1]. Re-lock 03776955; rounds 2 of 4 spent.
+
+- THE NARROWING RULE FIRED AT THE DESK, UNPROMPTED. A flat series
+  whose corrections concentrate in the newest round's own changes
+  (three of A2's findings sit on the desk's cycle-2 repairs to
+  alert delivery) was routed to narrowing instead of a third
+  same-form round: the item's own coverage stays, the
+  alert-delivery refinements move out to a booked item. This desk
+  sent no nudge. Contrast on record: run 1, round 8, the
+  never-sustain clause in force and unapplied (CLAUDE.md, mint
+  timing). And the same day's meta desk needed two review rounds
+  to reach the same move on its own release
+  (dev-notes/2026-10-07-repair-series-analysis.md, C5).
+- FIELD DATA for st-95: at A2's return both units again took a
+  record in the exact form (tracker lines 108-109), six findings
+  in one. The convergence records are F-lines and did NOT inflate
+  the series: `trend` counts them apart (record_counts [3, 1]),
+  so the FLAT reading is over findings alone. That is cluster D of
+  the 2026-09-25 review operating as repaired, on its first live
+  series.
+- Round yield, from the desk's report: 1 MAJOR, executed (four
+  data-destroying mutations of the extracted purge SQL left all
+  153 tests green; a control mutation went red), 6 MINOR. A1's
+  unexecuted MAJOR (F29) was executed in A2 with the foreign key
+  enforced and behaved as traced. One MINOR is a PRE-EXISTING
+  defect in the shipped alarm (one failed table query aborts the
+  shared transaction and later tables read "unverified"),
+  exported. One export is parked on an operator decision in the
+  target repo (bt-75: the purge deletes a once-live bet's evidence
+  early once the bet row is purged; dormant at shipped defaults).
+- No stop-call: no minted rule failed its falsifier, and the round
+  after a design change found what a round should.
+
+Turn cost at this desk for the run so far: six relays.
