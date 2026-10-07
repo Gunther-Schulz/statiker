@@ -1,6 +1,6 @@
 schema: 2
 baseline: 47
-added: 72
+added: 73
 compacted: 0
 
 ## st-12
@@ -274,3 +274,13 @@ done-criterion: All steps shown done in a prep record under dev-notes/, in this 
 evidence: MEASURED (desk 2026-10-07): ITEMS.md read — st-31, st-37, st-85 are parked on the next run's prep, st-83 and st-90 on digest filenames, st-92's probe on a launch flag. RELAYED (lane sonnet-trigger-recheck 2026-10-07): the 2026-09-25 run met st-31's trigger and no shadow leg was run. RECALLED (from st-75's body, not re-verified today): the last reviewed state before this arc is the checkpoint review whose base st-75 names as afef58b; step (3) re-derives the base from that review's own brief before dispatching. DERIVED: the step order — pre-registrations must precede the review they ride, the review must precede the pin move, the pin must precede launch
 blocked-by: decision which real task the next statiker run takes
 not-derivable: 2026-10-07 the task is product work in a target repo the operator owns; no record ranks candidate tasks, and a run needs an operator-opened desk session in that repo. Desk recommendation: the next non-trivial change in beat-the-books or lifecycle
+
+## st-95
+grade: READY
+requirement: CONVERGENCE GATE DESIGN PASS: the per-unit convergence gate was completed by two repair laps without ever operating in a run, and the second review round still found its reach wrong in four ways. Decide its shape on the first run that uses it, then build once. Record: docs/audits/2026-10-07-eve-review-dispositions.md, Round 2 (M3, M4, N3, N4, N5); dev-notes/OBSERVATIONS.md 2026-10-07, the FIELD-TEST LINE of the repair lap mint record
+goal: general-maintenance
+write-set: plugin/skills/statiker/scripts/statiker_record.py,plugin/skills/statiker/SKILL.md,tools/test_statiker_record.py,tools/test_contract.py,dev-notes/OBSERVATIONS.md
+done-criterion: A design decision recorded in dev-notes/OBSERVATIONS.md, graded on the bt-68 run tracker (which units the design named, whether each carried a convergence record at every round return, every ZERO_DELTA_UNCONVERGED and convergence-near-miss firing and its cost), answering: (1) whether the closure guard population takes every unit declared by a unit write-set line; (2) whether and how the tool learns that a closing round covered the whole design; (3) whether a record citing a VOID round counts; (4) whether ABSENCE is refused after the lock or over a standing UNCONVERGED; (5) whether the guard is scoped by the record header version. Then the decided set built red-first in ONE lap under one fresh-context review, or dropped with its reason.
+evidence: MEASURED (desk 2026-10-07, reviewer probe re-run at f5de5b5): write-set-declared unit with no convergence record gives CLOSURE_LIVE and UNIT_DISPATCHABLE; a round aimed at one unit closes design once every unit has a record; CONVERGED citing a VOID round counts; ABSENCE after UNCONVERGED counts; a 0.2.101-header record with a pre-close unit D-line gives ZERO_DELTA_UNCONVERGED. READ (desk): SKILL.md says write-set lines are appended at the READY enumeration, before the attack. DERIVED: the series reading that repair increments on an unexercised gate do not converge (OBSERVATIONS, same date).
+blocked-by: evidence ls /home/g/dev/Gunther-Schulz/statiker/dev-notes/ | grep -q post-upgrade-run-digest
+blocker-exercise: 2026-10-07 live 1 | ACCEPT arm (constructed): with a file dev-notes/2026-xx-xx-post-upgrade-run-digest.md present the pipeline exits 0. REFUSE arm (current state, run 2026-10-07 by this desk): no dev-notes filename contains post-upgrade-run-digest and it exits 1.
