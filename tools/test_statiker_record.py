@@ -2623,6 +2623,77 @@ class TestSt80ArtifactContainmentHold(RecordFixture):
             self.assertEqual(v["verdict"], "ARTIFACT_WRITTEN", v)
 
 
+# ------- st-89: a malformed containment label fails closed and lints -------
+
+class TestSt89MalformedContainmentLabel(RecordFixture):
+    """st-89: a column-0 line shaped like a containment label that is
+    not the exact `CONTAINMENT: <path>` form used to read as NO scope
+    (the gate never armed). It now lints `containment-near-miss` and
+    holds `filter` (ARTIFACT_CONTAINMENT_HOLD, malformed_containment)."""
+
+    SLIPS = ("Containment: /x", "CONTAINMENT:/x", "CONTAINMENT: /x /y")
+
+    def _filter(self, label_lines, out_dir):
+        f = TestFilter("test_filter_drops_both_species_and_reads_the_sha")
+        f._tmp, f.dir = self._tmp, self.dir
+        body = HEADER + "".join(l + "\n" for l in label_lines)
+        body += "- F1 [VERIFIED] kept \u2014 basis: y\n"
+        sha = TestFilter.make_repo_with_tracker(f, body)
+        out = Path(out_dir) / "artifact.md"
+        p = tool(["filter", "--tracker", "t.md", "--sha", sha,
+                  "--out", str(out)], cwd=self.dir)
+        return self.verdict(p), p, out
+
+    def test_slips_lint_containment_near_miss(self):
+        for slip in self.SLIPS:
+            v = self.lint("- F1 [VERIFIED] a fact \u2014 basis: y\n"
+                          + slip + "\n")
+            self.assertIn("containment-near-miss", self.violation_codes(v),
+                          f"{slip!r} registered as prose")
+
+    def test_slips_hold_the_filter_naming_the_line(self):
+        for slip in self.SLIPS:
+            with tempfile.TemporaryDirectory() as elsewhere:
+                v, p, out = self._filter([slip], elsewhere)
+                self.assertEqual(v["verdict"], "ARTIFACT_CONTAINMENT_HOLD",
+                                 f"{slip!r}: {v}")
+                self.assertEqual(p.returncode, 2)
+                self.assertEqual(v["malformed_containment"], [slip])
+                self.assertFalse(out.exists(), "hold must precede the write")
+
+    def test_exact_label_outside_scope_still_holds_as_before(self):
+        with tempfile.TemporaryDirectory() as scope_root, \
+                tempfile.TemporaryDirectory() as elsewhere:
+            v, _, out = self._filter([f"CONTAINMENT: {scope_root}"], elsewhere)
+            self.assertEqual(v["verdict"], "ARTIFACT_CONTAINMENT_HOLD", v)
+            self.assertNotIn("malformed_containment", v)
+
+    def test_exact_label_inside_scope_still_writes_and_lints_clean(self):
+        with tempfile.TemporaryDirectory() as scope_root:
+            v, _, out = self._filter([f"CONTAINMENT: {scope_root}"],
+                                     scope_root)
+            self.assertEqual(v["verdict"], "ARTIFACT_WRITTEN", v)
+        v = self.lint("- F1 [VERIFIED] a fact \u2014 basis: y\n"
+                      "CONTAINMENT: /x\n")
+        self.assertNotIn("containment-near-miss", self.violation_codes(v))
+
+    def test_no_label_shaped_line_no_lint_no_hold(self):
+        with tempfile.TemporaryDirectory() as elsewhere:
+            v, _, out = self._filter([], elsewhere)
+            self.assertEqual(v["verdict"], "ARTIFACT_WRITTEN", v)
+        v = self.lint("- F1 [VERIFIED] a fact \u2014 basis: y\n")
+        self.assertNotIn("containment-near-miss", self.violation_codes(v))
+
+    def test_entry_line_mentioning_the_word_is_prose(self):
+        # discriminating case: a column-0 label attempt vs prose
+        prose = "- F3 [VERIFIED] record: containment: discussed \u2014 basis: y"
+        v = self.lint(prose + "\n")
+        self.assertNotIn("containment-near-miss", self.violation_codes(v))
+        with tempfile.TemporaryDirectory() as elsewhere:
+            v, _, out = self._filter([prose], elsewhere)
+            self.assertEqual(v["verdict"], "ARTIFACT_WRITTEN", v)
+
+
 # ------------------------ st-84: version-mismatch resume gate --------------
 
 class TestSt84SkillVersionHold(RecordFixture):

@@ -161,11 +161,16 @@
   },
   {
     "line": 123,
+    "code": "containment-near-miss",
+    "text": "Containment: /srv/declared"
+  },
+  {
+    "line": 127,
     "code": "tripwire-arm-near-miss",
     "text": "- F160 [VERIFIED] record: tripwire armed at 2 (per operator) — basis: design"
   },
   {
-    "line": 131,
+    "line": 135,
     "code": "freeze-breach",
     "text": "- F201 [VERIFIED] appended after the open freeze — basis: design"
   }

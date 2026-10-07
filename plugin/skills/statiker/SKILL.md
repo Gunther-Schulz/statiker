@@ -614,7 +614,10 @@ attribution labels
 recorded decision (a bare-word scan false-fires; attribution
 fields fail soft); `CONTAINMENT:` shares their bare-label shape but
 NOT their attribution-only treatment — it IS consumed as a gate
-(`filter`'s ARTIFACT_CONTAINMENT_HOLD, The attack).
+(`filter`'s ARTIFACT_CONTAINMENT_HOLD, The attack). A line that
+opens with `containment:` in any case or spacing and is not the
+exact form lints `containment-near-miss` and holds `filter` on that
+same verdict. A declared scope never downgrades silently to none.
 
 The PRECEDENT LINE (one clause of the unit's design D-line; forms at
 Stop rule, "Each unit design also carries the PRECEDENT LINE")

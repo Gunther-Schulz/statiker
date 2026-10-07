@@ -334,6 +334,10 @@ SKILL_HEADER_VERSION_RE = re.compile(r"^statiker (\S+)$")
 # below) — never widen the "attribution, never a gate" sentence
 # (SKILL.md) to cover this line.
 CONTAINMENT_EXACT_RE = re.compile(r"^CONTAINMENT: (\S+)$")
+# st-89: a column-0 line that LOOKS like a label attempt. Near and not
+# exact is the malformed label: it lints `containment-near-miss` and
+# holds cmd_filter, so a declared scope never silently reads as none.
+CONTAINMENT_NEAR_RE = re.compile(r"(?i)^\s*containment\s*:")
 # st-84 (LEDGER.md 2026-09-29 decision, MARKED HYPOTHESIS-PATCH — no
 # field incident; validated by the first field incident of an older
 # desk over a newer record, or graded at the next fire-rate review,
@@ -450,6 +454,7 @@ RULE_MINT_VERSION = {
     "foreign-id-suspect": "0.2.84",
     "freeze-breach": "0.2.63",
     "hold-form": "0.2.43",
+    "containment-near-miss": "0.2.105",
     "intent-near-miss": "0.2.49",
     "killerless-dead": "0.2.33",
     "landing-blank": "0.2.36",
@@ -761,7 +766,7 @@ MACHINE_TOKEN_CODES = {
 BODY_CONTENT_CODES = {
     "tag-literal-in-body", "basis-missing",
     "superseded-block-form", "landing-indent", "landing-blank",
-    "intent-near-miss",
+    "intent-near-miss", "containment-near-miss",
 }
 # P15: clause-unparsed and killerless-dead share REPAIR_SWEEP_EXEMPT_ROUTE
 # (defined above) rather than a set-driven comprehension here — both are
@@ -1315,6 +1320,10 @@ def parse_tracker(text: str):
             continue
         if INTENT_NEAR_RE.match(line):
             viol("intent-near-miss", i, line)
+            continue
+        if CONTAINMENT_NEAR_RE.match(line) and \
+                not CONTAINMENT_EXACT_RE.match(line):
+            viol("containment-near-miss", i, line)  # st-89
             continue
 
         m = SKILL_VERSION_EXACT_RE.match(line)  # P3
@@ -3139,6 +3148,17 @@ def cmd_filter(args):
     # declared for this run -> unchanged ARTIFACT_IN_REPO-only
     # behavior (st-74's declared-only design). Checked, and finished
     # on, BEFORE the artifact is written.
+    # st-89: a label-shaped line that is not the exact form fails
+    # CLOSED — read as no scope it would leave the gate unarmed.
+    malformed = [l for l in lines if CONTAINMENT_NEAR_RE.match(l)
+                 and not CONTAINMENT_EXACT_RE.match(l)]
+    if malformed:
+        finish("ARTIFACT_CONTAINMENT_HOLD", 2, out=args.out,
+               containment_scope=extract_containment_scope(lines),
+               malformed_containment=malformed,
+               error="a containment label line is malformed (not the "
+                     "exact `CONTAINMENT: <path>` form): the declared "
+                     "scope cannot be read")
     containment_scope = extract_containment_scope(lines)
     if containment_scope:
         scope_reals = [os.path.realpath(s) for s in containment_scope]
