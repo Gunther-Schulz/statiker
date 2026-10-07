@@ -220,6 +220,17 @@ class FailOpen(TrackerFixture):
 class Registration(unittest.TestCase):
     """The manifest entry that makes the harness run the hook."""
 
+    def test_registered_under_session_start_compact(self):
+        hooks = json.loads(MANIFEST.read_text(encoding="utf-8"))["hooks"]
+        entries = hooks.get("SessionStart", [])
+        commands = [
+            (entry.get("matcher"), hook.get("type"), hook.get("command"))
+            for entry in entries for hook in entry.get("hooks", [])]
+        self.assertIn(
+            ("compact", "command",
+             '"${CLAUDE_PLUGIN_ROOT}"/hooks/statiker_postcompact.py'),
+            commands)
+
     def test_hook_file_is_executable(self):
         # the registration invokes the file directly, not via python3
         self.assertTrue(os.access(HOOK, os.X_OK))
