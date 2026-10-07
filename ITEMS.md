@@ -1,6 +1,6 @@
 schema: 2
 baseline: 47
-added: 74
+added: 75
 compacted: 0
 
 ## st-12
@@ -293,3 +293,12 @@ write-set: plugin/skills/statiker/scripts/statiker_record.py,plugin/skills/stati
 done-criterion: Red-first arms then green: (1) a record whose only containment line was malformed and then shed holds filter until an exact label exists, with a stated way out; (2) the declared scope the record carries is checked against the scope preflight resolved, or the page states with its reason why declared-only stands; (3) an exact label carrying a wrong path has a retraction route. Decided against one run that actually declares containment, since none has.
 evidence: RELAYED (lane opus-review-m2 2026-10-07, executed there, not re-run at the desk): after the correcting entry, sweep SWEEP_CLEAN and filter writes outside the named scope; a second wider label widens the scope; a corrected label clears the hold only at a re-lock. READ (desk): SKILL.md Containment paragraph, declared-only by the st-74 design. DERIVED: no run on record has declared containment, so the mechanism has no field datum.
 blocked-by: external a statiker run is about to declare a containment scope at preflight
+
+## st-97
+grade: READY
+requirement: EVE-REVIEW LEFTOVERS, EXACT: four small tool defects found by the 2026-10-07 review and not built in 0.2.105. Record: docs/audits/2026-10-07-eve-review-dispositions.md, Round 2 (B1 sibling, N1, N8, and the lock-gate observation)
+goal: general-maintenance
+write-set: plugin/skills/statiker/scripts/statiker_record.py,plugin/skills/statiker/scripts/statiker_git.py,tools/test_statiker_record.py,tools/test_statiker_git.py,tools/test_contract.py
+done-criterion: Each red-first: (1) the tripwire-arm-near-miss repair text, followed literally, reaches SWEEP_CLEAN (today it re-raises one line down, the loop convergence-near-miss had); (2) lock_gate_check treats every sweep verdict other than a clean or close-path one as blocking, by class and not by name, with an arm for a verdict lacking the violations field; (3) one arm derives the served version from an install-shaped path with no STATIKER_SERVED_VERSION set, and one drives the closure-side version hold; (4) the version hold reaching a desk through lock-check or unit-start carries a route consistent with writes-no-close, or the page says at that seam which route governs; (5) test_dangling_page_pointer_is_caught first assertion no longer derives its expectation from the condition under test.
+evidence: MEASURED (desk 2026-10-07): lock_gate_check reads gate.get(violations) at statiker_git.py, and the name check for SKILL_VERSION_HOLD is the only other block. RELAYED (lane opus-review-m2, executed there): tripwire-arm-near-miss restated with its token gives SWEEP_HOLDS one line down; lock-check under a hold returns LOCK_GATE_HOLDS with route repair-from-verdict and unit-start returns route halt; every version-hold arm sets the override. RELAYED, unexecuted by the lane: a sweep INTERNAL_ERROR would pass the lock gate.
+blocked-by: NONE
