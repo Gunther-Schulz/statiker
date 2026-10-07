@@ -13117,3 +13117,61 @@ the saving is the incident. 8 PASS — resolution order is register
 data, not prose judgment.
 
 Verify: suite and band lint, in the commit.
+
+## 2026-10-07 — st-92 build half: the post-compaction hook (MARKED
+## HYPOTHESIS-PATCH mint) — and st-36, the numeric-pointer ban
+
+st-92, lane opus-st92-postcompact-hook on the desk's brief
+(docs/directives/2026-10-07-wave3-st36-st92-briefs.md, Lane B);
+commits c47e844, 27fecae, plus a desk edit of the message text. The
+plugin registers its FIRST hook: SessionStart, matcher `compact`.
+It fires when the session's working directory holds a
+`.clippy/runs/*.md` tracker carrying `Skill: statiker` and a live
+`Status:` (in-progress, [READY], PASSED — the page's not-closed
+set), and injects one instruction: the session conducting the run
+loads the skill again and re-enters through the resume gate; a
+dispatched lane ignores the notice. Silent otherwise, fail-open,
+writes nothing.
+
+PROVENANCE: no field incident. The run-cost survey measured the run
+session never shedding context (92k to 792k, 427 calls) and modeled
+a compaction cap at about half the cost
+(dev-notes/token-economics-levers.md). A capped run compacts by
+design, and a session cannot observe its own compaction; without
+this hook a compacted desk would conduct the run from a summary of
+the page. Validation: the next run's depth-cap probe (ITEMS st-92,
+st-94 step 5).
+
+ESTABLISHED FROM SOURCE by the lane (reference copy of the harness,
+not the installed build): SessionStart hooks run on compaction and
+their additional context is appended to the post-compaction
+messages (compact.ts:592, :742, :330-336; hooks.ts:627-628).
+
+OPEN, named for the probe's pre-registration: (1) the hook reads
+the harness's live working directory — a run session whose cwd has
+moved off the target repo at compaction time gets silence,
+indistinguishable from no live run; (2) whether a compaction inside
+a subagent lane runs the hook is unestablished — answered in the
+TEXT (the notice scopes itself), not by a payload filter nobody
+could verify; (3) nothing here was exercised by a real compaction.
+
+Tenet check (all nine): 1, 2, 4, 9 NOT APPLICABLE. 3 PASS — the
+forcing points bind text the session holds, and this restores the
+text after the one event that silently removes it. 5 PASS — no
+human seat: the launch flag is typed once. 6 PASS, priced: zero page
+lines, one 60-word injection per compaction against roughly half
+the run session's cost. 7 NOT APPLICABLE. 8 PASS — a must-hold
+re-entry as mechanism with a battery (24 tests, live versus
+COMPLETE the discriminating pair).
+
+st-36, lane sonnet-st36-pointer-ban, commit 4761121 (not a mint: a
+repo contract test, no payload behaviour). Nine numeric line
+pointers into the page became section-plus-anchor pointers (the dry
+run had counted seven); a contract test bans the numeric form in
+tracked Python and resolves every anchor against the page. Named
+residue: a bare `:n-m` with no page name in its sentence is out of
+reach, because that pattern fires on own-file citations.
+
+Verify (desk, integrated): `python3 -m pytest tools/ -q` -> 723
+passed, 18 subtests passed, 0 failed, 0 skipped. Band lint 0
+findings.

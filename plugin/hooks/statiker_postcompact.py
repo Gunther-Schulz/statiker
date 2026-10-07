@@ -69,10 +69,11 @@ _LIVE_STATUS_LINES = frozenset(
 _INSTRUCTION = (
     "statiker: this session's context was just compacted. What you "
     "hold of the skill page and of the run record is now a summary, "
-    "not the text. Before your next act: load the statiker skill "
-    "again, then run the resume gate over {trackers} (sweep, then "
-    "closure) and continue from their verdicts, never from the "
-    "summary."
+    "not the text. If you are the session conducting this run: "
+    "before your next act, load the statiker skill again, then "
+    "run the resume gate over {trackers} (sweep, then closure) and "
+    "continue from their verdicts, never from the summary. A "
+    "dispatched lane ignores this notice."
 )
 
 
