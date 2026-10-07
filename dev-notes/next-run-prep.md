@@ -153,3 +153,66 @@ The entry is a stored brief graded 2026-09-25. Opened today:
   0237b962, all the operator's identity, 2026-09-25 and
   2026-10-05). Whether they are pushed before the run is that
   repo's question, named to the operator at the launch.
+
+## RUN STATE AND RESUME — written 2026-10-07 about 22:00 at the meta desk's close gate
+
+Read this section first if you are taking the meta role over. Verify
+every line at the artifact; it is this desk's account.
+
+- RUN DESK: `beat-the-books-70`, a session in
+  /home/g/dev/Gunther-Schulz/beat-the-books, launched with
+  `--autocompact 300000`, serving statiker 0.2.105. Its operator
+  delegation names the meta session `statiker-30` BY NAME as its
+  driver. A different meta session does not inherit that: the
+  operator must state the new driver first-hand in the run desk's
+  terminal before it will take directives from anyone else.
+- TRACKER:
+  /home/g/dev/Gunther-Schulz/beat-the-books/.clippy/runs/2026-10-07-drain-effect-alarms.md.
+  Phase investigate-design, Status [READY], last lock 344df6dc
+  (cycle 7). Attack rounds A1 to A4 all returned [BIT]; counts 8,
+  8, 7, 3. Rounds 4 of 4 and cycles 7 of 7 are spent.
+- STOPPED ON AN OPERATOR DECISION, unanswered at this writing:
+  raise the rounds budget from 4 to 5 for one closing round. The
+  run desk and this desk both recommend yes. The answer is relayed
+  to the run desk VERBATIM, marked as the operator's with its date;
+  the desk writes it into its raise entry. The desk dispatches
+  nothing until then. If the fifth round bites on design substance
+  the desk stops again and recommends failing or cutting.
+- HELD, the operator's, through the meta desk: every push in the
+  target repo (there the push is the deploy; `main` is 22 ahead of
+  origin, all local); a read-only prod probe the run desk will ask
+  for at verify time (the 26 GB snapshots table, the evidence
+  directory, the partition state behind its F58 and F69).
+- SECOND OPEN OPERATOR DECISION: the lifecycle schema migration
+  (lifecycle item lc-239; brief
+  /home/g/dev/Gunther-Schulz/lifecycle/docs/directives/2026-10-07-lc239-repo-migration-brief.md,
+  NOT yet opened by this desk). Requested by a peer for statiker
+  and for beat-the-books; both desks recommended the run's close;
+  neither has run anything. It writes `.claude/lifecycle.json`, so
+  it runs on the operator's first-hand word in the session that
+  runs it. The requesting session has closed and expects no
+  report: the commit is the record.
+- OWED AT AND AFTER THE RUN'S CLOSE (st-94 steps 6 to 8, none
+  started): the shadow full V2 leg if a V1 → repairs → V2 cycle
+  with a non-design repair occurs (st-31); the two digest files
+  `dev-notes/<date>-run-3-cost-profile.md` and
+  `dev-notes/<date>-post-upgrade-run-digest.md` (st-83, st-90 and
+  st-95 wait on them); the harvest's re-ask of the parked triggers;
+  the st-92 grading against the registration above (interim data:
+  dev-notes/OBSERVATIONS.md, the relays 5 to 8 entry); the st-95
+  design decision from this run's field data (four harvest entries
+  in OBSERVATIONS.md, this date, each headed "bt-68 run harvest").
+- OPEN QUESTION this desk is watching for st-95: unit U2 took an
+  ABSENCE record and later UNCONVERGED records, so the closure
+  verdict's `absence_units` no longer names it. Whether the absence
+  must be re-recorded before closure for Verify to see it is not
+  on the page.
+- HARVEST FORM: one OBSERVATIONS.md entry per desk report (or per
+  batch), checked against the tracker and the installed tool
+  before it is written; the four per-relay obligations are in
+  CLAUDE.md, two-session layout.
+- THE WATCH: a background poll over the run desk's transcript
+  (`~/.claude/projects/-home-g-dev-Gunther-Schulz-beat-the-books/9911ee3e-4137-4615-9c3f-6f31885eca55.jsonl`)
+  and its `subagents/` directory, firing on a tool call left
+  pending past seven minutes. It dies with the session that armed
+  it. None is armed while the run waits on the operator.
