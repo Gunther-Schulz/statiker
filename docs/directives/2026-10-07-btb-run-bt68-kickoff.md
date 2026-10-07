@@ -82,3 +82,11 @@ does not exist yet, so the first wake is the acknowledgment
 itself; if the operator reports the paste done and nothing has
 arrived, that silence is a finding and this desk reads the peer
 listing.
+
+## Resume fallback (added 2026-10-08)
+
+Both desks named in this directive were closed by the operator for
+the night with the run in progress. `statiker-30` and
+`beat-the-books-70` are no longer live channels. Current state and
+how to resume: dev-notes/next-run-prep.md, "RUN STATE AND RESUME"
+and its 2026-10-08 update.

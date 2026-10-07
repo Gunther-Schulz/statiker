@@ -216,3 +216,30 @@ every line at the artifact; it is this desk's account.
   and its `subagents/` directory, firing on a tool call left
   pending past seven minutes. It dies with the session that armed
   it. None is armed while the run waits on the operator.
+
+### Update, 2026-10-08 just after midnight — the operator closed both desks for the night
+
+Supersedes the two lines above that say the run is stopped on the
+rounds decision and that the run desk is `beat-the-books-70`.
+
+- The operator GRANTED the rounds raise: their word "yes", typed
+  first-hand at the meta desk on 2026-10-08 in answer to "raise the
+  attack rounds from 4 to 5 for one closing round?". The run desk
+  recorded it as its raise entry F77 (rounds 5). The round is
+  UNSPENT: no A5 was dispatched.
+- Minutes later the operator said, verbatim: "ah wait bit nit
+  tonight. i want aclean close now". Both desks close. The run is
+  NOT abandoned: Status stays in-progress for a fresh run session
+  that resumes from the tracker at the round-open gates and
+  dispatches A5 as the one closing round.
+- TO RESUME, the operator opens two fresh sessions and states a
+  delegation first-hand in each (neither old delegation carries
+  over; the old run-desk line names `statiker-30` as driver):
+  a run session in /home/g/dev/Gunther-Schulz/beat-the-books,
+  launched `claude --model 'opus[1m]' --autocompact 300000`, and a
+  meta session in this repo. The kickoff
+  docs/directives/2026-10-07-btb-run-bt68-kickoff.md gives the
+  arrangement; this section gives the state. The fresh run desk's
+  first acts are the resume gate (`sweep`, `closure`) and its
+  served-version confirmation (expect 0.2.105).
+- The migration decision is still open and still the operator's.
