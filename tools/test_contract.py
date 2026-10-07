@@ -1779,5 +1779,123 @@ class TestRepairFormReachability(unittest.TestCase):
         self.assertNotIn("__no_such_code__", reachable)
 
 
+# ---------------- st-36: script->page pointers carry no line numbers
+#
+# `section_pointers` above covers page-INTERNAL pointers only. A line
+# number into SKILL.md cited from a script or test goes stale on the
+# next page edit (the 0.2.89 review's N1: five stale ones, repaired by
+# hand at 3afb52e with nothing pinning the class). The pointer form is
+# `SKILL.md (<Section>, "<phrase>")`: a `##` heading plus a phrase on
+# one page line. The scan runs over comment-stripped, whitespace-
+# collapsed text so a pointer wrapped across comment lines is seen; the
+# patterns are built from pieces and this file is exempt by path (its
+# own negative controls are deliberately bad pointers).
+_SK = "SKILL" + r"\.md"
+NUMERIC_POINTER_RES = [
+    # SKILL.md :n  :n-m  L<n>  ~L<n>-<m>  (Section, :n-m)
+    re.compile(_SK + r"[\s,]*(?:\([^()]{0,40},\s*)?(?::\s?\d|~?L\d)"),
+    # SKILL.md ... (line ~n) within one sentence
+    re.compile(_SK + r"[^.]{0,200}?\(line ~\d+\)"),
+    # SKILL.md ...; the lock's own F-line sits at :n-m
+    re.compile(_SK + r"[^.]{0,200}?\bat :\d"),
+]
+PAGE_POINTER_RE = re.compile(
+    _SK + r"""\s\((?P<sec>[^,()"]+), "(?P<phrase>[^"]+)"\)""")
+POINTER_SCAN_EXEMPT = {Path(__file__).resolve()}
+
+
+def pointer_scan_text(raw):
+    # a full-line comment loses its `#`; an inline comment (code, two or
+    # more spaces, `#`) is reduced to the comment alone, so a pointer
+    # wrapped around interleaved code is still one run of prose
+    lines = []
+    for line in raw.split("\n"):
+        m = re.search(r"\S\s{2,}#", line)
+        lines.append(line[m.end():] if m else re.sub(r"^\s*#", "", line))
+    return re.sub(r"\s+", " ", " ".join(lines))
+
+
+def tracked_py_files():
+    out = subprocess.run(
+        ["git", "-C", str(REPO_ROOT), "ls-files", "plugin/*.py",
+         "tools/*.py"], capture_output=True, text=True, check=True)
+    return [REPO_ROOT / f for f in out.stdout.split()
+            if (REPO_ROOT / f).resolve() not in POINTER_SCAN_EXEMPT]
+
+
+def numeric_pointer_hits(raw):
+    text = pointer_scan_text(raw)
+    return [text[m.start():m.end()] for rx in NUMERIC_POINTER_RES
+            for m in rx.finditer(text)]
+
+
+def unresolved_page_pointers(raw, page):
+    names = page_heading_names(page)
+    flat = re.sub(r"\s+", " ", page)
+    return [(m.group("sec"), m.group("phrase"))
+            for m in PAGE_POINTER_RE.finditer(pointer_scan_text(raw))
+            if m.group("sec") not in names
+            or re.sub(r"\s+", " ", m.group("phrase")) not in flat]
+
+
+class TestScriptToPagePointersCarryNoLineNumbers(unittest.TestCase):
+    def test_no_numeric_pointer_into_the_page_in_tracked_python(self):
+        files = tracked_py_files()
+        self.assertTrue(files)  # instrument check: the scan has a corpus
+        hits = {str(f.relative_to(REPO_ROOT)): numeric_pointer_hits(
+                    f.read_text(encoding="utf-8")) for f in files}
+        hits = {f: h for f, h in hits.items() if h}
+        self.assertEqual(
+            hits, {},
+            f"numeric line pointers into SKILL.md (use `SKILL.md "
+            f"(<Section>, \"<phrase>\")`): {hits}")
+
+    def test_every_page_pointer_names_a_heading_and_a_present_phrase(self):
+        page = SKILL.read_text()
+        found = 0
+        bad = {}
+        for f in tracked_py_files():
+            raw = f.read_text(encoding="utf-8")
+            found += len(PAGE_POINTER_RE.findall(pointer_scan_text(raw)))
+            u = unresolved_page_pointers(raw, page)
+            if u:
+                bad[str(f.relative_to(REPO_ROOT))] = u
+        self.assertTrue(found)  # instrument check: pointers were parsed
+        self.assertEqual(bad, {}, f"unresolved script->page pointers: {bad}")
+
+    def test_numeric_scan_matches_every_observed_spelling(self):
+        # negative controls: constructed lines the scan MUST match, one
+        # per spelling seen in the 05b7ef1 corpus, wrapped forms included
+        for line in (
+                "# the page (SKILL.md :112-113 names these)",
+                "# see SKILL.md:729-733 for the tag",
+                "# (SKILL.md L328, dev-notes)",
+                "# close: SKILL.md ~L328-334 -- text",
+                "# (SKILL.md, :114-117) routes",
+                "# normative in SKILL.md (Implementation,\n#   :876-880);",
+                "if m:   # label-line form (SKILL.md\n"
+                "    xs.append(   # :730-731): a bare line",
+                'ask" (line ~331), indistinguishable',
+                "# SKILL.md says it; F-line sits at\n# :486-487 (note)"):
+            raw = "x = 1\n" + line.replace("ask\"", "SKILL.md ask\"") + "\n"
+            self.assertTrue(numeric_pointer_hits(raw), line)
+        # must-not-fire controls (the converted form, a bare mention)
+        for line in ('# SKILL.md (Implementation, "write-set: <path>")',
+                     "# SKILL.md, The record, says so"):
+            self.assertEqual(numeric_pointer_hits(line), [], line)
+
+    def test_dangling_page_pointer_is_caught(self):
+        page = SKILL.read_text()
+        self.assertEqual(unresolved_page_pointers(
+            '# SKILL.md (Implementation, "write-set: <path> \u2014 basis")',
+            page), [] if "write-set: <path> \u2014 basis" in
+            re.sub(r"\s+", " ", page) else [
+                ("Implementation", "write-set: <path> \u2014 basis")])
+        self.assertTrue(unresolved_page_pointers(
+            '# SKILL.md (Implementation, "no such phrase anywhere")', page))
+        self.assertTrue(unresolved_page_pointers(
+            '# SKILL.md (No Such Section, "write-set: <path>")', page))
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=1)

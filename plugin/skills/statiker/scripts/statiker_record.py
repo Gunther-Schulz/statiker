@@ -24,9 +24,13 @@ Subcommands (each prints evidence lines, then exactly one final line
                                       guessed at. The write-set
                                       record-line form is normative in
                                       SKILL.md (Implementation,
-                                      :876-880); the LOCK's own
-                                      `lock-set:` F-line sits at
-                                      :486-487 (SENTENCE-C1: this NOTE
+                                      "write-set: <path> — basis:
+                                      <the unit enumeration>"); the
+                                      LOCK's own `lock-set:` F-line form
+                                      is SKILL.md (Stop rule, "lock-set:
+                                      <path> — basis: <the entry that
+                                      produced it>")
+                                      (SENTENCE-C1: this NOTE
                                       formerly read the form as
                                       unspecified prose-composition —
                                       it is normative, citations
@@ -1331,11 +1335,14 @@ def parse_tracker(text: str):
             skill_version_lines.append({"line": i, "version": m.group(1)})
             continue
 
-        m = IRREVERSIBLE_EXACT_RE.match(line)  # P34: the SKILL:'s sibling
-        if m:                                  # label-line form (SKILL.md
-            irreversible_lines.append(          # :730-731): a bare line at
-                {"unit": f"U{m.group(1)}", "line": i,  # column 0, never an
-                 "effect": m.group(2).strip()})  # entry, re-opens nothing
+        # P34: the SKILL:'s sibling label-line form (SKILL.md (Stop rule,
+        # "irreversible BESIDE its enumeration as the BARE label line")):
+        # a bare line at column 0, never an entry, re-opens nothing
+        m = IRREVERSIBLE_EXACT_RE.match(line)
+        if m:
+            irreversible_lines.append(
+                {"unit": f"U{m.group(1)}", "line": i,
+                 "effect": m.group(2).strip()})
             continue
 
         m = SWEEP_EXEMPT_CEILING_RE.match(line)  # P6

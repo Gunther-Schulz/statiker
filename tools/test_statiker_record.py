@@ -5508,8 +5508,11 @@ class TestEESmallFixes(RecordFixture):
         docstring = ast.get_docstring(ast.parse(text)) or ""
         self.assertNotIn("no literal", docstring)
         self.assertIn("record-line form is normative in", text)
-        self.assertIn(":876-880", text)
-        self.assertIn(":486-487", text)
+        flat = " ".join(text.split())
+        self.assertIn('(Implementation, "write-set: <path> — basis: '
+                      '<the unit enumeration>")', flat)
+        self.assertIn('(Stop rule, "lock-set: <path> — basis: <the entry '
+                      'that produced it>")', flat)
 
 
 # ---------------- st-14 (1): filter resolves --sha to its full commit
@@ -5572,8 +5575,9 @@ class TestSt14FilterResolvesShaBeforeEmitting(RecordFixture):
 # --------- value names LANDED commits
 
 class TestSt30Item4NoShaFieldOnUnresolvedHalts(RecordFixture):
-    """0.2.86 re-review finding 4: the page's override (SKILL.md,
-    :114-117) routes ANY halt verdict carrying a `sha`/`shas` field as
+    """0.2.86 re-review finding 4: the page's override (SKILL.md (The tools,
+    "every route: a halt verdict carrying a `shas` or `sha` field has"))
+    routes ANY halt verdict carrying a `sha`/`shas` field as
     LANDED commits (HALT_RESIDUE_PERSISTS-shaped handling). filter's
     new GIT_ERROR carried `sha` for an UNRESOLVED --sha argument — the
     reviewer named it, and the same shape already existed in
@@ -5593,7 +5597,8 @@ class TestSt30Item4NoShaFieldOnUnresolvedHalts(RecordFixture):
     Neither the page nor any test in this suite reads `sha` off a
     GIT_ERROR/PIN_UNREADABLE verdict as an input (checked: this file's
     only `v["sha"]` reads target ARTIFACT_WRITTEN and PINNED_REWRITTEN;
-    SKILL.md :112-113 names these verdict classes generically, never
+    SKILL.md (The tools, "route applying (the catch-all: TRACKER_UNREADABLE,")
+    names these verdict classes generically, never
     dereferencing their `sha` field) — so dropping it here is not a
     halt-item-4 gap.
 
@@ -5880,7 +5885,8 @@ class TestP4IrreversibleTag(RecordFixture):
                          ["U3", "U5"])
 
     def test_page_form_bare_label_line_surfaces_too(self):
-        # P34 (BACKLOG.md:100, F90): SKILL.md:729-733 says the tag is a
+        # P34 (BACKLOG.md:100, F90): SKILL.md (Stop rule, "irreversible BESIDE
+        # its enumeration as the BARE label line") says the tag is a
         # BARE label line at column 0 ("never an entry"), the `SKILL:
         # `'s sibling — beside the existing entry-body positive above,
         # which the tool has always read.

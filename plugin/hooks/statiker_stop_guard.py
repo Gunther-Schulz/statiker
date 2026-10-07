@@ -20,20 +20,23 @@ to conversation:
     silent otherwise — including: no live tracker at all, Status not
             `in-progress`, Mode attended, last A-line [DISPATCHED], or
             the blocking set is empty or solely one operator-authority
-            [PENDING] (an authority-gated close: SKILL.md ~L328-334 —
-            "An ask on OPERATOR-AUTHORITY ground... lands as an
+            [PENDING] (an authority-gated close: SKILL.md (Stop rule,
+            "An ask on OPERATOR-AUTHORITY ground") — it "lands as an
             ordinary [PENDING] entry").
 
 DESIGN NOTE — the operator-authority marker. The record grammar gives
 operator-authority asks no dedicated bracket tag: SKILL.md is explicit
 that such an ask "lands as an ordinary [PENDING] entry under its own
-id" (line ~331), indistinguishable by tag from any other open
+id" (SKILL.md (Stop rule, "[PENDING] entry under its own id, its body
+naming the gate where it")), indistinguishable by tag from any other
+open
 question. The only structural feature the grammar promises is that its
 BODY names the gate it blocks. Absent a dedicated tag, this hook
 detects the case-insensitive literal "operator-authority" (also
 "operator authority") in the entry's body — the term the corpus itself
-uses everywhere else to name this exact category (SKILL.md L328,
-dev-notes 2026-08-16 "no operator-authority pending as sole hold",
+uses everywhere else to name this exact category (SKILL.md (Stop rule,
+"An ask on OPERATOR-AUTHORITY ground"), dev-notes 2026-08-16 "no
+operator-authority pending as sole hold",
 this BACKLOG entry's own wording). This is an IMPLEMENTATION CHOICE
 inside the settled design, not a re-design: flagged here for the
 checkpoint review since it invents a body-text convention the grammar
