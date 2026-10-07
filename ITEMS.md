@@ -106,21 +106,6 @@ amend-reason: 2026-10-07 re-keyed from the codex desk-role run-3 object to the n
 amended-blocked-by: 2026-10-07 decision which real task the next statiker run takes
 amended-not-derivable: 2026-10-07 2026-10-07 the task is the operator product work (st-94 carries the same question and the prep order); this item is decision-complete and waits for that run prep
 
-## st-36
-grade: READY
-requirement: the pointer instrument does not reach script->page pointers: 0.2.88's f23a69b + test_contract.py's section_pointers() cover page-INTERNAL pointers, and the 0.2.89 review's N1 found five stale SKILL.md:<line> pointers in scripts and tests that it cannot see; repaired by hand at 3afb52e with nothing pinning the class. The 0.2.89 review disposition calls this gap 'booked separately' and it was never booked; three tracked files already cite the id st-36 (dev-notes/OBSERVATIONS.md:9587, tools/test_contract.py:1050 docstring, docs/directives/2026-09-11-handoff-corpus-batching-statiker-ca.md:77) - record: dev-notes/OBSERVATIONS.md 2026-09-12 release gate, the st-36 finding
-goal: tend
-write-set: tools/test_contract.py, dev-notes/OBSERVATIONS.md
-done-criterion: UNKNOWN
-evidence: 0.2.89 review N1 (dev-notes/OBSERVATIONS.md, '0.2.89 checkpoint-review dispositions', the remaining findings): five stale script->page pointers, three shifted by this batch's own page insert, one rewritten by the n4 edit while its target moved; the page-internal instrument at tools/test_contract.py:1040-1050 (section_pointers, reach stated in its own docstring); the hand repair 3afb52e (no permanent check). Neighbouring evidence on the mechanism bar: the 0.2.89 route-token class-check died in its dry run at 24/76 multi-location verdicts, so a pointer gate's false-fire rate is the question to measure BEFORE building, not after
-blocked-by: decision what instrument reaches script->page pointers without over-firing, decided by a dry run over the real script corpus before any build (the 0.2.89 precedent: the class-level check was designed, dry-run and killed at 24/76); if the bar is unmet the remainder is a review instruction, not a check
-amend-reason: 2026-10-07 the dry run named the seven numeric pointers and their files; OBSERVATIONS is not written by the build
-amended-write-set: 2026-10-07 tools/test_contract.py, plugin/hooks/statiker_stop_guard.py, plugin/skills/statiker/scripts/statiker_record.py, tools/test_statiker_record.py
-amend-reason: 2026-10-07 criterion was UNKNOWN; the dry run and the ledger decision of 2026-10-07 fix it
-amended-done-criterion: 2026-10-07 The seven numeric line pointers into SKILL.md in tracked Python (statiker_stop_guard.py:23 and :35; statiker_record.py:26 and :1326; test_statiker_record.py:5434, :5455, :5742 at commit 05b7ef1, located by content not by these numbers) are rewritten as section name plus a quoted anchor phrase that exists on the page today; a contract test asserts NO numeric pointer form (SKILL.md followed by a line number or range, with or without L, tilde, colon or parentheses) in tracked *.py under plugin/ and tools/, red-first on the unconverted tree, and asserts each converted anchor phrase is present on the page
-promote-reason: 2026-10-07 instrument decided on an executed dry run; sites, form and red-first arrangement named; a fresh context can build it
-promoted-by: 2026-10-07 statiker desk 6796fb27 (opus), 2026-10-07
-
 ## st-37
 grade: PARKED
 requirement: C4c (P28 targeting: dispositions self-marked design-bearing are enumerated in the next owed round brief as its pre-registered surface) did NOT mint at the 0.2.89 release gate, because the field test registered to grade its premise resolved on a denominator of ONE finding of ten. The instrument, not the clause, is what broke: a BATCHED review merged three items of very different design density, and lap B surface carries no flagged/unflagged classification, so seven findings could be counted and never graded - record: dev-notes/OBSERVATIONS.md 2026-09-12 (the C4c outcome, the batching tension entry, and the release gate st-10 split)
