@@ -53,6 +53,15 @@
   because it is why this is prose and not a check: e19116d's
   fail-closed floor adds no token name but does add a mandatory
   form, and whether it fires is a desk judgment.
+  A build that DISCHARGES another mint's flagged debt — a tenet the
+  earlier record marked FLAGGED and deferred — is its OWN mint under
+  this test, its record owed on build day; the release gate's re-ask
+  is the backstop, never the firing moment (operator-settled
+  2026-10-07; the 2026-09-25 tool half minted three record forms
+  and a verdict as "tenet 8's named debt" with no record of its
+  own, found twelve days later at the 0.2.105 release gate —
+  dev-notes/2026-10-07-repair-series-analysis.md,
+  C1).
   A verdict mint's WRITE-SET structurally includes
   `plugin/skills/statiker/scripts/statiker_emit.py` (ROUTES
   registration) and `tools/test_contract.py` (the driven-or-frozen
@@ -65,7 +74,21 @@
   `tools/golden-corpus/` — one golden row per new
   RULE_MINT_VERSION code, or TestGoldenCorpusSweep fails the suite
   (fourth miss of the class, the st-89 brief, 2026-10-07, caught by
-  its lane).
+  its lane). A mint whose predicate READS THE RUN RECORD includes
+  one red-first fixture composed ONLY from forms the page quotes,
+  the page passage cited in the arm; where the page quotes no form
+  for the concept, that absence is itself a blocking build-day
+  finding, never the fixture author's freedom. A mint whose verdict
+  PRESCRIBES A REPAIR includes one arm that follows the prescribed
+  repair text verbatim to the clean state, and where the mint
+  copies a precedent the arm runs against the precedent too (both
+  operator-settled 2026-10-07; incidents: the convergence gate's
+  population matched no record the page produces while its battery
+  pinned the vacuous case as intended, and `convergence-near-miss`
+  copied from `tripwire-arm-near-miss` a repair loop no arm had
+  ever followed —
+  dev-notes/2026-10-07-repair-series-analysis.md,
+  C1 and C3).
 - **PLAN.md is the design record** — settled decisions are not
   re-opened without new evidence.
 - **Carrier transition (2026-09-10, operator GO).** Work items live
@@ -91,6 +114,14 @@
   same mismatch made 69 of 99 decision-blocked items permanently
   unanswerable in a sibling carrier (lc-40). Rephrase the QUESTION
   at the MINT, never at the answer.
+  A DEFERRAL names its item: a "remaining" or "deferred to <seam>"
+  sentence in a LEDGER fact line or a mint record carries an item
+  id in the same sentence, or it is work with no carrier
+  (operator-settled 2026-10-07; a review's unbuilt repair lived
+  twelve days in the tail of one LEDGER fact line and was found
+  only by reading that review's record for another reason —
+  dev-notes/2026-10-07-repair-series-analysis.md,
+  C4).
   `BACKLOG.md` is DELETED (st-39, 2026-10-07; operator decision
   2026-09-12). Every `BACKLOG.md:<line>` or `BACKLOG.md:<a>-<b>`
   citation anywhere in this repo — item evidence, code comments,
@@ -593,7 +624,14 @@
   2026-09-12).** A mint's brief states its form — tool-backed
   (the mechanism and its battery land with it) or
   prose-mechanism — and a batch containing prose-mechanism mints
-  budgets one repair lap into its seam plan. FORM in this bullet
+  budgets one repair lap into its seam plan. A repair brief whose
+  item is itself a C4b mint says so and names the review round it
+  buys: a new machine-read token at an eve seam owes a review
+  before the pin moves (the checkpoint rule's trigger (2)),
+  whatever lap it rides in (operator-settled 2026-10-07; the
+  0.2.105 repair lap's near-miss lint —
+  dev-notes/2026-10-07-repair-series-analysis.md,
+  C3). FORM in this bullet
   names the BATCH-PRICING axis ONLY — which build shape the batch
   budgets for — and says nothing about C4b's mint test (above): a
   slot reading "Mint form: TOOL-BACKED" makes no C4b claim about
