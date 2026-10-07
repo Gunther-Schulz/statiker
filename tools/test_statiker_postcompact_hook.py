@@ -116,6 +116,30 @@ class Fires(TrackerFixture):
             run_hook(self.dir),
             ".clippy/runs/2026-10-06-a.md, .clippy/runs/2026-10-07-b.md")
 
+    def test_status_and_phase_at_header_lines_16_17_fire(self):
+        # 0.2.105 repair D1: a header grown past 15 lines still names
+        # its fields inside the window (20 lines)
+        text = ("# Run: test\nSkill: statiker 0.2.105\n"
+                + "Note: filler\n" * 13
+                + "Status: in-progress\nPhase: investigate-design\n"
+                + "\nINTENT — do the thing.\n\n## Cycle 1\n")
+        lines = text.splitlines()
+        self.assertEqual(lines[15], "Status: in-progress")   # line 16
+        self.assertEqual(lines[16], "Phase: investigate-design")
+        self.tracker(text)
+        self.assertFires(run_hook(self.dir), ".clippy/runs/2026-10-07-x.md")
+
+    def test_cwd_below_the_repo_root_fires(self):
+        # 0.2.105 repair D2: the payload cwd is wherever the session
+        # stands, the trackers live under the repository root
+        subprocess.run(["git", "init", "-q", "-b", "main"], cwd=self.dir,
+                       env={**os.environ, "GIT_CONFIG_GLOBAL": "/dev/null"},
+                       capture_output=True, check=True)
+        below = self.dir / "sub"
+        below.mkdir()
+        self.tracker(HEADER)
+        self.assertFires(run_hook(below), ".clippy/runs/2026-10-07-x.md")
+
     def test_absent_event_name_still_fires(self):
         self.tracker(HEADER)
         proc = run_raw(json.dumps({"source": "compact",
@@ -149,9 +173,9 @@ class Silent(TrackerFixture):
         self.assertSilent(run_hook(self.dir))
 
     def test_header_fields_below_the_window_are_silent(self):
-        # the header is the first 15 lines; a body line quoting the
+        # the header is the first 20 lines; a body line quoting the
         # fields further down is prose, not the header
-        self.tracker("# Run: test\n" + "filler\n" * 15 + HEADER)
+        self.tracker("# Run: test\n" + "filler\n" * 20 + HEADER)
         self.assertSilent(run_hook(self.dir))
 
     def test_status_must_be_the_exact_line(self):

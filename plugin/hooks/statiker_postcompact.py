@@ -10,8 +10,9 @@ the page already owns for a successor desk — the resume's record gate
 (`sweep`, then `closure`) — and this hook is what says "now".
 
     fire  = payload `source` is `compact`
-            AND the payload `cwd` holds at least one
-                `.clippy/runs/*.md` whose header (first 15 lines)
+            AND the repository root of the payload `cwd` (the cwd
+                itself outside any repo) holds at least one
+                `.clippy/runs/*.md` whose header (first 20 lines)
                 carries a line starting `Skill: statiker`
                 AND a line exactly `Status: <live value>`
     silent otherwise — no `.clippy/`, no tracker, another skill's
@@ -57,11 +58,12 @@ from __future__ import annotations
 import glob
 import json
 import os
+import subprocess
 import sys
 
 _SOURCE = "statiker/postcompact"
 _TRACKER_GLOB = os.path.join(".clippy", "runs", "*.md")
-_HEADER_LINES = 15
+_HEADER_LINES = 20
 _SKILL_PREFIX = "Skill: statiker"
 _LIVE_STATUS_LINES = frozenset(
     f"Status: {value}" for value in ("in-progress", "[READY]", "PASSED"))
@@ -109,6 +111,22 @@ def live_trackers(cwd: str) -> list[str]:
     return found
 
 
+def repo_root(cwd: str) -> str:
+    """The repository root of `cwd`, or `cwd` itself on any failure
+    (not a repo, no git, a timeout): the payload cwd is wherever the
+    session stands, while the trackers live under the root."""
+    try:
+        proc = subprocess.run(
+            ["git", "-C", cwd, "rev-parse", "--show-toplevel"],
+            capture_output=True, text=True, timeout=5)
+    except (OSError, ValueError, subprocess.SubprocessError):
+        return cwd
+    top = proc.stdout.strip()
+    if proc.returncode != 0 or not top:
+        return cwd
+    return top
+
+
 def context_payload(trackers: list[str]) -> dict:
     """The SessionStart additional-context form (see module docstring)."""
     return {"hookSpecificOutput": {
@@ -135,7 +153,7 @@ def main() -> int:
     if not isinstance(cwd, str) or not cwd:
         warn("payload carries no usable cwd")
         return 0
-    trackers = live_trackers(cwd)
+    trackers = live_trackers(repo_root(cwd))
     if trackers:
         print(json.dumps(context_payload(trackers)))
     return 0
