@@ -322,6 +322,23 @@
   is recorded in dev-notes BEFORE any arm dispatches; arms are
   graded post-run in the meta session on a body-read of the raw
   reports — the desk records verbatim and never grades the arms.
+  WIDENED 2026-10-07 (st-65; desk decision under the operator's
+  standing GO of that date): the registration is EXECUTED against
+  the world it describes before the first arm dispatches. Every
+  expected-result line is re-measured under the invocation the
+  brief mandates, on the tree the executor will meet; every scope
+  or containment sentence is checked against the mechanisms the
+  run will actually invoke; every absence claim shows its search's
+  reach on a known positive — each with its command and output in
+  the registration itself. A registration asserting state nobody
+  ran is a brief with unopened background, and its defects read
+  afterwards as model results. Incident, three instances in one
+  run (dev-notes/scoped-run-preregistration-2026-09-13.md §14,
+  §16, §17e/§18): reds pinned as pre-existing that cannot occur
+  under the mandated invocation; a containment sentence the
+  page's own attack design made unsatisfiable; a transcript
+  declared unrecoverable while on disk. Cost: one column
+  unmeasurable, one arm terminated by the arrangement.
 - **Skill text states current decisions cleanly, as if final
   (operator-settled 2026-08-10).** A settled decision enters
   SKILL.md as the plain default — no experimental hedges, no
