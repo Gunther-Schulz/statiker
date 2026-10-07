@@ -1026,6 +1026,20 @@ closed-met: st-66, st-89
 closed-decided: LEDGER.md:201
 closed-ref: 1ab8cc3
 
+## st-66
+grade: DONE
+requirement: C4a-s demand population has no tool-emitted enumeration: the verify brief demands a statement per F/D/R line appended after the last resolved A-line, but no verdict field carries that set, so the one demand in that list whose input the page-s own standard would put in a verdict is derived by hand instead (arc-close review M4, docs/audits/2026-09-14-arcclose-review.md)
+goal: general-maintenance
+write-set: UNKNOWN
+done-criterion: Either closure emits the post-closure F/D/R population as a verdict field so C4a-s demand reads its input from the tool rather than from a hand derivation, or the repo records why that demand is the exception to SKILL.md:490-s standard. If a field is minted it is red-first and DISCRIMINATING: RED on a tracker carrying a record-scoped post-closure line that no current field reports, GREEN once the field carries it, and green on a tracker with no post-closure lines so the field does not fire on ordinary runs
+evidence: Arc-close checkpoint review, 2026-09-14, finding M4, read at docs/audits/2026-09-14-arcclose-review.md: closure computes exactly that set internally as the post variable but emits only scopeless (on VOID) and amendments (unit-scoped, on UNIT_DISPATCHABLE); a record-scoped post-closure line lands in NO verdict field. Not invisible, since a verifier can derive it from the pasted tracker, but the page-s own standard for a comparable case is explicit that the tool finds them: SKILL.md:490, said of late INTENT lines, "the tool, never memory or conversation, finds them". The wording half of M4 (the page calling one anchor "last resolved A-line" in sustain-s vocabulary while closure anchors on the final a_lines entry) rides the arc-close repair lap and is NOT this item
+blocked-by: NONE
+blocker-moot: is the post-closure F/D/R population a new verdict field (a C4b mint with its own provenance and tenet cost) or a recorded exception to the page-s tool-finds-them standard at SKILL.md:490 (answered in the ledger before this item closed)
+closed-reason: 2026-10-07 closure emits post_closure on every verdict past its computation, empty on ordinary records; the verify brief reads it; red-first on a record-scoped post-closure line; marked hypothesis-patch with tenet record (OBSERVATIONS 2026-10-07)
+closed-met: st-86
+closed-decided: LEDGER.md:202
+closed-ref: 41db2b8, 8e06900, 2e8c8ed
+
 ## Archive (pre-migration)
 
 <!-- CLOSURES READ FROM THE `--from` CARRIER ITSELF (lc-18/lc-19). The

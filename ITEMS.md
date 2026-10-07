@@ -195,15 +195,6 @@ evidence: SKILL.md lines 418-433 read verbatim 2026-09-13; PLAN 'Lenses: none at
 blocked-by: evidence grep -q '^TRIGGER-FIRED st-52 ' /home/g/dev/Gunther-Schulz/statiker/dev-notes/OBSERVATIONS.md
 blocker-exercise: 2026-10-07 live 1 | ACCEPT arm (constructed): a file holding the line 'TRIGGER-FIRED st-52 — basis' at column 0 makes the grep exit 0. REFUSE arm (current state, and constructed): OBSERVATIONS.md holds no such line, and a line naming another id or carrying the token mid-line exits 1. Writer: the run-close harvest (CLAUDE.md two-session bullet, re-asks the parked triggers). Rechecked NOT-FIRED against the 2026-09-25 run record by lane sonnet-trigger-recheck, 2026-10-07 (st-19 and st-52: partial, no cost incident)
 
-## st-66
-grade: NEW
-requirement: C4a-s demand population has no tool-emitted enumeration: the verify brief demands a statement per F/D/R line appended after the last resolved A-line, but no verdict field carries that set, so the one demand in that list whose input the page-s own standard would put in a verdict is derived by hand instead (arc-close review M4, docs/audits/2026-09-14-arcclose-review.md)
-goal: general-maintenance
-write-set: UNKNOWN
-done-criterion: Either closure emits the post-closure F/D/R population as a verdict field so C4a-s demand reads its input from the tool rather than from a hand derivation, or the repo records why that demand is the exception to SKILL.md:490-s standard. If a field is minted it is red-first and DISCRIMINATING: RED on a tracker carrying a record-scoped post-closure line that no current field reports, GREEN once the field carries it, and green on a tracker with no post-closure lines so the field does not fire on ordinary runs
-evidence: Arc-close checkpoint review, 2026-09-14, finding M4, read at docs/audits/2026-09-14-arcclose-review.md: closure computes exactly that set internally as the post variable but emits only scopeless (on VOID) and amendments (unit-scoped, on UNIT_DISPATCHABLE); a record-scoped post-closure line lands in NO verdict field. Not invisible, since a verifier can derive it from the pasted tracker, but the page-s own standard for a comparable case is explicit that the tool finds them: SKILL.md:490, said of late INTENT lines, "the tool, never memory or conversation, finds them". The wording half of M4 (the page calling one anchor "last resolved A-line" in sustain-s vocabulary while closure anchors on the final a_lines entry) rides the arc-close repair lap and is NOT this item
-blocked-by: decision is the post-closure F/D/R population a new verdict field (a C4b mint with its own provenance and tenet cost) or a recorded exception to the page-s tool-finds-them standard at SKILL.md:490
-
 ## st-75
 grade: READY
 requirement: RUN 3 of the scoped codex desk-role program has no carrier of its own — the verdict names its bar and the bar lives only in prose. Book it so the bar is re-enterable by carrier instead of by memory. Basis: run 2 verdict section 8.4 and the correction stream at dev-notes/scoped-run-2-preregistration-2026-09-14.md section 17, graded 2026-09-14
