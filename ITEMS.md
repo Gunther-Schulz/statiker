@@ -1,6 +1,6 @@
 schema: 2
 baseline: 47
-added: 73
+added: 74
 compacted: 0
 
 ## st-12
@@ -284,3 +284,12 @@ done-criterion: A design decision recorded in dev-notes/OBSERVATIONS.md, graded 
 evidence: MEASURED (desk 2026-10-07, reviewer probe re-run at f5de5b5): write-set-declared unit with no convergence record gives CLOSURE_LIVE and UNIT_DISPATCHABLE; a round aimed at one unit closes design once every unit has a record; CONVERGED citing a VOID round counts; ABSENCE after UNCONVERGED counts; a 0.2.101-header record with a pre-close unit D-line gives ZERO_DELTA_UNCONVERGED. READ (desk): SKILL.md says write-set lines are appended at the READY enumeration, before the attack. DERIVED: the series reading that repair increments on an unexercised gate do not converge (OBSERVATIONS, same date).
 blocked-by: evidence ls /home/g/dev/Gunther-Schulz/statiker/dev-notes/ | grep -q post-upgrade-run-digest
 blocker-exercise: 2026-10-07 live 1 | ACCEPT arm (constructed): with a file dev-notes/2026-xx-xx-post-upgrade-run-digest.md present the pipeline exits 0. REFUSE arm (current state, run 2026-10-07 by this desk): no dev-notes filename contains post-upgrade-run-digest and it exits 1.
+
+## st-96
+grade: READY
+requirement: CONTAINMENT LABEL, FAIL-CLOSED FORM: following the lint own repair for a malformed containment label, with no exact label written beside it, leaves the gate unarmed with every gate green; the scope is also whatever exact labels the record carries, untied to what preflight declared. Record: docs/audits/2026-10-07-eve-review-dispositions.md, Round 2 (M1, N6, N7)
+goal: general-maintenance
+write-set: plugin/skills/statiker/scripts/statiker_record.py,plugin/skills/statiker/SKILL.md,tools/test_statiker_record.py
+done-criterion: Red-first arms then green: (1) a record whose only containment line was malformed and then shed holds filter until an exact label exists, with a stated way out; (2) the declared scope the record carries is checked against the scope preflight resolved, or the page states with its reason why declared-only stands; (3) an exact label carrying a wrong path has a retraction route. Decided against one run that actually declares containment, since none has.
+evidence: RELAYED (lane opus-review-m2 2026-10-07, executed there, not re-run at the desk): after the correcting entry, sweep SWEEP_CLEAN and filter writes outside the named scope; a second wider label widens the scope; a corrected label clears the hold only at a re-lock. READ (desk): SKILL.md Containment paragraph, declared-only by the st-74 design. DERIVED: no run on record has declared containment, so the mechanism has no field datum.
+blocked-by: external a statiker run is about to declare a containment scope at preflight
