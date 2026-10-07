@@ -1055,6 +1055,19 @@ closed-met: st-86, st-66
 closed-decided: LEDGER.md:203
 closed-ref: 7819e2f
 
+## st-93
+grade: DONE
+requirement: VERIFY LEGS RESOLVE TO THE PARENT MODEL, NOT THE CERTIFIED CHEAPEST (st-91 lever 2): the page resolves the verify leg's model as clippy.config/models (verify: class) when present, else the PARENT model (SKILL.md, Verify, the sentence opening "Model per"), while the attack role resolves to the first dispatchable entry of the shipped register. The shipped register (plugin/skills/statiker/defaults/models) lists verify: haiku, sonnet, opus in that order, on a measured certification (haiku and sonnet each resolved 8 of 9 requirements, dev-notes/codex-only-certification-2026-09-13.md). On the 2026-09-25 run both verify legs therefore ran on opus under an opus run session: 12.7M context-tokens at the dearest tier for a role the cheapest is certified for
+goal: general-maintenance
+write-set: plugin/skills/statiker/SKILL.md, dev-notes/OBSERVATIONS.md
+done-criterion: The verify role resolves the way the attack role does: clippy.config/models when present, else the first entry of the shipped register the harness can dispatch, else the parent model as the declared-deviation fallback; the certification-duty sentence that follows it still reads true. Before the edit, PLAN.md and dev-notes/OBSERVATIONS.md are searched for a recorded reason the parent-model default was chosen (search and hits in the mint record); a recorded reason this evidence does not answer returns the item to the operator instead. Page edit under skill-craft discipline; the full suite and the register_lint band stay green; rides the one pre-run review
+evidence: MEASURED (desk 2026-10-07): SKILL.md lines 1824-1827 read — "Model per clippy.config/models (verify: class) when present, else the parent model"; defaults/models lines 78-80 read — verify: haiku / sonnet / opus. MEASURED (lane sonnet-st91-measure, from the run's subagent transcripts): opus verify V1 43 calls 7.76M context, V2 36 calls 4.90M; desk model opus. RECALLED (dispatch skill codex-routing reference, read this session): the 8-of-9 certification figures. DERIVED, unverified: that parent-model was not a deliberate choice — the done-criterion makes the search for a recorded reason part of the work
+blocked-by: NONE
+closed-reason: 2026-10-07 verify resolves clippy.config/models, then the first dispatchable verify entry of the shipped register (sonnet), then the parent model; provenance search found no merit argument for the old default; recorded in OBSERVATIONS 2026-10-07
+closed-met: st-46
+closed-decided: none
+closed-ref: 8c77f1ae37d08e7416bdc0a26f01c41b7fab216c
+
 ## Archive (pre-migration)
 
 <!-- CLOSURES READ FROM THE `--from` CARRIER ITSELF (lc-18/lc-19). The
