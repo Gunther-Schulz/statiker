@@ -13672,3 +13672,44 @@ Review floor for this pin move: two fresh-context rounds over the
 delta since the last reviewed state (f954320), every finding
 dispositioned (docs/audits/2026-10-07-eve-review-dispositions.md).
 Consuming seam: the bt-68 run, about to start (st-94).
+
+## 2026-10-07 — bt-68 run harvest, relay 1 (seed) and relay 2 (design lock)
+
+Meta desk statiker-30; run desk beat-the-books-70, served 0.2.105
+(its Skill injection's base-directory line, reported in its
+acknowledgment — the release's activation evidence). Tracker
+`.clippy/runs/2026-10-07-drain-effect-alarms.md` in the target
+repo; lock commit ae542512. Checked at the artifact by this desk at
+the lock: Status [READY], 44 entries, `sweep` from the installed
+tool → SWEEP_CLEAN.
+
+FIELD DATA for st-95, first of the run (the convergence records
+have never operated before):
+- An ABSENCE record was written in the exact form, before the lock
+  commit, as an F-line: `- F17 [VERIFIED] record: unit U2 ABSENCE —
+  <reason>` (tracker line 61). The page sentences added this date
+  (the form, "before the lock commit", the hand-off to Verify)
+  were followed without a question to this desk. The desk's own
+  report names the Verify consequence unprompted ("must either
+  exercise that on source-drawn input or state NOT EXERCISED").
+- The design named two units (U1, U2) at the lock; no CONVERGED or
+  UNCONVERGED record exists yet, correctly: no round has returned.
+  The return of A1 is the first test of the return duty.
+- The executed-probe clause operated: the desk asked for the
+  docker daemon instead of reasoning about three SQL questions
+  (the target repo's own rule, by its report), and ran them on
+  Postgres 17 before the lock. Its caveat is its own: constructed
+  rows, not prod data, hence the ABSENCE.
+
+Other harvest:
+- A blocker reached the operator through this desk once (the
+  daemon needed sudo); cleared in one operator act.
+- The desk amended two requirements at design with bases (the
+  item's done-criterion contradicts itself at the shipped numbers;
+  a disabled drain still alarms) and booked three out-of-scope
+  finds in the target repo's carrier. Desk decisions, surfaced.
+- This desk's seed brief was wrong on one line: it called the push
+  "your act here"; in the target repo the push is the deploy. The
+  run desk held it correctly and the line is corrected to it.
+- No mint candidate, no stop-call. Turn cost so far at this desk
+  for the run: three relays.
