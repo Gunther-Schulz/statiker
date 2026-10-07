@@ -13376,3 +13376,33 @@ the reviewers, who are told nothing of the test.
 
 The outcome is appended as its own line when the review is
 dispositioned, opening `C4c FIELD TEST OUTCOME: `.
+
+## 2026-10-07 — P28/st-37 C4c field test: the registered criterion resolves, and the repeat ends
+
+Graded against this date's registration, over the eve review's
+findings (docs/audits/2026-10-07-eve-review-dispositions.md).
+
+Blocking + major DESIGN-kind findings landing on a classified slot,
+deduplicated across the two reporting lanes:
+- the convergence gate sees no unit (S1-F1, W-M1) — slot A, FLAGGED;
+  its fix changes the disposition's decided text (the population);
+- a terminal [BIT] skips the gate (S1-F2, W-M2) — slot A, FLAGGED;
+- the forms fail open (S1-F3, W-M3) — slot J, FLAGGED;
+- no way out of the refusal, cleared by assertion (S1-F4) — slots A
+  and J, FLAGGED.
+Counted, not graded: the `trend` page sentences (slot D, FLAGGED,
+IMPLEMENTATION-kind — the disposition's text stands, the page was
+not aligned); the containment and version-hold findings (st-89 and
+st-84, unclassified backlog surface); every minor.
+
+C4c FIELD TEST OUTCOME: UNDECIDED — n=4, k=4, P(K>=4 | 4, 11/19) =
+0.112, above the registered 0.10. All four sit on one mechanism, so
+even that figure overstates the independence. Nothing landed at an
+unflagged slot.
+
+This is the third UNDECIDED-class result under one test, and the
+stop the test carries ends the repeat: C4c does NOT mint. What the
+three rounds did establish is narrower and is recorded as the
+reason: reviews of this page return too few independent design-kind
+findings per round, on too few mechanisms, for a concentration test
+to resolve inside the trial. st-37 closes on that.

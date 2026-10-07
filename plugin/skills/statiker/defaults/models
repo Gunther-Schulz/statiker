@@ -1,6 +1,8 @@
-# Statiker shipped model defaults — the certified-attack register.
+# Statiker shipped model defaults — the certified-role register
+# (attack, impl, verify).
 #
-# Resolution order (SKILL.md, The attack): a repo's
+# Resolution order (SKILL.md, The attack; Verify resolves its own
+# class the same way): a repo's
 # clippy.config/models wins; else the first entry here the harness
 # can dispatch; else strongest-available, attacking as a declared
 # deviation.
@@ -67,7 +69,8 @@ impl@codex: terra
 # isolated copy, transcript audit clean with a positive control. Both
 # resolved 8 of 9 requirements and both held the honesty floor, the
 # drawn control coming back not-exercised. The CHEAPEST Claude tier
-# matched the strongest, so haiku carries this role at haiku's price.
+# matched the strongest, so haiku is certified for this role at
+# haiku's price. Which entry LEADS is the block below.
 #
 # THIS CLASS IS RESOLUTION INPUT AND CERTIFICATION INPUT (st-93,
 # 2026-10-07). The verify seam resolves clippy.config/models, then
@@ -100,7 +103,8 @@ verify: opus
 #
 # OPUS DOES NOT OUTPERFORM THE CHEAPEST TIER HERE, and this entry must
 # not be read as saying so: 8 of 8 is haiku's number and sonnet's.
-# HAIKU still carries this role on price. What this entry buys is the
+# Sonnet leads this role (st-93, above) and haiku stays certified
+# beside it. What this entry buys is the
 # removal of a high-rate declared-deviation line on the site's DEFAULT
 # desk tier — it settles a certification question, not a routing one.
 #

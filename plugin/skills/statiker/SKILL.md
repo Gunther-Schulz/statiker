@@ -96,8 +96,10 @@ neither list); the partition is no dispatchability read — the
 per-unit gate stays `closure --unit`.
 
 `trend` returns TREND_COMPUTED / TREND_NO_ROUNDS: per-round F-LINE
-counts (every F-line in a round's span, not attacker findings alone)
-with an arithmetic trajectory verdict; `sustain` returns SUSTAIN_OK /
+counts (every F-line in a round's span that is not `record:`-scoped,
+not attacker findings alone; the `record:`-scoped ones are counted
+beside them as `record_counts`) with an arithmetic trajectory
+verdict; `sustain` returns SUSTAIN_OK /
 SUSTAIN_DENIED / SUSTAIN_NOT_APPLICABLE, the never-sustain round-open
 gate (The attack, "That closes design"); `tripwire` returns
 TRIPWIRE_FIRES / TRIPWIRE_SILENT, the zero-landed progress tripwire
@@ -306,7 +308,10 @@ its Skill injection above) and compare it against the header
 `Skill:` line ONLY, never the mid-run stamps — an older desk's TOOL
 running against a NEWER header holds SKILL_VERSION_HOLD before
 either command's ordinary work runs, mechanizing the WRITES-NO-CLOSE
-sentence above rather than widening it. A marker-less header, an
+sentence above rather than widening it. Its route is `barred`:
+nothing is booked, the lock gate holds on the same verdict, and
+the resolution is a restart on the record's version, named in the
+desk's reply. A marker-less header, an
 unparseable version on either side, or a served version the tool
 cannot derive (a dev checkout with no install-path version segment)
 each hold nothing — could-not-verify, never a silent fire.
@@ -314,8 +319,10 @@ A resume opens with the RECORD GATE before any design work: `sweep`
 and `closure` first, whatever the cause. Verdicts route by KIND —
 `closure`'s state verdicts CLOSURE_ABSENT, CLOSURE_LIVE (the
 mid-design normal) are information, never halts; CLOSURE_VOID bars
-units, not the design work this gate runs ahead of; only FORM holds
-gate. The repair route covers FORM holds only (grammar, lint,
+units, not the design work this gate runs ahead of;
+ZERO_DELTA_UNCONVERGED bars the close until the units it names
+carry their records (The attack, per-unit convergence); only FORM
+holds gate. The repair route covers FORM holds only (grammar, lint,
 dead-basis classes — the ones a stated repair form can close),
 repaired through a DISPATCHED mechanical leg on the cheapest capable
 tier (the routing table's execution default); the verdict names each
@@ -432,8 +439,9 @@ the cause in its own body (the template's cause slot, below),
 filled by the desk from the discriminating evidence; the
 operator's raise LANDS regardless — the bound is theirs — and a
 raise entry missing its cause is a gap the desk repairs on sight
-by appending the cause under the same id, never a refusal of the
-grant. A proactive raise granted before any exhaustion takes
+by restating the whole raise entry under the same id with its
+cause filled (the latest line is the one every exhaustion check
+reads), never a refusal of the grant. A proactive raise granted before any exhaustion takes
 `cause: operator discretion`. The cause is a READ, not a
 composition, from the DISCRIMINATING EVIDENCE pre-registered at
 arming (the trend verdict for arithmetic, named locus body-reads
@@ -614,10 +622,14 @@ attribution labels
 recorded decision (a bare-word scan false-fires; attribution
 fields fail soft); `CONTAINMENT:` shares their bare-label shape but
 NOT their attribution-only treatment — it IS consumed as a gate
-(`filter`'s ARTIFACT_CONTAINMENT_HOLD, The attack). A line that
-opens with `containment:` in any case or spacing and is not the
-exact form lints `containment-near-miss` and holds `filter` on that
-same verdict. A declared scope never downgrades silently to none.
+(`filter`'s ARTIFACT_CONTAINMENT_HOLD, The attack). A body-region
+line that opens with `containment:` in any case or spacing and is
+not the exact form lints `containment-near-miss`, and `filter`
+holds while that violation is live; the lint's own correcting
+entry clears both. A malformed label never downgrades silently to
+none. The exact form takes the path to the end of the line,
+interior spaces included. The label lines sit in the body region,
+each standing alone, written before the lock commit.
 
 The PRECEDENT LINE (one clause of the unit's design D-line; forms at
 Stop rule, "Each unit design also carries the PRECEDENT LINE")
@@ -1104,7 +1116,8 @@ at the executing altitude and converges nothing (the CONVERGED
 clause carries the grading half). Where no source-drawn input can
 legally reach the mechanism at design time (an authority-gated
 prod act, a source the desk cannot read), the desk records that
-absence before the round dispatches, as an F-line whose body
+absence before the lock commit the round's artifact is pinned at,
+as an F-line whose body
 before its basis clause is exactly
 `record: unit U<n> ABSENCE — <reason>`, and the brief names it.
 The entry stands in for the unit's convergence record at the
@@ -1289,10 +1302,11 @@ on — cites the record
 tool's `trend` output as its arithmetic backstop and GRADES the
 series by a BODY-READ of the rounds' findings — `trend`'s raw
 per-round counts (the trajectory arithmetic) read every F-line
-regardless of class or locus, while its concentration flag DOES
-read the citing entry's class (a `record:`-scoped citation never
-concentrates); the grade still never comes from the verdict alone,
-since the counts half stays class-blind. With fewer than two
+that is not `record:`-scoped, regardless of class or locus, while
+its concentration flag DOES read the citing entry's class (a
+`record:`-scoped citation never concentrates); the grade still
+never comes from the verdict alone, since the counts half reads no
+class beyond that one exclusion. With fewer than two
 completed [BIT] rounds behind it there is no series, and the first
 repeat round is the ordinary re-lock path, never graded. CONTRACTING:
 substance
@@ -1358,8 +1372,13 @@ Per-unit convergence rides the same return. A unit that draws zero
 design-substance findings across a full round is CONVERGED. The
 desk records it as an F-line whose body before its basis clause
 is exactly `record: unit U<n> CONVERGED at A<n>`. The tool reads
-the three convergence forms exactly: a near-form is ordinary
-bookkeeping and converges nothing. Later rounds aim at unconverged
+the three convergence forms exactly, on a [VERIFIED] line whose
+`A<n>` names a round in the record; a line shaped like one that is
+not one lints `convergence-near-miss` and holds the sweep. Every
+unit a round covered takes a record at that round's return:
+CONVERGED on its zero, UNCONVERGED naming its findings otherwise.
+The records are what make a unit visible to the tool. Later rounds
+aim at unconverged
 units plus cross-unit interactions, and the closing zero-delta
 round runs once over the converged set. The aim is a declared
 SCOPE: the brief's question names the unit ids the round covers
@@ -1368,10 +1387,17 @@ weak, so it is no steering (the brief-purity rule, above). The
 verbatim block's design-wide attacks read against the declared
 units in an aimed round and against the whole design in the
 closing one. The
-closure tool enforces the seam: a [ZERO-DELTA] landing is REFUSED
-(ZERO_DELTA_UNCONVERGED, exit 2, each unit named) while any unit
-carried by a live pre-close D-line lacks a live CONVERGED or
-ABSENCE record — an aimed round's zero cannot close design. The
+closure tool enforces the seam. On a closing A-line — [ZERO-DELTA],
+or the terminal [BIT] the gate reads as satisfied — `closure`
+returns ZERO_DELTA_UNCONVERGED (barred, exit 2, each unit named)
+while any unit the record names, by a convergence record or by a
+pre-close `unit U<k>` D-line, lacks a live CONVERGED or ABSENCE
+record: an aimed round's zero cannot close design. The way out is
+the record. A unit truly at zero takes its CONVERGED entry and
+`closure` re-runs; any other named unit means the round was not
+the closing one, and the next round covers it. A unit no entry
+names is invisible to the tool, which is what the return duty
+above is for. The
 zero converges only at the instrument's own altitude: a reading
 round's zero never converges a unit whose mechanism it did not
 execute, and the first executing round grades such a unit as if
@@ -1380,10 +1406,11 @@ reading rounds each drew a design finding from the first executing
 round — a predicate proven false by running it, a query plan
 proven pathological by EXPLAIN — while a third unit held clean
 under both instruments). A
-design-substance finding landing on a converged unit returns it to
-the unconverged set by an F-line whose body is exactly
+design-substance finding landing on a converged or
+absence-recorded unit returns it to the unconverged set by an
+F-line whose body is exactly
 `record: unit U<n> UNCONVERGED at A<n> — F<n>`, naming the round
-and the finding, never by silent regrade; a later CONVERGED entry
+and the finding (several as `F<n>, F<m>`), never by silent regrade; a later CONVERGED entry
 converges it again. A repair
 that BIRTHS a unit — new design surface, not a fix inside existing
 surface — is an INTAKE, not a repair: the disposition entry
@@ -1778,7 +1805,9 @@ close's deviations.
 Executed, isolated, against the recorded requirement; Phase flips
 to verify at dispatch — a dispatch made only with no entry's
 latest line [PENDING] (the [READY] sweep's no-[PENDING] condition;
-the record tool's `sweep` re-runs at this seam). A fresh
+the record tool's `sweep` and `closure` re-run at this seam, and
+the closure verdict carries the populations the brief reads). A
+fresh
 context that did not build the work runs the real checks — tests,
 probes, renders, at the altitude where the work takes effect —
 against the tracker's requirement head as amended by its R-lines
@@ -1803,8 +1832,8 @@ a design question or justifies a boundary is a FINDING, not a
 bookkeeping or per-unit line — NOT EXERCISED otherwise (st-10 C4a).
 That population is read from the closure verdict's `post_closure`
 field, never reassembled from the tracker. The brief demands the
-same statement for every unit holding a live ABSENCE record: the
-mechanism the design rounds could not execute, run here on
+same statement for every unit in that verdict's `absence_units`
+field: the mechanism the design rounds could not execute, run here on
 source-drawn input — NOT EXERCISED where it is still unreachable.
 The V-line's evidence
 carries the per-R table; PASSED is recordable only with every
