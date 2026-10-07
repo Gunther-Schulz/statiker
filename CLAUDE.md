@@ -270,9 +270,12 @@
   artifact polls), not a model's turns. The four per-relay
   obligations are unchanged — they bind per desk REPORT, and
   batching changes when reports arrive, not what each owes.
-  Basis: the 09-25 run's measured meta share (708 fable turns /
-  249M context in one day, ~the whole statiker premium over the
-  bare control arm — LEDGER 2026-09-29, st-87); tier stays fable
+  Basis: the 09-25 run's measured meta share (343 fable calls /
+  124M context in one day, ~the whole statiker premium over the
+  bare control arm — LEDGER 2026-09-29, st-87; figures corrected
+  2026-10-07, the original 708 / 249M summed transcript records
+  rather than API calls: dev-notes/token-economics-levers.md
+  section 0); tier stays fable
   per the 2026-08-05 working hypothesis (role-not-tier, ledger
   19fd5fd).
 - **Economics lens — where the line is (operator-settled
