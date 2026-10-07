@@ -16,6 +16,8 @@ amend-reason: 2026-09-12 migration UNKNOWN slots filled at the 0.2.89 release ga
 amended-goal: 2026-09-12 tend
 amended-write-set: 2026-09-12 plugin/skills/statiker/SKILL.md, plugin/skills/statiker/scripts/statiker_record.py, tools/test_statiker_record.py, plugin/.claude-plugin/plugin.json
 amended-done-criterion: 2026-09-12 from the P23 body (BACKLOG.md:478-494), which names the missing design rather than leaving it open: a surfaced-not-gating question line class, enumerated at close and at resume the way SWEEP_EXEMPT declarations are, and INVISIBLE to the lock, ready and closure gates. Red-first: a tracker carrying the new line reaches a clean lock/ready/closure verdict where the same question written as a [PENDING] entry blocks the re-lock today (the run-2 incident is the red); control: a real [PENDING] leg still blocks, so the class cannot be a way to hide gating work. A new line class is machine-read semantics, so the tool is authored in the SAME commit as the page clause and the batch takes a checkpoint review before the pin moves
+amend-reason: 2026-10-07 st-39: the cited file is being deleted, so the effective evidence must resolve without it; the base line is retained by the append-only verb (lifecycle lc-73 anchor)
+amended-evidence: 2026-10-07 MEASURED (desk 2026-10-07): BACKLOG.md is deleted at st-39; each BACKLOG.md:<range> cited here resolves at the migration's pinned blob a115998c (git cat-file -p a115998c | sed -n '<first>,<last>p') — blob and file compared at 983 lines each, lines 478-479 identical, head rewrite d773e12 line-count-neutral. RELAYED (the evidence as booked, carried unchanged, not re-read today): BACKLOG.md:478-494
 
 ## st-15
 grade: PARKED
