@@ -17,19 +17,6 @@ amended-goal: 2026-09-12 tend
 amended-write-set: 2026-09-12 plugin/skills/statiker/SKILL.md, plugin/skills/statiker/scripts/statiker_record.py, tools/test_statiker_record.py, plugin/.claude-plugin/plugin.json
 amended-done-criterion: 2026-09-12 from the P23 body (BACKLOG.md:478-494), which names the missing design rather than leaving it open: a surfaced-not-gating question line class, enumerated at close and at resume the way SWEEP_EXEMPT declarations are, and INVISIBLE to the lock, ready and closure gates. Red-first: a tracker carrying the new line reaches a clean lock/ready/closure verdict where the same question written as a [PENDING] entry blocks the re-lock today (the run-2 incident is the red); control: a real [PENDING] leg still blocks, so the class cannot be a way to hide gating work. A new line class is machine-read semantics, so the tool is authored in the SAME commit as the page clause and the batch takes a checkpoint review before the pin moves
 
-## st-13
-grade: PARKED
-requirement: PARKED 2026-08-16 — P17: the mailbox wait's waker is the monitored party (silent-stall exposure; Begehung R3) — record: BACKLOG.md:495
-goal: UNKNOWN
-write-set: UNKNOWN
-done-criterion: UNKNOWN
-evidence: BACKLOG.md:495-523
-blocked-by: evidence false  # P17 (BACKLOG.md:495 body): one observed stall past a stated horizon under a mailbox lane; n=0 in the statiker and dispatch-guards records at 2026-09-11 (recheck lane sonnet-recheck-a); statiker-4d retirement pass
-amend-reason: 2026-09-12 migration UNKNOWN slots filled at the 0.2.89 release gate. The honest write-set here is ANOTHER repo: the P17 body records that the class generalized out of statiker in 2026-08-17 and that dispatch-guards carries the pre-formulated fix. Naming that boundary is what stops a future statiker desk treating this as its own build; the obligation sits outside this working copy and this slot says so
-amended-goal: 2026-09-12 tend
-amended-write-set: 2026-09-12 dispatch-guards: dev-notes/dispatch-OBSERVATIONS.md (2026-08-17 entry, already holding pre-formulated section 4 text) and the dispatch skill section 4 wait passage. NONE in this repo: the class generalized out of statiker at 2026-08-17 (every peer wait, not just statiker desks), so the realizing write sits in another repo and another desk owns it. A statiker-side write enters only if the observed stall proves desk-specific
-amended-done-criterion: 2026-09-12 gated on the named evidence, and the fix text is already written: on ONE observed stall past a stated horizon under a mailbox-lane harness, the pre-formulated section 4 text mints in dispatch-guards with that stall as provenance, and statiker changes nothing unless the stall is shown to be desk-specific. The alternative exit is equally recorded: if the harness goes sync-only everywhere the class is moot (a sync dispatch cannot outlive its turn) and the item DROPS with that as its reason. Note for whoever grades it: the corpus Insurance module has since made the poll-with-its-own-timeout the standing instrument and measured sleep-timer deaths (4 of 9, 2026-08-27), so the mechanism half may already be discharged elsewhere and the grading read is against dispatch-guards, never against this repo
-
 ## st-15
 grade: PARKED
 requirement: READY 2026-08-17 — P16 (re-opened): Stop-hook HELD OUT of 0.2.82 on checkpoint-review findings (4 executed false-fire classes); design INVERTED for the next build — record: BACKLOG.md:556
