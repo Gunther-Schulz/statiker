@@ -215,7 +215,8 @@ goal: general-maintenance
 write-set: plugin/skills/statiker/SKILL.md
 done-criterion: UNKNOWN — the shape is undecided and the options differ in kind: widen the derivation's own guidance, make the derived standard an attackable object in its own right (the attack already grades decomposition faithfulness but not the standard the head was derived against), or leave it thin deliberately and record why
 evidence: SKILL.md lines 418-433 read verbatim 2026-09-13; PLAN 'Lenses: none at birth' and the 2026-08-10 lineage entry on depreciation slopes; dev-notes/pstack-comparison-2026-09-13.md section 9d-bis, which names this slot as one of the two places design content would attach
-blocked-by: evidence a firing, or the trial datum — a run whose head omitted a requirement a competent shop would have derived, visible as a late reconciliation, an escaped defect the head never asked about, or an operator correction at close
+blocked-by: evidence grep -q '^TRIGGER-FIRED st-52 ' /home/g/dev/Gunther-Schulz/statiker/dev-notes/OBSERVATIONS.md
+blocker-exercise: 2026-10-07 live 1 | ACCEPT arm (constructed): a file holding the line 'TRIGGER-FIRED st-52 — basis' at column 0 makes the grep exit 0. REFUSE arm (current state, and constructed): OBSERVATIONS.md holds no such line, and a line naming another id or carrying the token mid-line exits 1. Writer: the run-close harvest (CLAUDE.md two-session bullet, re-asks the parked triggers). Rechecked NOT-FIRED against the 2026-09-25 run record by lane sonnet-trigger-recheck, 2026-10-07 (st-19 and st-52: partial, no cost incident)
 
 ## st-66
 grade: NEW
