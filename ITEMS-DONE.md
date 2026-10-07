@@ -1009,6 +1009,7 @@ closed-reason: 2026-10-07 file deleted; effective evidence of the five live citi
 closed-met: st-21, st-88
 closed-decided: none
 closed-ref: dda19ce
+closure-superseded-by: 2026-10-07 c7cd480 the closure was recorded one commit before the deletion landed (the first deletion commit bounced on the mass-deletion guard); the closing commit is c7cd480, not the closed-ref on this body
 
 ## Archive (pre-migration)
 
