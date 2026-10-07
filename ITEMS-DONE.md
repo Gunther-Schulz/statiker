@@ -928,6 +928,19 @@ closed-met: none
 closed-decided: LEDGER.md:197
 closed-ref: 4500fc7
 
+## st-91
+grade: DONE
+requirement: Token-economics lever survey: statiker runs are too heavy to run routinely (operator 2026-10-07, first-hand). Decompose the measured run cost (st-87 profile — 708 fable turns / 249M context in one day at the meta session, LEDGER 2026-09-29 — plus the machine-wide dispatch log and the run records) into prefix-mass x turns x tier per ROLE (meta, desk, lanes, reviews), then grade each candidate lever: (A) meta-session tier — the 2026-08-05 role-not-tier fable hypothesis is pre-upgrade and the meta share was measured at ~the whole premium over control, so re-testing it is the largest single candidate; (B) desk prefix mass — SKILL.md operational text re-bills every desk turn, st-83 is the booked mover; (C) record/tracker volume at resumes and rounds; (D) lane tiers below sonnet — whether any haiku certification actually exists and fires. Each lever leaves with a booked change, a pre-registered probe, or a named decline. Distinct from st-90 (capability-jump deliberation, blocked on a post-upgrade run): this survey consumes data already on disk.
+goal: general-maintenance
+write-set: dev-notes/token-economics-levers.md, LEDGER.md
+done-criterion: dev-notes/token-economics-levers.md exists carrying the per-role cost decomposition with its commands and sources named, and a ranked lever table where every lever exits as a booked item id, a pre-registered probe, or a decline naming its ground; the ledger records the survey's verdict
+evidence: RELAYED: operator statement 2026-10-07 that runs are too token-heavy and levers feel unused (first-hand, a decision-grade problem statement, not testimony needing a check). RECALLED: the st-87 meta-share figure and cadence fix (CLAUDE.md two-session bullet and ledger tail, loaded this session, not re-read at the artifact). DERIVED: the lever list A-D is this session's inference from the cost model (prefix re-billing x turns x tier), unexecuted; whether haiku certification exists or the tracker volume is material are open questions the survey measures.
+blocked-by: NONE
+closed-reason: 2026-10-07 survey written with decomposition, lever table and verdict; every lever exits as st-92, st-93, a re-park of st-83, a probe riding the run-3 digest, or a decline with its ground
+closed-met: st-87, st-83
+closed-decided: LEDGER.md:199
+closed-ref: c391e38
+
 ## Archive (pre-migration)
 
 <!-- CLOSURES READ FROM THE `--from` CARRIER ITSELF (lc-18/lc-19). The
