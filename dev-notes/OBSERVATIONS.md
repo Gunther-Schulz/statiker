@@ -13796,3 +13796,75 @@ Tracker read by this desk at lines 97-109 and the installed tool's
   after a design change found what a round should.
 
 Turn cost at this desk for the run so far: six relays.
+
+## 2026-10-07 — bt-68 run harvest, relays 5 to 8 (A3, A4, the rounds budget exhausted, cycle 7 locked)
+
+Run desk beat-the-books-70 on 0.2.105. Read by this desk at the
+tracker (A3 [BIT] line 156, A4 [BIT] line 178, records at 157-158
+and 179-180) and with the installed tool, run here after A4:
+`trend` counts [8, 8, 7, 3], record_counts [3, 1, 1, 1], IMPROVING;
+`sweep` SWEEP_CLEAN; `closure` ZERO_DELTA_UNCONVERGED naming U1
+and U2. Cycle 7 locked at 344df6dc; rounds 4 of 4 and cycles 7 of
+7 spent; the run is stopped on an operator decision (raise rounds
+to 5), relayed with the desk's recommendation and this desk's.
+
+FIELD DATA for st-95:
+- The first CONVERGED record: `- F66 [VERIFIED] record: unit U1
+  CONVERGED at A3 — basis: A3`, written when A3 drew no design
+  finding on U1. One round later A4 drew one on U1 and the desk
+  wrote `UNCONVERGED at A4 — F70`. The reopen form operated as
+  written, unprompted.
+- THE REPAIRED GATE FIRED ON THE PATH THAT USED TO PASS. A4's
+  closing line is [BIT]. Before this date's repair lap the guard
+  sat only in the [ZERO-DELTA] branch (review finding S1-F2 /
+  W-M2); at 0.2.105 `closure` on this record returns
+  ZERO_DELTA_UNCONVERGED for both units. Whether this [BIT] would
+  have read as satisfied without the guard was not tested here
+  (its dispositions amend a design line, which by the page keeps
+  the gate shut on its own); what is measured is that the guard
+  now runs on a [BIT] close and names the units.
+- A4 was dispatched over the WHOLE design with one unit converged,
+  "so that a substance-free return can be the closing one" (the
+  desk's A4 line). The page's whole-design closing round was
+  followed as a duty; the tool could not have enforced it (review
+  finding M4).
+- The ABSENCE question raised at relay 3 is still open: U2's
+  latest record is UNCONVERGED, so `absence_units` no longer names
+  it. Watched at the closing round.
+
+Other machinery in the field:
+- The tripwire fired at round-open after A3 (three resolved
+  rounds, nothing landed) and routed to narrowing; the desk had
+  locked a repair cycle before running it, which cost one cycle
+  by its own report. The export it produced (the create-ahead
+  alarm arm, to bt-74 in the target repo) answers a MAJOR by
+  export rather than repair, with what that leaves stated to the
+  operator.
+- Budget as canary: the desk's stop report names a cause and a
+  generalization without being asked — (a) two of three early
+  rounds ended as narrowings taken one round late; (b) A4's bites
+  are one class, "a clause or pin written at the desk without
+  executing it against the artifact it names", and the desk
+  admits repairing one instance a round earlier without sweeping
+  for the class. For cycle 7 it executed every pin value against
+  the real config model and the real selection before the lock.
+  CANDIDATE, not minted (mint-timing: the desk is hand-running the
+  fix this cycle, and the fifth round's return is its field
+  datum): a pin's named values are executed against the artifact
+  they name before the lock. It is the same class as this date's
+  CLAUDE.md amendment on page-form fixtures, one layer down, in
+  the run instead of in the payload.
+
+st-92 (depth cap), interim, measured here from the run session's
+transcript and the compaction log: five drops in the desk's
+context so far, each from about 249k-266k to about 135k-148k, at
+18:00, 18:06, 18:15, 18:32 and 18:57 UTC; the reporting duty to
+this desk survived each (reports arrived after every one). The
+compaction log holds EIGHT entries for the session id; the three
+with no matching drop in the desk's own depth (20:28, 20:44,
+21:10 local) are DERIVED, not verified, to be lane compactions —
+blind spot 2 of the registration. Graded at the close.
+
+Turn cost at this desk for the run so far: ten relays, one
+operator blocker, one operator decision pending, two horizon wakes
+(one a false fire of this desk's own watch condition).
