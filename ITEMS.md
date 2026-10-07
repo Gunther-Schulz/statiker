@@ -10,7 +10,8 @@ goal: UNKNOWN
 write-set: UNKNOWN
 done-criterion: UNKNOWN
 evidence: BACKLOG.md:478-494
-blocked-by: evidence false  # P23 trigger (BACKLOG.md:478 body): a second incident of an operator question held in chat. Its other trigger (next record-grammar mint window) is struck as non-discriminating: it fired at P5, P15, P26 and the P32 bundle and no desk built the class. Re-checked LIVE at 49e9529, statiker-4d 2026-09-11
+blocked-by: evidence grep -q '^TRIGGER-FIRED st-12 ' /home/g/dev/Gunther-Schulz/statiker/dev-notes/OBSERVATIONS.md
+blocker-exercise: 2026-10-07 live 1 | ACCEPT arm (constructed): a file holding the line 'TRIGGER-FIRED st-12 — basis' at column 0 makes the grep exit 0. REFUSE arm (current state, and constructed): OBSERVATIONS.md holds no such line, and a line naming another id or carrying the token mid-line exits 1. Writer: the run-close harvest (CLAUDE.md two-session bullet, re-asks the parked triggers). Rechecked NOT-FIRED against the 2026-09-25 run record by lane sonnet-trigger-recheck, 2026-10-07 (st-19 and st-52: partial, no cost incident)
 amend-reason: 2026-09-12 migration UNKNOWN slots filled at the 0.2.89 release gate. The P23 body already names its own missing design and its verifier shape, so these slots are quoted across from it rather than invented; what stays open is the evidence trigger the blocker already carries, not the design
 amended-goal: 2026-09-12 tend
 amended-write-set: 2026-09-12 plugin/skills/statiker/SKILL.md, plugin/skills/statiker/scripts/statiker_record.py, tools/test_statiker_record.py, plugin/.claude-plugin/plugin.json
