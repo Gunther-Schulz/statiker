@@ -1110,6 +1110,28 @@ closed-met: st-85, st-94
 closed-decided: LEDGER.md:215
 closed-ref: ae19e2432252e56350cfc444b3a090e7e2667c01, f5de5b51acf7337fbc85285888932fea5b7dc938
 
+## st-85
+grade: DONE
+requirement: Measure whether attack-round coverage degrades with object size — the claim 'bigger object per round buys shallower per-unit coverage' is UNVERIFIED mechanism reasoning (operator challenge 2026-09-25, this desk's admission; LEDGER this date). If whole-object yield holds, attacks bundle harder with measurement behind it and the class-lane splitting rule gets re-derived or retired.
+goal: general-maintenance
+write-set: dev-notes/
+done-criterion: A pre-registered comparison (per the repo's comparison-experiments convention: criterion recorded in dev-notes BEFORE arms dispatch) has RUN: one reviewer takes an accumulated multi-unit delta WHOLE, two reviewers take scoped halves at the same total spend; unique substance findings per unit compared; verdict recorded in dev-notes with the n=1 trial rule applied. A design with no run does not satisfy this. Execution seam per operator 2026-09-25: the next accumulated-release review (review deferred by operator decision of this date), whose delta is the probe's object.
+evidence: RECALLED (from this session's corpus/CLAUDE.md reads, not re-read at booking): the 0.2.78 review series evidence is CLASS evidence (tool-backed survives, fresh prose draws blockers), silent on size-vs-coverage. DERIVED: no size-vs-coverage measurement exists on this stack — concluded from the absence of any such record in the review provenance this session read; not a swept absence, no positive control run. MEASURED (this session, 2026-09-25, btb run record): A2 attacked the largest object of the series and returned its highest yield (10 findings); DERIVED: that datum is confounded by the object changing between rounds, so it decides nothing. RELAYED (operator, verbatim in session record): 'i am not sure it woudl be too much' — the challenge that opened this item; RELAYED (operator, same date): 'Want it booked --> and excuted now if possible' — spend approved, execution bound to the deferred review seam.
+blocked-by: NONE
+not-derivable: 2026-10-07 the run-3 object is constitutively the operator choice (st-75 carries the same question); this item is decision-complete and waits only for the seam that answer opens — run-3 prep, where the eve review is briefed
+amend-reason: 2026-09-29 carrier for the chat-only deferral decision of 2026-09-29: pre-registration timing bound to run-3 prep, so the next session finds it on the item rather than in a dead transcript
+amended-evidence: 2026-09-29 DERIVED (desk decision 2026-09-29, statiker-update batch): the pre-registered criterion is WRITTEN AT RUN-3 PREP, against the object st-75's answer names — a criterion designed before the run's object is chosen would pin the wrong comparison; the measurement itself still runs inside the next run as parked
+promote-reason: 2026-10-07 spend decision answered YES in the ledger (2026-09-25); design is fixed in the done-criterion; only the object waits on run-3 prep
+promoted-by: 2026-10-07 statiker desk 6796fb27 (opus), 2026-10-07
+amend-reason: 2026-10-07 re-keyed from the codex desk-role run-3 object to the next ordinary run: the act this item needs belongs to whichever run comes next, and run 3 of the codex program is unscheduled
+amended-blocked-by: 2026-10-07 decision which real task the next statiker run takes
+amended-not-derivable: 2026-10-07 2026-10-07 the task is the operator product work (st-94 carries the same question and the prep order); this item is decision-complete and waits for that run prep
+blocker-moot: which real task the next statiker run takes (answered in the ledger before this item closed)
+closed-reason: 2026-10-07 The done-criterion (a pre-registered comparison has RUN, verdict recorded with the n=1 rule) was met on 2026-09-25: three arms over a 51-insertion delta, verdict MIXED, no rule change (dev-notes/bundling-probe-preregistration-2026-09-25.md, addendum). The item was never closed and its later amendments read as if unrun. A second run on 2026-10-07 at about 14 times the size is VOID: the machine-half arm was lost twice to permission dialogs, so its criterion is not computable (dev-notes/bundling-probe-preregistration-2026-10-07.md, addendum). No third run is booked: both partial readings lean the same way and the class-lane rule they would move costs one lane.
+closed-met: st-37, st-94
+closed-decided: none
+closed-ref: 99bac4fb866e8d57b2710a60686821cc24aefe11, f5de5b51acf7337fbc85285888932fea5b7dc938
+
 ## Archive (pre-migration)
 
 <!-- CLOSURES READ FROM THE `--from` CARRIER ITSELF (lc-18/lc-19). The
