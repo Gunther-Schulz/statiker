@@ -139,14 +139,14 @@ amended-blocked-by: 2026-10-07 decision which real task the next statiker run ta
 amended-not-derivable: 2026-10-07 2026-10-07 the task is the operator product work (st-94 carries the same question and the prep order); this item is decision-complete and waits for that run prep
 
 ## st-46
-grade: READY
+grade: PARKED
 requirement: Codex-only mode certification — the third of the operator's three support modes (Claude-only, Claude+codex both shipped 0.2.92; codex-only gated on the pilot's parked stage 3). Operator re-confirmed the goal and deferred the testing round 2026-09-12 ('I think desk we can skip today... at a later time we can do testing'); external consumer named (a friend runs statiker; her field usage is probe material).
 goal: general-maintenance
 write-set: dev-notes (new pre-registered probe record),plugin/skills/statiker/defaults/models,dev-notes/OBSERVATIONS.md
 done-criterion: Both probes pre-registered (criterion before any arm dispatches) and resolved: (1) DESK arm — a codex model drives a small scripted statiker run graded against a known-good desk transcript, the criterion keyed to verdict-contract conduct (route-token reading, repair composition from verdicts) since that is the measured codex weakness; (2) VERIFY arm — per-R-line grading on a finished unit against a graded baseline. Each outcome lands as a register entry with provenance inline OR a measured exclusion with its floor stated (the Stage-2d form). Plus the two codex-only setup bindings written where a bare-machine user reads them: page delivery without skill injection (hand-fed SKILL.md), and sandbox config for .git writes (workspace-write denies them; the desk's lock/unit machinery is commits).
 evidence: dev-notes/codex-pilot-2026-09-12.md stages 0-2d (stage 3 parked by design); Stage-2d reviewer exclusion astra 1/10 terra 0/10 — the adjacent adverse measurement the desk probe must be designed around; 0.2.92 register entries e5f1ff4
 blocked-by: decision operator opens the codex-only testing round (deferred first-hand 2026-09-12)
-blocker-exercise: ACCEPT arm (constructed): a line 'TRIGGER-FIRED st-46 — <who asked for a codex-only run, when>' at column 0 exits 0. REFUSE arm (current state): no such line, exit 1. Writer: any session that records a codex-only consumer request
+blocker-exercise: none-yet 2026-10-07
 amend-reason: 2026-09-13 the operator opened the round this date (LEDGER decision line); sequenced first in the statiker-c8 arc
 amended-blocked-by: 2026-09-13 NONE
 amend-reason: 2026-09-13 statiker-c8 phase-1 digest #1, graded ACCEPTED by statiker-fd 2026-09-13 with two directives folded here. The earlier criterion understated binding (a) as page delivery when four page readers depend on the base directory and every failure is silent, and it left binding (b) as an open question the round has now MEASURED with a control-first executed triple. The VERIFY-arm clause also gains the load-separation the evidence slot's adjacent-exclusion warning demands, so the arm is not pre-decided by stage-2d
