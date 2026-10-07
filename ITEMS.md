@@ -110,6 +110,10 @@ write-set: tools/test_contract.py, dev-notes/OBSERVATIONS.md
 done-criterion: UNKNOWN
 evidence: 0.2.89 review N1 (dev-notes/OBSERVATIONS.md, '0.2.89 checkpoint-review dispositions', the remaining findings): five stale script->page pointers, three shifted by this batch's own page insert, one rewritten by the n4 edit while its target moved; the page-internal instrument at tools/test_contract.py:1040-1050 (section_pointers, reach stated in its own docstring); the hand repair 3afb52e (no permanent check). Neighbouring evidence on the mechanism bar: the 0.2.89 route-token class-check died in its dry run at 24/76 multi-location verdicts, so a pointer gate's false-fire rate is the question to measure BEFORE building, not after
 blocked-by: decision what instrument reaches script->page pointers without over-firing, decided by a dry run over the real script corpus before any build (the 0.2.89 precedent: the class-level check was designed, dry-run and killed at 24/76); if the bar is unmet the remainder is a review instruction, not a check
+amend-reason: 2026-10-07 the dry run named the seven numeric pointers and their files; OBSERVATIONS is not written by the build
+amended-write-set: 2026-10-07 tools/test_contract.py, plugin/hooks/statiker_stop_guard.py, plugin/skills/statiker/scripts/statiker_record.py, tools/test_statiker_record.py
+amend-reason: 2026-10-07 criterion was UNKNOWN; the dry run and the ledger decision of 2026-10-07 fix it
+amended-done-criterion: 2026-10-07 The seven numeric line pointers into SKILL.md in tracked Python (statiker_stop_guard.py:23 and :35; statiker_record.py:26 and :1326; test_statiker_record.py:5434, :5455, :5742 at commit 05b7ef1, located by content not by these numbers) are rewritten as section name plus a quoted anchor phrase that exists on the page today; a contract test asserts NO numeric pointer form (SKILL.md followed by a line number or range, with or without L, tilde, colon or parentheses) in tracked *.py under plugin/ and tools/, red-first on the unconverted tree, and asserts each converted anchor phrase is present on the page
 
 ## st-37
 grade: PARKED
