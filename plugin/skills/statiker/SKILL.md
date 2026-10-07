@@ -1778,6 +1778,8 @@ whether its scope opener matches its body kind — a
 `record:`-scoped or `unit U<k>`-scoped line whose body decides
 a design question or justifies a boundary is a FINDING, not a
 bookkeeping or per-unit line — NOT EXERCISED otherwise (st-10 C4a).
+That population is read from the closure verdict's `post_closure`
+field, never reassembled from the tracker.
 The V-line's evidence
 carries the per-R table; PASSED is recordable only with every
 R-line met or its non-exercise carried as a named
