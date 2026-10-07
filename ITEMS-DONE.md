@@ -954,6 +954,18 @@ amended-goal: 2026-09-12 tend
 amended-write-set: 2026-09-12 dispatch-guards: dev-notes/dispatch-OBSERVATIONS.md (2026-08-17 entry, already holding pre-formulated section 4 text) and the dispatch skill section 4 wait passage. NONE in this repo: the class generalized out of statiker at 2026-08-17 (every peer wait, not just statiker desks), so the realizing write sits in another repo and another desk owns it. A statiker-side write enters only if the observed stall proves desk-specific
 amended-done-criterion: 2026-09-12 gated on the named evidence, and the fix text is already written: on ONE observed stall past a stated horizon under a mailbox-lane harness, the pre-formulated section 4 text mints in dispatch-guards with that stall as provenance, and statiker changes nothing unless the stall is shown to be desk-specific. The alternative exit is equally recorded: if the harness goes sync-only everywhere the class is moot (a sync dispatch cannot outlive its turn) and the item DROPS with that as its reason. Note for whoever grades it: the corpus Insurance module has since made the poll-with-its-own-timeout the standing instrument and measured sleep-timer deaths (4 of 9, 2026-08-27), so the mechanism half may already be discharged elsewhere and the grading read is against dispatch-guards, never against this repo
 
+## st-26
+grade: DONE
+requirement: precedent line and red-recording mandate: mechanized readers deferred pending a field datum. N3: does the precedent line earn a near-miss lint or close enumeration; N4: does the red-record earn a gate-legible token. Both were minted 0.2.84 as prose with a named consumer (the verify-leg brief demand; the D-line home) — record: dev-notes/OBSERVATIONS.md 2026-09-10 checkpoint-review dispositions, N3/N4
+goal: tend
+write-set: plugin/skills/statiker/SKILL.md, plugin/skills/statiker/scripts/statiker_record.py, tools/test_statiker_record.py
+done-criterion: graded on the next run's field data: if a run shows a missing or mistyped precedent line or an unrecorded red that the prose form failed to force, the mechanized reader mints with that incident as provenance; a clean run records the prose form as sufficient and this item drops
+evidence: opus-review-0284 findings N3/N4 (verbatim in the dispositions record); mint-timing convention (bite bar on the problem, field test on the design)
+blocked-by: NONE
+closed-reason: 2026-10-07 field datum arrived (2026-09-25 run, read by lane sonnet-trigger-recheck and at the desk: SKILL.md:895-901, tracker lines 139 and 145) and decides both halves against a mechanism; the N3 miss is recorded as input to the machinery-on-trial deliberation
+closed-met: st-31, st-19
+closed-decided: LEDGER.md:206
+
 ## Archive (pre-migration)
 
 <!-- CLOSURES READ FROM THE `--from` CARRIER ITSELF (lc-18/lc-19). The

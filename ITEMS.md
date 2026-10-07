@@ -90,15 +90,6 @@ done-criterion: no tracked file outside the migration's own outputs names `BACKL
 evidence: tracked files naming `BACKLOG.md` at migration time: dev-notes/OBSERVATIONS.md, dev-notes/probe-attack-batching-2026-08-10.md, docs/directives/2026-08-15-harvest-lane-brief.md, docs/directives/2026-08-15-lane-D-P12EN-brief.md, docs/directives/2026-08-15-lane-EJL-brief.md, docs/directives/2026-08-15-lane-EK-brief.md, docs/directives/2026-08-15-lane-G-brief.md, docs/directives/2026-08-15-lane-P34EM-brief.md, docs/directives/2026-08-15-lane-R-brief.md, docs/directives/2026-08-15-lane-R2-brief.md, docs/directives/2026-08-16-lane-E-brief.md, docs/directives/2026-08-17-lane-A-mint-batch-brief.md, docs/directives/2026-08-17-lane-B-p16-stop-hook-brief.md, docs/directives/2026-08-17-lane-C-review-repair-brief.md, docs/directives/2026-08-23-u2-seed-brief.md, plugin/hooks/statiker_stop_guard.py, tools/test_contract.py, tools/test_statiker_git.py, tools/test_statiker_record.py, tools/test_statiker_stop_hook.py
 blocked-by: decision every consumer migrated or declared exempt
 
-## st-26
-grade: PARKED
-requirement: precedent line and red-recording mandate: mechanized readers deferred pending a field datum. N3: does the precedent line earn a near-miss lint or close enumeration; N4: does the red-record earn a gate-legible token. Both were minted 0.2.84 as prose with a named consumer (the verify-leg brief demand; the D-line home) — record: dev-notes/OBSERVATIONS.md 2026-09-10 checkpoint-review dispositions, N3/N4
-goal: tend
-write-set: plugin/skills/statiker/SKILL.md, plugin/skills/statiker/scripts/statiker_record.py, tools/test_statiker_record.py
-done-criterion: graded on the next run's field data: if a run shows a missing or mistyped precedent line or an unrecorded red that the prose form failed to force, the mechanized reader mints with that incident as provenance; a clean run records the prose form as sufficient and this item drops
-evidence: opus-review-0284 findings N3/N4 (verbatim in the dispositions record); mint-timing convention (bite bar on the problem, field test on the design)
-blocked-by: evidence false  # the next statiker run's field data on both forms
-
 ## st-31
 grade: PARKED
 requirement: st-27's delta-scoped re-verification (SKILL.md:1663-1677, released 0.2.86) was minted at n=1 on run 3's zero-delta full V2, and its original done-criterion's field grading (does the scoped leg miss what the full leg would catch) was dropped from the amended criterion and closed unexercised — record: ITEMS-DONE.md st-27 (done-criterion vs amended-done-criterion), OBSERVATIONS.md:8456
