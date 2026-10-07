@@ -13080,3 +13080,40 @@ TestGoldenCorpusSweep fails the suite. The lane halted the item
 correctly. Pre-formulated text for CLAUDE.md's write-set sentence:
 "A lint-code mint's write-set includes tools/golden-corpus/ (one
 row per new RULE_MINT_VERSION code)." Applied this date.
+
+## 2026-10-07 — st-93: the verify leg resolves from the shipped
+## register, sonnet first (NOT a C4b mint: no token, code or form)
+
+PAYLOAD CHANGE at the desk. SKILL.md (Verify, the "Model per"
+sentence): `clippy.config/models`, then the first `verify:` entry of
+`defaults/models` the harness can dispatch, then the parent model.
+`defaults/models`: the verify class reordered sonnet, haiku, opus
+and its header comment rewritten (it said certification input, not
+resolution input). READINESS.json: a dated note under
+codex_only_mode, status not re-graded.
+
+INCIDENT: the 2026-09-25 run's two verify legs rode the opus desk's
+tier — 12.7M context-tokens — for a role probe B certified on
+sonnet and haiku at 8 of 9 each (dev-notes/token-economics-levers.md,
+lever 2).
+
+PROVENANCE SEARCH for the old default (st-93 done-criterion):
+`grep -n -i 'parent model' PLAN.md LEDGER.md` -> 0 hits;
+dev-notes/OBSERVATIONS.md -> 6 hits (4266, 4312, 4390, 4405, 10495,
+10501). The 0.2.52 entry (4312) calls it "already terminal-defaults
+to the parent model — untouched", and the register-shipping entry
+(4390) names it a CONSEQUENCE, "identical on opus desks". No entry
+argues for the parent tier on verify's merits; both predate probe B
+(2026-09-13). The recorded reason is answered by later evidence.
+
+WHY SONNET LEADS, not haiku: haiku's parity is one probe, the leg is
+forcing point 5, and the operator's stated prior on haiku
+(2026-10-07) is low. The haiku step waits for a run's own datum.
+
+Tenet check (all nine): 1, 2, 4, 7, 9 NOT APPLICABLE. 3 PASS — the
+forcing point runs on a certified tier, the certification-duty
+sentence still binds the fallback. 5 PASS. 6 PASS — two page lines;
+the saving is the incident. 8 PASS — resolution order is register
+data, not prose judgment.
+
+Verify: suite and band lint, in the commit.

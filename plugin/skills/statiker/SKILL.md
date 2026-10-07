@@ -1828,6 +1828,8 @@ which need none (The attack); an attacker's own probe scratch
 belongs in its
 scratchpad (the read-only tail's provision), never the repo. Model per
 `clippy.config/models` (`verify:` class) when present, else the
+first `verify:` entry of the skill's shipped `defaults/models` the
+harness can dispatch, else the
 parent model — resolving only entries under the harness's own
 ecosystem, the same st-62 ecosystem-resolution rule (The attack)
 that binds tier resolution generally, not the attack tier alone;

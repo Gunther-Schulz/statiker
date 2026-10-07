@@ -69,14 +69,17 @@ impl@codex: terra
 # drawn control coming back not-exercised. The CHEAPEST Claude tier
 # matched the strongest, so haiku carries this role at haiku's price.
 #
-# THIS CLASS IS CERTIFICATION INPUT, NOT RESOLUTION INPUT. The verify
-# seam resolves clippy.config/models then the parent model (SKILL.md,
-# Verify) — it does not pick from here. These entries exist so the
-# seam's certification duty DISCRIMINATES: without a single verify
-# entry the duty fired on every run on every stack, which is the
-# fire-on-a-non-defect shape that trains the override reflex.
-verify: haiku
+# THIS CLASS IS RESOLUTION INPUT AND CERTIFICATION INPUT (st-93,
+# 2026-10-07). The verify seam resolves clippy.config/models, then
+# the FIRST entry here the harness can dispatch, then the parent
+# model (SKILL.md, Verify) — the attack role's order. Sonnet leads:
+# haiku is certified at parity on one probe, and the leg is a forcing
+# point, so the cheaper step waits for a run's own datum. Measured
+# cost of the earlier parent-model default: both verify legs of the
+# 2026-09-25 run rode an opus desk's tier, 12.7M context-tokens
+# (dev-notes/token-economics-levers.md).
 verify: sonnet
+verify: haiku
 verify: opus
 #
 # verify: opus — CERTIFIED 2026-09-15 (st-60), by ONE arm replaying
