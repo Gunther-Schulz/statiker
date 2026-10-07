@@ -1012,6 +1012,38 @@ class TestSt86PostClosureInvalidationVoidsAlways(RecordFixture):
         self.assertEqual(v["verdict"], "CLOSURE_LIVE", v)
 
 
+# ----------- st-66: closure emits the post-closure population -----------
+
+class TestSt66PostClosureField(RecordFixture):
+    """st-66: every closure verdict past the closing A-line carries
+    `post_closure`, the unfiltered F/D/R lines appended after it, so
+    verify's per-line statement is read from the tool, not from memory."""
+
+    def test_record_scoped_post_closure_line_is_reported(self):
+        # no current field reports a record-scoped line (it neither
+        # voids nor is a unit amendment); RED on the old tool
+        line = "- F9 [VERIFIED] record: collision on t.md — basis: verdict"
+        body = CLOSED + line + "\n"
+        v = self.closure(body)
+        self.assertEqual(v["verdict"], "CLOSURE_LIVE", v)
+        self.assertEqual(
+            v["post_closure"],
+            [{"line": line[2:],
+              "lineno": self.lineno_of(body, "F9 [VERIFIED]")}])
+
+    def test_no_post_closure_line_is_empty_list_verdict_unchanged(self):
+        v = self.closure(CLOSED)
+        self.assertEqual(v["verdict"], "CLOSURE_LIVE", v)
+        self.assertEqual(v["post_closure"], [])
+
+    def test_field_rides_the_void_verdict_too(self):
+        v = self.closure(CLOSED +
+                         "- F9 [INVALIDATED] the premise died — basis: probe\n")
+        self.assertEqual(v["verdict"], "CLOSURE_VOID", v)
+        self.assertEqual([e["line"].split()[0] for e in v["post_closure"]],
+                         ["F9"])
+
+
 # --------------------------------------------------------------------- waves
 
 class TestWaves(RecordFixture):

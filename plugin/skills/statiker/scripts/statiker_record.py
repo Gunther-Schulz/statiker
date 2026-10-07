@@ -2339,6 +2339,11 @@ def cmd_closure(args):
 
     post = [e for e in entries
             if e.lineno > closing.lineno and e.cls in ("F", "D", "R")]
+    # st-66: the population itself, unfiltered and in record order —
+    # the existing fields stay the verdicts over it
+    late["post_closure"] = [
+        {"line": f"{e.id} [{e.tag}] {e.body}", "lineno": e.lineno}
+        for e in post]
     # latest line per id AT the closure — the live set the closure
     # rests on (attack-7 N1)
     live_at_close = {}
