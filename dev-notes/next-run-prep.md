@@ -49,11 +49,17 @@ Each step below is marked DONE only with the record that shows it.
    One repair lap (lane sonnet-repair-0205) plus a desk narrowing
    after round 2; three items booked for what was not built
    (st-95, st-96, st-97).
-4. Release and pin move — OPEN. No `/reload-plugins` is needed for
-   the run: the run session is a new session and resolves the pin
-   at its start.
-5. st-92 depth-cap probe pre-registered; run session launched with
-   `claude --autocompact 300000` — OPEN.
+4. Release and pin move — DONE 2026-10-07 19:47: pin 0.2.105 at
+   622c27f, equal to the pushed head; the cache copy compares equal
+   to `plugin/`; hook file mode rwxr-xr-x; release gate record with
+   the carried-set re-ask in dev-notes/OBSERVATIONS.md. No
+   `/reload-plugins` is needed for the run: the run session is a
+   new session and resolves the pin at its start. Served-version
+   confirmation is the run desk's first act (kickoff directive).
+5. st-92 depth-cap probe pre-registered — DONE 2026-10-07 (below).
+   Run session launched with `claude --autocompact 300000` — OPEN,
+   the operator's act; kickoff:
+   docs/directives/2026-10-07-btb-run-bt68-kickoff.md.
 6. During the run: st-31's shadow full V2 leg if a V1 -> repairs
    -> V2 cycle with a non-design repair occurs — OPEN.
 7. Close: dev-notes/<date>-run-3-cost-profile.md and
