@@ -248,7 +248,7 @@ evidence: the disjointness finding (phase-0 analysis section 2b): 509 nb of bran
 blocked-by: decision which lever instrument carries which currently-silent branch-specific material, decided by a dry run over the real corpus before any build, and against which consuming arc the build opens
 
 ## st-85
-grade: PARKED
+grade: READY
 requirement: Measure whether attack-round coverage degrades with object size — the claim 'bigger object per round buys shallower per-unit coverage' is UNVERIFIED mechanism reasoning (operator challenge 2026-09-25, this desk's admission; LEDGER this date). If whole-object yield holds, attacks bundle harder with measurement behind it and the class-lane splitting rule gets re-derived or retired.
 goal: general-maintenance
 write-set: dev-notes/
@@ -258,6 +258,8 @@ blocked-by: decision spend a doubled review round on the bundling probe at the n
 not-derivable: 2026-09-25 Constitutively the operator's on both halves: WHICH future seam qualifies depends on run scheduling only the operator opens, and spending a doubled review round is a spend preference (the cost the operator is split over, per the economics lens).
 amend-reason: 2026-09-29 carrier for the chat-only deferral decision of 2026-09-29: pre-registration timing bound to run-3 prep, so the next session finds it on the item rather than in a dead transcript
 amended-evidence: 2026-09-29 DERIVED (desk decision 2026-09-29, statiker-update batch): the pre-registered criterion is WRITTEN AT RUN-3 PREP, against the object st-75's answer names — a criterion designed before the run's object is chosen would pin the wrong comparison; the measurement itself still runs inside the next run as parked
+promote-reason: 2026-10-07 spend decision answered YES in the ledger (2026-09-25); design is fixed in the done-criterion; only the object waits on run-3 prep
+promoted-by: 2026-10-07 statiker desk 6796fb27 (opus), 2026-10-07
 
 ## st-86
 grade: PARKED
