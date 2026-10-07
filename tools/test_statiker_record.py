@@ -974,6 +974,44 @@ class TestSt63SameIdSupersedeByRestatement(RecordFixture):
         self.assertIn("F9", v["scopeless"][0]["line"])
 
 
+# ------------- st-86: post-closure [INVALIDATED] voids, recovery named -----
+
+class TestSt86PostClosureInvalidationVoidsAlways(RecordFixture):
+    """st-86 (F104 incident shape): a post-closure [INVALIDATED] of an
+    entry live at the closure voids whatever its scope and whatever
+    follows it; the why names the recovery route (a NEW closing
+    A-line). Void-always is what separates this branch from the
+    scopeless branch, where a same-id scoped restatement resolves."""
+
+    INVALIDATION = ("- D1 [INVALIDATED] unit U1 the design changes — "
+                    "basis: probe\n")
+
+    def test_unit_scoped_invalidation_voids_and_names_recovery(self):
+        v = self.closure(CLOSED + self.INVALIDATION)
+        self.assertEqual(v["verdict"], "CLOSURE_VOID", v)
+        self.assertIn("NEW closing A-line", v["scopeless"][0]["why"])
+
+    def test_same_id_live_restatement_does_not_restore_closure(self):
+        # green-on-old pin: the branch has no `latest` guard today
+        body = (CLOSED + self.INVALIDATION +
+                "- D1 [COMMITTED] unit U1 restated design — "
+                "basis: probe\n")
+        v = self.closure(body)
+        self.assertEqual(v["verdict"], "CLOSURE_VOID", v)
+        self.assertIn("D1", v["scopeless"][0]["line"])
+
+    def test_scopeless_line_resolved_by_same_id_restatement_stays_live(self):
+        # control, existing behaviour (green-on-old): the scopeless
+        # branch DOES resolve — the sibling the pin above separates from
+        body = (CLOSED +
+                "- F9 [VERIFIED] a scopeless post-closure finding — "
+                "basis: probe\n"
+                "- F9 [VERIFIED] record: restated (corrective scoping): "
+                "a scopeless post-closure finding — basis: probe\n")
+        v = self.closure(body)
+        self.assertEqual(v["verdict"], "CLOSURE_LIVE", v)
+
+
 # --------------------------------------------------------------------- waves
 
 class TestWaves(RecordFixture):

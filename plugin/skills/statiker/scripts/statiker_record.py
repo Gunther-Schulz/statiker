@@ -2357,7 +2357,12 @@ def cmd_closure(args):
             scopeless.append({"line": f"{e.id} [{e.tag}] {e.body}",
                               "lineno": e.lineno,
                               "why": "invalidates an entry live at "
-                                     "the closure"})
+                                     "the closure \u2014 a design change "
+                                     "after the closing round: the "
+                                     "design re-enters and closure "
+                                     "returns only with a NEW closing "
+                                     "A-line; a same-id restatement "
+                                     "does not restore it"})
             continue
         # st-63 (F21/F22 follow-on, discovered verifying the
         # design_amending fix above, NOT itself in the operator's
