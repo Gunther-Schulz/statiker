@@ -125,7 +125,7 @@ evidence: 0.2.89 review N1 (dev-notes/OBSERVATIONS.md, '0.2.89 checkpoint-review
 blocked-by: decision what instrument reaches script->page pointers without over-firing, decided by a dry run over the real script corpus before any build (the 0.2.89 precedent: the class-level check was designed, dry-run and killed at 24/76); if the bar is unmet the remainder is a review instruction, not a check
 
 ## st-37
-grade: PARKED
+grade: READY
 requirement: C4c (P28 targeting: dispositions self-marked design-bearing are enumerated in the next owed round brief as its pre-registered surface) did NOT mint at the 0.2.89 release gate, because the field test registered to grade its premise resolved on a denominator of ONE finding of ten. The instrument, not the clause, is what broke: a BATCHED review merged three items of very different design density, and lap B surface carries no flagged/unflagged classification, so seven findings could be counted and never graded - record: dev-notes/OBSERVATIONS.md 2026-09-12 (the C4c outcome, the batching tension entry, and the release gate st-10 split)
 goal: tend
 write-set: CLAUDE.md (the C4c convention line, on a mint), dev-notes/OBSERVATIONS.md (the repeat test registration and outcome)
@@ -134,6 +134,8 @@ evidence: C4c FIELD TEST OUTCOME: CONFIRM recorded 2026-09-12 with its own sever
 blocked-by: decision which of the two named repairs the instrument takes (classify every batched item surface before dispatch, or restrict the graded population and state the denominator), taken before the next checkpoint review is briefed so the repeat can be pre-registered
 amend-reason: 2026-10-07 the either/or in the criterion is decided: restriction costs nothing per review, while classifying every batched item surface adds a paragraph per item to every batched review for a clause not yet minted (economics lens, both currencies); the first test failed on an unstated denominator, which restriction repairs directly
 amended-done-criterion: 2026-10-07 Instrument repair DECIDED (ledger 2026-10-07): the graded population is RESTRICTED to surface carrying a flagged/unflagged classification, and the outcome line states its DENOMINATOR beside its verdict. The repeat is pre-registered in dev-notes/OBSERVATIONS.md BEFORE the next checkpoint review dispatches. CONFIRM on a population large enough to discriminate mints C4c into CLAUDE.md; REFUTE drops the clause with its reason; a third UNDECIDED ends the repeat under the stop the test already carries
+promote-reason: 2026-10-07 the one open choice is answered in the ledger; what remains is a pre-registration paragraph and a grading line, executable by a fresh context from the criterion
+promoted-by: 2026-10-07 statiker desk 6796fb27 (opus), 2026-10-07
 
 ## st-39
 grade: READY
