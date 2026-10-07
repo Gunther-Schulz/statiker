@@ -205,7 +205,8 @@ goal: general-maintenance
 write-set: plugin/skills/statiker/scripts/statiker_record.py,plugin/skills/statiker/SKILL.md
 done-criterion: UNKNOWN — the predicate is chosen at mint from what the firing shows; two candidates carried below, and a firing may indicate neither
 evidence: statiker_record.py read 2026-09-13, lines 1206-1212 (basis-missing) and the module docstring at 113; SKILL.md attack brief block read same date; PLAN 2026-09-13 Part-2 delta entry, the objection-misses-the-attack clause. Two candidates recorded there: (1) BASIS-SHAPE lint — the grammar already declares four allowed basis kinds (file:line, executed command, entry id, the literal unverified), so requiring at least one shape token would catch free-prose bases while passing judgment findings, whose reach is a cited id or line; (2) DRIFT MEASURE over finding classes — a rising share of findings whose basis is a goodness judgment rather than a cited requirement, cited basis or executed search
-blocked-by: evidence a firing — an attack round whose findings drift into quality claims without reach-matched evidence, or a desk round trip spent completing an invented risk, logged in dev-notes/OBSERVATIONS.md
+blocked-by: evidence grep -q '^TRIGGER-FIRED st-50 ' /home/g/dev/Gunther-Schulz/statiker/dev-notes/OBSERVATIONS.md
+blocker-exercise: 2026-10-07 live 1 | ACCEPT arm (constructed): a file holding the line 'TRIGGER-FIRED st-50 — basis' at column 0 makes the grep exit 0. REFUSE arm (current state, and constructed): OBSERVATIONS.md holds no such line, and a line naming another id or carrying the token mid-line exits 1. Writer: the run-close harvest (CLAUDE.md two-session bullet, re-asks the parked triggers). Rechecked NOT-FIRED against the 2026-09-25 run record by lane sonnet-trigger-recheck, 2026-10-07 (st-19 and st-52: partial, no cost incident)
 
 ## st-52
 grade: PARKED
