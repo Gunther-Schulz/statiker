@@ -1040,6 +1040,21 @@ closed-met: st-86
 closed-decided: LEDGER.md:202
 closed-ref: 41db2b8, 8e06900, 2e8c8ed
 
+## st-89
+grade: DONE
+requirement: DECLARED CONTAINMENT CAN SILENTLY DOWNGRADE: two paths read as containment-never-declared while the operator declared it — a malformed CONTAINMENT: label line fails open (lane candidate lesson 1, st-80 closing report 3b), and a desk that skips the transcription step leaves a preflight-declared scope unconsumed (SKILL.md:255-258 states the absence rule; the ABSENCE is designed, the silent DOWNGRADE of a declaration is the hazard). An operator who declared containment believes the runtime gate armed. Record: st-80 mint entry tenet 8 residual, dev-notes/OBSERVATIONS.md 2026-09-29
+goal: general-maintenance
+write-set: plugin/skills/statiker/scripts/statiker_record.py,tools/test_statiker_record.py,plugin/skills/statiker/SKILL.md
+done-criterion: a detector for each path or a recorded decline each: (1) near-miss lint on CONTAINMENT:-shaped malformed labels per the d946b1a tripwire precedent; (2) a sweep/closure cross-check — record carries a PREFLIGHT verdict with containment_scope but no CONTAINMENT: line is a surfaced inconsistency, not silence. Red-first per repo rule; C4b binds if either adds a token
+evidence: RELAYED (lane sonnet-payload-st80-st84 closing report 3b, graded at this desk against the page): malformed label fails open, unlike the tripwire-arm-near-miss precedent it is modeled on. MEASURED (this desk 2026-09-29): SKILL.md:255-258 read — the skipped-transcription absence rule is stated on the page; the preflight verdict JSON carries containment_scope while the record may carry no CONTAINMENT: line, and nothing cross-checks the pair. DERIVED: the two paths converge on one read (containment-never-declared), which is what makes the downgrade silent
+blocked-by: NONE
+not-derivable: 2026-09-29 detector shape prices a false-fire trade-off on run conduct; the mint-class call is a provenance judgment the operator holds during the trial
+blocker-moot: which detector shape (lint, cross-check, or both) and against which consuming seam the build opens (fire-born vs hypothesis-patch class per C4b) (answered in the ledger before this item closed)
+closed-reason: 2026-10-07 path 1 built: containment-near-miss lint plus fail-closed hold at the filter gate, golden row, page lines; path 2 (skipped transcription) DECLINED in the ledger — the record carries no input saying a scope was declared; marked hypothesis-patch with tenet record
+closed-met: st-86, st-66
+closed-decided: LEDGER.md:203
+closed-ref: 7819e2f
+
 ## Archive (pre-migration)
 
 <!-- CLOSURES READ FROM THE `--from` CARRIER ITSELF (lc-18/lc-19). The
