@@ -1088,6 +1088,28 @@ closed-met: st-92
 closed-decided: LEDGER.md:207
 closed-ref: 47611212262415655222d376bb9b6722bc03fa39
 
+## st-37
+grade: DONE
+requirement: C4c (P28 targeting: dispositions self-marked design-bearing are enumerated in the next owed round brief as its pre-registered surface) did NOT mint at the 0.2.89 release gate, because the field test registered to grade its premise resolved on a denominator of ONE finding of ten. The instrument, not the clause, is what broke: a BATCHED review merged three items of very different design density, and lap B surface carries no flagged/unflagged classification, so seven findings could be counted and never graded - record: dev-notes/OBSERVATIONS.md 2026-09-12 (the C4c outcome, the batching tension entry, and the release gate st-10 split)
+goal: tend
+write-set: CLAUDE.md (the C4c convention line, on a mint), dev-notes/OBSERVATIONS.md (the repeat test registration and outcome)
+done-criterion: the instrument is repaired FIRST, then the test repeats, then the clause mints or is dropped. Repair, per the two options the tension entry names: EITHER classify every item surface entering a batched review (one paragraph per item, written before the review dispatches), OR restrict the graded population explicitly to classified surface and state the denominator in the outcome line. Doing neither is what produced a verdict that discriminated nothing. The repeat is pre-registered BEFORE the next checkpoint review dispatches, as the two earlier rounds were, and its outcome line states its DENOMINATOR beside its verdict. CONFIRM on a population large enough to discriminate mints C4c into CLAUDE.md; REFUTE drops the clause with its reason; a third UNDECIDED ends the repeat under the stop the test already carries
+evidence: C4c FIELD TEST OUTCOME: CONFIRM recorded 2026-09-12 with its own severe variance caveat (1 of 10 findings graded); the batching tension entry of the same date, which locates the cause in the venue rather than the clause and names the two repair options; the batching decision itself (LEDGER 7e0572f, operator 2026-09-11), which is NOT re-opened by this: one round finding ten defects is the efficiency it was made for, and the entry is explicit that the batching harmed the measurement riding on the review, not the review
+blocked-by: NONE
+not-derivable: 2026-10-07 the run-3 object is constitutively the operator choice (st-75 carries the same question); this item is decision-complete and waits only for the seam that answer opens — run-3 prep, where the eve review is briefed
+amend-reason: 2026-10-07 the either/or in the criterion is decided: restriction costs nothing per review, while classifying every batched item surface adds a paragraph per item to every batched review for a clause not yet minted (economics lens, both currencies); the first test failed on an unstated denominator, which restriction repairs directly
+amended-done-criterion: 2026-10-07 Instrument repair DECIDED (ledger 2026-10-07): the graded population is RESTRICTED to surface carrying a flagged/unflagged classification, and the outcome line states its DENOMINATOR beside its verdict. The repeat is pre-registered in dev-notes/OBSERVATIONS.md BEFORE the next checkpoint review dispatches. CONFIRM on a population large enough to discriminate mints C4c into CLAUDE.md; REFUTE drops the clause with its reason; a third UNDECIDED ends the repeat under the stop the test already carries
+promote-reason: 2026-10-07 the one open choice is answered in the ledger; what remains is a pre-registration paragraph and a grading line, executable by a fresh context from the criterion
+promoted-by: 2026-10-07 statiker desk 6796fb27 (opus), 2026-10-07
+amend-reason: 2026-10-07 re-keyed from the codex desk-role run-3 object to the next ordinary run: the act this item needs belongs to whichever run comes next, and run 3 of the codex program is unscheduled
+amended-blocked-by: 2026-10-07 decision which real task the next statiker run takes
+amended-not-derivable: 2026-10-07 2026-10-07 the task is the operator product work (st-94 carries the same question and the prep order); this item is decision-complete and waits for that run prep
+blocker-moot: which real task the next statiker run takes (answered in the ledger before this item closed)
+closed-reason: 2026-10-07 The instrument was repaired first (restricted population of 19 classified slots, criterion restated as a binomial tail against the flag share because 11 of 19 flagged made a bare majority what chance returns), pre-registered before the review dispatched, and the repeat resolved UNDECIDED at n=4 k=4. That is the third such result, the stop the test carries ends it, and C4c does not mint. Outcome line with its denominator: dev-notes/OBSERVATIONS.md 2026-10-07
+closed-met: st-85, st-94
+closed-decided: LEDGER.md:215
+closed-ref: ae19e2432252e56350cfc444b3a090e7e2667c01, f5de5b51acf7337fbc85285888932fea5b7dc938
+
 ## Archive (pre-migration)
 
 <!-- CLOSURES READ FROM THE `--from` CARRIER ITSELF (lc-18/lc-19). The
