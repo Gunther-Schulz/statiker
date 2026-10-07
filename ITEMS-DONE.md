@@ -966,6 +966,19 @@ closed-reason: 2026-10-07 field datum arrived (2026-09-25 run, read by lane sonn
 closed-met: st-31, st-19
 closed-decided: LEDGER.md:206
 
+## st-21
+grade: DONE
+requirement: 20 tracked file(s) still name the migrated carrier(s) `BACKLOG.md`. A consumer left pointing at a carrier nobody writes any more reads as current until someone notices, and nobody is scheduled to — record: the migration report
+goal: tend
+write-set: dev-notes/OBSERVATIONS.md, dev-notes/probe-attack-batching-2026-08-10.md, docs/directives/2026-08-15-harvest-lane-brief.md, docs/directives/2026-08-15-lane-D-P12EN-brief.md, docs/directives/2026-08-15-lane-EJL-brief.md, docs/directives/2026-08-15-lane-EK-brief.md, docs/directives/2026-08-15-lane-G-brief.md, docs/directives/2026-08-15-lane-P34EM-brief.md, docs/directives/2026-08-15-lane-R-brief.md, docs/directives/2026-08-15-lane-R2-brief.md, docs/directives/2026-08-16-lane-E-brief.md, docs/directives/2026-08-17-lane-A-mint-batch-brief.md, docs/directives/2026-08-17-lane-B-p16-stop-hook-brief.md, docs/directives/2026-08-17-lane-C-review-repair-brief.md, docs/directives/2026-08-23-u2-seed-brief.md, plugin/hooks/statiker_stop_guard.py, tools/test_contract.py, tools/test_statiker_git.py, tools/test_statiker_record.py, tools/test_statiker_stop_hook.py
+done-criterion: no tracked file outside the migration's own outputs names `BACKLOG.md`, or each remaining one is recorded as a declared exemption
+evidence: tracked files naming `BACKLOG.md` at migration time: dev-notes/OBSERVATIONS.md, dev-notes/probe-attack-batching-2026-08-10.md, docs/directives/2026-08-15-harvest-lane-brief.md, docs/directives/2026-08-15-lane-D-P12EN-brief.md, docs/directives/2026-08-15-lane-EJL-brief.md, docs/directives/2026-08-15-lane-EK-brief.md, docs/directives/2026-08-15-lane-G-brief.md, docs/directives/2026-08-15-lane-P34EM-brief.md, docs/directives/2026-08-15-lane-R-brief.md, docs/directives/2026-08-15-lane-R2-brief.md, docs/directives/2026-08-16-lane-E-brief.md, docs/directives/2026-08-17-lane-A-mint-batch-brief.md, docs/directives/2026-08-17-lane-B-p16-stop-hook-brief.md, docs/directives/2026-08-17-lane-C-review-repair-brief.md, docs/directives/2026-08-23-u2-seed-brief.md, plugin/hooks/statiker_stop_guard.py, tools/test_contract.py, tools/test_statiker_git.py, tools/test_statiker_record.py, tools/test_statiker_stop_hook.py
+blocked-by: NONE
+blocker-moot: every consumer migrated or declared exempt (answered in the ledger before this item closed)
+closed-reason: 2026-10-07 no live consumer exists: git grep over tracked files (300 hits, 41 files) classified exhaustively — migration outputs 197, historical records 63, body pointers 31, other-repo files 8, one rule line (the CLAUDE.md transition bullet itself), zero code; the citations are declared exempt and resolve at the pinned blob
+closed-met: st-39
+closed-decided: LEDGER.md:208
+
 ## Archive (pre-migration)
 
 <!-- CLOSURES READ FROM THE `--from` CARRIER ITSELF (lc-18/lc-19). The
