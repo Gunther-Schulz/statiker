@@ -13868,3 +13868,74 @@ blind spot 2 of the registration. Graded at the close.
 Turn cost at this desk for the run so far: ten relays, one
 operator blocker, one operator decision pending, two horizon wakes
 (one a false fire of this desk's own watch condition).
+
+## 2026-10-21 — bt-77 run (beat-the-books, Azuro port decomposition): three observations
+
+Desk: the bt-77 run session, statiker 0.2.105, record
+`.clippy/runs/2026-10-21-azuro-feed-port.md` in beat-the-books.
+
+**O1. A same-id `record:` correction dissolves the violation it names.**
+- Incident + basis: line 53 (D8) held `foreign-id-suspect` on a basis
+  token R5. The desk appended `- D8 [COMMITTED] record: corrects line
+  53 …` as the verdict's repair form. That line became D8's latest
+  line, the foreign-id scan reads the latest line's basis, so line 53's
+  violation vanished, and line 55 then held `corrects-nothing`, a
+  defect no token clears (sweep verdicts 2026-10-21, lines 53 to 57).
+  The same trap recurred one step later on F29: the `basis-missing`
+  correction would have replaced the convergence record as F29's latest
+  line, so the record had to be restated a second time after it.
+- Class: a repair form whose own append changes the latest-line
+  resolution its target's violation was computed from.
+- Pre-formulated fix (tool): for violations computed over an id's
+  LATEST line (`foreign-id-suspect`, `basis-cites-invalidated`,
+  `basis-missing` on a latest line), the verdict's repair form is the
+  whole-entry restatement under the same id, never a `corrects line`
+  token; and `corrects-nothing` is not raised on a line whose named
+  target carried the violation at the moment the correcting line was
+  appended (decidable from the file prefix up to that line).
+- Consumer + drain seam: the record tool's next release; red-first
+  arm: the D8 sequence above replayed over a scratch tracker.
+
+**O2. Clause-disposition parsing matches the bare word "clause" in prose.**
+- Incident + basis: two invalidation bodies opened "Its odds clause is
+  refuted …" and "Its title-shape clause is imprecise …"; sweep read
+  `clause is` as a disposition and held `clause-unparsed`, settled form
+  debt that only an operator SWEEP_EXEMPT clears (lines 109 and 111;
+  exempted by operator grant at line 123). The landed queue lines 65
+  and 78 used `export clause restated-at-D12` (noun before the keyword)
+  and held the same way.
+- Class: a gate keyed on a common English word over free prose, with
+  no repair token for its own false fire, so every false fire costs an
+  operator interaction.
+- Pre-formulated fix (tool): parse a disposition only in the exact
+  form `clause <name> restated-at-<id>` or `clause <name> dead (<killer>)`,
+  and on a body using `clause` otherwise, report nothing; or, if the
+  near-miss is kept, make it repairable by a same-id restatement instead
+  of operator-only. Skill page: name the exact form once beside the
+  invalidation template (The loop), since desks compose it from memory.
+- Consumer + drain seam: the record tool's next release, plus the SKILL
+  page's invalidation paragraph.
+
+**O3. Decomposition runs: findings about one exported item's internals
+should not sustain a design round.**
+- Incident + basis: the operator, after A1 [BIT] on a decomposition
+  run whose items are each built later with red-first tests and a
+  fresh-context review: "getting 100% is hard and generally not
+  necessary". The desk set a closing policy (D22, queued at A2): A2 is
+  the last round unless it finds a decomposition-level defect (a wrong
+  item boundary, an impossible order, a money-path mechanism no item
+  owns); item-internal findings are dispositioned into that item's
+  exported entry.
+- Class: the P27 closure rule (design consequence, not finding presence)
+  has no stated reading for decomposition runs, where most attack
+  findings are about the exported items' internals and would otherwise
+  amend the run's D-lines and keep the gate shut.
+- Pre-formulated text (SKILL page, The attack, beside P27): "In a
+  DECOMPOSITION run, a finding about one exported item's internals is
+  dispositioned into that item's exported entry (its evidence slot,
+  with the finding id), not into the run's D-lines; it amends no design
+  entry, so a terminal [BIT] whose findings are all of that kind
+  satisfies closure. Only decomposition-level findings (item boundaries,
+  order, a requirement or mechanism no item owns) amend the design."
+- Consumer + drain seam: the next SKILL release review; field datum
+  pending: the A2 return of this run, graded against D22.
