@@ -1,6 +1,6 @@
 schema: 2
 baseline: 47
-added: 75
+added: 76
 compacted: 0
 
 ## st-12
@@ -268,3 +268,12 @@ write-set: plugin/skills/statiker/scripts/statiker_record.py,plugin/skills/stati
 done-criterion: Each red-first: (1) the tripwire-arm-near-miss repair text, followed literally, reaches SWEEP_CLEAN (today it re-raises one line down, the loop convergence-near-miss had); (2) lock_gate_check treats every sweep verdict other than a clean or close-path one as blocking, by class and not by name, with an arm for a verdict lacking the violations field; (3) one arm derives the served version from an install-shaped path with no STATIKER_SERVED_VERSION set, and one drives the closure-side version hold; (4) the version hold reaching a desk through lock-check or unit-start carries a route consistent with writes-no-close, or the page says at that seam which route governs; (5) test_dangling_page_pointer_is_caught first assertion no longer derives its expectation from the condition under test.
 evidence: MEASURED (desk 2026-10-07): lock_gate_check reads gate.get(violations) at statiker_git.py, and the name check for SKILL_VERSION_HOLD is the only other block. RELAYED (lane opus-review-m2, executed there): tripwire-arm-near-miss restated with its token gives SWEEP_HOLDS one line down; lock-check under a hold returns LOCK_GATE_HOLDS with route repair-from-verdict and unit-start returns route halt; every version-hold arm sets the override. RELAYED, unexecuted by the lane: a sweep INTERNAL_ERROR would pass the lock gate.
 blocked-by: NONE
+
+## st-98
+grade: READY
+requirement: The global corpus drops its "escalation past one-shot review" rule (corpus-shrink arc, map row I2b: dotfiles claude/records/corpus-shrink-map-2026-11-02.md); statiker is the iterated-falsification protocol it routes to.
+goal: general-maintenance
+write-set: plugin/skills/statiker/SKILL.md
+done-criterion: SKILL.md states when a task routes to statiker by that rule: the trigger (skip-gauge failure on both silent-failure and blast-radius, an unverified behavioural premise about an external system, multi-session), the two classes one-shot review misses (a silently substituted premise basis, an overshooting fix), and the round-end condition — each clause from git show corpus-pre-shrink-2026-11-02:plugin/modules/insurance.md in ethos kept or dispositioned against what SKILL.md already carries.
+evidence: RELAYED: map graded PASS at the assessment desk 2026-11-02. DERIVED: statiker already runs a fresh-context attack on each locked design, so most of the round mechanics are present; the routing trigger is what leaves the corpus.
+blocked-by: external a statiker desk takes it: the corpus-shrink arc is scoped to the corpus repos (handoff docs/directives/2026-11-02-corpus-shrink-arc.md, Scope)
