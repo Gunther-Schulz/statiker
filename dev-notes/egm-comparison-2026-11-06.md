@@ -66,5 +66,7 @@ optionally two instances of each, behind a synthesizer.
    evidence the reviewer could have read. Evidence outside the
    reviewer's reach goes to ESCALATE, and the author does not add
    context only to satisfy a zero-context reviewer
-   (egm-resolve:58-81). Not checked against statiker's disposition
-   grammar. This is unverified as a gap.
+   (egm-resolve:58-81). Partly checked 2026-11-06, grep-based only:
+   every statiker F-line carries a basis (SKILL.md 687-689), but no
+   passage found requires that a dismissal's basis be something the
+   attacker could read, and none found splits off ESCALATE.
