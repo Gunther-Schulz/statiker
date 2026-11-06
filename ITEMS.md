@@ -1,6 +1,6 @@
 schema: 6
 baseline: 47
-added: 76
+added: 77
 compacted: 0
 
 ## st-12
@@ -277,3 +277,12 @@ write-set: plugin/skills/statiker/SKILL.md
 done-criterion: SKILL.md states when a task routes to statiker by that rule: the trigger (skip-gauge failure on both silent-failure and blast-radius, an unverified behavioural premise about an external system, multi-session), the two classes one-shot review misses (a silently substituted premise basis, an overshooting fix), and the round-end condition — each clause from git show corpus-pre-shrink-2026-11-02:plugin/modules/insurance.md in ethos kept or dispositioned against what SKILL.md already carries.
 evidence: RELAYED: map graded PASS at the assessment desk 2026-11-02. DERIVED: statiker already runs a fresh-context attack on each locked design, so most of the round mechanics are present; the routing trigger is what leaves the corpus.
 blocked-by: external a statiker desk takes it: the corpus-shrink arc is scoped to the corpus repos (handoff docs/directives/2026-11-02-corpus-shrink-arc.md, Scope)
+
+## st-99
+grade: READY
+requirement: RADICAL CHANGE BATCH (operator GO 2026-11-06): stakes-scaled severity stop rule with settled findings, paraphrase-back, split by reader into role files, tool-written record grammar with a byte-limit test, one batch under suspended per-mint ceremony. Record: dev-notes/2026-11-06-radical-change-proposal.md
+goal: general-maintenance
+write-set: plugin/skills/statiker/SKILL.md,plugin/skills/statiker/references/,plugin/skills/statiker/scripts/statiker_record.py,plugin/skills/statiker/scripts/statiker_emit.py,tools/,dev-notes/,CLAUDE.md,PLAN.md
+done-criterion: In order: (1) offline replay of the three recorded trackers (2026-09-25 prod-data-growth, bt-68, bt-77) under the new stop rule, stop points registered in dev-notes before the replay, graded after; (2) sample probe: one role file and one grammar paragraph moved and measured before the rest; (3) the batch built with red-first tests per change, full suite green, byte-limit test green; (4) ONE fresh-context review of the whole batch, every finding dispositioned, before the pin moves.
+evidence: MEASURED: no run since the per-unit gate reached its end state (OBSERVATIONS 2026-11-06); bt-68 tracker line 178, A4 only MINOR findings with the gate shut; SKILL.md 118715 bytes by wc, EGM test limit 24000 bytes. DERIVED: the stop predicate is perfection-shaped
+blocked-by: NONE
