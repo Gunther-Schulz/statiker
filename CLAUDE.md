@@ -642,6 +642,16 @@
   mechanisms draw the blockers); repair lanes carried 40 of ~90
   lane commits in the 2026-09-10..12 burst.
 
+## Carve-outs
+
+- **Push to `origin` (public GitHub repo): standing authorization
+  (operator decision 2026-11-06, verbatim: "yes default push").** The
+  desk pushes its own commits to `origin/main` without asking each
+  time. The pre-push claim check still runs: every outgoing commit is
+  claimed from `git log origin/main..main` before the push, and an
+  unexpected commit halts it. This covers pushes only. Releases, pin
+  moves and anything outside this repo keep their own gates.
+
 ## Verify
 
 ```bash
