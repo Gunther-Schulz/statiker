@@ -214,3 +214,19 @@ same test project as st-100.
     the clippy era, all real work, written in an older grammar. Mining
     them for gaps and later corrections per unit against round counts
     is the largest real-work dataset available.
+- **Optional pre-run design discussion** (operator idea, 2026-11-07,
+  verbatim: "a discussion round so both operator and ai can discuss
+  some design if that's wished before statiker starts, to a level of
+  detail the operator decides. Missing detail then will be filled by
+  the statiker rounds"). Today the operator's words enter only as the
+  requirement head at seed and as late `INTENT:` lines (SKILL.md ~568).
+  No step lets the operator set the DEPTH. Desk design sketch, not
+  decided:
+  - The discussion's result lands in the requirement head as
+    operator-decided design points, each one marked as the operator's.
+  - Everything not covered there is explicitly the rounds' to decide.
+  - The attack does not re-litigate an operator-decided point as a
+    choice. It may attack the point's consequences and must surface
+    any conflict between two such points, or between such a point and
+    the intent.
+  - With no discussion, the run starts exactly as today.
