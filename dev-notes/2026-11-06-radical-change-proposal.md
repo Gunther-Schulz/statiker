@@ -122,3 +122,19 @@ marked derived.
   tracker, where verify can attack it. Never silently. This is the
   middle ground between EGM (no downgrade) and the playbook (severity
   is advice).
+
+## Open question raised by the operator, 2026-11-06: is statiker still worth building?
+
+Desk recommendation, not decided. Before st-99 builds anything, run a
+pre-registered three-arm comparison on one real task: (a) statiker;
+(b) the syv playbook's executing-plans or work-autonomously with its
+single fresh review, plus the operator corpus; (c) a bare session plus
+the corpus. The criteria are fixed before any arm runs: defects shipped
+and then corrected, cost in turns and tokens, and operator interactions.
+Basis: the control arm (dev-notes/control-arm-hotfix-2026-08-26.md)
+found that the corpus alone bought verification at the effect site and
+the record's form, and that what it did not buy was "a second reader".
+Both EGM and the playbook now provide a second reader. If arm (b)
+matches (a) on defects at lower cost, st-99 shrinks to what (b) lacks
+(the executed attack, the record), or statiker stops. Blocked on the
+same test project as st-100.
