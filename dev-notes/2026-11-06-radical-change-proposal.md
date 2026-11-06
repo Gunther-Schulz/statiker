@@ -153,3 +153,17 @@ same test project as st-100.
   First candidate: the write-on-change unit (7d22fdcb..0d166689). The
   limit: Azuro is offline, so no arm can verify at the effect site.
   The replay grades design and code defects only.
+- Arm correction (operator 2026-11-06: built-in design rounds are what
+  is unique, and a tool without them or a good alternative is not an
+  alternative). Checked at the sources on 2026-11-06:
+  - The syv playbook has NO iterated design rounds. brainstorming runs
+    one fresh "builder check" that lists open questions on the spec
+    (builder-check-prompt.md). writing-plans is a self-review. The
+    fresh review in executing-plans comes AFTER the code.
+  - EGM HAS iterated fresh-context design rounds before code
+    (egm-review, egm-review-loop, up to 5 rounds). They are
+    document-only and read-only: no executed probes, no pinned commit.
+  So arm (b) becomes EGM's review loop plus implementation under the
+  corpus. The playbook drops out as an arm. The st-99 candidate "one
+  attack round by default" keeps the attack itself. It only cuts the
+  repeat rounds that a repair's own tests can carry.
