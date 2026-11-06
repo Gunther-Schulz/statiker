@@ -1535,6 +1535,19 @@ review, and whenever a new comparand is read (st-47's series included).
   on "getting 100% is hard and generally not necessary". So change 1's
   stakes bar must be decided at intake, so that no operator is needed
   at the end.
+  REJECTED the same night (operator, 2026-11-07): the desk's reading
+  that statiker is "for the class of apps that fail the skip gauge,
+  not for everything". Operator, verbatim: "robust design and code
+  should ideally be true for building any app. The point is not to
+  build something, run it in person, see where it breaks, go back and
+  fix it and do that multiple times. The goal is best quality right
+  away." Scope: every app. Derived, consistent with the autonomy
+  tenet: the gauge's "loud failure" and "fast check" answers assume a
+  human who runs the result and watches it. An unattended A-to-Z run
+  has no such human, so even an app that passes the gauge needs the
+  design right before construction. What stays true is narrower: hard
+  apps make the DIFFERENCE easier to MEASURE, which is why st-100
+  prefers one as its test bed.
 
 ## The trust-distribution thesis — the program in one line (operator, 2026-09-13)
 
