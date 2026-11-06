@@ -138,3 +138,18 @@ Both EGM and the playbook now provide a second reader. If arm (b)
 matches (a) on defects at lower cost, st-99 shrinks to what (b) lacks
 (the executed attack, the record), or statiker stops. Blocked on the
 same test project as st-100.
+- Constraint (operator 2026-11-06: "simple tasks dont expose the
+  power, thats the problem"). The comparison task must be HARD:
+  several units, a money or irreversible path, and at least one
+  defect that needs a discriminating instrument. Record support: in
+  the control arm the bare session was faster on small units and
+  worse on the one hard unit (write-on-change: 10 commits, 3
+  corrections, "cost roughly a day").
+- A test bed that needs no live project (desk proposal): replay HARD
+  historical tasks from the beat-the-books git history, whose defects
+  are already known from later corrections. Each arm starts at the
+  commit before the task, with the same task text. The criterion
+  counts which of the known defects each arm catches before shipping.
+  First candidate: the write-on-change unit (7d22fdcb..0d166689). The
+  limit: Azuro is offline, so no arm can verify at the effect site.
+  The replay grades design and code defects only.
