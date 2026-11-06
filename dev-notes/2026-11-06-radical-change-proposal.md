@@ -105,3 +105,20 @@ marked derived.
   It is the corpus parentage rule (expectations derived from the
   definition, never from the artifact) moved before the design.
   Cost: one extra lane per run.
+- **One attack round by default** (syv playbook, executing-plans §4;
+  dev-notes/syv-playbook-comparison-2026-11-06.md). After round 1,
+  each repair carries its own red-first test. A re-attack happens only
+  when a repair changes the design's shape: a new unit, a new
+  mechanism, or an amended requirement. This is the radical end of
+  change 1. Weigh it in the replay: would the late rounds of the three
+  trackers have found anything that the repairs' own tests could not?
+- **A "declined to judge" slot in the attack return.** The attacker
+  lists what it set aside, with a reason, and the desk dispositions
+  each line.
+- **A "cost if wrong" slot on D-lines** (cheap / moderate / expensive),
+  as the input that change 1's stakes-scaled bar reads.
+- **Severity re-grade with a written reason.** The desk may re-grade a
+  finding up or down only with a user-impact reason recorded in the
+  tracker, where verify can attack it. Never silently. This is the
+  middle ground between EGM (no downgrade) and the playbook (severity
+  is advice).
