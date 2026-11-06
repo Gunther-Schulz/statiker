@@ -13939,3 +13939,29 @@ should not sustain a design round.**
   order, a requirement or mechanism no item owns) amend the design."
 - Consumer + drain seam: the next SKILL release review; field datum
   pending: the A2 return of this run, graded against D22.
+
+## 2026-11-06 — bt-77 closed by declared deviation, not by the gate: O3's pending field datum
+
+- Incident + basis: the bt-77 tracker (beat-the-books,
+  `.clippy/runs/2026-10-21-azuro-feed-port.md`) ends Status COMPLETE,
+  Phase verify, after A2 [BIT] (line 145). D27 (line 158) records that
+  "the record will not satisfy the closure gate: unit U1 is unconverged
+  at A2, and D23 to D26 are scopeless amendments after a [BIT] round",
+  so the export ran as a recorded deviation under the D22 closing
+  policy, checked by a fresh-context verify leg. This resolves O3's
+  "field datum pending" (2026-10-21 entry): D22 held, but only by going
+  around the gate.
+- Run-end tally across the three runs since the per-unit gate (read
+  2026-11-06): 2026-09-25 ended at budget exhaustion; bt-68 is
+  suspended at rounds 4 of 4 with an A5 raise granted and unspent
+  (dev-notes/next-run-prep.md, 2026-10-08 update); bt-77 ended by
+  declared deviation. No run has yet reached the gate's own end state.
+- Class (derived, unverified as a cause): the stop predicate is
+  perfection-shaped (no design-amending disposition), while each fresh
+  attacker samples new findings and each repair adds new surface. The
+  page has no "good enough for this exposure" stop, so the operator or
+  desk supplies one by deviation (bt-77 D22: "getting 100% is hard and
+  generally not necessary").
+- Consumer + drain seam: st-95's design pass (the convergence gate), at
+  the post-run digest it waits on; O3's decomposition reading is the
+  first candidate for such a stop.
