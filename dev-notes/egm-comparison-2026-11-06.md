@@ -28,6 +28,25 @@ optionally two instances of each, behind a synthesizer.
   contradict the economics lens (CLAUDE.md: every round after the first
   owes a reason, and a zero-delta second round is evidence that one
   round suffices).
+- Stop shape (egm-review-loop Step 2.4; egm-review "Pause & Resume"):
+  three loop stops. CONVERGED is two consecutive clean rounds, where a
+  clean round has no unsettled Blocker/Major, Nits do not block, and a
+  reviewer that did not run makes the round unclean. CHURN is a new
+  finding at an applied fix's scope that reverting the fix would
+  resolve. CAP is 5 rounds. Cap and churn are SOFT: they list the open
+  findings and ask the user to accept, continue past the cap, or return
+  to drafting. Each round also starts only on user confirmation. The one
+  HARD cap is per stage in egm-review: at most 1 re-audit. A further
+  request records the residuals as "accepted trade-offs" and
+  auto-advances, so the cap itself grants acceptance. Compared with
+  statiker (SKILL.md 415-470, 1325-1351): churn matches the founding
+  non-contracting shape, but EGM's response is to ask the user, where
+  statiker narrows. EGM has no trend reading (counts falling while
+  findings sit in the newest repairs) and does not require a cause when
+  the cap fires. Its "settled list" (a contested or accepted finding is
+  not re-opened when a later fresh reviewer raises it again) answers
+  sampling noise ("a round with zero findings is rare even when the
+  document improves").
 - Already covered here: churn ("a new finding at a fix's scope that
   reverting would resolve") corresponds to the repair-eating series
   shape (SKILL.md ~1330).
