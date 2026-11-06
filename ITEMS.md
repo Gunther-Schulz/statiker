@@ -288,6 +288,8 @@ evidence: MEASURED: no run since the per-unit gate reached its end state (OBSERV
 blocked-by: NONE
 amend-reason: 2026-11-06 aligned with the refactor-period decision of 2026-11-06
 amended-done-criterion: 2026-11-06 In order: (1) offline replay of the three recorded trackers (2026-09-25 prod-data-growth, bt-68, bt-77) under the new stop rule, stop points registered in dev-notes before the replay, graded after; (2) sample probe: one role file and one grammar paragraph moved and measured before the rest; (3) the batch built with red-first tests per change, full suite green, byte-limit test green; (4) ONE fresh-context review of the whole delta, every finding dispositioned, before the first REAL run consumes the pin (refactor period, CLAUDE.md); pin moves before that need no review.
+amend-reason: 2026-11-07 goal clarified 2026-11-07: best quality right away for any app, so the stakes-scaled bar is dropped
+amended-requirement: 2026-11-07 RADICAL CHANGE BATCH (operator GO 2026-11-06, reframed 2026-11-07): a stop rule that separates stop-iterating from stop-fixing (rounds continue only on structural repairs or unrepaired Important findings; the rest fixed with red-first tests), settled findings, paraphrase-back, split by reader into role files, tool-written record grammar with a byte-limit test, one batch under suspended per-mint ceremony. Record: dev-notes/2026-11-06-radical-change-proposal.md, its 2026-11-07 revision first
 
 ## st-100
 grade: READY
