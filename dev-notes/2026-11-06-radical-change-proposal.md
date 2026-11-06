@@ -167,3 +167,10 @@ same test project as st-100.
   corpus. The playbook drops out as an arm. The st-99 candidate "one
   attack round by default" keeps the attack itself. It only cuts the
   repeat rounds that a repair's own tests can carry.
+- DROPPED (operator 2026-11-06: "iteration on design thats the key for
+  our tool"): the candidate "one attack round by default". st-99 keeps
+  iterated design rounds and fixes only how they END (change 1). The
+  replay gets one more question that measures the claim: per recorded
+  tracker, how many of the defects found in rounds 2 and later were
+  real, judged by later corrections or by verify, and how many were
+  noise.
