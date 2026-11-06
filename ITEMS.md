@@ -286,6 +286,8 @@ write-set: plugin/skills/statiker/SKILL.md,plugin/skills/statiker/references/,pl
 done-criterion: In order: (1) offline replay of the three recorded trackers (2026-09-25 prod-data-growth, bt-68, bt-77) under the new stop rule, stop points registered in dev-notes before the replay, graded after; (2) sample probe: one role file and one grammar paragraph moved and measured before the rest; (3) the batch built with red-first tests per change, full suite green, byte-limit test green; (4) ONE fresh-context review of the whole batch, every finding dispositioned, before the pin moves.
 evidence: MEASURED: no run since the per-unit gate reached its end state (OBSERVATIONS 2026-11-06); bt-68 tracker line 178, A4 only MINOR findings with the gate shut; SKILL.md 118715 bytes by wc, EGM test limit 24000 bytes. DERIVED: the stop predicate is perfection-shaped
 blocked-by: NONE
+amend-reason: 2026-11-06 aligned with the refactor-period decision of 2026-11-06
+amended-done-criterion: 2026-11-06 In order: (1) offline replay of the three recorded trackers (2026-09-25 prod-data-growth, bt-68, bt-77) under the new stop rule, stop points registered in dev-notes before the replay, graded after; (2) sample probe: one role file and one grammar paragraph moved and measured before the rest; (3) the batch built with red-first tests per change, full suite green, byte-limit test green; (4) ONE fresh-context review of the whole delta, every finding dispositioned, before the first REAL run consumes the pin (refactor period, CLAUDE.md); pin moves before that need no review.
 
 ## st-100
 grade: READY
