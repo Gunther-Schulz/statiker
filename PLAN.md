@@ -1511,6 +1511,31 @@ review, and whenever a new comparand is read (st-47's series included).
   softest case, since the tool nets regardless and only the
   desk's reading of `retro_holds` degrades. None qualifies.
 
+- 2026-11-06, opus desk: **POSITIONING FALSIFIER RE-CHECKED against
+  two new comparands. Neither kills it, and they land on the two
+  sides of the claim.** EGM (google/elephant-goldfish-model) HAS an
+  independent, iterated design review before code, but it keeps the
+  human at the design seam. "You make the architectural trade-offs
+  and approve the specification", and at its round cap it asks the
+  user (README; egm-review-loop Step 2.4). The syv playbook
+  (syv-ai/agentic-coding-playbook) HAS an unattended path
+  (work-autonomously), but no design gate. It runs from a given plan,
+  and its one fresh design read (the brainstorming builder check)
+  sits in an interactive skill that ends in user review of the spec.
+  Read this date; records: dev-notes/egm-comparison-2026-11-06.md and
+  dev-notes/syv-playbook-comparison-2026-11-06.md. The operator
+  restated the claim's core the same day: iterated design rounds are
+  the key ("otherwise it wont produce coherent complex results"), and
+  the goal is autonomous A-to-Z app building on AI judgment instead of
+  close operator watch. The operator marked the first as past
+  experience that newer models may change, which is why st-99's replay
+  measures the yield of later rounds on current models. Consequence
+  for st-99 (derived): the stop problem IS the autonomy blocker. Both
+  recent runs ended on an operator act: bt-68 on a rounds raise, bt-77
+  on "getting 100% is hard and generally not necessary". So change 1's
+  stakes bar must be decided at intake, so that no operator is needed
+  at the end.
+
 ## The trust-distribution thesis — the program in one line (operator, 2026-09-13)
 
 Persisted on the operator's grading ("worth persisting", this date's
