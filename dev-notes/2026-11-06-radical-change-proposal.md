@@ -230,3 +230,49 @@ same test project as st-100.
     any conflict between two such points, or between such a point and
     the intent.
   - With no discussion, the run starts exactly as today.
+
+## Revision 2026-11-07, after the goal was clarified
+
+The goal is restated in PLAN.md, 2026-11-06/07: autonomous A-to-Z
+building, best quality right away, any app, iterated design as the
+core. Against that goal:
+
+- **Change 1 is REFRAMED.** The stop rule no longer scales a severity
+  bar by stakes, and "accept as a risk" is no longer a default for
+  findings below the bar. Both read as lower quality for smaller apps.
+  The new reading separates STOP ITERATING from STOP FIXING:
+  - A further round runs only when the last round's repairs CHANGED
+    THE DESIGN'S STRUCTURE (a new unit, mechanism, interface, or an
+    amended requirement), or when a finding at Important or above is
+    still unrepaired.
+  - Every other finding is FIXED without a new round, each fix with
+    its own red-first test, and verify checks it.
+  - Contested findings stay settled. The final round still covers the
+    whole design.
+  - The rule is computable from the record, so no operator act is
+    needed at the end.
+- **Prediction to register before the tracker reading (derived, not
+  yet checked):** under the reframed rule, all three recorded runs
+  would have ended without an operator act. bt-68 at A4 (one MINOR
+  finding per unit, local fixes). bt-77 at A2 (its D27: the repairs
+  reuse existing mechanisms). 2026-09-25 once its round-born units were
+  exported at birth by the intake rule. If the reading refutes this for
+  any run, change 1 is still wrong.
+- **DROPPED: the three-arm worth-it comparison, and its "or statiker
+  stops" branch.** Neither competitor matches the goal: EGM keeps a
+  human at the design seam, and the playbook has no design rounds. The
+  question left is what executing the attack adds over a read-only
+  review. The shadow lane answers it on real work.
+- **DEMOTED: the "cost if wrong" slot on D-lines.** It was the input to
+  the stakes bar, and the stakes bar is gone. It stays as plain
+  information for severity grading.
+- **NEW candidate: compatibility with team pipelines** (operator, "we
+  should make statiker compatible with such an approach … we can serve
+  all use cases"). Autonomy stays the default. A team can then:
+  - put a human seat back at any forcing point, design approval
+    included;
+  - receive the work as a pull request carrying the design record;
+  - let statiker's verify call its CI and staging checks;
+  - keep deploy and rollout in its own pipeline.
+  Attended mode and the held outward acts already cover part of this.
+  The rest is a profile, not new machinery.

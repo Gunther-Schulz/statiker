@@ -13956,12 +13956,16 @@ should not sustain a design round.**
   suspended at rounds 4 of 4 with an A5 raise granted and unspent
   (dev-notes/next-run-prep.md, 2026-10-08 update); bt-77 ended by
   declared deviation. No run has yet reached the gate's own end state.
-- Class (derived, unverified as a cause): the stop predicate is
-  perfection-shaped (no design-amending disposition), while each fresh
-  attacker samples new findings and each repair adds new surface. The
-  page has no "good enough for this exposure" stop, so the operator or
-  desk supplies one by deviation (bt-77 D22: "getting 100% is hard and
-  generally not necessary").
-- Consumer + drain seam: st-95's design pass (the convergence gate), at
-  the post-run digest it waits on; O3's decomposition reading is the
-  first candidate for such a stop.
+- Class (derived, unverified as a cause): the gate ties STOP ITERATING
+  to STOP FINDING. Any design-amending disposition keeps it shut, while
+  each fresh attacker samples new findings and each repair adds new
+  surface. The page has no rule that lets a run stop ITERATING while it
+  still FIXES the remaining local findings. So the operator or desk
+  ends the run by deviation (bt-77 D22: "getting 100% is hard and
+  generally not necessary"). Corrected in place 2026-11-07: the first
+  wording named the missing rule as a "good enough for this exposure"
+  stop. The operator's goal is best quality right away for any app
+  (PLAN.md, 2026-11-07), so the missing rule is about when to stop
+  re-attacking, never about accepting lower quality.
+- Consumer + drain seam: st-99 change 1 (st-95 closes into st-99 at
+  its release); O3's decomposition reading is one instance of the rule.
