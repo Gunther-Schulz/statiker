@@ -93,3 +93,15 @@ marked derived.
 - Change 5 overrides operator-settled conventions (birth-class
   discipline, C4b, the tenet check). It needs the operator's
   first-hand word and an end condition: the batch's release.
+
+## Candidates raised after the GO (weigh at st-99 start, not decided)
+
+- **A design-blind acceptance oracle** (from a public comment on EGM,
+  dev-notes/egm-comparison-2026-11-06.md). Before the attack, a fresh
+  lane that sees the intent and the requirement head but NOT the design
+  writes the acceptance checks. The attacker then grades the design
+  against them, and verify reuses them. This targets the case a cold
+  read misses: a wrong assumption the design shares with its author.
+  It is the corpus parentage rule (expectations derived from the
+  definition, never from the artifact) moved before the design.
+  Cost: one extra lane per run.

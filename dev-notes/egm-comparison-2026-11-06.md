@@ -78,3 +78,34 @@ optionally two instances of each, behind a synthesizer.
    every statiker F-line carries a basis (SKILL.md 687-689), but no
    passage found requires that a dismissal's basis be something the
    attacker could read, and none found splits off ESCALATE.
+
+## Public comments on the EGM launch post (operator-pasted, 2026-11-06)
+
+Testimony, unverified. The ones that bear on statiker:
+
+- Thomas P.: used it for a week on Claude CLI (opus 5, effort high),
+  "It goes in circles and sometimes I felt it is dumb." A field report
+  of the looping that EGM's two-clean-rounds rule would predict.
+- Manish Sharma: "A cold read catches missing context, not a shared
+  wrong assumption. I would ask one reviewer to derive acceptance tests
+  from the user requirement without seeing the proposed design." This
+  is the strongest new idea in the thread. In statiker, the attacker
+  reads the whole pinned tracker, intent included (SKILL.md ~1088), and
+  verify grades against the requirement head (SKILL.md ~575). But
+  nothing derives the expectations BEFORE and BLIND TO the design. Read
+  2026-11-06 by grep only, not a full read. Candidate for st-99 (see
+  the proposal, "Candidates raised after the GO").
+- Jenish Bharucha: give the reviewer the original requirements too.
+  Statiker already does this: the pinned tracker carries the intent.
+- Alexey Kvak: once the author sees the findings, does it start
+  explaining them away? This supports st-99's no-downgrade rule and
+  the contest-must-be-readable candidate.
+- Colin-Mario Köse and Anton Vusatyi: measure how often findings were
+  real bugs rather than noise. The st-99 replay can measure exactly
+  this for the late rounds of the three recorded trackers.
+- Muhammad Naeem and Hari Krishna: a zero-context reviewer flags
+  conventions it never saw. That noise is what EGM's ESCALATE and
+  settled list absorb.
+- Nicolai Thomsen: "EGM is too rigid", and he points to
+  github.com/syv-ai/agentic-coding-playbook (skills/) as an
+  alternative. Not read.
