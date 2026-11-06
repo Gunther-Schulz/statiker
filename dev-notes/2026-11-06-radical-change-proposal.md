@@ -195,3 +195,22 @@ same test project as st-100.
     warning: st-31's shadow V2 leg fired its trigger on 2026-09-25 and
     nobody ran it, so the shadow lane goes into the attack dispatch
     itself and does not depend on anyone remembering it.
+- **Measuring the operator's mechanism without a counterfactual**
+  (desk proposal, 2026-11-06). Operator: "the broader the one-shot
+  surface the less fleshed out each part becomes". That predicts
+  something measurable on real work. Implementation is barred from
+  making design decisions, so an under-fleshed unit shows up as GAP
+  reports during implementation (`D<n> [AUTO-ACCEPTED] unit U<k>
+  gap:`). The prediction: gaps per unit RISE with the number of units
+  when the design gets one round, and stay flat when it gets iterated
+  rounds. Graded from records by a fresh-context grader against a
+  criterion registered first, never by the desk or the operator.
+  - Data on hand, MEASURED 2026-11-06 by grep over the btb trackers:
+    2026-09-25 shows 1 gap line, 6 resolved rounds, 6 units. This
+    grep is the positive control: it finds a known gap line. bt-68 and
+    bt-77 show 0, as they must: neither implemented in-run (one was
+    suspended in design, the other is a decomposition).
+  - Too thin as it stands. But `.clippy/runs/` holds 268 files from
+    the clippy era, all real work, written in an older grammar. Mining
+    them for gaps and later corrections per unit against round counts
+    is the largest real-work dataset available.
