@@ -1,6 +1,6 @@
 schema: 6
 baseline: 47
-added: 77
+added: 78
 compacted: 0
 
 ## st-12
@@ -286,3 +286,13 @@ write-set: plugin/skills/statiker/SKILL.md,plugin/skills/statiker/references/,pl
 done-criterion: In order: (1) offline replay of the three recorded trackers (2026-09-25 prod-data-growth, bt-68, bt-77) under the new stop rule, stop points registered in dev-notes before the replay, graded after; (2) sample probe: one role file and one grammar paragraph moved and measured before the rest; (3) the batch built with red-first tests per change, full suite green, byte-limit test green; (4) ONE fresh-context review of the whole batch, every finding dispositioned, before the pin moves.
 evidence: MEASURED: no run since the per-unit gate reached its end state (OBSERVATIONS 2026-11-06); bt-68 tracker line 178, A4 only MINOR findings with the gate shut; SKILL.md 118715 bytes by wc, EGM test limit 24000 bytes. DERIVED: the stop predicate is perfection-shaped
 blocked-by: NONE
+
+## st-100
+grade: READY
+requirement: LIVE FIELD RUN of the st-99 batch on a replacement test project: beat-the-books is dead (Azuro offline, operator 2026-11-06). Record: dev-notes/2026-11-06-radical-change-proposal.md, change 6
+goal: general-maintenance
+write-set: dev-notes/
+done-criterion: One statiker run on the named project serving the st-99 release, its criterion pre-registered in dev-notes before the run, graded at the harvest: did the design phase end at the gate own end state, and what did verify find after it
+evidence: MEASURED: operator 2026-11-06, "i dont have one yet. maybe i have one in mind but noting to act on now". DERIVED: st-99 offline replay cannot stand in for a live run (a replay reproduces no live variables)
+blocked-by: decision which project replaces beat-the-books as the statiker test bed
+not-derivable: 2026-11-06 constitutively the operator: which of their projects are alive and fit is theirs; no ledger line names a replacement
