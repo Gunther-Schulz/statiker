@@ -431,6 +431,28 @@
   while conduct was unmeasured; retired once 0.2.49/50
   mechanized the grammar and desk conduct graded clean across
   the trial's first relays.
+- **REFACTOR PERIOD: review schedule loosened (operator decision
+  2026-11-06, verbatim: "we need to loosen review schedule in general
+  i think for a while while we do bigger changes and reafcoring. when
+  the time is irght and we have someting stabel and satisfactory we
+  can tighten teh revw schedule again").** While the period is open,
+  it suspends the following:
+  - the checkpoint triggers (1) and (2) of the bullet below, so a pin
+    move owes no review;
+  - per-mint tenet records and C4b readings;
+  - the release gate's carried-set re-ask;
+  - review rounds after repair laps.
+
+  It keeps the following:
+  - red-first tests and the whole suite green per change;
+  - pre-registration of comparisons;
+  - floor (b): one fresh-context review over the whole delta since the
+    last reviewed state, before any REAL run consumes the pin.
+
+  Changes made inside the period owe NO retroactive tenet records when
+  it ends. The floor review is their review. The period ends only on
+  the operator's word. The desk asks the re-tighten question unprompted
+  once st-99 has released and st-100's live run is harvested.
 - **Skill-edit review at opus — CHECKPOINT-BASED
   (operator-settled 2026-08-16; supersedes the per-release form
   of 2026-08-15, which this bullet carried).** A release may move
