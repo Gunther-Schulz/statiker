@@ -174,3 +174,24 @@ same test project as st-100.
   tracker, how many of the defects found in rounds 2 and later were
   real, judged by later corrections or by verify, and how many were
   noise.
+- REVISED (operator 2026-11-06: "in the past all our artificial tests
+  failed to show any differences, it is in real work on complex apps
+  where it shows, and it is hard to build a benchmark for such a
+  thing"). The re-run replay of historical tasks is an artificial test
+  too: no live system, no stakes, no verification at the effect site.
+  It is demoted, and it no longer decides anything. Two pieces stay:
+  - **The tracker READING.** Count which findings from rounds 2 and
+    later in the three REAL recorded runs proved real (a later
+    correction or verify confirmed them) and which were noise. This is
+    an analysis of real work, not a test.
+  - **The worth-it comparison becomes a SHADOW ARM inside real runs**
+    (desk proposal). At each attack round of a real statiker run, one
+    extra cheap lane also reviews the same locked design EGM-style:
+    read-only, with no execution. The harvest records which of the
+    executed attack's real findings the read-only review also found,
+    and which it missed. This measures, on real complex work and
+    without a benchmark, what the executed iterated attack buys over
+    the closest competitor. Cost: one lane per round. Precedent and
+    warning: st-31's shadow V2 leg fired its trigger on 2026-09-25 and
+    nobody ran it, so the shadow lane goes into the attack dispatch
+    itself and does not depend on anyone remembering it.
