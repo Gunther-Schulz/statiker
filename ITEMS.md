@@ -298,3 +298,5 @@ done-criterion: One statiker run on the named project serving the st-99 release,
 evidence: MEASURED: operator 2026-11-06, "i dont have one yet. maybe i have one in mind but noting to act on now". DERIVED: st-99 offline replay cannot stand in for a live run (a replay reproduces no live variables)
 blocked-by: decision which project replaces beat-the-books as the statiker test bed
 not-derivable: 2026-11-06 constitutively the operator: which of their projects are alive and fit is theirs; no ledger line names a replacement
+amend-reason: 2026-11-06 selection rule for the replacement project
+amended-requirement: 2026-11-06 LIVE FIELD RUN of the st-99 batch on a replacement test project: beat-the-books is dead (Azuro offline, operator 2026-11-06). Selection rule (desk, 2026-11-06): the project must FAIL the corpus skip gauge the way btb did: silent failure, no fast check of the result, money or irreversible acts, work spanning sessions. A project that passes the gauge cannot show what statiker adds (operator: other apps did not seem to need it). Record: dev-notes/2026-11-06-radical-change-proposal.md, change 6
