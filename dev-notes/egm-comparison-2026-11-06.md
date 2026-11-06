@@ -60,6 +60,14 @@ optionally two instances of each, behind a synthesizer.
    terms cannot find a doc whose terms are all defined but whose parts
    do not connect. Statiker's page has no such step (grep `paraphras`
    in SKILL.md hits only the drift sense, at lines 1109/1447/1524).
+   Adapted shape (statiker runs unattended by default, SKILL.md 390, so
+   the operator is not the comparer): the attacker's paraphrase is
+   compared by the desk against the RECORDED intent and R-lines, never
+   against desk memory. Only an intent question goes to the operator,
+   through the existing route. Candidate 2 adapts the same way: in
+   statiker, "evidence the reviewer could read" means the record or the
+   repo, so a dismissal cites one of them or the reason is first written
+   into the record.
    Re-open trigger: an attack that missed a design-fit-to-intent defect
    which a paraphrase-back would have exposed.
 2. **Contest must be readable-by-the-reviewer.** A CONTEST cites
